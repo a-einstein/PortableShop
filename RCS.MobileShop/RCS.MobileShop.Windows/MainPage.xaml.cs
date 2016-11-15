@@ -13,7 +13,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-namespace RCS.MobileShop.Windows
+namespace RCS.PortableShop.Windows
 {
     public sealed partial class MainPage
     {
@@ -21,7 +21,7 @@ namespace RCS.MobileShop.Windows
         {
             this.InitializeComponent();
 
-            LoadApplication(new RCS.MobileShop.App());
+            LoadApplication(new RCS.PortableShop.App());
         }
     }
 }

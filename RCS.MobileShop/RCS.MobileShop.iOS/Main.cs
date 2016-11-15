@@ -5,7 +5,7 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace RCS.MobileShop.iOS
+namespace RCS.PortableShop.iOS
 {
     public class Application
     {

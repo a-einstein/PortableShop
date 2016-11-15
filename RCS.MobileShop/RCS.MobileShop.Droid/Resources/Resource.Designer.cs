@@ -9,9 +9,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Android.Runtime.ResourceDesignerAttribute("RCS.MobileShop.Droid.Resource", IsApplication=true)]
+[assembly: global::Android.Runtime.ResourceDesignerAttribute("RCS.PortableShop.Droid.Resource", IsApplication=true)]
 
-namespace RCS.MobileShop.Droid
+namespace RCS.PortableShop.Droid
 {
 	
 	
@@ -26,7 +26,7 @@ namespace RCS.MobileShop.Droid
 		
 		public static void UpdateIdValues()
 		{
-			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::RCS.MobileShop.Droid.Resource.Attribute.actionBarSize;
+			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::RCS.PortableShop.Droid.Resource.Attribute.actionBarSize;
 		}
 		
 		public partial class Animation

@@ -1,7 +1,7 @@
 ﻿<Application
-    x:Class="RCS.MobileShop.Windows.App"
+    x:Class="RCS.PortableShop.Windows.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:RCS.MobileShop.Windows">
+    xmlns:local="using:RCS.PortableShop.Windows">
 
 </Application>

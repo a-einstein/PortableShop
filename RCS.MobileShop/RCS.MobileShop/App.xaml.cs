@@ -5,7 +5,7 @@ using System.Text;
 
 using Xamarin.Forms;
 
-namespace RCS.MobileShop
+namespace RCS.PortableShop
 {
     public partial class App : Application
     {
@@ -13,7 +13,7 @@ namespace RCS.MobileShop
         {
             InitializeComponent();
 
-            MainPage = new RCS.MobileShop.MainPage();
+            MainPage = new RCS.PortableShop.MainPage();
         }
 
         protected override void OnStart()

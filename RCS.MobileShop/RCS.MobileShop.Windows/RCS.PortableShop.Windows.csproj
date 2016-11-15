@@ -7,8 +7,8 @@
     <ProjectGuid>{3C5788EA-210E-4FDC-B531-3171FAD96622}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RCS.MobileShop.Windows</RootNamespace>
-    <AssemblyName>RCS.MobileShop.Windows</AssemblyName>
+    <RootNamespace>RCS.PortableShop.Windows</RootNamespace>
+    <AssemblyName>RCS.PortableShop.Windows</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformVersion>8.1</TargetPlatformVersion>
     <MinimumVisualStudioVersion>12</MinimumVisualStudioVersion>
@@ -139,9 +139,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RCS.MobileShop\RCS.MobileShop.csproj">
-      <Project>{7a18e849-4984-4d2e-a32c-d21c0786d515}</Project>
-      <Name>RCS.MobileShop</Name>
+    <ProjectReference Include="..\RCS.MobileShop\RCS.PortableShop.csproj">
+      <Project>{CCF5BF7A-5A36-4E98-A978-023BCD877008}</Project>
+      <Name>RCS.PortableShop</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

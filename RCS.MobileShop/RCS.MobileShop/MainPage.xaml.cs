@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace RCS.MobileShop
+namespace RCS.PortableShop
 {
     public partial class MainPage : ContentPage
     {

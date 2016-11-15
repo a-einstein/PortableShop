@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCS.MobileShop", "RCS.MobileShop\RCS.MobileShop\RCS.MobileShop.csproj", "{CCF5BF7A-5A36-4E98-A978-023BCD877008}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCS.PortableShop", "RCS.MobileShop\RCS.MobileShop\RCS.PortableShop.csproj", "{CCF5BF7A-5A36-4E98-A978-023BCD877008}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCS.MobileShop.Droid", "RCS.MobileShop\RCS.MobileShop.Droid\RCS.MobileShop.Droid.csproj", "{B30E6A46-2769-46F8-B0D1-24BCBBE1F4F2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCS.PortableShop.Droid", "RCS.MobileShop\RCS.MobileShop.Droid\RCS.PortableShop.Droid.csproj", "{B30E6A46-2769-46F8-B0D1-24BCBBE1F4F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCS.MobileShop.iOS", "RCS.MobileShop\RCS.MobileShop.iOS\RCS.MobileShop.iOS.csproj", "{AF10AE97-F898-47E7-A165-8CF8EF0696A6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCS.PortableShop.iOS", "RCS.MobileShop\RCS.MobileShop.iOS\RCS.PortableShop.iOS.csproj", "{AF10AE97-F898-47E7-A165-8CF8EF0696A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCS.MobileShop.WinPhone", "RCS.MobileShop\RCS.MobileShop.WinPhone\RCS.MobileShop.WinPhone.csproj", "{6C1B2508-B08F-45A5-9449-DA7FFA50BEBB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCS.PortableShop.WinPhone", "RCS.MobileShop\RCS.MobileShop.WinPhone\RCS.PortableShop.WinPhone.csproj", "{6C1B2508-B08F-45A5-9449-DA7FFA50BEBB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCS.MobileShop.UWP", "RCS.MobileShop\RCS.MobileShop.UWP\RCS.MobileShop.UWP.csproj", "{243D673B-797F-4B02-A594-37A7A09162FA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCS.PortableShop.UWP", "RCS.MobileShop\RCS.MobileShop.UWP\RCS.PortableShop.UWP.csproj", "{243D673B-797F-4B02-A594-37A7A09162FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCS.MobileShop.Windows", "RCS.MobileShop\RCS.MobileShop.Windows\RCS.MobileShop.Windows.csproj", "{3C5788EA-210E-4FDC-B531-3171FAD96622}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCS.PortableShop.Windows", "RCS.MobileShop\RCS.MobileShop.Windows\RCS.PortableShop.Windows.csproj", "{3C5788EA-210E-4FDC-B531-3171FAD96622}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -180,6 +180,7 @@ Global
 		{AF10AE97-F898-47E7-A165-8CF8EF0696A6}.AppStore|x64.ActiveCfg = AppStore|iPhone
 		{AF10AE97-F898-47E7-A165-8CF8EF0696A6}.AppStore|x86.ActiveCfg = AppStore|iPhone
 		{AF10AE97-F898-47E7-A165-8CF8EF0696A6}.Debug|Any CPU.ActiveCfg = Debug|iPhone
+		{AF10AE97-F898-47E7-A165-8CF8EF0696A6}.Debug|Any CPU.Build.0 = Debug|iPhone
 		{AF10AE97-F898-47E7-A165-8CF8EF0696A6}.Debug|ARM.ActiveCfg = Debug|iPhone
 		{AF10AE97-F898-47E7-A165-8CF8EF0696A6}.Debug|iPhone.ActiveCfg = Debug|iPhone
 		{AF10AE97-F898-47E7-A165-8CF8EF0696A6}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
@@ -231,6 +232,7 @@ Global
 		{6C1B2508-B08F-45A5-9449-DA7FFA50BEBB}.AppStore|x86.Build.0 = Release|x86
 		{6C1B2508-B08F-45A5-9449-DA7FFA50BEBB}.AppStore|x86.Deploy.0 = Release|x86
 		{6C1B2508-B08F-45A5-9449-DA7FFA50BEBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C1B2508-B08F-45A5-9449-DA7FFA50BEBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C1B2508-B08F-45A5-9449-DA7FFA50BEBB}.Debug|ARM.ActiveCfg = Debug|ARM
 		{6C1B2508-B08F-45A5-9449-DA7FFA50BEBB}.Debug|ARM.Build.0 = Debug|ARM
 		{6C1B2508-B08F-45A5-9449-DA7FFA50BEBB}.Debug|ARM.Deploy.0 = Debug|ARM
@@ -299,6 +301,8 @@ Global
 		{243D673B-797F-4B02-A594-37A7A09162FA}.AppStore|x86.Build.0 = Release|x86
 		{243D673B-797F-4B02-A594-37A7A09162FA}.AppStore|x86.Deploy.0 = Release|x86
 		{243D673B-797F-4B02-A594-37A7A09162FA}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{243D673B-797F-4B02-A594-37A7A09162FA}.Debug|Any CPU.Build.0 = Debug|x86
+		{243D673B-797F-4B02-A594-37A7A09162FA}.Debug|Any CPU.Deploy.0 = Debug|x86
 		{243D673B-797F-4B02-A594-37A7A09162FA}.Debug|ARM.ActiveCfg = Debug|ARM
 		{243D673B-797F-4B02-A594-37A7A09162FA}.Debug|ARM.Build.0 = Debug|ARM
 		{243D673B-797F-4B02-A594-37A7A09162FA}.Debug|ARM.Deploy.0 = Debug|ARM
@@ -359,6 +363,8 @@ Global
 		{3C5788EA-210E-4FDC-B531-3171FAD96622}.AppStore|x86.Build.0 = Release|x86
 		{3C5788EA-210E-4FDC-B531-3171FAD96622}.AppStore|x86.Deploy.0 = Release|x86
 		{3C5788EA-210E-4FDC-B531-3171FAD96622}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C5788EA-210E-4FDC-B531-3171FAD96622}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C5788EA-210E-4FDC-B531-3171FAD96622}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{3C5788EA-210E-4FDC-B531-3171FAD96622}.Debug|ARM.ActiveCfg = Debug|ARM
 		{3C5788EA-210E-4FDC-B531-3171FAD96622}.Debug|ARM.Build.0 = Debug|ARM
 		{3C5788EA-210E-4FDC-B531-3171FAD96622}.Debug|ARM.Deploy.0 = Debug|ARM

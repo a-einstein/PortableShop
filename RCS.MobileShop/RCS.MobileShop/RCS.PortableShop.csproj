@@ -8,8 +8,8 @@
     <ProjectGuid>{CCF5BF7A-5A36-4E98-A978-023BCD877008}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RCS.MobileShop</RootNamespace>
-    <AssemblyName>RCS.MobileShop</AssemblyName>
+    <RootNamespace>RCS.PortableShop</RootNamespace>
+    <AssemblyName>RCS.PortableShop</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Profile259</TargetFrameworkProfile>

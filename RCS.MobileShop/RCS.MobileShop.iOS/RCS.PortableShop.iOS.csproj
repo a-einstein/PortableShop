@@ -8,9 +8,9 @@
     <ProjectGuid>{AF10AE97-F898-47E7-A165-8CF8EF0696A6}</ProjectGuid>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
-    <RootNamespace>RCS.MobileShop.iOS</RootNamespace>
+    <RootNamespace>RCS.PortableShop.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>RCS.MobileShop.iOS</AssemblyName>
+    <AssemblyName>RCS.PortableShop.iOS</AssemblyName>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
   </PropertyGroup>
@@ -140,9 +140,9 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RCS.MobileShop\RCS.MobileShop.csproj">
-      <Project>{7a18e849-4984-4d2e-a32c-d21c0786d515}</Project>
-      <Name>RCS.MobileShop</Name>
+    <ProjectReference Include="..\RCS.MobileShop\RCS.PortableShop.csproj">
+      <Project>{CCF5BF7A-5A36-4E98-A978-023BCD877008}</Project>
+      <Name>RCS.PortableShop</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

@@ -7,8 +7,8 @@
     <ProjectGuid>{243D673B-797F-4B02-A594-37A7A09162FA}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RCS.MobileShop.UWP</RootNamespace>
-    <AssemblyName>RCS.MobileShop.UWP</AssemblyName>
+    <RootNamespace>RCS.PortableShop.UWP</RootNamespace>
+    <AssemblyName>RCS.PortableShopp.UWP</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.10586.0</TargetPlatformVersion>
@@ -129,9 +129,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RCS.MobileShop\RCS.MobileShop.csproj">
-      <Project>{7a18e849-4984-4d2e-a32c-d21c0786d515}</Project>
-      <Name>RCS.MobileShop</Name>
+    <ProjectReference Include="..\RCS.MobileShop\RCS.PortableShop.csproj">
+      <Project>{CCF5BF7A-5A36-4E98-A978-023BCD877008}</Project>
+      <Name>RCS.PortableShop</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

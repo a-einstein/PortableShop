@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace RCS.MobileShop.WinPhone
+namespace RCS.PortableShop.WinPhone
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
@@ -28,7 +28,7 @@ namespace RCS.MobileShop.WinPhone
 
             this.NavigationCacheMode = NavigationCacheMode.Required;
 
-            LoadApplication(new RCS.MobileShop.App());
+            LoadApplication(new RCS.PortableShop.App());
         }
 
         /// <summary>
