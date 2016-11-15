@@ -140,7 +140,7 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RCS.MobileShop\RCS.PortableShop.csproj">
+    <ProjectReference Include="..\RCS.PortableShop\RCS.PortableShop.csproj">
       <Project>{CCF5BF7A-5A36-4E98-A978-023BCD877008}</Project>
       <Name>RCS.PortableShop</Name>
     </ProjectReference>
