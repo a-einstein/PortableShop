@@ -1,18 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-
+﻿using RCS.PortableShop.Main;
 namespace RCS.PortableShop.Windows
 {
     public sealed partial class MainPage
@@ -21,7 +7,7 @@ namespace RCS.PortableShop.Windows
         {
             this.InitializeComponent();
 
-            LoadApplication(new RCS.PortableShop.App());
+            LoadApplication(new MainApplication());
         }
     }
 }

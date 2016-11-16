@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-using Foundation;
+﻿using Foundation;
+using RCS.PortableShop.Main;
 using UIKit;
 
 namespace RCS.PortableShop.iOS
@@ -23,7 +20,7 @@ namespace RCS.PortableShop.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
-            LoadApplication(new App());
+            LoadApplication(new MainApplication());
 
             return base.FinishedLaunching(app, options);
         }

@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Xamarin.Forms;
 
-using Xamarin.Forms;
-
-namespace RCS.PortableShop
+namespace RCS.PortableShop.Main
 {
-    public partial class App : Application
+    public partial class MainApplication : Application
     {
-        public App()
+        public MainApplication()
         {
             InitializeComponent();
 
-            MainPage = new RCS.PortableShop.MainPage();
+            MainPage = new RCS.PortableShop.Main.MainPage();
         }
 
         protected override void OnStart()
