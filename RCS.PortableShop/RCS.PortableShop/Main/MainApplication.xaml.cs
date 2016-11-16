@@ -8,7 +8,7 @@ namespace RCS.PortableShop.Main
         {
             InitializeComponent();
 
-            MainPage = new RCS.PortableShop.Main.MainPage();
+            MainPage = new MainWindow();
         }
 
         protected override void OnStart()
