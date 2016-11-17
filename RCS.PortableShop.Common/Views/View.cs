@@ -5,13 +5,10 @@ namespace RCS.PortableShop.Common.Views
 {
     public abstract class View : ContentView
     {
-        public static readonly BindableProperty DataContextProperty;
-        public object DataContext { get; set; }
-
-        public ViewModel ViewModel
+         public ViewModel ViewModel
         {
-            get { return DataContext as ViewModel; }
-            set { DataContext = value; }
+            get { return BindingContext as ViewModel; }
+            set { BindingContext = value; }
         }
-    }
+     }
 }
