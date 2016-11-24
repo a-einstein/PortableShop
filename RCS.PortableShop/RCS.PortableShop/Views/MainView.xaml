@@ -5,7 +5,78 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:BaseClasses="clr-namespace:RCS.PortableShop.Common.Views;assembly=RCS.PortableShop.Common"
+    xmlns:SharedResourcesNamespace="clr-namespace:RCS.PortableShop.Resources;assembly=RCS.PortableShop.Resources"
     >
 
-    <Label Text="Welcome to PortableShop!" VerticalOptions="Center" HorizontalOptions="Center" />
+    <!--Note this creates instances, static properties do not work like they (strangely) do in WPF.-->
+    <BaseClasses:View.Resources>
+        <ResourceDictionary>
+            
+            <SharedResourcesNamespace:Wrapper x:Key="LabelsWrapper" />
+            
+            <!--Omit the Wrapper.-->
+            <!--Note the generated internal constructor creates an additional problem which can only temporarily be changed.-->
+            <SharedResourcesNamespace:Labels x:Key="Labels" />
+            
+        </ResourceDictionary>
+    </BaseClasses:View.Resources>
+
+    <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+        <!--Works.-->
+        <Label Text="XamlText!" />
+        
+        <!--Works.-->
+        <Label Text="{Binding ViewModelText}" />
+
+        <!--TODO >> Get this working. The Resources is filled, but I do not get the values out. 
+        Is Binding possible?
+        Is the dotted notation possible?
+        -->
+
+        <!--Works.-->
+        <Label Text="{Binding Source={StaticResource LabelsWrapper}, Path=PublicLabel1}" />
+
+        <!--Does NOT work.-->
+        <Label Text="{Binding Source={StaticResource LabelsWrapper}, Path=StaticLabel1}" />
+        
+        <!--Does NOT work.-->
+        <!--The problem could  be in the static nature within Labels.-->
+        <Label Text="{Binding Source={StaticResource LabelsWrapper}, Path=Labels.MainTitle}" />
+
+        <!--Does NOT work.-->
+        <!--The BindableProperty construction does not help.-->
+        <Label Text="{Binding Source={StaticResource LabelsWrapper}, Path=BindableLabels.MainTitle}" />
+
+        <!--Does NOT work.-->
+        <!--Omit the Wrapper.-->
+        <Label Text="{Binding Source={StaticResource Labels}, Path=MainTitle}" />
+
+        <!--Exception-->
+        <!--<Label Text="{x:static SharedResourcesNamespace.Labels.MainTitle}" />-->
+        
+        <!-- == Basically the same through BindingContext, which seems equivalent to Binding Source.== -->
+        
+        <!--Works.-->
+        <Label BindingContext="{StaticResource LabelsWrapper}" Text="{Binding Path=PublicLabel2}" />
+
+        <!--Does NOT work.-->
+        <Label BindingContext="{StaticResource LabelsWrapper}" Text="{Binding Path=Labels.NavigateAbout}" />
+        
+        <!--Does NOT work.-->
+        <!--The BindableProperty construction does not help.-->
+        <Label BindingContext="{StaticResource LabelsWrapper}" Text="{Binding Path=BindableLabels.NavigateAbout}" />
+        
+        <!--Does NOT work.-->
+        <!--Omit the Wrapper.-->
+        <Label BindingContext="{StaticResource Labels}" Text="{Binding Path=NavigateAbout}" />
+        
+        <!--Exception-->
+        <!--<Label BindingContext="{StaticResource Labels}" Text="{x:static NavigateAbout}" />-->
+
+        <!--Exception-->
+        <!--<Label Text="{x:static SharedResourcesNamespace.Labels.NavigateAbout}" />-->
+
+        <!--Exception-->
+        <!--<Label Text="{x:static SharedResourcesNamespace:Labels.NavigateAbout}" />-->
+    </StackLayout>
 </BaseClasses:View>
