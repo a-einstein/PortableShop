@@ -120,9 +120,7 @@
   <data name="About" xml:space="preserve">
     <value>This project is built by Robert for test and demonstration of various concepts in Xamarin
 
-For further details please check the descriptions (ReadMe) of the involved repositories.
-
-</value>
+For further details please check the descriptions (ReadMe) of the involved repositories.</value>
     <comment>Use shift-enter to break lines.</comment>
   </data>
   <data name="Cart" xml:space="preserve">

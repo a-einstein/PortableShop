@@ -14,7 +14,6 @@ namespace RCS.PortableShop.Localization
         readonly CultureInfo cultureInfo;
 
         const string resourceBasename = "RCS.PortableShop.Resources.Labels";
-        string resourceManifestname = $"{resourceBasename}.resources";
 
         public TranslateExtension()
         {
@@ -33,7 +32,7 @@ namespace RCS.PortableShop.Localization
 
             ResourceManager resourceManager = new ResourceManager(resourceBasename, typeof(TranslateExtension).GetTypeInfo().Assembly);
 
-            // TODO >> Crashes here. Maybe irrelevant, but it mentions <resourceBasename>.resources, which is an Id in XamarinStudio. Changing that does not make a difference.
+            // Note this only got working with the resources in the same assembly. Otherwise crashed.
             var translation = resourceManager.GetString(Text, cultureInfo);
 
             if (translation == null)

@@ -9,13 +9,10 @@
     >
 
     <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
-        <!--Works.-->
         <Label Text="Welcome to PortableShop!" />
+
+        <Label Text="{Localization:Translate About}" />
         
-        <!--Works.-->
         <Label Text="{Binding ViewModelText}" />
-        
-        <!--TODO >> Crashes. Get this working. The sample works. The problem seems to be the layered structure or the base class here.-->
-        <Label Text="{Localization:Translate NavigateAbout}" />
     </StackLayout>
 </BaseClasses:View>
