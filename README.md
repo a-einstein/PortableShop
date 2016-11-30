@@ -8,5 +8,6 @@
 #### Aspects
 * Xamarin.
 * MVVM.
+* Globalized resources.
 * NuGet.
 * ...
