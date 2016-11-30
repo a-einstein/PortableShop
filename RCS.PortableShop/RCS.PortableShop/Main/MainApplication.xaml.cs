@@ -8,6 +8,8 @@ namespace RCS.PortableShop.Main
 {
     public partial class MainApplication : Application
     {
+        private const string debugPrefix = ">>>> Debug:";
+
         public MainApplication()
         {
             InitializeComponent();
@@ -22,17 +24,13 @@ namespace RCS.PortableShop.Main
 
         private static void ListResources()
         {
-            Debug.WriteLine("====== Resource debug info =========");
-
             ListAssemblyResources(typeof(Labels).GetTypeInfo().Assembly);
-
-            Debug.WriteLine("====================================");
         }
 
         private static void ListAssemblyResources(Assembly assembly)
         {
             foreach (var resource in assembly.GetManifestResourceNames())
-                Debug.WriteLine($"Found resource: {resource}");
+                Debug.WriteLine($"{debugPrefix} Found resource: {resource}");
         }
 
         private static void SetCulture()

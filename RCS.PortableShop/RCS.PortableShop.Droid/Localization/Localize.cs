@@ -10,41 +10,47 @@ namespace RCS.PortableShop.Droid.Localization
 {
     public class Localize : ILocalize
     {
+        // TODO Centrally define this.
+        const string debugPrefix = ">>>> Debug:"; 
+
         public void SetLocale(CultureInfo cultureInfo)
         {
             Thread.CurrentThread.CurrentCulture = cultureInfo;
             Thread.CurrentThread.CurrentUICulture = cultureInfo;
 
-            Console.WriteLine("CurrentCulture set: " + cultureInfo.Name);
+            Console.WriteLine($"{debugPrefix} CurrentCulture set to '{cultureInfo.Name}'");
         }
 
         public CultureInfo GetCurrentCultureInfo()
         {
-            var dotnetLanguage = "en";
+            // TODO Centrally define codes.
+            var englishCode = "en";
+
             var androidLocale = Java.Util.Locale.Default;
-            dotnetLanguage = AndroidToDotnetLanguage(androidLocale.ToString().Replace("_", "-"));
+            var dotnetLanguage = AndroidToDotnetLanguage(androidLocale.ToString().Replace("_", "-"));
 
             // this gets called a lot - try/catch can be expensive so consider caching or something
-            System.Globalization.CultureInfo cultureInfo = null;
+            CultureInfo cultureInfo = null;
             try
             {
-                cultureInfo = new System.Globalization.CultureInfo(dotnetLanguage);
+                cultureInfo = new CultureInfo(dotnetLanguage);
             }
             catch (CultureNotFoundException cultureNotFoundException1)
             {
                 // iOS locale not valid .NET culture (eg. "en-ES" : English in Spain)
-                // fallback to first characters, in this case "en"
+                // fallback to first characters, in this case englishCode.
+                var fallback = ToDotnetFallbackLanguage(new PlatformCulture(dotnetLanguage));
+
                 try
                 {
-                    var fallback = ToDotnetFallbackLanguage(new PlatformCulture(dotnetLanguage));
-                    Console.WriteLine(dotnetLanguage + " failed, trying " + fallback + " (" + cultureNotFoundException1.Message + ")");
-                    cultureInfo = new System.Globalization.CultureInfo(fallback);
+                    Console.WriteLine($"{debugPrefix} Setting cultureInfo to '{dotnetLanguage}' failed, trying {fallback}. ({cultureNotFoundException1.Message})");
+                    cultureInfo = new CultureInfo(fallback);
                 }
                 catch (CultureNotFoundException cultureNotFoundException2)
                 {
                     // iOS language not valid .NET culture, falling back to English
-                    Console.WriteLine(dotnetLanguage + " couldn't be set, using 'en' (" + cultureNotFoundException2.Message + ")");
-                    cultureInfo = new System.Globalization.CultureInfo("en");
+                    Console.WriteLine($"{debugPrefix} {fallback} couldn't be set, using '{englishCode}'. ({cultureNotFoundException2.Message})");
+                    cultureInfo = new CultureInfo(englishCode);
                 }
             }
 
@@ -53,7 +59,8 @@ namespace RCS.PortableShop.Droid.Localization
 
         string AndroidToDotnetLanguage(string androidLanguage)
         {
-            Console.WriteLine("Android Language:" + androidLanguage);
+            Console.WriteLine($"{debugPrefix} Android Language: {androidLanguage}");
+
             var dotnetLanguage = androidLanguage;
 
             //certain languages need to be converted to CultureInfo equivalent
@@ -74,12 +81,14 @@ namespace RCS.PortableShop.Droid.Localization
                     // ONLY use cultures that have been tested and known to work
             }
 
-            Console.WriteLine(".NET Language/Locale:" + dotnetLanguage);
+            Console.WriteLine($"{debugPrefix} .NET Language/Locale: {dotnetLanguage}");
+
             return dotnetLanguage;
         }
         string ToDotnetFallbackLanguage(PlatformCulture platformCulture)
         {
-            Console.WriteLine(".NET Fallback Language:" + platformCulture.LanguageCode);
+            Console.WriteLine($"{debugPrefix} .NET Fallback Language: {platformCulture.LanguageCode}");
+
             var dotnetLanguage = platformCulture.LanguageCode; // use the first part of the identifier (two chars, usually);
 
             switch (platformCulture.LanguageCode)
@@ -91,7 +100,8 @@ namespace RCS.PortableShop.Droid.Localization
                     // ONLY use cultures that have been tested and known to work
             }
 
-            Console.WriteLine(".NET Fallback Language/Locale:" + dotnetLanguage + " (application-specific)");
+            Console.WriteLine($"{debugPrefix} .NET Fallback Language/Locale: {dotnetLanguage} (application-specific)");
+
             return dotnetLanguage;
         }
     }
