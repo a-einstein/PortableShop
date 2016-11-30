@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RCS.PortableShop.Resources;
+using System;
 using System.Globalization;
 using System.Reflection;
 using System.Resources;
@@ -28,20 +29,23 @@ namespace RCS.PortableShop.Localization
             if (Text == null)
                 return string.Empty;
 
-            const string resourceBasename = "RCS.PortableShop.Resources.Labels";
-            ResourceManager resourceManager = new ResourceManager(resourceBasename, typeof(TranslateExtension).GetTypeInfo().Assembly);
+            var resourceTypeInfo = typeof(Labels).GetTypeInfo();
+            var resourceBasename = resourceTypeInfo.FullName;
+            var resourceAssembly = resourceTypeInfo.Assembly;
 
-            // Note this only got working with the resources in the same assembly. Otherwise crashed.
+            var resourceManager = new ResourceManager(resourceBasename, resourceAssembly);
+
             var translation = resourceManager.GetString(Text, cultureInfo);
 
             if (translation == null)
             {
 #if DEBUG
-                throw new ArgumentException(String.Format("Key '{0}' was not found in resources '{1}' for culture '{2}'.", Text, resourceBasename, cultureInfo.Name), "Text");
+                throw new ArgumentException($"Key '{Text}' was not found in resources '{resourceBasename}' for culture '{cultureInfo.Name}'", nameof(Text));
 #else
                 translation = Text; // HACK: returns the key, which GETS DISPLAYED TO THE USER
 #endif
             }
+
             return translation;
         }
     }

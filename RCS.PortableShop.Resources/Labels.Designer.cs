@@ -23,7 +23,7 @@ namespace RCS.PortableShop.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Labels {
+    public class Labels {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -37,7 +37,7 @@ namespace RCS.PortableShop.Resources {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("RCS.PortableShop.Resources.Labels", typeof(Labels).GetTypeInfo().Assembly);
@@ -52,7 +52,7 @@ namespace RCS.PortableShop.Resources {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -64,7 +64,7 @@ namespace RCS.PortableShop.Resources {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
-        internal static string About {
+        public static string About {
             get {
                 return ResourceManager.GetString("About", resourceCulture);
             }
@@ -73,7 +73,7 @@ namespace RCS.PortableShop.Resources {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
-        internal static string Cart {
+        public static string Cart {
             get {
                 return ResourceManager.GetString("Cart", resourceCulture);
             }
@@ -82,7 +82,7 @@ namespace RCS.PortableShop.Resources {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
-        internal static string Close {
+        public static string Close {
             get {
                 return ResourceManager.GetString("Close", resourceCulture);
             }
@@ -91,7 +91,7 @@ namespace RCS.PortableShop.Resources {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
-        internal static string DetailFilter {
+        public static string DetailFilter {
             get {
                 return ResourceManager.GetString("DetailFilter", resourceCulture);
             }
@@ -100,7 +100,7 @@ namespace RCS.PortableShop.Resources {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
-        internal static string Details {
+        public static string Details {
             get {
                 return ResourceManager.GetString("Details", resourceCulture);
             }
@@ -109,7 +109,7 @@ namespace RCS.PortableShop.Resources {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
-        internal static string Filter {
+        public static string Filter {
             get {
                 return ResourceManager.GetString("Filter", resourceCulture);
             }
@@ -118,7 +118,7 @@ namespace RCS.PortableShop.Resources {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
-        internal static string IncreaseProduct {
+        public static string IncreaseProduct {
             get {
                 return ResourceManager.GetString("IncreaseProduct", resourceCulture);
             }
@@ -127,7 +127,7 @@ namespace RCS.PortableShop.Resources {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
-        internal static string Items {
+        public static string Items {
             get {
                 return ResourceManager.GetString("Items", resourceCulture);
             }
@@ -136,7 +136,7 @@ namespace RCS.PortableShop.Resources {
         /// <summary>
         ///   Looks up a localized string similar to MT.
         /// </summary>
-        internal static string MainTitle {
+        public static string MainTitle {
             get {
                 return ResourceManager.GetString("MainTitle", resourceCulture);
             }
@@ -145,7 +145,7 @@ namespace RCS.PortableShop.Resources {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
-        internal static string MasterFilter {
+        public static string MasterFilter {
             get {
                 return ResourceManager.GetString("MasterFilter", resourceCulture);
             }
@@ -154,7 +154,7 @@ namespace RCS.PortableShop.Resources {
         /// <summary>
         ///   Looks up a localized string similar to NA.
         /// </summary>
-        internal static string NavigateAbout {
+        public static string NavigateAbout {
             get {
                 return ResourceManager.GetString("NavigateAbout", resourceCulture);
             }
@@ -163,7 +163,7 @@ namespace RCS.PortableShop.Resources {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
-        internal static string NavigateShop {
+        public static string NavigateShop {
             get {
                 return ResourceManager.GetString("NavigateShop", resourceCulture);
             }
@@ -172,7 +172,7 @@ namespace RCS.PortableShop.Resources {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
-        internal static string Products {
+        public static string Products {
             get {
                 return ResourceManager.GetString("Products", resourceCulture);
             }
@@ -181,7 +181,7 @@ namespace RCS.PortableShop.Resources {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
-        internal static string Remove {
+        public static string Remove {
             get {
                 return ResourceManager.GetString("Remove", resourceCulture);
             }
@@ -190,7 +190,7 @@ namespace RCS.PortableShop.Resources {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
-        internal static string TextFilter {
+        public static string TextFilter {
             get {
                 return ResourceManager.GetString("TextFilter", resourceCulture);
             }
@@ -199,7 +199,7 @@ namespace RCS.PortableShop.Resources {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
-        internal static string TotalValue {
+        public static string TotalValue {
             get {
                 return ResourceManager.GetString("TotalValue", resourceCulture);
             }
