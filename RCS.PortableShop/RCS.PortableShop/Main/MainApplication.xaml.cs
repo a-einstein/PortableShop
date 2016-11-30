@@ -12,7 +12,9 @@ namespace RCS.PortableShop.Main
         {
             InitializeComponent();
 
+#if DEBUG
             ListResources();
+#endif
             SetCulture();
 
             MainPage = new MainWindow();
@@ -30,7 +32,7 @@ namespace RCS.PortableShop.Main
         private static void ListAssemblyResources(Assembly assembly)
         {
             foreach (var resource in assembly.GetManifestResourceNames())
-                Debug.WriteLine("Found resource: " + resource);
+                Debug.WriteLine($"Found resource: {resource}");
         }
 
         private static void SetCulture()

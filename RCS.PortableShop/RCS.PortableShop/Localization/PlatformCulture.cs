@@ -7,9 +7,7 @@ namespace RCS.PortableShop.Localization
         public PlatformCulture(string platformCultureString)
         {
             if (String.IsNullOrEmpty(platformCultureString))
-                throw new ArgumentException("Expected culture identifier", "platformCultureString"); // in C# 6 use nameof(platformCultureString)
-
-            // TODO Adopt C# 6 features throughout this code.
+                throw new ArgumentException("Expected culture identifier", nameof(platformCultureString));
 
             PlatformString = platformCultureString.Replace("_", "-"); // .NET expects dash, not underscore
             var dashIndex = PlatformString.IndexOf("-", StringComparison.Ordinal);
@@ -23,7 +21,7 @@ namespace RCS.PortableShop.Localization
             else
             {
                 LanguageCode = PlatformString;
-                LocaleCode = "";
+                LocaleCode = string.Empty;
             }
         }
         public string PlatformString { get; private set; }

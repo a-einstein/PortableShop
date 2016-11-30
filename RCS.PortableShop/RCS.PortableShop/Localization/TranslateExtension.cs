@@ -7,13 +7,11 @@ using Xamarin.Forms.Xaml;
 
 namespace RCS.PortableShop.Localization
 {
-    // Exclude the 'Extension' suffix when using in Xaml markup.
     [ContentProperty("Text")]
+    // Exclude the 'Extension' suffix when using in xaml.
     public class TranslateExtension : IMarkupExtension
     {
         readonly CultureInfo cultureInfo;
-
-        const string resourceBasename = "RCS.PortableShop.Resources.Labels";
 
         public TranslateExtension()
         {
@@ -28,8 +26,9 @@ namespace RCS.PortableShop.Localization
         public object ProvideValue(IServiceProvider serviceProvider)
         {
             if (Text == null)
-                return "";
+                return string.Empty;
 
+            const string resourceBasename = "RCS.PortableShop.Resources.Labels";
             ResourceManager resourceManager = new ResourceManager(resourceBasename, typeof(TranslateExtension).GetTypeInfo().Assembly);
 
             // Note this only got working with the resources in the same assembly. Otherwise crashed.
