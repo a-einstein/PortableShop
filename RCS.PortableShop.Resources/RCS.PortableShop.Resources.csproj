@@ -44,11 +44,16 @@
     <Compile Include="Wrapper.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Labels.en-GB.resx" />
-    <EmbeddedResource Include="Labels.nl-NL.resx" />
+    <EmbeddedResource Include="Labels.en-GB.resx">
+      <LogicalName>RCS.PortableShop.Resources.Labels.en-GB.resources</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Labels.nl-NL.resx">
+      <LogicalName>RCS.PortableShop.Resources.Labels.nl-NL.resources</LogicalName>
+    </EmbeddedResource>
     <EmbeddedResource Include="Labels.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Labels.Designer.cs</LastGenOutput>
+      <LogicalName>RCS.PortableShop.Resources.Labels.resources</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

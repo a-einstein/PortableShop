@@ -30,7 +30,7 @@ namespace RCS.PortableShop.Resources {
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        public Labels() {
+        internal Labels() {
         }
         
         /// <summary>
@@ -40,7 +40,7 @@ namespace RCS.PortableShop.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("RCS.PortableShop.Resources.Labels", typeof(Labels).GetTypeInfo().Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("RCS.PortableShop.Resources.Labels.resources", typeof(Labels).GetTypeInfo().Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -202,15 +202,6 @@ namespace RCS.PortableShop.Resources {
         public static string TotalValue {
             get {
                 return ResourceManager.GetString("TotalValue", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to y.
-        /// </summary>
-        public static string x {
-            get {
-                return ResourceManager.GetString("x", resourceCulture);
             }
         }
     }

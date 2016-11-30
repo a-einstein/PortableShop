@@ -7,18 +7,20 @@ using Xamarin.Forms.Xaml;
 
 namespace RCS.PortableShop.Localization
 {
-    // You exclude the 'Extension' suffix when using in Xaml markup
+    // Exclude the 'Extension' suffix when using in Xaml markup.
     [ContentProperty("Text")]
     public class TranslateExtension : IMarkupExtension
     {
-        readonly CultureInfo ci;
-        const string ResourceId = "RCS.PortableShop.Resources.Labels";
+        readonly CultureInfo cultureInfo;
+
+        const string resourceBasename = "RCS.PortableShop.Resources.Labels";
+        string resourceManifestname = $"{resourceBasename}.resources";
 
         public TranslateExtension()
         {
             if (Device.OS == TargetPlatform.iOS || Device.OS == TargetPlatform.Android)
             {
-                ci = DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
+                cultureInfo = DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
             }
         }
 
@@ -29,14 +31,15 @@ namespace RCS.PortableShop.Localization
             if (Text == null)
                 return "";
 
-            ResourceManager resmgr = new ResourceManager(ResourceId, typeof(TranslateExtension).GetTypeInfo().Assembly);
+            ResourceManager resourceManager = new ResourceManager(resourceBasename, typeof(TranslateExtension).GetTypeInfo().Assembly);
 
-            var translation = resmgr.GetString(Text, ci);
+            // TODO >> Crashes here. Maybe irrelevant, but it mentions <resourceBasename>.resources, which is an Id in XamarinStudio. Changing that does not make a difference.
+            var translation = resourceManager.GetString(Text, cultureInfo);
 
             if (translation == null)
             {
 #if DEBUG
-                throw new ArgumentException(String.Format("Key '{0}' was not found in resources '{1}' for culture '{2}'.", Text, ResourceId, ci.Name), "Text");
+                throw new ArgumentException(String.Format("Key '{0}' was not found in resources '{1}' for culture '{2}'.", Text, resourceBasename, cultureInfo.Name), "Text");
 #else
                 translation = Text; // HACK: returns the key, which GETS DISPLAYED TO THE USER
 #endif

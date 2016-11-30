@@ -166,7 +166,4 @@
   <data name="TotalValue" xml:space="preserve">
     <value />
   </data>
-  <data name="x" xml:space="preserve">
-    <value>y</value>
-  </data>
 </root>
