@@ -5,8 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using Windows.UI.Xaml;
 
-namespace RCS.WpfShop.Common.ViewModels
+namespace RCS.PortableShop.Common.ViewModels
 {
     public abstract class FilterItemsViewModel<T, V, W> : ItemsViewModel<T>
     {

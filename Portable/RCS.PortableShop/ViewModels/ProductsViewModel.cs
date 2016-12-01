@@ -1,10 +1,10 @@
 ﻿using Prism.Commands;
 using RCS.AdventureWorks.Common.DomainClasses;
-using RCS.WpfShop.Common.ViewModels;
-using RCS.WpfShop.Common.Views;
-using RCS.WpfShop.Common.Windows;
-using RCS.WpfShop.Modules.Products.Model;
-using RCS.WpfShop.Modules.Products.Views;
+using RCS.PortableShop.Common.ViewModels;
+using RCS.PortableShop.Common.Views;
+using RCS.PortableShop.Common.Windows;
+using RCS.PortableShop.Model;
+using RCS.PortableShop.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -15,9 +15,8 @@ using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Threading;
 
-namespace RCS.WpfShop.Modules.Products.ViewModels
+namespace RCS.PortableShop.ViewModels
 {
-    [Export]
     public class ProductsViewModel : FilterItemsViewModel<ProductsOverviewObject, ProductCategory, ProductSubcategory>, IShopper, IPartImportsSatisfiedNotification
     {
         private Dispatcher uiDispatcher;

@@ -1,10 +1,10 @@
 ﻿using Prism.Commands;
 using RCS.AdventureWorks.Common.DomainClasses;
-using RCS.WpfShop.Common.ViewModels;
-using RCS.WpfShop.Modules.Products.Model;
+using RCS.PortableShop.Common.ViewModels;
+using RCS.PortableShop.Model;
 using System.Windows.Input;
 
-namespace RCS.WpfShop.Modules.Products.ViewModels
+namespace RCS.PortableShop.ViewModels
 {
     public class ProductViewModel : ItemViewModel<Product>, IShopper
     {

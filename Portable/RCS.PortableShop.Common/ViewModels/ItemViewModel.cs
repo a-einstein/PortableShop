@@ -1,7 +1,8 @@
 ﻿using RCS.AdventureWorks.Common.DomainClasses;
 using System.Windows;
+using Windows.UI.Xaml;
 
-namespace RCS.WpfShop.Common.ViewModels
+namespace RCS.PortableShop.Common.ViewModels
 {
     public abstract class ItemViewModel<T> : ViewModel where T : DomainClass
     {

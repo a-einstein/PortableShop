@@ -1,6 +1,6 @@
-﻿using RCS.WpfShop.Common.Views;
+﻿using RCS.PortableShop.Common.Views;
 
-namespace RCS.WpfShop.Modules.Products.Views
+namespace RCS.PortableShop.Views
 {
     public partial class ProductView : View
     {

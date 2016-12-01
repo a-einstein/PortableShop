@@ -1,7 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows;
+using Windows.UI.Xaml;
 
-namespace RCS.WpfShop.Common.ViewModels
+namespace RCS.PortableShop.Common.ViewModels
 {
     public abstract class ItemsViewModel<T> : ViewModel
     {

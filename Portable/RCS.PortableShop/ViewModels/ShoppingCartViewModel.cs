@@ -1,7 +1,7 @@
 ﻿using Prism.Commands;
 using RCS.AdventureWorks.Common.DomainClasses;
-using RCS.WpfShop.Common.ViewModels;
-using RCS.WpfShop.Modules.Products.Model;
+using RCS.PortableShop.Common.ViewModels;
+using RCS.PortableShop.Model;
 using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
@@ -10,9 +10,8 @@ using System.ComponentModel.Composition;
 using System.Windows;
 using System.Windows.Input;
 
-namespace RCS.WpfShop.Modules.Products.ViewModels
+namespace RCS.PortableShop.ViewModels
 {
-    [Export]
     public class ShoppingCartViewModel : ItemsViewModel<CartItem>
     {
         private ShoppingCartViewModel()
@@ -27,7 +26,6 @@ namespace RCS.WpfShop.Modules.Products.ViewModels
         private static volatile ShoppingCartViewModel instance;
         private static object syncRoot = new Object();
 
-        [Export("WidgetViewModel", typeof(ViewModel))]
         // Note this class is a singleton, implemented along the way (but not entirely) of https://msdn.microsoft.com/en-us/library/ff650316.aspx
         // TODO This might no longer be necessary if properly shared on import.
         public static ShoppingCartViewModel Instance
