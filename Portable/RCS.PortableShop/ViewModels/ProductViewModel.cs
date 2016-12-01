@@ -1,6 +1,7 @@
 ﻿using Prism.Commands;
 using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.PortableShop.Common.ViewModels;
+using RCS.PortableShop.Interfaces;
 using RCS.PortableShop.Model;
 using System.Windows.Input;
 

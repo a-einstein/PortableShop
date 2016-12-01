@@ -3,6 +3,7 @@ using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.PortableShop.Common.ViewModels;
 using RCS.PortableShop.Common.Views;
 using RCS.PortableShop.Common.Windows;
+using RCS.PortableShop.Interfaces;
 using RCS.PortableShop.Model;
 using RCS.PortableShop.Views;
 using System;
