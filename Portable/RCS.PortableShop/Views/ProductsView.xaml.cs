@@ -1,5 +1,5 @@
 ﻿using RCS.PortableShop.Common.Views;
-using RCS.PortableShop.Common.ViewModels;
+using RCS.PortableShop.ViewModels;
 using System.ComponentModel.Composition;
 
 namespace RCS.PortableShop.Views

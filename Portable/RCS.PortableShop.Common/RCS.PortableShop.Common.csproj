@@ -43,6 +43,9 @@
     <Compile Include="Views\View.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="RCS.AdventureWorks.Common">
+      <HintPath>..\..\..\AdventureWorks\RCS.AdventureWorks.Services.Products\bin\RCS.AdventureWorks.Common.dll</HintPath>
+    </Reference>
     <Reference Include="Windows.Foundation.UniversalApiContract">
       <HintPath>C:\Program Files (x86)\Windows Kits\10\References\Windows.Foundation.UniversalApiContract\2.0.0.0\Windows.Foundation.UniversalApiContract.winmd</HintPath>
     </Reference>

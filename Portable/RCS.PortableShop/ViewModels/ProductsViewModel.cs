@@ -17,7 +17,7 @@ using System.Windows.Threading;
 
 namespace RCS.PortableShop.ViewModels
 {
-    public class ProductsViewModel : FilterItemsViewModel<ProductsOverviewObject, ProductCategory, ProductSubcategory>, IShopper, IPartImportsSatisfiedNotification
+    public class ProductsViewModel : FilterItemsViewModel<ProductsOverviewObject, ProductCategory, ProductSubcategory>, IShopper//, IPartImportsSatisfiedNotification
     {
         private Dispatcher uiDispatcher;
 
