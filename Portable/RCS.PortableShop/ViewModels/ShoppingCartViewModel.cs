@@ -1,5 +1,4 @@
-﻿using Prism.Commands;
-using RCS.AdventureWorks.Common.DomainClasses;
+﻿using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.PortableShop.Common.ViewModels;
 using RCS.PortableShop.Model;
 using System;
@@ -9,6 +8,7 @@ using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.Windows;
 using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace RCS.PortableShop.ViewModels
 {
@@ -49,7 +49,7 @@ namespace RCS.PortableShop.ViewModels
         {
             base.SetCommands();
 
-            DeleteCommand = new DelegateCommand<CartItem>(Delete);
+            DeleteCommand = new Command<CartItem>(Delete);
         }
 
         public void CartProduct(IShoppingProduct productsOverviewObject)

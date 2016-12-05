@@ -1,5 +1,4 @@
-﻿using Prism.Commands;
-using RCS.AdventureWorks.Common.DomainClasses;
+﻿using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.PortableShop.Common.ViewModels;
 using RCS.PortableShop.Common.Views;
 using RCS.PortableShop.Common.Windows;
@@ -15,6 +14,7 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Threading;
+using Xamarin.Forms;
 
 namespace RCS.PortableShop.ViewModels
 {
@@ -135,7 +135,7 @@ namespace RCS.PortableShop.ViewModels
         {
             base.SetCommands();
 
-            CartCommand = new DelegateCommand<ProductsOverviewObject>(CartProduct);
+            CartCommand = new Command<ProductsOverviewObject>(CartProduct);
         }
 
         protected override void ShowDetails(ProductsOverviewObject productsOverviewObject)

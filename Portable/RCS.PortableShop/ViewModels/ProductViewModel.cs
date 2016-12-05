@@ -1,9 +1,9 @@
-﻿using Prism.Commands;
-using RCS.AdventureWorks.Common.DomainClasses;
+﻿using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.PortableShop.Common.ViewModels;
 using RCS.PortableShop.Interfaces;
 using RCS.PortableShop.Model;
 using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace RCS.PortableShop.ViewModels
 {
@@ -19,7 +19,7 @@ namespace RCS.PortableShop.ViewModels
         {
             base.SetCommands();
 
-            CartCommand = new DelegateCommand<Product>(CartProduct);
+            CartCommand = new Command<Product>(CartProduct);
         }
 
         // Note this does not work as explicit interface implementation.
