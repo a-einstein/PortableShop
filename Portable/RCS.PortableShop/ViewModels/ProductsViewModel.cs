@@ -15,6 +15,7 @@ using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Threading;
 using Xamarin.Forms;
+using View = RCS.PortableShop.Common.Views.View;
 
 namespace RCS.PortableShop.ViewModels
 {
