@@ -97,22 +97,14 @@ namespace RCS.PortableShop.ViewModels
             TotalValue = CartItemsRepository.Instance.CartValue();
         }
 
-        public static readonly DependencyProperty ProductItemCountProperty =
-            DependencyProperty.Register(nameof(ProductItemsCount), typeof(int), typeof(ShoppingCartViewModel), new PropertyMetadata(0));
+        public static readonly BindableProperty ProductItemCountProperty =
+            BindableProperty.Create(nameof(ProductItemsCount), typeof(int), typeof(ShoppingCartViewModel), new PropertyMetadata(0));
 
-        public int ProductItemsCount
-        {
-            get { return (int)GetValue(ProductItemCountProperty); }
-            set { SetValue(ProductItemCountProperty, value); }
-        }
+        public int ProductItemsCount { get; set; }
 
-        public static readonly DependencyProperty TotalValueProperty =
-            DependencyProperty.Register(nameof(TotalValue), typeof(Decimal), typeof(ShoppingCartViewModel), new PropertyMetadata((Decimal)0));
+        public static readonly BindableProperty TotalValueProperty =
+            BindableProperty.Create(nameof(TotalValue), typeof(Decimal), typeof(ShoppingCartViewModel), new PropertyMetadata((Decimal)0));
 
-        public Decimal TotalValue
-        {
-            get { return (Decimal)GetValue(TotalValueProperty); }
-            set { SetValue(TotalValueProperty, value); }
-        }
+        public Decimal TotalValue { get; set; }
     }
 }

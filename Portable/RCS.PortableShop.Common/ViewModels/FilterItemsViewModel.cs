@@ -15,14 +15,10 @@ namespace RCS.PortableShop.Common.ViewModels
 
         public ObservableCollection<V> MasterFilterItems { get; } = new ObservableCollection<V>();
 
-        public static readonly DependencyProperty MasterFilterValueProperty =
-            DependencyProperty.Register(nameof(MasterFilterValue), typeof(V), typeof(ItemsViewModel<T>), new PropertyMetadata(new PropertyChangedCallback(OnMasterFilterValueChanged)));
+        public static readonly BindableProperty MasterFilterValueProperty =
+            BindableProperty.Create(nameof(MasterFilterValue), typeof(V), typeof(ItemsViewModel<T>), new PropertyMetadata(new PropertyChangedCallback(OnMasterFilterValueChanged)));
 
-        public V MasterFilterValue
-        {
-            get { return (V)GetValue(MasterFilterValueProperty); }
-            set { SetValue(MasterFilterValueProperty, value); }
-        }
+        public V MasterFilterValue { get; set; }
 
         // Note this function does NOT filter Items, just updates DetailFilterItems and DetailFilterValue.
         // Currently the FilterCommand is just bound to a Button, implying it always has to be activated explicitly.
@@ -56,23 +52,15 @@ namespace RCS.PortableShop.Common.ViewModels
         protected Collection<W> detailFilterItemsSource = new Collection<W>();
         public ObservableCollection<W> DetailFilterItems { get; } = new ObservableCollection<W>();
 
-        public static readonly DependencyProperty DetailFilterValueProperty =
-            DependencyProperty.Register(nameof(DetailFilterValue), typeof(W), typeof(ItemsViewModel<T>));
+        public static readonly BindableProperty DetailFilterValueProperty =
+            BindableProperty.Create(nameof(DetailFilterValue), typeof(W), typeof(ItemsViewModel<T>));
 
-        public W DetailFilterValue
-        {
-            get { return (W)GetValue(DetailFilterValueProperty); }
-            set { SetValue(DetailFilterValueProperty, value); }
-        }
+        public W DetailFilterValue { get; set; }
 
-        public static readonly DependencyProperty TextFilterValueProperty =
-            DependencyProperty.Register(nameof(TextFilterValue), typeof(string), typeof(ItemsViewModel<T>));
+        public static readonly BindableProperty TextFilterValueProperty =
+            BindableProperty.Create(nameof(TextFilterValue), typeof(string), typeof(ItemsViewModel<T>));
 
-        public string TextFilterValue
-        {
-            get { return (string)GetValue(TextFilterValueProperty); }
-            set { SetValue(TextFilterValueProperty, value); }
-        }
+        public string TextFilterValue { get; set; }
 
         public ICommand FilterCommand { get; private set; }
 
