@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Globalization;
-using System.Windows.Data;
 
-namespace RCS.WpfShop.Common.Converters
+namespace RCS.PortableShop.Common.Converters
 {
+    /*
     public abstract class SingleDirectionMultiConverter : IMultiValueConverter
     {
         public abstract object Convert(object[] values, Type targetType, object parameter, CultureInfo culture);
@@ -13,4 +13,5 @@ namespace RCS.WpfShop.Common.Converters
             throw new NotImplementedException();
         }
     }
+    */
 }

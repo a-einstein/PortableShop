@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Globalization;
 
-namespace RCS.WpfShop.Common.Converters
+namespace RCS.PortableShop.Common.Converters
 {
+    /*
     public class HasValueMultiTester : SingleDirectionMultiConverter
     {
         public override object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
@@ -22,4 +23,5 @@ namespace RCS.WpfShop.Common.Converters
             return result;
         }
     }
+    */
 }

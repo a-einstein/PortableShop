@@ -1,24 +1,26 @@
-﻿<BaseClasses:View 
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<BaseClasses:View 
     x:Class="RCS.PortableShop.Views.ProductView"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:BaseClasses="clr-namespace:RCS.PortableShop.Common.Views;assembly=RCS.PortableShop.Common"
     xmlns:Converters="clr-namespace:RCS.PortableShop.Common.Converters;assembly=RCS.PortableShop.Common"
-    xmlns:Resources="clr-namespace:RCS.PortableShop.Resources;assembly=RCS.PortableShop.Resources"
+    xmlns:Localization="clr-namespace:RCS.PortableShop.Localization;assembly=RCS.PortableShop"
     Background="{StaticResource ProductBackgroundBrush}"
     >
 
     <BaseClasses:View.Resources>
         <ResourceDictionary>
-            <Converters:CategoriesFormatter x:Key="CategoriesFormatter"/>
-            <Converters:SizeFormatter x:Key="SizeFormatter"/>
-            <Converters:WeightFormatter x:Key="WeightFormatter"/>
+            <!--<Converters:CategoriesFormatter x:Key="CategoriesFormatter"/>-->
+            <!--<Converters:SizeFormatter x:Key="SizeFormatter"/>-->
+            <!--<Converters:WeightFormatter x:Key="WeightFormatter"/>-->
             <Converters:ByteArrayToBitmapImageConverter x:Key="ByteArrayToBitmapImageConverter"/>
-            <Resources:Wrapper x:Key="Resources" />
         </ResourceDictionary>
     </BaseClasses:View.Resources>
 
-    <Border Style="{StaticResource BorderStyle}" BorderBrush="Transparent">
+    <!--FrameBrush="Transparent"-->
+    <Frame Style="{StaticResource FrameStyle}" >
         <Grid Width="600">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -34,50 +36,50 @@
 
             <Image Grid.Row="0" Grid.Column="0" Source="{Binding Item.LargePhoto, Converter={StaticResource ByteArrayToBitmapImageConverter}}" Style="{StaticResource ImageStyle}" MaxWidth="240" MaxHeight="240"/>
 
-            <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical" VerticalAlignment="Bottom" HorizontalAlignment="Left">
-                <Button Content="{Binding Source={StaticResource Resources}, Path=Labels.IncreaseProduct}" Command="{Binding CartCommand}" CommandParameter="{Binding Item}" Style="{StaticResource DetailsButtonStyle}" Background="{StaticResource CartBackgroundBrush}"/>
-            </StackPanel>
+            <StackLayout Grid.Row="1" Grid.Column="0" Orientation="Vertical" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+                <Button Text="{Localization:Translate IncreaseProduct}" Command="{Binding CartCommand}" CommandParameter="{Binding Item}" Style="{StaticResource DetailsButtonStyle}" Background="{StaticResource CartBackgroundBrush}"/>
+            </StackLayout>
 
-            <StackPanel Grid.Row="0" Grid.RowSpan="2" Grid.Column="2">
-                <TextBlock Style="{StaticResource TextBlockStyle}">
-                    <TextBlock.Text>
-                        <MultiBinding Converter="{StaticResource CategoriesFormatter}">
+            <StackLayout Grid.Row="0" Grid.RowSpan="2" Grid.Column="2">
+                <Label Style="{StaticResource LabelStyle}">
+                    <Label.Text>
+                        <!--<MultiBinding Converter="{StaticResource CategoriesFormatter}">
                             <Binding Path="Item.ProductCategory"/>
                             <Binding Path="Item.ProductSubcategory"/>
-                        </MultiBinding>
-                    </TextBlock.Text>
-                </TextBlock>
+                        </MultiBinding>-->
+                    </Label.Text>
+                </Label>
 
-                <TextBlock Text="{Binding Item.ModelName}" Style="{StaticResource TextBlockStyle}"/>
+                <Label Text="{Binding Item.ModelName}" Style="{StaticResource LabelStyle}"/>
 
-                <TextBlock Text="{Binding Item.Name}" Style="{StaticResource TextBlockStyle}" FontWeight="Bold" FontSize="16"/>
+                <Label Text="{Binding Item.Name}" Style="{StaticResource LabelStyle}" FontWeight="Bold" FontSize="16"/>
 
-                <TextBlock Text="{Binding Item.ProductNumber}" Style="{StaticResource TextBlockStyle}"/>
+                <Label Text="{Binding Item.ProductNumber}" Style="{StaticResource LabelStyle}"/>
 
-                <TextBlock Text="{Binding Item.ListPrice, StringFormat=\{0:C2\}}" Style="{StaticResource TextBlockStyle}" FontWeight="Bold" FontSize="16"/>
+                <Label Text="{Binding Item.ListPrice, StringFormat=\{0:C2\}}" Style="{StaticResource LabelStyle}" FontWeight="Bold" FontSize="16"/>
 
-                <TextBlock Style="{StaticResource TextBlockStyle}">
-                    <TextBlock.Text>
+                <Label Style="{StaticResource LabelStyle}">
+                    <Label.Text>
                         <MultiBinding Converter="{StaticResource SizeFormatter}">
                             <Binding Path="Item.Size"/>
                             <Binding Path="Item.SizeUnitMeasureCode"/>
                         </MultiBinding>
-                    </TextBlock.Text>
-                </TextBlock>
+                    </Label.Text>
+                </Label>
 
-                <TextBlock Style="{StaticResource TextBlockStyle}">
-                    <TextBlock.Text>
-                        <MultiBinding Converter="{StaticResource WeightFormatter}">
+                <Label Style="{StaticResource LabelStyle}">
+                    <Label.Text>
+                        <!--<MultiBinding Converter="{StaticResource WeightFormatter}">
                             <Binding Path="Item.Weight"/>
                             <Binding Path="Item.WeightUnitMeasureCode"/>
-                        </MultiBinding>
-                    </TextBlock.Text>
-                </TextBlock>
+                        </MultiBinding>-->
+                    </Label.Text>
+                </Label>
 
-                <TextBlock Text="{Binding Item.Color}" Style="{StaticResource TextBlockStyle}"/>
+                <Label Text="{Binding Item.Color}" Style="{StaticResource LabelStyle}"/>
 
-                <TextBlock Text="{Binding Item.Description}" Style="{StaticResource TextBlockStyle}"/>
-            </StackPanel>
+                <Label Text="{Binding Item.Description}" Style="{StaticResource LabelStyle}"/>
+            </StackLayout>
         </Grid>
-    </Border>
+    </Frame>
 </BaseClasses:View>

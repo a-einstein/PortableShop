@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Globalization;
-using System.Windows.Data;
+using Xamarin.Forms;
 
-namespace RCS.WpfShop.Common.Converters
+namespace RCS.PortableShop.Common.Converters
 {
     public abstract class SingleDirectionConverter : IValueConverter
     {

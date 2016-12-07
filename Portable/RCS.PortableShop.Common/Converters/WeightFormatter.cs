@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Globalization;
-using System.Windows;
-using System.Windows.Data;
 
-namespace RCS.WpfShop.Common.Converters
+namespace RCS.PortableShop.Common.Converters
 {
+    /*
     public class WeightFormatter : IMultiValueConverter 
     {
         // TODO Should convert from Lb to Kg too.
@@ -24,4 +23,5 @@ namespace RCS.WpfShop.Common.Converters
             throw new NotImplementedException();
         }
     }
+    */
 }

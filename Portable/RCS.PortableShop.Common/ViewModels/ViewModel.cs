@@ -1,8 +1,9 @@
 ﻿using System.ComponentModel;
+using Xamarin.Forms;
 
 namespace RCS.PortableShop.Common.ViewModels
 {
-    public abstract class ViewModel : /*DependencyObject,*/ INotifyPropertyChanged
+    public abstract class ViewModel : BindableObject, INotifyPropertyChanged
     {
         public ViewModel()
         {

@@ -2,10 +2,9 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
-using Windows.UI.Xaml;
 using Xamarin.Forms;
+using static Xamarin.Forms.BindableProperty;
 
 namespace RCS.PortableShop.Common.ViewModels
 {
@@ -16,18 +15,25 @@ namespace RCS.PortableShop.Common.ViewModels
         public ObservableCollection<V> MasterFilterItems { get; } = new ObservableCollection<V>();
 
         public static readonly BindableProperty MasterFilterValueProperty =
-            BindableProperty.Create(nameof(MasterFilterValue), typeof(V), typeof(ItemsViewModel<T>), new PropertyMetadata(new PropertyChangedCallback(OnMasterFilterValueChanged)));
+            BindableProperty.Create(nameof(MasterFilterValue), typeof(V), typeof(FilterItemsViewModel<T, V, W>), propertyChanging : new BindingPropertyChangingDelegate(OnMasterFilterValueChanged));
 
-        public V MasterFilterValue { get; set; }
+        public V MasterFilterValue
+        {
+            get { return (V)GetValue(MasterFilterValueProperty); }
+            set { SetValue(MasterFilterValueProperty, value); }
+        }
+
 
         // Note this function does NOT filter Items, just updates DetailFilterItems and DetailFilterValue.
         // Currently the FilterCommand is just bound to a Button, implying it always has to be activated explicitly.
-        private static void OnMasterFilterValueChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs eventArgs)
+        public static void OnMasterFilterValueChanged(BindableObject bindableObject, object oldValue, object newValue)
         {
-            var viewModel = dependencyObject as FilterItemsViewModel<T, V, W>;
+            var viewModel = bindableObject as FilterItemsViewModel<T, V, W>;
 
+            /*
             viewModel.SetDetailFilterItems();
             viewModel.DetailFilterValue = viewModel.DetailFilterItems.FirstOrDefault();
+            */
         }
 
         // TODO Some sort of view would be more convenient.
@@ -53,14 +59,22 @@ namespace RCS.PortableShop.Common.ViewModels
         public ObservableCollection<W> DetailFilterItems { get; } = new ObservableCollection<W>();
 
         public static readonly BindableProperty DetailFilterValueProperty =
-            BindableProperty.Create(nameof(DetailFilterValue), typeof(W), typeof(ItemsViewModel<T>));
+            BindableProperty.Create(nameof(DetailFilterValue), typeof(W), typeof(FilterItemsViewModel<T, V, W>));
 
-        public W DetailFilterValue { get; set; }
+        public W DetailFilterValue
+        {
+            get { return (W)GetValue(DetailFilterValueProperty); }
+            set { SetValue(DetailFilterValueProperty, value); }
+        }
 
         public static readonly BindableProperty TextFilterValueProperty =
-            BindableProperty.Create(nameof(TextFilterValue), typeof(string), typeof(ItemsViewModel<T>));
+            BindableProperty.Create(nameof(TextFilterValue), typeof(string), typeof(FilterItemsViewModel<T, V, W>));
 
-        public string TextFilterValue { get; set; }
+        public string TextFilterValue
+        {
+            get { return (string)GetValue(TextFilterValueProperty); }
+            set { SetValue(TextFilterValueProperty, value); }
+        }
 
         public ICommand FilterCommand { get; private set; }
 

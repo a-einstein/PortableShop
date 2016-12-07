@@ -3,7 +3,7 @@ using System;
 using System.Collections;
 using System.Globalization;
 
-namespace RCS.WpfShop.Common.Converters
+namespace RCS.PortableShop.Common.Converters
 {
     public class HasValueTester : SingleDirectionConverter
     {

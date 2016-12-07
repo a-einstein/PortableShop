@@ -1,6 +1,6 @@
-﻿using RCS.PortableShop.Common.Views;
-using RCS.PortableShop.ViewModels;
-using System.ComponentModel.Composition;
+﻿using RCS.PortableShop.ViewModels;
+//using System.ComponentModel.Composition;
+using View = RCS.PortableShop.Common.Views.View;
 
 namespace RCS.PortableShop.Views
 {

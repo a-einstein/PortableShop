@@ -1,39 +1,40 @@
-﻿<BaseClasses:View 
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<BaseClasses:View 
     x:Class="RCS.PortableShop.Views.ShoppingCartView"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
     xmlns:BaseClasses="clr-namespace:RCS.PortableShop.Common.Views;assembly=RCS.PortableShop.Common"
     xmlns:Converters="clr-namespace:RCS.PortableShop.Common.Converters;assembly=RCS.PortableShop.Common"
-    xmlns:Resources="clr-namespace:RCS.PortableShop.Resources;assembly=RCS.PortableShop.Resources"
+    xmlns:Localization="clr-namespace:RCS.PortableShop.Localization;assembly=RCS.PortableShop"
     >
 
     <BaseClasses:View.Resources>
         <ResourceDictionary>
-            <Converters:SizeFormatter x:Key="SizeFormatter"/>
-            <Resources:Wrapper x:Key="Resources" />
+            <!--<Converters:SizeFormatter x:Key="SizeFormatter"/>-->
         </ResourceDictionary>
     </BaseClasses:View.Resources>
 
-    <Border Style="{StaticResource BorderStyle}" Background="{StaticResource CartBackgroundBrush}">
-        <StackPanel>
-            <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.Cart}" Style="{StaticResource TextBlockStyle}" FontWeight="Bold"/>
+    <Frame Style="{StaticResource FrameStyle}" Background="{StaticResource CartBackgroundBrush}">
+        <StackLayout>
+            <Label Text="{Localization:Translate Cart}" Style="{StaticResource LabelStyle}" FontWeight="Bold"/>
 
             <Expander>
                 <Expander.Header>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding ItemsCount}" Style="{StaticResource LineValueTextBlockStyle}"/>
-                        <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.Products}" Style="{StaticResource LineTextBlockStyle}"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="{Binding ItemsCount}" Style="{StaticResource LineValueLabelStyle}"/>
+                        <Label Text="{Localization:Translate Products}" Style="{StaticResource LineLabelStyle}"/>
 
-                        <TextBlock Text="{Binding ProductItemsCount}" Style="{StaticResource LineValueTextBlockStyle}"/>
-                        <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.Items}" Style="{StaticResource LineTextBlockStyle}"/>
+                        <Label Text="{Binding ProductItemsCount}" Style="{StaticResource LineValueLabelStyle}"/>
+                        <Label Text="{Localization:Translate Items}" Style="{StaticResource LineLabelStyle}"/>
 
-                        <TextBlock Text="{Binding TotalValue, StringFormat=\{0:C2\}}" Style="{StaticResource LineValueTextBlockStyle}"/>
-                        <TextBlock Text="{Binding Source={StaticResource Resources}, Path=Labels.TotalValue}" Style="{StaticResource LineTextBlockStyle}"/>
-                    </StackPanel>
+                        <Label Text="{Binding TotalValue, StringFormat=\{0:C2\}}" Style="{StaticResource LineValueLabelStyle}"/>
+                        <Label Text="{Localization:Translate TotalValue}" Style="{StaticResource LineLabelStyle}"/>
+                    </StackLayout>
                 </Expander.Header>
                 <Expander.Content>
-                    <ListView ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}" Margin="{StaticResource StandardMargin}" Padding="{StaticResource StandardPadding}" MinHeight="20" Background="#FFFFFDF1">
+                    <ListView Name="shoppingCartItemsListView" ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}" Margin="{StaticResource StandardMargin}" Padding="{StaticResource StandardPadding}" MinHeight="20" Background="#FFFFFDF1">
                         <ListView.View>
                             <!--Note that Width Auto of GridViewColumns does not work and seems to be a bug according to the web. Therefor a thin empty header row is used to enable resizing.-->
                             <!--TODO Make Height of row smaller.-->
@@ -43,14 +44,14 @@
                                 <GridViewColumn Width="Auto">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Style="{StaticResource TextBlockStyle}">
-                                                <TextBlock.Text>
-                                                    <MultiBinding Converter="{StaticResource SizeFormatter}">
+                                            <Label Style="{StaticResource LabelStyle}">
+                                                <Label.Text>
+                                                    <!--<MultiBinding Converter="{StaticResource SizeFormatter}">
                                                         <Binding Path="ProductSize"/>
                                                         <Binding Path="ProductSizeUnitMeasureCode"/>
-                                                    </MultiBinding>
-                                                </TextBlock.Text>
-                                            </TextBlock>
+                                                    </MultiBinding>-->
+                                                </Label.Text>
+                                            </Label>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
@@ -61,7 +62,7 @@
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <!--TODO HorizontalAlignment does not work here, but is desirable to work out some way.--> 
-                                            <TextBlock Text="{Binding ProductListPrice, StringFormat=\{0:C2\}}" Style="{StaticResource TextBlockStyle}" HorizontalAlignment="Right"/>
+                                            <Label Text="{Binding ProductListPrice, StringFormat=\{0:C2\}}" Style="{StaticResource LabelStyle}" HorizontalAlignment="Right"/>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
@@ -78,7 +79,7 @@
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <!--TODO HorizontalAlignment does not work here, but is desirable to work out some way.-->
-                                            <TextBlock Text="{Binding Value, StringFormat=\{0:C2\}}" Style="{StaticResource TextBlockStyle}" FontWeight="Bold" HorizontalAlignment="Right"/>
+                                            <Label Text="{Binding Value, StringFormat=\{0:C2\}}" Style="{StaticResource LabelStyle}" FontWeight="Bold" HorizontalAlignment="Right"/>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
@@ -86,7 +87,7 @@
                                 <GridViewColumn Width="Auto">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <Button Content="{Binding Source={StaticResource Resources}, Path=Labels.Remove}" Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=ListView}}" CommandParameter="{Binding}" Style="{StaticResource DeleteButtonStyle}"/>
+                                            <Button Text="{Localization:Translate Remove}" Command="{Binding BindingContext.DeleteCommand, Source={x:Reference shoppingCartItemsListView}}" CommandParameter="{Binding}" Style="{StaticResource DeleteButtonStyle}"/>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
@@ -95,6 +96,6 @@
                     </ListView>
                 </Expander.Content>
             </Expander>
-        </StackPanel>
-    </Border>
+        </StackLayout>
+    </Frame>
 </BaseClasses:View>

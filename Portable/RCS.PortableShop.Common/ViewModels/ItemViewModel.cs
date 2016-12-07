@@ -1,6 +1,4 @@
 ﻿using RCS.AdventureWorks.Common.DomainClasses;
-using System.Windows;
-using Windows.UI.Xaml;
 using Xamarin.Forms;
 
 namespace RCS.PortableShop.Common.ViewModels
@@ -14,9 +12,13 @@ namespace RCS.PortableShop.Common.ViewModels
         }
 
         public static readonly BindableProperty ItemProperty =
-            BindableProperty.Create(nameof(Item), typeof(T), typeof(ItemViewModel<T>), new PropertyMetadata(null));
+            BindableProperty.Create(nameof(Item), typeof(T), typeof(ItemViewModel<T>));
 
-        public T Item { get; set; }
+        public T Item
+        {
+            get { return (T)GetValue(ItemProperty); }
+            set { SetValue(ItemProperty, value); }
+        }
 
         public override void Refresh()
         {

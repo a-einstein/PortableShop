@@ -1,19 +1,17 @@
 ﻿using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.PortableShop.Common.ViewModels;
-using RCS.PortableShop.Common.Views;
-using RCS.PortableShop.Common.Windows;
+//using RCS.PortableShop.Common.Windows;
 using RCS.PortableShop.Interfaces;
-using RCS.PortableShop.Model;
+//using RCS.PortableShop.Model;
 using RCS.PortableShop.Views;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.Composition;
+//using System.ComponentModel.Composition;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Data;
+//using System.Windows.Data;
 using System.Windows.Input;
-using System.Windows.Threading;
+//using System.Windows.Threading;
 using Xamarin.Forms;
 using View = RCS.PortableShop.Common.Views.View;
 
@@ -21,11 +19,11 @@ namespace RCS.PortableShop.ViewModels
 {
     public class ProductsViewModel : FilterItemsViewModel<ProductsOverviewObject, ProductCategory, ProductSubcategory>, IShopper//, IPartImportsSatisfiedNotification
     {
-        private Dispatcher uiDispatcher;
+        //private Dispatcher uiDispatcher;
 
         public ProductsViewModel()
         {
-            uiDispatcher = Dispatcher.CurrentDispatcher;
+            //uiDispatcher = Dispatcher.CurrentDispatcher;
         }
 
         private bool filterInitialized;
@@ -55,6 +53,7 @@ namespace RCS.PortableShop.ViewModels
         // TODO This would better be handled inside the repository.
         protected override async Task InitializeFilters()
         {
+            /*
             await Task.WhenAll
             (
                 ProductCategoriesRepository.Instance.ReadList(),
@@ -89,6 +88,7 @@ namespace RCS.PortableShop.ViewModels
                     filterInitialized = true;
                 });
             });
+            */
         }
 
         protected void ReadFiltered()
@@ -98,6 +98,7 @@ namespace RCS.PortableShop.ViewModels
             string textFilterValue = null;
 
             // Need to get these from the UI thread.
+            /*
             uiDispatcher.Invoke(delegate
             {
                 masterFilterValue = MasterFilterValue;
@@ -122,6 +123,7 @@ namespace RCS.PortableShop.ViewModels
                     RaisePropertyChanged(nameof(ItemsCount));
                 });
             });
+            */
         }
 
         protected override Func<ProductSubcategory, bool> DetailFilterItemsSelector(bool preserveEmptyElement = true)
@@ -141,6 +143,7 @@ namespace RCS.PortableShop.ViewModels
 
         protected override void ShowDetails(ProductsOverviewObject productsOverviewObject)
         {
+            /*
             ProductViewModel productViewModel = new ProductViewModel();
             View productView = new ProductView() { ViewModel = productViewModel };
 
@@ -149,6 +152,7 @@ namespace RCS.PortableShop.ViewModels
             productWindow.Show();
 
             productViewModel.Refresh(productsOverviewObject.Id);
+            */
         }
 
         // Note this does not work as explicit interface implementation.

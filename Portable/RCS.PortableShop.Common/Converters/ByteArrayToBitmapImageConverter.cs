@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Globalization;
-using System.IO;
-using System.Windows.Media.Imaging;
+//using System.IO;
+//using Windows.UI.Xaml.Media.Imaging;
 
-namespace RCS.WpfShop.Common.Converters
+namespace RCS.PortableShop.Common.Converters
 {
     public class ByteArrayToBitmapImageConverter : SingleDirectionConverter
     {
@@ -12,10 +12,11 @@ namespace RCS.WpfShop.Common.Converters
             return Convert(value);
         }
 
-        public static BitmapImage Convert(object value)
+        public static /*BitmapImage*/ object Convert(object value)
         {
             byte[] byteArray = value as byte[];
 
+            /*
             if (byteArray != null)
             {
                 MemoryStream memoryStream = new MemoryStream(byteArray);
@@ -28,6 +29,7 @@ namespace RCS.WpfShop.Common.Converters
 
                 return bitmapImage;
             }
+            */
 
             return null;
         }

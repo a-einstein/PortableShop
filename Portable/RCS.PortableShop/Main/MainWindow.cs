@@ -8,8 +8,8 @@ namespace RCS.PortableShop.Main
     {
         public MainWindow()
         {
-            var view = new MainView();
-            view.ViewModel = new MainViewModel();
+            var view = new ProductsView();
+            view.ViewModel = new ProductsViewModel();
 
             Content = view;
         }

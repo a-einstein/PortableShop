@@ -4,5 +4,14 @@
     x:Class="RCS.PortableShop.Main.MainApplication"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Styles="clr-namespace:RCS.PortableShop.Common.Styles;assembly=RCS.PortableShop.Common"
     >
+
+    <Application.Resources>
+        <ResourceDictionary MergedWith="Styles:GeneralStyle"/>
+            <!--<ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/PortableShop/RCS.PortableShop.Common;component/Styles/GeneralStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>-->
+        <!--</ResourceDictionary>-->
+    </Application.Resources>
 </Application>
