@@ -42,6 +42,12 @@
       <DependentUpon>MainApplication.xaml</DependentUpon>
     </Compile>
     <Compile Include="Main\MainWindow.cs" />
+    <Compile Include="Model\CartItemsRepository.cs" />
+    <Compile Include="Model\ProductCategoriesRepository.cs" />
+    <Compile Include="Model\ProductsRepository.cs" />
+    <Compile Include="Model\ProductsServiceConsumer.cs" />
+    <Compile Include="Model\ProductSubcategoriesRepository.cs" />
+    <Compile Include="Model\Repository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Localization\TranslateExtension.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
