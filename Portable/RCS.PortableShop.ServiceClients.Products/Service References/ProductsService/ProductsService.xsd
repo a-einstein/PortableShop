@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/RCS.AdventureWorks.Common.Dtos" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/RCS.AdventureWorks.Common.Dtos" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://rcs-vostro/ProductsServicePub/ProductsService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/RCS.AdventureWorks.Common.DomainClasses" />
+  <xs:complexType name="ProductsOverviewList">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/RCS.AdventureWorks.Common.DomainClasses" minOccurs="0" maxOccurs="unbounded" name="ProductsOverviewObject" nillable="true" type="q1:ProductsOverviewObject" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProductsOverviewList" nillable="true" type="tns:ProductsOverviewList" />
+  <xs:complexType name="ProductCategoryList">
+    <xs:sequence>
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/RCS.AdventureWorks.Common.DomainClasses" minOccurs="0" maxOccurs="unbounded" name="ProductCategory" nillable="true" type="q2:ProductCategory" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProductCategoryList" nillable="true" type="tns:ProductCategoryList" />
+  <xs:complexType name="ProductSubcategoryList">
+    <xs:sequence>
+      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/RCS.AdventureWorks.Common.DomainClasses" minOccurs="0" maxOccurs="unbounded" name="ProductSubcategory" nillable="true" type="q3:ProductSubcategory" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProductSubcategoryList" nillable="true" type="tns:ProductSubcategoryList" />
+</xs:schema>

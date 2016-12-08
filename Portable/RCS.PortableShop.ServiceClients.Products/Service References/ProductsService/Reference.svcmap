@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="46254791-8be3-4955-9c22-faaa8eaa0a09" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.ObjectModel.ObservableCollection`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>false</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferencedAssemblies>
+      <ReferencedAssembly AssemblyName="RCS.AdventureWorks.Common" />
+    </ReferencedAssemblies>
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost/ProductsServicePub/ProductsService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ProductsService.disco" MetadataType="Disco" ID="48241605-d08b-4e35-b341-57d201ab50e2" SourceId="1" SourceUrl="http://rcs-vostro/ProductsServicePub/ProductsService.svc?disco" />
+    <MetadataFile FileName="ProductsService.xsd" MetadataType="Schema" ID="1a1302e2-9132-4e5b-9919-3db38ec8d735" SourceId="1" SourceUrl="http://rcs-vostro/ProductsServicePub/ProductsService.svc?xsd=xsd2" />
+    <MetadataFile FileName="ProductsService1.xsd" MetadataType="Schema" ID="4de74350-b701-43cb-bcf6-3f891124cae5" SourceId="1" SourceUrl="http://rcs-vostro/ProductsServicePub/ProductsService.svc?xsd=xsd3" />
+    <MetadataFile FileName="ProductsService2.xsd" MetadataType="Schema" ID="45998c88-7a84-4aab-bf26-099fbf1f66ad" SourceId="1" SourceUrl="http://rcs-vostro/ProductsServicePub/ProductsService.svc?xsd=xsd0" />
+    <MetadataFile FileName="ProductsService3.xsd" MetadataType="Schema" ID="3e603027-b026-4efd-9af8-3bf93c39af82" SourceId="1" SourceUrl="http://rcs-vostro/ProductsServicePub/ProductsService.svc?xsd=xsd1" />
+    <MetadataFile FileName="ProductsService.wsdl" MetadataType="Wsdl" ID="e44ac5db-fb61-43ba-9c54-b28f9d1404be" SourceId="1" SourceUrl="http://rcs-vostro/ProductsServicePub/ProductsService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

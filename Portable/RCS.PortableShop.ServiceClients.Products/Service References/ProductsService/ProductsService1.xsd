@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/RCS.AdventureWorks.Common.DomainClasses" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/RCS.AdventureWorks.Common.DomainClasses" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ProductsOverviewObject">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DomainClass">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Color" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ListPrice" type="xs:decimal" />
+          <xs:element minOccurs="0" name="ProductCategory" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ProductCategoryId" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="ProductSubcategory" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ProductSubcategoryId" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="Size" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SizeUnitMeasureCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ThumbNailPhoto" nillable="true" type="xs:base64Binary" />
+          <xs:element minOccurs="0" name="WeightUnitMeasureCode" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ProductsOverviewObject" nillable="true" type="tns:ProductsOverviewObject" />
+  <xs:complexType name="DomainClass">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DomainClass" nillable="true" type="tns:DomainClass" />
+  <xs:complexType name="Product">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DomainClass">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Color" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="LargePhoto" nillable="true" type="xs:base64Binary" />
+          <xs:element minOccurs="0" name="ListPrice" type="xs:decimal" />
+          <xs:element minOccurs="0" name="ModelName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ProductCategory" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ProductCategoryId" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="ProductNumber" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ProductSubcategory" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ProductSubcategoryId" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="Size" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SizeUnitMeasureCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Weight" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="WeightUnitMeasureCode" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Product" nillable="true" type="tns:Product" />
+  <xs:complexType name="ProductCategory">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DomainClass">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ProductCategory" nillable="true" type="tns:ProductCategory" />
+  <xs:complexType name="ProductSubcategory">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DomainClass">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ProductCategoryId" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ProductSubcategory" nillable="true" type="tns:ProductSubcategory" />
+</xs:schema>
