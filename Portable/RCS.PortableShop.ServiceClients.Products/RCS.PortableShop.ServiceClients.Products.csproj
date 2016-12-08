@@ -79,15 +79,6 @@
     <None Include="Service References\ProductsService\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ProductsService\RCS.PortableShop.ServiceClients.Products.ProductsService.ProductCategoryList.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\ProductsService\RCS.PortableShop.ServiceClients.Products.ProductsService.ProductsOverviewList.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\ProductsService\RCS.PortableShop.ServiceClients.Products.ProductsService.ProductSubcategoryList.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <None Include="Service References\ProductsService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>

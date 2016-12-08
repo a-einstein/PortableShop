@@ -10,6 +10,7 @@
 
 namespace RCS.PortableShop.Resources {
     using System;
+    using System.Reflection;
     
     
     /// <summary>
@@ -39,7 +40,7 @@ namespace RCS.PortableShop.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("RCS.PortableShop.Resources.Labels", typeof(Labels).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("RCS.PortableShop.Resources.Labels", typeof(Labels).GetTypeInfo().Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

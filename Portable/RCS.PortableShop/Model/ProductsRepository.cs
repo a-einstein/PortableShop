@@ -32,6 +32,7 @@ namespace RCS.PortableShop.Model
         }
 
         // TODO This should get paged with an optional pagesize.
+        /*
         public async Task<IList<ProductsOverviewObject>> ReadList(ProductCategory category, ProductSubcategory subcategory, string namePart)
         {
             var task = Task.Run(async () =>
@@ -48,7 +49,9 @@ namespace RCS.PortableShop.Model
 
             return task.Result;
         }
+        */
 
+            /*
         public async Task<Product> ReadDetails(int productID)
         {
             var task = Task.Factory.StartNew(async () =>
@@ -60,5 +63,6 @@ namespace RCS.PortableShop.Model
 
             return await task.Result;
         }
+        */
     }
 }

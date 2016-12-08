@@ -30,6 +30,7 @@ namespace RCS.PortableShop.Model
             }
         }
 
+        /*
         public async Task ReadList(bool addEmptyElement = true)
         {
             Clear();
@@ -52,5 +53,6 @@ namespace RCS.PortableShop.Model
 
             await task;
         }
+        */
     }
 }

@@ -11,10 +11,13 @@ namespace RCS.PortableShop.Model
         {
             get
             {
+                /*
                 if (productsServiceClient == null)
                     productsServiceClient = new ProductsServiceClient();
 
                 return productsServiceClient;
+                */
+                return null;
             }
         }
 
@@ -40,7 +43,7 @@ namespace RCS.PortableShop.Model
             // Free managed objects here.
             if (disposing)
             {
-                productsServiceClient?.Close();
+                //productsServiceClient?.Close();
             }
 
             // Free unmanaged objects here.
