@@ -1,9 +1,9 @@
 ﻿using RCS.AdventureWorks.Common.DomainClasses;
-using RCS.WpfShop.ServiceClients.Products.ProductsService;
+using RCS.PortableShop.ServiceClients.Products.ProductsService;
 using System;
 using System.Threading.Tasks;
 
-namespace RCS.WpfShop.Modules.Products.Model
+namespace RCS.PortableShop.Model
 {
     public class ProductSubcategoriesRepository : Repository<ProductSubcategory>
     {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 
-namespace RCS.WpfShop.Modules.Products.Model
+namespace RCS.PortableShop.Model
 {
     public abstract class Repository<T> : ProductsServiceConsumer
     {

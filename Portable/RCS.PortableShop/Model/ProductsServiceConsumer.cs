@@ -1,7 +1,7 @@
-﻿using RCS.WpfShop.ServiceClients.Products.ProductsService;
+﻿using RCS.PortableShop.ServiceClients.Products.ProductsService;
 using System;
 
-namespace RCS.WpfShop.Modules.Products.Model
+namespace RCS.PortableShop.Model
 {
     public abstract class ProductsServiceConsumer : IDisposable
     {

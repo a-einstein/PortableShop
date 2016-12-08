@@ -2,7 +2,7 @@
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{CCF5BF7A-5A36-4E98-A978-023BCD877008}</ProjectGuid>
@@ -11,8 +11,8 @@
     <RootNamespace>RCS.PortableShop</RootNamespace>
     <AssemblyName>RCS.PortableShop</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Profile259</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile24</TargetFrameworkProfile>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -81,6 +81,10 @@
     <ProjectReference Include="..\RCS.PortableShop.Resources\RCS.PortableShop.Resources.csproj">
       <Project>{0d6c7470-ae24-4262-bef4-f26ed7d2d76c}</Project>
       <Name>RCS.PortableShop.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RCS.PortableShop.ServiceClients.Products\RCS.PortableShop.ServiceClients.Products.csproj">
+      <Project>{301ee603-c92b-4552-a7e5-c63a091563a8}</Project>
+      <Name>RCS.PortableShop.ServiceClients.Products</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

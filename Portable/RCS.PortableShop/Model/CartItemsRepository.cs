@@ -3,7 +3,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace RCS.WpfShop.Modules.Products.Model
+namespace RCS.PortableShop.Model
 {
     public class CartItemsRepository : Repository<CartItem>
     {
