@@ -118,9 +118,7 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="packages.config" />
     <None Include="RCS.PortableShop.Windows_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
