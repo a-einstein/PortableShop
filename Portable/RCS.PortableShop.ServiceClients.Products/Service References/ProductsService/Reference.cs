@@ -15,19 +15,19 @@ namespace RCS.PortableShop.ServiceClients.Products.ProductsService {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ProductsOverviewList", Namespace="http://schemas.datacontract.org/2004/07/RCS.AdventureWorks.Common.Dtos", ItemName="ProductsOverviewObject")]
-    public class ProductsOverviewList : System.Collections.Generic.List<RCS.AdventureWorks.Common.DomainClasses.ProductsOverviewObject> {
+    public class ProductsOverviewList : System.Collections.ObjectModel.ObservableCollection<RCS.AdventureWorks.Common.DomainClasses.ProductsOverviewObject> {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ProductCategoryList", Namespace="http://schemas.datacontract.org/2004/07/RCS.AdventureWorks.Common.Dtos", ItemName="ProductCategory")]
-    public class ProductCategoryList : System.Collections.Generic.List<RCS.AdventureWorks.Common.DomainClasses.ProductCategory> {
+    public class ProductCategoryList : System.Collections.ObjectModel.ObservableCollection<RCS.AdventureWorks.Common.DomainClasses.ProductCategory> {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ProductSubcategoryList", Namespace="http://schemas.datacontract.org/2004/07/RCS.AdventureWorks.Common.Dtos", ItemName="ProductSubcategory")]
-    public class ProductSubcategoryList : System.Collections.Generic.List<RCS.AdventureWorks.Common.DomainClasses.ProductSubcategory> {
+    public class ProductSubcategoryList : System.Collections.ObjectModel.ObservableCollection<RCS.AdventureWorks.Common.DomainClasses.ProductSubcategory> {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
