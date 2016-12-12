@@ -12,9 +12,8 @@
     <!--xmlns:Main="clr-namespace:RCS.PortableShop.Main;assembly=RCS.PortableShop"-->
 
     <BaseClasses:View.Resources>
-        <!--TODO Does not work either way, marge here or in MainApplication.-->
-        <!--MergedWith="Styles:GeneralStyle"-->
-        <ResourceDictionary >
+        <!--TODO Merge does not work either way, here or in MainApplication.-->
+        <ResourceDictionary MergedWith="Styles:GeneralStyle">
             <!--<Converters:CategoriesFormatter x:Key="CategoriesFormatter"/>-->
             <!--<Converters:SizeFormatter x:Key="SizeFormatter"/>-->
             <Converters:ByteArrayToBitmapImageConverter x:Key="ByteArrayToBitmapImageConverter"/>
@@ -23,7 +22,7 @@
         </ResourceDictionary>
     </BaseClasses:View.Resources>
 
-        <!--Background="{StaticResource ProductBackgroundBrush}"-->
+    <!--Background="{StaticResource ProductBackgroundBrush}"-->
     <!--TODO Does this HAVE to be DynamicResource?!-->
     <!--TODO Does not work either way, DynamicResource (values) or StaticResource (error), -->
     <Frame Style="{DynamicResource FrameStyle}">
