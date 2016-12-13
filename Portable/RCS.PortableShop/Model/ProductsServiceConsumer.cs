@@ -1,5 +1,6 @@
 ﻿using RCS.PortableShop.ServiceClients.Products.ProductsService;
 using System;
+using System.ServiceModel;
 
 namespace RCS.PortableShop.Model
 {
@@ -7,17 +8,17 @@ namespace RCS.PortableShop.Model
     {
         private ProductsServiceClient productsServiceClient;
 
-        protected ProductsServiceClient ProductsServiceClient
+        protected IProductsService ProductsServiceClient
         {
             get
             {
-                /*
+                // TODO Make this better configurable. There normally does not seem to be an .config file.
+                const string endpointAddress = "http://rcs-vostro:80/ProductsServicePub/ProductsService.svc/ProductsService/";
+
                 if (productsServiceClient == null)
-                    productsServiceClient = new ProductsServiceClient();
+                    productsServiceClient = new ProductsServiceClient(new BasicHttpBinding(), new EndpointAddress(endpointAddress));
 
                 return productsServiceClient;
-                */
-                return null;
             }
         }
 

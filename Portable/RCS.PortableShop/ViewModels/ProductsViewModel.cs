@@ -2,8 +2,7 @@
 using RCS.PortableShop.Common.ViewModels;
 //using RCS.PortableShop.Common.Windows;
 using RCS.PortableShop.Interfaces;
-//using RCS.PortableShop.Model;
-using RCS.PortableShop.Views;
+using RCS.PortableShop.Model;
 using System;
 using System.Collections.Generic;
 //using System.ComponentModel.Composition;
@@ -24,6 +23,7 @@ namespace RCS.PortableShop.ViewModels
         public ProductsViewModel()
         {
             //uiDispatcher = Dispatcher.CurrentDispatcher;
+            OnImportsSatisfied();
         }
 
         private bool filterInitialized;
@@ -53,7 +53,6 @@ namespace RCS.PortableShop.ViewModels
         // TODO This would better be handled inside the repository.
         protected override async Task InitializeFilters()
         {
-            /*
             await Task.WhenAll
             (
                 ProductCategoriesRepository.Instance.ReadList(),
@@ -61,7 +60,7 @@ namespace RCS.PortableShop.ViewModels
             ).ContinueWith((previous) =>
             {
                 // Need to update on the UI thread.
-                uiDispatcher.Invoke(delegate
+                //uiDispatcher.Invoke(delegate
                 {
                     foreach (var item in ProductCategoriesRepository.Instance.List)
                     {
@@ -86,9 +85,8 @@ namespace RCS.PortableShop.ViewModels
                     TextFilterValue = default(string);
 
                     filterInitialized = true;
-                });
+                }//);
             });
-            */
         }
 
         protected void ReadFiltered()
@@ -98,13 +96,12 @@ namespace RCS.PortableShop.ViewModels
             string textFilterValue = null;
 
             // Need to get these from the UI thread.
-            /*
-            uiDispatcher.Invoke(delegate
+            //uiDispatcher.Invoke(delegate
             {
                 masterFilterValue = MasterFilterValue;
                 detailFilterValue = DetailFilterValue;
                 textFilterValue = TextFilterValue;
-            });
+            }//);
 
             Task<IList<ProductsOverviewObject>>.Run(() =>
             {
@@ -113,7 +110,7 @@ namespace RCS.PortableShop.ViewModels
             .ContinueWith((previous) =>
             {
                 // Need to update on the UI thread.
-                uiDispatcher.Invoke(delegate
+                //uiDispatcher.Invoke(delegate
                 {
                     foreach (var item in previous.Result)
                     {
@@ -121,9 +118,8 @@ namespace RCS.PortableShop.ViewModels
                     }
 
                     RaisePropertyChanged(nameof(ItemsCount));
-                });
+                }//);
             });
-            */
         }
 
         protected override Func<ProductSubcategory, bool> DetailFilterItemsSelector(bool preserveEmptyElement = true)

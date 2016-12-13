@@ -30,14 +30,16 @@ namespace RCS.PortableShop.Model
             }
         }
 
-        /*
         public async Task ReadList(bool addEmptyElement = true)
         {
             Clear();
 
             var task = Task.Run(async () =>
             {
-                var categories = await ProductsServiceClient.GetProductCategoriesAsync();
+                var categories = await Task.Factory.FromAsync<ProductCategoryList>(
+                    ProductsServiceClient.BeginGetProductCategories,
+                    ProductsServiceClient.EndGetProductCategories,
+                    null);
 
                 if (addEmptyElement)
                 {
@@ -53,6 +55,5 @@ namespace RCS.PortableShop.Model
 
             await task;
         }
-        */
     }
 }
