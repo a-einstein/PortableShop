@@ -52,25 +52,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\ServiceReferences.Designer.ClientConfig" />
-    <None Include="Service References\ProductsService\ProductsService.wsdl" />
-    <None Include="Service References\ProductsService\ProductsService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ProductsService\ProductsService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ProductsService\ProductsService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ProductsService\ProductsService3.xsd">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\ProductsService\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\ProductsService\ProductsService.disco" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\ProductsService\configuration91.svcinfo" />
@@ -79,10 +63,26 @@
     <None Include="Service References\ProductsService\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Service References\ProductsService\ProductsService1.wsdl" />
+    <None Include="Service References\ProductsService\ProductsService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ProductsService\ProductsService41.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ProductsService\ProductsService42.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ProductsService\ProductsService43.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\ProductsService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ProductsService\ProductsService1.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Forms.2.2.0.45\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.2.0.45\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />

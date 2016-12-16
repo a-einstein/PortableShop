@@ -90,10 +90,11 @@
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
 
-                                        <!--Style="{StaticResource ImageStyle}"-->
-                                        <Image Grid.Column="0" Source="{Binding ThumbNailPhoto, Converter={StaticResource ByteArrayToBitmapImageConverter}}" MaxWidth="80" MaxHeight="80" />
+                                        <!--Style="{StaticResource ImageStyle}" MaxWidth="80"  MaxHeight="80"-->
+                                        <Image Grid.Column="0" Source="{Binding ThumbNailPhoto, Converter={StaticResource ByteArrayToBitmapImageConverter}}" />
 
-                                        <StackLayout Grid.Column="0" Orientation="Vertical" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+                                      <!--VerticalAlignment="Bottom" HorizontalAlignment="Left"-->
+                                      <StackLayout Grid.Column="0" Orientation="Vertical">
                                             <!--Command="{Binding BindingContext.DetailsCommand, Source={x:Reference productsItemsControl}" CommandParameter="{Binding}" Style="{StaticResource DetailsButtonStyle}" Background="{StaticResource ProductBackgroundBrush}"-->
                                             <Button Text="{Localization:Translate Details}" />
                                             <!-- Command="{Binding BindingContext.CartCommand, Source={x:Reference productsItemsControl}}" CommandParameter="{Binding}" Style="{StaticResource DetailsButtonStyle}" Background="{StaticResource CartBackgroundBrush}"-->
@@ -111,19 +112,19 @@
                                                 </Label.Text>
                                             </Label>
 
-                                            <!--Style="{StaticResource LabelStyle}"-->
-                                            <Label Text="{Binding Name}" FontWeight="Bold" FontSize="16"/>
+                                            <!--Style="{StaticResource LabelStyle}" FontWeight="Bold"-->
+                                            <Label Text="{Binding Name}" FontSize="16"/>
 
-                                            <!--Style="{StaticResource LabelStyle}"-->
-                                            <Label Text="{Binding ListPrice, StringFormat=\{0:C2\}}" FontWeight="Bold" FontSize="12"/>
+                                            <!--Style="{StaticResource LabelStyle}" FontWeight="Bold"-->
+                                            <Label Text="{Binding ListPrice, StringFormat=\{0:C2\}}" FontSize="12"/>
 
                                             <!--Style="{StaticResource LabelStyle}"-->
                                             <Label >
                                                 <Label.Text>
-                                                    <MultiBinding Converter="{StaticResource SizeFormatter}">
+                                                    <!--<MultiBinding Converter="{StaticResource SizeFormatter}">
                                                         <Binding Path="Size"/>
                                                         <Binding Path="SizeUnitMeasureCode"/>
-                                                    </MultiBinding>
+                                                    </MultiBinding>-->
                                                 </Label.Text>
                                             </Label>
 

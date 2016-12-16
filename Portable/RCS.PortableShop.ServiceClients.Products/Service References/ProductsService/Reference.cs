@@ -175,6 +175,10 @@ namespace RCS.PortableShop.ServiceClients.Products.ProductsService {
         
         private System.Threading.SendOrPostCallback onCloseCompletedDelegate;
         
+        public ProductsServiceClient() : 
+                base(ProductsServiceClient.GetDefaultBinding(), ProductsServiceClient.GetDefaultEndpointAddress()) {
+        }
+        
         public ProductsServiceClient(EndpointConfiguration endpointConfiguration) : 
                 base(ProductsServiceClient.GetBindingForEndpoint(endpointConfiguration), ProductsServiceClient.GetEndpointAddress(endpointConfiguration)) {
         }
@@ -480,11 +484,28 @@ namespace RCS.PortableShop.ServiceClients.Products.ProductsService {
         }
         
         private static System.ServiceModel.Channels.Binding GetBindingForEndpoint(EndpointConfiguration endpointConfiguration) {
+            if ((endpointConfiguration == EndpointConfiguration.BasicHttpBinding_IProductsService)) {
+                System.ServiceModel.BasicHttpBinding result = new System.ServiceModel.BasicHttpBinding();
+                result.MaxBufferSize = int.MaxValue;
+                result.MaxReceivedMessageSize = int.MaxValue;
+                return result;
+            }
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
         }
         
         private static System.ServiceModel.EndpointAddress GetEndpointAddress(EndpointConfiguration endpointConfiguration) {
+            if ((endpointConfiguration == EndpointConfiguration.BasicHttpBinding_IProductsService)) {
+                return new System.ServiceModel.EndpointAddress("http://localhost:65348/ProductsService.svc/ProductsService");
+            }
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
+        }
+        
+        private static System.ServiceModel.Channels.Binding GetDefaultBinding() {
+            return ProductsServiceClient.GetBindingForEndpoint(EndpointConfiguration.BasicHttpBinding_IProductsService);
+        }
+        
+        private static System.ServiceModel.EndpointAddress GetDefaultEndpointAddress() {
+            return ProductsServiceClient.GetEndpointAddress(EndpointConfiguration.BasicHttpBinding_IProductsService);
         }
         
         private class ProductsServiceClientChannel : ChannelBase<RCS.PortableShop.ServiceClients.Products.ProductsService.IProductsService>, RCS.PortableShop.ServiceClients.Products.ProductsService.IProductsService {
@@ -547,6 +568,8 @@ namespace RCS.PortableShop.ServiceClients.Products.ProductsService {
         }
         
         public enum EndpointConfiguration {
+            
+            BasicHttpBinding_IProductsService,
         }
     }
 }

@@ -4,7 +4,7 @@ using System.ServiceModel;
 
 namespace RCS.PortableShop.Model
 {
-    public abstract class ProductsServiceConsumer : IDisposable
+  public abstract class ProductsServiceConsumer : IDisposable
     {
         private ProductsServiceClient productsServiceClient;
 
@@ -13,7 +13,7 @@ namespace RCS.PortableShop.Model
             get
             {
                 // TODO Make this better configurable. There normally does not seem to be an .config file.
-                const string endpointAddress = "http://rcs-vostro:80/ProductsServicePub/ProductsService.svc/ProductsService/";
+                const string endpointAddress = "http://rcs-vostro/ProductsServicePub/ProductsService.svc/ProductsServiceB";
 
                 if (productsServiceClient == null)
                     productsServiceClient = new ProductsServiceClient(new BasicHttpBinding(), new EndpointAddress(endpointAddress));

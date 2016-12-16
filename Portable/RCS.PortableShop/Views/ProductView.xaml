@@ -34,9 +34,11 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Image Grid.Row="0" Grid.Column="0" Source="{Binding Item.LargePhoto, Converter={StaticResource ByteArrayToBitmapImageConverter}}" Style="{StaticResource ImageStyle}" MaxWidth="240" MaxHeight="240"/>
+          <!--MaxWidth="240" MaxHeight="240"-->
+          <Image Grid.Row="0" Grid.Column="0" Source="{Binding Item.LargePhoto, Converter={StaticResource ByteArrayToBitmapImageConverter}}" Style="{StaticResource ImageStyle}"/>
 
-            <StackLayout Grid.Row="1" Grid.Column="0" Orientation="Vertical" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+          <!--VerticalAlignment="Bottom" HorizontalAlignment="Left"-->
+          <StackLayout Grid.Row="1" Grid.Column="0" Orientation="Vertical">
                 <Button Text="{Localization:Translate IncreaseProduct}" Command="{Binding CartCommand}" CommandParameter="{Binding Item}" Style="{StaticResource DetailsButtonStyle}" Background="{StaticResource CartBackgroundBrush}"/>
             </StackLayout>
 
@@ -52,18 +54,20 @@
 
                 <Label Text="{Binding Item.ModelName}" Style="{StaticResource LabelStyle}"/>
 
-                <Label Text="{Binding Item.Name}" Style="{StaticResource LabelStyle}" FontWeight="Bold" FontSize="16"/>
+              <!--FontWeight="Bold"-->
+              <Label Text="{Binding Item.Name}" Style="{StaticResource LabelStyle}" FontSize="16"/>
 
                 <Label Text="{Binding Item.ProductNumber}" Style="{StaticResource LabelStyle}"/>
 
-                <Label Text="{Binding Item.ListPrice, StringFormat=\{0:C2\}}" Style="{StaticResource LabelStyle}" FontWeight="Bold" FontSize="16"/>
+              <!--FontWeight="Bold"-->
+              <Label Text="{Binding Item.ListPrice, StringFormat=\{0:C2\}}" Style="{StaticResource LabelStyle}" FontSize="16"/>
 
                 <Label Style="{StaticResource LabelStyle}">
                     <Label.Text>
-                        <MultiBinding Converter="{StaticResource SizeFormatter}">
+                        <!--<MultiBinding Converter="{StaticResource SizeFormatter}">
                             <Binding Path="Item.Size"/>
                             <Binding Path="Item.SizeUnitMeasureCode"/>
-                        </MultiBinding>
+                        </MultiBinding>-->
                     </Label.Text>
                 </Label>
 

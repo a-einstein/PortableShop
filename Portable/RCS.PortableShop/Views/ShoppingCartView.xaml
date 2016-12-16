@@ -18,7 +18,8 @@
 
     <Frame Style="{StaticResource FrameStyle}" Background="{StaticResource CartBackgroundBrush}">
         <StackLayout>
-            <Label Text="{Localization:Translate Cart}" Style="{StaticResource LabelStyle}" FontWeight="Bold"/>
+          <!--FontWeight="Bold"-->
+          <Label Text="{Localization:Translate Cart}" Style="{StaticResource LabelStyle}"/>
 
             <Expander>
                 <Expander.Header>
@@ -79,7 +80,8 @@
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <!--TODO HorizontalAlignment does not work here, but is desirable to work out some way.-->
-                                            <Label Text="{Binding Value, StringFormat=\{0:C2\}}" Style="{StaticResource LabelStyle}" FontWeight="Bold" HorizontalAlignment="Right"/>
+                                          <!--FontWeight="Bold"-->
+                                          <Label Text="{Binding Value, StringFormat=\{0:C2\}}" Style="{StaticResource LabelStyle}" HorizontalAlignment="Right"/>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>

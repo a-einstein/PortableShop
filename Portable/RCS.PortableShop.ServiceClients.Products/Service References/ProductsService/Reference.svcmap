@@ -22,15 +22,15 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost/ProductsServicePub/ProductsService.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:65348/ProductsService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="ProductsService.disco" MetadataType="Disco" ID="48241605-d08b-4e35-b341-57d201ab50e2" SourceId="1" SourceUrl="http://rcs-vostro/ProductsServicePub/ProductsService.svc?disco" />
-    <MetadataFile FileName="ProductsService.xsd" MetadataType="Schema" ID="1a1302e2-9132-4e5b-9919-3db38ec8d735" SourceId="1" SourceUrl="http://rcs-vostro/ProductsServicePub/ProductsService.svc?xsd=xsd2" />
-    <MetadataFile FileName="ProductsService1.xsd" MetadataType="Schema" ID="4de74350-b701-43cb-bcf6-3f891124cae5" SourceId="1" SourceUrl="http://rcs-vostro/ProductsServicePub/ProductsService.svc?xsd=xsd3" />
-    <MetadataFile FileName="ProductsService2.xsd" MetadataType="Schema" ID="45998c88-7a84-4aab-bf26-099fbf1f66ad" SourceId="1" SourceUrl="http://rcs-vostro/ProductsServicePub/ProductsService.svc?xsd=xsd0" />
-    <MetadataFile FileName="ProductsService3.xsd" MetadataType="Schema" ID="3e603027-b026-4efd-9af8-3bf93c39af82" SourceId="1" SourceUrl="http://rcs-vostro/ProductsServicePub/ProductsService.svc?xsd=xsd1" />
-    <MetadataFile FileName="ProductsService.wsdl" MetadataType="Wsdl" ID="e44ac5db-fb61-43ba-9c54-b28f9d1404be" SourceId="1" SourceUrl="http://rcs-vostro/ProductsServicePub/ProductsService.svc?wsdl" />
+    <MetadataFile FileName="ProductsService4.xsd" MetadataType="Schema" ID="03c17072-ae84-432d-b04e-dda303fe4cfe" SourceId="1" SourceUrl="http://localhost:65348/ProductsService.svc?xsd=xsd2" />
+    <MetadataFile FileName="ProductsService41.xsd" MetadataType="Schema" ID="dd9ff2da-3b02-45cf-937c-5dc94e632911" SourceId="1" SourceUrl="http://localhost:65348/ProductsService.svc?xsd=xsd3" />
+    <MetadataFile FileName="ProductsService42.xsd" MetadataType="Schema" ID="ddb7b8c3-64e1-4ab2-b699-502b6d14fdd8" SourceId="1" SourceUrl="http://localhost:65348/ProductsService.svc?xsd=xsd0" />
+    <MetadataFile FileName="ProductsService43.xsd" MetadataType="Schema" ID="a5d45bff-25c4-4e25-922d-32c5963399aa" SourceId="1" SourceUrl="http://localhost:65348/ProductsService.svc?xsd=xsd1" />
+    <MetadataFile FileName="ProductsService1.disco" MetadataType="Disco" ID="3e3c3213-6f41-463a-b960-f22787f935ff" SourceId="1" SourceUrl="http://localhost:65348/ProductsService.svc?disco" />
+    <MetadataFile FileName="ProductsService1.wsdl" MetadataType="Wsdl" ID="ffc9e9db-39eb-4263-9f62-65629cc10712" SourceId="1" SourceUrl="http://localhost:65348/ProductsService.svc?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
