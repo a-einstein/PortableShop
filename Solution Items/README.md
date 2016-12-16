@@ -8,6 +8,8 @@
 #### Aspects
 * Xamarin.
 * MVVM.
+* Client-server.
+* WCF.
 * Globalized resources.
 * NuGet.
 * ...
