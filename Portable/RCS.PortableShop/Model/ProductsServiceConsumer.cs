@@ -4,7 +4,7 @@ using System.ServiceModel;
 
 namespace RCS.PortableShop.Model
 {
-  public abstract class ProductsServiceConsumer : IDisposable
+    public abstract class ProductsServiceConsumer : IDisposable
     {
         private ProductsServiceClient productsServiceClient;
 
@@ -13,9 +13,11 @@ namespace RCS.PortableShop.Model
             get
             {
                 // TODO Make this better configurable. There normally does not seem to be an .config file.
+                // Note this points to a BasicHttpBinding variant.
                 const string endpointAddress = "http://rcs-vostro/ProductsServicePub/ProductsService.svc/ProductsServiceB";
 
                 if (productsServiceClient == null)
+                    // Note that currently wsHttpBinding is not supported, but should be as it is part of System.ServiceModel 4.0.0.0.
                     productsServiceClient = new ProductsServiceClient(new BasicHttpBinding(), new EndpointAddress(endpointAddress));
 
                 return productsServiceClient;
