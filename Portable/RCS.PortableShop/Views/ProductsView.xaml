@@ -1,13 +1,16 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <BaseClasses:View
-    x:Class="RCS.PortableShop.Views.ProductsView"  
+    x:Class="RCS.PortableShop.Views.ProductsView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:BaseClasses="clr-namespace:RCS.PortableShop.Common.Views;assembly=RCS.PortableShop.Common"
     xmlns:Converters="clr-namespace:RCS.PortableShop.Common.Converters;assembly=RCS.PortableShop.Common"
     xmlns:Localization="clr-namespace:RCS.PortableShop.Localization;assembly=RCS.PortableShop"
     xmlns:Styles="clr-namespace:RCS.PortableShop.Common.Styles;assembly=RCS.PortableShop.Common"
+    VerticalOptions="Fill"
+    Margin="0"
+    Padding="0"
     >
     <!--xmlns:Main="clr-namespace:RCS.PortableShop.Main;assembly=RCS.PortableShop"-->
 
@@ -22,18 +25,21 @@
         </ResourceDictionary>
     </BaseClasses:View.Resources>
 
+    <!--TODO Central styling.-->
     <!--Background="{StaticResource ProductBackgroundBrush}"-->
     <!--TODO Does this HAVE to be DynamicResource?!-->
     <!--TODO Does not work either way, DynamicResource (values) or StaticResource (error), -->
-    <Frame Style="{DynamicResource FrameStyle}">
-        <Grid >
+    <!--Style="{DynamicResource FrameStyle}"-->
+    <Frame VerticalOptions="Fill" OutlineColor="Black">
+        <Grid VerticalOptions="Fill" BackgroundColor="Aqua">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <StackLayout Margin="0,0,0,2">
-                <Label Text="{Localization:Translate Products}" Style="{DynamicResource MainHeaderLabelStyle}"/>
+            <StackLayout Grid.Row="0" Margin="0,0,0,2" Padding="3">
+                <!--Style="{DynamicResource MainHeaderLabelStyle}"-->
+                <Label Text="{Localization:Translate Products}" FontSize="Large" FontAttributes="Bold"/>
 
                 <StackLayout Orientation="Horizontal">
                     <!--Style="{StaticResource LineLabelStyle}"-->
@@ -54,7 +60,8 @@
                     <Entry Text="{Binding TextFilterValue, Mode=TwoWay}" />
 
                     <!--IsDefault="True" Margin="{StaticResource StandardHorizontalSeparation}"-->
-                    <Button Text="{Localization:Translate Filter}" Command="{Binding FilterCommand}">
+                    <!--TODO FontSize does not work.-->
+                    <Button Text="{Localization:Translate Filter}" Command="{Binding FilterCommand}" FontSize="Small" FontAttributes="Bold">
                         <!--Note this prevents unfiltered queries.-->
                         <Button.IsEnabled>
                             <!--<MultiBinding Converter="{StaticResource HasValueMultiTester}">
@@ -72,79 +79,59 @@
                 </StackLayout>
             </StackLayout>
 
-            <!--Style="{StaticResource FrameStyle}"-->
-            <Frame Grid.Row="1">
-                <!--Note this does not work within a StackLayout-->
-                <ScrollView Orientation="Vertical">
-                    <!--Name="productsItemsControl" Background="#FFEAF7FF" Padding="2"-->
-                    <ListView ItemsSource="{Binding Items}">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <!--Style="{StaticResource FrameStyle}" Background="{StaticResource ProductBackgroundBrush}"-->
-                                <Frame >
-                                    <!--Width="300"-->
-                                    <Grid >
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition Width="5"/>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
+            <!--Note this does not work within a StackLayout-->
+            <ScrollView Grid.Row="1" VerticalOptions="Fill">
 
-                                        <!--Style="{StaticResource ImageStyle}" MaxWidth="80"  MaxHeight="80"-->
-                                        <Image Grid.Column="0" Source="{Binding ThumbNailPhoto, Converter={StaticResource ByteArrayToBitmapImageConverter}}" />
+                <!--For some reason I could not get the rows to expand automatically, therefor the HasUnevenRows.-->
+                <ListView ItemsSource="{Binding Items}" HasUnevenRows="True" BackgroundColor="White">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Margin="2" BackgroundColor="Aqua">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
 
-                                      <!--VerticalAlignment="Bottom" HorizontalAlignment="Left"-->
-                                      <StackLayout Grid.Column="0" Orientation="Vertical">
-                                            <!--Command="{Binding BindingContext.DetailsCommand, Source={x:Reference productsItemsControl}" CommandParameter="{Binding}" Style="{StaticResource DetailsButtonStyle}" Background="{StaticResource ProductBackgroundBrush}"-->
-                                            <Button Text="{Localization:Translate Details}" />
-                                            <!-- Command="{Binding BindingContext.CartCommand, Source={x:Reference productsItemsControl}}" CommandParameter="{Binding}" Style="{StaticResource DetailsButtonStyle}" Background="{StaticResource CartBackgroundBrush}"-->
-                                            <Button Text="{Localization:Translate IncreaseProduct}" />
+                                    <Frame Grid.Column="0" VerticalOptions="Start" Margin="3" OutlineColor="Black" WidthRequest="40" HeightRequest="40 ">
+                                        <!--TODO Convert.-->
+                                        <Image  Source="{Binding ThumbNailPhoto}"/>
+                                    </Frame>
+
+                                    <StackLayout Grid.Column="0" VerticalOptions="End" Orientation="Vertical">
+                                        <!--TODO Let whole Grid be button to details (by navigation).-->
+                                        <!--Command="{Binding BindingContext.DetailsCommand, Source={x:Reference productsItemsControl}" CommandParameter="{Binding}" Style="{StaticResource DetailsButtonStyle}" Background="{StaticResource ProductBackgroundBrush}"-->
+                                        <!--<Button Text="{Localization:Translate Details}" />-->
+
+                                        <!-- Command="{Binding BindingContext.CartCommand, Source={x:Reference productsItemsControl}}" CommandParameter="{Binding}" Style="{StaticResource DetailsButtonStyle}" Background="{StaticResource CartBackgroundBrush}"-->
+                                        <!--TODO FontSize does not work.-->
+                                        <Button Text="{Localization:Translate IncreaseProduct}" FontSize="Small" FontAttributes="Bold" />
+                                    </StackLayout>
+
+                                    <StackLayout Grid.Column="1" Margin="3">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="{Binding ProductCategory}"/>
+                                            <Label Text="/"/>
+                                            <Label Text="{Binding ProductSubcategory}"/>
                                         </StackLayout>
 
-                                        <StackLayout Grid.Column="2">
-                                            <!--Style="{StaticResource LabelStyle}"-->
-                                            <Label>
-                                                <Label.Text>
-                                                    <!--<MultiBinding Converter="{StaticResource CategoriesFormatter}">
-                                                        <Binding Path="ProductCategory"/>
-                                                        <Binding Path="ProductSubcategory"/>
-                                                    </MultiBinding>-->
-                                                </Label.Text>
-                                            </Label>
+                                        <Label Text="{Binding Name}" FontSize="Medium" FontAttributes="Bold"/>
 
-                                            <!--Style="{StaticResource LabelStyle}" FontWeight="Bold"-->
-                                            <Label Text="{Binding Name}" FontSize="16"/>
+                                        <Label Text="{Binding ListPrice, StringFormat=\{0:C2\}}" FontAttributes="Bold"/>
 
-                                            <!--Style="{StaticResource LabelStyle}" FontWeight="Bold"-->
-                                            <Label Text="{Binding ListPrice, StringFormat=\{0:C2\}}" FontSize="12"/>
-
-                                            <!--Style="{StaticResource LabelStyle}"-->
-                                            <Label >
-                                                <Label.Text>
-                                                    <!--<MultiBinding Converter="{StaticResource SizeFormatter}">
-                                                        <Binding Path="Size"/>
-                                                        <Binding Path="SizeUnitMeasureCode"/>
-                                                    </MultiBinding>-->
-                                                </Label.Text>
-                                            </Label>
-
-                                            <!--Style="{StaticResource LabelStyle}"-->
-                                            <Label Text="{Binding Color}" />
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="{Binding Size}"/>
+                                            <Label Text="{Binding SizeUnitMeasureCode}"/>
                                         </StackLayout>
-                                    </Grid>
 
-                                </Frame>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-
-                        <!--<ListView.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <WrapPanel/>
-                            </ItemsPanelTemplate>
-                        </ListView.ItemsPanel>-->
-                    </ListView>
-                </ScrollView>
-            </Frame>
+                                        <Label Text="{Binding Color}"/>
+                                    </StackLayout>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollView>
         </Grid>
     </Frame>
 </BaseClasses:View>
