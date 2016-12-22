@@ -97,10 +97,10 @@
 
                                     <StackLayout Grid.Column="0" VerticalOptions="End" Orientation="Vertical">
                                         <!--TODO Let whole Grid be button to details (by navigation).-->
-                                        <!--Command="{Binding BindingContext.DetailsCommand, Source={x:Reference productsItemsControl}" CommandParameter="{Binding}" Style="{StaticResource DetailsButtonStyle}" Background="{StaticResource ProductBackgroundBrush}"-->
+                                        <!--Command="{Binding BindingContext.DetailsCommand, Source={x:Reference productsItemsControl}" CommandParameter="{Binding}"-->
                                         <!--<Button Text="{Localization:Translate Details}" />-->
 
-                                        <!-- Command="{Binding BindingContext.CartCommand, Source={x:Reference productsItemsControl}}" CommandParameter="{Binding}" Style="{StaticResource DetailsButtonStyle}" Background="{StaticResource CartBackgroundBrush}"-->
+                                        <!-- Command="{Binding BindingContext.CartCommand, Source={x:Reference productsItemsControl}}" CommandParameter="{Binding}"-->
                                         <!--TODO FontSize does not work.-->
                                         <Button Text="{Localization:Translate IncreaseProduct}" FontSize="Small" FontAttributes="Bold" />
                                     </StackLayout>
