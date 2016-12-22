@@ -19,7 +19,7 @@
         <ResourceDictionary MergedWith="Styles:GeneralStyle">
             <!--<Converters:CategoriesFormatter x:Key="CategoriesFormatter"/>-->
             <!--<Converters:SizeFormatter x:Key="SizeFormatter"/>-->
-            <Converters:ByteArrayToBitmapImageConverter x:Key="ByteArrayToBitmapImageConverter"/>
+            <Converters:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter"/>
             <Converters:HasValueTester x:Key="HasValueTester"/>
             <!--<Converters:HasValueMultiTester x:Key="HasValueMultiTester"/>-->
         </ResourceDictionary>
@@ -93,10 +93,7 @@
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
 
-                                    <Frame Grid.Column="0" VerticalOptions="Start" Margin="3" OutlineColor="Black" WidthRequest="40" HeightRequest="40 ">
-                                        <!--TODO Convert.-->
-                                        <Image  Source="{Binding ThumbNailPhoto}"/>
-                                    </Frame>
+                                    <Image Grid.Column="0" Source="{Binding ThumbNailPhoto, Converter={StaticResource ByteArrayToImageSourceConverter}}" VerticalOptions="Start" Margin="3" WidthRequest="40" HeightRequest="40" />
 
                                     <StackLayout Grid.Column="0" VerticalOptions="End" Orientation="Vertical">
                                         <!--TODO Let whole Grid be button to details (by navigation).-->

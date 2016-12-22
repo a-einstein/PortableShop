@@ -36,7 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Converters\BooleanInverter.cs" />
-    <Compile Include="Converters\ByteArrayToBitmapImageConverter.cs" />
+    <Compile Include="Converters\ByteArrayToImageSourceConverter.cs" />
     <Compile Include="Converters\CategoriesFormatter.cs" />
     <Compile Include="Converters\HasValueMultiTester.cs" />
     <Compile Include="Converters\HasValueTester.cs" />
