@@ -19,7 +19,7 @@ namespace RCS.PortableShop.Main
 #endif
             SetCulture();
 
-            MainPage = new MainWindow();
+            MainPage = new NavigationPage(new MainPage());
         }
 
         private static void ListResources()

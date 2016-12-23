@@ -83,7 +83,7 @@
             <ScrollView Grid.Row="1" VerticalOptions="Fill">
 
                 <!--For some reason I could not get the rows to expand automatically, therefor the HasUnevenRows.-->
-                <ListView ItemsSource="{Binding Items}" HasUnevenRows="True" BackgroundColor="White">
+                <ListView x:Name="productsItemsControl" ItemsSource="{Binding Items}" HasUnevenRows="True" BackgroundColor="White">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -93,16 +93,18 @@
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
 
-                                    <Image Grid.Column="0" Source="{Binding ThumbNailPhoto, Converter={StaticResource ByteArrayToImageSourceConverter}}" VerticalOptions="Start" Margin="3" WidthRequest="40" HeightRequest="40" />
+                                    <StackLayout Grid.Column="0">
+                                        <Image Source="{Binding ThumbNailPhoto, Converter={StaticResource ByteArrayToImageSourceConverter}}" VerticalOptions="Start" Margin="3" WidthRequest="40" HeightRequest="40" />
 
-                                    <StackLayout Grid.Column="0" VerticalOptions="End" Orientation="Vertical">
-                                        <!--TODO Let whole Grid be button to details (by navigation).-->
-                                        <!--Command="{Binding BindingContext.DetailsCommand, Source={x:Reference productsItemsControl}" CommandParameter="{Binding}"-->
-                                        <!--<Button Text="{Localization:Translate Details}" />-->
+                                        <StackLayout VerticalOptions="End" Orientation="Vertical">
+                                            <!--TODO Let whole Grid be button to details (by navigation).-->
+                                            <!---->
+                                            <Button Text="{Localization:Translate Details}" Command="{Binding BindingContext.DetailsCommand, Source={x:Reference productsItemsControl}}" CommandParameter="{Binding}" Margin="0"/>
 
-                                        <!-- Command="{Binding BindingContext.CartCommand, Source={x:Reference productsItemsControl}}" CommandParameter="{Binding}"-->
-                                        <!--TODO FontSize does not work.-->
-                                        <Button Text="{Localization:Translate IncreaseProduct}" FontSize="Small" FontAttributes="Bold" />
+                                            <!-- Command="{Binding BindingContext.CartCommand, Source={x:Reference productsItemsControl}}" CommandParameter="{Binding}"-->
+                                            <!--TODO FontSize does not work.-->
+                                            <Button Text="{Localization:Translate IncreaseProduct}" FontSize="Small" FontAttributes="Bold" Margin="0"/>
+                                        </StackLayout>
                                     </StackLayout>
 
                                     <StackLayout Grid.Column="1" Margin="3">

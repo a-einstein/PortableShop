@@ -28,5 +28,7 @@ namespace RCS.PortableShop.Common.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        public INavigation Navigation { get; set; }
     }
 }

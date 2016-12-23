@@ -17,7 +17,13 @@ namespace RCS.PortableShop.Common.ViewModels
         public T Item
         {
             get { return (T)GetValue(ItemProperty); }
-            set { SetValue(ItemProperty, value); }
+            set
+            {
+                SetValue(ItemProperty, value);
+
+                // TODO This should not be necessary.
+                RaisePropertyChanged(nameof(Item));
+            }
         }
 
         public override void Refresh()

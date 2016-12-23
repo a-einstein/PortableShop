@@ -1,14 +1,12 @@
 ﻿using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.PortableShop.Common.ViewModels;
-//using RCS.PortableShop.Common.Windows;
 using RCS.PortableShop.Interfaces;
 using RCS.PortableShop.Model;
+using RCS.PortableShop.Views;
 using System;
 using System.Collections.Generic;
-//using System.ComponentModel.Composition;
 using System.Linq;
 using System.Threading.Tasks;
-//using System.Windows.Data;
 using System.Windows.Input;
 //using System.Windows.Threading;
 using Xamarin.Forms;
@@ -139,16 +137,21 @@ namespace RCS.PortableShop.ViewModels
 
         protected override void ShowDetails(ProductsOverviewObject productsOverviewObject)
         {
-            /*
             ProductViewModel productViewModel = new ProductViewModel();
             View productView = new ProductView() { ViewModel = productViewModel };
 
+            // TODO Maybe Title is applicable somewhere.
+            /*
             OkWindow productWindow = new OkWindow() { View = productView, };
             productWindow.SetBinding(Window.TitleProperty, new Binding($"{nameof(productViewModel.Item)}.{nameof(productsOverviewObject.Name)}") { Source = productViewModel });
             productWindow.Show();
+            */
+
+            var productPage = new ContentPage() { Content = productView };
+            Navigation.PushAsync(productPage);
 
             productViewModel.Refresh(productsOverviewObject.Id);
-            */
+
         }
 
         // Note this does not work as explicit interface implementation.

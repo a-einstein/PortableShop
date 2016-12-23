@@ -7,8 +7,8 @@
     xmlns:BaseClasses="clr-namespace:RCS.PortableShop.Common.Views;assembly=RCS.PortableShop.Common"
     xmlns:Converters="clr-namespace:RCS.PortableShop.Common.Converters;assembly=RCS.PortableShop.Common"
     xmlns:Localization="clr-namespace:RCS.PortableShop.Localization;assembly=RCS.PortableShop"
-    Background="{StaticResource ProductBackgroundBrush}"
     >
+    <!--Background="{StaticResource ProductBackgroundBrush}"-->
 
     <BaseClasses:View.Resources>
         <ResourceDictionary>
@@ -19,45 +19,44 @@
         </ResourceDictionary>
     </BaseClasses:View.Resources>
 
-    <Frame VerticalOptions="Fill" OutlineColor="Black">
-        <Grid VerticalOptions="Fill" BackgroundColor="Aqua">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
+    <ScrollView VerticalOptions="Fill">
 
+        <!--TODO Make layout dependent on orientation.-->
+        <Grid VerticalOptions="Fill" BackgroundColor="Aqua">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Image Grid.Row="0" Grid.Column="0" Source="{Binding Item.LargePhoto, Converter={StaticResource ByteArrayToImageSourceConverter}}" VerticalOptions="Start" Margin="3" WidthRequest="240" HeightRequest="240"/>
-            
-            <StackLayout Grid.Row="1" Grid.Column="0" VerticalOptions="End" Orientation="Vertical">
-                <!--Command="{Binding CartCommand}" CommandParameter="{Binding Item}"-->
-                <!--TODO FontSize does not work.-->
-                <Button Text="{Localization:Translate IncreaseProduct}" FontSize="Small" FontAttributes="Bold" />
+            <StackLayout Grid.Column="0">
+                <!--TODO Make Image openable.-->
+                <Image Grid.Column="0" Source="{Binding Item.LargePhoto, Converter={StaticResource ByteArrayToImageSourceConverter}}" VerticalOptions="Start" Margin="3" WidthRequest="240" HeightRequest="240"/>
+
+                <StackLayout Grid.Column="0" VerticalOptions="End" Orientation="Vertical">
+                    <!--Command="{Binding CartCommand}" CommandParameter="{Binding Item}"-->
+                    <!--TODO FontSize does not work.-->
+                    <Button Text="{Localization:Translate IncreaseProduct}" FontSize="Small" FontAttributes="Bold" />
+                </StackLayout>
             </StackLayout>
 
-            <StackLayout Grid.Row="0" Grid.RowSpan="2" Grid.Column="1">
+            <StackLayout Grid.Column="1">
                 <StackLayout Orientation="Horizontal">
-                    <Label Text="{Binding ProductCategory}"/>
+                    <Label Text="{Binding Item.ProductCategory}"/>
                     <Label Text="/"/>
-                    <Label Text="{Binding ProductSubcategory}"/>
+                    <Label Text="{Binding Item.ProductSubcategory}"/>
                 </StackLayout>
 
                 <Label Text="{Binding Item.ModelName}"/>
 
-                <Label Text="{Binding Name}" FontSize="Medium" FontAttributes="Bold"/>
+                <Label Text="{Binding Item.Name}" FontSize="Medium" FontAttributes="Bold"/>
 
                 <Label Text="{Binding Item.ProductNumber}"/>
 
-                <Label Text="{Binding ListPrice, StringFormat=\{0:C2\}}" FontAttributes="Bold"/>
+                <Label Text="{Binding Item.ListPrice, StringFormat=\{0:C2\}}" FontAttributes="Bold"/>
 
                 <StackLayout Orientation="Horizontal">
-                    <Label Text="{Binding Size}"/>
-                    <Label Text="{Binding SizeUnitMeasureCode}"/>
+                    <Label Text="{Binding Item.Size}"/>
+                    <Label Text="{Binding Item.SizeUnitMeasureCode}"/>
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal">
@@ -70,5 +69,5 @@
                 <Label Text="{Binding Item.Description}"/>
             </StackLayout>
         </Grid>
-    </Frame>
+    </ScrollView>
 </BaseClasses:View>

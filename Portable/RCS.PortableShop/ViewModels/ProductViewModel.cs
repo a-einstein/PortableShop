@@ -1,7 +1,7 @@
 ﻿using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.PortableShop.Common.ViewModels;
 using RCS.PortableShop.Interfaces;
-//using RCS.PortableShop.Model;
+using RCS.PortableShop.Model;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -12,7 +12,7 @@ namespace RCS.PortableShop.ViewModels
         public override async void Refresh(object productId)
         {
             // TODO Check for errors.
-            //Item = await ProductsRepository.Instance.ReadDetails((int)productId);
+            Item = await ProductsRepository.Instance.ReadDetails((int)productId);
         }
 
         protected override void SetCommands()
