@@ -5,6 +5,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:BaseClasses="clr-namespace:RCS.PortableShop.Common.Views;assembly=RCS.PortableShop.Common"
+    xmlns:Controls="clr-namespace:RCS.PortableShop.Common.Controls;assembly=RCS.PortableShop.Common"
     xmlns:Converters="clr-namespace:RCS.PortableShop.Common.Converters;assembly=RCS.PortableShop.Common"
     xmlns:Localization="clr-namespace:RCS.PortableShop.Localization;assembly=RCS.PortableShop"
     xmlns:Styles="clr-namespace:RCS.PortableShop.Common.Styles;assembly=RCS.PortableShop.Common"
@@ -87,45 +88,43 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Grid Margin="2" BackgroundColor="Aqua">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
+                                <Controls:ContentButton Command="{Binding BindingContext.DetailsCommand, Source={x:Reference productsItemsControl}}" CommandParameter="{Binding}" Margin="0">
+                                    <Controls:ContentButton.Content>
+                                        <Grid Margin="2" BackgroundColor="Aqua">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
 
-                                    <StackLayout Grid.Column="0">
-                                        <Image Source="{Binding ThumbNailPhoto, Converter={StaticResource ByteArrayToImageSourceConverter}}" VerticalOptions="Start" Margin="3" WidthRequest="40" HeightRequest="40" />
+                                            <StackLayout Grid.Column="0">
+                                                <Image Source="{Binding ThumbNailPhoto, Converter={StaticResource ByteArrayToImageSourceConverter}}" VerticalOptions="Start" Margin="3" WidthRequest="40" HeightRequest="40" />
 
-                                        <StackLayout VerticalOptions="End" Orientation="Vertical">
-                                            <!--TODO Let whole Grid be button to details (by navigation).-->
-                                            <!---->
-                                            <Button Text="{Localization:Translate Details}" Command="{Binding BindingContext.DetailsCommand, Source={x:Reference productsItemsControl}}" CommandParameter="{Binding}" Margin="0"/>
+                                                <!-- Command="{Binding BindingContext.CartCommand, Source={x:Reference productsItemsControl}}" CommandParameter="{Binding}"-->
+                                                <!--TODO FontSize does not work.-->
+                                                <Button Text="{Localization:Translate IncreaseProduct}" FontSize="Small" FontAttributes="Bold" Margin="0" VerticalOptions="End"/>
+                                            </StackLayout>
 
-                                            <!-- Command="{Binding BindingContext.CartCommand, Source={x:Reference productsItemsControl}}" CommandParameter="{Binding}"-->
-                                            <!--TODO FontSize does not work.-->
-                                            <Button Text="{Localization:Translate IncreaseProduct}" FontSize="Small" FontAttributes="Bold" Margin="0"/>
-                                        </StackLayout>
-                                    </StackLayout>
+                                            <StackLayout Grid.Column="1" Margin="3">
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="{Binding ProductCategory}"/>
+                                                    <Label Text="/"/>
+                                                    <Label Text="{Binding ProductSubcategory}"/>
+                                                </StackLayout>
 
-                                    <StackLayout Grid.Column="1" Margin="3">
-                                        <StackLayout Orientation="Horizontal">
-                                            <Label Text="{Binding ProductCategory}"/>
-                                            <Label Text="/"/>
-                                            <Label Text="{Binding ProductSubcategory}"/>
-                                        </StackLayout>
+                                                <Label Text="{Binding Name}" FontSize="Medium" FontAttributes="Bold"/>
 
-                                        <Label Text="{Binding Name}" FontSize="Medium" FontAttributes="Bold"/>
+                                                <Label Text="{Binding ListPrice, StringFormat=\{0:C2\}}" FontAttributes="Bold"/>
 
-                                        <Label Text="{Binding ListPrice, StringFormat=\{0:C2\}}" FontAttributes="Bold"/>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="{Binding Size}"/>
+                                                    <Label Text="{Binding SizeUnitMeasureCode}"/>
+                                                </StackLayout>
 
-                                        <StackLayout Orientation="Horizontal">
-                                            <Label Text="{Binding Size}"/>
-                                            <Label Text="{Binding SizeUnitMeasureCode}"/>
-                                        </StackLayout>
-
-                                        <Label Text="{Binding Color}"/>
-                                    </StackLayout>
-                                </Grid>
+                                                <Label Text="{Binding Color}"/>
+                                            </StackLayout>
+                                        </Grid>
+                                    </Controls:ContentButton.Content>
+                                </Controls:ContentButton>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
