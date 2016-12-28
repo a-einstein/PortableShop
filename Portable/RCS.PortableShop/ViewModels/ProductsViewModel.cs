@@ -137,7 +137,7 @@ namespace RCS.PortableShop.ViewModels
 
         protected override void ShowDetails(ProductsOverviewObject productsOverviewObject)
         {
-            ProductViewModel productViewModel = new ProductViewModel();
+            ProductViewModel productViewModel = new ProductViewModel() { Navigation = Navigation };
             View productView = new ProductView() { ViewModel = productViewModel };
 
             // TODO Maybe Title is applicable somewhere.

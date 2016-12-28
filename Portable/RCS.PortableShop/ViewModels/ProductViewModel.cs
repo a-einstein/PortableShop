@@ -19,7 +19,21 @@ namespace RCS.PortableShop.ViewModels
         {
             base.SetCommands();
 
+            PhotoCommand = new Command<ImageSource>(ShowPhoto);
             CartCommand = new Command<Product>(CartProduct);
+        }
+
+        public ICommand PhotoCommand { get; private set; }
+
+        // Use the existing ImageSource to avoid an unnecessary conversion.
+        private void ShowPhoto(ImageSource imageSource)
+        {
+            var page = new ContentPage()
+            {
+                Content = new Image() { Source = imageSource }
+            };
+
+            Navigation.PushAsync(page);
         }
 
         // Note this does not work as explicit interface implementation.
