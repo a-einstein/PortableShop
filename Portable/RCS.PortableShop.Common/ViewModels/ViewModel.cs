@@ -30,5 +30,12 @@ namespace RCS.PortableShop.Common.ViewModels
         }
 
         public INavigation Navigation { get; set; }
+
+        protected void PushPage(View view)
+        {
+            var page = new ContentPage() { Content = view };
+
+            Navigation.PushAsync(page);
+        }
     }
 }

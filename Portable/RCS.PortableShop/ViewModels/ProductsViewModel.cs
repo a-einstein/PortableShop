@@ -147,8 +147,7 @@ namespace RCS.PortableShop.ViewModels
             productWindow.Show();
             */
 
-            var productPage = new ContentPage() { Content = productView };
-            Navigation.PushAsync(productPage);
+            PushPage(productView);
 
             productViewModel.Refresh(productsOverviewObject.Id);
 

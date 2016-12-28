@@ -28,12 +28,7 @@ namespace RCS.PortableShop.ViewModels
         // Use the existing ImageSource to avoid an unnecessary conversion.
         private void ShowPhoto(ImageSource imageSource)
         {
-            var page = new ContentPage()
-            {
-                Content = new Image() { Source = imageSource }
-            };
-
-            Navigation.PushAsync(page);
+            PushPage(new Image() { Source = imageSource });
         }
 
         // Note this does not work as explicit interface implementation.
