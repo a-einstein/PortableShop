@@ -4,6 +4,7 @@ using Xamarin.Forms;
 
 namespace RCS.PortableShop.Common.Controls
 {
+    // Thanks for the base idea to http://stackoverflow.com/questions/29693721/xamarin-forms-content-of-a-button
     public partial class ContentButton : ContentView
     {
         public ContentButton()
