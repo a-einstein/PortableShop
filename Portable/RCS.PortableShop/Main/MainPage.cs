@@ -11,9 +11,6 @@ namespace RCS.PortableShop.Main
             var viewModel = new ProductsViewModel() { Navigation = Navigation };
             var view = new ProductsView(viewModel);
 
-            // TODO Does not work. Get rid of large margin/padding.
-            Padding = 0;
-
             Content = view;
         }
     }

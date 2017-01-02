@@ -34,26 +34,21 @@ namespace RCS.PortableShop.Model
         {
             Clear();
 
-            var task = Task.Run(async () =>
+            var categories = await Task.Factory.FromAsync<ProductCategoryList>(
+                ProductsServiceClient.BeginGetProductCategories,
+                ProductsServiceClient.EndGetProductCategories,
+                null);
+
+            if (addEmptyElement)
             {
-                var categories = await Task.Factory.FromAsync<ProductCategoryList>(
-                    ProductsServiceClient.BeginGetProductCategories,
-                    ProductsServiceClient.EndGetProductCategories,
-                    null);
+                var category = new ProductCategory() { Name = string.Empty };
+                List.Add(category);
+            }
 
-                if (addEmptyElement)
-                {
-                    var category = new ProductCategory() { Name = string.Empty };
-                    List.Add(category);
-                }
-
-                foreach (var category in categories)
-                {
-                    List.Add(category);
-                }
-            });
-
-            await task;
+            foreach (var category in categories)
+            {
+                List.Add(category);
+            }
         }
     }
 }

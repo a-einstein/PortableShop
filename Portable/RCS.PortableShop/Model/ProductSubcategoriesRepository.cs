@@ -33,27 +33,21 @@ namespace RCS.PortableShop.Model
         public async Task ReadList(bool addEmptyElement = true)
         {
             Clear();
+            var subcategories = await Task.Factory.FromAsync<ProductSubcategoryList>(
+                ProductsServiceClient.BeginGetProductSubcategories,
+                ProductsServiceClient.EndGetProductSubcategories,
+                null);
 
-            var task = Task.Run(async () =>
+            if (addEmptyElement)
             {
-                var subcategories = await Task.Factory.FromAsync<ProductSubcategoryList>(
-                    ProductsServiceClient.BeginGetProductSubcategories,
-                    ProductsServiceClient.EndGetProductSubcategories,
-                    null);
+                var subcategory = new ProductSubcategory();
+                List.Add(subcategory);
+            }
 
-                if (addEmptyElement)
-                {
-                    var subcategory = new ProductSubcategory();
-                    List.Add(subcategory);
-                }
-
-                foreach (var subcategory in subcategories)
-                {
-                    List.Add(subcategory);
-                }
-            });
-
-            await task;
+            foreach (var subcategory in subcategories)
+            {
+                List.Add(subcategory);
+            }
         }
     }
 }

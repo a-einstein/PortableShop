@@ -21,7 +21,6 @@
     </BaseClasses:View.Resources>
 
     <ScrollView VerticalOptions="Fill">
-
         <!--TODO Make layout dependent on orientation.-->
         <Grid x:Name="productControl" VerticalOptions="Fill" BackgroundColor="Aqua">
             <Grid.ColumnDefinitions>
@@ -29,18 +28,16 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <StackLayout Grid.Column="0">                
+            <StackLayout Grid.Column="0" VerticalOptions="Start">
                 <Controls:ContentButton Grid.Column="0" Command="{Binding BindingContext.PhotoCommand, Source={x:Reference productControl}}" CommandParameter="{Binding Source, Source={x:Reference imageControl}}" VerticalOptions="Start" Margin="3">
                     <Controls:ContentButton.Content>
                         <Image x:Name="imageControl" Source="{Binding Item.LargePhoto, Converter={StaticResource ByteArrayToImageSourceConverter}}" WidthRequest="240" HeightRequest="240"/>
                     </Controls:ContentButton.Content>
                 </Controls:ContentButton>
 
-                <StackLayout Grid.Column="0" VerticalOptions="End" Orientation="Vertical">
-                    <!--Command="{Binding CartCommand}" CommandParameter="{Binding Item}"-->
-                    <!--TODO FontSize does not work.-->
-                    <Button Text="{Localization:Translate IncreaseProduct}" FontSize="Small" FontAttributes="Bold" />
-                </StackLayout>
+                <!--Command="{Binding CartCommand}" CommandParameter="{Binding Item}"-->
+                <!--TODO FontSize does not work.-->
+                <Button Text="{Localization:Translate IncreaseProduct}" FontSize="Small" FontAttributes="Bold" VerticalOptions="End" Margin="0,5"/>
             </StackLayout>
 
             <StackLayout Grid.Column="1">

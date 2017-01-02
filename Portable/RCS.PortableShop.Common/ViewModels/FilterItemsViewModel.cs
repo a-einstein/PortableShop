@@ -14,6 +14,17 @@ namespace RCS.PortableShop.Common.ViewModels
 
         public ObservableCollection<V> MasterFilterItems { get; } = new ObservableCollection<V>();
 
+        /*
+        public static readonly BindableProperty MasterFilterItemsProperty =
+            BindableProperty.Create(nameof(MasterFilterItems), typeof(ObservableCollection<V>), typeof(FilterItemsViewModel<T, V, W>), defaultValue: new ObservableCollection<V>());
+
+        public ObservableCollection<V> MasterFilterItems
+        {
+            get { return (ObservableCollection<V>)GetValue(MasterFilterItemsProperty); }
+            set { SetValue(MasterFilterItemsProperty, value); }
+        }
+        */
+
         public static readonly BindableProperty MasterFilterValueProperty =
             BindableProperty.Create(nameof(MasterFilterValue), typeof(V), typeof(FilterItemsViewModel<T, V, W>), propertyChanging : new BindingPropertyChangingDelegate(OnMasterFilterValueChanged));
 
@@ -30,12 +41,11 @@ namespace RCS.PortableShop.Common.ViewModels
         {
             var viewModel = bindableObject as FilterItemsViewModel<T, V, W>;
 
-            /*
             viewModel.SetDetailFilterItems();
             viewModel.DetailFilterValue = viewModel.DetailFilterItems.FirstOrDefault();
-            */
         }
 
+        // TODO Still problems here. Might be a matter of threads.
         // TODO Some sort of view would be more convenient.
         private void SetDetailFilterItems(bool addEmptyElement = true)
         {

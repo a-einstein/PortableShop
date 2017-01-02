@@ -21,6 +21,7 @@ namespace RCS.PortableShop.Common.ViewModels
             return (value == null || value.Trim() == string.Empty);
         }
 
+        // TODO Check the inherited PropertyChanged.
         public event PropertyChangedEventHandler PropertyChanged;
 
         // This signal can be particularly useful if a collection is entirely replaced, as the formerly bound collection no longer can.
@@ -31,9 +32,9 @@ namespace RCS.PortableShop.Common.ViewModels
 
         public INavigation Navigation { get; set; }
 
-        protected void PushPage(View view)
+        protected void PushPage(View view, string title = null)
         {
-            var page = new ContentPage() { Content = view };
+            var page = new ContentPage() { Content = view, Title = title };
 
             Navigation.PushAsync(page);
         }

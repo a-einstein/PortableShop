@@ -19,7 +19,9 @@ namespace RCS.PortableShop.Main
 #endif
             SetCulture();
 
-            MainPage = new NavigationPage(new MainPage());
+            var mainPage = new MainPage();
+            NavigationPage.SetHasNavigationBar(mainPage, false);
+            MainPage = new NavigationPage(mainPage);
         }
 
         private static void ListResources()

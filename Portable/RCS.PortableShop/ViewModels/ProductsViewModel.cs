@@ -8,7 +8,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-//using System.Windows.Threading;
 using Xamarin.Forms;
 using View = RCS.PortableShop.Common.Views.View;
 
@@ -16,11 +15,8 @@ namespace RCS.PortableShop.ViewModels
 {
     public class ProductsViewModel : FilterItemsViewModel<ProductsOverviewObject, ProductCategory, ProductSubcategory>, IShopper//, IPartImportsSatisfiedNotification
     {
-        //private Dispatcher uiDispatcher;
-
         public ProductsViewModel()
         {
-            //uiDispatcher = Dispatcher.CurrentDispatcher;
             OnImportsSatisfied();
         }
 
@@ -33,19 +29,14 @@ namespace RCS.PortableShop.ViewModels
             Refresh();
         }
 
-        public override void Refresh()
+        public override async void Refresh()
         {
             Items.Clear();
 
             if (!filterInitialized)
-            {
-                Task.Run(async () => await InitializeFilters()).
-                ContinueWith((previous) => ReadFiltered());
-            }
-            else
-            {
-                ReadFiltered();
-            }
+                await InitializeFilters();
+
+            await ReadFiltered();
         }
 
         // TODO This would better be handled inside the repository.
@@ -55,69 +46,63 @@ namespace RCS.PortableShop.ViewModels
             (
                 ProductCategoriesRepository.Instance.ReadList(),
                 ProductSubcategoriesRepository.Instance.ReadList()
-            ).ContinueWith((previous) =>
+            );
+
+            // Need to update on the UI thread.
+            //Device.BeginInvokeOnMainThread(() =>
             {
-                // Need to update on the UI thread.
-                //uiDispatcher.Invoke(delegate
+                foreach (var item in ProductCategoriesRepository.Instance.List)
                 {
-                    foreach (var item in ProductCategoriesRepository.Instance.List)
-                    {
-                        MasterFilterItems.Add(item);
-                    }
+                    MasterFilterItems.Add(item);
+                }
 
-                    // To trigger the enablement.
-                    RaisePropertyChanged(nameof(MasterFilterItems));
+                // To trigger the enablement.
+                RaisePropertyChanged(nameof(MasterFilterItems));
 
-                    foreach (var item in ProductSubcategoriesRepository.Instance.List)
-                    {
-                        detailFilterItemsSource.Add(item);
-                    }
+                foreach (var item in ProductSubcategoriesRepository.Instance.List)
+                {
+                    detailFilterItemsSource.Add(item);
+                }
 
-                    int masterDefaultId = 1;
-                    MasterFilterValue = MasterFilterItems.FirstOrDefault(category => category.Id == masterDefaultId);
+                int masterDefaultId = 1;
+                MasterFilterValue = MasterFilterItems.FirstOrDefault(category => category.Id == masterDefaultId);
 
-                    // Note that MasterFilterValue also determines DetailFilterItems.
-                    int detailDefaultId = 1;
-                    DetailFilterValue = DetailFilterItems.FirstOrDefault(subcategory => subcategory.Id == detailDefaultId);
+                // Note that MasterFilterValue also determines DetailFilterItems.
+                int detailDefaultId = 1;
+                DetailFilterValue = DetailFilterItems.FirstOrDefault(subcategory => subcategory.Id == detailDefaultId);
 
-                    TextFilterValue = default(string);
+                TextFilterValue = default(string);
 
-                    filterInitialized = true;
-                }//);
-            });
+                filterInitialized = true;
+            }//);
         }
 
-        protected void ReadFiltered()
+        protected async Task ReadFiltered()
         {
             ProductCategory masterFilterValue = null;
             ProductSubcategory detailFilterValue = null;
             string textFilterValue = null;
 
             // Need to get these from the UI thread.
-            //uiDispatcher.Invoke(delegate
+            //Device.BeginInvokeOnMainThread(() =>
             {
                 masterFilterValue = MasterFilterValue;
                 detailFilterValue = DetailFilterValue;
                 textFilterValue = TextFilterValue;
             }//);
 
-            Task<IList<ProductsOverviewObject>>.Run(() =>
-            {
-                return ProductsRepository.Instance.ReadList(masterFilterValue, detailFilterValue, textFilterValue).Result;
-            })
-            .ContinueWith((previous) =>
-            {
-                // Need to update on the UI thread.
-                //uiDispatcher.Invoke(delegate
-                {
-                    foreach (var item in previous.Result)
-                    {
-                        Items.Add(item);
-                    }
+            var productsOverviewObjects = await ProductsRepository.Instance.ReadList(masterFilterValue, detailFilterValue, textFilterValue);
 
-                    RaisePropertyChanged(nameof(ItemsCount));
-                }//);
-            });
+            // Need to update on the UI thread.
+            //Device.BeginInvokeOnMainThread(() =>
+            {
+                foreach (var item in productsOverviewObjects)
+                {
+                    Items.Add(item);
+                }
+
+                RaisePropertyChanged(nameof(ItemsCount));
+            }//);
         }
 
         protected override Func<ProductSubcategory, bool> DetailFilterItemsSelector(bool preserveEmptyElement = true)
@@ -140,14 +125,7 @@ namespace RCS.PortableShop.ViewModels
             ProductViewModel productViewModel = new ProductViewModel() { Navigation = Navigation };
             View productView = new ProductView() { ViewModel = productViewModel };
 
-            // TODO Maybe Title is applicable somewhere.
-            /*
-            OkWindow productWindow = new OkWindow() { View = productView, };
-            productWindow.SetBinding(Window.TitleProperty, new Binding($"{nameof(productViewModel.Item)}.{nameof(productsOverviewObject.Name)}") { Source = productViewModel });
-            productWindow.Show();
-            */
-
-            PushPage(productView);
+            PushPage(productView, productsOverviewObject.Name);
 
             productViewModel.Refresh(productsOverviewObject.Id);
 
