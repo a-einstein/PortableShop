@@ -2,6 +2,7 @@
 using RCS.PortableShop.Common.ViewModels;
 using RCS.PortableShop.Interfaces;
 using RCS.PortableShop.Model;
+using RCS.PortableShop.Resources;
 using RCS.PortableShop.Views;
 using System;
 using System.Collections.ObjectModel;
@@ -13,21 +14,15 @@ using View = RCS.PortableShop.Common.Views.View;
 
 namespace RCS.PortableShop.ViewModels
 {
-    public class ProductsViewModel : FilterItemsViewModel<ProductsOverviewObject, ProductCategory, ProductSubcategory>, IShopper//, IPartImportsSatisfiedNotification
+    public class ProductsViewModel : FilterItemsViewModel<ProductsOverviewObject, ProductCategory, ProductSubcategory>, IShopper
     {
         public ProductsViewModel()
         {
-            OnImportsSatisfied();
-        }
-
-        private bool filterInitialized;
-
-        // Note this also works without actual imports.
-        // TODO This seems to come too early, before navigation.
-        public void OnImportsSatisfied()
-        {
             Refresh();
         }
+
+        #region Filtering
+        private bool filterInitialized;
 
         public override async void Refresh()
         {
@@ -104,14 +99,19 @@ namespace RCS.PortableShop.ViewModels
                 !MasterFilterValue.IsEmpty &&
                 (preserveEmptyElement && subcategory.IsEmpty || subcategory.ProductCategoryId == MasterFilterValue.Id);
         }
+        #endregion
 
+        #region Initialize
         protected override void SetCommands()
         {
             base.SetCommands();
 
             CartCommand = new Command<ProductsOverviewObject>(CartProduct);
+            ShowCartCommand = new Command(ShowCart);
         }
+        #endregion
 
+        #region Details
         protected override void ShowDetails(ProductsOverviewObject productsOverviewObject)
         {
             ProductViewModel productViewModel = new ProductViewModel() { Navigation = Navigation };
@@ -122,6 +122,9 @@ namespace RCS.PortableShop.ViewModels
             productViewModel.Refresh(productsOverviewObject.Id);
 
         }
+        #endregion
+
+        #region Shopping
 
         // Note this does not work as explicit interface implementation.
         public ICommand CartCommand { get; set; }
@@ -130,5 +133,21 @@ namespace RCS.PortableShop.ViewModels
         {
             ShoppingCartViewModel.Instance.CartProduct(productsOverviewObject);
         }
+
+        // TODO Maybe turn IShopper into a base class.
+        public ICommand ShowCartCommand { get; set; }
+
+        protected void ShowCart()
+        {
+            var viewModel = ShoppingCartViewModel.Instance;
+            viewModel.Navigation = Navigation;
+
+            var view = new ShoppingCartView() { ViewModel = viewModel };
+
+            PushPage(view, Labels.Cart);
+
+            viewModel.Refresh();
+        }
+        #endregion
     }
 }

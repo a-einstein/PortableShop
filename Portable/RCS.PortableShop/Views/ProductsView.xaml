@@ -66,6 +66,8 @@
 
                 <!--Style="{StaticResource LineLabelStyle}"-->
                 <Label Text="{Localization:Translate Products}" VerticalTextAlignment="Center" FontSize="Medium"/>
+                
+                <Button Text="{Localization:Translate Cart}" Command="{Binding ShowCartCommand}" FontSize="Small" FontAttributes="Bold"/>
             </StackLayout>
         </StackLayout>
 

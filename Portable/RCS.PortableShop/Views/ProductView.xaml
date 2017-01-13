@@ -22,24 +22,28 @@
 
     <ScrollView VerticalOptions="Fill">
         <!--TODO Make layout dependent on orientation.-->
-        <Grid x:Name="productControl" VerticalOptions="Fill" BackgroundColor="Aqua">
+        <Grid x:Name="productControl" VerticalOptions="Fill" BackgroundColor="Aqua" Margin="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <StackLayout Grid.Column="0" VerticalOptions="Start">
-                <Controls:ContentButton Grid.Column="0" Command="{Binding BindingContext.PhotoCommand, Source={x:Reference productControl}}" CommandParameter="{Binding Source, Source={x:Reference imageControl}}" VerticalOptions="Start" Margin="3">
+                <Controls:ContentButton Grid.Column="0" Command="{Binding BindingContext.PhotoCommand, Source={x:Reference productControl}}" CommandParameter="{Binding Source, Source={x:Reference imageControl}}" VerticalOptions="Start" >
                     <Controls:ContentButton.Content>
                         <Image x:Name="imageControl" Source="{Binding Item.LargePhoto, Converter={StaticResource ByteArrayToImageSourceConverter}}" WidthRequest="240" HeightRequest="240"/>
                     </Controls:ContentButton.Content>
                 </Controls:ContentButton>
 
-                <!--TODO FontSize does not work.-->
-                <Button Text="{Localization:Translate IncreaseProduct}" Command="{Binding CartCommand}" CommandParameter="{Binding Item}" FontSize="Small" FontAttributes="Bold" VerticalOptions="End" Margin="0,5"/>
+                <StackLayout>
+                    <!--TODO FontSize does not work.-->
+                    <Button Text="{Localization:Translate IncreaseProduct}" Command="{Binding BindingContext.CartCommand, Source={x:Reference productControl}}" CommandParameter="{Binding Item}" FontSize="Small" FontAttributes="Bold" HorizontalOptions="Start"/>
+
+                    <Button Text="{Localization:Translate Cart}" Command="{Binding BindingContext.ShowCartCommand, Source={x:Reference productControl}}" FontSize="Small" FontAttributes="Bold" HorizontalOptions="Start"/>
+                </StackLayout>
             </StackLayout>
 
-            <StackLayout Grid.Column="1">
+            <StackLayout Grid.Column="1" VerticalOptions="Start">
                 <StackLayout Orientation="Horizontal">
                     <Label Text="{Binding Item.ProductCategory}"/>
                     <Label Text="/"/>

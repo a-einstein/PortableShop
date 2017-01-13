@@ -1,10 +1,9 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
-<BaseClasses:View 
+<BaseClasses:View
     x:Class="RCS.PortableShop.Views.ShoppingCartView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
     xmlns:BaseClasses="clr-namespace:RCS.PortableShop.Common.Views;assembly=RCS.PortableShop.Common"
     xmlns:Converters="clr-namespace:RCS.PortableShop.Common.Converters;assembly=RCS.PortableShop.Common"
     xmlns:Localization="clr-namespace:RCS.PortableShop.Localization;assembly=RCS.PortableShop"
@@ -16,88 +15,58 @@
         </ResourceDictionary>
     </BaseClasses:View.Resources>
 
-    <Frame Style="{StaticResource FrameStyle}" Background="{StaticResource CartBackgroundBrush}">
+    <Frame BackgroundColor="Yellow">
         <StackLayout>
-          <!--FontWeight="Bold"-->
-          <Label Text="{Localization:Translate Cart}" Style="{StaticResource LabelStyle}"/>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="{Binding ItemsCount}" FontAttributes="Bold"/>
+                <Label Text="{Localization:Translate Products}"/>
 
-            <Expander>
-                <Expander.Header>
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="{Binding ItemsCount}" Style="{StaticResource LineValueLabelStyle}"/>
-                        <Label Text="{Localization:Translate Products}" Style="{StaticResource LineLabelStyle}"/>
+                <Label Text="{Binding ProductItemsCount}" FontAttributes="Bold"/>
+                <Label Text="{Localization:Translate Items}"/>
 
-                        <Label Text="{Binding ProductItemsCount}" Style="{StaticResource LineValueLabelStyle}"/>
-                        <Label Text="{Localization:Translate Items}" Style="{StaticResource LineLabelStyle}"/>
+                <Label Text="{Binding TotalValue, StringFormat=\{0:C2\}}" FontAttributes="Bold"/>
+                <Label Text="{Localization:Translate TotalValue}"/>
+            </StackLayout>
 
-                        <Label Text="{Binding TotalValue, StringFormat=\{0:C2\}}" Style="{StaticResource LineValueLabelStyle}"/>
-                        <Label Text="{Localization:Translate TotalValue}" Style="{StaticResource LineLabelStyle}"/>
-                    </StackLayout>
-                </Expander.Header>
-                <Expander.Content>
-                    <ListView Name="shoppingCartItemsListView" ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}" Margin="{StaticResource StandardMargin}" Padding="{StaticResource StandardPadding}" MinHeight="20" Background="#FFFFFDF1">
-                        <ListView.View>
-                            <!--Note that Width Auto of GridViewColumns does not work and seems to be a bug according to the web. Therefor a thin empty header row is used to enable resizing.-->
-                            <!--TODO Make Height of row smaller.-->
-                            <GridView ColumnHeaderContainerStyle="{StaticResource ShoppingCartColumnHeaderStyle}">
-                                <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Path=Name}"/>
+            <ListView x:Name="shoppingCartItemsListView" ItemsSource="{Binding Items}" BackgroundColor="#FFFFFDF1">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
 
-                                <GridViewColumn Width="Auto">
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <Label Style="{StaticResource LabelStyle}">
-                                                <Label.Text>
-                                                    <!--<MultiBinding Converter="{StaticResource SizeFormatter}">
-                                                        <Binding Path="ProductSize"/>
-                                                        <Binding Path="ProductSizeUnitMeasureCode"/>
-                                                    </MultiBinding>-->
-                                                </Label.Text>
-                                            </Label>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
+                                <!--TODO This does not align within a ListView because rows are contained in distinct items. A grid is not even useful.-->
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
 
-                                <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Path=ProductColor}"/>
+                                <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Horizontal" VerticalOptions="Center">
+                                    <Label Text="{Binding ProductSize}"/>
+                                    <Label Text="{Binding ProductSizeUnitMeasureCode}"/>
+                                </StackLayout>
 
-                                <GridViewColumn Width="Auto">
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <!--TODO HorizontalAlignment does not work here, but is desirable to work out some way.--> 
-                                            <Label Text="{Binding ProductListPrice, StringFormat=\{0:C2\}}" Style="{StaticResource LabelStyle}" HorizontalAlignment="Right"/>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
+                                <Label Grid.Row="0" Grid.Column="1" Text="{Binding ProductColor}" VerticalOptions="Center"/>
 
-                                <GridViewColumn Width="Auto">
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <xctk:IntegerUpDown Name="quantityUpDown" Value="{Binding Quantity, Mode=TwoWay}" Minimum="0" Style="{StaticResource IntegerUpDownStyle}"/>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
+                                <Label Grid.Row="0" Grid.Column="2" Text="{Binding ProductListPrice, StringFormat=\{0:C2\}}" VerticalOptions="Center" HorizontalOptions="End"/>
 
-                                <GridViewColumn Width="Auto">
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <!--TODO HorizontalAlignment does not work here, but is desirable to work out some way.-->
-                                          <!--FontWeight="Bold"-->
-                                          <Label Text="{Binding Value, StringFormat=\{0:C2\}}" Style="{StaticResource LabelStyle}" HorizontalAlignment="Right"/>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
+                                <!--TODO Preferably find or make something for this.-->
+                                <!--<xctk:IntegerUpDown Grid.Row="0" Grid.Column="3" Name="quantityUpDown" Value="{Binding Quantity, Mode=TwoWay}" Minimum="0"/>-->
 
-                                <GridViewColumn Width="Auto">
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <Button Text="{Localization:Translate Remove}" Command="{Binding BindingContext.DeleteCommand, Source={x:Reference shoppingCartItemsListView}}" CommandParameter="{Binding}" Style="{StaticResource DeleteButtonStyle}"/>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
-                </Expander.Content>
-            </Expander>
+                                <Label Grid.Row="0" Grid.Column="4" Text="{Binding Value, StringFormat=\{0:C2\}}" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="End"/>
+
+                                <Button Grid.Row="0" Grid.Column="5" Text="{Localization:Translate Remove}" Command="{Binding BindingContext.DeleteCommand, Source={x:Reference shoppingCartItemsListView}}" CommandParameter="{Binding}" BackgroundColor="Orange"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </Frame>
 </BaseClasses:View>
