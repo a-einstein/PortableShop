@@ -5,8 +5,7 @@ Current score: [![BCH compliance](https://bettercodehub.com/edge/badge/a-einstei
 
 #### Purpose
 * Testing and demoing a portable application based on the use of Xamarin.
-* It should become an equivalent of my WpfShop.
-* Follow the commits to see in what stage this is in.
+* This is a near equivalent of my WpfShop.
 * Currently this is only tested on Android API 21, and no longer suited for all platforms anyway.
 
 #### Aspects
@@ -14,6 +13,11 @@ Current score: [![BCH compliance](https://bettercodehub.com/edge/badge/a-einstei
 * MVVM.
 * Client-server.
 * WCF.
+* Asynchronisity.
 * Globalized resources.
+* Basic styling.
 * NuGet.
 * ...
+
+#### Prerequisites
+* The application assumes the presence of my AdventureWorks, to which a service connection should be configured.
