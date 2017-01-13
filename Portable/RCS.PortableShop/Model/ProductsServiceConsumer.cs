@@ -14,7 +14,8 @@ namespace RCS.PortableShop.Model
             {
                 // TODO Make this better configurable. There normally does not seem to be an .config file.
                 // Note this points to a BasicHttpBinding variant.
-                const string endpointAddress = "http://rcs-vostro/ProductsServicePub/ProductsService.svc/ProductsServiceB";
+                //const string endpointAddress = "http://rcs-vostro/ProductsServicePub/ProductsService.svc/ProductsServiceB";
+                const string endpointAddress = "http://192.168.178.22/ProductsServicePub/ProductsService.svc/ProductsServiceB";
 
                 if (productsServiceClient == null)
                     // Note that currently wsHttpBinding is not supported, but should be as it is part of System.ServiceModel 4.0.0.0.

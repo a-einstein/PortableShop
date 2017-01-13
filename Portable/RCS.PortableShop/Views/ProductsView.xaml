@@ -88,9 +88,8 @@
                                         <StackLayout Grid.Column="0">
                                             <Image Source="{Binding ThumbNailPhoto, Converter={StaticResource ByteArrayToImageSourceConverter}}" VerticalOptions="Start" Margin="3" WidthRequest="40" HeightRequest="40" />
 
-                                            <!-- Command="{Binding BindingContext.CartCommand, Source={x:Reference productsItemsControl}}" CommandParameter="{Binding}"-->
                                             <!--TODO FontSize does not work.-->
-                                            <Button Text="{Localization:Translate IncreaseProduct}" FontSize="Small" FontAttributes="Bold" Margin="0" VerticalOptions="End"/>
+                                            <Button Text="{Localization:Translate IncreaseProduct}" Command="{Binding BindingContext.CartCommand, Source={x:Reference productsItemsControl}}" CommandParameter="{Binding}" FontSize="Small" FontAttributes="Bold" Margin="0" VerticalOptions="End"/>
                                         </StackLayout>
 
                                         <StackLayout Grid.Column="1" Margin="3">
