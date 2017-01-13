@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using Xamarin.Forms;
+using static Xamarin.Forms.BindableProperty;
 
 namespace RCS.PortableShop.Common.Controls
 {
@@ -13,10 +14,10 @@ namespace RCS.PortableShop.Common.Controls
         }
 
         public static BindableProperty ItemsSourceProperty =
-            BindableProperty.Create<BindablePicker, IList>(o => o.ItemsSource, default(IList), propertyChanged: OnItemsSourceChanged);
+            BindableProperty.Create(nameof(ItemsSource), typeof(IList), typeof(BindablePicker), propertyChanged: new BindingPropertyChangedDelegate(OnItemsSourceChanged));
 
         public static BindableProperty SelectedItemProperty =
-            BindableProperty.Create<BindablePicker, object>(o => o.SelectedItem, default(object), propertyChanged: OnSelectedItemChanged);
+            BindableProperty.Create(nameof(SelectedItem), typeof(object), typeof(BindablePicker), propertyChanged: new BindingPropertyChangedDelegate(OnSelectedItemChanged));
 
         public IList ItemsSource
         {
@@ -30,7 +31,7 @@ namespace RCS.PortableShop.Common.Controls
             set { SetValue(SelectedItemProperty, value); }
         }
 
-        private static void OnItemsSourceChanged(BindableObject bindable, IEnumerable oldValue, IEnumerable newValue)
+        private static void OnItemsSourceChanged(BindableObject bindable, object oldValue, object newValue)
         {
             var bindablePicker = bindable as BindablePicker;
             bindablePicker.Items.Clear();
@@ -38,7 +39,7 @@ namespace RCS.PortableShop.Common.Controls
             if (newValue != null)
             {
                 //now it works like "subscribe once" but you can improve
-                foreach (var item in newValue)
+                foreach (var item in newValue as IList)
                 {
                     bindablePicker.Items.Add(item.ToString());
                 }
