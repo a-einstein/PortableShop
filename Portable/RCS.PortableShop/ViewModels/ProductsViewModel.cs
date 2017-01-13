@@ -4,7 +4,7 @@ using RCS.PortableShop.Interfaces;
 using RCS.PortableShop.Model;
 using RCS.PortableShop.Views;
 using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -48,33 +48,33 @@ namespace RCS.PortableShop.ViewModels
                 ProductSubcategoriesRepository.Instance.ReadList()
             );
 
-            // Need to update on the UI thread.
-            //Device.BeginInvokeOnMainThread(() =>
+            // Note that using the UI thread (by BeginInvokeOnMainThread) only did bad.
+
+            ObservableCollection<ProductCategory> masterFilterItems = new ObservableCollection<ProductCategory>(); ;
+
+            foreach (var item in ProductCategoriesRepository.Instance.List)
             {
-                foreach (var item in ProductCategoriesRepository.Instance.List)
-                {
-                    MasterFilterItems.Add(item);
-                }
+                masterFilterItems.Add(item);
+            }
 
-                // To trigger the enablement.
-                RaisePropertyChanged(nameof(MasterFilterItems));
+            // Do an assignment, as just changing the ObservableCollection plus even a PropertyChanged does not work. There seems to be no good way to handle CollectionChanged. 
+            MasterFilterItems = masterFilterItems;
 
-                foreach (var item in ProductSubcategoriesRepository.Instance.List)
-                {
-                    detailFilterItemsSource.Add(item);
-                }
+            foreach (var item in ProductSubcategoriesRepository.Instance.List)
+            {
+                detailFilterItemsSource.Add(item);
+            }
 
-                int masterDefaultId = 1;
-                MasterFilterValue = MasterFilterItems.FirstOrDefault(category => category.Id == masterDefaultId);
+            int masterDefaultId = 1;
+            MasterFilterValue = MasterFilterItems.FirstOrDefault(category => category.Id == masterDefaultId);
 
-                // Note that MasterFilterValue also determines DetailFilterItems.
-                int detailDefaultId = 1;
-                DetailFilterValue = DetailFilterItems.FirstOrDefault(subcategory => subcategory.Id == detailDefaultId);
+            // Note that MasterFilterValue also determines DetailFilterItems.
+            int detailDefaultId = 1;
+            DetailFilterValue = DetailFilterItems.FirstOrDefault(subcategory => subcategory.Id == detailDefaultId);
 
-                TextFilterValue = default(string);
+            TextFilterValue = default(string);
 
-                filterInitialized = true;
-            }//);
+            filterInitialized = true;
         }
 
         protected async Task ReadFiltered()
@@ -83,26 +83,20 @@ namespace RCS.PortableShop.ViewModels
             ProductSubcategory detailFilterValue = null;
             string textFilterValue = null;
 
-            // Need to get these from the UI thread.
-            //Device.BeginInvokeOnMainThread(() =>
-            {
-                masterFilterValue = MasterFilterValue;
-                detailFilterValue = DetailFilterValue;
-                textFilterValue = TextFilterValue;
-            }//);
+            // Note that using the UI thread (by BeginInvokeOnMainThread) only did bad.
+            masterFilterValue = MasterFilterValue;
+            detailFilterValue = DetailFilterValue;
+            textFilterValue = TextFilterValue;
 
             var productsOverviewObjects = await ProductsRepository.Instance.ReadList(masterFilterValue, detailFilterValue, textFilterValue);
 
-            // Need to update on the UI thread.
-            //Device.BeginInvokeOnMainThread(() =>
+            // Note that using the UI thread (by BeginInvokeOnMainThread) only did bad.
+            foreach (var item in productsOverviewObjects)
             {
-                foreach (var item in productsOverviewObjects)
-                {
-                    Items.Add(item);
-                }
+                Items.Add(item);
+            }
 
-                RaisePropertyChanged(nameof(ItemsCount));
-            }//);
+            RaisePropertyChanged(nameof(ItemsCount));
         }
 
         protected override Func<ProductSubcategory, bool> DetailFilterItemsSelector(bool preserveEmptyElement = true)

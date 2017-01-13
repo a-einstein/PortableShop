@@ -13,14 +13,14 @@ namespace RCS.PortableShop.Common.Controls
         }
 
         public static BindableProperty ItemsSourceProperty =
-            BindableProperty.Create<BindablePicker, IEnumerable>(o => o.ItemsSource, default(IEnumerable), propertyChanged: OnItemsSourceChanged);
+            BindableProperty.Create<BindablePicker, IList>(o => o.ItemsSource, default(IList), propertyChanged: OnItemsSourceChanged);
 
         public static BindableProperty SelectedItemProperty =
             BindableProperty.Create<BindablePicker, object>(o => o.SelectedItem, default(object), propertyChanged: OnSelectedItemChanged);
 
-        public IEnumerable ItemsSource
+        public IList ItemsSource
         {
-            get { return (IEnumerable)GetValue(ItemsSourceProperty); }
+            get { return (IList)GetValue(ItemsSourceProperty); }
             set { SetValue(ItemsSourceProperty, value); }
         }
 
@@ -30,17 +30,17 @@ namespace RCS.PortableShop.Common.Controls
             set { SetValue(SelectedItemProperty, value); }
         }
 
-        private static void OnItemsSourceChanged(BindableObject bindable, IEnumerable oldvalue, IEnumerable newvalue)
+        private static void OnItemsSourceChanged(BindableObject bindable, IEnumerable oldValue, IEnumerable newValue)
         {
-            var picker = bindable as BindablePicker;
-            picker.Items.Clear();
+            var bindablePicker = bindable as BindablePicker;
+            bindablePicker.Items.Clear();
 
-            if (newvalue != null)
+            if (newValue != null)
             {
                 //now it works like "subscribe once" but you can improve
-                foreach (var item in newvalue)
+                foreach (var item in newValue)
                 {
-                    picker.Items.Add(item.ToString());
+                    bindablePicker.Items.Add(item.ToString());
                 }
             }
         }
@@ -53,17 +53,18 @@ namespace RCS.PortableShop.Common.Controls
             }
             else
             {
-                SelectedItem = Items[SelectedIndex];
+                // Correction thanks to https://forums.xamarin.com/discussion/70172/bindable-picker-control-not-updating-bound-property
+                SelectedItem = ItemsSource[SelectedIndex];
             }
         }
 
-        private static void OnSelectedItemChanged(BindableObject bindable, object oldvalue, object newvalue)
+        private static void OnSelectedItemChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            var picker = bindable as BindablePicker;
+            var bindablePicker = bindable as BindablePicker;
 
-            if (newvalue != null)
+            if (newValue != null)
             {
-                picker.SelectedIndex = picker.Items.IndexOf(newvalue.ToString());
+                bindablePicker.SelectedIndex = bindablePicker.Items.IndexOf(newValue.ToString());
             }
         }
     }

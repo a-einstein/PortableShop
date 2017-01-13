@@ -40,7 +40,8 @@ namespace RCS.PortableShop.Model
 
             if (addEmptyElement)
             {
-                var subcategory = new ProductSubcategory();
+                // Name is specifically needed on Android to avoid a NullPointerException.
+                var subcategory = new ProductSubcategory() { Name = string.Empty };
                 List.Add(subcategory);
             }
 

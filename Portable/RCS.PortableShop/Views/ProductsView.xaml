@@ -39,13 +39,11 @@
             <Label Text="{Localization:Translate Products}" FontSize="Large" FontAttributes="Bold"/>
 
             <StackLayout Orientation="Horizontal">
-                <!--TODO This still does not pick up its new collection.-->
                 <!--IsEnabled="{Binding MasterFilterItems, Converter={StaticResource HasValueTester}}"/>-->
-                <Controls:BindablePicker Title="{Localization:Translate MasterFilter}" ItemsSource="{Binding MasterFilterItems}" SelectedItem="{Binding MasterFilterValue}" BackgroundColor="White"/>
+                <Controls:BindablePicker Title="{Localization:Translate MasterFilter}" ItemsSource="{Binding MasterFilterItems, Mode=TwoWay}" SelectedItem="{Binding MasterFilterValue, Mode=TwoWay}" BackgroundColor="White"/>
 
-                <!--TODO This still does not pick up its new collection.-->
                 <!--IsEnabled="{Binding DetailFilterItems, Converter={StaticResource HasValueTester}}"/>-->
-                <Controls:BindablePicker Title="{Localization:Translate DetailFilter}" ItemsSource="{Binding DetailFilterItems}" SelectedItem="{Binding DetailFilterValue}" BackgroundColor="White"/>
+                <Controls:BindablePicker Title="{Localization:Translate DetailFilter}" ItemsSource="{Binding DetailFilterItems, Mode=TwoWay}" SelectedItem="{Binding DetailFilterValue, Mode=TwoWay}" BackgroundColor="White"/>
 
                 <!--Style="{StaticResource LineTextBoxStyle}" Width="200"-->
                 <Entry Placeholder="{Localization:Translate TextFilter}" Text="{Binding TextFilterValue, Mode=TwoWay}" BackgroundColor="White"/>

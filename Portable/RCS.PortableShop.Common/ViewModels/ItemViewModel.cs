@@ -21,7 +21,7 @@ namespace RCS.PortableShop.Common.ViewModels
             {
                 SetValue(ItemProperty, value);
 
-                // TODO This should not be necessary.
+                // Need the event for bound controls.
                 RaisePropertyChanged(nameof(Item));
             }
         }
