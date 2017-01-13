@@ -22,7 +22,7 @@
 
     <ScrollView VerticalOptions="Fill">
         <!--TODO Make layout dependent on orientation.-->
-        <Grid x:Name="productControl" VerticalOptions="Fill" BackgroundColor="Aqua" Margin="3">
+        <Grid x:Name="productControl" VerticalOptions="Fill" BackgroundColor="Aqua" Padding="5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>

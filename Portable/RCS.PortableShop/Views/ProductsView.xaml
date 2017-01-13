@@ -28,7 +28,7 @@
     <!--Background="{StaticResource ProductBackgroundBrush}"-->
     <!--TODO Does this HAVE to be DynamicResource?!-->
     <!--TODO Does not work either way, DynamicResource (values) or StaticResource (error), -->
-    <Grid VerticalOptions="Fill" BackgroundColor="Aqua">
+    <Grid VerticalOptions="Fill" BackgroundColor="Aqua" Padding="5">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -88,10 +88,10 @@
                                         </Grid.ColumnDefinitions>
 
                                         <StackLayout Grid.Column="0">
-                                            <Image Source="{Binding ThumbNailPhoto, Converter={StaticResource ByteArrayToImageSourceConverter}}" VerticalOptions="Start" Margin="3" WidthRequest="40" HeightRequest="40" />
+                                            <Image Source="{Binding ThumbNailPhoto, Converter={StaticResource ByteArrayToImageSourceConverter}}" VerticalOptions="Start" HorizontalOptions="Start" Margin="3" WidthRequest="100" HeightRequest="100" />
 
                                             <!--TODO FontSize does not work.-->
-                                            <Button Text="{Localization:Translate IncreaseProduct}" Command="{Binding BindingContext.CartCommand, Source={x:Reference productsItemsControl}}" CommandParameter="{Binding}" FontSize="Small" FontAttributes="Bold" Margin="0" VerticalOptions="End"/>
+                                            <Button Text="{Localization:Translate IncreaseProduct}" Command="{Binding BindingContext.CartCommand, Source={x:Reference productsItemsControl}}" CommandParameter="{Binding}" FontSize="Small" FontAttributes="Bold" Margin="0" HorizontalOptions="Start" VerticalOptions="End"/>
                                         </StackLayout>
 
                                         <StackLayout Grid.Column="1" Margin="3">

@@ -15,58 +15,58 @@
         </ResourceDictionary>
     </BaseClasses:View.Resources>
 
-    <Frame BackgroundColor="Yellow">
-        <StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Label Text="{Binding ItemsCount}" FontAttributes="Bold"/>
-                <Label Text="{Localization:Translate Products}"/>
+    <StackLayout BackgroundColor="Yellow" Padding="5">
+        
+        <!--TODO Turn this part into a view to enable addition elsewhere.-->
+        <StackLayout Orientation="Horizontal">
+            <Label Text="{Binding ItemsCount}" FontSize="Medium" FontAttributes="Bold"/>
+            <Label Text="{Localization:Translate Products}" FontSize="Medium"/>
 
-                <Label Text="{Binding ProductItemsCount}" FontAttributes="Bold"/>
-                <Label Text="{Localization:Translate Items}"/>
+            <Label Text="{Binding ProductItemsCount}" FontSize="Medium" FontAttributes="Bold"/>
+            <Label Text="{Localization:Translate Items}" FontSize="Medium"/>
 
-                <Label Text="{Binding TotalValue, StringFormat=\{0:C2\}}" FontAttributes="Bold"/>
-                <Label Text="{Localization:Translate TotalValue}"/>
-            </StackLayout>
-
-            <ListView x:Name="shoppingCartItemsListView" ItemsSource="{Binding Items}" BackgroundColor="#FFFFFDF1">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
-
-                                <!--TODO This does not align within a ListView because rows are contained in distinct items. A grid is not even useful.-->
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
-
-                                <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Horizontal" VerticalOptions="Center">
-                                    <Label Text="{Binding ProductSize}"/>
-                                    <Label Text="{Binding ProductSizeUnitMeasureCode}"/>
-                                </StackLayout>
-
-                                <Label Grid.Row="0" Grid.Column="1" Text="{Binding ProductColor}" VerticalOptions="Center"/>
-
-                                <Label Grid.Row="0" Grid.Column="2" Text="{Binding ProductListPrice, StringFormat=\{0:C2\}}" VerticalOptions="Center" HorizontalOptions="End"/>
-
-                                <!--TODO Preferably find or make something for this.-->
-                                <!--<xctk:IntegerUpDown Grid.Row="0" Grid.Column="3" Name="quantityUpDown" Value="{Binding Quantity, Mode=TwoWay}" Minimum="0"/>-->
-
-                                <Label Grid.Row="0" Grid.Column="4" Text="{Binding Value, StringFormat=\{0:C2\}}" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="End"/>
-
-                                <Button Grid.Row="0" Grid.Column="5" Text="{Localization:Translate Remove}" Command="{Binding BindingContext.DeleteCommand, Source={x:Reference shoppingCartItemsListView}}" CommandParameter="{Binding}" BackgroundColor="Orange"/>
-                            </Grid>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+            <Label Text="{Binding TotalValue, StringFormat=\{0:C2\}}" FontSize="Medium" FontAttributes="Bold"/>
+            <Label Text="{Localization:Translate TotalValue}" FontSize="Medium"/>
         </StackLayout>
-    </Frame>
+
+        <ListView x:Name="shoppingCartItemsListView" ItemsSource="{Binding Items}" BackgroundColor="#FFFFFDF1">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="5,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <!--TODO This does not align within a ListView because rows are contained in distinct items. A grid is not even useful.-->
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Horizontal" VerticalOptions="Center">
+                                <Label Text="{Binding ProductSize}"/>
+                                <Label Text="{Binding ProductSizeUnitMeasureCode}"/>
+                            </StackLayout>
+
+                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding ProductColor}" VerticalOptions="Center"/>
+
+                            <Label Grid.Row="0" Grid.Column="2" Text="{Binding ProductListPrice, StringFormat=\{0:C2\}}" VerticalOptions="Center" HorizontalOptions="End"/>
+
+                            <!--TODO Preferably find or make something for this.-->
+                            <!--<xctk:IntegerUpDown Grid.Row="0" Grid.Column="3" Name="quantityUpDown" Value="{Binding Quantity, Mode=TwoWay}" Minimum="0"/>-->
+
+                            <Label Grid.Row="0" Grid.Column="4" Text="{Binding Value, StringFormat=\{0:C2\}}" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="End"/>
+
+                            <Button Grid.Row="0" Grid.Column="5" Text="{Localization:Translate Remove}" Command="{Binding BindingContext.DeleteCommand, Source={x:Reference shoppingCartItemsListView}}" CommandParameter="{Binding}" BackgroundColor="Orange"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
 </BaseClasses:View>
