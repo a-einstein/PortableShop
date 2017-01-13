@@ -95,8 +95,6 @@ namespace RCS.PortableShop.ViewModels
             {
                 Items.Add(item);
             }
-
-            RaisePropertyChanged(nameof(ItemsCount));
         }
 
         protected override Func<ProductSubcategory, bool> DetailFilterItemsSelector(bool preserveEmptyElement = true)

@@ -76,9 +76,6 @@ namespace RCS.PortableShop.ViewModels
                     break;
             }
 
-            // TODO Put this as calculated set in UpdateAggregates too?
-            RaisePropertyChanged(nameof(ItemsCount));
-
             UpdateAggregates();
 
         }
