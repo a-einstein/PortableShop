@@ -2031,7 +2031,7 @@
           }
         }
       },
-      "Xamarin.Forms/2.3.3.175": {
+      "Xamarin.Forms/2.3.3.180": {
         "compile": {
           "lib/uap10.0/Xamarin.Forms.Core.dll": {},
           "lib/uap10.0/Xamarin.Forms.Platform.UAP.dll": {},
@@ -4155,7 +4155,7 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Xamarin.Forms/2.3.3.175": {
+      "Xamarin.Forms/2.3.3.180": {
         "compile": {
           "lib/uap10.0/Xamarin.Forms.Core.dll": {},
           "lib/uap10.0/Xamarin.Forms.Platform.UAP.dll": {},
@@ -6318,7 +6318,7 @@
           "runtimes/aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Xamarin.Forms/2.3.3.175": {
+      "Xamarin.Forms/2.3.3.180": {
         "compile": {
           "lib/uap10.0/Xamarin.Forms.Core.dll": {},
           "lib/uap10.0/Xamarin.Forms.Platform.UAP.dll": {},
@@ -8451,7 +8451,7 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Xamarin.Forms/2.3.3.175": {
+      "Xamarin.Forms/2.3.3.180": {
         "compile": {
           "lib/uap10.0/Xamarin.Forms.Core.dll": {},
           "lib/uap10.0/Xamarin.Forms.Platform.UAP.dll": {},
@@ -10623,7 +10623,7 @@
           "runtimes/aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Xamarin.Forms/2.3.3.175": {
+      "Xamarin.Forms/2.3.3.180": {
         "compile": {
           "lib/uap10.0/Xamarin.Forms.Core.dll": {},
           "lib/uap10.0/Xamarin.Forms.Platform.UAP.dll": {},
@@ -12756,7 +12756,7 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Xamarin.Forms/2.3.3.175": {
+      "Xamarin.Forms/2.3.3.180": {
         "compile": {
           "lib/uap10.0/Xamarin.Forms.Core.dll": {},
           "lib/uap10.0/Xamarin.Forms.Platform.UAP.dll": {},
@@ -14928,7 +14928,7 @@
           "runtimes/aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Xamarin.Forms/2.3.3.175": {
+      "Xamarin.Forms/2.3.3.180": {
         "compile": {
           "lib/uap10.0/Xamarin.Forms.Core.dll": {},
           "lib/uap10.0/Xamarin.Forms.Platform.UAP.dll": {},
@@ -21111,12 +21111,12 @@
         "runtimes/aot/lib/netcore50/System.Xml.XmlSerializer.dll"
       ]
     },
-    "Xamarin.Forms/2.3.3.175": {
-      "sha512": "ykrHIH6of2zy1NyZ4taaz42iyVlyw/rx6wHOm2TU3/yMEe9ptPUtfZ8kkjAyxJn1nsOjzIGsU8QufMogKLWPtg==",
+    "Xamarin.Forms/2.3.3.180": {
+      "sha512": "n4zTnWMDmtWnLqD8duenKd4Ofk8NmklPHHFRIMx+BuUuzX9ZOJFGWun6RCgzok54UBWQgX38Mf80Hvh7v3GYzQ==",
       "type": "package",
-      "path": "Xamarin.Forms/2.3.3.175",
+      "path": "Xamarin.Forms/2.3.3.180",
       "files": [
-        "Xamarin.Forms.2.3.3.175.nupkg.sha512",
+        "Xamarin.Forms.2.3.3.180.nupkg.sha512",
         "Xamarin.Forms.nuspec",
         "build/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20/ICSharpCode.Decompiler.dll",
         "build/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20/ICSharpCode.NRefactory.CSharp.dll",
@@ -21278,7 +21278,7 @@
   "projectFileDependencyGroups": {
     "": [
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.2.2",
-      "Xamarin.Forms >= 2.3.3.175"
+      "Xamarin.Forms >= 2.3.3.180"
     ],
     "UAP,Version=v10.0": []
   }
