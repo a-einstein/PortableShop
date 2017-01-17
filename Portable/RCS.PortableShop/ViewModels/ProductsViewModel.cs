@@ -53,6 +53,7 @@ namespace RCS.PortableShop.ViewModels
             }
 
             // Do an assignment, as just changing the ObservableCollection plus even a PropertyChanged does not work. There seems to be no good way to handle CollectionChanged. 
+            // TODO maybe follow the approach on ItemsViewModel.Items.
             MasterFilterItems = masterFilterItems;
 
             foreach (var item in ProductSubcategoriesRepository.Instance.List)

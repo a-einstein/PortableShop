@@ -25,6 +25,7 @@ namespace RCS.PortableShop.Common.ViewModels
                 SetValue(MasterFilterItemsProperty, value);
 
                 // Need the event for bound controls.
+                // TODO This should not be necessary for a BindableProperty.
                 RaisePropertyChanged(nameof(MasterFilterItems));
             }
         }
@@ -40,6 +41,7 @@ namespace RCS.PortableShop.Common.ViewModels
                 SetValue(MasterFilterValueProperty, value);
 
                 // Need the event for bound controls.
+                // TODO This should not be necessary for a BindableProperty.
                 RaisePropertyChanged(nameof(MasterFilterValue));
             }
         }
@@ -69,6 +71,7 @@ namespace RCS.PortableShop.Common.ViewModels
             }
 
             // Do an assignment, as just changing the ObservableCollection plus even a PropertyChanged does not work. There seems to be no good way to handle CollectionChanged. 
+            // TODO maybe follow the approach on ItemsViewModel.Items.
             DetailFilterItems = detailFilterItems;
         }
 
@@ -88,6 +91,7 @@ namespace RCS.PortableShop.Common.ViewModels
                 SetValue(DetailFilterItemsProperty, value);
 
                 // Need the event for bound controls.
+                // TODO This should not be necessary for a BindableProperty.
                 RaisePropertyChanged(nameof(DetailFilterItems));
             }
         }
@@ -103,6 +107,7 @@ namespace RCS.PortableShop.Common.ViewModels
                 SetValue(DetailFilterValueProperty, value);
 
                 // Need the event for bound controls.
+                // TODO This should not be necessary for a BindableProperty.
                 RaisePropertyChanged(nameof(DetailFilterValue));
             }
         }
@@ -118,6 +123,7 @@ namespace RCS.PortableShop.Common.ViewModels
                 SetValue(TextFilterValueProperty, value);
 
                 // Need the event for bound controls.
+                // TODO This should not be necessary for a BindableProperty.
                 RaisePropertyChanged(nameof(TextFilterValue));
             }
         }

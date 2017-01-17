@@ -5,19 +5,18 @@ namespace RCS.PortableShop.Common.ViewModels
 {
     public abstract class ItemsViewModel<T> : ViewModel
     {
-        public ItemsViewModel()
-        {
-            Items.CollectionChanged += Items_CollectionChanged;
-        }
-
         public static readonly BindableProperty ItemsProperty =
             BindableProperty.Create(nameof(Items), typeof(ObservableCollection<T>), typeof(ItemsViewModel<T>), defaultValue: new ObservableCollection<T>());
 
         // TODO Some sort of view would be more convenient to enable sorting in situ (filtering is no longer done so). But remember: that no longer applies when paging.
-        public ObservableCollection<T> Items 
+        public ObservableCollection<T> Items
         {
             get { return (ObservableCollection<T>)GetValue(ItemsProperty); }
-            set { SetValue(ItemsProperty, value); }
+            set
+            {
+                SetValue(ItemsProperty, value);
+                Items.CollectionChanged += Items_CollectionChanged;
+            }
         }
 
         private void Items_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)

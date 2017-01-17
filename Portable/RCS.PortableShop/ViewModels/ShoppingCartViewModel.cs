@@ -98,7 +98,14 @@ namespace RCS.PortableShop.ViewModels
         public int ProductItemsCount
          {
             get { return (int)GetValue(ProductItemCountProperty); }
-            set { SetValue(ProductItemCountProperty, value); }
+            set
+            {
+                SetValue(ProductItemCountProperty, value);
+
+                // Needed the event for bound controls.
+                // TODO This should not be necessary for a BindableProperty.
+                RaisePropertyChanged(nameof(ProductItemsCount));
+            }
         }
 
         public static readonly BindableProperty TotalValueProperty =
@@ -107,7 +114,14 @@ namespace RCS.PortableShop.ViewModels
         public Decimal TotalValue
         {
             get { return (Decimal)GetValue(TotalValueProperty); }
-            set { SetValue(TotalValueProperty, value); }
+            set
+            {
+                SetValue(TotalValueProperty, value);
+
+                // Need the event for bound controls.
+                // TODO This should not be necessary for a BindableProperty.
+                RaisePropertyChanged(nameof(TotalValue));
+            }
         }
     }
 }

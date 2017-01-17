@@ -27,6 +27,7 @@ namespace RCS.PortableShop.Common.ViewModels
         // This signal can be particularly useful if a collection is entirely replaced, as the formerly bound collection no longer can.
         protected void RaisePropertyChanged(string propertyName)
         {
+            // TODO This does not work for the inherited PropertyChanged.
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
