@@ -1557,6 +1557,9 @@ namespace RCS.PortableShop.Droid
 			// aapt resource value: 0x7f060010
 			public const int abc_text_size_title_material_toolbar = 2131099664;
 			
+			// aapt resource value: 0x7f060074
+			public const int button_font_size = 2131099764;
+			
 			// aapt resource value: 0x7f060009
 			public const int cardview_compat_inset_shadow = 2131099657;
 			
@@ -1658,6 +1661,9 @@ namespace RCS.PortableShop.Droid
 			
 			// aapt resource value: 0x7f060050
 			public const int disabled_alpha_material_light = 2131099728;
+			
+			// aapt resource value: 0x7f060075
+			public const int font_size = 2131099765;
 			
 			// aapt resource value: 0x7f060051
 			public const int highlight_alpha_material_colored = 2131099729;
@@ -2200,8 +2206,11 @@ namespace RCS.PortableShop.Droid
 			// aapt resource value: 0x7f0200a0
 			public const int mr_ic_play_light = 2130837664;
 			
+			// aapt resource value: 0x7f0200a2
+			public const int notification_template_icon_bg = 2130837666;
+			
 			// aapt resource value: 0x7f0200a1
-			public const int notification_template_icon_bg = 2130837665;
+			public const int updownbuttons = 2130837665;
 			
 			static Drawable()
 			{
@@ -2993,6 +3002,9 @@ namespace RCS.PortableShop.Droid
 			
 			// aapt resource value: 0x7f080021
 			public const int abc_toolbar_collapse_description = 2131230753;
+			
+			// aapt resource value: 0x7f080026
+			public const int app_name = 2131230758;
 			
 			// aapt resource value: 0x7f080023
 			public const int appbar_scrolling_view_behavior = 2131230755;

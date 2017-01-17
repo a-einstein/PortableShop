@@ -36,9 +36,7 @@
                 </Controls:ContentButton>
 
                 <StackLayout>
-                    <!--TODO FontSize does not work.-->
                     <Button Text="{Localization:Translate IncreaseProduct}" Command="{Binding BindingContext.CartCommand, Source={x:Reference productControl}}" CommandParameter="{Binding Item}" FontSize="Small" FontAttributes="Bold" HorizontalOptions="Start"/>
-
                     <Button Text="{Localization:Translate Cart}" Command="{Binding BindingContext.ShowCartCommand, Source={x:Reference productControl}}" FontSize="Small" FontAttributes="Bold" HorizontalOptions="Start"/>
                 </StackLayout>
             </StackLayout>

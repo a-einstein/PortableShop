@@ -49,7 +49,6 @@
 
             <StackLayout Orientation="Horizontal">
                 <!--IsDefault="True" Margin="{StaticResource StandardHorizontalSeparation}"-->
-                <!--TODO FontSize does not work.-->
                 <Button Text="{Localization:Translate Filter}" Command="{Binding FilterCommand}" FontSize="Small" FontAttributes="Bold">
                     <!--Note this prevents unfiltered queries.-->
                     <!--<Button.IsEnabled>-->
@@ -74,7 +73,7 @@
         <!--Note this does not work within a StackLayout-->
         <ScrollView Grid.Row="1" VerticalOptions="Fill">
 
-            <!--For some reason I could not get the rows to expand automatically, therefor the HasUnevenRows.-->
+            <!--Note that setting HasUnevenRows seems the only way to let row (somewhat) adapt to contents, instead of having to set some fixed RowHeight.-->
             <ListView x:Name="productsItemsControl" ItemsSource="{Binding Items}" HasUnevenRows="True" BackgroundColor="White">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -89,8 +88,6 @@
 
                                         <StackLayout Grid.Column="0">
                                             <Image Source="{Binding ThumbNailPhoto, Converter={StaticResource ByteArrayToImageSourceConverter}}" VerticalOptions="Start" HorizontalOptions="Start" Margin="3" WidthRequest="100" HeightRequest="100" />
-
-                                            <!--TODO FontSize does not work.-->
                                             <Button Text="{Localization:Translate IncreaseProduct}" Command="{Binding BindingContext.CartCommand, Source={x:Reference productsItemsControl}}" CommandParameter="{Binding}" FontSize="Small" FontAttributes="Bold" Margin="0" HorizontalOptions="Start" VerticalOptions="End"/>
                                         </StackLayout>
 

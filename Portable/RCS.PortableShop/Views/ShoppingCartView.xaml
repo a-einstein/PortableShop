@@ -4,6 +4,7 @@
     x:Class="RCS.PortableShop.Views.ShoppingCartView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:NumericUpDown="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
     xmlns:BaseClasses="clr-namespace:RCS.PortableShop.Common.Views;assembly=RCS.PortableShop.Common"
     xmlns:Converters="clr-namespace:RCS.PortableShop.Common.Converters;assembly=RCS.PortableShop.Common"
     xmlns:Localization="clr-namespace:RCS.PortableShop.Localization;assembly=RCS.PortableShop"
@@ -16,7 +17,7 @@
     </BaseClasses:View.Resources>
 
     <StackLayout BackgroundColor="Yellow" Padding="5">
-        
+
         <!--TODO Turn this part into a view to enable addition elsewhere.-->
         <StackLayout Orientation="Horizontal">
             <Label Text="{Binding ItemsCount}" FontSize="Medium" FontAttributes="Bold"/>
@@ -29,44 +30,38 @@
             <Label Text="{Localization:Translate TotalValue}" FontSize="Medium"/>
         </StackLayout>
 
-        <ListView x:Name="shoppingCartItemsListView" ItemsSource="{Binding Items}" BackgroundColor="#FFFFFDF1">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Grid Padding="5,0">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
+        <ScrollView VerticalOptions="Fill">
 
-                            <!--TODO This does not align within a ListView because rows are contained in distinct items. A grid is not even useful.-->
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
+            <!--Note that setting HasUnevenRows seems the only way to let rows (somewhat) adapt to contents, instead of having to set some fixed RowHeight.-->
+            <ListView x:Name="shoppingCartItemsListView" ItemsSource="{Binding Items}" HasUnevenRows="True" BackgroundColor="White">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <!--Note this layout currently is aimed towards portrait orientation.-->
+                            <StackLayout Orientation="Vertical" Padding="5,0">
+                                <Label Text="{Binding Name}" VerticalOptions="Center" FontAttributes="Bold"/>
 
-                            <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Horizontal" VerticalOptions="Center">
-                                <Label Text="{Binding ProductSize}"/>
-                                <Label Text="{Binding ProductSizeUnitMeasureCode}"/>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding ProductSize}" VerticalOptions="Center"/>
+                                    <Label Text="{Binding ProductSizeUnitMeasureCode}" VerticalOptions="Center"/>
+                                    <Label Text="{Binding ProductColor}" VerticalOptions="Center"/>
+                                    <Label Text="{Binding ProductListPrice, StringFormat=\{0:C2\}}" VerticalOptions="Center"/>
+                                    <Label Text="{Binding Value, StringFormat=\{0:C2\}}" FontAttributes="Bold" VerticalOptions="Center"/>
+                                 </StackLayout>
+
+                                <StackLayout Orientation="Horizontal">
+                                    <!--Note this need HorizontalOptions to prevent taking all width. It is very hard to reduce its monstrous size, because of its Buttons to start with. WidthRequest needs to be considerable large to preserve the text area. HeightRequest only crops it.-->
+                                    <!--Note the (differently named) FontAttribute does not work. Fontsize is numeric instead of an enum.-->
+                                    <NumericUpDown:SfNumericUpDown Value="{Binding Quantity, Mode=TwoWay}" VerticalOptions="Center" HorizontalOptions="Start" WidthRequest="130" FontSize="15" FontAttribute="Bold" TextColor="Black"/>
+                                   
+                                    <!--Note that HeightRequest usually only fucks the Button up, while FontSize does not do anything. -->
+                                    <Button Text="{Localization:Translate Remove}" Command="{Binding BindingContext.DeleteCommand, Source={x:Reference shoppingCartItemsListView}}" CommandParameter="{Binding}" BackgroundColor="Orange" VerticalOptions="Center" HorizontalOptions="Start" WidthRequest="30"/>
+                                </StackLayout>
                             </StackLayout>
-
-                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding ProductColor}" VerticalOptions="Center"/>
-
-                            <Label Grid.Row="0" Grid.Column="2" Text="{Binding ProductListPrice, StringFormat=\{0:C2\}}" VerticalOptions="Center" HorizontalOptions="End"/>
-
-                            <!--TODO Preferably find or make something for this.-->
-                            <!--<xctk:IntegerUpDown Grid.Row="0" Grid.Column="3" Name="quantityUpDown" Value="{Binding Quantity, Mode=TwoWay}" Minimum="0"/>-->
-
-                            <Label Grid.Row="0" Grid.Column="4" Text="{Binding Value, StringFormat=\{0:C2\}}" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="End"/>
-
-                            <Button Grid.Row="0" Grid.Column="5" Text="{Localization:Translate Remove}" Command="{Binding BindingContext.DeleteCommand, Source={x:Reference shoppingCartItemsListView}}" CommandParameter="{Binding}" BackgroundColor="Orange"/>
-                        </Grid>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ScrollView>
     </StackLayout>
 </BaseClasses:View>
