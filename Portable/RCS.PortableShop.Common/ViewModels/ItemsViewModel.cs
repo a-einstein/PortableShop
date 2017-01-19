@@ -5,6 +5,12 @@ namespace RCS.PortableShop.Common.ViewModels
 {
     public abstract class ItemsViewModel<T> : ViewModel
     {
+        public ItemsViewModel()
+        {
+            // This is still needed after initialization, it cannot be set on the ItemsProperty.
+            SetItemsCollectionChanged();
+        }
+
         public static readonly BindableProperty ItemsProperty =
             BindableProperty.Create(nameof(Items), typeof(ObservableCollection<T>), typeof(ItemsViewModel<T>), defaultValue: new ObservableCollection<T>());
 
@@ -15,8 +21,12 @@ namespace RCS.PortableShop.Common.ViewModels
             set
             {
                 SetValue(ItemsProperty, value);
-                Items.CollectionChanged += Items_CollectionChanged;
+                SetItemsCollectionChanged();
             }
+        }
+        private void SetItemsCollectionChanged()
+        {
+            Items.CollectionChanged += Items_CollectionChanged;
         }
 
         private void Items_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)

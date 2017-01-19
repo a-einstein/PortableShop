@@ -63,7 +63,6 @@
                 </Button>
 
                 <!--Style="{StaticResource LineValueLabelStyle}"-->
-                <!--TODO This got broken somehow.-->
                 <Label Text="{Binding ItemsCount}" VerticalTextAlignment="Center" FontSize="Medium" FontAttributes="Bold"/>
 
                 <!--Style="{StaticResource LineLabelStyle}"-->
@@ -121,7 +120,7 @@
             </ListView>
         </ScrollView>
 
-        <!--TODO This should be part of a ContentButton, removing the Button. Did not work sofar.-->
+        <!--TODO This did not work sofar. Remove the separate Button. .-->
         <Controls:ContentButton Grid.Row="2" Command="{Binding ShowCartCommand}">
             <Controls:ContentButton.Content>
                 <Views:ShoppingCartSummaryView/>
