@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<BaseClasses:View
+    x:Class="RCS.PortableShop.Views.ShoppingCartSummaryView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:BaseClasses="clr-namespace:RCS.PortableShop.Common.Views;assembly=RCS.PortableShop.Common"
+    xmlns:ViewModels="clr-namespace:RCS.PortableShop.ViewModels;assembly=RCS.PortableShop"
+    xmlns:Localization="clr-namespace:RCS.PortableShop.Localization;assembly=RCS.PortableShop"
+    BaseClasses:View.ViewModel="{x:Static ViewModels:ShoppingCartViewModel.Instance}"
+    >
+ 
+    <StackLayout Orientation="Horizontal" BackgroundColor="Yellow">
+        <Label Text="{Binding ItemsCount}" FontSize="Medium" FontAttributes="Bold"/>
+        <Label Text="{Localization:Translate Products}" FontSize="Medium"/>
+
+        <Label Text="{Binding ProductItemsCount}" FontSize="Medium" FontAttributes="Bold"/>
+        <Label Text="{Localization:Translate Items}" FontSize="Medium"/>
+
+        <Label Text="{Binding TotalValue, StringFormat=\{0:C2\}}" FontSize="Medium" FontAttributes="Bold"/>
+        <Label Text="{Localization:Translate TotalValue}" FontSize="Medium"/>
+    </StackLayout>
+</BaseClasses:View>

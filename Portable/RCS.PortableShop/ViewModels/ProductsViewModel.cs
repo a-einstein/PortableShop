@@ -115,13 +115,12 @@ namespace RCS.PortableShop.ViewModels
         #region Details
         protected override void ShowDetails(ProductsOverviewObject productsOverviewObject)
         {
-            ProductViewModel productViewModel = new ProductViewModel() { Navigation = Navigation };
-            View productView = new ProductView() { ViewModel = productViewModel };
+            var viewModel = new ProductViewModel() { Navigation = Navigation };
+            var view = new ProductView() { ViewModel = viewModel };
 
-            PushPage(productView, productsOverviewObject.Name);
+            PushPage(view, productsOverviewObject.Name);
 
-            productViewModel.Refresh(productsOverviewObject.Id);
-
+            viewModel.Refresh(productsOverviewObject.Id);
         }
         #endregion
 
@@ -140,14 +139,11 @@ namespace RCS.PortableShop.ViewModels
 
         protected void ShowCart()
         {
-            var viewModel = ShoppingCartViewModel.Instance;
-            viewModel.Navigation = Navigation;
-
-            var view = new ShoppingCartView() { ViewModel = viewModel };
+            // Note this view has got an implicit ViewModel;
+            var view = new ShoppingCartView();
+            view.ViewModel.Navigation = Navigation;
 
             PushPage(view, Labels.Cart);
-
-            viewModel.Refresh();
         }
         #endregion
     }

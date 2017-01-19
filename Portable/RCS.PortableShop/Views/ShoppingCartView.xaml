@@ -6,8 +6,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:NumericUpDown="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
     xmlns:BaseClasses="clr-namespace:RCS.PortableShop.Common.Views;assembly=RCS.PortableShop.Common"
+    xmlns:Views="clr-namespace:RCS.PortableShop.Views;assembly=RCS.PortableShop"
+    xmlns:ViewModels="clr-namespace:RCS.PortableShop.ViewModels;assembly=RCS.PortableShop"
     xmlns:Converters="clr-namespace:RCS.PortableShop.Common.Converters;assembly=RCS.PortableShop.Common"
     xmlns:Localization="clr-namespace:RCS.PortableShop.Localization;assembly=RCS.PortableShop"
+    BaseClasses:View.ViewModel="{x:Static ViewModels:ShoppingCartViewModel.Instance}"
     >
 
     <BaseClasses:View.Resources>
@@ -18,18 +21,8 @@
 
     <StackLayout BackgroundColor="Yellow" Padding="5">
 
-        <!--TODO Turn this part into a view to enable addition elsewhere.-->
-        <StackLayout Orientation="Horizontal">
-            <Label Text="{Binding ItemsCount}" FontSize="Medium" FontAttributes="Bold"/>
-            <Label Text="{Localization:Translate Products}" FontSize="Medium"/>
-
-            <Label Text="{Binding ProductItemsCount}" FontSize="Medium" FontAttributes="Bold"/>
-            <Label Text="{Localization:Translate Items}" FontSize="Medium"/>
-
-            <Label Text="{Binding TotalValue, StringFormat=\{0:C2\}}" FontSize="Medium" FontAttributes="Bold"/>
-            <Label Text="{Localization:Translate TotalValue}" FontSize="Medium"/>
-        </StackLayout>
-
+        <Views:ShoppingCartSummaryView/>
+        
         <ScrollView VerticalOptions="Fill">
 
             <!--Note that setting HasUnevenRows seems the only way to let rows (somewhat) adapt to contents, instead of having to set some fixed RowHeight.-->

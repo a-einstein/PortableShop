@@ -2,9 +2,9 @@
 
 namespace RCS.PortableShop.Views
 {
-    public partial class ShoppingCartView : View
+    public partial class ShoppingCartSummaryView : View
     {
-        public ShoppingCartView()
+        public ShoppingCartSummaryView()
         {
             InitializeComponent();
         }

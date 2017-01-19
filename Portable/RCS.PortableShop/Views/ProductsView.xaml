@@ -5,6 +5,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:BaseClasses="clr-namespace:RCS.PortableShop.Common.Views;assembly=RCS.PortableShop.Common"
+    xmlns:Views="clr-namespace:RCS.PortableShop.Views;assembly=RCS.PortableShop"
     xmlns:Controls="clr-namespace:RCS.PortableShop.Common.Controls;assembly=RCS.PortableShop.Common"
     xmlns:Converters="clr-namespace:RCS.PortableShop.Common.Converters;assembly=RCS.PortableShop.Common"
     xmlns:Localization="clr-namespace:RCS.PortableShop.Localization;assembly=RCS.PortableShop"
@@ -32,6 +33,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <StackLayout Grid.Row="0" Margin="0,0,0,2" Padding="3">
@@ -61,11 +63,12 @@
                 </Button>
 
                 <!--Style="{StaticResource LineValueLabelStyle}"-->
+                <!--TODO This got broken somehow.-->
                 <Label Text="{Binding ItemsCount}" VerticalTextAlignment="Center" FontSize="Medium" FontAttributes="Bold"/>
 
                 <!--Style="{StaticResource LineLabelStyle}"-->
                 <Label Text="{Localization:Translate Products}" VerticalTextAlignment="Center" FontSize="Medium"/>
-                
+
                 <Button Text="{Localization:Translate Cart}" Command="{Binding ShowCartCommand}" FontSize="Small" FontAttributes="Bold"/>
             </StackLayout>
         </StackLayout>
@@ -117,5 +120,12 @@
                 </ListView.ItemTemplate>
             </ListView>
         </ScrollView>
+
+        <!--TODO This should be part of a ContentButton, removing the Button. Did not work sofar.-->
+        <Controls:ContentButton Grid.Row="2" Command="{Binding ShowCartCommand}">
+            <Controls:ContentButton.Content>
+                <Views:ShoppingCartSummaryView/>
+            </Controls:ContentButton.Content>
+        </Controls:ContentButton>
     </Grid>
 </BaseClasses:View>
