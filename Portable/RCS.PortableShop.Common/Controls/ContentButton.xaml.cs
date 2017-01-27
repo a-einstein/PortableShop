@@ -5,6 +5,7 @@ using Xamarin.Forms;
 namespace RCS.PortableShop.Common.Controls
 {
     // Thanks for the base idea to http://stackoverflow.com/questions/29693721/xamarin-forms-content-of-a-button
+    // Note TapGestureRecognizer of ContentButton does not work if BackgroundColor is set in Content! https://bugzilla.xamarin.com/show_bug.cgi?id=25943
     public partial class ContentButton : ContentView
     {
         public ContentButton()

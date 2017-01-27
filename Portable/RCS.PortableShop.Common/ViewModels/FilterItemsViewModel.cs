@@ -10,8 +10,16 @@ namespace RCS.PortableShop.Common.ViewModels
 {
     public abstract class FilterItemsViewModel<T, V, W> : ItemsViewModel<T>
     {
-        protected abstract Task InitializeFilters();
+        #region Initialization
+        protected override void SetCommands()
+        {
+            FilterCommand = new Command(Refresh);
+            DetailsCommand = new Command<T>(ShowDetails);
+        }
+        #endregion
 
+        #region Filtering
+        protected abstract Task InitializeFilters();
 
         public static readonly BindableProperty MasterFilterItemsProperty =
             BindableProperty.Create(nameof(MasterFilterItems), typeof(ObservableCollection<V>), typeof(FilterItemsViewModel<T, V, W>), defaultValue: new ObservableCollection<V>());
@@ -129,15 +137,13 @@ namespace RCS.PortableShop.Common.ViewModels
         }
 
         public ICommand FilterCommand { get; private set; }
+        #endregion
 
+        #region Details
         public ICommand DetailsCommand { get; private set; }
 
         protected abstract void ShowDetails(T overviewObject);
+        #endregion
 
-        protected override void SetCommands()
-        {
-            FilterCommand = new Command(Refresh);
-            DetailsCommand = new Command<T>(ShowDetails);
-        }
     }
 }

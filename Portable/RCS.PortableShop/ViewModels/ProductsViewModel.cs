@@ -16,10 +16,20 @@ namespace RCS.PortableShop.ViewModels
 {
     public class ProductsViewModel : FilterItemsViewModel<ProductsOverviewObject, ProductCategory, ProductSubcategory>, IShopper
     {
+        #region Initialization
         public ProductsViewModel()
         {
             Refresh();
         }
+
+        protected override void SetCommands()
+        {
+            base.SetCommands();
+
+            CartCommand = new Command<ProductsOverviewObject>(CartProduct);
+            ShowCartCommand = new Command(ShowCart);
+        }
+        #endregion
 
         #region Filtering
         private bool filterInitialized;
@@ -99,16 +109,6 @@ namespace RCS.PortableShop.ViewModels
                 MasterFilterValue != null &&
                 !MasterFilterValue.IsEmpty &&
                 (preserveEmptyElement && subcategory.IsEmpty || subcategory.ProductCategoryId == MasterFilterValue.Id);
-        }
-        #endregion
-
-        #region Initialize
-        protected override void SetCommands()
-        {
-            base.SetCommands();
-
-            CartCommand = new Command<ProductsOverviewObject>(CartProduct);
-            ShowCartCommand = new Command(ShowCart);
         }
         #endregion
 

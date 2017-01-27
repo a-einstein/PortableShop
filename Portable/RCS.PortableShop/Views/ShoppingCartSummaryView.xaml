@@ -9,8 +9,12 @@
     xmlns:Localization="clr-namespace:RCS.PortableShop.Localization;assembly=RCS.PortableShop"
     BaseClasses:View.ViewModel="{x:Static ViewModels:ShoppingCartViewModel.Instance}"
     >
- 
+
+    <!--
+    Note TapGestureRecognizer of ContentButton does not work if BackgroundColor is set here! https://bugzilla.xamarin.com/show_bug.cgi?id=25943
     <StackLayout Orientation="Horizontal" BackgroundColor="Yellow">
+    -->
+    <StackLayout Orientation="Horizontal">
         <Label Text="{Binding ItemsCount}" FontSize="Medium" FontAttributes="Bold"/>
         <Label Text="{Localization:Translate Products}" FontSize="Medium"/>
 
