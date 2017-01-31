@@ -5,14 +5,27 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:BaseClasses="clr-namespace:RCS.PortableShop.Common.Views;assembly=RCS.PortableShop.Common"
+    xmlns:Views="clr-namespace:RCS.PortableShop.Views;assembly=RCS.PortableShop"
+    xmlns:Controls="clr-namespace:RCS.PortableShop.Common.Controls;assembly=RCS.PortableShop.Common"
     xmlns:Localization="clr-namespace:RCS.PortableShop.Localization;assembly=RCS.PortableShop"
     >
 
-    <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
-        <Label Text="Welcome to PortableShop!" />
+    <Grid VerticalOptions="Fill">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+    </Grid>
 
-        <Label Text="{Localization:Translate About}" />
-        
-        <Label Text="{Binding ViewModelText}" />
-    </StackLayout>
+    <BaseClasses:View Grid.Row="0" Content="{Binding MainRegionContent}"/>
+    
+    <!--HACK Setting BackgroundColor here because of https://bugzilla.xamarin.com/show_bug.cgi?id=25943 -->
+    <!--TODO This currently fills the whole screen. Might be a matter of order of assignment to MainRegionContent. Find a way to control this.-->
+    <!--
+    <Controls:ContentButton Grid.Row="1" Command="{Binding ShowCartCommand}" BackgroundColor="Yellow" HeightRequest="30">
+        <Controls:ContentButton.Content>
+            <Views:ShoppingCartSummaryView/>
+        </Controls:ContentButton.Content>
+    </Controls:ContentButton>
+    -->
 </BaseClasses:View>

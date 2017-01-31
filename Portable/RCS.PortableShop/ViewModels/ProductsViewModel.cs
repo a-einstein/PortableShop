@@ -2,7 +2,6 @@
 using RCS.PortableShop.Common.ViewModels;
 using RCS.PortableShop.Interfaces;
 using RCS.PortableShop.Model;
-using RCS.PortableShop.Resources;
 using RCS.PortableShop.Views;
 using System;
 using System.Collections.ObjectModel;
@@ -10,7 +9,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
-using View = RCS.PortableShop.Common.Views.View;
 
 namespace RCS.PortableShop.ViewModels
 {
@@ -27,7 +25,6 @@ namespace RCS.PortableShop.ViewModels
             base.SetCommands();
 
             CartCommand = new Command<ProductsOverviewObject>(CartProduct);
-            ShowCartCommand = new Command(ShowCart);
         }
         #endregion
 
@@ -115,12 +112,15 @@ namespace RCS.PortableShop.ViewModels
         #region Details
         protected override void ShowDetails(ProductsOverviewObject productsOverviewObject)
         {
-            var viewModel = new ProductViewModel() { Navigation = Navigation };
-            var view = new ProductView() { ViewModel = viewModel };
+            var productViewModel = new ProductViewModel() { Navigation = Navigation };
+            var productView = new ProductView() { ViewModel = productViewModel };
 
-            PushPage(view, productsOverviewObject.Name);
+            var mainViewModel = new MainViewModel() { MainRegionContent = productView, Navigation = Navigation };
+            var mainView = new MainView() { ViewModel = mainViewModel };
 
-            viewModel.Refresh(productsOverviewObject.Id);
+            PushPage(mainView, productsOverviewObject.Name);
+
+            productViewModel.Refresh(productsOverviewObject.Id);
         }
         #endregion
 
@@ -132,18 +132,6 @@ namespace RCS.PortableShop.ViewModels
         private void CartProduct(ProductsOverviewObject productsOverviewObject)
         {
             ShoppingCartViewModel.Instance.CartProduct(productsOverviewObject);
-        }
-
-        // TODO Maybe turn IShopper into a base class.
-        public ICommand ShowCartCommand { get; set; }
-
-        protected void ShowCart()
-        {
-            // Note this view has got an implicit ViewModel;
-            var view = new ShoppingCartView();
-            view.ViewModel.Navigation = Navigation;
-
-            PushPage(view, Labels.Cart);
         }
         #endregion
     }

@@ -35,10 +35,7 @@
                     </Controls:ContentButton.Content>
                 </Controls:ContentButton>
 
-                <StackLayout>
-                    <Button Text="{Localization:Translate IncreaseProduct}" Command="{Binding CartCommand}" CommandParameter="{Binding Item}" FontSize="Small" FontAttributes="Bold" HorizontalOptions="Start"/>
-                    <Button Text="{Localization:Translate Cart}" Command="{Binding ShowCartCommand}" FontSize="Small" FontAttributes="Bold" HorizontalOptions="Start"/>
-                </StackLayout>
+                <Button Text="{Localization:Translate IncreaseProduct}" Command="{Binding CartCommand}" CommandParameter="{Binding Item}" FontSize="Small" FontAttributes="Bold" HorizontalOptions="Start"/>
             </StackLayout>
 
             <StackLayout Grid.Column="1" VerticalOptions="Start">

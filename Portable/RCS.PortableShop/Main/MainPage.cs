@@ -8,10 +8,14 @@ namespace RCS.PortableShop.Main
     {
         public MainPage()
         {
-            var viewModel = new ProductsViewModel() { Navigation = Navigation };
-            var view = new ProductsView(viewModel);
+            // TODO This ViewModel might as well be implicitly included.
+            var productsViewModel = new ProductsViewModel() { Navigation = Navigation };
+            var productsView = new ProductsView() { ViewModel = productsViewModel };
 
-            Content = view;
+            var mainViewModel = new MainViewModel() { MainRegionContent = productsView, Navigation = Navigation };
+            var mainView = new MainView() { ViewModel = mainViewModel };
+
+            Content = mainView;
         }
     }
 }

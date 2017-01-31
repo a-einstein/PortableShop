@@ -3,7 +3,8 @@ using Xamarin.Forms;
 
 namespace RCS.PortableShop.Common.Views
 {
-    public abstract class View : ContentView
+    // This no longer can be abstract as it needs a default constructor for the regions.
+    public class View : ContentView
     {
          public ViewModel ViewModel
         {

@@ -2,8 +2,6 @@
 using RCS.PortableShop.Common.ViewModels;
 using RCS.PortableShop.Interfaces;
 using RCS.PortableShop.Model;
-using RCS.PortableShop.Resources;
-using RCS.PortableShop.Views;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -26,7 +24,6 @@ namespace RCS.PortableShop.ViewModels
 
             PhotoCommand = new Command<ImageSource>(ShowPhoto);
             CartCommand = new Command<Product>(CartProduct);
-            ShowCartCommand = new Command(ShowCart);
         }
         #endregion
 
@@ -48,21 +45,6 @@ namespace RCS.PortableShop.ViewModels
         private void CartProduct(Product product)
         {
             ShoppingCartViewModel.Instance.CartProduct(product);
-        }
-
-        // TODO Maybe turn IShopper into a base class.
-        public ICommand ShowCartCommand { get; set; }
-
-        protected void ShowCart()
-        {
-            var viewModel = ShoppingCartViewModel.Instance;
-            viewModel.Navigation = Navigation;
-
-            var view = new ShoppingCartView() { ViewModel = viewModel };
-
-            PushPage(view, Labels.Cart);
-
-            viewModel.Refresh();
         }
         #endregion
     }
