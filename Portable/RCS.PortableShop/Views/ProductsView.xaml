@@ -1,11 +1,12 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
-<BaseClasses:View
+<BaseClasses:ImplicitModelView
     x:Class="RCS.PortableShop.Views.ProductsView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:BaseClasses="clr-namespace:RCS.PortableShop.Common.Views;assembly=RCS.PortableShop.Common"
     xmlns:Views="clr-namespace:RCS.PortableShop.Views;assembly=RCS.PortableShop"
+    xmlns:ViewModels="clr-namespace:RCS.PortableShop.ViewModels;assembly=RCS.PortableShop"
     xmlns:Controls="clr-namespace:RCS.PortableShop.Common.Controls;assembly=RCS.PortableShop.Common"
     xmlns:Converters="clr-namespace:RCS.PortableShop.Common.Converters;assembly=RCS.PortableShop.Common"
     xmlns:Localization="clr-namespace:RCS.PortableShop.Localization;assembly=RCS.PortableShop"
@@ -13,6 +14,10 @@
     VerticalOptions="Fill"
     >
     <!--xmlns:Main="clr-namespace:RCS.PortableShop.Main;assembly=RCS.PortableShop"-->
+
+    <BaseClasses:View.ViewModel>
+        <ViewModels:ProductsViewModel/>
+    </BaseClasses:View.ViewModel>
 
     <BaseClasses:View.Resources>
         <!--TODO Merge does not work either way, here or in MainApplication.-->
@@ -117,4 +122,4 @@
             </ListView>
         </ScrollView>
     </Grid>
-</BaseClasses:View>
+</BaseClasses:ImplicitModelView>

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
-<BaseClasses:View
+<BaseClasses:ImplicitModelView
     x:Class="RCS.PortableShop.Views.ShoppingCartSummaryView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -24,4 +24,4 @@
         <Label Text="{Binding TotalValue, StringFormat=\{0:C2\}}" FontSize="Medium" FontAttributes="Bold"/>
         <Label Text="{Localization:Translate TotalValue}" FontSize="Medium"/>
     </StackLayout>
-</BaseClasses:View>
+</BaseClasses:ImplicitModelView>

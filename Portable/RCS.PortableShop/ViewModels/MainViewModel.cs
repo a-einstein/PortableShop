@@ -10,6 +10,14 @@ namespace RCS.PortableShop.ViewModels
     public class MainViewModel : ViewModel
     {
         #region Initialization
+        protected MainViewModel() { }
+
+        public MainViewModel(View mainRegionContent)
+            : this()
+        {
+            MainRegionContent = mainRegionContent;
+        }
+
         protected override void SetCommands()
         {
             base.SetCommands();
@@ -20,6 +28,8 @@ namespace RCS.PortableShop.ViewModels
         public static readonly BindableProperty MainRegionContentProperty =
             BindableProperty.Create(nameof(MainRegionContent), typeof(View), typeof(MainViewModel));
 
+        // TODO This might better be moved to the View to better separate the two kind of objects.
+        // TODO Once a View is assigned to MainView instead of MainViewModel the latter can be made implicit too.
         public View MainRegionContent
         {
             get { return (View)GetValue(MainRegionContentProperty); }
@@ -33,9 +43,7 @@ namespace RCS.PortableShop.ViewModels
 
         protected void ShowCart()
         {
-            // Note this view has got an implicit ViewModel;
             var shoppingCartView = new ShoppingCartView();
-            shoppingCartView.ViewModel.Navigation = Navigation;
 
             PushPage(shoppingCartView, Labels.Cart);
         }

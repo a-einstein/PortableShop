@@ -1,8 +1,8 @@
-﻿using View = RCS.PortableShop.Common.Views.View;
+﻿using RCS.PortableShop.Common.Views;
 
 namespace RCS.PortableShop.Views
 {
-    public partial class ShoppingCartSummaryView : View
+    public partial class ShoppingCartSummaryView : ImplicitModelView
     {
         public ShoppingCartSummaryView()
         {

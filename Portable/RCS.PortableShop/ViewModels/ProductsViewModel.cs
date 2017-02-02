@@ -112,15 +112,15 @@ namespace RCS.PortableShop.ViewModels
         #region Details
         protected override void ShowDetails(ProductsOverviewObject productsOverviewObject)
         {
-            var productViewModel = new ProductViewModel() { Navigation = Navigation };
-            var productView = new ProductView() { ViewModel = productViewModel };
+            var productView = new ProductView();
 
-            var mainViewModel = new MainViewModel() { MainRegionContent = productView, Navigation = Navigation };
+            var mainViewModel = new MainViewModel(productView);
             var mainView = new MainView() { ViewModel = mainViewModel };
 
             PushPage(mainView, productsOverviewObject.Name);
 
-            productViewModel.Refresh(productsOverviewObject.Id);
+            // TODO Make this implicit somehow.
+            (productView.ViewModel as ProductViewModel).Refresh(productsOverviewObject.Id);
         }
         #endregion
 
