@@ -12,20 +12,17 @@
 
     <Grid VerticalOptions="Fill">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-    </Grid>
 
-    <BaseClasses:View Grid.Row="0" Content="{Binding MainRegionContent}"/>
-    
-    <!--HACK Setting BackgroundColor here because of https://bugzilla.xamarin.com/show_bug.cgi?id=25943 -->
-    <!--TODO This currently fills the whole screen. Might be a matter of order of assignment to MainRegionContent. Find a way to control this.-->
-    <!--
-    <Controls:ContentButton Grid.Row="1" Command="{Binding ShowCartCommand}" BackgroundColor="Yellow" HeightRequest="30">
-        <Controls:ContentButton.Content>
-            <Views:ShoppingCartSummaryView/>
-        </Controls:ContentButton.Content>
-    </Controls:ContentButton>
-    -->
+        <BaseClasses:View Grid.Row="0" Content="{Binding MainRegionContent}"/>
+
+        <!--HACK Setting BackgroundColor here because of https://bugzilla.xamarin.com/show_bug.cgi?id=25943 -->
+        <Controls:ContentButton Grid.Row="1" Command="{Binding ShowCartCommand}" BackgroundColor="Yellow">
+            <Controls:ContentButton.Content>
+                <Views:ShoppingCartSummaryView/>
+            </Controls:ContentButton.Content>
+        </Controls:ContentButton>
+    </Grid>
 </BaseClasses:View>
