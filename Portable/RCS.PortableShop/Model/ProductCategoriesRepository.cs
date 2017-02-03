@@ -2,6 +2,7 @@
 using RCS.PortableShop.ServiceClients.Products.ProductsService;
 using System;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace RCS.PortableShop.Model
 {
@@ -34,10 +35,19 @@ namespace RCS.PortableShop.Model
         {
             Clear();
 
-            var categories = await Task.Factory.FromAsync<ProductCategoryList>(
-                ProductsServiceClient.BeginGetProductCategories,
-                ProductsServiceClient.EndGetProductCategories,
-                null);
+            var categories = new ProductCategoryList();
+
+            try
+            {
+                categories = await Task.Factory.FromAsync<ProductCategoryList>(
+                    ProductsServiceClient.BeginGetProductCategories,
+                    ProductsServiceClient.EndGetProductCategories,
+                    null);
+            }
+            catch (Exception exception)
+            {
+                MessagingCenter.Send<ProductsServiceConsumer>(this, ProductsServiceConsumer.Errors.serviceError.ToString());
+            }
 
             if (addEmptyElement)
             {

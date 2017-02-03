@@ -6,6 +6,11 @@ namespace RCS.PortableShop.Model
 {
     public abstract class ProductsServiceConsumer : IDisposable
     {
+        public enum Errors
+        {
+            serviceError
+        }
+
         private ProductsServiceClient productsServiceClient;
 
         protected IProductsService ProductsServiceClient
@@ -17,8 +22,14 @@ namespace RCS.PortableShop.Model
                 const string endpointAddress = "http://rcs-vostro/ProductsServicePub/ProductsService.svc/ProductsServiceB";
 
                 if (productsServiceClient == null)
+                {
+                    var timeout = new TimeSpan(0, 0, 15);
+
                     // Note that currently wsHttpBinding is not supported, but should be as it is part of System.ServiceModel 4.0.0.0.
-                    productsServiceClient = new ProductsServiceClient(new BasicHttpBinding(), new EndpointAddress(endpointAddress));
+                    var binding = new BasicHttpBinding() { OpenTimeout = timeout, SendTimeout = timeout, ReceiveTimeout = timeout, CloseTimeout = timeout };
+
+                    productsServiceClient = new ProductsServiceClient(binding, new EndpointAddress(endpointAddress));
+                }
 
                 return productsServiceClient;
             }

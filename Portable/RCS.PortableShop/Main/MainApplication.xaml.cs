@@ -1,4 +1,5 @@
 ﻿using RCS.PortableShop.Localization;
+using RCS.PortableShop.Model;
 using RCS.PortableShop.Resources;
 using System.Diagnostics;
 using System.Reflection;
@@ -22,6 +23,11 @@ namespace RCS.PortableShop.Main
             var mainPage = new MainPage();
             NavigationPage.SetHasNavigationBar(mainPage, false);
             MainPage = new NavigationPage(mainPage);
+
+            MessagingCenter.Subscribe<ProductsServiceConsumer>(this, ProductsServiceConsumer.Errors.serviceError.ToString(), (sender) =>
+            {
+                mainPage.DisplayAlert("Error", "Service Error", "OK");
+            });
         }
 
         private static void ListResources()

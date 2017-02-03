@@ -3,6 +3,7 @@ using RCS.PortableShop.ServiceClients.Products.ProductsService;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace RCS.PortableShop.Model
 {
@@ -34,22 +35,40 @@ namespace RCS.PortableShop.Model
         // TODO This should get paged with an optional pagesize.
         public async Task<IList<ProductsOverviewObject>> ReadList(ProductCategory category, ProductSubcategory subcategory, string namePart)
         {
-            var productsOverview = await Task.Factory.FromAsync<int?, int?, string, ProductsOverviewList>(
-                ProductsServiceClient.BeginGetProductsOverviewBy,
-                ProductsServiceClient.EndGetProductsOverviewBy,
-                category?.Id, subcategory?.Id, namePart,
-                null);
+            var productsOverview = new ProductsOverviewList();
+
+            try
+            {
+                productsOverview = await Task.Factory.FromAsync<int?, int?, string, ProductsOverviewList>(
+                     ProductsServiceClient.BeginGetProductsOverviewBy,
+                     ProductsServiceClient.EndGetProductsOverviewBy,
+                     category?.Id, subcategory?.Id, namePart,
+                     null);
+            }
+            catch (Exception exception)
+            {
+                MessagingCenter.Send<ProductsServiceConsumer>(this, ProductsServiceConsumer.Errors.serviceError.ToString());
+            }
 
             return productsOverview;
         }
 
         public async Task<Product> ReadDetails(int productID)
         {
-            var product = await Task.Factory.FromAsync<int, Product>(
-                ProductsServiceClient.BeginGetProductDetails,
-                ProductsServiceClient.EndGetProductDetails,
-                productID,
-                null);
+            Product product = null;
+
+            try
+            {
+                product = await Task.Factory.FromAsync<int, Product>(
+                  ProductsServiceClient.BeginGetProductDetails,
+                  ProductsServiceClient.EndGetProductDetails,
+                  productID,
+                  null);
+            }
+            catch (Exception exception)
+            {
+                MessagingCenter.Send<ProductsServiceConsumer>(this, ProductsServiceConsumer.Errors.serviceError.ToString());
+            }
 
             return product;
 
