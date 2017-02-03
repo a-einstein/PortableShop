@@ -64,7 +64,6 @@ namespace RCS.PortableShop.Common.ViewModels
             viewModel.DetailFilterValue = viewModel.DetailFilterItems.FirstOrDefault();
         }
 
-        // TODO Still problems here. Might be a matter of threads.
         // TODO Some sort of view would be more convenient.
         private void SetDetailFilterItems(bool addEmptyElement = true)
         {

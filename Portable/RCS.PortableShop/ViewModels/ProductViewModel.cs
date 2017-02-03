@@ -12,7 +12,6 @@ namespace RCS.PortableShop.ViewModels
         #region Filtering
         public override async void Refresh(object productId)
         {
-            // TODO Check for errors.
             Item = await ProductsRepository.Instance.ReadDetails((int)productId);
         }
         #endregion

@@ -58,7 +58,7 @@ namespace RCS.PortableShop.Model
             // Free managed objects here.
             if (disposing)
             {
-                //productsServiceClient?.Close();
+                productsServiceClient?.CloseAsync();
             }
 
             // Free unmanaged objects here.
