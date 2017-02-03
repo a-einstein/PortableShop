@@ -135,6 +135,9 @@ Zie voor meer details de beschrijvingen (ReadMe) van de betrokken repositories.<
   <data name="Details" xml:space="preserve">
     <value>Details</value>
   </data>
+  <data name="Error" xml:space="preserve">
+    <value>Probleem</value>
+  </data>
   <data name="Filter" xml:space="preserve">
     <value>Zoek</value>
   </data>
@@ -161,6 +164,10 @@ Zie voor meer details de beschrijvingen (ReadMe) van de betrokken repositories.<
   </data>
   <data name="Remove" xml:space="preserve">
     <value>X</value>
+  </data>
+  <data name="ServiceError" xml:space="preserve">
+    <value>Er is een probleem met onze data service.
+Probeer later a.u.b. nog eens.</value>
   </data>
   <data name="TextFilter" xml:space="preserve">
     <value>Naam of Kleur</value>

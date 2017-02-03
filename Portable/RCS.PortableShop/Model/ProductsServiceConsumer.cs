@@ -6,6 +6,8 @@ namespace RCS.PortableShop.Model
 {
     public abstract class ProductsServiceConsumer : IDisposable
     {
+        static public TimeSpan Timeout { get; } = new TimeSpan(0, 0, 15);
+
         public enum Errors
         {
             serviceError
@@ -23,10 +25,9 @@ namespace RCS.PortableShop.Model
 
                 if (productsServiceClient == null)
                 {
-                    var timeout = new TimeSpan(0, 0, 15);
 
                     // Note that currently wsHttpBinding is not supported, but should be as it is part of System.ServiceModel 4.0.0.0.
-                    var binding = new BasicHttpBinding() { OpenTimeout = timeout, SendTimeout = timeout, ReceiveTimeout = timeout, CloseTimeout = timeout };
+                    var binding = new BasicHttpBinding() { OpenTimeout = Timeout, SendTimeout = Timeout, ReceiveTimeout = Timeout, CloseTimeout = Timeout };
 
                     productsServiceClient = new ProductsServiceClient(binding, new EndpointAddress(endpointAddress));
                 }

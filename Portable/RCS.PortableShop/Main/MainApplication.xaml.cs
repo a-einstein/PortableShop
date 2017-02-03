@@ -1,6 +1,7 @@
 ﻿using RCS.PortableShop.Localization;
 using RCS.PortableShop.Model;
 using RCS.PortableShop.Resources;
+using System;
 using System.Diagnostics;
 using System.Reflection;
 using Xamarin.Forms;
@@ -10,6 +11,12 @@ namespace RCS.PortableShop.Main
     public partial class MainApplication : Application
     {
         private const string debugPrefix = ">>>> Debug:";
+
+        // Note this initializes to 2001.
+        private DateTime errorFirstReported;
+
+        // This value is tested on 3 service calls at startup. There is no multiplication operator.
+        private TimeSpan errorTimeout = ProductsServiceConsumer.Timeout + ProductsServiceConsumer.Timeout; 
 
         public MainApplication()
         {
@@ -24,9 +31,15 @@ namespace RCS.PortableShop.Main
             NavigationPage.SetHasNavigationBar(mainPage, false);
             MainPage = new NavigationPage(mainPage);
 
+            // Use this mechanism to connect ViewModels or other non GUI code to this Page.
             MessagingCenter.Subscribe<ProductsServiceConsumer>(this, ProductsServiceConsumer.Errors.serviceError.ToString(), (sender) =>
             {
-                mainPage.DisplayAlert("Error", "Service Error", "OK");
+                // Try to prevent stacking muliple related errors, like at startup.
+                if (DateTime.Now > errorFirstReported + errorTimeout)
+                {
+                    errorFirstReported = DateTime.Now;
+                    mainPage.DisplayAlert(Labels.Error, Labels.ServiceError, Labels.Close);
+                }
             });
         }
 

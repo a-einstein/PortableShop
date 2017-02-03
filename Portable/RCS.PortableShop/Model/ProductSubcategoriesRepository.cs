@@ -47,6 +47,7 @@ namespace RCS.PortableShop.Model
             catch (Exception exception)
             {
                 MessagingCenter.Send<ProductsServiceConsumer>(this, ProductsServiceConsumer.Errors.serviceError.ToString());
+                throw (exception);
             }
 
             if (addEmptyElement)

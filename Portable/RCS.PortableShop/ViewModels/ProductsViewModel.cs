@@ -44,40 +44,47 @@ namespace RCS.PortableShop.ViewModels
         // TODO This would better be handled inside the repository.
         protected override async Task InitializeFilters()
         {
-            await Task.WhenAll
-            (
-                ProductCategoriesRepository.Instance.ReadList(),
-                ProductSubcategoriesRepository.Instance.ReadList()
-            );
-
-            // Note that using the UI thread (by BeginInvokeOnMainThread) only did bad.
-
-            ObservableCollection<ProductCategory> masterFilterItems = new ObservableCollection<ProductCategory>(); ;
-
-            foreach (var item in ProductCategoriesRepository.Instance.List)
+            try
             {
-                masterFilterItems.Add(item);
+                await Task.WhenAll
+                (
+                    ProductCategoriesRepository.Instance.ReadList(),
+                    ProductSubcategoriesRepository.Instance.ReadList()
+                );
+
+                // Note that using the UI thread (by BeginInvokeOnMainThread) only did bad.
+
+                ObservableCollection<ProductCategory> masterFilterItems = new ObservableCollection<ProductCategory>(); ;
+
+                foreach (var item in ProductCategoriesRepository.Instance.List)
+                {
+                    masterFilterItems.Add(item);
+                }
+
+                // Do an assignment, as just changing the ObservableCollection plus even a PropertyChanged does not work. There seems to be no good way to handle CollectionChanged. 
+                // TODO maybe follow the approach on ItemsViewModel.Items.
+                MasterFilterItems = masterFilterItems;
+
+                foreach (var item in ProductSubcategoriesRepository.Instance.List)
+                {
+                    detailFilterItemsSource.Add(item);
+                }
+
+                int masterDefaultId = 1;
+                MasterFilterValue = MasterFilterItems.FirstOrDefault(category => category.Id == masterDefaultId);
+
+                // Note that MasterFilterValue also determines DetailFilterItems.
+                int detailDefaultId = 1;
+                DetailFilterValue = DetailFilterItems.FirstOrDefault(subcategory => subcategory.Id == detailDefaultId);
+
+                TextFilterValue = default(string);
+
+                filterInitialized = true;
             }
-
-            // Do an assignment, as just changing the ObservableCollection plus even a PropertyChanged does not work. There seems to be no good way to handle CollectionChanged. 
-            // TODO maybe follow the approach on ItemsViewModel.Items.
-            MasterFilterItems = masterFilterItems;
-
-            foreach (var item in ProductSubcategoriesRepository.Instance.List)
+            catch (Exception)
             {
-                detailFilterItemsSource.Add(item);
+                // Mainly want to prevent filterInitialized to be set.
             }
-
-            int masterDefaultId = 1;
-            MasterFilterValue = MasterFilterItems.FirstOrDefault(category => category.Id == masterDefaultId);
-
-            // Note that MasterFilterValue also determines DetailFilterItems.
-            int detailDefaultId = 1;
-            DetailFilterValue = DetailFilterItems.FirstOrDefault(subcategory => subcategory.Id == detailDefaultId);
-
-            TextFilterValue = default(string);
-
-            filterInitialized = true;
         }
 
         protected async Task ReadFiltered()

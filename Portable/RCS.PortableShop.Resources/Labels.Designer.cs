@@ -109,6 +109,15 @@ namespace RCS.PortableShop.Resources {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
+        public static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         public static string Filter {
             get {
                 return ResourceManager.GetString("Filter", resourceCulture);
@@ -134,7 +143,7 @@ namespace RCS.PortableShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MT.
+        ///   Looks up a localized string similar to .
         /// </summary>
         public static string MainTitle {
             get {
@@ -152,7 +161,7 @@ namespace RCS.PortableShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to NA.
+        ///   Looks up a localized string similar to .
         /// </summary>
         public static string NavigateAbout {
             get {
@@ -184,6 +193,15 @@ namespace RCS.PortableShop.Resources {
         public static string Remove {
             get {
                 return ResourceManager.GetString("Remove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string ServiceError {
+            get {
+                return ResourceManager.GetString("ServiceError", resourceCulture);
             }
         }
         

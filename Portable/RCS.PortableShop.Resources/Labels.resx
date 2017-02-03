@@ -133,6 +133,9 @@
   <data name="Details" xml:space="preserve">
     <value />
   </data>
+  <data name="Error" xml:space="preserve">
+    <value />
+  </data>
   <data name="Filter" xml:space="preserve">
     <value />
   </data>
@@ -143,13 +146,13 @@
     <value />
   </data>
   <data name="MainTitle" xml:space="preserve">
-    <value>MT</value>
+    <value />
   </data>
   <data name="MasterFilter" xml:space="preserve">
     <value />
   </data>
   <data name="NavigateAbout" xml:space="preserve">
-    <value>NA</value>
+    <value />
   </data>
   <data name="NavigateShop" xml:space="preserve">
     <value />
@@ -158,6 +161,9 @@
     <value />
   </data>
   <data name="Remove" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ServiceError" xml:space="preserve">
     <value />
   </data>
   <data name="TextFilter" xml:space="preserve">

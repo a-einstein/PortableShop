@@ -135,6 +135,9 @@ For further details please check the descriptions (ReadMe) of the involved repos
   <data name="Details" xml:space="preserve">
     <value>Details</value>
   </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
   <data name="Filter" xml:space="preserve">
     <value>Search</value>
   </data>
@@ -161,6 +164,10 @@ For further details please check the descriptions (ReadMe) of the involved repos
   </data>
   <data name="Remove" xml:space="preserve">
     <value>X</value>
+  </data>
+  <data name="ServiceError" xml:space="preserve">
+    <value>There is a problem with our data service.
+Please try again later.</value>
   </data>
   <data name="TextFilter" xml:space="preserve">
     <value>Name or Colour</value>
