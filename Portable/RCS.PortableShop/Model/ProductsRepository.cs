@@ -51,7 +51,7 @@ namespace RCS.PortableShop.Model
             }
             catch (Exception exception)
             {
-                MessagingCenter.Send<ProductsServiceConsumer>(this, ProductsServiceConsumer.Errors.serviceError.ToString());
+                MessagingCenter.Send<ProductsServiceConsumer>(this, ProductsServiceConsumer.Errors.ServiceError.ToString());
             }
 
             return productsOverview;
@@ -71,7 +71,7 @@ namespace RCS.PortableShop.Model
             }
             catch (Exception exception)
             {
-                MessagingCenter.Send<ProductsServiceConsumer>(this, ProductsServiceConsumer.Errors.serviceError.ToString());
+                MessagingCenter.Send<ProductsServiceConsumer>(this, ProductsServiceConsumer.Errors.ServiceError.ToString());
             }
 
             return product;

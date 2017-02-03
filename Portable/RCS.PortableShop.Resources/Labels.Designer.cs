@@ -82,6 +82,15 @@ namespace RCS.PortableShop.Resources {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
+        public static string CartError {
+            get {
+                return ResourceManager.GetString("CartError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         public static string Close {
             get {
                 return ResourceManager.GetString("Close", resourceCulture);

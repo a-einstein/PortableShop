@@ -2,6 +2,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Xamarin.Forms;
 
 namespace RCS.PortableShop.Model
 {
@@ -34,8 +35,14 @@ namespace RCS.PortableShop.Model
         }
         #endregion
 
+        #region Constants
+        public new enum Errors
+        {
+            CartError
+        }
+        #endregion
+
         #region CRUD
-        private const string cartItemsNumberExceptionMessage = "Unexpected number of found ShoppingCartItems.";
 
         // Note that the cart is only kept in memory and is not preserved. 
         // It is anticipated that only real orders would be preserved and stored on the server.
@@ -44,7 +51,7 @@ namespace RCS.PortableShop.Model
             var existingCartItems = List.Where(cartItem => cartItem.ProductID == product.Id);
             var existingCartItemsCount = existingCartItems.Count();
 
-            CartItem productCartItem;
+            CartItem productCartItem = null;
 
             if (existingCartItemsCount == 0)
             {
@@ -70,7 +77,7 @@ namespace RCS.PortableShop.Model
             }
             else
             {
-                throw new Exception(cartItemsNumberExceptionMessage);
+                MessagingCenter.Send<CartItemsRepository>(this, CartItemsRepository.Errors.CartError.ToString());
             }
 
             return productCartItem;

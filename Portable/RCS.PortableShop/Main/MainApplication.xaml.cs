@@ -16,7 +16,7 @@ namespace RCS.PortableShop.Main
         private DateTime errorFirstReported;
 
         // This value is tested on 3 service calls at startup. There is no multiplication operator.
-        private TimeSpan errorTimeout = ProductsServiceConsumer.Timeout + ProductsServiceConsumer.Timeout; 
+        private TimeSpan errorTimeout = ProductsServiceConsumer.Timeout + ProductsServiceConsumer.Timeout;
 
         public MainApplication()
         {
@@ -31,8 +31,9 @@ namespace RCS.PortableShop.Main
             NavigationPage.SetHasNavigationBar(mainPage, false);
             MainPage = new NavigationPage(mainPage);
 
-            // Use this mechanism to connect ViewModels or other non GUI code to this Page.
-            MessagingCenter.Subscribe<ProductsServiceConsumer>(this, ProductsServiceConsumer.Errors.serviceError.ToString(), (sender) =>
+            // Use the MessagingCenter mechanism to connect ViewModels or other non GUI code to this Page.
+
+            MessagingCenter.Subscribe<ProductsServiceConsumer>(this, ProductsServiceConsumer.Errors.ServiceError.ToString(), (sender) =>
             {
                 // Try to prevent stacking muliple related errors, like at startup.
                 if (DateTime.Now > errorFirstReported + errorTimeout)
@@ -40,6 +41,11 @@ namespace RCS.PortableShop.Main
                     errorFirstReported = DateTime.Now;
                     mainPage.DisplayAlert(Labels.Error, Labels.ServiceError, Labels.Close);
                 }
+            });
+
+            MessagingCenter.Subscribe<CartItemsRepository>(this, CartItemsRepository.Errors.CartError.ToString(), (sender) =>
+            {
+                mainPage.DisplayAlert(Labels.Error, Labels.CartError, Labels.Close);
             });
         }
 

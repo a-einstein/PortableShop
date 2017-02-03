@@ -11,7 +11,7 @@ namespace RCS.PortableShop.Model
 
         public enum Errors
         {
-            serviceError
+            ServiceError
         }
         #endregion
 

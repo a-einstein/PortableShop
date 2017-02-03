@@ -126,6 +126,10 @@ For further details please check the descriptions (ReadMe) of the involved repos
   <data name="Cart" xml:space="preserve">
     <value>Shopping Cart</value>
   </data>
+  <data name="CartError" xml:space="preserve">
+    <value>There is a technical problem with your Shopping Cart.
+Please check thoroughly or restart the application (recommended).</value>
+  </data>
   <data name="Close" xml:space="preserve">
     <value>Close</value>
   </data>

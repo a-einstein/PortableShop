@@ -124,6 +124,9 @@
   <data name="Cart" xml:space="preserve">
     <value />
   </data>
+  <data name="CartError" xml:space="preserve">
+    <value />
+  </data>
   <data name="Close" xml:space="preserve">
     <value />
   </data>

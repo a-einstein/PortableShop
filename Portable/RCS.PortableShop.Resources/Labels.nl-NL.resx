@@ -126,6 +126,10 @@ Zie voor meer details de beschrijvingen (ReadMe) van de betrokken repositories.<
   <data name="Cart" xml:space="preserve">
     <value>Winkelwagen</value>
   </data>
+  <data name="CartError" xml:space="preserve">
+    <value>Er is een technisch probleem met uw Winkelwagentje.
+Controleer a.u.b. grondig of herstart de applicatie (aanbevolen).</value>
+  </data>
   <data name="Close" xml:space="preserve">
     <value>Sluit</value>
   </data>
