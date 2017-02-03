@@ -9,6 +9,7 @@ namespace RCS.PortableShop.Model
 {
     public class ProductsRepository : Repository<ProductsOverviewObject>
     {
+        #region Initialization
         private ProductsRepository()
         { }
 
@@ -31,6 +32,9 @@ namespace RCS.PortableShop.Model
                 return instance;
             }
         }
+        #endregion
+
+        #region CRUD
 
         // TODO This should get paged with an optional pagesize.
         public async Task<IList<ProductsOverviewObject>> ReadList(ProductCategory category, ProductSubcategory subcategory, string namePart)
@@ -73,5 +77,6 @@ namespace RCS.PortableShop.Model
             return product;
 
         }
+        #endregion
     }
 }

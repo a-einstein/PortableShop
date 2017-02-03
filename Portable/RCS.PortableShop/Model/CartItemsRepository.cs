@@ -7,6 +7,7 @@ namespace RCS.PortableShop.Model
 {
     public class CartItemsRepository : Repository<CartItem>
     {
+        #region Initialization
         private CartItemsRepository()
         {
             List = new ObservableCollection<CartItem>();
@@ -31,7 +32,9 @@ namespace RCS.PortableShop.Model
                 return instance;
             }
         }
+        #endregion
 
+        #region CRUD
         private const string cartItemsNumberExceptionMessage = "Unexpected number of found ShoppingCartItems.";
 
         // Note that the cart is only kept in memory and is not preserved. 
@@ -77,7 +80,9 @@ namespace RCS.PortableShop.Model
         {
             List.Remove(cartItem);
         }
+        #endregion
 
+        #region Aggregates
         public int ProductsCount()
         {
             return List.Count > 0
@@ -91,5 +96,6 @@ namespace RCS.PortableShop.Model
                 ? List.Sum(cartItem => cartItem.Value)
                 : 0;
         }
+        #endregion
     }
 }

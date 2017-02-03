@@ -12,6 +12,7 @@ namespace RCS.PortableShop.ViewModels
 {
     public class ShoppingCartViewModel : ItemsViewModel<CartItem>
     {
+        #region Initialization
         private ShoppingCartViewModel()
         {
             // HACK Typing is unclear here.
@@ -49,7 +50,9 @@ namespace RCS.PortableShop.ViewModels
 
             DeleteCommand = new Command<CartItem>(Delete);
         }
+        #endregion
 
+        #region CRUD
         public void CartProduct(IShoppingProduct productsOverviewObject)
         {
             CartItemsRepository.Instance.AddProduct(productsOverviewObject);
@@ -85,7 +88,9 @@ namespace RCS.PortableShop.ViewModels
                 UpdateAggregates();
             }
         }
+        #endregion
 
+        #region Aggregates
         private void UpdateAggregates()
         {
             ProductItemsCount = CartItemsRepository.Instance.ProductsCount();
@@ -123,5 +128,6 @@ namespace RCS.PortableShop.ViewModels
                 RaisePropertyChanged(nameof(TotalValue));
             }
         }
+        #endregion
     }
 }

@@ -9,13 +9,6 @@ namespace RCS.PortableShop.ViewModels
 {
     public class ProductViewModel : ItemViewModel<Product>, IShopper
     {
-        #region Filtering
-        public override async void Refresh(object productId)
-        {
-            Item = await ProductsRepository.Instance.ReadDetails((int)productId);
-        }
-        #endregion
-
         #region Initialize
         protected override void SetCommands()
         {
@@ -23,6 +16,13 @@ namespace RCS.PortableShop.ViewModels
 
             PhotoCommand = new Command<ImageSource>(ShowPhoto);
             CartCommand = new Command<Product>(CartProduct);
+        }
+        #endregion
+
+        #region Filtering
+        public override async void Refresh(object productId)
+        {
+            Item = await ProductsRepository.Instance.ReadDetails((int)productId);
         }
         #endregion
 

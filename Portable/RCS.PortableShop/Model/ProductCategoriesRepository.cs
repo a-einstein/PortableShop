@@ -8,6 +8,7 @@ namespace RCS.PortableShop.Model
 {
     public class ProductCategoriesRepository : Repository<ProductCategory>
     {
+        #region Initialization
         private ProductCategoriesRepository()
         { }
 
@@ -30,7 +31,9 @@ namespace RCS.PortableShop.Model
                 return instance;
             }
         }
+        #endregion
 
+        #region CRUD
         public async Task ReadList(bool addEmptyElement = true)
         {
             Clear();
@@ -62,5 +65,6 @@ namespace RCS.PortableShop.Model
                 List.Add(category);
             }
         }
+        #endregion
     }
 }

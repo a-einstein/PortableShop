@@ -6,13 +6,16 @@ namespace RCS.PortableShop.Model
 {
     public abstract class ProductsServiceConsumer : IDisposable
     {
+        #region Constants
         static public TimeSpan Timeout { get; } = new TimeSpan(0, 0, 15);
 
         public enum Errors
         {
             serviceError
         }
+        #endregion
 
+        #region Service
         private ProductsServiceClient productsServiceClient;
 
         protected IProductsService ProductsServiceClient
@@ -35,6 +38,7 @@ namespace RCS.PortableShop.Model
                 return productsServiceClient;
             }
         }
+        #endregion
 
         #region IDisposable
 
