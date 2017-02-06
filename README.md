@@ -14,8 +14,11 @@ Current score: [![BCH compliance](https://bettercodehub.com/edge/badge/a-einstei
 * Client-server.
 * WCF.
 * Asynchronisity.
+* Error handling.
 * Globalized resources.
 * Basic styling.
+* Splash screen.
+* Application icon.
 * NuGet.
 * ...
 
