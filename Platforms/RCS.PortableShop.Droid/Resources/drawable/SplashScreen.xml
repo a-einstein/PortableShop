@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<!--Note that not a lot more is possible.-->
+<!--TODO It is desirable to at least have a text and some animation.-->
+
+<layer-list
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+   
+    <item>
+        <color android:color="@color/SplashBackground"/>
+    </item>
+
+    <item>
+        <bitmap
+            android:src="@drawable/CycloneSplash"
+            android:tileMode="disabled"
+            android:gravity="center"/>
+    </item>
+</layer-list>
