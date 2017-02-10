@@ -16,6 +16,21 @@ namespace RCS.PortableShop.Common.ViewModels
 
         public virtual void Refresh() { }
 
+        public static readonly BindableProperty AwaitingProperty = 
+            BindableProperty.Create(nameof(Awaiting), typeof(bool), typeof(ViewModel), defaultValue: false);
+
+        public bool Awaiting
+        {
+            get { return (bool)GetValue(AwaitingProperty); }
+            set
+            {
+                SetValue(AwaitingProperty, value);
+
+                // TODO Should this be needed?
+                RaisePropertyChanged(nameof(Awaiting));
+            }
+        }
+
         protected static bool NullOrEmpty(string value)
         {
             return (value == null || value.Trim() == string.Empty);

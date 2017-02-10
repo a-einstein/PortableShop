@@ -33,12 +33,16 @@ namespace RCS.PortableShop.ViewModels
 
         public override async void Refresh()
         {
+            Awaiting = true;
+
             Items.Clear();
 
             if (!filterInitialized)
                 await InitializeFilters();
 
             await ReadFiltered();
+
+            Awaiting = false;
         }
 
         // TODO This would better be handled inside the repository.
