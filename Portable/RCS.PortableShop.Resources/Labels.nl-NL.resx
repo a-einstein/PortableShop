@@ -177,6 +177,6 @@ Probeer later a.u.b. nog eens.</value>
     <value>Naam of Kleur</value>
   </data>
   <data name="TotalValue" xml:space="preserve">
-    <value>Totale waarde</value>
+    <value>Waarde</value>
   </data>
 </root>

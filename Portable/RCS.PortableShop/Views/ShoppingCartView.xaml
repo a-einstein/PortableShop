@@ -19,7 +19,7 @@
         </ResourceDictionary>
     </BaseClasses:View.Resources>
 
-    <StackLayout BackgroundColor="Yellow" Padding="5">
+    <StackLayout BackgroundColor="#F4FA58" Padding="5">
 
         <Views:ShoppingCartSummaryView/>
         
@@ -31,7 +31,7 @@
                     <DataTemplate>
                         <ViewCell>
                             <!--Note this layout currently is aimed towards portrait orientation.-->
-                            <StackLayout Orientation="Vertical" Padding="5,0">
+                            <StackLayout Orientation="Vertical" BackgroundColor="#F2F5A9" Padding="5,0">
                                 <Label Text="{Binding Name}" VerticalOptions="Center" FontAttributes="Bold"/>
 
                                 <StackLayout Orientation="Horizontal">

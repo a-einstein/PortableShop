@@ -19,7 +19,8 @@
         <BaseClasses:View Grid.Row="0" Content="{Binding MainRegionContent}"/>
 
         <!--HACK Setting BackgroundColor here because of https://bugzilla.xamarin.com/show_bug.cgi?id=25943 -->
-        <Controls:ContentButton Grid.Row="1" Command="{Binding ShowCartCommand}" BackgroundColor="Yellow">
+        <!--Note that only a limited number of Color names are currently supported.-->
+        <Controls:ContentButton Grid.Row="1" Command="{Binding ShowCartCommand}" BackgroundColor="#F4FA58" Padding="5">
             <Controls:ContentButton.Content>
                 <Views:ShoppingCartSummaryView/>
             </Controls:ContentButton.Content>

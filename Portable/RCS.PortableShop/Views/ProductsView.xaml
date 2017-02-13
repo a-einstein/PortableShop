@@ -35,7 +35,7 @@
     <!--Background="{StaticResource ProductBackgroundBrush}"-->
     <!--TODO Does this HAVE to be DynamicResource?!-->
     <!--TODO Does not work either way, DynamicResource (values) or StaticResource (error), -->
-    <Grid VerticalOptions="Fill" BackgroundColor="Aqua" Padding="5">
+    <Grid VerticalOptions="Fill" BackgroundColor="#58ACFA" Padding="5">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -92,7 +92,7 @@
                         <ViewCell>
                             <Controls:ContentButton Command="{Binding BindingContext.DetailsCommand, Source={x:Reference productsItemsControl}}" CommandParameter="{Binding}" Margin="0">
                                 <Controls:ContentButton.Content>
-                                    <Grid Margin="2" BackgroundColor="Aqua">
+                                    <Grid Margin="2" BackgroundColor="#A9D0F5">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="Auto"/>
                                             <ColumnDefinition Width="*"/>

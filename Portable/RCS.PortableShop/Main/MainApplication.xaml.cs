@@ -61,7 +61,7 @@ namespace RCS.PortableShop.Main
             }
         }
 
-        private void SubscribeMessages(Page mainPage)
+        private void SubscribeMessages(Page page)
         {
             // Use the MessagingCenter mechanism to connect ViewModels or other non GUI code to this Page.
 
@@ -73,7 +73,7 @@ namespace RCS.PortableShop.Main
                     serviceErrorDisplaying = true;
                     serviceErrorFirstDisplayed = DateTime.Now;
 
-                    await mainPage.DisplayAlert(Labels.Error, Labels.ServiceError, Labels.Close);
+                    await page.DisplayAlert(Labels.Error, Labels.ServiceError, Labels.Close);
 
                     serviceErrorDisplaying = false;
                 }
@@ -81,7 +81,7 @@ namespace RCS.PortableShop.Main
 
             MessagingCenter.Subscribe<CartItemsRepository>(this, CartItemsRepository.Errors.CartError.ToString(), (sender) =>
             {
-                mainPage.DisplayAlert(Labels.Error, Labels.CartError, Labels.Close);
+                page.DisplayAlert(Labels.Error, Labels.CartError, Labels.Close);
             });
         }
 

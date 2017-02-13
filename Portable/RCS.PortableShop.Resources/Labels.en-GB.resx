@@ -177,6 +177,6 @@ Please try again later.</value>
     <value>Name or Colour</value>
   </data>
   <data name="TotalValue" xml:space="preserve">
-    <value>Total value</value>
+    <value>Value</value>
   </data>
 </root>

@@ -16,7 +16,7 @@ namespace RCS.PortableShop.Common.ViewModels
 
         public virtual void Refresh() { }
 
-        public static readonly BindableProperty AwaitingProperty = 
+        public static readonly BindableProperty AwaitingProperty =
             BindableProperty.Create(nameof(Awaiting), typeof(bool), typeof(ViewModel), defaultValue: false);
 
         public bool Awaiting
@@ -48,6 +48,7 @@ namespace RCS.PortableShop.Common.ViewModels
 
         public INavigation Navigation { get; set; }
 
+        // Note that a potential Color parameter cannot have a default value.
         protected void PushPage(View view, string title = null)
         {
             var page = new ContentPage() { Content = view, Title = title };

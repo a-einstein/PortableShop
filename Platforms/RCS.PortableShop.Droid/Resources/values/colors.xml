@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
 <resources>
-    <!--Near Aqua-->
-    <color name="SplashBackground">#2EFEF7</color>
+    <color name="SplashBackground">#58ACFA</color>
 </resources>
