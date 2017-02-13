@@ -12,11 +12,13 @@ namespace RCS.PortableShop.Main
     {
         private const string debugPrefix = ">>>> Debug:";
 
+        private bool serviceErrorDisplaying;
+
         // Note this initializes to 2001.
-        private DateTime errorFirstReported;
+        private DateTime serviceErrorFirstDisplayed;
 
         // This value is tested on 3 service calls at startup. There is no multiplication operator.
-        private TimeSpan errorTimeout = ProductsServiceConsumer.Timeout + ProductsServiceConsumer.Timeout;
+        private TimeSpan serviceErrorGraceTime = ProductsServiceConsumer.Timeout + ProductsServiceConsumer.Timeout;
 
         public MainApplication()
         {
@@ -33,13 +35,17 @@ namespace RCS.PortableShop.Main
 
             // Use the MessagingCenter mechanism to connect ViewModels or other non GUI code to this Page.
 
-            MessagingCenter.Subscribe<ProductsServiceConsumer>(this, ProductsServiceConsumer.Errors.ServiceError.ToString(), (sender) =>
+            MessagingCenter.Subscribe<ProductsServiceConsumer>(this, ProductsServiceConsumer.Errors.ServiceError.ToString(), async (sender) =>
             {
                 // Try to prevent stacking muliple related errors, like at startup.
-                if (DateTime.Now > errorFirstReported + errorTimeout)
+                if (!serviceErrorDisplaying && DateTime.Now > serviceErrorFirstDisplayed + serviceErrorGraceTime)
                 {
-                    errorFirstReported = DateTime.Now;
-                    mainPage.DisplayAlert(Labels.Error, Labels.ServiceError, Labels.Close);
+                    serviceErrorDisplaying = true;
+                    serviceErrorFirstDisplayed = DateTime.Now;
+
+                    await mainPage.DisplayAlert(Labels.Error, Labels.ServiceError, Labels.Close);
+
+                    serviceErrorDisplaying = false;
                 }
             });
 
