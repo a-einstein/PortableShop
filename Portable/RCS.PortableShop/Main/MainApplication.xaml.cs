@@ -33,26 +33,7 @@ namespace RCS.PortableShop.Main
             NavigationPage.SetHasNavigationBar(mainPage, false);
             MainPage = new NavigationPage(mainPage);
 
-            // Use the MessagingCenter mechanism to connect ViewModels or other non GUI code to this Page.
-
-            MessagingCenter.Subscribe<ProductsServiceConsumer>(this, ProductsServiceConsumer.Errors.ServiceError.ToString(), async (sender) =>
-            {
-                // Try to prevent stacking muliple related errors, like at startup.
-                if (!serviceErrorDisplaying && DateTime.Now > serviceErrorFirstDisplayed + serviceErrorGraceTime)
-                {
-                    serviceErrorDisplaying = true;
-                    serviceErrorFirstDisplayed = DateTime.Now;
-
-                    await mainPage.DisplayAlert(Labels.Error, Labels.ServiceError, Labels.Close);
-
-                    serviceErrorDisplaying = false;
-                }
-            });
-
-            MessagingCenter.Subscribe<CartItemsRepository>(this, CartItemsRepository.Errors.CartError.ToString(), (sender) =>
-            {
-                mainPage.DisplayAlert(Labels.Error, Labels.CartError, Labels.Close);
-            });
+            SubscribeMessages(mainPage);
         }
 
         private static void ListResources()
@@ -78,6 +59,30 @@ namespace RCS.PortableShop.Main
 
                 DependencyService.Get<ILocalize>().SetLocale(currentCultureInfo); // set the Thread for locale-aware methods
             }
+        }
+
+        private void SubscribeMessages(Page mainPage)
+        {
+            // Use the MessagingCenter mechanism to connect ViewModels or other non GUI code to this Page.
+
+            MessagingCenter.Subscribe<ProductsServiceConsumer>(this, ProductsServiceConsumer.Errors.ServiceError.ToString(), async (sender) =>
+            {
+                // Try to prevent stacking muliple related errors, like at startup.
+                if (!serviceErrorDisplaying && DateTime.Now > serviceErrorFirstDisplayed + serviceErrorGraceTime)
+                {
+                    serviceErrorDisplaying = true;
+                    serviceErrorFirstDisplayed = DateTime.Now;
+
+                    await mainPage.DisplayAlert(Labels.Error, Labels.ServiceError, Labels.Close);
+
+                    serviceErrorDisplaying = false;
+                }
+            });
+
+            MessagingCenter.Subscribe<CartItemsRepository>(this, CartItemsRepository.Errors.CartError.ToString(), (sender) =>
+            {
+                mainPage.DisplayAlert(Labels.Error, Labels.CartError, Labels.Close);
+            });
         }
 
         protected override void OnStart()
