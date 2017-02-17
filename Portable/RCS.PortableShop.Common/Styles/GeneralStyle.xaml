@@ -1,154 +1,74 @@
-﻿<ResourceDictionary 
+﻿<ResourceDictionary
     x:Class="RCS.PortableShop.Common.Styles.GeneralStyle"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:NumericUpDown="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
     >
-    <!--xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"-->
 
-    <Thickness x:Key="StandardMargin">2</Thickness>
-    <Thickness x:Key="StandardHorizontalSeparation">2,0,3,0</Thickness>
-    <Thickness x:Key="StandardPadding">3</Thickness>
+    <Thickness x:Key="ViewPadding">5</Thickness>
 
-    <Color x:Key="BaseColour">white</Color>
-    <Color x:Key="MessageColour">black</Color>
-    <Color x:Key="AssertColour">green</Color>
-    <Color x:Key="WarningColour">orange</Color>
-    <Color x:Key="ErrorColour">red</Color>
-    <Color x:Key="InputBackgroundColour">white</Color>
+    <LayoutOptions x:Key="LineVerticalOptions">Center</LayoutOptions>
+    
+    <!--Note that only a limited number of Color names is supported, currently different from the documentation.-->
+    <Color x:Key="MessageColour">Black</Color>
+    <Color x:Key="AssertColour">Green</Color>
+    <Color x:Key="WarningColour">Orange</Color>
+    <Color x:Key="ErrorColour">Red</Color>
 
-    <SolidColorBrush x:Key="BaseColourBrush" Color="{StaticResource BaseColour}"/>
-    <SolidColorBrush x:Key="MessageColourBrush" Color="{StaticResource MessageColour}"/>
-    <SolidColorBrush x:Key="AssertColourBrush" Color="{StaticResource AssertColour}"/>
-    <SolidColorBrush x:Key="WarningColourBrush" Color="{StaticResource WarningColour}"/>
-    <SolidColorBrush x:Key="ErrorColourBrush" Color="{StaticResource ErrorColour}"/>
-    <SolidColorBrush x:Key="InputBackgroundColourBrush" Color="{StaticResource InputBackgroundColour}"/>
+    <Color x:Key="ProductsLevel0Colour">#58ACFA</Color>
+    <Color x:Key="ProductsLevel1Colour">#A9D0F5</Color>
+    <Color x:Key="CartLevel0Colour">#F4FA58</Color>
+    <Color x:Key="CartLevel1Colour">#F2F5A9</Color>
 
-    <LinearGradientBrush x:Key="ButtonBackgroundBrush" EndPoint="0.5,1" StartPoint="0.5,0">
-        <GradientStop Color="#FFE0E0E0" Offset="0"/>
-        <GradientStop Color="White" Offset="1"/>
-    </LinearGradientBrush>
-
-    <LinearGradientBrush x:Key="CartBackgroundBrush" EndPoint="0.5,1" StartPoint="0.5,0">
-        <GradientStop Color="#FFF5F3DB" Offset="0"/>
-        <GradientStop Color="White" Offset="1"/>
-    </LinearGradientBrush>
-
-    <LinearGradientBrush x:Key="ProductBackgroundBrush" EndPoint="0.5,1" StartPoint="0.5,0">
-        <GradientStop Color="#FFE2F1FB" Offset="0"/>
-        <GradientStop Color="White" Offset="1"/>
-    </LinearGradientBrush>
-
-    <DropShadowEffect x:Key="ButtonStandardEffect" BlurRadius="2" ShadowDepth="2" Color="#FFD3D1D1"/>
-    <DropShadowEffect x:Key="ButtonHoverEffect" BlurRadius="2" ShadowDepth="2" Color="#FF898888"/>
-
-    <Style x:Key="NavigationButtonStyle" TargetType="ToggleButton">
-        <Setter Property="Margin" Value="{StaticResource StandardHorizontalSeparation}"/>
-        <Setter Property="Padding" Value="3,1"/>
-        <Setter Property="Background" Value="{StaticResource ButtonBackgroundBrush}"/>
-        <Setter Property="Effect" Value="{StaticResource ButtonStandardEffect}"/>
-        <!--TODO get rid of background on MouseOver.-->
-        <Style.Triggers>
-            <Trigger Property="ToggleButton.IsMouseOver" Value="True">
-                <Setter Property="ToggleButton.Effect" Value="{StaticResource ButtonHoverEffect}"/>
-            </Trigger>
-        </Style.Triggers>
+    <Style TargetType="ScrollView">
+        <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+    </Style>
+    
+    <Style TargetType="ListView">
+        <Setter Property="BackgroundColor" Value="White"/>
+        <!--Note that setting HasUnevenRows seems the only way to let rows (somewhat) adapt to contents, instead of having to set some fixed RowHeight.-->
+        <Setter Property="HasUnevenRows" Value="True"/>
     </Style>
 
-    <Style x:Key="NavigationLabelStyle" TargetType="Label">
-        <Setter Property="Foreground" Value="Purple"/>
-        <Setter Property="Background">
-            <Setter.Value>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="Gainsboro" Offset="1"/>
-                    <GradientStop Color="White" Offset="0.5"/>
-                </LinearGradientBrush>
-            </Setter.Value>
-        </Setter>
+    <Style x:Key="ListItemStyle" TargetType="Grid">
+        <Setter Property="Margin" Value="2,2,2,0"/>
+        <Setter Property="Padding" Value="3"/>
     </Style>
 
-    <Style x:Key="FrameStyle" TargetType="Frame">
-        <Setter Property="Margin" Value="{StaticResource StandardMargin}"/>
-        <!--<Setter Property="FrameBrush" Value="Black"/>-->
-        <!--<Setter Property="BorderThickness" Value="1"/>-->
-        <Setter Property="Padding" Value="{StaticResource StandardPadding}"/>
+    <Style TargetType="Label">
+        <Setter Property="VerticalOptions" Value="{DynamicResource LineVerticalOptions}"/>
+        <Setter Property="FontSize" Value="Small"/>
     </Style>
 
-    <Style x:Key="ImageStyle" TargetType="Image">
-        <!--<Setter Property="VerticalAlignment" Value="Top"/>-->
-        <Setter Property="Margin" Value="3"/>
+    <Style x:Key="EmphasisSmallLabelStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="Small"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+    </Style>
+    
+    <Style x:Key="EmphasisMediumLabelStyle" TargetType="Label" BasedOn="{StaticResource EmphasisSmallLabelStyle}">
+        <Setter Property="FontSize" Value="Medium"/>
     </Style>
 
-    <Style x:Key="LabelStyle" TargetType="Label">
-        <Setter Property="Margin" Value="{StaticResource StandardMargin}"/>
-        <Setter Property="HorizontalAlignment" Value="Left"/>
-        <Setter Property="TextWrapping" Value="Wrap"/>
-        <Setter Property="TextAlignment" Value="Left"/>
+    <Style x:Key="EmphasisLargeLabelStyle" TargetType="Label" BasedOn="{StaticResource EmphasisSmallLabelStyle}">
+        <Setter Property="FontSize" Value="Large"/>
     </Style>
 
-    <Style x:Key="MainHeaderLabelStyle" TargetType="Label" BasedOn="{StaticResource LabelStyle}">
-        <Setter Property="FontSize" Value="16"/>
-        <!--<Setter Property="FontWeight" Value="Bold"/>-->
+    <Style TargetType="Entry">
+        <Setter Property="VerticalOptions" Value="{DynamicResource LineVerticalOptions}"/>
     </Style>
 
-    <Style x:Key="LineLabelStyle" TargetType="Label" BasedOn="{StaticResource LabelStyle}">
-        <!--<Setter Property="VerticalAlignment" Value="Center"/>-->
-        <Setter Property="Margin" Value="{StaticResource StandardHorizontalSeparation}"/>
+    <!--Note that FontSize and FontAttributes do not work.-->
+    <Style TargetType="Button">
+        <Setter Property="VerticalOptions" Value="{DynamicResource LineVerticalOptions}"/>
     </Style>
 
-    <Style x:Key="LineValueLabelStyle" TargetType="Label" BasedOn="{StaticResource LineLabelStyle}">
-        <!--<Setter Property="FontWeight" Value="Bold"/>-->
+    <Style x:Key="CartButtonStyle" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{DynamicResource CartLevel1Colour}"/>
+        <Setter Property="VerticalOptions" Value="End"/>
+        <Setter Property="HorizontalOptions" Value="Start"/>
     </Style>
 
-    <Style x:Key="TextBoxStyle" TargetType="TextBox">
-        <Setter Property="Margin" Value="{StaticResource StandardMargin}"/>
-        <Setter Property="HorizontalAlignment" Value="Left"/>
-        <Setter Property="TextWrapping" Value="Wrap"/>
-        <Setter Property="TextAlignment" Value="Left"/>
-        <Setter Property="Background" Value="{StaticResource InputBackgroundColourBrush}"/>
-    </Style>
-
-    <Style x:Key="LineTextBoxStyle" TargetType="Entry">
-        <!--<Setter Property="VerticalAlignment" Value="Center"/>-->
-        <Setter Property="Margin" Value="{StaticResource StandardHorizontalSeparation}"/>
-    </Style>
-
-    <!--TODO Set the Background of the presented item to InputBackgroundColourBrush. This might need adapting of the ControlTemplate.-->
-    <Style x:Key="FilterComboBoxStyle" TargetType="Picker">
-        <Setter Property="Margin" Value="{StaticResource StandardHorizontalSeparation}"/>
-        <Setter Property="Width" Value="150"/>
-        <Setter Property="HorizontalAlignment" Value="Left"/>
-        <!--<Setter Property="VerticalAlignment" Value="Center"/>-->
-    </Style>
-
-    <Style x:Key="ButtonStyle" TargetType="Button">
-        <Setter Property="Margin" Value="{StaticResource StandardMargin}"/>
-        <Setter Property="Background" Value="{StaticResource ButtonBackgroundBrush}"/>
-        <Setter Property="Effect" Value="{StaticResource ButtonStandardEffect}"/>
-        <!--TODO get rid of background on MouseOver.-->
-        <Style.Triggers>
-            <Trigger Property="Button.IsMouseOver" Value="True">
-                <Setter Property="Button.Effect" Value="{StaticResource ButtonHoverEffect}"/>
-            </Trigger>
-        </Style.Triggers>
-    </Style>
-
-    <Style TargetType="Button" BasedOn="{StaticResource ButtonStyle}"/>
-
-    <Style x:Key="DetailsButtonStyle" TargetType="Button" BasedOn="{StaticResource ButtonStyle}">
-        <Setter Property="MinWidth" Value="50"/>
-        <Setter Property="HorizontalAlignment" Value="Left"/>
-        <!--<Setter Property="VerticalAlignment" Value="Bottom"/>-->
-    </Style>
-
-    <Style x:Key="DeleteButtonStyle" TargetType="Button" BasedOn="{StaticResource ButtonStyle}">
-        <Setter Property="Background" Value="{StaticResource WarningColourBrush}"/>
-    </Style>
-
-    <!--<Style x:Key="IntegerUpDownStyle" TargetType="xctk:IntegerUpDown">
-        <Setter Property="Margin" Value="{StaticResource StandardMargin}"/>
-    </Style>-->
-
-    <Style x:Key="ShoppingCartColumnHeaderStyle" TargetType="GridViewColumnHeader">
-        <Setter Property="Height" Value="5"/>
+    <Style TargetType="NumericUpDown:SfNumericUpDown">
+        <Setter Property="VerticalOptions" Value="{DynamicResource LineVerticalOptions}"/>
     </Style>
 </ResourceDictionary>

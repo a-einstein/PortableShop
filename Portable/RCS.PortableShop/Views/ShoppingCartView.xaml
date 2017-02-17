@@ -11,6 +11,8 @@
     xmlns:Converters="clr-namespace:RCS.PortableShop.Common.Converters;assembly=RCS.PortableShop.Common"
     xmlns:Localization="clr-namespace:RCS.PortableShop.Localization;assembly=RCS.PortableShop"
     BaseClasses:View.ViewModel="{x:Static ViewModels:ShoppingCartViewModel.Instance}"
+    BackgroundColor="{DynamicResource CartLevel0Colour}"
+    Padding="{DynamicResource ViewPadding}"
     >
 
     <BaseClasses:View.Resources>
@@ -19,38 +21,37 @@
         </ResourceDictionary>
     </BaseClasses:View.Resources>
 
-    <StackLayout BackgroundColor="#F4FA58" Padding="5">
-
+    <StackLayout>
         <Views:ShoppingCartSummaryView/>
-        
-        <ScrollView VerticalOptions="Fill">
 
-            <!--Note that setting HasUnevenRows seems the only way to let rows (somewhat) adapt to contents, instead of having to set some fixed RowHeight.-->
-            <ListView x:Name="shoppingCartItemsListView" ItemsSource="{Binding Items}" HasUnevenRows="True" BackgroundColor="White">
+        <ScrollView>
+            <ListView x:Name="shoppingCartItemsListView" ItemsSource="{Binding Items}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <!--Note this layout currently is aimed towards portrait orientation.-->
-                            <StackLayout Orientation="Vertical" BackgroundColor="#F2F5A9" Padding="5,0">
-                                <Label Text="{Binding Name}" VerticalOptions="Center" FontAttributes="Bold" FontSize="Medium"/>
+                            <Grid Style="{DynamicResource ListItemStyle}" BackgroundColor="{DynamicResource CartLevel1Colour}">
+                                <!--Note this layout currently is aimed towards portrait orientation.-->
+                                <StackLayout Orientation="Vertical" Style="{DynamicResource CartItemStyle}">
+                                    <Label Text="{Binding Name}" FontAttributes="Bold"/>
 
-                                <StackLayout Orientation="Horizontal">
-                                    <Label Text="{Binding ProductSize}" VerticalOptions="Center"/>
-                                    <Label Text="{Binding ProductSizeUnitMeasureCode}" VerticalOptions="Center"/>
-                                    <Label Text="{Binding ProductColor}" VerticalOptions="Center"/>
-                                    <Label Text="{Binding ProductListPrice, StringFormat=\{0:C2\}}" VerticalOptions="Center"/>
-                                    <Label Text="{Binding Value, StringFormat=\{0:C2\}}" FontAttributes="Bold" VerticalOptions="Center"/>
-                                 </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{Binding ProductSize}"/>
+                                        <Label Text="{Binding ProductSizeUnitMeasureCode}"/>
+                                        <Label Text="{Binding ProductColor}"/>
+                                        <Label Text="{Binding ProductListPrice, StringFormat=\{0:C2\}}"/>
+                                        <Label Text="{Binding Value, StringFormat=\{0:C2\}}" FontAttributes="Bold"/>
+                                    </StackLayout>
 
-                                <StackLayout Orientation="Horizontal">
-                                    <!--Note this need HorizontalOptions to prevent taking all width. It is hard to reduce its size, because of its Buttons to start with. WidthRequest needs to be considerable large to preserve the text area. HeightRequest only crops it.-->
-                                    <!--Note the (differently named) FontAttribute does not work. Fontsize is numeric instead of an enum.-->
-                                    <NumericUpDown:SfNumericUpDown Value="{Binding Quantity, Mode=TwoWay}" VerticalOptions="Center" HorizontalOptions="Start" WidthRequest="130" FontSize="10" FontAttribute="Bold" TextColor="Black"/>
-                                   
-                                    <!--Note that HeightRequest usually only fucks the Button up, while FontSize does not do anything. -->
-                                    <Button Text="{Localization:Translate Remove}" Command="{Binding BindingContext.DeleteCommand, Source={x:Reference shoppingCartItemsListView}}" CommandParameter="{Binding}" BackgroundColor="Orange" VerticalOptions="Center" HorizontalOptions="Start" WidthRequest="30"/>
+                                    <StackLayout Orientation="Horizontal">
+                                        <!--Note this need HorizontalOptions to prevent taking all width. It is hard to reduce its size, because of its Buttons to start with. WidthRequest needs to be considerable large to preserve the text area. HeightRequest only crops it.-->
+                                        <!--Note the (differently named) FontAttribute does not work. Fontsize is numeric instead of an enum.-->
+                                        <NumericUpDown:SfNumericUpDown Value="{Binding Quantity, Mode=TwoWay}" HorizontalOptions="Start" WidthRequest="130" FontSize="10" FontAttribute="Bold" TextColor="Black"/>
+
+                                        <!--Note that HeightRequest usually only fucks the Button up, while FontSize does not do anything. -->
+                                        <Button Text="{Localization:Translate Remove}" Command="{Binding BindingContext.DeleteCommand, Source={x:Reference shoppingCartItemsListView}}" CommandParameter="{Binding}" BackgroundColor="{DynamicResource WarningColour}" HorizontalOptions="Start" WidthRequest="30"/>
+                                    </StackLayout>
                                 </StackLayout>
-                            </StackLayout>
+                            </Grid>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

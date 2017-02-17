@@ -8,21 +8,23 @@
     xmlns:Views="clr-namespace:RCS.PortableShop.Views;assembly=RCS.PortableShop"
     xmlns:Controls="clr-namespace:RCS.PortableShop.Common.Controls;assembly=RCS.PortableShop.Common"
     xmlns:Localization="clr-namespace:RCS.PortableShop.Localization;assembly=RCS.PortableShop"
+    VerticalOptions="FillAndExpand"
     >
 
-    <Grid VerticalOptions="Fill">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <BaseClasses:View Grid.Row="0" Content="{Binding MainRegionContent}"/>
+        <BaseClasses:View Grid.Row="0" Content="{Binding MainRegionContent}" VerticalOptions="FillAndExpand"/>
+        
+        <!--TODO Get rid of gap here.-->
 
         <!--HACK Setting BackgroundColor here because of https://bugzilla.xamarin.com/show_bug.cgi?id=25943 -->
-        <!--Note that only a limited number of Color names are currently supported.-->
-        <Controls:ContentButton Grid.Row="1" Command="{Binding ShowCartCommand}" BackgroundColor="#F4FA58" Padding="5">
+        <Controls:ContentButton Grid.Row="1" Command="{Binding ShowCartCommand}" BackgroundColor="{DynamicResource CartLevel0Colour}">
             <Controls:ContentButton.Content>
-                <Views:ShoppingCartSummaryView/>
+                <Views:ShoppingCartSummaryView Padding="{DynamicResource ViewPadding}"/>
             </Controls:ContentButton.Content>
         </Controls:ContentButton>
     </Grid>

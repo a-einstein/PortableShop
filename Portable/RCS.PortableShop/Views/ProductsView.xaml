@@ -10,18 +10,16 @@
     xmlns:Controls="clr-namespace:RCS.PortableShop.Common.Controls;assembly=RCS.PortableShop.Common"
     xmlns:Converters="clr-namespace:RCS.PortableShop.Common.Converters;assembly=RCS.PortableShop.Common"
     xmlns:Localization="clr-namespace:RCS.PortableShop.Localization;assembly=RCS.PortableShop"
-    xmlns:Styles="clr-namespace:RCS.PortableShop.Common.Styles;assembly=RCS.PortableShop.Common"
-    VerticalOptions="Fill"
+    BackgroundColor="{DynamicResource ProductsLevel0Colour}"
+    Padding="{DynamicResource ViewPadding}"
     >
-    <!--xmlns:Main="clr-namespace:RCS.PortableShop.Main;assembly=RCS.PortableShop"-->
 
     <BaseClasses:View.ViewModel>
         <ViewModels:ProductsViewModel/>
     </BaseClasses:View.ViewModel>
 
     <BaseClasses:View.Resources>
-        <!--TODO Merge does not work either way, here or in MainApplication.-->
-        <ResourceDictionary MergedWith="Styles:GeneralStyle">
+        <ResourceDictionary>
             <!--<Converters:CategoriesFormatter x:Key="CategoriesFormatter"/>-->
             <!--<Converters:SizeFormatter x:Key="SizeFormatter"/>-->
             <Converters:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter"/>
@@ -31,44 +29,32 @@
         </ResourceDictionary>
     </BaseClasses:View.Resources>
 
-    <!--TODO Central styling.-->
-    <!--Background="{StaticResource ProductBackgroundBrush}"-->
-    <!--TODO Does this HAVE to be DynamicResource?!-->
-    <!--TODO Does not work either way, DynamicResource (values) or StaticResource (error), -->
-    <Grid VerticalOptions="Fill" BackgroundColor="#58ACFA" Padding="5">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-            <StackLayout Grid.Row="0" Margin="0,0,0,2" Padding="3">
-            <!--Style="{DynamicResource MainHeaderLabelStyle}"-->
-            <Label Text="{Localization:Translate Products}" FontSize="Large" FontAttributes="Bold"/>
+        <StackLayout Grid.Row="0">
+            <Label Text="{Localization:Translate Products}" Style="{DynamicResource EmphasisLargeLabelStyle}"/>
 
             <StackLayout Orientation="Horizontal">
-                <Controls:BindablePicker Title="{Localization:Translate MasterFilter}" ItemsSource="{Binding MasterFilterItems, Mode=TwoWay}" SelectedItem="{Binding MasterFilterValue, Mode=TwoWay}" IsEnabled="{Binding MasterFilterItems, Converter={StaticResource HasValueTester}}" BackgroundColor="White"/>
+                <Controls:BindablePicker Title="{Localization:Translate MasterFilter}" ItemsSource="{Binding MasterFilterItems, Mode=TwoWay}" SelectedItem="{Binding MasterFilterValue, Mode=TwoWay}" IsEnabled="{Binding MasterFilterItems, Converter={StaticResource HasValueTester}}" BackgroundColor="{DynamicResource ProductsLevel1Colour}"/>
 
-                <Controls:BindablePicker Title="{Localization:Translate DetailFilter}" ItemsSource="{Binding DetailFilterItems, Mode=TwoWay}" SelectedItem="{Binding DetailFilterValue, Mode=TwoWay}" IsEnabled="{Binding DetailFilterItems, Converter={StaticResource HasValueTester}}" BackgroundColor="White"/>
+                <Controls:BindablePicker Title="{Localization:Translate DetailFilter}" ItemsSource="{Binding DetailFilterItems, Mode=TwoWay}" SelectedItem="{Binding DetailFilterValue, Mode=TwoWay}" IsEnabled="{Binding DetailFilterItems, Converter={StaticResource HasValueTester}}" BackgroundColor="{DynamicResource ProductsLevel1Colour}"/>
 
-                <!--Style="{StaticResource LineTextBoxStyle}" Width="200"-->
-                <Entry Placeholder="{Localization:Translate TextFilter}" Text="{Binding TextFilterValue, Mode=TwoWay}" BackgroundColor="White"/>
+                <Entry Placeholder="{Localization:Translate TextFilter}" Text="{Binding TextFilterValue, Mode=TwoWay}" BackgroundColor="{DynamicResource ProductsLevel1Colour}"/>
             </StackLayout>
 
             <StackLayout Orientation="Horizontal" HorizontalOptions="End">
-                <!--Style="{StaticResource LineValueLabelStyle}"-->
-                <Label Text="{Binding ItemsCount}" VerticalTextAlignment="Center" FontSize="Medium" FontAttributes="Bold"/>
-
-                <!--Style="{StaticResource LineLabelStyle}"-->
-                <Label Text="{Localization:Translate Products}" VerticalTextAlignment="Center" FontSize="Medium"/>
-
                 <Grid>
                     <!--TODO Currently this control does not appear on screen no matter what or where. It may be a bug in Xamarin. That has to be solved first.-->
                     <!--TODO Experiment what arrangement is best with regards to visibility and so on.-->
                     <!--TODO Possibly use it elsewhere too.-->
                     <ActivityIndicator Color="Black" IsVisible="{Binding Awaiting}" IsRunning="{Binding Awaiting}"/>
 
-                    <!--IsDefault="True" Margin="{StaticResource StandardHorizontalSeparation}"-->
-                    <Button Text="{Localization:Translate Filter}" Command="{Binding FilterCommand}" FontSize="Small" FontAttributes="Bold" IsVisible="{Binding Awaiting, Converter={StaticResource BooleanInverter}}">
+                    <!--IsDefault="True"-->
+                    <Button Text="{Localization:Translate Filter}" Command="{Binding FilterCommand}" IsVisible="{Binding Awaiting, Converter={StaticResource BooleanInverter}}" BackgroundColor="{DynamicResource ProductsLevel1Colour}">
                         <!--Note this prevents unfiltered queries.-->
                         <!--<Button.IsEnabled>-->
                         <!--<MultiBinding Converter="{StaticResource HasValueMultiTester}">
@@ -79,40 +65,42 @@
                         <!--</Button.IsEnabled>-->
                     </Button>
                 </Grid>
+                
+                <Label Text="{Binding ItemsCount}" Style="{DynamicResource EmphasisMediumLabelStyle}"/>
+                
+                <Label Text="{Localization:Translate Products}" Style="{DynamicResource EmphasisMediumLabelStyle}"/>
             </StackLayout>
         </StackLayout>
 
         <!--Note this does not work within a StackLayout-->
-        <ScrollView Grid.Row="1" VerticalOptions="Fill">
-
-            <!--Note that setting HasUnevenRows seems the only way to let row (somewhat) adapt to contents, instead of having to set some fixed RowHeight.-->
-            <ListView x:Name="productsItemsControl" ItemsSource="{Binding Items}" HasUnevenRows="True" BackgroundColor="White">
+        <ScrollView Grid.Row="1">
+            <ListView x:Name="productsItemsControl" ItemsSource="{Binding Items}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Controls:ContentButton Command="{Binding BindingContext.DetailsCommand, Source={x:Reference productsItemsControl}}" CommandParameter="{Binding}" Margin="0">
+                            <Controls:ContentButton Command="{Binding BindingContext.DetailsCommand, Source={x:Reference productsItemsControl}}" CommandParameter="{Binding}">
                                 <Controls:ContentButton.Content>
-                                    <Grid Margin="2" BackgroundColor="#A9D0F5">
+                                    <Grid Style="{DynamicResource ListItemStyle}" BackgroundColor="{DynamicResource ProductsLevel1Colour}">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="Auto"/>
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
 
                                         <StackLayout Grid.Column="0">
-                                            <Image Source="{Binding ThumbNailPhoto, Converter={StaticResource ByteArrayToImageSourceConverter}}" VerticalOptions="Start" HorizontalOptions="Start" Margin="3" WidthRequest="100" HeightRequest="100" />
-                                            <Button Text="{Localization:Translate IncreaseProduct}" Command="{Binding BindingContext.CartCommand, Source={x:Reference productsItemsControl}}" CommandParameter="{Binding}" FontSize="Small" FontAttributes="Bold" Margin="0" HorizontalOptions="Start" VerticalOptions="End"/>
+                                            <Image Source="{Binding ThumbNailPhoto, Converter={StaticResource ByteArrayToImageSourceConverter}}" VerticalOptions="Start" HorizontalOptions="Start" WidthRequest="100" HeightRequest="100" />
+                                            <Button Text="{Localization:Translate IncreaseProduct}" Command="{Binding BindingContext.CartCommand, Source={x:Reference productsItemsControl}}" CommandParameter="{Binding}" Style="{DynamicResource CartButtonStyle}"/>
                                         </StackLayout>
 
-                                        <StackLayout Grid.Column="1" Margin="3">
+                                        <StackLayout Grid.Column="1">
                                             <StackLayout Orientation="Horizontal">
                                                 <Label Text="{Binding ProductCategory}"/>
                                                 <Label Text="/"/>
                                                 <Label Text="{Binding ProductSubcategory}"/>
                                             </StackLayout>
 
-                                            <Label Text="{Binding Name}" FontSize="Medium" FontAttributes="Bold"/>
+                                            <Label Text="{Binding Name}" Style="{DynamicResource EmphasisMediumLabelStyle}"/>
 
-                                            <Label Text="{Binding ListPrice, StringFormat=\{0:C2\}}" FontAttributes="Bold"/>
+                                            <Label Text="{Binding ListPrice, StringFormat=\{0:C2\}}" Style="{DynamicResource EmphasisSmallLabelStyle}"/>
 
                                             <StackLayout Orientation="Horizontal">
                                                 <Label Text="{Binding Size}"/>

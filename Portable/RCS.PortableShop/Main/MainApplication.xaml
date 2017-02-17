@@ -8,10 +8,7 @@
     >
 
     <Application.Resources>
+        <!--Note that DynamicResource has to be used due to bug ??-->
         <ResourceDictionary MergedWith="Styles:GeneralStyle"/>
-            <!--<ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/PortableShop/RCS.PortableShop.Common;component/Styles/GeneralStyle.xaml"/>
-            </ResourceDictionary.MergedDictionaries>-->
-        <!--</ResourceDictionary>-->
     </Application.Resources>
 </Application>

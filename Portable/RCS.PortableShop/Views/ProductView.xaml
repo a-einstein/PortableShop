@@ -9,8 +9,9 @@
     xmlns:Controls="clr-namespace:RCS.PortableShop.Common.Controls;assembly=RCS.PortableShop.Common"
     xmlns:Converters="clr-namespace:RCS.PortableShop.Common.Converters;assembly=RCS.PortableShop.Common"
     xmlns:Localization="clr-namespace:RCS.PortableShop.Localization;assembly=RCS.PortableShop"
+    BackgroundColor="{DynamicResource ProductsLevel1Colour}"
+    Padding="{DynamicResource ViewPadding}"
     >
-    <!--Background="{StaticResource ProductBackgroundBrush}"-->
 
     <BaseClasses:View.ViewModel>
         <ViewModels:ProductViewModel/>
@@ -25,22 +26,22 @@
         </ResourceDictionary>
     </BaseClasses:View.Resources>
 
-    <ScrollView VerticalOptions="Fill">
+    <ScrollView>
         <!--TODO Make layout dependent on orientation.-->
-        <Grid x:Name="productControl" VerticalOptions="Fill" BackgroundColor="#A9D0F5" Padding="5">
+        <Grid x:Name="productControl">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <StackLayout Grid.Column="0" VerticalOptions="Start">
-                <Controls:ContentButton Grid.Column="0" Command="{Binding PhotoCommand}" CommandParameter="{Binding Source, Source={x:Reference imageControl}}" VerticalOptions="Start" >
+                <Controls:ContentButton Grid.Column="0" Command="{Binding PhotoCommand}" CommandParameter="{Binding Source, Source={x:Reference imageControl}}" VerticalOptions="Start" HorizontalOptions="Start">
                     <Controls:ContentButton.Content>
                         <Image x:Name="imageControl" Source="{Binding Item.LargePhoto, Converter={StaticResource ByteArrayToImageSourceConverter}}" WidthRequest="240" HeightRequest="240"/>
                     </Controls:ContentButton.Content>
                 </Controls:ContentButton>
 
-                <Button Text="{Localization:Translate IncreaseProduct}" Command="{Binding CartCommand}" CommandParameter="{Binding Item}" FontSize="Small" FontAttributes="Bold" HorizontalOptions="Start"/>
+                <Button Text="{Localization:Translate IncreaseProduct}" Command="{Binding CartCommand}" CommandParameter="{Binding Item}" Style="{DynamicResource CartButtonStyle}"/>
             </StackLayout>
 
             <StackLayout Grid.Column="1" VerticalOptions="Start">
@@ -52,11 +53,11 @@
 
                 <Label Text="{Binding Item.ModelName}"/>
 
-                <Label Text="{Binding Item.Name}" FontSize="Medium" FontAttributes="Bold"/>
+                <Label Text="{Binding Item.Name}" Style="{DynamicResource EmphasisMediumLabelStyle}"/>
 
                 <Label Text="{Binding Item.ProductNumber}"/>
 
-                <Label Text="{Binding Item.ListPrice, StringFormat=\{0:C2\}}" FontAttributes="Bold"/>
+                <Label Text="{Binding Item.ListPrice, StringFormat=\{0:C2\}}" Style="{DynamicResource EmphasisSmallLabelStyle}"/>
 
                 <StackLayout Orientation="Horizontal">
                     <Label Text="{Binding Item.Size}"/>
