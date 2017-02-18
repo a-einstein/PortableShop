@@ -1,20 +1,25 @@
-﻿<ResourceDictionary
-    x:Class="RCS.PortableShop.Common.Styles.GeneralStyle"
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<ResourceDictionary
+    x:Class="RCS.PortableShop.Common.Styles.Stylesheet"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:NumericUpDown="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
     >
+    <!--Note that currently no form of nested or multiple merging exist. https://forums.xamarin.com/discussion/86308/multiple-merged-dictionaries?-->
+    <!--TODO split off ResourceDictionary when possible.-->
 
     <Thickness x:Key="ViewPadding">5</Thickness>
 
     <LayoutOptions x:Key="LineVerticalOptions">Center</LayoutOptions>
-    
+
     <!--Note that only a limited number of Color names is supported, currently different from the documentation.-->
     <Color x:Key="MessageColour">Black</Color>
     <Color x:Key="AssertColour">Green</Color>
     <Color x:Key="WarningColour">Orange</Color>
     <Color x:Key="ErrorColour">Red</Color>
 
+    <!--TODO This part would be candidate to split of a specific dictionary.-->
     <Color x:Key="ProductsLevel0Colour">#58ACFA</Color>
     <Color x:Key="ProductsLevel1Colour">#A9D0F5</Color>
     <Color x:Key="CartLevel0Colour">#F4FA58</Color>
@@ -23,7 +28,7 @@
     <Style TargetType="ScrollView">
         <Setter Property="VerticalOptions" Value="FillAndExpand"/>
     </Style>
-    
+
     <Style TargetType="ListView">
         <Setter Property="BackgroundColor" Value="White"/>
         <!--Note that setting HasUnevenRows seems the only way to let rows (somewhat) adapt to contents, instead of having to set some fixed RowHeight.-->
@@ -44,7 +49,7 @@
         <Setter Property="FontSize" Value="Small"/>
         <Setter Property="FontAttributes" Value="Bold"/>
     </Style>
-    
+
     <Style x:Key="EmphasisMediumLabelStyle" TargetType="Label" BasedOn="{StaticResource EmphasisSmallLabelStyle}">
         <Setter Property="FontSize" Value="Medium"/>
     </Style>
@@ -62,6 +67,7 @@
         <Setter Property="VerticalOptions" Value="{DynamicResource LineVerticalOptions}"/>
     </Style>
 
+    <!--TODO This part would be candidate to split of a specific dictionary.-->
     <Style x:Key="CartButtonStyle" TargetType="Button">
         <Setter Property="BackgroundColor" Value="{DynamicResource CartLevel1Colour}"/>
         <Setter Property="VerticalOptions" Value="End"/>

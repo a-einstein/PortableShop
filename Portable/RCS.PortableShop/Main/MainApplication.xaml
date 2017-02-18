@@ -1,14 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<Application 
+<Application
     x:Class="RCS.PortableShop.Main.MainApplication"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:Styles="clr-namespace:RCS.PortableShop.Common.Styles;assembly=RCS.PortableShop.Common"
+    xmlns:CommonStyles="clr-namespace:RCS.PortableShop.Common.Styles;assembly=RCS.PortableShop.Common"
     >
 
     <Application.Resources>
         <!--Note that DynamicResource has to be used due to bug ??-->
-        <ResourceDictionary MergedWith="Styles:GeneralStyle"/>
+        <!--TODO Check if and where this is true, replace by StaticResource where possible.-->
+        <ResourceDictionary MergedWith="CommonStyles:Stylesheet"/>
     </Application.Resources>
 </Application>

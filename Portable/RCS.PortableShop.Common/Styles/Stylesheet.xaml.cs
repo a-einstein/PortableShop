@@ -2,9 +2,9 @@
 
 namespace RCS.PortableShop.Common.Styles
 {
-    public partial class GeneralStyle : ResourceDictionary
+    public partial class Stylesheet : ResourceDictionary
     {
-        public GeneralStyle()
+        public Stylesheet()
         {
             InitializeComponent();
         }
