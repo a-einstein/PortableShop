@@ -8,5 +8,15 @@ namespace RCS.PortableShop.Views
         {
             InitializeComponent();
         }
+
+        private int preservedActionBlockWidth = 0;
+        private int preservedActionBlockHeight = 0;
+
+        protected override void OnSizeAllocated(double width, double height)
+        {
+            base.OnSizeAllocated(width, height);
+
+            Orientate(ref actionBlock, ref preservedActionBlockWidth, ref preservedActionBlockHeight, width, height);
+        }
     }
 }

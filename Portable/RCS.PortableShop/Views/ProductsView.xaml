@@ -38,41 +38,45 @@
         <StackLayout Grid.Row="0">
             <Label Text="{Localization:Translate Products}" Style="{DynamicResource EmphasisLargeLabelStyle}"/>
 
-            <StackLayout Orientation="Horizontal">
-                <Controls:BindablePicker Title="{Localization:Translate MasterFilter}" ItemsSource="{Binding MasterFilterItems, Mode=TwoWay}" SelectedItem="{Binding MasterFilterValue, Mode=TwoWay}" IsEnabled="{Binding MasterFilterItems, Converter={StaticResource HasValueTester}}" BackgroundColor="{DynamicResource ProductsLevel1Colour}"/>
+            <!--Note this Orientation may be changed depending on screen orientation. Assume Vertical.-->
+            <StackLayout Grid.Row="0" x:Name="actionBlock" Orientation="Vertical" VerticalOptions="Start" HorizontalOptions="Start">
+                <StackLayout Orientation="Horizontal">
+                    <Controls:BindablePicker Title="{Localization:Translate MasterFilter}" ItemsSource="{Binding MasterFilterItems, Mode=TwoWay}" SelectedItem="{Binding MasterFilterValue, Mode=TwoWay}" IsEnabled="{Binding MasterFilterItems, Converter={StaticResource HasValueTester}}" BackgroundColor="{DynamicResource ProductsLevel1Colour}"/>
 
-                <Controls:BindablePicker Title="{Localization:Translate DetailFilter}" ItemsSource="{Binding DetailFilterItems, Mode=TwoWay}" SelectedItem="{Binding DetailFilterValue, Mode=TwoWay}" IsEnabled="{Binding DetailFilterItems, Converter={StaticResource HasValueTester}}" BackgroundColor="{DynamicResource ProductsLevel1Colour}"/>
+                    <Controls:BindablePicker Title="{Localization:Translate DetailFilter}" ItemsSource="{Binding DetailFilterItems, Mode=TwoWay}" SelectedItem="{Binding DetailFilterValue, Mode=TwoWay}" IsEnabled="{Binding DetailFilterItems, Converter={StaticResource HasValueTester}}" BackgroundColor="{DynamicResource ProductsLevel1Colour}"/>
 
-                <Entry Placeholder="{Localization:Translate TextFilter}" Text="{Binding TextFilterValue, Mode=TwoWay}" BackgroundColor="{DynamicResource ProductsLevel1Colour}"/>
-            </StackLayout>
+                    <Entry Placeholder="{Localization:Translate TextFilter}" Text="{Binding TextFilterValue, Mode=TwoWay}" BackgroundColor="{DynamicResource ProductsLevel1Colour}"/>
+                </StackLayout>
 
-            <StackLayout Orientation="Horizontal" HorizontalOptions="End">
-                <Grid>
-                    <!--TODO Currently this control does not appear on screen no matter what or where. It may be a bug in Xamarin. That has to be solved first.-->
-                    <!--TODO Experiment what arrangement is best with regards to visibility and so on.-->
-                    <!--TODO Possibly use it elsewhere too.-->
-                    <ActivityIndicator Color="Black" IsVisible="{Binding Awaiting}" IsRunning="{Binding Awaiting}"/>
+                <!--Put at Start, as changes in orientation did not work out correctly on the last Label.-->
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                    <Grid>
+                        <!--TODO Currently this control does not appear on screen no matter what or where. It may be a bug in Xamarin. That has to be solved first.-->
+                        <!--TODO Experiment what arrangement is best with regards to visibility and so on.-->
+                        <!--TODO Possibly use it elsewhere too.-->
+                        <ActivityIndicator Color="Black" IsVisible="{Binding Awaiting}" IsRunning="{Binding Awaiting}"/>
 
-                    <!--IsDefault="True"-->
-                    <Button Text="{Localization:Translate Filter}" Command="{Binding FilterCommand}" IsVisible="{Binding Awaiting, Converter={StaticResource BooleanInverter}}" BackgroundColor="{DynamicResource ProductsLevel1Colour}">
-                        <!--Note this prevents unfiltered queries.-->
-                        <!--<Button.IsEnabled>-->
-                        <!--<MultiBinding Converter="{StaticResource HasValueMultiTester}">
+                        <!--IsDefault="True"-->
+                        <Button Text="{Localization:Translate Filter}" Command="{Binding FilterCommand}" IsVisible="{Binding Awaiting, Converter={StaticResource BooleanInverter}}" BackgroundColor="{DynamicResource ProductsLevel1Colour}">
+                            <!--Note this prevents unfiltered queries.-->
+                            <!--<Button.IsEnabled>-->
+                            <!--<MultiBinding Converter="{StaticResource HasValueMultiTester}">
                                 <Binding Path="MasterFilterValue"/>
                                 <Binding Path="DetailFilterValue"/>
                                 <Binding Path="TextFilterValue"/>
                             </MultiBinding>-->
-                        <!--</Button.IsEnabled>-->
-                    </Button>
-                </Grid>
-                
-                <Label Text="{Binding ItemsCount}" Style="{DynamicResource EmphasisMediumLabelStyle}"/>
-                
-                <Label Text="{Localization:Translate Products}" Style="{DynamicResource EmphasisMediumLabelStyle}"/>
+                            <!--</Button.IsEnabled>-->
+                        </Button>
+                    </Grid>
+
+                    <Label Text="{Binding ItemsCount}" Style="{DynamicResource EmphasisMediumLabelStyle}"/>
+
+                    <Label Text="{Localization:Translate Products}" Style="{DynamicResource EmphasisMediumLabelStyle}"/>
+                </StackLayout>
             </StackLayout>
         </StackLayout>
 
-        <!--Note this does not work within a StackLayout-->
+        <!--TODO It might be interesting to make all this Horizontal.-->
         <ScrollView Grid.Row="1">
             <ListView x:Name="productsItemsControl" ItemsSource="{Binding Items}">
                 <ListView.ItemTemplate>

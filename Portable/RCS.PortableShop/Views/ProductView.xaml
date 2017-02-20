@@ -26,25 +26,22 @@
         </ResourceDictionary>
     </BaseClasses:View.Resources>
 
+    <!--Have an outermost ScrollView to keep all controls accessible.--> 
     <ScrollView>
-        <!--TODO Make layout dependent on orientation.-->
-        <Grid x:Name="productControl">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-
-            <StackLayout Grid.Column="0" VerticalOptions="Start">
-                <Controls:ContentButton Grid.Column="0" Command="{Binding PhotoCommand}" CommandParameter="{Binding Source, Source={x:Reference imageControl}}" VerticalOptions="Start" HorizontalOptions="Start">
+        <!--TODO Get VerticalOptions of this part really working.-->
+        <!--Note this Orientation may be changed depending on screen orientation. Assume Vertical.-->
+        <StackLayout x:Name="productControl" Orientation="Vertical" VerticalOptions="Start">
+            <StackLayout VerticalOptions="Start">
+                <Controls:ContentButton Command="{Binding PhotoCommand}" CommandParameter="{Binding Source, Source={x:Reference imageControl}}" VerticalOptions="Start" HorizontalOptions="Start">
                     <Controls:ContentButton.Content>
                         <Image x:Name="imageControl" Source="{Binding Item.LargePhoto, Converter={StaticResource ByteArrayToImageSourceConverter}}" WidthRequest="240" HeightRequest="240"/>
                     </Controls:ContentButton.Content>
                 </Controls:ContentButton>
 
-                <Button Text="{Localization:Translate IncreaseProduct}" Command="{Binding CartCommand}" CommandParameter="{Binding Item}" Style="{DynamicResource CartButtonStyle}"/>
+                <Button Text="{Localization:Translate IncreaseProduct}" Command="{Binding CartCommand}" CommandParameter="{Binding Item}" Style="{DynamicResource CartButtonStyle}" VerticalOptions="Start"/>
             </StackLayout>
 
-            <StackLayout Grid.Column="1" VerticalOptions="Start">
+            <StackLayout VerticalOptions="Start">
                 <StackLayout Orientation="Horizontal">
                     <Label Text="{Binding Item.ProductCategory}"/>
                     <Label Text="/"/>
@@ -73,6 +70,6 @@
 
                 <Label Text="{Binding Item.Description}"/>
             </StackLayout>
-        </Grid>
+        </StackLayout>
     </ScrollView>
 </BaseClasses:ImplicitModelView>

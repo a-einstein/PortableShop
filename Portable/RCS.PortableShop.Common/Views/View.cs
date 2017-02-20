@@ -1,4 +1,5 @@
 ﻿using RCS.PortableShop.Common.ViewModels;
+using System;
 using Xamarin.Forms;
 
 namespace RCS.PortableShop.Common.Views
@@ -13,6 +14,29 @@ namespace RCS.PortableShop.Common.Views
             {
                 BindingContext = value;
                 ViewModel.Navigation = Navigation;
+            }
+        }
+
+        protected void Orientate(ref StackLayout stack, ref int preservedWidth, ref int preservedHeight, double width, double height)
+        {
+            //Make comparison more robust.
+            int newWidth = (int)Math.Round(width);
+            int newHeight = (int)Math.Round(height);
+            int voidValue = -1;
+
+            // Prevent unnecessary orientation changes.
+            if (newWidth != voidValue && newHeight != voidValue &&
+                (preservedWidth != newWidth || preservedHeight != newHeight))
+            {
+                var newOrientation = newWidth < newHeight
+                    ? StackOrientation.Vertical
+                    : StackOrientation.Horizontal;
+
+                if (stack.Orientation != newOrientation)
+                    stack.Orientation = newOrientation;
+
+                preservedWidth = newWidth;
+                preservedHeight = newHeight;
             }
         }
     }
