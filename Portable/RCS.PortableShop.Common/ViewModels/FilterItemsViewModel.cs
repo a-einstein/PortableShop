@@ -31,9 +31,6 @@ namespace RCS.PortableShop.Common.ViewModels
             set
             {
                 SetValue(MasterFilterItemsProperty, value);
-
-                // Need the event for bound controls.
-                // TODO This should not be necessary for a BindableProperty.
                 RaisePropertyChanged(nameof(MasterFilterItems));
             }
         }
@@ -47,9 +44,6 @@ namespace RCS.PortableShop.Common.ViewModels
             set
             {
                 SetValue(MasterFilterValueProperty, value);
-
-                // Need the event for bound controls.
-                // TODO This should not be necessary for a BindableProperty.
                 RaisePropertyChanged(nameof(MasterFilterValue));
             }
         }
@@ -96,9 +90,6 @@ namespace RCS.PortableShop.Common.ViewModels
             set
             {
                 SetValue(DetailFilterItemsProperty, value);
-
-                // Need the event for bound controls.
-                // TODO This should not be necessary for a BindableProperty.
                 RaisePropertyChanged(nameof(DetailFilterItems));
             }
         }
@@ -112,9 +103,6 @@ namespace RCS.PortableShop.Common.ViewModels
             set
             {
                 SetValue(DetailFilterValueProperty, value);
-
-                // Need the event for bound controls.
-                // TODO This should not be necessary for a BindableProperty.
                 RaisePropertyChanged(nameof(DetailFilterValue));
             }
         }
@@ -128,9 +116,6 @@ namespace RCS.PortableShop.Common.ViewModels
             set
             {
                 SetValue(TextFilterValueProperty, value);
-
-                // Need the event for bound controls.
-                // TODO This should not be necessary for a BindableProperty.
                 RaisePropertyChanged(nameof(TextFilterValue));
             }
         }

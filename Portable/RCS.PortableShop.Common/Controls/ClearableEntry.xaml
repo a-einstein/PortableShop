@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<Controls:CustomContentView
+    x:Class="RCS.PortableShop.Common.Controls.ClearableEntry"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Controls="clr-namespace:RCS.PortableShop.Common.Controls;assembly=RCS.PortableShop.Common"
+    xmlns:Localization="clr-namespace:RCS.PortableShop.Localization;assembly=RCS.PortableShop"
+    >
+
+    <ContentView.Content>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Entry Grid.Column="0" Placeholder="{Binding Placeholder}" Text="{Binding Text, Mode=TwoWay}" Margin="0"/>
+            <Button Grid.Column="1" Text="{Localization:Translate Remove}" Command="{Binding ClearCommand}" BackgroundColor="{DynamicResource WarningColour}" Margin="0" WidthRequest="30"/>
+        </Grid>
+    </ContentView.Content>
+</Controls:CustomContentView>

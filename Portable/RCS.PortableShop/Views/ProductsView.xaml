@@ -45,7 +45,7 @@
 
                     <Controls:BindablePicker Title="{Localization:Translate DetailFilter}" ItemsSource="{Binding DetailFilterItems, Mode=TwoWay}" SelectedItem="{Binding DetailFilterValue, Mode=TwoWay}" IsEnabled="{Binding DetailFilterItems, Converter={StaticResource HasValueTester}}" BackgroundColor="{DynamicResource ProductsLevel1Colour}"/>
 
-                    <Entry Placeholder="{Localization:Translate TextFilter}" Text="{Binding TextFilterValue, Mode=TwoWay}" BackgroundColor="{DynamicResource ProductsLevel1Colour}"/>
+                    <Controls:ClearableEntry Placeholder="{Localization:Translate TextFilter}" Text="{Binding TextFilterValue, Mode=TwoWay}" BackgroundColor="{DynamicResource ProductsLevel1Colour}" WidthRequest="130"/>
                 </StackLayout>
 
                 <!--Put at Start, as changes in orientation did not work out correctly on the last Label.-->

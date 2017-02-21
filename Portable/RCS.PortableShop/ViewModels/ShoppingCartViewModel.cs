@@ -106,9 +106,6 @@ namespace RCS.PortableShop.ViewModels
             set
             {
                 SetValue(ProductItemCountProperty, value);
-
-                // Needed the event for bound controls.
-                // TODO This should not be necessary for a BindableProperty.
                 RaisePropertyChanged(nameof(ProductItemsCount));
             }
         }
@@ -122,9 +119,6 @@ namespace RCS.PortableShop.ViewModels
             set
             {
                 SetValue(TotalValueProperty, value);
-
-                // Need the event for bound controls.
-                // TODO This should not be necessary for a BindableProperty.
                 RaisePropertyChanged(nameof(TotalValue));
             }
         }
