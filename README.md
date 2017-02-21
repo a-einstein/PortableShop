@@ -18,8 +18,9 @@ Current score: [![BCH compliance](https://bettercodehub.com/edge/badge/a-einstei
 * Globalized resources.
 * Basic styling.
 * Splash screen.
+* Orientation.
+* Custom controls.
 * Application icon.
-* NuGet.
 * ...
 
 #### Prerequisites
