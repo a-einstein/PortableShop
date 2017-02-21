@@ -32,7 +32,13 @@ namespace RCS.PortableShop.ViewModels
         // Use the existing ImageSource to avoid an unnecessary conversion.
         private void ShowPhoto(ImageSource imageSource)
         {
-            PushPage(new Image() { Source = imageSource }, Item?.Name);
+            var contentView = new ContentView()
+            {
+                BackgroundColor = (Color)Application.Current.Resources["ProductsLevel1Colour"],
+                Content= new Image() { Source = imageSource }
+            };
+
+            PushPage(contentView, Item?.Name);
         }
         #endregion
 
