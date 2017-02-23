@@ -32,23 +32,19 @@
                             <Grid Style="{DynamicResource ListItemStyle}" BackgroundColor="{DynamicResource CartLevel1Colour}">
                                 <!--Note this layout currently is aimed towards portrait orientation.-->
                                 <StackLayout Orientation="Vertical" Style="{DynamicResource CartItemStyle}">
-                                    <Label Text="{Binding Name}" FontAttributes="Bold"/>
+                                    <Label Text="{Binding Name}" Style="{DynamicResource ValueEmphasisMediumLabelStyle}"/>
 
                                     <StackLayout Orientation="Horizontal">
-                                        <Label Text="{Binding ProductSize}"/>
-                                        <Label Text="{Binding ProductSizeUnitMeasureCode}"/>
-                                        <Label Text="{Binding ProductColor}"/>
-                                        <Label Text="{Binding ProductListPrice, StringFormat=\{0:C2\}}"/>
-                                        <Label Text="{Binding Value, StringFormat=\{0:C2\}}" FontAttributes="Bold"/>
+                                        <Label Text="{Binding ProductSize}" Style="{DynamicResource ValueLabelStyle}"/>
+                                        <Label Text="{Binding ProductSizeUnitMeasureCode}" Style="{DynamicResource ValueLabelStyle}"/>
+                                        <Label Text="{Binding ProductColor}" Style="{DynamicResource ValueLabelStyle}"/>
+                                        <Label Text="{Binding ProductListPrice, StringFormat=\{0:C2\}}" Style="{DynamicResource ValueLabelStyle}"/>
+                                        <Label Text="{Binding Value, StringFormat=\{0:C2\}}" Style="{DynamicResource ValueEmphasisLabelStyle}"/>
                                     </StackLayout>
 
                                     <StackLayout Orientation="Horizontal">
-                                        <!--Note this need HorizontalOptions to prevent taking all width. It is hard to reduce its size, because of its Buttons to start with. WidthRequest needs to be considerable large to preserve the text area. HeightRequest only crops it.-->
-                                        <!--Note the (differently named) FontAttribute does not work. Fontsize is numeric instead of an enum.-->
-                                        <NumericUpDown:SfNumericUpDown Value="{Binding Quantity, Mode=TwoWay}" HorizontalOptions="Start" WidthRequest="130" FontSize="10" FontAttribute="Bold" TextColor="Black"/>
-
-                                        <!--Note that HeightRequest usually only fucks the Button up, while FontSize does not do anything. -->
-                                        <Button Text="{Localization:Translate Remove}" Command="{Binding BindingContext.DeleteCommand, Source={x:Reference shoppingCartItemsListView}}" CommandParameter="{Binding}" BackgroundColor="{DynamicResource WarningColour}" HorizontalOptions="Start" WidthRequest="30"/>
+                                        <NumericUpDown:SfNumericUpDown Value="{Binding Quantity, Mode=TwoWay}"/>
+                                        <Button Text="{Localization:Translate Remove}" Command="{Binding BindingContext.DeleteCommand, Source={x:Reference shoppingCartItemsListView}}" CommandParameter="{Binding}" Style="{DynamicResource CancelButtonStyle}" HorizontalOptions="Start"/>
                                     </StackLayout>
                                 </StackLayout>
                             </Grid>

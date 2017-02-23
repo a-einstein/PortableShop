@@ -16,7 +16,7 @@
             </Grid.ColumnDefinitions>
 
             <Entry Grid.Column="0" Placeholder="{Binding Placeholder}" Text="{Binding Text, Mode=TwoWay}" Margin="0"/>
-            <Button Grid.Column="1" Text="{Localization:Translate Remove}" Command="{Binding ClearCommand}" BackgroundColor="{DynamicResource WarningColour}" Margin="0" WidthRequest="30"/>
+            <Button Grid.Column="1" Text="{Localization:Translate Remove}" Command="{Binding ClearCommand}" Style="{DynamicResource CancelButtonStyle}" Margin="0"/>
         </Grid>
     </ContentView.Content>
 </Controls:CustomContentView>

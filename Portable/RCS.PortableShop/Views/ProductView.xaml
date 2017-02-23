@@ -26,7 +26,7 @@
         </ResourceDictionary>
     </BaseClasses:View.Resources>
 
-    <!--Have an outermost ScrollView to keep all controls accessible.--> 
+    <!--Have an outermost ScrollView to keep all controls accessible.-->
     <ScrollView>
         <!--TODO Get VerticalOptions of this part really working.-->
         <!--Note this Orientation may be changed depending on screen orientation. Assume Vertical.-->
@@ -41,35 +41,61 @@
                 <Button Text="{Localization:Translate IncreaseProduct}" Command="{Binding CartCommand}" CommandParameter="{Binding Item}" Style="{DynamicResource CartButtonStyle}" VerticalOptions="Start"/>
             </StackLayout>
 
-            <StackLayout VerticalOptions="Start">
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="{Binding Item.ProductCategory}"/>
-                    <Label Text="/"/>
-                    <Label Text="{Binding Item.ProductSubcategory}"/>
+            <Grid VerticalOptions="Start">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Text="{Localization:Translate Category}" Style="{DynamicResource LabelLabelStyle}"/>
+                <StackLayout Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
+                    <Label Text="{Binding Item.ProductCategory}" Style="{DynamicResource ValueLabelStyle}"/>
+                    <Label Text="/" Style="{DynamicResource ValueLabelStyle}"/>
+                    <Label Text="{Binding Item.ProductSubcategory}" Style="{DynamicResource ValueLabelStyle}"/>
                 </StackLayout>
 
-                <Label Text="{Binding Item.ModelName}"/>
+                <Label Grid.Row="1" Grid.Column="0" Text="{Localization:Translate Model}" Style="{DynamicResource LabelLabelStyle}"/>
+                <Label Grid.Row="1" Grid.Column="1" Text="{Binding Item.ModelName}" Style="{DynamicResource ValueLabelStyle}"/>
 
-                <Label Text="{Binding Item.Name}" Style="{DynamicResource EmphasisMediumLabelStyle}"/>
+                <Label Grid.Row="2" Grid.Column="0" Text="{Localization:Translate Name}" Style="{DynamicResource LabelLabelStyle}"/>
+                <Label Grid.Row="2" Grid.Column="1" Text="{Binding Item.Name}" Style="{DynamicResource ValueEmphasisMediumLabelStyle}"/>
 
-                <Label Text="{Binding Item.ProductNumber}"/>
+                <Label Grid.Row="3" Grid.Column="0" Text="{Localization:Translate Id}" Style="{DynamicResource LabelLabelStyle}"/>
+                <Label Grid.Row="3" Grid.Column="1" Text="{Binding Item.ProductNumber}" Style="{DynamicResource ValueLabelStyle}"/>
 
-                <Label Text="{Binding Item.ListPrice, StringFormat=\{0:C2\}}" Style="{DynamicResource EmphasisSmallLabelStyle}"/>
+                <Label Grid.Row="4" Grid.Column="0" Text="{Localization:Translate Price}" Style="{DynamicResource LabelLabelStyle}"/>
+                <Label Grid.Row="4" Grid.Column="1" Text="{Binding Item.ListPrice, StringFormat=\{0:C2\}}" Style="{DynamicResource ValueEmphasisLabelStyle}"/>
 
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="{Binding Item.Size}"/>
-                    <Label Text="{Binding Item.SizeUnitMeasureCode}"/>
+                <Label Grid.Row="5" Grid.Column="0" Text="{Localization:Translate Size}" Style="{DynamicResource LabelLabelStyle}"/>
+                <StackLayout Grid.Row="5" Grid.Column="1" Orientation="Horizontal">
+                    <Label Text="{Binding Item.Size}" Style="{DynamicResource ValueLabelStyle}"/>
+                    <Label Text="{Binding Item.SizeUnitMeasureCode}" Style="{DynamicResource ValueLabelStyle}"/>
                 </StackLayout>
 
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="{Binding Item.Weight}"/>
-                    <Label Text="{Binding Item.WeightUnitMeasureCode}"/>
+                <Label Grid.Row="6" Grid.Column="0" Text="{Localization:Translate Weight}" Style="{DynamicResource LabelLabelStyle}"/>
+                <StackLayout Grid.Row="6" Grid.Column="1" Orientation="Horizontal">
+                    <Label Text="{Binding Item.Weight}" Style="{DynamicResource ValueLabelStyle}"/>
+                    <Label Text="{Binding Item.WeightUnitMeasureCode}" Style="{DynamicResource ValueLabelStyle}"/>
                 </StackLayout>
 
-                <Label Text="{Binding Item.Color}"/>
+                <Label Grid.Row="7" Grid.Column="0" Text="{Localization:Translate Colour}" Style="{DynamicResource LabelLabelStyle}"/>
+                <Label Grid.Row="7" Grid.Column="1" Text="{Binding Item.Color}" Style="{DynamicResource ValueLabelStyle}"/>
 
-                <Label Text="{Binding Item.Description}"/>
-            </StackLayout>
+                <Label Grid.Row="8" Grid.Column="0" Text="{Localization:Translate Description}" Style="{DynamicResource LabelLabelStyle}"/>
+                <Label Grid.Row="8" Grid.Column="1" Text="{Binding Item.Description}" Style="{DynamicResource ValueLabelStyle}"/>
+            </Grid>
         </StackLayout>
     </ScrollView>
 </BaseClasses:ImplicitModelView>

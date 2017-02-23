@@ -9,9 +9,13 @@
     <!--Note that currently no form of nested or multiple merging exist. https://forums.xamarin.com/discussion/86308/multiple-merged-dictionaries?-->
     <!--TODO split off ResourceDictionary when possible.-->
 
+    <!--Values ======================================== -->
+
     <Thickness x:Key="ViewPadding">5</Thickness>
 
     <LayoutOptions x:Key="LineVerticalOptions">Center</LayoutOptions>
+
+    <!--Colours ======================================== -->
 
     <!--Note that only a limited number of Color names is supported, currently different from the documentation.-->
     <Color x:Key="MessageColour">Black</Color>
@@ -24,10 +28,16 @@
     <Color x:Key="ProductsLevel1Colour">#A9D0F5</Color>
     <Color x:Key="CartLevel0Colour">#F4FA58</Color>
     <Color x:Key="CartLevel1Colour">#F2F5A9</Color>
+    <Color x:Key="TextColour">#2F4F4F</Color>
+    <Color x:Key="ValueColour">#00008B</Color>
+
+    <!--ScrollViews ======================================== -->
 
     <Style TargetType="ScrollView">
         <Setter Property="VerticalOptions" Value="FillAndExpand"/>
     </Style>
+
+    <!--ListViews ======================================== -->
 
     <Style TargetType="ListView">
         <Setter Property="BackgroundColor" Value="White"/>
@@ -40,31 +50,65 @@
         <Setter Property="Padding" Value="3"/>
     </Style>
 
+    <!--Labels ======================================== -->
+
     <Style TargetType="Label">
         <Setter Property="VerticalOptions" Value="{DynamicResource LineVerticalOptions}"/>
         <Setter Property="FontSize" Value="Small"/>
+        <Setter Property="TextColor" Value="{DynamicResource TextColour}"/>
     </Style>
 
-    <Style x:Key="EmphasisSmallLabelStyle" TargetType="Label">
+    <Style x:Key="LabelLabelStyle" TargetType="Label">
+        <Setter Property="HorizontalOptions" Value="End"/>
+    </Style>
+
+    <Style x:Key="ValueLabelStyle" TargetType="Label">
+        <Setter Property="TextColor" Value="{DynamicResource ValueColour}"/>
+    </Style>
+
+    <Style x:Key="EmphasisLabelStyle" TargetType="Label">
         <Setter Property="FontSize" Value="Small"/>
         <Setter Property="FontAttributes" Value="Bold"/>
     </Style>
 
-    <Style x:Key="EmphasisMediumLabelStyle" TargetType="Label" BasedOn="{StaticResource EmphasisSmallLabelStyle}">
+    <Style x:Key="ValueEmphasisLabelStyle" TargetType="Label" BasedOn="{StaticResource EmphasisLabelStyle}">
+        <Setter Property="TextColor" Value="{DynamicResource ValueColour}"/>
+    </Style>
+
+    <Style x:Key="EmphasisMediumLabelStyle" TargetType="Label" BasedOn="{StaticResource EmphasisLabelStyle}">
         <Setter Property="FontSize" Value="Medium"/>
     </Style>
 
-    <Style x:Key="EmphasisLargeLabelStyle" TargetType="Label" BasedOn="{StaticResource EmphasisSmallLabelStyle}">
+    <Style x:Key="ValueEmphasisMediumLabelStyle" TargetType="Label" BasedOn="{StaticResource EmphasisMediumLabelStyle}">
+        <Setter Property="TextColor" Value="{DynamicResource ValueColour}"/>
+    </Style>
+
+    <Style x:Key="EmphasisLargeLabelStyle" TargetType="Label" BasedOn="{StaticResource EmphasisLabelStyle}">
         <Setter Property="FontSize" Value="Large"/>
     </Style>
+
+    <Style x:Key="ValueEmphasisLargeLabelStyle" TargetType="Label" BasedOn="{StaticResource EmphasisLargeLabelStyle}">
+        <Setter Property="TextColor" Value="{DynamicResource ValueColour}"/>
+    </Style>
+
+    <!--Entries ======================================== -->
 
     <Style TargetType="Entry">
         <Setter Property="VerticalOptions" Value="{DynamicResource LineVerticalOptions}"/>
     </Style>
 
-    <!--Note that FontSize and FontAttributes do not work.-->
+    <!--Buttons ======================================== -->
+
+    <!--Note that HeightRequest usually only fucks the Button up, while FontSize does not do anything. -->
+    <!--Note that FontAttributes does not work.-->
     <Style TargetType="Button">
         <Setter Property="VerticalOptions" Value="{DynamicResource LineVerticalOptions}"/>
+        <Setter Property="TextColor" Value="{DynamicResource TextColour}"/>
+    </Style>
+
+    <Style x:Key="CancelButtonStyle" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{DynamicResource WarningColour}"/>
+        <Setter Property="WidthRequest" Value="30"/>
     </Style>
 
     <!--TODO This part would be candidate to split of a specific dictionary.-->
@@ -74,7 +118,15 @@
         <Setter Property="HorizontalOptions" Value="Start"/>
     </Style>
 
+    <!--NumericUpDowns ======================================== -->
+
+    <!--Note this need HorizontalOptions to prevent taking all width. It is hard to reduce its size, because of its Buttons to start with. WidthRequest needs to be considerable large to preserve the text area. HeightRequest only crops it.-->
+    <!--Note the (differently named) FontAttribute does not work. Fontsize is numeric instead of an enum.-->
     <Style TargetType="NumericUpDown:SfNumericUpDown">
         <Setter Property="VerticalOptions" Value="{DynamicResource LineVerticalOptions}"/>
+        <Setter Property="HorizontalOptions" Value="Start"/>
+        <Setter Property="WidthRequest" Value="130"/>
+        <Setter Property="FontSize" Value="10"/>
+        <Setter Property="TextColor" Value="{DynamicResource ValueColour}"/>
     </Style>
 </ResourceDictionary>

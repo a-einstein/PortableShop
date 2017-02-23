@@ -42,9 +42,7 @@
             <StackLayout Grid.Row="0" x:Name="actionBlock" Orientation="Vertical" VerticalOptions="Start" HorizontalOptions="Start">
                 <StackLayout Orientation="Horizontal">
                     <Controls:BindablePicker Title="{Localization:Translate MasterFilter}" ItemsSource="{Binding MasterFilterItems, Mode=TwoWay}" SelectedItem="{Binding MasterFilterValue, Mode=TwoWay}" IsEnabled="{Binding MasterFilterItems, Converter={StaticResource HasValueTester}}" BackgroundColor="{DynamicResource ProductsLevel1Colour}"/>
-
                     <Controls:BindablePicker Title="{Localization:Translate DetailFilter}" ItemsSource="{Binding DetailFilterItems, Mode=TwoWay}" SelectedItem="{Binding DetailFilterValue, Mode=TwoWay}" IsEnabled="{Binding DetailFilterItems, Converter={StaticResource HasValueTester}}" BackgroundColor="{DynamicResource ProductsLevel1Colour}"/>
-
                     <Controls:ClearableEntry Placeholder="{Localization:Translate TextFilter}" Text="{Binding TextFilterValue, Mode=TwoWay}" BackgroundColor="{DynamicResource ProductsLevel1Colour}" WidthRequest="130"/>
                 </StackLayout>
 
@@ -69,7 +67,7 @@
                         </Button>
                     </Grid>
 
-                    <Label Text="{Binding ItemsCount}" Style="{DynamicResource EmphasisMediumLabelStyle}"/>
+                    <Label Text="{Binding ItemsCount}" Style="{DynamicResource ValueEmphasisMediumLabelStyle}"/>
 
                     <Label Text="{Localization:Translate Products}" Style="{DynamicResource EmphasisMediumLabelStyle}"/>
                 </StackLayout>
@@ -97,21 +95,21 @@
 
                                         <StackLayout Grid.Column="1">
                                             <StackLayout Orientation="Horizontal">
-                                                <Label Text="{Binding ProductCategory}"/>
-                                                <Label Text="/"/>
-                                                <Label Text="{Binding ProductSubcategory}"/>
+                                                <Label Text="{Binding ProductCategory}" Style="{DynamicResource ValueLabelStyle}"/>
+                                                <Label Text="/" Style="{DynamicResource ValueLabelStyle}"/>
+                                                <Label Text="{Binding ProductSubcategory}" Style="{DynamicResource ValueLabelStyle}"/>
                                             </StackLayout>
 
-                                            <Label Text="{Binding Name}" Style="{DynamicResource EmphasisMediumLabelStyle}"/>
+                                            <Label Text="{Binding Name}" Style="{DynamicResource ValueEmphasisMediumLabelStyle}"/>
 
-                                            <Label Text="{Binding ListPrice, StringFormat=\{0:C2\}}" Style="{DynamicResource EmphasisSmallLabelStyle}"/>
+                                            <Label Text="{Binding ListPrice, StringFormat=\{0:C2\}}" Style="{DynamicResource ValueEmphasisLabelStyle}"/>
 
                                             <StackLayout Orientation="Horizontal">
-                                                <Label Text="{Binding Size}"/>
-                                                <Label Text="{Binding SizeUnitMeasureCode}"/>
+                                                <Label Text="{Binding Size}" Style="{DynamicResource ValueLabelStyle}"/>
+                                                <Label Text="{Binding SizeUnitMeasureCode}" Style="{DynamicResource ValueLabelStyle}"/>
                                             </StackLayout>
 
-                                            <Label Text="{Binding Color}"/>
+                                            <Label Text="{Binding Color}" Style="{DynamicResource ValueLabelStyle}"/>
                                         </StackLayout>
                                     </Grid>
                                 </Controls:ContentButton.Content>

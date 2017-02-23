@@ -130,8 +130,17 @@ For further details please check the descriptions (ReadMe) of the involved repos
     <value>There is a technical problem with your Shopping Cart.
 Please check thoroughly or restart the application (recommended).</value>
   </data>
+  <data name="Category" xml:space="preserve">
+    <value>Category</value>
+  </data>
   <data name="Close" xml:space="preserve">
     <value>Close</value>
+  </data>
+  <data name="Colour" xml:space="preserve">
+    <value>Colour</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
   </data>
   <data name="DetailFilter" xml:space="preserve">
     <value>Subcategory</value>
@@ -145,6 +154,9 @@ Please check thoroughly or restart the application (recommended).</value>
   <data name="Filter" xml:space="preserve">
     <value>Search</value>
   </data>
+  <data name="Id" xml:space="preserve">
+    <value>Id</value>
+  </data>
   <data name="IncreaseProduct" xml:space="preserve">
     <value>Shop +</value>
   </data>
@@ -157,11 +169,20 @@ Please check thoroughly or restart the application (recommended).</value>
   <data name="MasterFilter" xml:space="preserve">
     <value>Category</value>
   </data>
+  <data name="Model" xml:space="preserve">
+    <value>Model</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
   <data name="NavigateAbout" xml:space="preserve">
     <value>About this project</value>
   </data>
   <data name="NavigateShop" xml:space="preserve">
     <value>Go shopping</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Price</value>
   </data>
   <data name="Products" xml:space="preserve">
     <value>Products</value>
@@ -173,10 +194,16 @@ Please check thoroughly or restart the application (recommended).</value>
     <value>There is a problem with our data service.
 Please try again later.</value>
   </data>
+  <data name="Size" xml:space="preserve">
+    <value>Size</value>
+  </data>
   <data name="TextFilter" xml:space="preserve">
     <value>Name or Colour</value>
   </data>
   <data name="TotalValue" xml:space="preserve">
     <value>Value</value>
+  </data>
+  <data name="Weight" xml:space="preserve">
+    <value>Weight</value>
   </data>
 </root>
