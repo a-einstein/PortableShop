@@ -15,5 +15,11 @@ namespace RCS.PortableShop.Main
 
             Content = mainView;
         }
+
+        protected override bool OnBackButtonPressed()
+        {
+            // Prevent backing out of the application.
+            return true;
+        }
     }
 }
