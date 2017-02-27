@@ -191,7 +191,7 @@ Please check thoroughly or restart the application (recommended).</value>
     <value>X</value>
   </data>
   <data name="ServiceError" xml:space="preserve">
-    <value>There is a problem with our data service.
+    <value>There is a problem using our data service.
 Please try again later.</value>
   </data>
   <data name="Size" xml:space="preserve">

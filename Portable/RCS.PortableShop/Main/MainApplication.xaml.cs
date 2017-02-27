@@ -30,7 +30,6 @@ namespace RCS.PortableShop.Main
             SetCulture();
 
             var mainPage = new MainPage();
-            NavigationPage.SetHasNavigationBar(mainPage, false);
             MainPage = new NavigationPage(mainPage);
 
             SubscribeMessages(mainPage);

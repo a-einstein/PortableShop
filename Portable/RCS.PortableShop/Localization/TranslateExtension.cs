@@ -12,21 +12,16 @@ namespace RCS.PortableShop.Localization
     // Exclude the 'Extension' suffix when using in xaml.
     public class TranslateExtension : IMarkupExtension
     {
-        readonly CultureInfo cultureInfo;
-
-        public TranslateExtension()
-        {
-            if (Device.OS == TargetPlatform.iOS || Device.OS == TargetPlatform.Android)
-            {
-                cultureInfo = DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
-            }
-        }
-
         public string Text { get; set; }
 
         public object ProvideValue(IServiceProvider serviceProvider)
         {
-            if (Text == null)
+            return ProvideValue(Text);
+        }
+
+        public static object ProvideValue(string text)
+        {
+            if (text == null)
                 return string.Empty;
 
             var resourceTypeInfo = typeof(Labels).GetTypeInfo();
@@ -35,18 +30,34 @@ namespace RCS.PortableShop.Localization
 
             var resourceManager = new ResourceManager(resourceBasename, resourceAssembly);
 
-            var translation = resourceManager.GetString(Text, cultureInfo);
+            var translation = resourceManager.GetString(text, CultureInfo);
 
             if (translation == null)
             {
 #if DEBUG
-                throw new ArgumentException($"Key '{Text}' was not found in resources '{resourceBasename}' for culture '{cultureInfo.Name}'", nameof(Text));
+                throw new ArgumentException($"Key '{text}' was not found in resources '{resourceBasename}' for culture '{CultureInfo.Name}'", nameof(text));
 #else
-                translation = Text; // HACK: returns the key, which GETS DISPLAYED TO THE USER
+                translation = text; // HACK: returns the key, which GETS DISPLAYED TO THE USER
 #endif
             }
 
             return translation;
+        }
+
+        private static CultureInfo cultureInfo;
+
+        private static CultureInfo CultureInfo
+        {
+            get
+            {
+                // TODO Maybe change this to accommodate for intermediate language changes.
+                if ((Device.OS == TargetPlatform.iOS || Device.OS == TargetPlatform.Android) && cultureInfo == null)
+                {
+                    cultureInfo = DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
+                }
+
+                return cultureInfo;
+            }
         }
     }
 }

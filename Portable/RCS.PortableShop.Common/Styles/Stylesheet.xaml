@@ -28,8 +28,8 @@
     <Color x:Key="ProductsLevel1Colour">#A9D0F5</Color>
     <Color x:Key="CartLevel0Colour">#F4FA58</Color>
     <Color x:Key="CartLevel1Colour">#F2F5A9</Color>
-    <Color x:Key="TextColour">#2F4F4F</Color>
-    <Color x:Key="ValueColour">#00008B</Color>
+    <Color x:Key="LabelTextColour">#2F4F4F</Color> <!--DarkSlateGray-->
+    <Color x:Key="ValueTextColour">#00008B</Color> <!--DarkBlue-->
 
     <!--ScrollViews ======================================== -->
 
@@ -55,7 +55,7 @@
     <Style TargetType="Label">
         <Setter Property="VerticalOptions" Value="{DynamicResource LineVerticalOptions}"/>
         <Setter Property="FontSize" Value="Small"/>
-        <Setter Property="TextColor" Value="{DynamicResource TextColour}"/>
+        <Setter Property="TextColor" Value="{DynamicResource LabelTextColour}"/>
     </Style>
 
     <Style x:Key="LabelLabelStyle" TargetType="Label">
@@ -63,7 +63,7 @@
     </Style>
 
     <Style x:Key="ValueLabelStyle" TargetType="Label">
-        <Setter Property="TextColor" Value="{DynamicResource ValueColour}"/>
+        <Setter Property="TextColor" Value="{DynamicResource ValueTextColour}"/>
     </Style>
 
     <Style x:Key="EmphasisLabelStyle" TargetType="Label">
@@ -72,7 +72,7 @@
     </Style>
 
     <Style x:Key="ValueEmphasisLabelStyle" TargetType="Label" BasedOn="{StaticResource EmphasisLabelStyle}">
-        <Setter Property="TextColor" Value="{DynamicResource ValueColour}"/>
+        <Setter Property="TextColor" Value="{DynamicResource ValueTextColour}"/>
     </Style>
 
     <Style x:Key="EmphasisMediumLabelStyle" TargetType="Label" BasedOn="{StaticResource EmphasisLabelStyle}">
@@ -80,7 +80,7 @@
     </Style>
 
     <Style x:Key="ValueEmphasisMediumLabelStyle" TargetType="Label" BasedOn="{StaticResource EmphasisMediumLabelStyle}">
-        <Setter Property="TextColor" Value="{DynamicResource ValueColour}"/>
+        <Setter Property="TextColor" Value="{DynamicResource ValueTextColour}"/>
     </Style>
 
     <Style x:Key="EmphasisLargeLabelStyle" TargetType="Label" BasedOn="{StaticResource EmphasisLabelStyle}">
@@ -88,7 +88,7 @@
     </Style>
 
     <Style x:Key="ValueEmphasisLargeLabelStyle" TargetType="Label" BasedOn="{StaticResource EmphasisLargeLabelStyle}">
-        <Setter Property="TextColor" Value="{DynamicResource ValueColour}"/>
+        <Setter Property="TextColor" Value="{DynamicResource ValueTextColour}"/>
     </Style>
 
     <!--Entries ======================================== -->
@@ -103,7 +103,7 @@
     <!--Note that FontAttributes does not work.-->
     <Style TargetType="Button">
         <Setter Property="VerticalOptions" Value="{DynamicResource LineVerticalOptions}"/>
-        <Setter Property="TextColor" Value="{DynamicResource TextColour}"/>
+        <Setter Property="TextColor" Value="{DynamicResource LabelTextColour}"/>
     </Style>
 
     <Style x:Key="CancelButtonStyle" TargetType="Button">
@@ -127,6 +127,6 @@
         <Setter Property="HorizontalOptions" Value="Start"/>
         <Setter Property="WidthRequest" Value="130"/>
         <Setter Property="FontSize" Value="10"/>
-        <Setter Property="TextColor" Value="{DynamicResource ValueColour}"/>
+        <Setter Property="TextColor" Value="{DynamicResource ValueTextColour}"/>
     </Style>
 </ResourceDictionary>

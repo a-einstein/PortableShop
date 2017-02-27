@@ -1,19 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
 <!--Note that not a lot more is possible.-->
-<!--TODO It is desirable to at least have a text and some animation.-->
+<!--TODO Besides the name it is also desirable to have additional text, animation, and the icon.-->
+<!--TODO This does not work in landscape. Referring to it from other drawable folders does not help.-->
 
 <layer-list
     xmlns:android="http://schemas.android.com/apk/res/android"
     >
    
     <item>
-        <color android:color="@color/SplashBackground"/>
+        <color android:color="?attr/colorPrimary"/>
     </item>
 
     <item>
         <bitmap
-            android:src="@drawable/CycloneSplash"
+            android:src="@drawable/ApplicationSplash"
             android:tileMode="disabled"
             android:gravity="center"/>
     </item>

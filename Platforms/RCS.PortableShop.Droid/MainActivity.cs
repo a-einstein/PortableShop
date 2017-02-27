@@ -7,7 +7,7 @@ namespace RCS.PortableShop.Droid
 {
     [Activity(
         Label = "Cyclone", 
-        Icon = "@drawable/Cyclone", 
+        Icon = "@drawable/application", 
         Theme = "@style/MainTheme", 
         MainLauncher = false, 
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation

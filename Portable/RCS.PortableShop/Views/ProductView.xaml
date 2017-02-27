@@ -28,7 +28,7 @@
 
     <!--Have an outermost ScrollView to keep all controls accessible.-->
     <ScrollView>
-        <!--TODO Get VerticalOptions of this part really working.-->
+        <!--TODO Get VerticalOptions of this part really working (reducing margins).-->
         <!--Note this Orientation may be changed depending on screen orientation. Assume Vertical.-->
         <StackLayout x:Name="productControl" Orientation="Vertical" VerticalOptions="Start">
             <StackLayout VerticalOptions="Start">
