@@ -8,6 +8,7 @@
     xmlns:Views="clr-namespace:RCS.PortableShop.Views;assembly=RCS.PortableShop"
     xmlns:ViewModels="clr-namespace:RCS.PortableShop.ViewModels;assembly=RCS.PortableShop"
     xmlns:Controls="clr-namespace:RCS.PortableShop.Common.Controls;assembly=RCS.PortableShop.Common"
+    xmlns:Extensions="clr-namespace:RCS.PortableShop.Common.Extensions;assembly=RCS.PortableShop.Common"
     xmlns:Converters="clr-namespace:RCS.PortableShop.Common.Converters;assembly=RCS.PortableShop.Common"
     xmlns:Localization="clr-namespace:RCS.PortableShop.Localization;assembly=RCS.PortableShop"
     BackgroundColor="{DynamicResource ProductsLevel0Colour}"
@@ -25,7 +26,7 @@
             <Converters:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter"/>
             <Converters:HasValueTester x:Key="HasValueTester"/>
             <Converters:BooleanInverter x:Key="BooleanInverter"/>
-            <!--<Converters:HasValueMultiTester x:Key="HasValueMultiTester"/>-->
+            <Converters:HasValueMultiTester x:Key="HasValueMultiTester"/>
         </ResourceDictionary>
     </BaseClasses:View.Resources>
 
@@ -55,13 +56,13 @@
                         <!--IsDefault="True"-->
                         <Button Text="{Localization:Translate Filter}" Command="{Binding FilterCommand}" IsVisible="{Binding Awaiting, Converter={StaticResource BooleanInverter}}" BackgroundColor="{DynamicResource ProductsLevel1Colour}">
                             <!--Note this prevents unfiltered queries.-->
-                            <!--<Button.IsEnabled>-->
-                            <!--<MultiBinding Converter="{StaticResource HasValueMultiTester}">
-                                <Binding Path="MasterFilterValue"/>
-                                <Binding Path="DetailFilterValue"/>
-                                <Binding Path="TextFilterValue"/>
-                            </MultiBinding>-->
-                            <!--</Button.IsEnabled>-->
+                            <Button.IsEnabled>
+                                <Extensions:MultiBinding Converter="{StaticResource HasValueMultiTester}">
+                                    <Binding Path="MasterFilterValue"/>
+                                    <Binding Path="DetailFilterValue"/>
+                                    <Binding Path="TextFilterValue"/>
+                                </Extensions:MultiBinding>
+                            </Button.IsEnabled>
                         </Button>
                     </Grid>
 

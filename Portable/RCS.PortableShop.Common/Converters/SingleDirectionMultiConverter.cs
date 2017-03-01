@@ -1,9 +1,10 @@
-﻿using System;
+﻿using RCS.PortableShop.Common.Extensions;
+using System;
 using System.Globalization;
 
 namespace RCS.PortableShop.Common.Converters
 {
-    /*
+
     public abstract class SingleDirectionMultiConverter : IMultiValueConverter
     {
         public abstract object Convert(object[] values, Type targetType, object parameter, CultureInfo culture);
@@ -13,5 +14,5 @@ namespace RCS.PortableShop.Common.Converters
             throw new NotImplementedException();
         }
     }
-    */
+
 }

@@ -3,7 +3,6 @@ using System.Globalization;
 
 namespace RCS.PortableShop.Common.Converters
 {
-    /*
     public class HasValueMultiTester : SingleDirectionMultiConverter
     {
         public override object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
@@ -13,7 +12,7 @@ namespace RCS.PortableShop.Common.Converters
             foreach (var item in values)
             {
                 hasValue = hasValue || HasValueTester.HasValue(item);
-            }       
+            }
 
             // Invert if any parameter is passed.
             var result = parameter != null
@@ -23,5 +22,4 @@ namespace RCS.PortableShop.Common.Converters
             return result;
         }
     }
-    */
 }
