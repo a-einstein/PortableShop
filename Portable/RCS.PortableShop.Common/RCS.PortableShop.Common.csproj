@@ -50,8 +50,6 @@
     <Compile Include="Converters\HasValueTester.cs" />
     <Compile Include="Converters\SingleDirectionConverter.cs" />
     <Compile Include="Converters\SingleDirectionMultiConverter.cs" />
-    <Compile Include="Converters\SizeFormatter.cs" />
-    <Compile Include="Converters\WeightFormatter.cs" />
     <Compile Include="Extensions\IMultiValueConverter.cs" />
     <Compile Include="Extensions\MultiBinding.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

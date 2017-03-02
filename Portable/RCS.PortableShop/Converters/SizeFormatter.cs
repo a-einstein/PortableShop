@@ -1,9 +1,9 @@
-﻿using System;
+﻿using RCS.PortableShop.Common.Extensions;
+using System;
 using System.Globalization;
 
-namespace RCS.PortableShop.Common.Converters
+namespace RCS.PortableShop.Converters
 {
-    /*
     public class SizeFormatter : IMultiValueConverter 
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
@@ -17,5 +17,4 @@ namespace RCS.PortableShop.Common.Converters
             throw new NotImplementedException();
         }
     }
-    */
 }

@@ -1,7 +1,8 @@
-﻿using System;
+﻿using RCS.PortableShop.Common.Extensions;
+using System;
 using System.Globalization;
 
-namespace RCS.PortableShop.Common.Converters
+namespace RCS.PortableShop.Converters
 {
     /*
     public class WeightFormatter : IMultiValueConverter 

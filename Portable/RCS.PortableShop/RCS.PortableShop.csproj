@@ -35,6 +35,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Converters\SizeFormatter.cs" />
+    <Compile Include="Converters\WeightFormatter.cs" />
     <Compile Include="Interfaces\IShopper.cs" />
     <Compile Include="Localization\ILocalize.cs" />
     <Compile Include="Localization\PlatformCulture.cs" />
