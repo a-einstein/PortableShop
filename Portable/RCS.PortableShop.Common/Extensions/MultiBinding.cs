@@ -9,57 +9,67 @@ using Xamarin.Forms.Xaml;
 
 namespace RCS.PortableShop.Common.Extensions
 {
-    // Currently this basically is a copy from https://gist.github.com/Keboo.
+    // Based on https://gist.github.com/Keboo.
     // Thanks to Kevin.
 
-    /*
-     * WARNING: This MultiBinding implementation only works when it is directly applied to its target property.
-     * It will fail if used inside of a setter (such is the case when used within a trigger or style).
-     */
+    // WARNING: This MultiBinding implementation only works when it is directly applied to its target property.
+    // It will fail if used inside of a setter (such is the case when used within a trigger or style).
+
     [ContentProperty(nameof(Bindings))]
     public class MultiBinding : IMarkupExtension<Binding>
     {
-        private BindableObject _target;
-        private readonly InternalValue _internalValue = new InternalValue();
-        private readonly IList<BindableProperty> _properties = new List<BindableProperty>();
-
-        public IList<Binding> Bindings { get; } = new List<Binding>();
-
+        #region Partially emulate Binding
         public string StringFormat { get; set; }
 
         public IMultiValueConverter Converter { get; set; }
 
         public object ConverterParameter { get; set; }
+        #endregion
+
+        #region IMarkupExtension
+        public IList<Binding> Bindings { get; } = new List<Binding>();
+
+        private BindableObject targetObject;
+        private readonly IList<BindableProperty> bindableProperties = new List<BindableProperty>();
 
         public Binding ProvideValue(IServiceProvider serviceProvider)
         {
+            // This class is intended for conversion or formatting or both.
             if (string.IsNullOrWhiteSpace(StringFormat) && Converter == null)
                 throw new InvalidOperationException($"{nameof(MultiBinding)} requires a {nameof(Converter)} or {nameof(StringFormat)}");
 
             //Get the object that the markup extension is being applied to
             var provideValueTarget = (IProvideValueTarget)serviceProvider?.GetService(typeof(IProvideValueTarget));
-            _target = provideValueTarget?.TargetObject as BindableObject;
+            targetObject = provideValueTarget?.TargetObject as BindableObject;
 
-            if (_target == null) return null;
+            if (targetObject == null) return null;
 
-            foreach (Binding b in Bindings)
+            foreach (Binding binding in Bindings)
             {
-                var property = BindableProperty.Create($"Property-{Guid.NewGuid().ToString("N")}", typeof(object),
-                    typeof(MultiBinding), default(object), propertyChanged: (_, o, n) => SetValue());
-                _properties.Add(property);
-                _target.SetBinding(property, b);
-            }
-            SetValue();
+                var bindableProperty = BindableProperty.Create
+                (
+                    $"Property-{Guid.NewGuid().ToString("N")}",
+                    typeof(object),
+                    typeof(MultiBinding),
+                    default(object),
+                    propertyChanged: (b, o, n) => SetInternalValue()
+                );
 
-            var binding = new Binding
+                bindableProperties.Add(bindableProperty);
+                targetObject.SetBinding(bindableProperty, binding);
+            }
+
+            SetInternalValue();
+
+            var result = new Binding
             {
                 Path = nameof(InternalValue.Value),
                 Converter = new MultiValueConverterWrapper(Converter, StringFormat),
                 ConverterParameter = ConverterParameter,
-                Source = _internalValue
+                Source = internalValue
             };
 
-            return binding;
+            return result;
         }
 
         object IMarkupExtension.ProvideValue(IServiceProvider serviceProvider)
@@ -67,16 +77,17 @@ namespace RCS.PortableShop.Common.Extensions
             return ProvideValue(serviceProvider);
         }
 
-        private void SetValue()
+        #region InternalValue
+        private readonly InternalValue internalValue = new InternalValue();
+
+        private void SetInternalValue()
         {
-            if (_target == null) return;
-            _internalValue.Value = _properties.Select(_target.GetValue).ToArray();
+            if (targetObject != null)
+                internalValue.Value = bindableProperties.Select(targetObject.GetValue).ToArray();
         }
 
         private sealed class InternalValue : INotifyPropertyChanged
         {
-            public event PropertyChangedEventHandler PropertyChanged;
-
             private object _value;
             public object Value
             {
@@ -91,43 +102,48 @@ namespace RCS.PortableShop.Common.Extensions
                 }
             }
 
+            public event PropertyChangedEventHandler PropertyChanged;
+
             private void OnPropertyChanged([CallerMemberName] string propertyName = null)
             {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+        #endregion
 
         private sealed class MultiValueConverterWrapper : IValueConverter
         {
-            private readonly IMultiValueConverter _multiValueConverter;
-            private readonly string _stringFormat;
+            private readonly IMultiValueConverter converter;
+            private readonly string format;
 
             public MultiValueConverterWrapper(IMultiValueConverter multiValueConverter, string stringFormat)
             {
-                _multiValueConverter = multiValueConverter;
-                _stringFormat = stringFormat;
+                converter = multiValueConverter;
+                format = stringFormat;
             }
 
             public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
             {
-                if (_multiValueConverter != null)
+                object result = value;
+
+                if (converter != null)
+                    // Convert.
+                    // Note the converter is responsible for its own type checking and may return any object.
+                    result = converter.Convert(result as object[], targetType, parameter, culture);
+
+                if (!string.IsNullOrWhiteSpace(format))
                 {
-                    value = _multiValueConverter.Convert(value as object[], targetType, parameter, culture);
+                    // Determine type again.
+                    object[] resultArray = result as object[];
+
+                    // Format.
+                    // Distinguish formatting on type.
+                    result = resultArray != null
+                        ? string.Format(format, resultArray)
+                        : string.Format(format, result);
                 }
-                if (!string.IsNullOrWhiteSpace(_stringFormat))
-                {
-                    var array = value as object[];
-                    // ReSharper disable once ConvertIfStatementToNullCoalescingExpression
-                    if (array != null)
-                    {
-                        value = string.Format(_stringFormat, array);
-                    }
-                    else
-                    {
-                        value = string.Format(_stringFormat, value);
-                    }
-                }
-                return value;
+
+                return result;
             }
 
             public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -135,5 +151,6 @@ namespace RCS.PortableShop.Common.Extensions
                 throw new NotImplementedException();
             }
         }
+        #endregion
     }
 }
