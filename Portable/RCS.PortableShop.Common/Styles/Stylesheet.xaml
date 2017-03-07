@@ -23,6 +23,8 @@
     <Color x:Key="WarningColour">Orange</Color>
     <Color x:Key="ErrorColour">Red</Color>
 
+    <Color x:Key="InvalidBackgroundColour">#FFB0B0</Color>
+
     <!--TODO This part would be candidate to split of a specific dictionary.-->
     <Color x:Key="ProductsLevel0Colour">#58ACFA</Color>
     <Color x:Key="ProductsLevel1Colour">#A9D0F5</Color>

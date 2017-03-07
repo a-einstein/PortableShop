@@ -7,6 +7,7 @@
     xmlns:BaseClasses="clr-namespace:RCS.PortableShop.Common.Views;assembly=RCS.PortableShop.Common"
     xmlns:Views="clr-namespace:RCS.PortableShop.Views;assembly=RCS.PortableShop"
     xmlns:ViewModels="clr-namespace:RCS.PortableShop.ViewModels;assembly=RCS.PortableShop"
+    xmlns:Behaviors="clr-namespace:RCS.PortableShop.Common.Behaviors;assembly=RCS.PortableShop.Common"
     xmlns:Controls="clr-namespace:RCS.PortableShop.Common.Controls;assembly=RCS.PortableShop.Common"
     xmlns:Extensions="clr-namespace:RCS.PortableShop.Common.Extensions;assembly=RCS.PortableShop.Common"
     xmlns:Converters="clr-namespace:RCS.PortableShop.Common.Converters;assembly=RCS.PortableShop.Common"
@@ -42,7 +43,15 @@
                 <StackLayout Orientation="Horizontal">
                     <Controls:BindablePicker Title="{Localization:Translate MasterFilter}" ItemsSource="{Binding MasterFilterItems, Mode=TwoWay}" SelectedItem="{Binding MasterFilterValue, Mode=TwoWay}" IsEnabled="{Binding MasterFilterItems, Converter={StaticResource HasValueTester}}" BackgroundColor="{DynamicResource ProductsLevel1Colour}"/>
                     <Controls:BindablePicker Title="{Localization:Translate DetailFilter}" ItemsSource="{Binding DetailFilterItems, Mode=TwoWay}" SelectedItem="{Binding DetailFilterValue, Mode=TwoWay}" IsEnabled="{Binding DetailFilterItems, Converter={StaticResource HasValueTester}}" BackgroundColor="{DynamicResource ProductsLevel1Colour}"/>
-                    <Controls:ClearableEntry Placeholder="{Localization:Translate TextFilter}" Text="{Binding TextFilterValue, Mode=TwoWay}" BackgroundColor="{DynamicResource ProductsLevel1Colour}" WidthRequest="130"/>
+                    <Controls:ClearableEntry Placeholder="{Localization:Translate TextFilter}" Text="{Binding TextFilterValue, Mode=TwoWay}" BackgroundColor="{DynamicResource ProductsLevel1Colour}" WidthRequest="130">
+                        <Controls:ClearableEntry.EntryBehaviors>
+                            <!--TODO Improve Expression.-->
+                            <!--TODO Put Expression in resources.-->
+                            <!--TODO Colour is hard coded  as a resource still does not work, possibly because of https://bugzilla.xamarin.com/show_bug.cgi?id=31547 or alike.
+                            <Behaviors:EntryRegexValidationBehavior Expression="\w{3}" InvalidBackgroundColour="{DynamicResource InvalidBackgroundColour}"/>-->
+                            <Behaviors:EntryRegexValidationBehavior Expression="\w{3}" InvalidBackgroundColour="#FFB0B0"/>
+                        </Controls:ClearableEntry.EntryBehaviors>
+                    </Controls:ClearableEntry>
                 </StackLayout>
 
                 <!--Put at Start, as changes in orientation did not work out correctly on the last Label.-->
@@ -56,6 +65,7 @@
                         <!--IsDefault="True"-->
                         <Button Text="{Localization:Translate Filter}" Command="{Binding FilterCommand}" IsVisible="{Binding Awaiting, Converter={StaticResource BooleanInverter}}" BackgroundColor="{DynamicResource ProductsLevel1Colour}">
                             <!--Note this prevents unfiltered queries.-->
+                            <!--TODO Combine with validation.-->
                             <Button.IsEnabled>
                                 <Extensions:MultiBinding Converter="{StaticResource HasValueMultiTester}">
                                     <Binding Path="MasterFilterValue"/>

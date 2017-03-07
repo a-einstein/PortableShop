@@ -35,6 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Behaviors\EntryRegexValidationBehavior.cs" />
     <Compile Include="Controls\ClearableEntry.xaml.cs">
       <DependentUpon>ClearableEntry.xaml</DependentUpon>
     </Compile>

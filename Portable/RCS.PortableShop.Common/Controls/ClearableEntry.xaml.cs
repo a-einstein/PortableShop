@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System.Collections.Generic;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace RCS.PortableShop.Common.Controls
@@ -51,6 +52,20 @@ namespace RCS.PortableShop.Common.Controls
         private void Clear()
         {
             Text = string.Empty;
+        }
+
+        public IList<Behavior> EntryBehaviors
+        {
+            get { return entry.Behaviors; }
+            set
+            {
+                entry.Behaviors.Clear();
+
+                foreach (var behavior in value)
+                {
+                    entry.Behaviors.Add(behavior);
+                }
+            }
         }
     }
 }
