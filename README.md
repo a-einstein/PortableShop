@@ -20,6 +20,8 @@ Current score: [![BCH compliance](https://bettercodehub.com/edge/badge/a-einstei
 * Splash screen.
 * Orientation.
 * Custom controls.
+* Extension.
+* Behaviour.
 * Application icon.
 * ...
 
