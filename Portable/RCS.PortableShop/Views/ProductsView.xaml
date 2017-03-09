@@ -45,11 +45,10 @@
                     <Controls:BindablePicker Title="{Localization:Translate DetailFilter}" ItemsSource="{Binding DetailFilterItems, Mode=TwoWay}" SelectedItem="{Binding DetailFilterValue, Mode=TwoWay}" IsEnabled="{Binding DetailFilterItems, Converter={StaticResource HasValueTester}}" BackgroundColor="{DynamicResource ProductsLevel1Colour}"/>
                     <Controls:ClearableEntry Placeholder="{Localization:Translate TextFilter}" Text="{Binding TextFilterValue, Mode=TwoWay}" BackgroundColor="{DynamicResource ProductsLevel1Colour}" WidthRequest="130">
                         <Controls:ClearableEntry.EntryBehaviors>
-                            <!--TODO Improve Expression.-->
-                            <!--TODO Put Expression in resources.-->
-                            <!--TODO Colour is hard coded  as a resource still does not work, possibly because of https://bugzilla.xamarin.com/show_bug.cgi?id=31547 or alike.
-                            <Behaviors:EntryRegexValidationBehavior Expression="\w{3}" InvalidBackgroundColour="{DynamicResource InvalidBackgroundColour}"/>-->
-                            <Behaviors:EntryRegexValidationBehavior Expression="\w{3}" InvalidBackgroundColour="#FFB0B0"/>
+                            <!--TODO Currently parameter passing does not work and is hard coded. See comments elsewhere.-->
+                            <!--Expression="{Binding ValidTextFilterExpression}"-->
+                            <!--InvalidBackgroundColour="{DynamicResource InvalidBackgroundColour}"-->
+                            <Behaviors:EntryRegexValidationBehavior x:Name="TextFilterValidator" Expression="\w{3}" InvalidBackgroundColour="#FFB0B0"/>
                         </Controls:ClearableEntry.EntryBehaviors>
                     </Controls:ClearableEntry>
                 </StackLayout>
@@ -70,7 +69,7 @@
                                 <Extensions:MultiBinding Converter="{StaticResource HasValueMultiTester}">
                                     <Binding Path="MasterFilterValue"/>
                                     <Binding Path="DetailFilterValue"/>
-                                    <Binding Path="TextFilterValue"/>
+                                    <Binding Path="IsValid" Source="{x:Reference TextFilterValidator}"/>
                                 </Extensions:MultiBinding>
                             </Button.IsEnabled>
                         </Button>
@@ -84,6 +83,7 @@
         </StackLayout>
 
         <!--TODO It might be interesting to make all this Horizontal.-->
+        <!--TODO Currently scrolling does not work here.-->
         <ScrollView Grid.Row="1">
             <ListView x:Name="productsItemsControl" ItemsSource="{Binding Items}">
                 <ListView.ItemTemplate>

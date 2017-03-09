@@ -1,10 +1,11 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Text.RegularExpressions;
 using Xamarin.Forms;
 
 namespace RCS.PortableShop.Common.Behaviors
 {
-    public class EntryRegexValidationBehavior : Behavior<Entry>
+    public class EntryRegexValidationBehavior : Behavior<Entry>, INotifyPropertyChanged
     {
         #region Behavior
         protected override void OnAttachedTo(Entry entry)
@@ -23,7 +24,8 @@ namespace RCS.PortableShop.Common.Behaviors
 
             // Use BackgroundColor as it stands out more.
             // This could be replaced by an entire style.
-            (sender as Entry).BackgroundColor = IsValid
+            // Do not mark an empty string.
+            (sender as Entry).BackgroundColor = string.IsNullOrEmpty(e.NewTextValue) || IsValid
                 ? Color.Default
                 : InvalidBackgroundColour;
         }
@@ -38,21 +40,62 @@ namespace RCS.PortableShop.Common.Behaviors
         public bool IsValid
         {
             get { return (bool)base.GetValue(IsValidProperty); }
-            private set { base.SetValue(IsValidPropertyKey, value); }
+            private set
+            {
+                base.SetValue(IsValidPropertyKey, value);
+                RaisePropertyChanged(nameof(IsValid));
+            }
         }
         #endregion
 
         #region Parameters
-        public string Expression { get; set; }
 
-        // This needs to be a BindableProperty to enable assignment from resources. https://bugzilla.xamarin.com/show_bug.cgi?id=31547
-        public static BindableProperty InvalidBackgroundColourProperty =
+        // TODO Passing parameters into this Behavior currently does not work and may be buggy in Xamarin.
+        // Values are hard coded in XAML now.
+        // The setup here may be simplified in the future.
+
+        //public string Expression { get; set; }
+
+        // Initial value always true.
+        public static readonly BindableProperty ExpressionProperty =
+            BindableProperty.Create(nameof(Expression), typeof(string), typeof(EntryRegexValidationBehavior), ".*");
+
+        public string Expression
+        {
+            get { return (string)GetValue(ExpressionProperty); }
+            set
+            {
+                SetValue(ExpressionProperty, value);
+                RaisePropertyChanged(nameof(Expression));
+            }
+        }
+
+         public static BindableProperty InvalidBackgroundColourProperty =
             BindableProperty.Create(nameof(InvalidBackgroundColour), typeof(Color), typeof(EntryRegexValidationBehavior), Color.Default);
 
         public Color InvalidBackgroundColour
         {
             get { return (Color)GetValue(InvalidBackgroundColourProperty); }
-            set { SetValue(InvalidBackgroundColourProperty, value); }
+            set
+            {
+                SetValue(InvalidBackgroundColourProperty, value);
+                RaisePropertyChanged(nameof(InvalidBackgroundColour));
+            }
+        }
+        #endregion
+
+        #region INotifyPropertyChanged
+        // TODO This may be moved to a future base class.
+
+        public new event PropertyChangedEventHandler PropertyChanged;
+
+        // This is needed  for intermediate value changes.
+        // An initial binding usually works without, even without being a BindableProperty.
+        // TODO This seems superfluous for a BindableProperty.
+        // This signal can be particularly useful if a collection is entirely replaced, as the formerly bound collection no longer can.
+        protected void RaisePropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
     }

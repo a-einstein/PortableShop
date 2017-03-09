@@ -31,6 +31,20 @@ namespace RCS.PortableShop.ViewModels
         #region Filtering
         private bool filterInitialized;
 
+        // At least 3 characters.
+        public static readonly BindableProperty ValidTextFilterExpressionProperty =
+            BindableProperty.Create(nameof(ValidTextFilterExpression), typeof(string), typeof(ProductsViewModel), @"\w{3}");
+
+        public string ValidTextFilterExpression
+        {
+            get { return (string)GetValue(ValidTextFilterExpressionProperty); }
+            set
+            {
+                SetValue(ValidTextFilterExpressionProperty, value);
+                RaisePropertyChanged(nameof(ValidTextFilterExpression));
+            }
+        }
+
         public override async void Refresh()
         {
             Awaiting = true;
