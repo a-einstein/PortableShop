@@ -83,6 +83,7 @@
         </StackLayout>
 
         <!--TODO It might be interesting to make all this Horizontal.-->
+        <!--Note that ListView has got its own scrolling.-->
         <ListView Grid.Row="1" x:Name="productsItemsControl" ItemsSource="{Binding Items}">
             <ListView.ItemTemplate>
                 <DataTemplate>
