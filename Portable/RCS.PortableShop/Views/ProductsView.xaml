@@ -39,7 +39,7 @@
 
         <StackLayout Grid.Row="0">
             <!--Note this Orientation may be changed depending on screen orientation. Assume Vertical.-->
-            <StackLayout Grid.Row="0" x:Name="actionBlock" Orientation="Vertical" VerticalOptions="Start" HorizontalOptions="Start">
+            <StackLayout Grid.Row="0" x:Name="actionBlock" Orientation="Vertical" HorizontalOptions="Start">
                 <StackLayout Orientation="Horizontal">
                     <Controls:BindablePicker Title="{Localization:Translate MasterFilter}" ItemsSource="{Binding MasterFilterItems, Mode=TwoWay}" SelectedItem="{Binding MasterFilterValue, Mode=TwoWay}" IsEnabled="{Binding MasterFilterItems, Converter={StaticResource HasValueTester}}" BackgroundColor="{DynamicResource ProductsLevel1Colour}"/>
                     <Controls:BindablePicker Title="{Localization:Translate DetailFilter}" ItemsSource="{Binding DetailFilterItems, Mode=TwoWay}" SelectedItem="{Binding DetailFilterValue, Mode=TwoWay}" IsEnabled="{Binding DetailFilterItems, Converter={StaticResource HasValueTester}}" BackgroundColor="{DynamicResource ProductsLevel1Colour}"/>
@@ -62,7 +62,7 @@
                         <ActivityIndicator Color="Black" IsVisible="{Binding Awaiting}" IsRunning="{Binding Awaiting}"/>
 
                         <!--IsDefault="True"-->
-                        <Button Text="{Localization:Translate Filter}" Command="{Binding FilterCommand}" IsVisible="{Binding Awaiting, Converter={StaticResource BooleanInverter}}" BackgroundColor="{DynamicResource ProductsLevel1Colour}">
+                        <Button Text="{Localization:Translate Filter}" Command="{Binding FilterCommand}" IsVisible="{Binding Awaiting, Converter={StaticResource BooleanInverter}}" BackgroundColor="{DynamicResource ProductsLevel1Colour}" HorizontalOptions="Start">
                             <!--Note this prevents unfiltered queries.-->
                             <!--TODO Combine with validation.-->
                             <Button.IsEnabled>
@@ -83,50 +83,47 @@
         </StackLayout>
 
         <!--TODO It might be interesting to make all this Horizontal.-->
-        <!--TODO Currently scrolling does not work here.-->
-        <ScrollView Grid.Row="1">
-            <ListView x:Name="productsItemsControl" ItemsSource="{Binding Items}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <Controls:ContentButton Command="{Binding BindingContext.DetailsCommand, Source={x:Reference productsItemsControl}}" CommandParameter="{Binding}">
-                                <Controls:ContentButton.Content>
-                                    <Grid Style="{DynamicResource ListItemStyle}" BackgroundColor="{DynamicResource ProductsLevel1Colour}">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
+        <ListView Grid.Row="1" x:Name="productsItemsControl" ItemsSource="{Binding Items}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Controls:ContentButton Command="{Binding BindingContext.DetailsCommand, Source={x:Reference productsItemsControl}}" CommandParameter="{Binding}">
+                            <Controls:ContentButton.Content>
+                                <Grid Style="{DynamicResource ListItemStyle}" BackgroundColor="{DynamicResource ProductsLevel1Colour}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
 
-                                        <StackLayout Grid.Column="0">
-                                            <Image Source="{Binding ThumbNailPhoto, Converter={StaticResource ByteArrayToImageSourceConverter}}" VerticalOptions="Start" HorizontalOptions="Start" WidthRequest="100" HeightRequest="100" />
-                                            <Button Text="{Localization:Translate IncreaseProduct}" Command="{Binding BindingContext.CartCommand, Source={x:Reference productsItemsControl}}" CommandParameter="{Binding}" Style="{DynamicResource CartButtonStyle}"/>
+                                    <StackLayout Grid.Column="0">
+                                        <Image Source="{Binding ThumbNailPhoto, Converter={StaticResource ByteArrayToImageSourceConverter}}" HorizontalOptions="End" WidthRequest="100" HeightRequest="100" />
+                                        <Button Text="{Localization:Translate IncreaseProduct}" Command="{Binding BindingContext.CartCommand, Source={x:Reference productsItemsControl}}" CommandParameter="{Binding}" Style="{DynamicResource CartButtonStyle}" HorizontalOptions="End"/>
+                                    </StackLayout>
+
+                                    <StackLayout Grid.Column="1">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="{Binding ProductCategory}" Style="{DynamicResource ValueLabelStyle}"/>
+                                            <Label Text="/" Style="{DynamicResource ValueLabelStyle}"/>
+                                            <Label Text="{Binding ProductSubcategory}" Style="{DynamicResource ValueLabelStyle}"/>
                                         </StackLayout>
 
-                                        <StackLayout Grid.Column="1">
-                                            <StackLayout Orientation="Horizontal">
-                                                <Label Text="{Binding ProductCategory}" Style="{DynamicResource ValueLabelStyle}"/>
-                                                <Label Text="/" Style="{DynamicResource ValueLabelStyle}"/>
-                                                <Label Text="{Binding ProductSubcategory}" Style="{DynamicResource ValueLabelStyle}"/>
-                                            </StackLayout>
+                                        <Label Text="{Binding Name}" Style="{DynamicResource ValueEmphasisMediumLabelStyle}"/>
 
-                                            <Label Text="{Binding Name}" Style="{DynamicResource ValueEmphasisMediumLabelStyle}"/>
+                                        <Label Text="{Binding ListPrice, StringFormat=\{0:C2\}}" Style="{DynamicResource ValueEmphasisLabelStyle}"/>
 
-                                            <Label Text="{Binding ListPrice, StringFormat=\{0:C2\}}" Style="{DynamicResource ValueEmphasisLabelStyle}"/>
-
-                                            <StackLayout Orientation="Horizontal">
-                                                <Label Text="{Binding Size}" Style="{DynamicResource ValueLabelStyle}"/>
-                                                <Label Text="{Binding SizeUnitMeasureCode}" Style="{DynamicResource ValueLabelStyle}"/>
-                                            </StackLayout>
-
-                                            <Label Text="{Binding Color}" Style="{DynamicResource ValueLabelStyle}"/>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="{Binding Size}" Style="{DynamicResource ValueLabelStyle}"/>
+                                            <Label Text="{Binding SizeUnitMeasureCode}" Style="{DynamicResource ValueLabelStyle}"/>
                                         </StackLayout>
-                                    </Grid>
-                                </Controls:ContentButton.Content>
-                            </Controls:ContentButton>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </ScrollView>
+
+                                        <Label Text="{Binding Color}" Style="{DynamicResource ValueLabelStyle}"/>
+                                    </StackLayout>
+                                </Grid>
+                            </Controls:ContentButton.Content>
+                        </Controls:ContentButton>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </BaseClasses:ImplicitModelView>

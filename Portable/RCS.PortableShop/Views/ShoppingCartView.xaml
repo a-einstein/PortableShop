@@ -24,7 +24,8 @@
     <StackLayout>
         <Views:ShoppingCartSummaryView/>
 
-        <ScrollView>
+        <!--VerticalOptions is needed to fill the screen with few items.-->
+        <ScrollView VerticalOptions="FillAndExpand">
             <ListView x:Name="shoppingCartItemsListView" ItemsSource="{Binding Items}">
                 <ListView.ItemTemplate>
                     <DataTemplate>

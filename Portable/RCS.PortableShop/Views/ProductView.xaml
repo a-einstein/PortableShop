@@ -28,20 +28,21 @@
 
     <!--Have an outermost ScrollView to keep all controls accessible.-->
     <ScrollView>
-        <!--TODO Get VerticalOptions of this part really working (reducing margins).-->
+        <!--TODO Reducing margins in this part.-->
+        
         <!--Note this Orientation may be changed depending on screen orientation. Assume Vertical.-->
-        <StackLayout x:Name="productControl" Orientation="Vertical" VerticalOptions="Start">
-            <StackLayout VerticalOptions="Start">
-                <Controls:ContentButton Command="{Binding PhotoCommand}" CommandParameter="{Binding Source, Source={x:Reference imageControl}}" VerticalOptions="Start" HorizontalOptions="Start">
+        <StackLayout x:Name="productControl" Orientation="Vertical">
+            <StackLayout>
+                <Controls:ContentButton Command="{Binding PhotoCommand}" CommandParameter="{Binding Source, Source={x:Reference imageControl}}" HorizontalOptions="Start">
                     <Controls:ContentButton.Content>
                         <Image x:Name="imageControl" Source="{Binding Item.LargePhoto, Converter={StaticResource ByteArrayToImageSourceConverter}}" WidthRequest="240" HeightRequest="240"/>
                     </Controls:ContentButton.Content>
                 </Controls:ContentButton>
 
-                <Button Text="{Localization:Translate IncreaseProduct}" Command="{Binding CartCommand}" CommandParameter="{Binding Item}" Style="{DynamicResource CartButtonStyle}" VerticalOptions="Start"/>
+                <Button Text="{Localization:Translate IncreaseProduct}" Command="{Binding CartCommand}" CommandParameter="{Binding Item}" Style="{DynamicResource CartButtonStyle}" HorizontalOptions="Start"/>
             </StackLayout>
 
-            <Grid VerticalOptions="Start">
+            <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>

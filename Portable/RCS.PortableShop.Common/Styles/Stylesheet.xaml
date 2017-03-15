@@ -33,12 +33,6 @@
     <Color x:Key="LabelTextColour">#2F4F4F</Color> <!--DarkSlateGray-->
     <Color x:Key="ValueTextColour">#00008B</Color> <!--DarkBlue-->
 
-    <!--ScrollViews ======================================== -->
-
-    <Style TargetType="ScrollView">
-        <Setter Property="VerticalOptions" Value="FillAndExpand"/>
-    </Style>
-
     <!--ListViews ======================================== -->
 
     <Style TargetType="ListView">
@@ -116,8 +110,6 @@
     <!--TODO This part would be candidate to split of a specific dictionary.-->
     <Style x:Key="CartButtonStyle" TargetType="Button">
         <Setter Property="BackgroundColor" Value="{DynamicResource CartLevel1Colour}"/>
-        <Setter Property="VerticalOptions" Value="End"/>
-        <Setter Property="HorizontalOptions" Value="Start"/>
     </Style>
 
     <!--NumericUpDowns ======================================== -->
