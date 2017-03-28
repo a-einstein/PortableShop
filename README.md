@@ -4,7 +4,7 @@ Submitted to code analysis by **[Better Code Hub](https://bettercodehub.com)**.
 Current score: [![BCH compliance](https://bettercodehub.com/edge/badge/a-einstein/PortableShop)](https://bettercodehub.com)
 
 #### Purpose
-* Testing and demoing a portable application based on the use of Xamarin Forms.
+* Creating a working portable application for test and demo purpose based on Xamarin Forms.
 * This is a near equivalent of my WpfShop.
 * Currently this is only tested on Android API 21, and no longer suited for all platforms anyway.
 
