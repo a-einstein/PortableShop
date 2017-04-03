@@ -46,11 +46,6 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="RCS.AdventureWorks.Common">
-      <HintPath>..\..\..\AdventureWorks\RCS.AdventureWorks.Services.Products\bin\RCS.AdventureWorks.Common.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Properties\ServiceReferences.Designer.ClientConfig" />
   </ItemGroup>
   <ItemGroup>
@@ -83,6 +78,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\ProductsService\ProductsService1.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="RCS.AdventureWorks.Common">
+      <HintPath>..\..\..\..\services\AdventureWorks\RCS.AdventureWorks.Common\bin\Debug\RCS.AdventureWorks.Common.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
