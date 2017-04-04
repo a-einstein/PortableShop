@@ -24724,16 +24724,16 @@
   },
   "project": {
     "restore": {
-      "projectUniqueName": "P:\\projects\\RCS\\shopping\\PortableShop\\platforms\\RCS.PortableShop.UWP\\RCS.PortableShop.UWP.csproj",
+      "projectUniqueName": "P:\\projects\\RCS\\shopping\\clients\\PortableShop\\platforms\\RCS.PortableShop.UWP\\RCS.PortableShop.UWP.csproj",
       "projectName": "RCS.PortableShop.UWP",
-      "projectPath": "P:\\projects\\RCS\\shopping\\PortableShop\\platforms\\RCS.PortableShop.UWP\\RCS.PortableShop.UWP.csproj",
-      "projectJsonPath": "P:\\projects\\RCS\\shopping\\PortableShop\\platforms\\RCS.PortableShop.UWP\\project.json",
+      "projectPath": "P:\\projects\\RCS\\shopping\\clients\\PortableShop\\platforms\\RCS.PortableShop.UWP\\RCS.PortableShop.UWP.csproj",
+      "projectJsonPath": "P:\\projects\\RCS\\shopping\\clients\\PortableShop\\platforms\\RCS.PortableShop.UWP\\project.json",
       "projectStyle": "ProjectJson",
       "frameworks": {
         "uap10.0": {
           "projectReferences": {
-            "P:\\projects\\RCS\\shopping\\PortableShop\\Portable\\RCS.PortableShop\\RCS.PortableShop.csproj": {
-              "projectPath": "P:\\projects\\RCS\\shopping\\PortableShop\\Portable\\RCS.PortableShop\\RCS.PortableShop.csproj"
+            "P:\\projects\\RCS\\shopping\\clients\\PortableShop\\Portable\\RCS.PortableShop\\RCS.PortableShop.csproj": {
+              "projectPath": "P:\\projects\\RCS\\shopping\\clients\\PortableShop\\Portable\\RCS.PortableShop\\RCS.PortableShop.csproj"
             }
           }
         }
