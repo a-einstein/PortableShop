@@ -16,9 +16,13 @@
             </Grid.ColumnDefinitions>
 
             <Entry x:Name="entry" Grid.Column="0" Placeholder="{Binding Placeholder}" Text="{Binding Text, Mode=TwoWay}" Margin="0"/>
-            
-            <!--VerticalOptions trying to get symbol in line with Entry contents.-->
-            <Button Grid.Column="1" Text="{Localization:Translate Remove}" Command="{Binding ClearCommand}" Style="{DynamicResource CancelButtonStyle}" Margin="0" VerticalOptions="Start"/>
+
+            <!--Using ContentButton plus Label to create a flat style Button without border. -->
+            <Controls:ContentButton Grid.Column="1" Command="{Binding ClearCommand}" VerticalOptions="Start">
+                <Controls:ContentButton.Content>
+                    <Label Text="{Localization:Translate Remove}" Margin="0,5,10,0" FontSize="Medium" TextColor="{DynamicResource LabelTextColour}"/>
+                </Controls:ContentButton.Content>
+            </Controls:ContentButton>
         </Grid>
     </ContentView.Content>
 </Controls:CustomContentView>

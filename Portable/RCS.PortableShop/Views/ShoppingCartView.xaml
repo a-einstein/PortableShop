@@ -6,6 +6,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:NumericUpDown="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
     xmlns:BaseClasses="clr-namespace:RCS.PortableShop.Common.Views;assembly=RCS.PortableShop.Common"
+    xmlns:Controls="clr-namespace:RCS.PortableShop.Common.Controls;assembly=RCS.PortableShop.Common"
     xmlns:Views="clr-namespace:RCS.PortableShop.Views;assembly=RCS.PortableShop"
     xmlns:ViewModels="clr-namespace:RCS.PortableShop.ViewModels;assembly=RCS.PortableShop"
     xmlns:Converters="clr-namespace:RCS.PortableShop.Common.Converters;assembly=RCS.PortableShop.Common"
@@ -45,7 +46,13 @@
 
                                     <StackLayout Orientation="Horizontal">
                                         <NumericUpDown:SfNumericUpDown Value="{Binding Quantity, Mode=TwoWay}"/>
-                                        <Button Text="{Localization:Translate Remove}" Command="{Binding BindingContext.DeleteCommand, Source={x:Reference shoppingCartItemsListView}}" CommandParameter="{Binding}" Style="{DynamicResource CancelButtonStyle}" HorizontalOptions="Start"/>
+                                        
+                                        <!--Using ContentButton plus Label to create a flat style Button without border. -->
+                                        <Controls:ContentButton Grid.Column="1" Command="{Binding BindingContext.DeleteCommand, Source={x:Reference shoppingCartItemsListView}}" CommandParameter="{Binding}" HorizontalOptions="Start">
+                                            <Controls:ContentButton.Content>
+                                                <Label Text="{Localization:Translate Remove}" Margin="10,0,10,0" FontSize="Large" TextColor="{DynamicResource LabelTextColour}"/>
+                                            </Controls:ContentButton.Content>
+                                        </Controls:ContentButton>
                                     </StackLayout>
                                 </StackLayout>
                             </Grid>
