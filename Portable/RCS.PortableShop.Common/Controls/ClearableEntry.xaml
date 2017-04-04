@@ -17,7 +17,8 @@
 
             <Entry x:Name="entry" Grid.Column="0" Placeholder="{Binding Placeholder}" Text="{Binding Text, Mode=TwoWay}" Margin="0"/>
             
-            <Button Grid.Column="1" Text="{Localization:Translate Remove}" Command="{Binding ClearCommand}" Style="{DynamicResource CancelButtonStyle}" Margin="0"/>
+            <!--VerticalOptions trying to get symbol in line with Entry contents.-->
+            <Button Grid.Column="1" Text="{Localization:Translate Remove}" Command="{Binding ClearCommand}" Style="{DynamicResource CancelButtonStyle}" Margin="0" VerticalOptions="Start"/>
         </Grid>
     </ContentView.Content>
 </Controls:CustomContentView>
