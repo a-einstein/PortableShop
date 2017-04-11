@@ -32,9 +32,14 @@ namespace RCS.PortableShop.ViewModels
         // Use the existing ImageSource to avoid an unnecessary conversion.
         private void ShowPhoto(ImageSource imageSource)
         {
+            var resources = Application.Current.Resources;
+
             var contentView = new ContentView()
             {
-                BackgroundColor = (Color)Application.Current.Resources["ProductsLevel1Colour"],
+                // TODO Since Xamarin.Forms 2.3.4.224 the resource is no longer found here.
+                // HACK The white, though it combines nicely with the white backgrounds of the current pictures.
+                BackgroundColor = resources.ContainsKey("ProductsLevel1Colour") ? (Color)resources["ProductsLevel1Colour"] : Color.White,
+
                 Content= new Image() { Source = imageSource }
             };
 
