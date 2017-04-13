@@ -1,18 +1,16 @@
 ﻿using Android.App;
-using Android.Content.PM;
 using Android.OS;
 using RCS.PortableShop.Main;
+using Xamarin.Forms.Platform.Android;
 
 namespace RCS.PortableShop.Droid
 {
     [Activity(
         Label = "Cyclone", 
         Icon = "@drawable/application", 
-        Theme = "@style/MainTheme", 
-        MainLauncher = false, 
-        ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation
-        )]
-    public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
+        Theme = "@style/MainTheme"
+       )]
+    public class MainActivity : FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle bundle)
         {

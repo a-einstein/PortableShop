@@ -1,20 +1,22 @@
 using Android.App;
-using Android.OS;
+using Android.Content;
+using Android.Support.V7.App;
+using System.Threading.Tasks;
 
 namespace RCS.PortableShop.Droid
 {
     [Activity(
-        Theme = "@style/PortableShopTheme.Splash", 
-        MainLauncher = true, 
+        Theme = "@style/PortableShopTheme.Splash",
+        MainLauncher = true,
         NoHistory = true
         )]
-    public class SplashActivity : Activity
+    public class SplashActivity : AppCompatActivity
     {
-        protected override void OnCreate(Bundle savedInstanceState)
+        protected override void OnResume()
         {
-            base.OnCreate(savedInstanceState);
+            base.OnResume();
 
-            StartActivity(typeof(MainActivity));
+            Task.Factory.StartNew(() => { StartActivity(new Intent(Application.Context, typeof(MainActivity))); });
         }
     }
 }

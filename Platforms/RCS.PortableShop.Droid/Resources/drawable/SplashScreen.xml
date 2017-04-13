@@ -2,7 +2,6 @@
 
 <!--Note that not a lot more is possible.-->
 <!--TODO Besides the name it is also desirable to have additional text, animation, and the icon.-->
-<!--TODO This does not work in landscape. Referring to it from other drawable folders does not help.-->
 
 <layer-list
     xmlns:android="http://schemas.android.com/apk/res/android"
