@@ -14,13 +14,13 @@
     Note TapGestureRecognizer of ContentButton does not work if BackgroundColor is set here! https://bugzilla.xamarin.com/show_bug.cgi?id=25943
     -->
     <StackLayout Orientation="Horizontal">
-        <Label Text="{Binding ItemsCount}" Style="{DynamicResource ValueEmphasisMediumLabelStyle}"/>
+        <Label Text="{Binding ItemsCount}" Style="{StaticResource ValueEmphasisMediumLabelStyle}"/>
         <Label Text="{Localization:Translate Products}" FontSize="Medium"/>
 
-        <Label Text="{Binding ProductItemsCount}" Style="{DynamicResource ValueEmphasisMediumLabelStyle}"/>
+        <Label Text="{Binding ProductItemsCount}" Style="{StaticResource ValueEmphasisMediumLabelStyle}"/>
         <Label Text="{Localization:Translate Items}" FontSize="Medium"/>
 
-        <Label Text="{Binding TotalValue, StringFormat=\{0:C2\}}" Style="{DynamicResource ValueEmphasisMediumLabelStyle}"/>
+        <Label Text="{Binding TotalValue, StringFormat=\{0:C2\}}" Style="{StaticResource ValueEmphasisMediumLabelStyle}"/>
         <Label Text="{Localization:Translate TotalValue}" FontSize="Medium"/>
     </StackLayout>
 </BaseClasses:ImplicitModelView>

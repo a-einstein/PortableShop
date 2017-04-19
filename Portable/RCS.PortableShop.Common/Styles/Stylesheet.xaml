@@ -4,6 +4,7 @@
     x:Class="RCS.PortableShop.Common.Styles.Stylesheet"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Controls="clr-namespace:RCS.PortableShop.Common.Controls;assembly=RCS.PortableShop.Common"
     xmlns:NumericUpDown="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
     >
     <!--Note that currently no form of nested or multiple merging exist. https://forums.xamarin.com/discussion/86308/multiple-merged-dictionaries?-->
@@ -48,27 +49,31 @@
 
     <!--Labels ======================================== -->
 
-    <Style TargetType="Label">
-        <Setter Property="VerticalOptions" Value="{DynamicResource LineVerticalOptions}"/>
+    <!--Base needed to inherit.-->
+    <Style x:Key="LabelStyle" TargetType="Label">
+        <Setter Property="VerticalOptions" Value="{StaticResource LineVerticalOptions}"/>
         <Setter Property="FontSize" Value="Small"/>
-        <Setter Property="TextColor" Value="{DynamicResource LabelTextColour}"/>
+        <Setter Property="TextColor" Value="{StaticResource LabelTextColour}"/>
     </Style>
 
-    <Style x:Key="LabelLabelStyle" TargetType="Label">
+    <!--Generic.-->
+    <Style TargetType="Label" BasedOn="{StaticResource LabelStyle}"/>
+
+    <Style x:Key="LabelLabelStyle" TargetType="Label" BasedOn="{StaticResource LabelStyle}">
         <Setter Property="HorizontalOptions" Value="End"/>
     </Style>
 
-    <Style x:Key="ValueLabelStyle" TargetType="Label">
-        <Setter Property="TextColor" Value="{DynamicResource ValueTextColour}"/>
+    <Style x:Key="ValueLabelStyle" TargetType="Label" BasedOn="{StaticResource LabelStyle}">
+        <Setter Property="TextColor" Value="{StaticResource ValueTextColour}"/>
     </Style>
 
-    <Style x:Key="EmphasisLabelStyle" TargetType="Label">
+    <Style x:Key="EmphasisLabelStyle" TargetType="Label" BasedOn="{StaticResource LabelStyle}">
         <Setter Property="FontSize" Value="Small"/>
         <Setter Property="FontAttributes" Value="Bold"/>
     </Style>
 
     <Style x:Key="ValueEmphasisLabelStyle" TargetType="Label" BasedOn="{StaticResource EmphasisLabelStyle}">
-        <Setter Property="TextColor" Value="{DynamicResource ValueTextColour}"/>
+        <Setter Property="TextColor" Value="{StaticResource ValueTextColour}"/>
     </Style>
 
     <Style x:Key="EmphasisMediumLabelStyle" TargetType="Label" BasedOn="{StaticResource EmphasisLabelStyle}">
@@ -76,7 +81,7 @@
     </Style>
 
     <Style x:Key="ValueEmphasisMediumLabelStyle" TargetType="Label" BasedOn="{StaticResource EmphasisMediumLabelStyle}">
-        <Setter Property="TextColor" Value="{DynamicResource ValueTextColour}"/>
+        <Setter Property="TextColor" Value="{StaticResource ValueTextColour}"/>
     </Style>
 
     <Style x:Key="EmphasisLargeLabelStyle" TargetType="Label" BasedOn="{StaticResource EmphasisLabelStyle}">
@@ -84,13 +89,13 @@
     </Style>
 
     <Style x:Key="ValueEmphasisLargeLabelStyle" TargetType="Label" BasedOn="{StaticResource EmphasisLargeLabelStyle}">
-        <Setter Property="TextColor" Value="{DynamicResource ValueTextColour}"/>
+        <Setter Property="TextColor" Value="{StaticResource ValueTextColour}"/>
     </Style>
 
     <!--Entries ======================================== -->
 
     <Style TargetType="Entry">
-        <Setter Property="VerticalOptions" Value="{DynamicResource LineVerticalOptions}"/>
+        <Setter Property="VerticalOptions" Value="{StaticResource LineVerticalOptions}"/>
     </Style>
 
     <!--Buttons ======================================== -->
@@ -98,8 +103,8 @@
     <!--Note that HeightRequest usually only fucks the Button up, while FontSize does not do anything. -->
     <!--Note that FontAttributes does not work.-->
     <Style TargetType="Button">
-        <Setter Property="VerticalOptions" Value="{DynamicResource LineVerticalOptions}"/>
-        <Setter Property="TextColor" Value="{DynamicResource LabelTextColour}"/>
+        <Setter Property="VerticalOptions" Value="{StaticResource LineVerticalOptions}"/>
+        <Setter Property="TextColor" Value="{StaticResource LabelTextColour}"/>
     </Style>
 
     <Style x:Key="CancelButtonStyle" TargetType="Button">
@@ -114,7 +119,13 @@
 
     <!--TODO This part would be candidate to split of a specific dictionary.-->
     <Style x:Key="CartButtonStyle" TargetType="Button">
-        <Setter Property="BackgroundColor" Value="{DynamicResource CartLevel1Colour}"/>
+        <Setter Property="BackgroundColor" Value="{StaticResource CartLevel1Colour}"/>
+    </Style>
+
+    <!--Custom Controls ======================================== -->
+    
+    <Style TargetType="Controls:ContentButton">
+        <Setter Property="VerticalOptions" Value="{StaticResource LineVerticalOptions}"/>
     </Style>
 
     <!--NumericUpDowns ======================================== -->
@@ -122,10 +133,10 @@
     <!--Note this need HorizontalOptions to prevent taking all width. It is hard to reduce its size, because of its Buttons to start with. WidthRequest needs to be considerable large to preserve the text area. HeightRequest only crops it.-->
     <!--Note the (differently named) FontAttribute does not work. Fontsize is numeric instead of an enum.-->
     <Style TargetType="NumericUpDown:SfNumericUpDown">
-        <Setter Property="VerticalOptions" Value="{DynamicResource LineVerticalOptions}"/>
+        <Setter Property="VerticalOptions" Value="{StaticResource LineVerticalOptions}"/>
         <Setter Property="HorizontalOptions" Value="Start"/>
         <Setter Property="WidthRequest" Value="130"/>
         <Setter Property="FontSize" Value="10"/>
-        <Setter Property="TextColor" Value="{DynamicResource ValueTextColour}"/>
+        <Setter Property="TextColor" Value="{StaticResource ValueTextColour}"/>
     </Style>
 </ResourceDictionary>

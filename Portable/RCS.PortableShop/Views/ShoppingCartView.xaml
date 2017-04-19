@@ -12,8 +12,8 @@
     xmlns:Converters="clr-namespace:RCS.PortableShop.Common.Converters;assembly=RCS.PortableShop.Common"
     xmlns:Localization="clr-namespace:RCS.PortableShop.Localization;assembly=RCS.PortableShop"
     BaseClasses:View.ViewModel="{x:Static ViewModels:ShoppingCartViewModel.Instance}"
-    BackgroundColor="{DynamicResource CartLevel0Colour}"
-    Padding="{DynamicResource ViewPadding}"
+    BackgroundColor="{StaticResource CartLevel0Colour}"
+    Padding="{StaticResource ViewPadding}"
     >
 
     <BaseClasses:View.Resources>
@@ -31,17 +31,17 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Grid Style="{DynamicResource ListItemStyle}" BackgroundColor="{DynamicResource CartLevel1Colour}">
+                            <Grid Style="{StaticResource ListItemStyle}" BackgroundColor="{StaticResource CartLevel1Colour}">
                                 <!--Note this layout currently is aimed towards portrait orientation.-->
-                                <StackLayout Orientation="Vertical" Style="{DynamicResource CartItemStyle}">
-                                    <Label Text="{Binding Name}" Style="{DynamicResource ValueEmphasisMediumLabelStyle}"/>
+                                <StackLayout Orientation="Vertical">
+                                    <Label Text="{Binding Name}" Style="{StaticResource ValueEmphasisMediumLabelStyle}"/>
 
                                     <StackLayout Orientation="Horizontal">
-                                        <Label Text="{Binding ProductSize}" Style="{DynamicResource ValueLabelStyle}"/>
-                                        <Label Text="{Binding ProductSizeUnitMeasureCode}" Style="{DynamicResource ValueLabelStyle}"/>
-                                        <Label Text="{Binding ProductColor}" Style="{DynamicResource ValueLabelStyle}"/>
-                                        <Label Text="{Binding ProductListPrice, StringFormat=\{0:C2\}}" Style="{DynamicResource ValueLabelStyle}"/>
-                                        <Label Text="{Binding Value, StringFormat=\{0:C2\}}" Style="{DynamicResource ValueEmphasisLabelStyle}"/>
+                                        <Label Text="{Binding ProductSize}" Style="{StaticResource ValueLabelStyle}"/>
+                                        <Label Text="{Binding ProductSizeUnitMeasureCode}" Style="{StaticResource ValueLabelStyle}"/>
+                                        <Label Text="{Binding ProductColor}" Style="{StaticResource ValueLabelStyle}"/>
+                                        <Label Text="{Binding ProductListPrice, StringFormat=\{0:C2\}}" Style="{StaticResource ValueLabelStyle}"/>
+                                        <Label Text="{Binding Value, StringFormat=\{0:C2\}}" Style="{StaticResource ValueEmphasisLabelStyle}"/>
                                     </StackLayout>
 
                                     <StackLayout Orientation="Horizontal">
@@ -50,7 +50,7 @@
                                         <!--Using ContentButton plus Label to create a flat style Button without border. -->
                                         <Controls:ContentButton Grid.Column="1" Command="{Binding BindingContext.DeleteCommand, Source={x:Reference shoppingCartItemsListView}}" CommandParameter="{Binding}" HorizontalOptions="Start">
                                             <Controls:ContentButton.Content>
-                                                <Label Text="{Localization:Translate Remove}" Margin="10,0,10,0" FontSize="Large" TextColor="{DynamicResource LabelTextColour}"/>
+                                                <Label Text="{Localization:Translate Remove}" Margin="10,0" FontSize="Large" TextColor="{StaticResource LabelTextColour}"/>
                                             </Controls:ContentButton.Content>
                                         </Controls:ContentButton>
                                     </StackLayout>

@@ -8,8 +8,6 @@
     >
 
     <Application.Resources>
-        <!--Note that DynamicResource has to be used due to bug ??-->
-        <!--TODO Check if and where this is true, replace by StaticResource where possible.-->
         <ResourceDictionary MergedWith="CommonStyles:Stylesheet"/>
     </Application.Resources>
 </Application>
