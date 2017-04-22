@@ -32,36 +32,31 @@
     </BaseClasses:View.Resources>
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        <StackLayout Grid.Row="0">
-            <!--Note this Orientation may be changed depending on screen orientation. Assume Vertical.-->
-            <StackLayout Grid.Row="0" x:Name="actionBlock" Orientation="Vertical" HorizontalOptions="Start">
-                <StackLayout Orientation="Horizontal">
-                    <Controls:BindablePicker Title="{Localization:Translate MasterFilter}" ItemsSource="{Binding MasterFilterItems, Mode=TwoWay}" SelectedItem="{Binding MasterFilterValue, Mode=TwoWay}" IsEnabled="{Binding MasterFilterItems, Converter={StaticResource HasValueTester}}" BackgroundColor="{StaticResource ProductsLevel1Colour}"/>
-                    <Controls:BindablePicker Title="{Localization:Translate DetailFilter}" ItemsSource="{Binding DetailFilterItems, Mode=TwoWay}" SelectedItem="{Binding DetailFilterValue, Mode=TwoWay}" IsEnabled="{Binding DetailFilterItems, Converter={StaticResource HasValueTester}}" BackgroundColor="{StaticResource ProductsLevel1Colour}"/>
-                    <Controls:ClearableEntry Placeholder="{Localization:Translate TextFilter}" Text="{Binding TextFilterValue, Mode=TwoWay}" BackgroundColor="{StaticResource ProductsLevel1Colour}" WidthRequest="130">
-                        <Controls:ClearableEntry.EntryBehaviors>
-                            <!--TODO Currently parameter passing does not work and is hard coded. See comments elsewhere.-->
-                            <!--<Behaviors:EntryRegexValidationBehavior x:Name="TextFilterValidator" Expression="{Binding ValidTextFilterExpression}" InvalidBackgroundColour="{StaticResource InvalidBackgroundColour}"/>-->
-                            <Behaviors:EntryRegexValidationBehavior x:Name="TextFilterValidator" Expression="\w{3}" InvalidBackgroundColour="{StaticResource InvalidBackgroundColour}"/>
-                        </Controls:ClearableEntry.EntryBehaviors>
-                    </Controls:ClearableEntry>
-                </StackLayout>
+            <StackLayout Grid.Row="0">
+                <!--Note this Orientation may be changed depending on screen orientation. Assume Vertical.-->
+                <StackLayout Grid.Row="0" x:Name="actionBlock" Orientation="Vertical" HorizontalOptions="Start">
+                    <StackLayout Orientation="Horizontal">
+                        <Controls:BindablePicker Title="{Localization:Translate MasterFilter}" ItemsSource="{Binding MasterFilterItems, Mode=TwoWay}" SelectedItem="{Binding MasterFilterValue, Mode=TwoWay}" IsEnabled="{Binding MasterFilterItems, Converter={StaticResource HasValueTester}}" BackgroundColor="{StaticResource ProductsLevel1Colour}"/>
+                        <Controls:BindablePicker Title="{Localization:Translate DetailFilter}" ItemsSource="{Binding DetailFilterItems, Mode=TwoWay}" SelectedItem="{Binding DetailFilterValue, Mode=TwoWay}" IsEnabled="{Binding DetailFilterItems, Converter={StaticResource HasValueTester}}" BackgroundColor="{StaticResource ProductsLevel1Colour}"/>
+                        <Controls:ClearableEntry Placeholder="{Localization:Translate TextFilter}" Text="{Binding TextFilterValue, Mode=TwoWay}" BackgroundColor="{StaticResource ProductsLevel1Colour}" WidthRequest="130">
+                            <Controls:ClearableEntry.EntryBehaviors>
+                                <!--TODO Currently parameter passing does not work and is hard coded. See comments elsewhere.-->
+                                <!--<Behaviors:EntryRegexValidationBehavior x:Name="TextFilterValidator" Expression="{Binding ValidTextFilterExpression}" InvalidBackgroundColour="{StaticResource InvalidBackgroundColour}"/>-->
+                                <Behaviors:EntryRegexValidationBehavior x:Name="TextFilterValidator" Expression="\w{3}" InvalidBackgroundColour="{StaticResource InvalidBackgroundColour}"/>
+                            </Controls:ClearableEntry.EntryBehaviors>
+                        </Controls:ClearableEntry>
+                    </StackLayout>
 
-                <!--Put at Start, as changes in orientation did not work out correctly on the last Label.-->
-                <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
-                    <Grid>
-                        <!--TODO Currently this control does not appear on screen no matter what or where. It may be a bug in Xamarin. That has to be solved first.-->
-                        <!--TODO Experiment what arrangement is best with regards to visibility and so on.-->
-                        <!--TODO Possibly use it elsewhere too.-->
-                        <ActivityIndicator Color="Black" IsVisible="{Binding Awaiting}" IsRunning="{Binding Awaiting}"/>
-
+                    <!--Put at Start, as changes in orientation did not work out correctly on the last Label.-->
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
                         <!--IsDefault="True"-->
-                        <Button Text="{Localization:Translate Filter}" Command="{Binding FilterCommand}" IsVisible="{Binding Awaiting, Converter={StaticResource BooleanInverter}}" BackgroundColor="{StaticResource ProductsLevel1Colour}" HorizontalOptions="Start">
+                        <Button Text="{Localization:Translate Filter}" Command="{Binding FilterCommand}" BackgroundColor="{StaticResource ProductsLevel1Colour}" HorizontalOptions="Start">
                             <!--Note this prevents unfiltered queries.-->
                             <!--TODO Combine with validation.-->
                             <Button.IsEnabled>
@@ -69,61 +64,66 @@
                                     <Binding Path="MasterFilterValue"/>
                                     <Binding Path="DetailFilterValue"/>
                                     <Binding Path="IsValid" Source="{x:Reference TextFilterValidator}"/>
+                                    <!--TODO Prefereably disable whole view and hide it under an opaque overlay.-->
+                                    <Binding Path="Awaiting" Source="{x:Reference TextFilterValidator}" Converter="{StaticResource BooleanInverter}"/>
                                 </Extensions:MultiBinding>
                             </Button.IsEnabled>
                         </Button>
-                    </Grid>
+                        <Label Text="{Binding ItemsCount}" Style="{StaticResource ValueEmphasisMediumLabelStyle}"/>
 
-                    <Label Text="{Binding ItemsCount}" Style="{StaticResource ValueEmphasisMediumLabelStyle}"/>
-
-                    <Label Text="{Localization:Translate Products}" Style="{StaticResource EmphasisMediumLabelStyle}"/>
+                        <Label Text="{Localization:Translate Products}" Style="{StaticResource EmphasisMediumLabelStyle}"/>
+                    </StackLayout>
                 </StackLayout>
             </StackLayout>
-        </StackLayout>
 
-        <!--TODO It might be interesting to make all this Horizontal.-->
-        <!--Note that ListView has got its own scrolling.-->
-        <ListView Grid.Row="1" x:Name="productsItemsControl" ItemsSource="{Binding Items}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Controls:ContentButton Command="{Binding BindingContext.DetailsCommand, Source={x:Reference productsItemsControl}}" CommandParameter="{Binding}">
-                            <Controls:ContentButton.Content>
-                                <Grid Style="{StaticResource ListItemStyle}" BackgroundColor="{StaticResource ProductsLevel1Colour}">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
+            <!--TODO It might be interesting to make all this Horizontal.-->
+            <!--Note that ListView has got its own scrolling.-->
+            <ListView Grid.Row="1" x:Name="productsItemsControl" ItemsSource="{Binding Items}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Controls:ContentButton Command="{Binding BindingContext.DetailsCommand, Source={x:Reference productsItemsControl}}" CommandParameter="{Binding}">
+                                <Controls:ContentButton.Content>
+                                    <Grid Style="{StaticResource ListItemStyle}" BackgroundColor="{StaticResource ProductsLevel1Colour}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
 
-                                    <StackLayout Grid.Column="0" VerticalOptions="Start">
-                                        <Image Source="{Binding ThumbNailPhoto, Converter={StaticResource ByteArrayToImageSourceConverter}}" HorizontalOptions="End" WidthRequest="100" HeightRequest="100" />
-                                        <Button Text="{Localization:Translate IncreaseProduct}" Command="{Binding BindingContext.CartCommand, Source={x:Reference productsItemsControl}}" CommandParameter="{Binding}" Style="{StaticResource CartButtonStyle}" HorizontalOptions="End"/>
-                                    </StackLayout>
-
-                                    <StackLayout Grid.Column="1" VerticalOptions="Start">
-                                        <StackLayout Orientation="Horizontal">
-                                            <Label Text="{Binding ProductCategory}" Style="{StaticResource ValueLabelStyle}"/>
-                                            <Label Text="/" Style="{StaticResource ValueLabelStyle}"/>
-                                            <Label Text="{Binding ProductSubcategory}" Style="{StaticResource ValueLabelStyle}"/>
+                                        <StackLayout Grid.Column="0" VerticalOptions="Start">
+                                            <Image Source="{Binding ThumbNailPhoto, Converter={StaticResource ByteArrayToImageSourceConverter}}" HorizontalOptions="End" WidthRequest="100" HeightRequest="100" />
+                                            <Button Text="{Localization:Translate IncreaseProduct}" Command="{Binding BindingContext.CartCommand, Source={x:Reference productsItemsControl}}" CommandParameter="{Binding}" Style="{StaticResource CartButtonStyle}" HorizontalOptions="End"/>
                                         </StackLayout>
 
-                                        <Label Text="{Binding Name}" Style="{StaticResource ValueEmphasisMediumLabelStyle}"/>
+                                        <StackLayout Grid.Column="1" VerticalOptions="Start">
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="{Binding ProductCategory}" Style="{StaticResource ValueLabelStyle}"/>
+                                                <Label Text="/" Style="{StaticResource ValueLabelStyle}"/>
+                                                <Label Text="{Binding ProductSubcategory}" Style="{StaticResource ValueLabelStyle}"/>
+                                            </StackLayout>
 
-                                        <Label Text="{Binding ListPrice, StringFormat=\{0:C2\}}" Style="{StaticResource ValueEmphasisLabelStyle}"/>
+                                            <Label Text="{Binding Name}" Style="{StaticResource ValueEmphasisMediumLabelStyle}"/>
 
-                                        <StackLayout Orientation="Horizontal">
-                                            <Label Text="{Binding Size}" Style="{StaticResource ValueLabelStyle}"/>
-                                            <Label Text="{Binding SizeUnitMeasureCode}" Style="{StaticResource ValueLabelStyle}"/>
+                                            <Label Text="{Binding ListPrice, StringFormat=\{0:C2\}}" Style="{StaticResource ValueEmphasisLabelStyle}"/>
+
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="{Binding Size}" Style="{StaticResource ValueLabelStyle}"/>
+                                                <Label Text="{Binding SizeUnitMeasureCode}" Style="{StaticResource ValueLabelStyle}"/>
+                                            </StackLayout>
+
+                                            <Label Text="{Binding Color}" Style="{StaticResource ValueLabelStyle}"/>
                                         </StackLayout>
+                                    </Grid>
+                                </Controls:ContentButton.Content>
+                            </Controls:ContentButton>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
 
-                                        <Label Text="{Binding Color}" Style="{StaticResource ValueLabelStyle}"/>
-                                    </StackLayout>
-                                </Grid>
-                            </Controls:ContentButton.Content>
-                        </Controls:ContentButton>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+        <!--Currently this does not appear on the actual screen, but it does on the Visual Studio Android Emulator (both API 21). This seems a bug in Xamarin.-->
+        <!--TODO Possibly use it elsewhere too, or just as one overlay on the whole application.-->
+        <ActivityIndicator Color="Black" IsVisible="{Binding Awaiting}" IsRunning="{Binding Awaiting}" HorizontalOptions="Center" VerticalOptions="Center"/>
     </Grid>
 </BaseClasses:ImplicitModelView>
