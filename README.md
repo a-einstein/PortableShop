@@ -10,6 +10,7 @@ Current score: [![BCH compliance](https://bettercodehub.com/edge/badge/a-einstei
 
 #### Aspects
 * Xamarin Forms.
+* C# + WPF.
 * MVVM.
 * Client-server.
 * WCF.
