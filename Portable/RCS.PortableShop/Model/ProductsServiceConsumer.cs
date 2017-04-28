@@ -6,7 +6,7 @@ namespace RCS.PortableShop.Model
 {
     public abstract class ProductsServiceConsumer : IDisposable
     {
-        #region Constants
+        #region Public constants
         static public TimeSpan Timeout { get; } = new TimeSpan(0, 0, 15);
 
         public enum Errors
@@ -22,16 +22,17 @@ namespace RCS.PortableShop.Model
         {
             get
             {
-                // TODO Make this better configurable. There normally does not seem to be an .config file.
-                // Note this points to a BasicHttpBinding variant.
-                const string endpointAddress = "http://rcs-vostro/ProductsServicePub/ProductsService.svc/ProductsServiceB";
-
                 if (productsServiceClient == null)
                 {
-
+                    // TODO Make this better configurable. There does not seem to be a config file like on WPF.
+                
                     // Note that currently wsHttpBinding is not supported, but should be as it is part of System.ServiceModel 4.0.0.0.
-                    var binding = new BasicHttpBinding() { OpenTimeout = Timeout, SendTimeout = Timeout, ReceiveTimeout = Timeout, CloseTimeout = Timeout };
+                    var binding = new BasicHttpBinding(BasicHttpSecurityMode.Transport) { OpenTimeout = Timeout, SendTimeout = Timeout, ReceiveTimeout = Timeout, CloseTimeout = Timeout };
 
+                    // Note this points to a BasicHttpBinding variant on the server.
+                    const string endpointAddress = "https://rcs-vostro/ProductsServicePub/ProductsService.svc/ProductsServiceB";
+
+                    // Note the example bindings in ProductsServiceClient which could also be applied here by using EndpointConfiguration
                     productsServiceClient = new ProductsServiceClient(binding, new EndpointAddress(endpointAddress));
                 }
 

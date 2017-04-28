@@ -175,10 +175,6 @@ namespace RCS.PortableShop.ServiceClients.Products.ProductsService {
         
         private System.Threading.SendOrPostCallback onCloseCompletedDelegate;
         
-        public ProductsServiceClient() : 
-                base(ProductsServiceClient.GetDefaultBinding(), ProductsServiceClient.GetDefaultEndpointAddress()) {
-        }
-        
         public ProductsServiceClient(EndpointConfiguration endpointConfiguration) : 
                 base(ProductsServiceClient.GetBindingForEndpoint(endpointConfiguration), ProductsServiceClient.GetEndpointAddress(endpointConfiguration)) {
         }
@@ -484,28 +480,34 @@ namespace RCS.PortableShop.ServiceClients.Products.ProductsService {
         }
         
         private static System.ServiceModel.Channels.Binding GetBindingForEndpoint(EndpointConfiguration endpointConfiguration) {
+            if ((endpointConfiguration == EndpointConfiguration.WSHttpBinding_IProductsService)) {
+                System.ServiceModel.Channels.CustomBinding result = new System.ServiceModel.Channels.CustomBinding();
+                System.ServiceModel.Channels.TextMessageEncodingBindingElement textBindingElement = new System.ServiceModel.Channels.TextMessageEncodingBindingElement();
+                result.Elements.Add(textBindingElement);
+                System.ServiceModel.Channels.HttpsTransportBindingElement httpsBindingElement = new System.ServiceModel.Channels.HttpsTransportBindingElement();
+                httpsBindingElement.MaxBufferSize = int.MaxValue;
+                httpsBindingElement.MaxReceivedMessageSize = int.MaxValue;
+                result.Elements.Add(httpsBindingElement);
+                return result;
+            }
             if ((endpointConfiguration == EndpointConfiguration.BasicHttpBinding_IProductsService)) {
                 System.ServiceModel.BasicHttpBinding result = new System.ServiceModel.BasicHttpBinding();
                 result.MaxBufferSize = int.MaxValue;
                 result.MaxReceivedMessageSize = int.MaxValue;
+                result.Security.Mode = System.ServiceModel.BasicHttpSecurityMode.Transport;
                 return result;
             }
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
         }
         
         private static System.ServiceModel.EndpointAddress GetEndpointAddress(EndpointConfiguration endpointConfiguration) {
+            if ((endpointConfiguration == EndpointConfiguration.WSHttpBinding_IProductsService)) {
+                return new System.ServiceModel.EndpointAddress("https://rcs-vostro/ProductsServicePub/ProductsService.svc/ProductsServiceW");
+            }
             if ((endpointConfiguration == EndpointConfiguration.BasicHttpBinding_IProductsService)) {
-                return new System.ServiceModel.EndpointAddress("http://localhost:65348/ProductsService.svc/ProductsService");
+                return new System.ServiceModel.EndpointAddress("https://rcs-vostro/ProductsServicePub/ProductsService.svc/ProductsServiceB");
             }
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
-        }
-        
-        private static System.ServiceModel.Channels.Binding GetDefaultBinding() {
-            return ProductsServiceClient.GetBindingForEndpoint(EndpointConfiguration.BasicHttpBinding_IProductsService);
-        }
-        
-        private static System.ServiceModel.EndpointAddress GetDefaultEndpointAddress() {
-            return ProductsServiceClient.GetEndpointAddress(EndpointConfiguration.BasicHttpBinding_IProductsService);
         }
         
         private class ProductsServiceClientChannel : ChannelBase<RCS.PortableShop.ServiceClients.Products.ProductsService.IProductsService>, RCS.PortableShop.ServiceClients.Products.ProductsService.IProductsService {
@@ -568,6 +570,8 @@ namespace RCS.PortableShop.ServiceClients.Products.ProductsService {
         }
         
         public enum EndpointConfiguration {
+            
+            WSHttpBinding_IProductsService,
             
             BasicHttpBinding_IProductsService,
         }
