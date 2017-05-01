@@ -16,6 +16,7 @@ namespace RCS.PortableShop.Droid
         {
             base.OnResume();
 
+            // TODO There is a black 'gap' between the the SplashActivity and the MainActivity, apparently since last changes, 
             Task.Factory.StartNew(() => { StartActivity(new Intent(Application.Context, typeof(MainActivity))); });
         }
     }

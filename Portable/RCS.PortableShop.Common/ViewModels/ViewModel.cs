@@ -10,11 +10,11 @@ namespace RCS.PortableShop.Common.ViewModels
             SetCommands();
         }
 
-        protected virtual void SetCommands() { }
+        protected abstract void SetCommands();
 
         protected const string databaseErrorMessage = "Error retrieving data from database.";
 
-        public virtual void Refresh() { }
+        public abstract void Refresh();
 
         public static readonly BindableProperty AwaitingProperty =
             BindableProperty.Create(nameof(Awaiting), typeof(bool), typeof(ViewModel), defaultValue: false);

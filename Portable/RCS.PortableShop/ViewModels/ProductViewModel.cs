@@ -12,8 +12,6 @@ namespace RCS.PortableShop.ViewModels
         #region Initialize
         protected override void SetCommands()
         {
-            base.SetCommands();
-
             PhotoCommand = new Command<ImageSource>(ShowPhoto);
             CartCommand = new Command<Product>(CartProduct);
         }

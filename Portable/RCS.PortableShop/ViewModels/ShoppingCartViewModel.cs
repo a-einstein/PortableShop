@@ -12,6 +12,8 @@ namespace RCS.PortableShop.ViewModels
 {
     public class ShoppingCartViewModel : ItemsViewModel<CartItem>
     {
+        // Note this class only stores in memory currently.
+
         #region Initialization
         private ShoppingCartViewModel()
         {
@@ -46,10 +48,10 @@ namespace RCS.PortableShop.ViewModels
 
         protected override void SetCommands()
         {
-            base.SetCommands();
-
             DeleteCommand = new Command<CartItem>(Delete);
         }
+
+        public override void Refresh() { }
         #endregion
 
         #region CRUD
