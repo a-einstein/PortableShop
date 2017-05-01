@@ -8,6 +8,7 @@ using Xamarin.Forms;
 
 namespace RCS.PortableShop.Droid.Localization
 {
+    // Based on https://github.com/xamarin/xamarin-forms-samples/blob/master/TodoLocalized/TodoLocalized.Android/Locale_Android.cs
     public class Localize : ILocalize
     {
         // TODO Centrally define this.

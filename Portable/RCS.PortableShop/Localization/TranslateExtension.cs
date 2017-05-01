@@ -51,9 +51,15 @@ namespace RCS.PortableShop.Localization
             get
             {
                 // TODO Maybe change this to accommodate for intermediate language changes.
-                if ((Device.OS == TargetPlatform.iOS || Device.OS == TargetPlatform.Android) && cultureInfo == null)
+                if (cultureInfo == null)
                 {
-                    cultureInfo = DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
+                    switch (Device.RuntimePlatform)
+                    {
+                        case Device.iOS:
+                        case Device.Android:
+                            cultureInfo = DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
+                            break;
+                    }
                 }
 
                 return cultureInfo;

@@ -49,14 +49,19 @@ namespace RCS.PortableShop.Main
         private static void SetCulture()
         {
             // This lookup is NOT required for Windows platforms - the Culture will be automatically set
-            if (Device.OS == TargetPlatform.iOS || Device.OS == TargetPlatform.Android)
+            switch (Device.RuntimePlatform)
             {
-                // determine the correct, supported .NET culture
-                var currentCultureInfo = DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
+                case Device.iOS:
+                case Device.Android:
 
-                Labels.Culture = currentCultureInfo; // set the RESX for resource localization
+                    // determine the correct, supported .NET culture
+                    var currentCultureInfo = DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
+                    Labels.Culture = currentCultureInfo;
 
-                DependencyService.Get<ILocalize>().SetLocale(currentCultureInfo); // set the Thread for locale-aware methods
+                    // set the Thread for locale-aware methods
+                    DependencyService.Get<ILocalize>().SetLocale(currentCultureInfo);
+
+                    break;
             }
         }
 
