@@ -49,7 +49,7 @@ namespace RCS.PortableShop.Model
                      category?.Id, subcategory?.Id, namePart,
                      null);
             }
-            catch (Exception exception)
+            catch (Exception)
             {
                 MessagingCenter.Send<ProductsServiceConsumer>(this, ProductsServiceConsumer.Errors.ServiceError.ToString());
             }
@@ -69,7 +69,7 @@ namespace RCS.PortableShop.Model
                   productID,
                   null);
             }
-            catch (Exception exception)
+            catch (Exception)
             {
                 MessagingCenter.Send<ProductsServiceConsumer>(this, ProductsServiceConsumer.Errors.ServiceError.ToString());
             }
