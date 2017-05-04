@@ -3,7 +3,7 @@ using Xamarin.Forms;
 
 namespace RCS.PortableShop.Common.ViewModels
 {
-    public abstract class ItemViewModel<T> : ViewModel where T : DomainClass
+    public abstract class ItemViewModel<I> : ViewModel where I : DomainClass
     {
         public int? ItemId
         {
@@ -12,11 +12,11 @@ namespace RCS.PortableShop.Common.ViewModels
         }
 
         public static readonly BindableProperty ItemProperty =
-            BindableProperty.Create(nameof(Item), typeof(T), typeof(ItemViewModel<T>));
+            BindableProperty.Create(nameof(Item), typeof(I), typeof(ItemViewModel<I>));
 
-        public T Item
+        public I Item
         {
-            get { return (T)GetValue(ItemProperty); }
+            get { return (I)GetValue(ItemProperty); }
             set
             {
                 SetValue(ItemProperty, value);

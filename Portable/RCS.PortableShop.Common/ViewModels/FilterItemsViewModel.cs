@@ -8,13 +8,13 @@ using static Xamarin.Forms.BindableProperty;
 
 namespace RCS.PortableShop.Common.ViewModels
 {
-    public abstract class FilterItemsViewModel<T, V, W> : ItemsViewModel<T>
+    public abstract class FilterItemsViewModel<I, FM, FD> : ItemsViewModel<I>
     {
         #region Initialization
         protected override void SetCommands()
         {
             FilterCommand = new Command(Refresh);
-            DetailsCommand = new Command<T>(ShowDetails);
+            DetailsCommand = new Command<I>(ShowDetails);
         }
         #endregion
 
@@ -22,12 +22,12 @@ namespace RCS.PortableShop.Common.ViewModels
         protected abstract Task InitializeFilters();
 
         public static readonly BindableProperty MasterFilterItemsProperty =
-            BindableProperty.Create(nameof(MasterFilterItems), typeof(ObservableCollection<V>), typeof(FilterItemsViewModel<T, V, W>), defaultValue: new ObservableCollection<V>());
+            BindableProperty.Create(nameof(MasterFilterItems), typeof(ObservableCollection<FM>), typeof(FilterItemsViewModel<I, FM, FD>), defaultValue: new ObservableCollection<FM>());
 
         // Note there seems to be an issue with updating bindings by ObservableCollection, or on the particular controls. See consequences elsewhere.
-        public ObservableCollection<V> MasterFilterItems
+        public ObservableCollection<FM> MasterFilterItems
         {
-            get { return (ObservableCollection<V>)GetValue(MasterFilterItemsProperty); }
+            get { return (ObservableCollection<FM>)GetValue(MasterFilterItemsProperty); }
             set
             {
                 SetValue(MasterFilterItemsProperty, value);
@@ -36,11 +36,11 @@ namespace RCS.PortableShop.Common.ViewModels
         }
 
         public static readonly BindableProperty MasterFilterValueProperty =
-            BindableProperty.Create(nameof(MasterFilterValue), typeof(V), typeof(FilterItemsViewModel<T, V, W>), propertyChanged : new BindingPropertyChangedDelegate(OnMasterFilterValueChanged));
+            BindableProperty.Create(nameof(MasterFilterValue), typeof(FM), typeof(FilterItemsViewModel<I, FM, FD>), propertyChanged : new BindingPropertyChangedDelegate(OnMasterFilterValueChanged));
 
-        public V MasterFilterValue
+        public FM MasterFilterValue
         {
-            get { return (V)GetValue(MasterFilterValueProperty); }
+            get { return (FM)GetValue(MasterFilterValueProperty); }
             set
             {
                 SetValue(MasterFilterValueProperty, value);
@@ -52,7 +52,7 @@ namespace RCS.PortableShop.Common.ViewModels
         // Currently the FilterCommand is just bound to a Button, implying it always has to be activated explicitly.
         public static void OnMasterFilterValueChanged(BindableObject bindableObject, object oldValue, object newValue)
         {
-            var viewModel = bindableObject as FilterItemsViewModel<T, V, W>;
+            var viewModel = bindableObject as FilterItemsViewModel<I, FM, FD>;
 
             viewModel.SetDetailFilterItems();
             viewModel.DetailFilterValue = viewModel.DetailFilterItems.FirstOrDefault();
@@ -63,7 +63,7 @@ namespace RCS.PortableShop.Common.ViewModels
         {
             var detailFilterItemsSelection = detailFilterItemsSource.Where(DetailFilterItemsSelector());
 
-            ObservableCollection<W> detailFilterItems = new ObservableCollection<W>(); ;
+            ObservableCollection<FD> detailFilterItems = new ObservableCollection<FD>(); ;
 
             // Note that the query is executed on the foreach.
             foreach (var item in detailFilterItemsSelection)
@@ -76,17 +76,17 @@ namespace RCS.PortableShop.Common.ViewModels
             DetailFilterItems = detailFilterItems;
         }
 
-        protected abstract Func<W, bool> DetailFilterItemsSelector(bool addEmptyElement = true);
+        protected abstract Func<FD, bool> DetailFilterItemsSelector(bool addEmptyElement = true);
 
-        protected Collection<W> detailFilterItemsSource = new Collection<W>();
+        protected Collection<FD> detailFilterItemsSource = new Collection<FD>();
 
         public static readonly BindableProperty DetailFilterItemsProperty =
-            BindableProperty.Create(nameof(DetailFilterItems), typeof(ObservableCollection<W>), typeof(FilterItemsViewModel<T, V, W>), defaultValue: new ObservableCollection<W>());
+            BindableProperty.Create(nameof(DetailFilterItems), typeof(ObservableCollection<FD>), typeof(FilterItemsViewModel<I, FM, FD>), defaultValue: new ObservableCollection<FD>());
 
         // Note there seems to be an issue with updating bindings by ObservableCollection, or on the particular controls. See consequences elsewhere.
-        public ObservableCollection<W> DetailFilterItems
+        public ObservableCollection<FD> DetailFilterItems
         {
-            get { return (ObservableCollection<W>)GetValue(DetailFilterItemsProperty); }
+            get { return (ObservableCollection<FD>)GetValue(DetailFilterItemsProperty); }
             set
             {
                 SetValue(DetailFilterItemsProperty, value);
@@ -95,11 +95,11 @@ namespace RCS.PortableShop.Common.ViewModels
         }
 
         public static readonly BindableProperty DetailFilterValueProperty =
-            BindableProperty.Create(nameof(DetailFilterValue), typeof(W), typeof(FilterItemsViewModel<T, V, W>));
+            BindableProperty.Create(nameof(DetailFilterValue), typeof(FD), typeof(FilterItemsViewModel<I, FM, FD>));
 
-        public W DetailFilterValue
+        public FD DetailFilterValue
         {
-            get { return (W)GetValue(DetailFilterValueProperty); }
+            get { return (FD)GetValue(DetailFilterValueProperty); }
             set
             {
                 SetValue(DetailFilterValueProperty, value);
@@ -108,7 +108,7 @@ namespace RCS.PortableShop.Common.ViewModels
         }
 
         public static readonly BindableProperty TextFilterValueProperty =
-            BindableProperty.Create(nameof(TextFilterValue), typeof(string), typeof(FilterItemsViewModel<T, V, W>));
+            BindableProperty.Create(nameof(TextFilterValue), typeof(string), typeof(FilterItemsViewModel<I, FM, FD>));
 
         public string TextFilterValue
         {
@@ -126,7 +126,7 @@ namespace RCS.PortableShop.Common.ViewModels
         #region Details
         public ICommand DetailsCommand { get; private set; }
 
-        protected abstract void ShowDetails(T overviewObject);
+        protected abstract void ShowDetails(I overviewObject);
         #endregion
 
     }
