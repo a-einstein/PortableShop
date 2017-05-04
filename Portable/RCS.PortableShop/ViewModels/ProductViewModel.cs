@@ -18,9 +18,10 @@ namespace RCS.PortableShop.ViewModels
         #endregion
 
         #region Filtering
-        public override async void Refresh(object productId)
+        public override async void Refresh()
         {
-            Item = await ProductsRepository.Instance.ReadDetails((int)productId);
+            if (ItemId.HasValue)
+                Item = await ProductsRepository.Instance.ReadDetails((int)ItemId);
         }
         #endregion
 
@@ -38,7 +39,7 @@ namespace RCS.PortableShop.ViewModels
                 // HACK The white, though it combines nicely with the white backgrounds of the current pictures.
                 BackgroundColor = resources.ContainsKey("ProductsLevel1Colour") ? (Color)resources["ProductsLevel1Colour"] : Color.White,
 
-                Content= new Image() { Source = imageSource }
+                Content = new Image() { Source = imageSource }
             };
 
             PushPage(contentView, Item?.Name);

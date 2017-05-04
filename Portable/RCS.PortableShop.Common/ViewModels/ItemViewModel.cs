@@ -5,10 +5,19 @@ namespace RCS.PortableShop.Common.ViewModels
 {
     public abstract class ItemViewModel<I> : ViewModel where I : DomainClass
     {
+        private int? itemId;
+
+        // Note that a generic property is impossible, so the DomainClass is needed, determine the property's type.
         public int? ItemId
         {
-            get { return Item?.Id; }
-            set { Refresh(value); }
+            get { return itemId; }
+            set
+            {
+                // Store the ID separately to enable a retry on an interrupted Refresh.
+                itemId = value;
+
+                Refresh();
+            }
         }
 
         public static readonly BindableProperty ItemProperty =
@@ -23,12 +32,5 @@ namespace RCS.PortableShop.Common.ViewModels
                 RaisePropertyChanged(nameof(Item));
             }
         }
-
-        public override void Refresh()
-        {
-            Refresh(ItemId);
-        }
-
-        public abstract void Refresh(object Id);
     }
 }

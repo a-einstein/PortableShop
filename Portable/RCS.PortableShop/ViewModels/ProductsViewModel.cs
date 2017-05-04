@@ -144,8 +144,7 @@ namespace RCS.PortableShop.ViewModels
 
             PushPage(mainView, productsOverviewObject.Name);
 
-            // TODO Make this implicit somehow.
-            (productView.ViewModel as ProductViewModel).Refresh(productsOverviewObject.Id);
+            (productView.ViewModel as ProductViewModel).ItemId = productsOverviewObject.Id;
         }
         #endregion
 
