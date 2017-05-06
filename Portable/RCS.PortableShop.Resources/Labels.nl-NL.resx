@@ -192,7 +192,8 @@ Controleer a.u.b. grondig of herstart de applicatie (aanbevolen).</value>
   </data>
   <data name="ServiceError" xml:space="preserve">
     <value>Er is een probleem in het gebruik van onze data service.
-Probeer later a.u.b. nog eens.</value>
+Gebruik a.u.b. de verversknop,
+of probeer het later nog eens.</value>
   </data>
   <data name="Size" xml:space="preserve">
     <value>Maat</value>

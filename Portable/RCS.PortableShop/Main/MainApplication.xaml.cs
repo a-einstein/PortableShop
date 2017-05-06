@@ -71,7 +71,8 @@ namespace RCS.PortableShop.Main
 
             MessagingCenter.Subscribe<ProductsServiceConsumer>(this, ProductsServiceConsumer.Errors.ServiceError.ToString(), async (sender) =>
             {
-                // Try to prevent stacking muliple related errors, like at startup.
+                // Try to prevent stacking muliple related messages, like at startup.
+                // TODO Finetune this. It can also unwantedly prevent messages, like after changing page.
                 if (!serviceErrorDisplaying && DateTime.Now > serviceErrorFirstDisplayed + serviceErrorGraceTime)
                 {
                     serviceErrorDisplaying = true;

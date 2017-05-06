@@ -51,7 +51,11 @@ namespace RCS.PortableShop.ViewModels
             DeleteCommand = new Command<CartItem>(Delete);
         }
 
-        public override void Refresh() { }
+        public override void Refresh()
+        {
+            // This is not terribly useful. Alternatively the refresh button could be suppressed or disabled.
+            UpdateAggregates();
+        }
         #endregion
 
         #region CRUD

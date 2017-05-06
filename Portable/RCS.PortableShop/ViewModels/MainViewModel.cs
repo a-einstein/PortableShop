@@ -23,7 +23,10 @@ namespace RCS.PortableShop.ViewModels
             ShowCartCommand = new Command(ShowCart);
         }
 
-        public override void Refresh() { }
+        public override void Refresh()
+        {
+            MainRegionContent.ViewModel.Refresh();
+        }
 
         public static readonly BindableProperty MainRegionContentProperty =
             BindableProperty.Create(nameof(MainRegionContent), typeof(View), typeof(MainViewModel));
