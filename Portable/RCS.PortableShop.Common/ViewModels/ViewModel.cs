@@ -62,10 +62,7 @@ namespace RCS.PortableShop.Common.ViewModels
         {
             var page = new ContentPage() { Content = view, Title = title };
             
-            // TODO replace name by icon.
             page.ToolbarItems.Add(new ToolbarItem("R", "Refresh.png", view.ViewModel.Refresh));
-            
-            // TODO Add application icon here too?
 
             Navigation.PushAsync(page);
         }

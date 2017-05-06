@@ -21,10 +21,7 @@ namespace RCS.PortableShop.Main
             //Title = TranslateExtension.ProvideValue(Labels.Products) as string;
             Title = Labels.Products;
 
-            // TODO replace name by icon.
             ToolbarItems.Add(new ToolbarItem("R", "Refresh.png", mainView.ViewModel.Refresh));
-
-            // TODO Add application icon here too?
         }
 
         // TODO It would be desirable to stack and pop query pages, enabling return to previous ones without having to set the filter again.
