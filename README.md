@@ -5,7 +5,7 @@ Current score: [![BCH compliance](https://bettercodehub.com/edge/badge/a-einstei
 
 #### Purpose
 * Creating a working portable application for test and demo purpose based on Xamarin Forms.
-* This is a near equivalent of my WpfShop.
+* This is a near equivalent of my [WpfShop](https://github.com/a-einstein/WpfShop).
 * Currently this is only tested on Android API 21, and no longer suited for all platforms anyway.
 
 #### Aspects
