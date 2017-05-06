@@ -22,7 +22,7 @@ namespace RCS.PortableShop.Main
             Title = Labels.Products;
 
             // TODO replace name by icon.
-            ToolbarItems.Add(new ToolbarItem("R", null, mainView.ViewModel.Refresh));
+            ToolbarItems.Add(new ToolbarItem("R", "Refresh.png", mainView.ViewModel.Refresh));
 
             // TODO Add application icon here too?
         }
