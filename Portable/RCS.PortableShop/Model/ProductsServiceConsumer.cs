@@ -30,7 +30,8 @@ namespace RCS.PortableShop.Model
                     var binding = new BasicHttpBinding(BasicHttpSecurityMode.Transport) { OpenTimeout = Timeout, SendTimeout = Timeout, ReceiveTimeout = Timeout, CloseTimeout = Timeout };
 
                     // Note this points to a BasicHttpBinding variant on the server.
-                    const string endpointAddress = "https://rcs-vostro/ProductsServicePub/ProductsService.svc/ProductsServiceB";
+                    //const string endpointAddress = "https://rcs-vostro/ProductsServicePub/ProductsService.svc/ProductsServiceB";
+                    const string endpointAddress = "https://rcs-adventureworksservices.azurewebsites.net/ProductsService.svc/ProductsServiceB";
 
                     // Note the example bindings in ProductsServiceClient which could also be applied here by using EndpointConfiguration
                     productsServiceClient = new ProductsServiceClient(binding, new EndpointAddress(endpointAddress));
