@@ -2,8 +2,8 @@
 using RCS.PortableShop.ServiceClients.Products.ProductsService;
 using System;
 using System.Collections.Generic;
+using System.ServiceModel;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 
 namespace RCS.PortableShop.Model
 {
@@ -49,9 +49,13 @@ namespace RCS.PortableShop.Model
                      category?.Id, subcategory?.Id, namePart,
                      null);
             }
-            catch (Exception)
+            catch (FaultException<ExceptionDetail> exception)
             {
-                MessagingCenter.Send<ProductsServiceConsumer>(this, ProductsServiceConsumer.Errors.ServiceError.ToString());
+                Message(exception);
+            }
+            catch (Exception exception)
+            {
+                Message(exception);
             }
 
             return productsOverview;
@@ -69,9 +73,13 @@ namespace RCS.PortableShop.Model
                   productID,
                   null);
             }
-            catch (Exception)
+            catch (FaultException<ExceptionDetail> exception)
             {
-                MessagingCenter.Send<ProductsServiceConsumer>(this, ProductsServiceConsumer.Errors.ServiceError.ToString());
+                Message(exception);
+            }
+            catch (Exception exception)
+            {
+                Message(exception);
             }
 
             return product;

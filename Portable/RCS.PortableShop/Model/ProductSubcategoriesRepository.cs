@@ -1,8 +1,8 @@
 ﻿using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.PortableShop.ServiceClients.Products.ProductsService;
 using System;
+using System.ServiceModel;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 
 namespace RCS.PortableShop.Model
 {
@@ -47,10 +47,13 @@ namespace RCS.PortableShop.Model
                     ProductsServiceClient.EndGetProductSubcategories,
                     null);
             }
+            catch (FaultException<ExceptionDetail> exception)
+            {
+                Message(exception);
+            }
             catch (Exception exception)
             {
-                MessagingCenter.Send<ProductsServiceConsumer>(this, ProductsServiceConsumer.Errors.ServiceError.ToString());
-                throw (exception);
+                Message(exception);
             }
 
             if (addEmptyElement)

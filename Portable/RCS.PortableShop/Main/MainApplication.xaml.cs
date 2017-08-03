@@ -69,7 +69,7 @@ namespace RCS.PortableShop.Main
         {
             // Use the MessagingCenter mechanism to connect ViewModels or other non GUI code to this Page.
 
-            MessagingCenter.Subscribe<ProductsServiceConsumer>(this, ProductsServiceConsumer.Errors.ServiceError.ToString(), async (sender) =>
+            MessagingCenter.Subscribe<ProductsServiceConsumer, string>(this, ProductsServiceConsumer.Errors.ServiceError.ToString(), async (sender, details) =>
             {
                 // Try to prevent stacking muliple related messages, like at startup.
                 // TODO Finetune this. It can also unwantedly prevent messages, like after changing page.
@@ -78,7 +78,15 @@ namespace RCS.PortableShop.Main
                     serviceErrorDisplaying = true;
                     serviceErrorFirstDisplayed = DateTime.Now;
 
-                    await page.DisplayAlert(Labels.Error, Labels.ServiceError, Labels.Close);
+                    if (string.IsNullOrWhiteSpace(details))
+                        await page.DisplayAlert(Labels.Error, Labels.ServiceError, Labels.Close);
+                    else
+                    {
+                        var showDetails = await page.DisplayAlert(Labels.Error, Labels.ServiceError, Labels.Details, Labels.Close);
+
+                        if (showDetails)
+                            await page.DisplayAlert(Labels.Details, details, Labels.Close);
+                    }
 
                     serviceErrorDisplaying = false;
                 }
