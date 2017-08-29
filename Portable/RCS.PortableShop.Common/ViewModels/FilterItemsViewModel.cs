@@ -10,16 +10,30 @@ namespace RCS.PortableShop.Common.ViewModels
 {
     public abstract class FilterItemsViewModel<I, FM, FD> : ItemsViewModel<I>
     {
-        #region Initialization
+        #region Construct
         protected override void SetCommands()
         {
+            base.SetCommands();
+
             FilterCommand = new Command(Refresh);
             DetailsCommand = new Command<I>(ShowDetails);
         }
         #endregion
 
+        #region Refresh
+        private bool filterInitialized;
+
+        protected override async Task Initialize()
+        {
+            await base.Initialize();
+
+            if (!filterInitialized)
+                filterInitialized = await InitializeFilters();
+        }
+        #endregion
+
         #region Filtering
-        protected abstract Task InitializeFilters();
+        protected abstract Task<bool> InitializeFilters();
 
         public static readonly BindableProperty MasterFilterItemsProperty =
             BindableProperty.Create(nameof(MasterFilterItems), typeof(ObservableCollection<FM>), typeof(FilterItemsViewModel<I, FM, FD>), defaultValue: new ObservableCollection<FM>());
@@ -36,7 +50,7 @@ namespace RCS.PortableShop.Common.ViewModels
         }
 
         public static readonly BindableProperty MasterFilterValueProperty =
-            BindableProperty.Create(nameof(MasterFilterValue), typeof(FM), typeof(FilterItemsViewModel<I, FM, FD>), propertyChanged : new BindingPropertyChangedDelegate(OnMasterFilterValueChanged));
+            BindableProperty.Create(nameof(MasterFilterValue), typeof(FM), typeof(FilterItemsViewModel<I, FM, FD>), propertyChanged: new BindingPropertyChangedDelegate(OnMasterFilterValueChanged));
 
         public FM MasterFilterValue
         {

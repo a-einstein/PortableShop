@@ -14,12 +14,7 @@ namespace RCS.PortableShop.ViewModels
 {
     public class ProductsViewModel : FilterItemsViewModel<ProductsOverviewObject, ProductCategory, ProductSubcategory>, IShopper
     {
-        #region Initialization
-        public ProductsViewModel()
-        {
-            Refresh();
-        }
-
+        #region Construct
         protected override void SetCommands()
         {
             base.SetCommands();
@@ -28,8 +23,21 @@ namespace RCS.PortableShop.ViewModels
         }
         #endregion
 
+        #region Refresh
+        protected override void Clear()
+        {
+            base.Clear();
+
+            Items.Clear();
+        }
+
+        protected override async Task Read()
+        {
+            await ReadFiltered();
+        }
+        #endregion
+
         #region Filtering
-        private bool filterInitialized;
 
         // At least 3 characters.
         public static readonly BindableProperty ValidTextFilterExpressionProperty =
@@ -45,22 +53,8 @@ namespace RCS.PortableShop.ViewModels
             }
         }
 
-        public override async void Refresh()
-        {
-            Awaiting = true;
-
-            Items.Clear();
-
-            if (!filterInitialized)
-                await InitializeFilters();
-
-            await ReadFiltered();
-
-            Awaiting = false;
-        }
-
         // TODO This would better be handled inside the repository.
-        protected override async Task InitializeFilters()
+        protected override async Task<bool> InitializeFilters()
         {
             try
             {
@@ -97,11 +91,11 @@ namespace RCS.PortableShop.ViewModels
 
                 TextFilterValue = default(string);
 
-                filterInitialized = true;
+                return true;
             }
             catch (Exception)
             {
-                // Mainly want to prevent filterInitialized to be set.
+                return false;
             }
         }
 
@@ -139,8 +133,8 @@ namespace RCS.PortableShop.ViewModels
         {
             var productView = new ProductView();
 
-            var mainViewModel = new MainViewModel(productView);
-            var mainView = new MainView() { ViewModel = mainViewModel };
+            var mainViewModel = new ShoppingWrapperViewModel() { WrappedContent = productView };
+            var mainView = new ShoppingWrapperView() { ViewModel = mainViewModel };
 
             PushPage(mainView, productsOverviewObject.Name);
 

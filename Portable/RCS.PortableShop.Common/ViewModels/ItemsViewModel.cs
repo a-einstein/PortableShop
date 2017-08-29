@@ -24,6 +24,7 @@ namespace RCS.PortableShop.Common.ViewModels
                 SetItemsCollectionChanged();
             }
         }
+
         private void SetItemsCollectionChanged()
         {
             Items.CollectionChanged += Items_CollectionChanged;

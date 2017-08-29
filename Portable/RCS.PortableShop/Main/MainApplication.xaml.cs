@@ -101,6 +101,7 @@ namespace RCS.PortableShop.Main
         protected override void OnStart()
         {
             // Handle when your app starts
+            // TODO Refresh here?
         }
 
         protected override void OnSleep()

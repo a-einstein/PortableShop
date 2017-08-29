@@ -2,9 +2,9 @@
 
 namespace RCS.PortableShop.Views
 {
-    public partial class MainView : View
+    public partial class ShoppingWrapperView : View
     {
-        public MainView()
+        public ShoppingWrapperView()
         {
             InitializeComponent();
         }

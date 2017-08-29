@@ -7,43 +7,39 @@ using View = RCS.PortableShop.Common.Views.View;
 
 namespace RCS.PortableShop.ViewModels
 {
-    public class MainViewModel : ViewModel
+    // TODO Might as well keep this view and just change MainRegionContent.
+    public class ShoppingWrapperViewModel : ViewModel
     {
-        #region Initialization
-        protected MainViewModel() { }
-
-        public MainViewModel(View mainRegionContent)
-            : this()
-        {
-            MainRegionContent = mainRegionContent;
-        }
-
+        #region Construct
         protected override void SetCommands()
         {
+            base.SetCommands();
+
             ShowCartCommand = new Command(ShowCart);
         }
 
-        public override void Refresh()
-        {
-            MainRegionContent.ViewModel.Refresh();
-        }
-
-        public static readonly BindableProperty MainRegionContentProperty =
-            BindableProperty.Create(nameof(MainRegionContent), typeof(View), typeof(MainViewModel));
+        public static readonly BindableProperty WrappedContentProperty =
+            BindableProperty.Create(nameof(WrappedContent), typeof(View), typeof(ShoppingWrapperViewModel));
 
         // TODO This might better be moved to the View to better separate the two kind of objects.
         // TODO Once a View is assigned to MainView instead of MainViewModel the latter can be made implicit too.
-        public View MainRegionContent
+        public View WrappedContent
         {
-            get { return (View)GetValue(MainRegionContentProperty); }
-            set { SetValue(MainRegionContentProperty, value); }
+            get { return (View)GetValue(WrappedContentProperty); }
+            set { SetValue(WrappedContentProperty, value); }
+        }
+        #endregion
+
+        #region Refresh
+        public override async void Refresh()
+        {
+            WrappedContent.ViewModel.Refresh();
         }
         #endregion
 
         #region Shopping
-
         public ICommand ShowCartCommand { get; set; }
-
+ 
         protected void ShowCart()
         {
             var shoppingCartView = new ShoppingCartView();

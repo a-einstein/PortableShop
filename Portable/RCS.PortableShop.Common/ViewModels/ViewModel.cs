@@ -1,21 +1,22 @@
 ﻿using System.ComponentModel;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace RCS.PortableShop.Common.ViewModels
 {
     public abstract class ViewModel : BindableObject, INotifyPropertyChanged
     {
+        #region Construct
         public ViewModel()
         {
+            // TODO Still need to address reported code analysis issue here. So far, alternatives caused real problems.
             SetCommands();
         }
 
-        protected abstract void SetCommands();
+        protected virtual void SetCommands() { }
+        #endregion
 
-        protected const string databaseErrorMessage = "Error retrieving data from database.";
-
-        public abstract void Refresh();
-
+        #region Refresh
         public static readonly BindableProperty AwaitingProperty =
             BindableProperty.Create(nameof(Awaiting), typeof(bool), typeof(ViewModel), defaultValue: false);
 
@@ -31,11 +32,33 @@ namespace RCS.PortableShop.Common.ViewModels
             }
         }
 
-        protected static bool NullOrEmpty(string value)
+        public virtual async void Refresh()
         {
-            return (value == null || value.Trim() == string.Empty);
+            Awaiting = true;
+
+            await Initialize();
+
+            Clear();
+
+            await Read();
+
+            Awaiting = false;
+
+            return;
         }
 
+        protected virtual async Task Initialize() { }
+
+        protected virtual void Clear() { }
+
+        protected virtual Task Read()
+        {
+            // TODO In .net 4.6 this could become Task.CompletedTask. See various discussions.
+            return Task.Delay(0);
+        }
+        #endregion
+
+        #region Events
         public new event PropertyChangedEventHandler PropertyChanged;
 
         // This is needed  for intermediate value changes.
@@ -47,7 +70,9 @@ namespace RCS.PortableShop.Common.ViewModels
             // TODO This does not work for the inherited PropertyChanged.
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+        #endregion
 
+        #region Navigation
         public INavigation Navigation { get; set; }
 
         // Note that a potential Color parameter cannot have a default value.
@@ -61,10 +86,11 @@ namespace RCS.PortableShop.Common.ViewModels
         protected void PushPage(Views.View view, string title = null)
         {
             var page = new ContentPage() { Content = view, Title = title };
-            
+
             page.ToolbarItems.Add(new ToolbarItem("R", "Refresh.png", view.ViewModel.Refresh));
 
             Navigation.PushAsync(page);
         }
+        #endregion
     }
 }

@@ -12,9 +12,9 @@ namespace RCS.PortableShop.ViewModels
 {
     public class ShoppingCartViewModel : ItemsViewModel<CartItem>
     {
-        // Note this class only stores in memory currently.
+        // Note currently this class only stores in memory.
 
-        #region Initialization
+        #region Construct
         private ShoppingCartViewModel()
         {
             // HACK Typing is unclear here.
@@ -48,10 +48,14 @@ namespace RCS.PortableShop.ViewModels
 
         protected override void SetCommands()
         {
+            base.SetCommands();
+
             DeleteCommand = new Command<CartItem>(Delete);
         }
+        #endregion
 
-        public override void Refresh()
+        #region Refresh
+        public override async void Refresh()
         {
             // This is not terribly useful. Alternatively the refresh button could be suppressed or disabled.
             UpdateAggregates();
@@ -104,10 +108,10 @@ namespace RCS.PortableShop.ViewModels
         }
 
         public static readonly BindableProperty ProductItemCountProperty =
-            BindableProperty.Create(nameof(ProductItemsCount), typeof(int), typeof(ShoppingCartViewModel), defaultValue : 0);
+            BindableProperty.Create(nameof(ProductItemsCount), typeof(int), typeof(ShoppingCartViewModel), defaultValue: 0);
 
         public int ProductItemsCount
-         {
+        {
             get { return (int)GetValue(ProductItemCountProperty); }
             set
             {
@@ -117,7 +121,7 @@ namespace RCS.PortableShop.ViewModels
         }
 
         public static readonly BindableProperty TotalValueProperty =
-            BindableProperty.Create(nameof(TotalValue), typeof(Decimal), typeof(ShoppingCartViewModel), defaultValue : (Decimal)0);
+            BindableProperty.Create(nameof(TotalValue), typeof(Decimal), typeof(ShoppingCartViewModel), defaultValue: (Decimal)0);
 
         public Decimal TotalValue
         {

@@ -12,16 +12,18 @@ namespace RCS.PortableShop.Main
         {
             var productsView = new ProductsView();
 
-            var mainViewModel = new MainViewModel(productsView);
-            var mainView = new MainView() { ViewModel = mainViewModel };
+            var shoppingWrapperViewModel = new ShoppingWrapperViewModel() { WrappedContent = productsView };
+            var shoppingWrapperView = new ShoppingWrapperView() { ViewModel = shoppingWrapperViewModel };
 
-            Content = mainView;
+            Content = shoppingWrapperView;
 
             // TODO Apparently the explicit translation is superfluous. Check this for xaml and possibly cleanup.
             //Title = TranslateExtension.ProvideValue(Labels.Products) as string;
             Title = Labels.Products;
 
-            ToolbarItems.Add(new ToolbarItem("R", "Refresh.png", mainView.ViewModel.Refresh));
+            ToolbarItems.Add(new ToolbarItem("R", "Refresh.png", shoppingWrapperView.ViewModel.Refresh));
+
+            shoppingWrapperViewModel.Refresh();
         }
 
         // TODO It would be desirable to stack and pop query pages, enabling return to previous ones without having to set the filter again.
