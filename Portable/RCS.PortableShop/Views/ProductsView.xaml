@@ -40,7 +40,7 @@
 
             <StackLayout Grid.Row="0">
                 <!--Note this Orientation may be changed depending on screen orientation. Assume Vertical.-->
-                <StackLayout Grid.Row="0" x:Name="actionBlock" Orientation="Vertical" HorizontalOptions="Start">
+                <StackLayout x:Name="actionBlock" Orientation="Vertical" HorizontalOptions="Start">
                     <StackLayout Orientation="Horizontal">
                         <Controls:BindablePicker Title="{Localization:Translate MasterFilter}" ItemsSource="{Binding MasterFilterItems, Mode=TwoWay}" SelectedItem="{Binding MasterFilterValue, Mode=TwoWay}" IsEnabled="{Binding MasterFilterItems, Converter={StaticResource HasValueTester}}" BackgroundColor="{StaticResource ProductsLevel1Colour}"/>
                         <Controls:BindablePicker Title="{Localization:Translate DetailFilter}" ItemsSource="{Binding DetailFilterItems, Mode=TwoWay}" SelectedItem="{Binding DetailFilterValue, Mode=TwoWay}" IsEnabled="{Binding DetailFilterItems, Converter={StaticResource HasValueTester}}" BackgroundColor="{StaticResource ProductsLevel1Colour}"/>
@@ -56,6 +56,7 @@
                     <!--Put at Start, as changes in orientation did not work out correctly on the last Label.-->
                     <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
                         <!--IsDefault="True"-->
+                        <!--TODO Get rid of extra margin here. Sofar, nothing worked.-->
                         <Button Text="{Localization:Translate Filter}" Command="{Binding FilterCommand}" BackgroundColor="{StaticResource ProductsLevel1Colour}" HorizontalOptions="Start">
                             <!--Note this prevents unfiltered queries.-->
                             <!--TODO Combine with validation.-->
@@ -69,62 +70,63 @@
                                 </Extensions:MultiBinding>
                             </Button.IsEnabled>
                         </Button>
-                        
+
                         <Label Text="{Binding ItemsCount}" Style="{StaticResource ValueEmphasisMediumLabelStyle}"/>
                         <Label Text="{Localization:Translate Products}" Style="{StaticResource EmphasisMediumLabelStyle}"/>
                     </StackLayout>
                 </StackLayout>
             </StackLayout>
 
-            <!--TODO Use the ContentView as container for both elements?-->
-            <ContentView Grid.Row="1" IsVisible="{Binding ItemsCount, Converter={StaticResource HasValueTester}, ConverterParameter='invert'}" BackgroundColor="{StaticResource ResultsBackgroundColour}" Padding="7">
-                <Label  Text="{Binding Message}" Style="{StaticResource MessageLabelStyle}"/>
+            <ContentView Grid.Row="1"  BackgroundColor="{StaticResource ResultsBackgroundColour}">
+                <Grid>
+                    <Label IsVisible="{Binding ItemsCount, Converter={StaticResource HasValueTester}, ConverterParameter='invert'}" Text="{Binding Message}" Style="{StaticResource MessageLabelStyle}" Margin="7"/>
+
+                    <!--TODO It might be interesting to make all this Horizontal.-->
+                    <!--Note that ListView has got its own scrolling.-->
+                    <ListView IsVisible="{Binding ItemsCount, Converter={StaticResource HasValueTester}}" x:Name="productsItemsControl" ItemsSource="{Binding Items}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Controls:ContentButton Command="{Binding BindingContext.DetailsCommand, Source={x:Reference productsItemsControl}}" CommandParameter="{Binding}">
+                                        <Controls:ContentButton.Content>
+                                            <Grid Style="{StaticResource ListItemStyle}" BackgroundColor="{StaticResource ProductsLevel1Colour}">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <StackLayout Grid.Column="0" VerticalOptions="Start">
+                                                    <Image Source="{Binding ThumbNailPhoto, Converter={StaticResource ByteArrayToImageSourceConverter}}" HorizontalOptions="End" WidthRequest="100" HeightRequest="100" />
+                                                    <Button Text="{Localization:Translate IncreaseProduct}" Command="{Binding BindingContext.CartCommand, Source={x:Reference productsItemsControl}}" CommandParameter="{Binding}" Style="{StaticResource CartButtonStyle}" HorizontalOptions="End"/>
+                                                </StackLayout>
+
+                                                <StackLayout Grid.Column="1" VerticalOptions="Start">
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Label Text="{Binding ProductCategory}" Style="{StaticResource ValueLabelStyle}"/>
+                                                        <Label Text="/" Style="{StaticResource ValueLabelStyle}"/>
+                                                        <Label Text="{Binding ProductSubcategory}" Style="{StaticResource ValueLabelStyle}"/>
+                                                    </StackLayout>
+
+                                                    <Label Text="{Binding Name}" Style="{StaticResource ValueEmphasisMediumLabelStyle}"/>
+
+                                                    <Label Text="{Binding ListPrice, StringFormat=\{0:C2\}}" Style="{StaticResource ValueEmphasisLabelStyle}"/>
+
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Label Text="{Binding Size}" Style="{StaticResource ValueLabelStyle}"/>
+                                                        <Label Text="{Binding SizeUnitMeasureCode}" Style="{StaticResource ValueLabelStyle}"/>
+                                                    </StackLayout>
+
+                                                    <Label Text="{Binding Color}" Style="{StaticResource ValueLabelStyle}"/>
+                                                </StackLayout>
+                                            </Grid>
+                                        </Controls:ContentButton.Content>
+                                    </Controls:ContentButton>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
             </ContentView>
-
-            <!--TODO It might be interesting to make all this Horizontal.-->
-            <!--Note that ListView has got its own scrolling.-->
-            <ListView Grid.Row="1" IsVisible="{Binding ItemsCount, Converter={StaticResource HasValueTester}}" x:Name="productsItemsControl" ItemsSource="{Binding Items}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <Controls:ContentButton Command="{Binding BindingContext.DetailsCommand, Source={x:Reference productsItemsControl}}" CommandParameter="{Binding}">
-                                <Controls:ContentButton.Content>
-                                    <Grid Style="{StaticResource ListItemStyle}" BackgroundColor="{StaticResource ProductsLevel1Colour}">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
-
-                                        <StackLayout Grid.Column="0" VerticalOptions="Start">
-                                            <Image Source="{Binding ThumbNailPhoto, Converter={StaticResource ByteArrayToImageSourceConverter}}" HorizontalOptions="End" WidthRequest="100" HeightRequest="100" />
-                                            <Button Text="{Localization:Translate IncreaseProduct}" Command="{Binding BindingContext.CartCommand, Source={x:Reference productsItemsControl}}" CommandParameter="{Binding}" Style="{StaticResource CartButtonStyle}" HorizontalOptions="End"/>
-                                        </StackLayout>
-
-                                        <StackLayout Grid.Column="1" VerticalOptions="Start">
-                                            <StackLayout Orientation="Horizontal">
-                                                <Label Text="{Binding ProductCategory}" Style="{StaticResource ValueLabelStyle}"/>
-                                                <Label Text="/" Style="{StaticResource ValueLabelStyle}"/>
-                                                <Label Text="{Binding ProductSubcategory}" Style="{StaticResource ValueLabelStyle}"/>
-                                            </StackLayout>
-
-                                            <Label Text="{Binding Name}" Style="{StaticResource ValueEmphasisMediumLabelStyle}"/>
-
-                                            <Label Text="{Binding ListPrice, StringFormat=\{0:C2\}}" Style="{StaticResource ValueEmphasisLabelStyle}"/>
-
-                                            <StackLayout Orientation="Horizontal">
-                                                <Label Text="{Binding Size}" Style="{StaticResource ValueLabelStyle}"/>
-                                                <Label Text="{Binding SizeUnitMeasureCode}" Style="{StaticResource ValueLabelStyle}"/>
-                                            </StackLayout>
-
-                                            <Label Text="{Binding Color}" Style="{StaticResource ValueLabelStyle}"/>
-                                        </StackLayout>
-                                    </Grid>
-                                </Controls:ContentButton.Content>
-                            </Controls:ContentButton>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
         </Grid>
 
         <!--Currently this does not appear on the actual screen, but it does on the Visual Studio Android Emulator (both API 21). This seems a bug in Xamarin.-->

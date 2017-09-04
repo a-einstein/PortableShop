@@ -38,7 +38,6 @@
     <!--ListViews ======================================== -->
 
     <Style TargetType="ListView">
-        <Setter Property="BackgroundColor" Value="{StaticResource ResultsBackgroundColour}"/>
         <!--Note that setting HasUnevenRows seems the only way to let rows (somewhat) adapt to contents, instead of having to set some fixed RowHeight.-->
         <Setter Property="HasUnevenRows" Value="True"/>
     </Style>
@@ -107,7 +106,7 @@
 
     <!--Buttons ======================================== -->
 
-    <!--Note that HeightRequest usually only fucks the Button up, while FontSize does not do anything. -->
+    <!--Note that HeightRequest usually fucks up the Button, while FontSize does not do anything. -->
     <!--Note that FontAttributes does not work.-->
     <Style TargetType="Button">
         <Setter Property="VerticalOptions" Value="{StaticResource LineVerticalOptions}"/>
