@@ -19,10 +19,11 @@
     <!--Colours ======================================== -->
 
     <!--Note that only a limited number of Color names is supported, currently different from the documentation.-->
-    <Color x:Key="MessageColour">Black</Color>
+    <Color x:Key="MessageColour">#00008B</Color> <!--DarkBlue-->
     <Color x:Key="AssertColour">Green</Color>
     <Color x:Key="WarningColour">Orange</Color>
     <Color x:Key="ErrorColour">Red</Color>
+    <Color x:Key="ResultsBackgroundColour">White</Color>
 
     <Color x:Key="InvalidBackgroundColour">#FFB0B0</Color>
 
@@ -37,7 +38,7 @@
     <!--ListViews ======================================== -->
 
     <Style TargetType="ListView">
-        <Setter Property="BackgroundColor" Value="White"/>
+        <Setter Property="BackgroundColor" Value="{StaticResource ResultsBackgroundColour}"/>
         <!--Note that setting HasUnevenRows seems the only way to let rows (somewhat) adapt to contents, instead of having to set some fixed RowHeight.-->
         <Setter Property="HasUnevenRows" Value="True"/>
     </Style>
@@ -90,6 +91,12 @@
 
     <Style x:Key="ValueEmphasisLargeLabelStyle" TargetType="Label" BasedOn="{StaticResource EmphasisLargeLabelStyle}">
         <Setter Property="TextColor" Value="{StaticResource ValueTextColour}"/>
+    </Style>
+
+    <Style x:Key="MessageLabelStyle" TargetType="Label" BasedOn="{StaticResource EmphasisMediumLabelStyle}">
+        <Setter Property="TextColor" Value="{StaticResource MessageColour}"/>
+        <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+        <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
     </Style>
 
     <!--Entries ======================================== -->

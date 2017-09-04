@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RCS.PortableShop.Resources;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -21,6 +22,19 @@ namespace RCS.PortableShop.Common.ViewModels
         #endregion
 
         #region Refresh
+        public static readonly BindableProperty MessageProperty =
+            BindableProperty.Create(nameof(Message), typeof(string), typeof(FilterItemsViewModel<I, FM, FD>));
+
+        public string Message
+        {
+            get { return (string)GetValue(MessageProperty); }
+            set
+            {
+                SetValue(MessageProperty, value);
+                RaisePropertyChanged(nameof(Message));
+            }
+        }
+
         private bool filterInitialized;
 
         protected override async Task Initialize()
@@ -28,7 +42,20 @@ namespace RCS.PortableShop.Common.ViewModels
             await base.Initialize();
 
             if (!filterInitialized)
+            {
+                // TODO This was intended to (also) be shown by the ActivityIndicator, but that currently does not work.
+                Message = Labels.Intializing;
                 filterInitialized = await InitializeFilters();
+            }
+        }
+
+        protected override async Task Read()
+        {
+            // TODO This was intended to (also) be shown by the ActivityIndicator, but that currently does not work.
+            Message = Labels.Searching;
+            await ReadFiltered();
+
+            Message = (ItemsCount == 0) ? Labels.NotFound : string.Empty;
         }
         #endregion
 
@@ -133,6 +160,8 @@ namespace RCS.PortableShop.Common.ViewModels
                 RaisePropertyChanged(nameof(TextFilterValue));
             }
         }
+
+        protected abstract Task ReadFiltered();
 
         public ICommand FilterCommand { get; private set; }
         #endregion

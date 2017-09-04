@@ -30,11 +30,6 @@ namespace RCS.PortableShop.ViewModels
 
             Items.Clear();
         }
-
-        protected override async Task Read()
-        {
-            await ReadFiltered();
-        }
         #endregion
 
         #region Filtering
@@ -99,7 +94,7 @@ namespace RCS.PortableShop.ViewModels
             }
         }
 
-        protected async Task ReadFiltered()
+        protected override async Task ReadFiltered()
         {
             ProductCategory masterFilterValue = null;
             ProductSubcategory detailFilterValue = null;

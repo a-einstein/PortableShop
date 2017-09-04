@@ -69,16 +69,21 @@
                                 </Extensions:MultiBinding>
                             </Button.IsEnabled>
                         </Button>
+                        
                         <Label Text="{Binding ItemsCount}" Style="{StaticResource ValueEmphasisMediumLabelStyle}"/>
-
                         <Label Text="{Localization:Translate Products}" Style="{StaticResource EmphasisMediumLabelStyle}"/>
                     </StackLayout>
                 </StackLayout>
             </StackLayout>
 
+            <!--TODO Use the ContentView as container for both elements?-->
+            <ContentView Grid.Row="1" IsVisible="{Binding ItemsCount, Converter={StaticResource HasValueTester}, ConverterParameter='invert'}" BackgroundColor="{StaticResource ResultsBackgroundColour}" Padding="7">
+                <Label  Text="{Binding Message}" Style="{StaticResource MessageLabelStyle}"/>
+            </ContentView>
+
             <!--TODO It might be interesting to make all this Horizontal.-->
             <!--Note that ListView has got its own scrolling.-->
-            <ListView Grid.Row="1" x:Name="productsItemsControl" ItemsSource="{Binding Items}">
+            <ListView Grid.Row="1" IsVisible="{Binding ItemsCount, Converter={StaticResource HasValueTester}}" x:Name="productsItemsControl" ItemsSource="{Binding Items}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

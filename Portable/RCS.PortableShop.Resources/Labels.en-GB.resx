@@ -160,6 +160,9 @@ Please check thoroughly or restart the application (recommended).</value>
   <data name="IncreaseProduct" xml:space="preserve">
     <value>Shop +</value>
   </data>
+  <data name="Intializing" xml:space="preserve">
+    <value>Intializing...</value>
+  </data>
   <data name="Items" xml:space="preserve">
     <value>Items</value>
   </data>
@@ -181,6 +184,10 @@ Please check thoroughly or restart the application (recommended).</value>
   <data name="NavigateShop" xml:space="preserve">
     <value>Go shopping</value>
   </data>
+  <data name="NotFound" xml:space="preserve">
+    <value>Nothing found.
+Please try a different query.</value>
+  </data>
   <data name="Price" xml:space="preserve">
     <value>Price</value>
   </data>
@@ -189,6 +196,9 @@ Please check thoroughly or restart the application (recommended).</value>
   </data>
   <data name="Remove" xml:space="preserve">
     <value>X</value>
+  </data>
+  <data name="Searching" xml:space="preserve">
+    <value>Searching...</value>
   </data>
   <data name="ServiceError" xml:space="preserve">
     <value>There is a problem using our data service.

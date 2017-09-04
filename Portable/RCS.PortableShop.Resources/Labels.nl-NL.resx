@@ -160,6 +160,9 @@ Controleer a.u.b. grondig of herstart de applicatie (aanbevolen).</value>
   <data name="IncreaseProduct" xml:space="preserve">
     <value>Winkelwagen +</value>
   </data>
+  <data name="Intializing" xml:space="preserve">
+    <value>Voorbereiden...</value>
+  </data>
   <data name="Items" xml:space="preserve">
     <value>Objecten</value>
   </data>
@@ -181,6 +184,10 @@ Controleer a.u.b. grondig of herstart de applicatie (aanbevolen).</value>
   <data name="NavigateShop" xml:space="preserve">
     <value>Naar de winkel</value>
   </data>
+  <data name="NotFound" xml:space="preserve">
+    <value>Niets gevonden.
+Pas a.u.b. uw zoekopdracht aan.</value>
+  </data>
   <data name="Price" xml:space="preserve">
     <value>Prijs</value>
   </data>
@@ -189,6 +196,9 @@ Controleer a.u.b. grondig of herstart de applicatie (aanbevolen).</value>
   </data>
   <data name="Remove" xml:space="preserve">
     <value>X</value>
+  </data>
+  <data name="Searching" xml:space="preserve">
+    <value>Zoeken...</value>
   </data>
   <data name="ServiceError" xml:space="preserve">
     <value>Er is een probleem in het gebruik van onze data service.
