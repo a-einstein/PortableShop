@@ -25,41 +25,40 @@
     <StackLayout>
         <Views:ShoppingCartSummaryView/>
 
-        <!--VerticalOptions is needed to fill the screen with few items.-->
-        <ScrollView VerticalOptions="FillAndExpand">
-            <ListView x:Name="shoppingCartItemsListView" ItemsSource="{Binding Items}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <Grid Style="{StaticResource ListItemStyle}" BackgroundColor="{StaticResource CartLevel1Colour}">
-                                <!--Note this layout currently is aimed towards portrait orientation.-->
-                                <StackLayout Orientation="Vertical">
-                                    <Label Text="{Binding Name}" Style="{StaticResource ValueEmphasisMediumLabelStyle}"/>
+        <!--VerticalOptions is needed to fill the screen with no or just a few items.-->
+        <!--Note that ListView has got its own scrolling.-->
+        <ListView x:Name="shoppingCartItemsListView" ItemsSource="{Binding Items}" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource ResultsBackgroundColour}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Style="{StaticResource ListItemStyle}" BackgroundColor="{StaticResource CartLevel1Colour}">
+                            <!--Note this layout currently is aimed towards portrait orientation.-->
+                            <StackLayout Orientation="Vertical">
+                                <Label Text="{Binding Name}" Style="{StaticResource ValueEmphasisMediumLabelStyle}"/>
 
-                                    <StackLayout Orientation="Horizontal">
-                                        <Label Text="{Binding ProductSize}" Style="{StaticResource ValueLabelStyle}"/>
-                                        <Label Text="{Binding ProductSizeUnitMeasureCode}" Style="{StaticResource ValueLabelStyle}"/>
-                                        <Label Text="{Binding ProductColor}" Style="{StaticResource ValueLabelStyle}"/>
-                                        <Label Text="{Binding ProductListPrice, StringFormat=\{0:C2\}}" Style="{StaticResource ValueLabelStyle}"/>
-                                        <Label Text="{Binding Value, StringFormat=\{0:C2\}}" Style="{StaticResource ValueEmphasisLabelStyle}"/>
-                                    </StackLayout>
-
-                                    <StackLayout Orientation="Horizontal">
-                                        <NumericUpDown:SfNumericUpDown Value="{Binding Quantity, Mode=TwoWay}"/>
-                                        
-                                        <!--Using ContentButton plus Label to create a flat style Button without border. -->
-                                        <Controls:ContentButton Grid.Column="1" Command="{Binding BindingContext.DeleteCommand, Source={x:Reference shoppingCartItemsListView}}" CommandParameter="{Binding}" HorizontalOptions="Start">
-                                            <Controls:ContentButton.Content>
-                                                <Label Text="{Localization:Translate Remove}" Margin="10,0" FontSize="Large" TextColor="{StaticResource LabelTextColour}"/>
-                                            </Controls:ContentButton.Content>
-                                        </Controls:ContentButton>
-                                    </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding ProductSize}" Style="{StaticResource ValueLabelStyle}"/>
+                                    <Label Text="{Binding ProductSizeUnitMeasureCode}" Style="{StaticResource ValueLabelStyle}"/>
+                                    <Label Text="{Binding ProductColor}" Style="{StaticResource ValueLabelStyle}"/>
+                                    <Label Text="{Binding ProductListPrice, StringFormat=\{0:C2\}}" Style="{StaticResource ValueLabelStyle}"/>
+                                    <Label Text="{Binding Value, StringFormat=\{0:C2\}}" Style="{StaticResource ValueEmphasisLabelStyle}"/>
                                 </StackLayout>
-                            </Grid>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </ScrollView>
+
+                                <StackLayout Orientation="Horizontal">
+                                    <NumericUpDown:SfNumericUpDown Value="{Binding Quantity, Mode=TwoWay}"/>
+
+                                    <!--Using ContentButton plus Label to create a flat style Button without border. -->
+                                    <Controls:ContentButton Grid.Column="1" Command="{Binding BindingContext.DeleteCommand, Source={x:Reference shoppingCartItemsListView}}" CommandParameter="{Binding}" HorizontalOptions="Start">
+                                        <Controls:ContentButton.Content>
+                                            <Label Text="{Localization:Translate Remove}" Margin="10,0" FontSize="Large" TextColor="{StaticResource LabelTextColour}"/>
+                                        </Controls:ContentButton.Content>
+                                    </Controls:ContentButton>
+                                </StackLayout>
+                            </StackLayout>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </StackLayout>
 </BaseClasses:ImplicitModelView>

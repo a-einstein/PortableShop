@@ -39,6 +39,7 @@
             </Grid.RowDefinitions>
 
             <StackLayout Grid.Row="0">
+                <!--TODO Get these elements better aligned.-->
                 <!--Note this Orientation may be changed depending on screen orientation. Assume Vertical.-->
                 <StackLayout x:Name="actionBlock" Orientation="Vertical" HorizontalOptions="Start">
                     <StackLayout Orientation="Horizontal">
@@ -56,7 +57,6 @@
                     <!--Put at Start, as changes in orientation did not work out correctly on the last Label.-->
                     <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
                         <!--IsDefault="True"-->
-                        <!--TODO Get rid of extra margin here. Sofar, nothing worked.-->
                         <Button Text="{Localization:Translate Filter}" Command="{Binding FilterCommand}" BackgroundColor="{StaticResource ProductsLevel1Colour}" HorizontalOptions="Start">
                             <!--Note this prevents unfiltered queries.-->
                             <!--TODO Combine with validation.-->
@@ -77,7 +77,7 @@
                 </StackLayout>
             </StackLayout>
 
-            <ContentView Grid.Row="1"  BackgroundColor="{StaticResource ResultsBackgroundColour}">
+            <ContentView Grid.Row="1" BackgroundColor="{StaticResource ResultsBackgroundColour}">
                 <Grid>
                     <Label IsVisible="{Binding ItemsCount, Converter={StaticResource HasValueTester}, ConverterParameter='invert'}" Text="{Binding Message}" Style="{StaticResource MessageLabelStyle}" Margin="7"/>
 
@@ -96,8 +96,9 @@
                                                 </Grid.ColumnDefinitions>
 
                                                 <StackLayout Grid.Column="0" VerticalOptions="Start">
-                                                    <Image Source="{Binding ThumbNailPhoto, Converter={StaticResource ByteArrayToImageSourceConverter}}" HorizontalOptions="End" WidthRequest="100" HeightRequest="100" />
-                                                    <Button Text="{Localization:Translate IncreaseProduct}" Command="{Binding BindingContext.CartCommand, Source={x:Reference productsItemsControl}}" CommandParameter="{Binding}" Style="{StaticResource CartButtonStyle}" HorizontalOptions="End"/>
+                                                    <!--TODO Get these elements better aligned.-->
+                                                    <Image Source="{Binding ThumbNailPhoto, Converter={StaticResource ByteArrayToImageSourceConverter}}" VerticalOptions="Start" HorizontalOptions="End" HeightRequest="75" WidthRequest="100"/>
+                                                    <Button Text="{Localization:Translate IncreaseProduct}" Command="{Binding BindingContext.CartCommand, Source={x:Reference productsItemsControl}}" CommandParameter="{Binding}" Style="{StaticResource CartButtonStyle}" VerticalOptions="Start" HorizontalOptions="End"/>
                                                 </StackLayout>
 
                                                 <StackLayout Grid.Column="1" VerticalOptions="Start">

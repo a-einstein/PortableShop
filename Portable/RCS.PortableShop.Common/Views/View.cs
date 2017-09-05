@@ -17,7 +17,8 @@ namespace RCS.PortableShop.Common.Views
             }
         }
 
-        // TODO Prevent reloading data by service call.
+        // TODO Prevent service call reloading data.
+        // TODO Prevent reset to overview from details view.
         protected void Orientate(ref StackLayout stack, ref int preservedWidth, ref int preservedHeight, double width, double height)
         {
             //Make comparison more robust.
