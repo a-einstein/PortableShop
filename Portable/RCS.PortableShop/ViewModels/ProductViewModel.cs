@@ -21,10 +21,18 @@ namespace RCS.PortableShop.ViewModels
         #endregion
 
         #region Refresh
-        protected override async Task Read()
+        protected override async Task<bool> Read()
         {
+            bool succeeded = false;
+
             if (ItemId.HasValue)
-                Item = await ProductsRepository.Instance.ReadDetails((int)ItemId);
+            {
+                var result = await ProductsRepository.Instance.ReadDetails((int)ItemId);
+                succeeded = result != null;
+                Item = result;
+            }
+
+            return succeeded;
         }
         #endregion
 

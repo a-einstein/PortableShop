@@ -36,26 +36,21 @@ namespace RCS.PortableShop.Common.ViewModels
         {
             Awaiting = true;
 
-            await Initialize();
-
             Clear();
 
-            await Read();
+            if (await Initialize())
+                await Read();
 
             Awaiting = false;
 
             return;
         }
 
-        protected virtual async Task Initialize() { }
+        protected virtual async Task<bool> Initialize() { return true; }
 
         protected virtual void Clear() { }
 
-        protected virtual Task Read()
-        {
-            // TODO In .net 4.6 this could become Task.CompletedTask. See various discussions.
-            return Task.Delay(0);
-        }
+        protected virtual async Task<bool> Read() { return true; }
         #endregion
 
         #region Events

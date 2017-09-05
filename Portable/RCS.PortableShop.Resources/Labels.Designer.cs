@@ -181,9 +181,9 @@ namespace RCS.PortableShop.Resources {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
-        public static string Intializing {
+        public static string Initializing {
             get {
-                return ResourceManager.GetString("Intializing", resourceCulture);
+                return ResourceManager.GetString("Initializing", resourceCulture);
             }
         }
         

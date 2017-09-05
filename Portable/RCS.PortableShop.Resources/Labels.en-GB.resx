@@ -160,8 +160,8 @@ Please check thoroughly or restart the application (recommended).</value>
   <data name="IncreaseProduct" xml:space="preserve">
     <value>Shop +</value>
   </data>
-  <data name="Intializing" xml:space="preserve">
-    <value>Intializing...</value>
+  <data name="Initializing" xml:space="preserve">
+    <value>Initializing...</value>
   </data>
   <data name="Items" xml:space="preserve">
     <value>Items</value>

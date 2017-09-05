@@ -34,7 +34,7 @@ namespace RCS.PortableShop.Model
         #endregion
 
         #region CRUD
-        public async Task ReadList(bool addEmptyElement = true)
+        public async Task<bool> ReadList(bool addEmptyElement = true)
         {
             Clear();
 
@@ -50,10 +50,12 @@ namespace RCS.PortableShop.Model
             catch (FaultException<ExceptionDetail> exception)
             {
                 Message(exception);
+                return false;
             }
             catch (Exception exception)
             {
                 Message(exception);
+                return false;
             }
 
             if (addEmptyElement)
@@ -67,6 +69,8 @@ namespace RCS.PortableShop.Model
             {
                 List.Add(category);
             }
+
+            return true;
         }
         #endregion
     }

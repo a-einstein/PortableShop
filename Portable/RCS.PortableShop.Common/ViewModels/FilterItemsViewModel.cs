@@ -37,25 +37,31 @@ namespace RCS.PortableShop.Common.ViewModels
 
         private bool filterInitialized;
 
-        protected override async Task Initialize()
+        protected override async Task<bool> Initialize()
         {
-            await base.Initialize();
-
             if (!filterInitialized)
             {
+                Message = Labels.Initializing;
+
                 // TODO This was intended to (also) be shown by the ActivityIndicator, but that currently does not work.
-                Message = Labels.Intializing;
-                filterInitialized = await InitializeFilters();
+                filterInitialized = await base.Initialize() && await InitializeFilters();
+
+                Message = string.Empty;
             }
+
+            return filterInitialized;
         }
 
-        protected override async Task Read()
+        protected override async Task<bool> Read()
         {
             // TODO This was intended to (also) be shown by the ActivityIndicator, but that currently does not work.
             Message = Labels.Searching;
-            await ReadFiltered();
 
-            Message = (ItemsCount == 0) ? Labels.NotFound : string.Empty;
+            var succeeded = await ReadFiltered();
+
+            Message = (succeeded && ItemsCount == 0) ? Labels.NotFound : string.Empty;
+
+            return succeeded;
         }
         #endregion
 
@@ -161,7 +167,7 @@ namespace RCS.PortableShop.Common.ViewModels
             }
         }
 
-        protected abstract Task ReadFiltered();
+        protected abstract Task<bool> ReadFiltered();
 
         public ICommand FilterCommand { get; private set; }
         #endregion

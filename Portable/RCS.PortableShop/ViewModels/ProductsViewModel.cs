@@ -51,13 +51,17 @@ namespace RCS.PortableShop.ViewModels
         // TODO This would better be handled inside the repository.
         protected override async Task<bool> InitializeFilters()
         {
+            bool succeeded;
+
             try
             {
-                await Task.WhenAll
+                var results = await Task.WhenAll
                 (
                     ProductCategoriesRepository.Instance.ReadList(),
                     ProductSubcategoriesRepository.Instance.ReadList()
                 );
+
+                succeeded = results.All<bool>(result => result == true);
 
                 // Note that using the UI thread (by BeginInvokeOnMainThread) only did bad.
 
@@ -86,15 +90,16 @@ namespace RCS.PortableShop.ViewModels
 
                 TextFilterValue = default(string);
 
-                return true;
             }
             catch (Exception)
             {
-                return false;
+                succeeded = false;
             }
+
+            return succeeded;
         }
 
-        protected override async Task ReadFiltered()
+        protected override async Task<bool> ReadFiltered()
         {
             ProductCategory masterFilterValue = null;
             ProductSubcategory detailFilterValue = null;
@@ -107,11 +112,15 @@ namespace RCS.PortableShop.ViewModels
 
             var productsOverviewObjects = await ProductsRepository.Instance.ReadList(masterFilterValue, detailFilterValue, textFilterValue);
 
-            // Note that using the UI thread (by BeginInvokeOnMainThread) only did bad.
-            foreach (var item in productsOverviewObjects)
-            {
-                Items.Add(item);
-            }
+            var result = await ProductsRepository.Instance.ReadList(masterFilterValue, detailFilterValue, textFilterValue);
+            var succeeded = result != null;
+
+            if (succeeded)
+                // Note that using the UI thread (by BeginInvokeOnMainThread) only did bad.
+                foreach (var item in productsOverviewObjects)
+                    Items.Add(item);
+
+            return succeeded;
         }
 
         protected override Func<ProductSubcategory, bool> DetailFilterItemsSelector(bool preserveEmptyElement = true)
@@ -128,12 +137,12 @@ namespace RCS.PortableShop.ViewModels
         {
             var productView = new ProductView();
 
-            var mainViewModel = new ShoppingWrapperViewModel() { WrappedContent = productView };
-            var mainView = new ShoppingWrapperView() { ViewModel = mainViewModel };
-
-            PushPage(mainView, productsOverviewObject.Name);
+            var viewModel = new ShoppingWrapperViewModel() { WrappedContent = productView };
+            var view = new ShoppingWrapperView() { ViewModel = viewModel };
 
             (productView.ViewModel as ProductViewModel).ItemId = productsOverviewObject.Id;
+
+            PushPage(view, productsOverviewObject.Name);
         }
         #endregion
 

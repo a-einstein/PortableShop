@@ -52,10 +52,12 @@ namespace RCS.PortableShop.Model
             catch (FaultException<ExceptionDetail> exception)
             {
                 Message(exception);
+                return null;
             }
             catch (Exception exception)
             {
                 Message(exception);
+                return null;
             }
 
             return productsOverview;

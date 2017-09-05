@@ -160,7 +160,7 @@ Controleer a.u.b. grondig of herstart de applicatie (aanbevolen).</value>
   <data name="IncreaseProduct" xml:space="preserve">
     <value>Winkelwagen +</value>
   </data>
-  <data name="Intializing" xml:space="preserve">
+  <data name="Initializing" xml:space="preserve">
     <value>Voorbereiden...</value>
   </data>
   <data name="Items" xml:space="preserve">
