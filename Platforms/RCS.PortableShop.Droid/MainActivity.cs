@@ -7,7 +7,7 @@ using Xamarin.Forms.Platform.Android;
 namespace RCS.PortableShop.Droid
 {
     [Activity(
-        Label = "Cyclone", 
+        Label = "CyclOne", 
         Icon = "@drawable/application", 
         Theme = "@style/MainTheme"
        )]

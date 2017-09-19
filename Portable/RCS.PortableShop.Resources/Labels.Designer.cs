@@ -64,9 +64,18 @@ namespace RCS.PortableShop.Resources {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
-        public static string About {
+        public static string AboutLabel {
             get {
-                return ResourceManager.GetString("About", resourceCulture);
+                return ResourceManager.GetString("AboutLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string AboutText {
+            get {
+                return ResourceManager.GetString("AboutText", resourceCulture);
             }
         }
         
@@ -145,6 +154,15 @@ namespace RCS.PortableShop.Resources {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
+        public static string Developer {
+            get {
+                return ResourceManager.GetString("Developer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         public static string Error {
             get {
                 return ResourceManager.GetString("Error", resourceCulture);
@@ -193,15 +211,6 @@ namespace RCS.PortableShop.Resources {
         public static string Items {
             get {
                 return ResourceManager.GetString("Items", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        public static string MainTitle {
-            get {
-                return ResourceManager.GetString("MainTitle", resourceCulture);
             }
         }
         
@@ -301,6 +310,15 @@ namespace RCS.PortableShop.Resources {
         public static string ServiceError {
             get {
                 return ResourceManager.GetString("ServiceError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string Shop {
+            get {
+                return ResourceManager.GetString("Shop", resourceCulture);
             }
         }
         

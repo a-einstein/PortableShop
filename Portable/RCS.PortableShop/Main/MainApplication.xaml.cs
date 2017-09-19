@@ -67,7 +67,7 @@ namespace RCS.PortableShop.Main
 
         private void SubscribeMessages(Page page)
         {
-            // Use the MessagingCenter mechanism to connect ViewModels or other non GUI code to this Page.
+            // Use the MessagingCenter mechanism to connect ViewModels or other (non GUI) code to this Page.
 
             MessagingCenter.Subscribe<ProductsServiceConsumer, string>(this, ProductsServiceConsumer.Errors.ServiceError.ToString(), async (sender, details) =>
             {

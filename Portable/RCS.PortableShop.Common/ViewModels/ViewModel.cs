@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using RCS.PortableShop.Resources;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -83,7 +84,8 @@ namespace RCS.PortableShop.Common.ViewModels
             var page = new ContentPage() { Content = view, Title = title };
 
             page.ToolbarItems.Add(new ToolbarItem("R", "Refresh.png", view.ViewModel.Refresh));
-
+            // TODO Add About here too. Combine with MainPage code.
+ 
             Navigation.PushAsync(page);
         }
         #endregion

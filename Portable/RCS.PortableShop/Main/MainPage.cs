@@ -18,12 +18,19 @@ namespace RCS.PortableShop.Main
             Content = shoppingWrapperView;
 
             // TODO Apparently the explicit translation is superfluous. Check this for xaml and possibly cleanup.
-            //Title = TranslateExtension.ProvideValue(Labels.Products) as string;
-            Title = Labels.Products;
+            //Title = TranslateExtension.ProvideValue(Labels.Shop) as string;
+            Title = Labels.Shop;
 
             ToolbarItems.Add(new ToolbarItem("R", "Refresh.png", shoppingWrapperView.ViewModel.Refresh));
+            ToolbarItems.Add(new ToolbarItem("I", "About.png", About));
 
             shoppingWrapperViewModel.Refresh();
+        }
+
+        private async void About()
+        {
+            // TODO The version has to get shared with the Android manifest (to start with).
+            await DisplayAlert(Labels.AboutLabel, string.Format(Labels.AboutText, Labels.Shop, Labels.Developer, "0.5.0"), Labels.Close);
         }
 
         // TODO It would be desirable to stack and pop query pages, enabling return to previous ones without having to set the filter again.

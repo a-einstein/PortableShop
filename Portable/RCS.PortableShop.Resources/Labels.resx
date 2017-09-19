@@ -117,9 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="About" xml:space="preserve">
+  <data name="AboutLabel" xml:space="preserve">
     <value />
     <comment>Use shift-enter to break lines.</comment>
+  </data>
+  <data name="AboutText" xml:space="preserve">
+    <value />
   </data>
   <data name="Cart" xml:space="preserve">
     <value />
@@ -145,6 +148,9 @@
   <data name="Details" xml:space="preserve">
     <value />
   </data>
+  <data name="Developer" xml:space="preserve">
+    <value />
+  </data>
   <data name="Error" xml:space="preserve">
     <value />
   </data>
@@ -161,9 +167,6 @@
     <value />
   </data>
   <data name="Items" xml:space="preserve">
-    <value />
-  </data>
-  <data name="MainTitle" xml:space="preserve">
     <value />
   </data>
   <data name="MasterFilter" xml:space="preserve">
@@ -197,6 +200,9 @@
     <value />
   </data>
   <data name="ServiceError" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Shop" xml:space="preserve">
     <value />
   </data>
   <data name="Size" xml:space="preserve">

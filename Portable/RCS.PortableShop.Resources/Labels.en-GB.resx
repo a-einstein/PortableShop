@@ -117,11 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="About" xml:space="preserve">
-    <value>This project is built by Robert for test and demonstration of various concepts in Xamarin
-
-For further details please check the descriptions (ReadMe) of the involved repositories.</value>
+  <data name="AboutLabel" xml:space="preserve">
+    <value>About</value>
     <comment>Use shift-enter to break lines.</comment>
+  </data>
+  <data name="AboutText" xml:space="preserve">
+    <value>{0}
+By {1}
+Version {2}</value>
   </data>
   <data name="Cart" xml:space="preserve">
     <value>Shopping Cart</value>
@@ -148,6 +151,9 @@ Please check thoroughly or restart the application (recommended).</value>
   <data name="Details" xml:space="preserve">
     <value>Details</value>
   </data>
+  <data name="Developer" xml:space="preserve">
+    <value>RCS</value>
+  </data>
   <data name="Error" xml:space="preserve">
     <value>Error</value>
   </data>
@@ -165,9 +171,6 @@ Please check thoroughly or restart the application (recommended).</value>
   </data>
   <data name="Items" xml:space="preserve">
     <value>Items</value>
-  </data>
-  <data name="MainTitle" xml:space="preserve">
-    <value>Cyclone</value>
   </data>
   <data name="MasterFilter" xml:space="preserve">
     <value>Category</value>
@@ -204,6 +207,9 @@ Please try a different query.</value>
     <value>There is a problem using our data service.
 Please use the refresh button,
 or try again later.</value>
+  </data>
+  <data name="Shop" xml:space="preserve">
+    <value>CyclOne</value>
   </data>
   <data name="Size" xml:space="preserve">
     <value>Size</value>

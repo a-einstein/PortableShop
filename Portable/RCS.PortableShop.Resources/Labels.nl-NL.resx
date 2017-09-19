@@ -117,11 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="About" xml:space="preserve">
-    <value>Dit project is gebouwd door Robert voor test en demonstratie van diverse concepten in Xamarin.
-
-Zie voor meer details de beschrijvingen (ReadMe) van de betrokken repositories.</value>
+  <data name="AboutLabel" xml:space="preserve">
+    <value>Info</value>
     <comment>Use shift-enter to break lines.</comment>
+  </data>
+  <data name="AboutText" xml:space="preserve">
+    <value>{0}
+Door {1}
+Versie {2}</value>
   </data>
   <data name="Cart" xml:space="preserve">
     <value>Winkelwagen</value>
@@ -148,6 +151,9 @@ Controleer a.u.b. grondig of herstart de applicatie (aanbevolen).</value>
   <data name="Details" xml:space="preserve">
     <value>Details</value>
   </data>
+  <data name="Developer" xml:space="preserve">
+    <value>RCS</value>
+  </data>
   <data name="Error" xml:space="preserve">
     <value>Probleem</value>
   </data>
@@ -165,9 +171,6 @@ Controleer a.u.b. grondig of herstart de applicatie (aanbevolen).</value>
   </data>
   <data name="Items" xml:space="preserve">
     <value>Objecten</value>
-  </data>
-  <data name="MainTitle" xml:space="preserve">
-    <value>Cyclone</value>
   </data>
   <data name="MasterFilter" xml:space="preserve">
     <value>Categorie</value>
@@ -204,6 +207,9 @@ Pas a.u.b. uw zoekopdracht aan.</value>
     <value>Er is een probleem in het gebruik van onze data service.
 Gebruik a.u.b. de verversknop,
 of probeer het later nog eens.</value>
+  </data>
+  <data name="Shop" xml:space="preserve">
+    <value>CyclOne</value>
   </data>
   <data name="Size" xml:space="preserve">
     <value>Maat</value>
