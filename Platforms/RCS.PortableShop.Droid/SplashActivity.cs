@@ -10,6 +10,7 @@ namespace RCS.PortableShop.Droid
         MainLauncher = true,
         NoHistory = true
         )]
+    // TODO This does not appear while starting in landscape orientation.
     public class SplashActivity : AppCompatActivity
     {
         protected override void OnResume()

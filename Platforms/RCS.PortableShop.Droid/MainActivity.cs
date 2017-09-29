@@ -1,4 +1,5 @@
 ﻿using Android.App;
+using Android.Content.PM;
 using Android.OS;
 using RCS.PortableShop.Main;
 using System.Net;
@@ -9,7 +10,9 @@ namespace RCS.PortableShop.Droid
     [Activity(
         Label = "CyclOne", 
         Icon = "@drawable/application", 
-        Theme = "@style/MainTheme"
+        Theme = "@style/MainTheme",
+        // Prevent calls to OnCreate on orientation change and on background state.
+        ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation
        )]
     public class MainActivity : FormsAppCompatActivity
     {
