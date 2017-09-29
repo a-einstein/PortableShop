@@ -10,7 +10,7 @@ namespace RCS.PortableShop.Droid
         MainLauncher = true,
         NoHistory = true
         )]
-    // TODO This does not appear while starting in landscape orientation.
+    // TODO This often does not appear while starting in landscape orientation. But sometimes it does, no idea what determines that.
     public class SplashActivity : AppCompatActivity
     {
         protected override void OnResume()
