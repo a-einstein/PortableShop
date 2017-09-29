@@ -30,7 +30,7 @@ namespace RCS.PortableShop.Main
         private async void About()
         {
             // TODO The version has to get shared with the Android manifest (to start with).
-            await DisplayAlert(Labels.AboutLabel, string.Format(Labels.AboutText, Labels.Shop, Labels.Developer, "0.6.0"), Labels.Close);
+            await DisplayAlert(Labels.AboutLabel, string.Format(Labels.AboutText, Labels.Shop, Labels.Developer, "0.7.0"), Labels.Close);
         }
 
         // TODO It would be desirable to stack and pop query pages, enabling return to previous ones without having to set the filter again.
