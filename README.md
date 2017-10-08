@@ -14,6 +14,7 @@ Current score: [![BCH compliance](https://bettercodehub.com/edge/badge/a-einstei
 * Currently this is only tested on Android API 21, and no longer suited for all platforms anyway.
 * This project is available as an installable apk for Android in [releases](https://github.com/a-einstein/PortableShop/releases)
 * For the time being the configured data service is only incidentally available. It may be made available on Azure again in the future. However, one can also install one's own service. 
+* This project is also tested for integration with Jira.
 
 #### Aspects
 * Xamarin Forms.
