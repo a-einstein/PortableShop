@@ -1,20 +1,23 @@
 ﻿using RCS.PortableShop.Common.ViewModels;
 using System;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace RCS.PortableShop.Common.Views
 {
+    // TODO Maybe change this name as it is already used by Xamarin.
     // This no longer can be abstract as it needs a default constructor for the regions.
     public class View : ContentView
     {
         public ViewModel ViewModel
         {
             get { return BindingContext as ViewModel; }
-            set
-            {
-                BindingContext = value;
-                ViewModel.Navigation = Navigation;
-            }
+            set { BindingContext = value; }
+        }
+
+        public async Task Refresh()
+        {
+            await ViewModel.Refresh();
         }
 
         protected void Orientate(ref StackLayout stack, ref int preservedWidth, ref int preservedHeight, double width, double height)

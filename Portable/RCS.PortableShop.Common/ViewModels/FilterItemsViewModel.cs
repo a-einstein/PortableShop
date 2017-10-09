@@ -16,7 +16,7 @@ namespace RCS.PortableShop.Common.ViewModels
         {
             base.SetCommands();
 
-            FilterCommand = new Command(Refresh);
+            FilterCommand = new Command(async () => await Refresh());
             DetailsCommand = new Command<I>(ShowDetails);
         }
         #endregion
@@ -39,17 +39,19 @@ namespace RCS.PortableShop.Common.ViewModels
 
         protected override async Task<bool> Initialize()
         {
-            if (!filterInitialized)
+            var baseInitialized = await base.Initialize();
+
+            if (baseInitialized && !filterInitialized)
             {
                 Message = Labels.Initializing;
 
                 // TODO This was intended to (also) be shown by the ActivityIndicator, but that currently does not work.
-                filterInitialized = await base.Initialize() && await InitializeFilters();
+                filterInitialized = await InitializeFilters();
 
                 Message = string.Empty;
             }
 
-            return filterInitialized;
+            return (baseInitialized && filterInitialized);
         }
 
         protected override async Task<bool> Read()
@@ -169,11 +171,33 @@ namespace RCS.PortableShop.Common.ViewModels
 
         protected abstract Task<bool> ReadFiltered();
 
-        public ICommand FilterCommand { get; private set; }
+        public static readonly BindableProperty FilterCommandProperty =
+            BindableProperty.Create(nameof(FilterCommand), typeof(ICommand), typeof(FilterItemsViewModel<I, FM, FD>));
+
+        public ICommand FilterCommand
+        {
+            get { return (ICommand)GetValue(FilterCommandProperty); }
+            private set
+            {
+                SetValue(FilterCommandProperty, value);
+                RaisePropertyChanged(nameof(FilterCommand));
+            }
+        }
         #endregion
 
         #region Details
-        public ICommand DetailsCommand { get; private set; }
+        public static readonly BindableProperty DetailsCommandProperty =
+            BindableProperty.Create(nameof(DetailsCommand), typeof(ICommand), typeof(FilterItemsViewModel<I, FM, FD>));
+
+        public ICommand DetailsCommand
+        {
+            get { return (ICommand)GetValue(DetailsCommandProperty); }
+            private set
+            {
+                SetValue(DetailsCommandProperty, value);
+                RaisePropertyChanged(nameof(DetailsCommand));
+            }
+        }
 
         protected abstract void ShowDetails(I overviewObject);
         #endregion

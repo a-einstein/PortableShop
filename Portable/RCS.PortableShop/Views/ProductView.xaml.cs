@@ -2,7 +2,7 @@
 
 namespace RCS.PortableShop.Views
 {
-    public partial class ProductView : ImplicitModelView
+    public partial class ProductView : View
     {
         public ProductView()
         {

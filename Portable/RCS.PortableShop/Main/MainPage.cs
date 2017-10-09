@@ -1,36 +1,31 @@
-﻿using RCS.PortableShop.Resources;
-using RCS.PortableShop.ViewModels;
+﻿using RCS.PortableShop.ViewModels;
 using RCS.PortableShop.Views;
-using Xamarin.Forms;
+using System.Threading.Tasks;
+using Page = RCS.PortableShop.Common.Pages.Page;
 
 namespace RCS.PortableShop.Main
 {
-    public class MainPage : ContentPage
+    public class MainPage : Page
     {
-        // TODO Share code with ViewModel.PushPage().
-        public MainPage()
+        private bool initialized;
+
+        protected override async Task Initialize()
         {
-            var productsView = new ProductsView();
+            await base.Initialize();
 
-            var shoppingWrapperViewModel = new ShoppingWrapperViewModel() { WrappedContent = productsView };
-            var shoppingWrapperView = new ShoppingWrapperView() { ViewModel = shoppingWrapperViewModel };
+            if (!initialized)
+            {
+                var productsView = new ProductsView() { ViewModel = new ProductsViewModel() { Page = this } };
 
-            Content = shoppingWrapperView;
+                var shoppingWrapperViewModel = new ShoppingWrapperViewModel() { WrappedContent = productsView };
+                var shoppingWrapperView = new ShoppingWrapperView() { ViewModel = shoppingWrapperViewModel };
 
-            // TODO Apparently the explicit translation is superfluous. Check this for xaml and possibly cleanup.
-            //Title = TranslateExtension.ProvideValue(Labels.Shop) as string;
-            Title = Labels.Shop;
+                Content = shoppingWrapperView;
 
-            ToolbarItems.Add(new ToolbarItem("R", "Refresh.png", shoppingWrapperView.ViewModel.Refresh));
-            ToolbarItems.Add(new ToolbarItem("I", "About.png", About));
+                await shoppingWrapperView.Refresh();
 
-            shoppingWrapperViewModel.Refresh();
-        }
-
-        private async void About()
-        {
-            // TODO The version has to get shared with the Android manifest (to start with).
-            await DisplayAlert(Labels.AboutLabel, string.Format(Labels.AboutText, Labels.Shop, Labels.Developer, "0.7.0"), Labels.Close);
+                initialized = true;
+            }
         }
 
         // TODO It would be desirable to stack and pop query pages, enabling return to previous ones without having to set the filter again.

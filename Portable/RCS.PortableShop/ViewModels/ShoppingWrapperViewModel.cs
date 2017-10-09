@@ -1,8 +1,9 @@
 ﻿using RCS.PortableShop.Common.ViewModels;
-using RCS.PortableShop.Resources;
 using RCS.PortableShop.Views;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
+using Page = RCS.PortableShop.Common.Pages.Page;
 using View = RCS.PortableShop.Common.Views.View;
 
 namespace RCS.PortableShop.ViewModels
@@ -31,20 +32,62 @@ namespace RCS.PortableShop.ViewModels
         #endregion
 
         #region Refresh
-        public override async void Refresh()
+        private bool initialized;
+
+        protected override async Task<bool> Initialize()
         {
-            WrappedContent.ViewModel.Refresh();
+            var baseInitialized = await base.Initialize();
+
+            if (baseInitialized && !initialized)
+            {
+                Adorn();
+
+                initialized = true;
+            }
+
+            return baseInitialized && initialized;
+        }
+
+        public override async Task Refresh()
+        {
+            if (await Initialize())
+                await WrappedContent.ViewModel.Refresh();
+        }
+
+        public override string Title { get { return WrappedContent.ViewModel.Title; } }
+        #endregion
+
+        #region Navigation
+        public override Page Page
+        {
+            get { return WrappedContent.ViewModel.Page; }
+            set { WrappedContent.ViewModel.Page = value; }
         }
         #endregion
 
         #region Shopping
-        public ICommand ShowCartCommand { get; set; }
- 
+        public static readonly BindableProperty ShowCartCommandProperty =
+             BindableProperty.Create(nameof(ShowCartCommand), typeof(ICommand), typeof(ShoppingWrapperViewModel));
+
+        public ICommand ShowCartCommand
+        {
+            get { return (ICommand)GetValue(ShowCartCommandProperty); }
+            private set
+            {
+                SetValue(ShowCartCommandProperty, value);
+                RaisePropertyChanged(nameof(ShowCartCommand));
+            }
+        }
+
         protected void ShowCart()
         {
-            var shoppingCartView = new ShoppingCartView();
+            var shoppingCartView = new ShoppingCartView() { ViewModel=ShoppingCartViewModel.Instance};
 
-            PushPage(shoppingCartView, Labels.Cart);
+            // Deactivated because of Page.Title updating.
+            //PushPage(shoppingCartView);
+
+            // Workaround as long as Page.Title updating does not work.
+            PushPage(shoppingCartView, shoppingCartView.ViewModel.Title);
         }
         #endregion
     }

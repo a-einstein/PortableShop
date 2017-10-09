@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
-<BaseClasses:ImplicitModelView
+<BaseClasses:View
     x:Class="RCS.PortableShop.Views.ProductsView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -15,10 +15,6 @@
     BackgroundColor="{StaticResource ProductsLevel0Colour}"
     Padding="{StaticResource ViewPadding}"
     >
-
-    <BaseClasses:View.ViewModel>
-        <ViewModels:ProductsViewModel/>
-    </BaseClasses:View.ViewModel>
 
     <BaseClasses:View.Resources>
         <ResourceDictionary>
@@ -134,4 +130,4 @@
         <!--TODO Possibly use it elsewhere too, or just as one overlay on the whole application.-->
         <ActivityIndicator Color="Black" IsVisible="{Binding Awaiting}" IsRunning="{Binding Awaiting}" HorizontalOptions="Center" VerticalOptions="Center"/>
     </Grid>
-</BaseClasses:ImplicitModelView>
+</BaseClasses:View>

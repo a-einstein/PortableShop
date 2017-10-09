@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
-<BaseClasses:ImplicitModelView
+<BaseClasses:View
     x:Class="RCS.PortableShop.Views.ProductView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -12,10 +12,6 @@
     BackgroundColor="{StaticResource ProductsLevel1Colour}"
     Padding="{StaticResource ViewPadding}"
     >
-
-    <BaseClasses:View.ViewModel>
-        <ViewModels:ProductViewModel/>
-    </BaseClasses:View.ViewModel>
 
     <BaseClasses:View.Resources>
         <ResourceDictionary>
@@ -98,4 +94,4 @@
             </Grid>
         </StackLayout>
     </ScrollView>
-</BaseClasses:ImplicitModelView>
+</BaseClasses:View>

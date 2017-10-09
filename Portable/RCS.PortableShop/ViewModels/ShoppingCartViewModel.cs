@@ -1,10 +1,12 @@
 ﻿using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.PortableShop.Common.ViewModels;
 using RCS.PortableShop.Model;
+using RCS.PortableShop.Resources;
 using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -55,11 +57,32 @@ namespace RCS.PortableShop.ViewModels
         #endregion
 
         #region Refresh
-        public override async void Refresh()
+        private bool initialized;
+
+        protected override async Task<bool> Initialize()
+        {
+            var baseInitialized = await base.Initialize();
+
+            if (baseInitialized && !initialized)
+            {
+                Adorn();
+
+                initialized = true;
+            }
+
+            return baseInitialized && initialized;
+        }
+
+        protected override async Task<bool> Read()
         {
             // This is not terribly useful. Alternatively the refresh button could be suppressed or disabled.
+            ClearAggregates();
             UpdateAggregates();
+
+            return true;
         }
+
+        public override string Title { get { return Labels.Cart; } }
         #endregion
 
         #region CRUD
@@ -68,7 +91,18 @@ namespace RCS.PortableShop.ViewModels
             CartItemsRepository.Instance.AddProduct(productsOverviewObject);
         }
 
-        public ICommand DeleteCommand { get; set; }
+        public static readonly BindableProperty DeleteCommandProperty =
+            BindableProperty.Create(nameof(DeleteCommand), typeof(ICommand), typeof(ShoppingCartViewModel));
+
+        public ICommand DeleteCommand
+        {
+            get { return (ICommand)GetValue(DeleteCommandProperty); }
+            private set
+            {
+                SetValue(DeleteCommandProperty, value);
+                RaisePropertyChanged(nameof(DeleteCommand));
+            }
+        }
 
         private void Delete(CartItem cartItem)
         {
@@ -101,6 +135,12 @@ namespace RCS.PortableShop.ViewModels
         #endregion
 
         #region Aggregates
+        private void ClearAggregates()
+        {
+            ProductItemsCount = 0;
+            TotalValue = 0;
+        }
+
         private void UpdateAggregates()
         {
             ProductItemsCount = CartItemsRepository.Instance.ProductsCount();

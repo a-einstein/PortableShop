@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
-<BaseClasses:ImplicitModelView
+<BaseClasses:View
     x:Class="RCS.PortableShop.Views.ShoppingCartView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -11,7 +11,6 @@
     xmlns:ViewModels="clr-namespace:RCS.PortableShop.ViewModels;assembly=RCS.PortableShop"
     xmlns:Converters="clr-namespace:RCS.PortableShop.Common.Converters;assembly=RCS.PortableShop.Common"
     xmlns:Localization="clr-namespace:RCS.PortableShop.Localization;assembly=RCS.PortableShop"
-    BaseClasses:View.ViewModel="{x:Static ViewModels:ShoppingCartViewModel.Instance}"
     BackgroundColor="{StaticResource CartLevel0Colour}"
     Padding="{StaticResource ViewPadding}"
     >
@@ -61,4 +60,4 @@
             </ListView.ItemTemplate>
         </ListView>
     </StackLayout>
-</BaseClasses:ImplicitModelView>
+</BaseClasses:View>

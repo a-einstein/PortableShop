@@ -34,10 +34,23 @@ namespace RCS.PortableShop.ViewModels
 
             return succeeded;
         }
+
+        public override string Title { get { return Item?.Name; } }
         #endregion
 
         #region Photo
-        public ICommand PhotoCommand { get; private set; }
+        public static readonly BindableProperty PhotoCommandProperty =
+            BindableProperty.Create(nameof(PhotoCommand), typeof(ICommand), typeof(ProductViewModel));
+
+        public ICommand PhotoCommand
+        {
+            get { return (ICommand)GetValue(PhotoCommandProperty); }
+            private set
+            {
+                SetValue(PhotoCommandProperty, value);
+                RaisePropertyChanged(nameof(PhotoCommand));
+            }
+        }
 
         // Use the existing ImageSource to avoid an unnecessary conversion.
         private void ShowPhoto(ImageSource imageSource)
@@ -53,14 +66,23 @@ namespace RCS.PortableShop.ViewModels
                 Content = new Image() { Source = imageSource }
             };
 
-            PushPage(contentView, Item?.Name);
+            PushPage(contentView, Title);
         }
         #endregion
 
         #region Shopping
+        public static readonly BindableProperty CartCommandProperty =
+            BindableProperty.Create(nameof(CartCommand), typeof(ICommand), typeof(ProductViewModel));
 
-        // Note this does not work as explicit interface implementation.
-        public ICommand CartCommand { get; set; }
+        public ICommand CartCommand
+        {
+            get { return (ICommand)GetValue(CartCommandProperty); }
+            set
+            {
+                SetValue(CartCommandProperty, value);
+                RaisePropertyChanged(nameof(CartCommand));
+            }
+        }
 
         private void CartProduct(Product product)
         {

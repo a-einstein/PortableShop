@@ -30,6 +30,8 @@ namespace RCS.PortableShop.ViewModels
 
             Items.Clear();
         }
+
+        public override string Title { get { return MasterFilterValue?.Name; } }
         #endregion
 
         #region Filtering
@@ -135,21 +137,32 @@ namespace RCS.PortableShop.ViewModels
         #region Details
         protected override void ShowDetails(ProductsOverviewObject productsOverviewObject)
         {
-            var productView = new ProductView();
+            var productView = new ProductView() { ViewModel = new ProductViewModel() { ItemId = productsOverviewObject.Id } };
 
-            var viewModel = new ShoppingWrapperViewModel() { WrappedContent = productView };
-            var view = new ShoppingWrapperView() { ViewModel = viewModel };
+            var wrapperViewModel = new ShoppingWrapperViewModel() { WrappedContent = productView };
+            var wrapperView = new ShoppingWrapperView() { ViewModel = wrapperViewModel };
 
-            (productView.ViewModel as ProductViewModel).ItemId = productsOverviewObject.Id;
+            // Deactivated because of Page.Title updating.
+            //PushPage(wrapperView);
 
-            PushPage(view, productsOverviewObject.Name);
+            // Workaround as long as Page.Title updating does not work.
+            PushPage(wrapperView, productsOverviewObject.Name);
         }
         #endregion
 
         #region Shopping
+        public static readonly BindableProperty CartCommandProperty =
+            BindableProperty.Create(nameof(CartCommand), typeof(ICommand), typeof(ProductsViewModel));
 
-        // Note this does not work as explicit interface implementation.
-        public ICommand CartCommand { get; set; }
+        public ICommand CartCommand
+        {
+            get { return (ICommand)GetValue(CartCommandProperty); }
+            set
+            {
+                SetValue(CartCommandProperty, value);
+                RaisePropertyChanged(nameof(CartCommand));
+            }
+        }
 
         private void CartProduct(ProductsOverviewObject productsOverviewObject)
         {

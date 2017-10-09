@@ -2,18 +2,13 @@
 using System.ComponentModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Page = RCS.PortableShop.Common.Pages.Page;
 
 namespace RCS.PortableShop.Common.ViewModels
 {
     public abstract class ViewModel : BindableObject, INotifyPropertyChanged
     {
         #region Construct
-        public ViewModel()
-        {
-            // TODO Still need to address reported code analysis issue here. So far, alternatives caused real problems.
-            SetCommands();
-        }
-
         protected virtual void SetCommands() { }
         #endregion
 
@@ -33,25 +28,51 @@ namespace RCS.PortableShop.Common.ViewModels
             }
         }
 
-        public virtual async void Refresh()
+        // Note that actions are deliberately put here instead of in constructor to avoid problems.
+        public virtual async Task Refresh()
         {
             Awaiting = true;
 
             Clear();
 
             if (await Initialize())
+            {
                 await Read();
 
-            Awaiting = false;
+                // TODO Does not always update, though it has a BindableProperty.
+                // This may be a matter of timing. Or a bug, like all the needed explicit calls of PropertyChanged.
+                Page.Title = Title;
+            }
 
-            return;
+            Awaiting = false;
         }
 
-        protected virtual async Task<bool> Initialize() { return true; }
+        private bool initialized;
+
+        protected virtual async Task<bool> Initialize()
+        {
+            if (!initialized)
+            {
+                SetCommands();
+
+                initialized = true;
+            }
+
+            return initialized;
+        }
+
+        protected void Adorn()
+        {
+            Page.ToolbarItems.Add(new ToolbarItem("R", "Refresh.png", async () => await Refresh(), priority: 10));
+        }
 
         protected virtual void Clear() { }
 
         protected virtual async Task<bool> Read() { return true; }
+
+        // TODO Apparently the explicit translation is superfluous. Check this for xaml and possibly cleanup.
+        // TranslateExtension.ProvideValue(Labels.Shop) as string;
+        public virtual string Title { get { return Labels.Shop; } }
         #endregion
 
         #region Events
@@ -69,24 +90,36 @@ namespace RCS.PortableShop.Common.ViewModels
         #endregion
 
         #region Navigation
-        public INavigation Navigation { get; set; }
-
+        public virtual Page Page { get; set; }
+ 
         // Note that a potential Color parameter cannot have a default value.
         protected void PushPage(View view, string title = null)
         {
             var page = new ContentPage() { Content = view, Title = title };
 
-            Navigation.PushAsync(page);
+            Page.Navigation.PushAsync(page);
         }
 
-        protected void PushPage(Views.View view, string title = null)
+        protected void PushPage(Views.View view)
         {
-            var page = new ContentPage() { Content = view, Title = title };
+            var page = new Page() { Content = view };
 
-            page.ToolbarItems.Add(new ToolbarItem("R", "Refresh.png", view.ViewModel.Refresh));
-            // TODO Add About here too. Combine with MainPage code.
- 
-            Navigation.PushAsync(page);
+            view.ViewModel.Page = page;
+
+            Page.Navigation.PushAsync(page);
+
+            view.Refresh();
+        }
+
+        protected void PushPage(Views.View view, string title)
+        {
+            var page = new Page() { Content = view, Title = title };
+
+            view.ViewModel.Page = page;
+
+            Page.Navigation.PushAsync(page);
+
+            view.Refresh();
         }
         #endregion
     }
