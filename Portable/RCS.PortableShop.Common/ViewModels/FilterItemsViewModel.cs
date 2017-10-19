@@ -1,4 +1,5 @@
-﻿using RCS.PortableShop.Resources;
+﻿using RCS.AdventureWorks.Common.DomainClasses;
+using RCS.PortableShop.Resources;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -10,6 +11,9 @@ using static Xamarin.Forms.BindableProperty;
 namespace RCS.PortableShop.Common.ViewModels
 {
     public abstract class FilterItemsViewModel<I, FM, FD> : ItemsViewModel<I>
+        where I : DomainClass
+        where FM : DomainClass
+        where FD : DomainClass
     {
         #region Construct
         protected override void SetCommands()
@@ -64,6 +68,18 @@ namespace RCS.PortableShop.Common.ViewModels
             Message = (succeeded && ItemsCount == 0) ? Labels.NotFound : string.Empty;
 
             return succeeded;
+        }
+
+        public override string Title
+        {
+            get
+            {
+                 var title = (!string.IsNullOrEmpty(DetailFilterValue?.Name))
+                    ? DetailFilterValue?.Name
+                    : MasterFilterValue?.Name;
+
+                return (ItemsCount != 0 && !string.IsNullOrEmpty(title)) ? title : TitleDefault;
+            }
         }
         #endregion
 

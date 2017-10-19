@@ -35,13 +35,13 @@ namespace RCS.PortableShop.Common.ViewModels
 
             Clear();
 
+            UpdateTitle();
+
             if (await Initialize())
             {
                 await Read();
 
-                // TODO Does not always update, though it has a BindableProperty.
-                // This may be a matter of timing. Or a bug, like all the needed explicit calls of PropertyChanged.
-                Page.Title = Title;
+                UpdateTitle();
             }
 
             Awaiting = false;
@@ -61,18 +61,26 @@ namespace RCS.PortableShop.Common.ViewModels
             return initialized;
         }
 
-        protected void Adorn()
+        // TODO >> Force Page in constructor parameter? Consider ImplicitModelView.
+        public void Adorn()
         {
-            Page.ToolbarItems.Add(new ToolbarItem("R", "Refresh.png", async () => await Refresh(), priority: 10));
+            Page?.ToolbarItems.Add(new ToolbarItem("R", "Refresh.png", async () => await Refresh(), priority: 10));
         }
 
         protected virtual void Clear() { }
 
         protected virtual async Task<bool> Read() { return true; }
 
+        private void UpdateTitle()
+        {
+            Page.Title = Title;
+        }
+
         // TODO Apparently the explicit translation is superfluous. Check this for xaml and possibly cleanup.
         // TranslateExtension.ProvideValue(Labels.Shop) as string;
-        public virtual string Title { get { return Labels.Shop; } }
+        protected string TitleDefault = Labels.Shop;
+
+        public virtual string Title { get { return TitleDefault; } }
         #endregion
 
         #region Events
@@ -93,33 +101,24 @@ namespace RCS.PortableShop.Common.ViewModels
         public virtual Page Page { get; set; }
  
         // Note that a potential Color parameter cannot have a default value.
-        protected void PushPage(View view, string title = null)
+        protected async Task PushPage(View view, string title = null)
         {
             var page = new ContentPage() { Content = view, Title = title };
 
-            Page.Navigation.PushAsync(page);
+            await Page.Navigation.PushAsync(page);
         }
 
-        protected void PushPage(Views.View view)
+        protected async Task PushPage(Views.View view)
         {
-            var page = new Page() { Content = view };
+            var page = new Page();
 
             view.ViewModel.Page = page;
 
-            Page.Navigation.PushAsync(page);
+            page.Content = view;
 
-            view.Refresh();
-        }
+            await Page.Navigation.PushAsync(page);
 
-        protected void PushPage(Views.View view, string title)
-        {
-            var page = new Page() { Content = view, Title = title };
-
-            view.ViewModel.Page = page;
-
-            Page.Navigation.PushAsync(page);
-
-            view.Refresh();
+            await view.Refresh();
         }
         #endregion
     }

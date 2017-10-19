@@ -34,8 +34,6 @@ namespace RCS.PortableShop.ViewModels
 
             return succeeded;
         }
-
-        public override string Title { get { return Item?.Name; } }
         #endregion
 
         #region Photo
@@ -53,7 +51,7 @@ namespace RCS.PortableShop.ViewModels
         }
 
         // Use the existing ImageSource to avoid an unnecessary conversion.
-        private void ShowPhoto(ImageSource imageSource)
+        private async void ShowPhoto(ImageSource imageSource)
         {
             var resources = Application.Current.Resources;
 
@@ -66,7 +64,7 @@ namespace RCS.PortableShop.ViewModels
                 Content = new Image() { Source = imageSource }
             };
 
-            PushPage(contentView, Title);
+            await PushPage(contentView, Title);
         }
         #endregion
 

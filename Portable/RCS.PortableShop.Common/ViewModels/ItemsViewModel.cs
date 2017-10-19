@@ -5,12 +5,15 @@ namespace RCS.PortableShop.Common.ViewModels
 {
     public abstract class ItemsViewModel<I> : ViewModel
     {
+        #region Construct
         public ItemsViewModel()
         {
             // This is still needed after initialization, it cannot be set on the ItemsProperty.
             SetItemsCollectionChanged();
         }
+        #endregion
 
+        #region Items
         public static readonly BindableProperty ItemsProperty =
             BindableProperty.Create(nameof(Items), typeof(ObservableCollection<I>), typeof(ItemsViewModel<I>), defaultValue: new ObservableCollection<I>());
 
@@ -38,5 +41,15 @@ namespace RCS.PortableShop.Common.ViewModels
         // Convenience property to signal changes.
         // Note that just binding on Items.Count does not work.
         public int ItemsCount { get { return Items?.Count ?? 0; } }
+        #endregion
+
+        #region Refresh
+        protected override void Clear()
+        {
+            base.Clear();
+
+            Items.Clear();
+        }
+        #endregion
     }
 }

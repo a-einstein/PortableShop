@@ -23,17 +23,6 @@ namespace RCS.PortableShop.ViewModels
         }
         #endregion
 
-        #region Refresh
-        protected override void Clear()
-        {
-            base.Clear();
-
-            Items.Clear();
-        }
-
-        public override string Title { get { return MasterFilterValue?.Name; } }
-        #endregion
-
         #region Filtering
 
         // At least 3 characters.
@@ -135,18 +124,14 @@ namespace RCS.PortableShop.ViewModels
         #endregion
 
         #region Details
-        protected override void ShowDetails(ProductsOverviewObject productsOverviewObject)
+        protected override async void ShowDetails(ProductsOverviewObject productsOverviewObject)
         {
             var productView = new ProductView() { ViewModel = new ProductViewModel() { ItemId = productsOverviewObject.Id } };
 
             var wrapperViewModel = new ShoppingWrapperViewModel() { WrappedContent = productView };
             var wrapperView = new ShoppingWrapperView() { ViewModel = wrapperViewModel };
 
-            // Deactivated because of Page.Title updating.
-            //PushPage(wrapperView);
-
-            // Workaround as long as Page.Title updating does not work.
-            PushPage(wrapperView, productsOverviewObject.Name);
+            await PushPage(wrapperView);
         }
         #endregion
 

@@ -23,16 +23,6 @@ namespace RCS.PortableShop.Main
         public MainApplication()
         {
             InitializeComponent();
-
-#if DEBUG
-            ListResources();
-#endif
-            SetCulture();
-
-            var mainPage = new MainPage();
-            MainPage = new NavigationPage(mainPage);
-
-            SubscribeMessages(mainPage);
         }
 
         private static void ListResources()
@@ -98,20 +88,17 @@ namespace RCS.PortableShop.Main
             });
         }
 
-        protected override void OnStart()
+        protected override async void OnStart()
         {
-            // Handle when your app starts
-            // TODO Refresh here?
-        }
+#if DEBUG
+            ListResources();
+#endif
+            SetCulture();
 
-        protected override void OnSleep()
-        {
-            // Handle when your app sleeps
-        }
-
-        protected override void OnResume()
-        {
-            // Handle when your app resumes
+            var mainPage = new MainPage();
+            SubscribeMessages(mainPage);
+            MainPage = new NavigationPage(mainPage);
+            await mainPage.Refresh();
         }
     }
 }

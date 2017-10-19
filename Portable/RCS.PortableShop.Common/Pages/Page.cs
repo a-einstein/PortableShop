@@ -1,17 +1,20 @@
 ﻿using RCS.PortableShop.Resources;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using View = RCS.PortableShop.Common.Views.View;
 
 namespace RCS.PortableShop.Common.Pages
 {
     // TODO Maybe change this name as it is already used by Xamarin.
     public class Page : ContentPage
     {
-        protected override void OnAppearing()
+        // Put calls to virtual methods here to avoid them during construction.
+        // Note this event includes reappearing during Navigation or Resume.
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
 
-            Initialize();
+            await Initialize();
         }
 
         private bool initialized;
@@ -26,11 +29,21 @@ namespace RCS.PortableShop.Common.Pages
             }
         }
 
+        // Force new type here.
+        public new View Content
+        {
+            get { return base.Content as View; }
+            set
+            {
+                base.Content = value;
+
+                // Tie this call to the Page instance to solve the situation of singleton ViewModels that are reused for new Page instances.
+                Content?.Adorn();
+            }
+        }
+
         private void Adorn()
         {
-            // TODO Currently timing may be unfortunate, overwriting externally set value.
-            Title = Labels.Shop;
-
             // TODO Add application icon here for better layout?
             ToolbarItems.Add(new ToolbarItem("I", "About.png", About, priority: 90));
         }
@@ -39,6 +52,12 @@ namespace RCS.PortableShop.Common.Pages
         {
             // TODO The version has to get shared with the Android manifest (to start with).
             await DisplayAlert(Labels.AboutLabel, string.Format(Labels.AboutText, Labels.Shop, Labels.Developer, "0.7.0"), Labels.Close);
+        }
+
+        public async Task Refresh()
+        {
+            await Initialize();
+            await Content?.Refresh();
         }
     }
 }

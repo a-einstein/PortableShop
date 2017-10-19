@@ -22,8 +22,6 @@ namespace RCS.PortableShop.Main
 
                 Content = shoppingWrapperView;
 
-                await shoppingWrapperView.Refresh();
-
                 initialized = true;
             }
         }

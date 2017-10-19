@@ -15,9 +15,14 @@ namespace RCS.PortableShop.Common.Views
             set { BindingContext = value; }
         }
 
+        public void Adorn()
+        {
+            ViewModel?.Adorn();
+        }
+
         public async Task Refresh()
         {
-            await ViewModel.Refresh();
+            await ViewModel?.Refresh();
         }
 
         protected void Orientate(ref StackLayout stack, ref int preservedWidth, ref int preservedHeight, double width, double height)

@@ -57,26 +57,14 @@ namespace RCS.PortableShop.ViewModels
         #endregion
 
         #region Refresh
-        private bool initialized;
-
-        protected override async Task<bool> Initialize()
+        protected override void Clear()
         {
-            var baseInitialized = await base.Initialize();
-
-            if (baseInitialized && !initialized)
-            {
-                Adorn();
-
-                initialized = true;
-            }
-
-            return baseInitialized && initialized;
+            ClearAggregates();
         }
 
         protected override async Task<bool> Read()
         {
             // This is not terribly useful. Alternatively the refresh button could be suppressed or disabled.
-            ClearAggregates();
             UpdateAggregates();
 
             return true;

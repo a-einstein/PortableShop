@@ -32,21 +32,6 @@ namespace RCS.PortableShop.ViewModels
         #endregion
 
         #region Refresh
-        private bool initialized;
-
-        protected override async Task<bool> Initialize()
-        {
-            var baseInitialized = await base.Initialize();
-
-            if (baseInitialized && !initialized)
-            {
-                Adorn();
-
-                initialized = true;
-            }
-
-            return baseInitialized && initialized;
-        }
 
         public override async Task Refresh()
         {
@@ -54,7 +39,7 @@ namespace RCS.PortableShop.ViewModels
                 await WrappedContent.ViewModel.Refresh();
         }
 
-        public override string Title { get { return WrappedContent.ViewModel.Title; } }
+        public override string Title { get { return WrappedContent?.ViewModel.Title; } }
         #endregion
 
         #region Navigation
@@ -79,15 +64,11 @@ namespace RCS.PortableShop.ViewModels
             }
         }
 
-        protected void ShowCart()
+        protected async void ShowCart()
         {
             var shoppingCartView = new ShoppingCartView() { ViewModel=ShoppingCartViewModel.Instance};
 
-            // Deactivated because of Page.Title updating.
-            //PushPage(shoppingCartView);
-
-            // Workaround as long as Page.Title updating does not work.
-            PushPage(shoppingCartView, shoppingCartView.ViewModel.Title);
+            await PushPage(shoppingCartView);
         }
         #endregion
     }
