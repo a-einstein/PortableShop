@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Page = RCS.PortableShop.Common.Pages.Page;
+using View = RCS.PortableShop.Common.Views.View;
 
 namespace RCS.PortableShop.Common.ViewModels
 {
@@ -61,26 +62,38 @@ namespace RCS.PortableShop.Common.ViewModels
             return initialized;
         }
 
-        // TODO >> Force Page in constructor parameter? Consider ImplicitModelView.
-        public void Adorn()
-        {
-            Page?.ToolbarItems.Add(new ToolbarItem("R", "Refresh.png", async () => await Refresh(), priority: 10));
-        }
 
         protected virtual void Clear() { }
 
         protected virtual async Task<bool> Read() { return true; }
 
-        private void UpdateTitle()
+        protected void UpdateTitle()
         {
-            Page.Title = Title;
+            Title = MakeTitle();
         }
 
         // TODO Apparently the explicit translation is superfluous. Check this for xaml and possibly cleanup.
         // TranslateExtension.ProvideValue(Labels.Shop) as string;
-        protected string TitleDefault = Labels.Shop;
+        protected static string TitleDefault = Labels.Shop;
 
-        public virtual string Title { get { return TitleDefault; } }
+        public virtual string MakeTitle() { return TitleDefault; }
+
+        public static readonly BindableProperty TitleProperty =
+            BindableProperty.Create(nameof(Title), typeof(string), typeof(ViewModel), propertyChanged: TitleChanged, defaultValue: TitleDefault);
+
+        public string Title
+        {
+            get { return (string)GetValue(TitleProperty); }
+            set { SetValue(TitleProperty, value); }
+        }
+
+        // Note this is particularly needed for the chaining within the ShoppingWrapperViewModel,
+        // as the Binding does not use the Title property, but the SetValue method directly.
+        // So calling RaisePropertyChanged within the Title property does not work.
+        private static void TitleChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            (bindable as ViewModel).RaisePropertyChanged(nameof(Title));
+        }
         #endregion
 
         #region Events
@@ -98,26 +111,23 @@ namespace RCS.PortableShop.Common.ViewModels
         #endregion
 
         #region Navigation
-        public virtual Page Page { get; set; }
- 
+        // TODO The use of classes from Xamarin.Forms here is a bit of a hack. Better keep this independent.
+
         // Note that a potential Color parameter cannot have a default value.
-        protected async Task PushPage(View view, string title = null)
+        protected async Task PushPage(Xamarin.Forms.View view, string title = null)
         {
             var page = new ContentPage() { Content = view, Title = title };
 
-            await Page.Navigation.PushAsync(page);
+            await Application.Current.MainPage.Navigation.PushAsync(page);
         }
 
-        protected async Task PushPage(Views.View view)
+        protected async Task PushPage(View view)
         {
             var page = new Page();
-
-            view.ViewModel.Page = page;
-
+            page.SetBinding(Page.TitleProperty, new Binding() { Path = nameof(Title), Source = view.ViewModel });
             page.Content = view;
 
-            await Page.Navigation.PushAsync(page);
-
+            await Application.Current.MainPage.Navigation.PushAsync(page);
             await view.Refresh();
         }
         #endregion

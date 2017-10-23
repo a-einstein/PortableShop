@@ -3,7 +3,6 @@ using RCS.PortableShop.Views;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
-using Page = RCS.PortableShop.Common.Pages.Page;
 using View = RCS.PortableShop.Common.Views.View;
 
 namespace RCS.PortableShop.ViewModels
@@ -27,7 +26,13 @@ namespace RCS.PortableShop.ViewModels
         public View WrappedContent
         {
             get { return (View)GetValue(WrappedContentProperty); }
-            set { SetValue(WrappedContentProperty, value); }
+            set
+            {
+                SetValue(WrappedContentProperty, value);
+
+                // Chain the Title properties.
+                SetBinding(TitleProperty, new Binding() { Path = "Title", Source = WrappedContent.ViewModel });
+            }
         }
         #endregion
 
@@ -39,15 +44,7 @@ namespace RCS.PortableShop.ViewModels
                 await WrappedContent.ViewModel.Refresh();
         }
 
-        public override string Title { get { return WrappedContent?.ViewModel.Title; } }
-        #endregion
-
-        #region Navigation
-        public override Page Page
-        {
-            get { return WrappedContent.ViewModel.Page; }
-            set { WrappedContent.ViewModel.Page = value; }
-        }
+        public override string MakeTitle() { return WrappedContent?.ViewModel.MakeTitle(); }
         #endregion
 
         #region Shopping
@@ -66,7 +63,7 @@ namespace RCS.PortableShop.ViewModels
 
         protected async void ShowCart()
         {
-            var shoppingCartView = new ShoppingCartView() { ViewModel=ShoppingCartViewModel.Instance};
+            var shoppingCartView = new ShoppingCartView() { ViewModel = ShoppingCartViewModel.Instance };
 
             await PushPage(shoppingCartView);
         }

@@ -15,11 +15,6 @@ namespace RCS.PortableShop.Common.Views
             set { BindingContext = value; }
         }
 
-        public void Adorn()
-        {
-            ViewModel?.Adorn();
-        }
-
         public async Task Refresh()
         {
             await ViewModel?.Refresh();

@@ -70,16 +70,13 @@ namespace RCS.PortableShop.Common.ViewModels
             return succeeded;
         }
 
-        public override string Title
+        public override string MakeTitle()
         {
-            get
-            {
-                 var title = (!string.IsNullOrEmpty(DetailFilterValue?.Name))
-                    ? DetailFilterValue?.Name
-                    : MasterFilterValue?.Name;
+            var title = (!string.IsNullOrEmpty(DetailFilterValue?.Name))
+               ? DetailFilterValue?.Name
+               : MasterFilterValue?.Name;
 
-                return (ItemsCount != 0 && !string.IsNullOrEmpty(title)) ? title : TitleDefault;
-            }
+            return (ItemsCount != 0 && !string.IsNullOrEmpty(title)) ? title : TitleDefault;
         }
         #endregion
 

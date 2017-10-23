@@ -20,12 +20,15 @@ namespace RCS.PortableShop.Common.ViewModels
             {
                 SetValue(ItemProperty, value);
                 RaisePropertyChanged(nameof(Item));
+
+                UpdateTitle();
             }
         }
         #endregion
 
         #region Refresh
-        public override string Title { get { return (!string.IsNullOrEmpty(Item?.Name)) ? Item?.Name : TitleDefault; } }
+        public override string MakeTitle() { return (!string.IsNullOrEmpty(Item?.Name)) ? Item?.Name : TitleDefault; }
+
         #endregion
     }
 }

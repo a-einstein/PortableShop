@@ -15,7 +15,7 @@ namespace RCS.PortableShop.Main
 
             if (!initialized)
             {
-                var productsView = new ProductsView() { ViewModel = new ProductsViewModel() { Page = this } };
+                var productsView = new ProductsView() { ViewModel = new ProductsViewModel() };
 
                 var shoppingWrapperViewModel = new ShoppingWrapperViewModel() { WrappedContent = productsView };
                 var shoppingWrapperView = new ShoppingWrapperView() { ViewModel = shoppingWrapperViewModel };

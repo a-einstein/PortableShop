@@ -70,7 +70,7 @@ namespace RCS.PortableShop.ViewModels
             return true;
         }
 
-        public override string Title { get { return Labels.Cart; } }
+        public override string MakeTitle() { return Labels.Cart; }
         #endregion
 
         #region CRUD

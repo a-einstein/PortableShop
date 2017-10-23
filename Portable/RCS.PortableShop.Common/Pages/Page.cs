@@ -37,14 +37,15 @@ namespace RCS.PortableShop.Common.Pages
             {
                 base.Content = value;
 
-                // Tie this call to the Page instance to solve the situation of singleton ViewModels that are reused for new Page instances.
-                Content?.Adorn();
+                // Directly bind the Title. 
+                SetBinding(TitleProperty, new Binding() { Path = "Title", Source = Content.ViewModel });
             }
         }
 
         private void Adorn()
         {
             // TODO Add application icon here for better layout?
+            ToolbarItems.Add(new ToolbarItem("R", "Refresh.png", async () => await Content.ViewModel.Refresh(), priority: 10));
             ToolbarItems.Add(new ToolbarItem("I", "About.png", About, priority: 90));
         }
 
