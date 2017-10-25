@@ -4,6 +4,7 @@ using RCS.PortableShop.Resources;
 using System;
 using System.Diagnostics;
 using System.Reflection;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace RCS.PortableShop.Main
@@ -23,6 +24,9 @@ namespace RCS.PortableShop.Main
         public MainApplication()
         {
             InitializeComponent();
+
+            // HACK See OnStart.
+            StartActions();
         }
 
         private static void ListResources()
@@ -89,6 +93,14 @@ namespace RCS.PortableShop.Main
         }
 
         protected override async void OnStart()
+        {
+            base.OnStart();
+
+            // Moved to constructor because of https://bugzilla.xamarin.com/show_bug.cgi?id=60337
+            //await StartActions();
+        }
+
+        private async Task StartActions()
         {
 #if DEBUG
             ListResources();
