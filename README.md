@@ -3,17 +3,20 @@
 Submitted to code analysis by **[Better Code Hub](https://bettercodehub.com)**.  
 Current score: [![BCH compliance](https://bettercodehub.com/edge/badge/a-einstein/PortableShop)](https://bettercodehub.com)
 
+#### News
+This application is now plug & play.
+* It can be installed directly on Android as an APK from [releases](https://github.com/a-einstein/PortableShop/releases).
+* It uses my data service permanently running on Azure.
+
 #### Purpose
 * Creating a working portable application for test and demo purpose based on Xamarin Forms.
 
 #### Prerequisites
-* The application assumes the presence of my [AdventureWorks services](https://github.com/a-einstein/AdventureWorks/blob/master/README.md), to which a service connection should be configured.
+* The application must be configured for a running instance of my [AdventureWorks services](https://github.com/a-einstein/AdventureWorks/blob/master/README.md).
 
 #### Notes
 * This is a near equivalent of my [WpfShop](https://github.com/a-einstein/WpfShop).
 * Currently this is only tested on Android API 21, and no longer suited for all platforms anyway.
-* This project is available as an installable apk for Android in [releases](https://github.com/a-einstein/PortableShop/releases)
-* For the time being the configured data service is only incidentally available. It may be made available on Azure again in the future. However, one can also install one's own service. 
 * This project is also tested for integration with Jira.
 
 #### Aspects
@@ -28,7 +31,7 @@ Current score: [![BCH compliance](https://bettercodehub.com/edge/badge/a-einstei
 * Globalized resources.
 * Basic styling.
 * Splash screen (Android).
-* Orientation.
+* Rotation.
 * Custom controls.
 * Extension.
 * Behaviour.
