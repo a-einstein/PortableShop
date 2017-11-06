@@ -62,7 +62,6 @@ namespace RCS.PortableShop.Common.ViewModels
             return initialized;
         }
 
-
         protected virtual void Clear() { }
 
         protected virtual async Task<bool> Read() { return true; }

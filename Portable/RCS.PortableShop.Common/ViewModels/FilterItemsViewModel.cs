@@ -214,6 +214,5 @@ namespace RCS.PortableShop.Common.ViewModels
 
         protected abstract void ShowDetails(I overviewObject);
         #endregion
-
     }
 }

@@ -101,14 +101,12 @@ namespace RCS.PortableShop.ViewModels
             detailFilterValue = DetailFilterValue;
             textFilterValue = TextFilterValue;
 
-            var productsOverviewObjects = await ProductsRepository.Instance.ReadList(masterFilterValue, detailFilterValue, textFilterValue);
-
             var result = await ProductsRepository.Instance.ReadList(masterFilterValue, detailFilterValue, textFilterValue);
             var succeeded = result != null;
 
             if (succeeded)
                 // Note that using the UI thread (by BeginInvokeOnMainThread) only did bad.
-                foreach (var item in productsOverviewObjects)
+                foreach (var item in result)
                     Items.Add(item);
 
             return succeeded;

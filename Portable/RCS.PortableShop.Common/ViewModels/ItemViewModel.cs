@@ -28,7 +28,6 @@ namespace RCS.PortableShop.Common.ViewModels
 
         #region Refresh
         public override string MakeTitle() { return (!string.IsNullOrEmpty(Item?.Name)) ? Item?.Name : TitleDefault; }
-
         #endregion
     }
 }
