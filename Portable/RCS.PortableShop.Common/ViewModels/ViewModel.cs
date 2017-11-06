@@ -9,7 +9,7 @@ namespace RCS.PortableShop.Common.ViewModels
 {
     public abstract class ViewModel : BindableObject, INotifyPropertyChanged
     {
-        #region Construct
+        #region Construction
         protected virtual void SetCommands() { }
         #endregion
 

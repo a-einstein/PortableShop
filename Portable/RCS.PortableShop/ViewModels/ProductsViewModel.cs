@@ -14,7 +14,7 @@ namespace RCS.PortableShop.ViewModels
 {
     public class ProductsViewModel : FilterItemsViewModel<ProductsOverviewObject, ProductCategory, ProductSubcategory>, IShopper
     {
-        #region Construct
+        #region Construction
         protected override void SetCommands()
         {
             base.SetCommands();
@@ -51,12 +51,11 @@ namespace RCS.PortableShop.ViewModels
                     ProductCategoriesRepository.Instance.ReadList(),
                     ProductSubcategoriesRepository.Instance.ReadList()
                 );
-
                 succeeded = results.All<bool>(result => result == true);
 
                 // Note that using the UI thread (by BeginInvokeOnMainThread) only did bad.
 
-                ObservableCollection<ProductCategory> masterFilterItems = new ObservableCollection<ProductCategory>(); ;
+                var masterFilterItems = new ObservableCollection<ProductCategory>();
 
                 foreach (var item in ProductCategoriesRepository.Instance.List)
                 {

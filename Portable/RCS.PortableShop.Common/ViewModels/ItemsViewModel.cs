@@ -5,7 +5,7 @@ namespace RCS.PortableShop.Common.ViewModels
 {
     public abstract class ItemsViewModel<I> : ViewModel
     {
-        #region Construct
+        #region Construction
         public ItemsViewModel()
         {
             // This is still needed after initialization, it cannot be set on the ItemsProperty.

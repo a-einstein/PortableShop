@@ -8,7 +8,7 @@ namespace RCS.PortableShop.Model
 {
     public class CartItemsRepository : Repository<CartItem>
     {
-        #region Initialization
+        #region Construction
         private CartItemsRepository()
         {
             List = new ObservableCollection<CartItem>();

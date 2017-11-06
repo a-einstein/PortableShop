@@ -10,7 +10,7 @@ namespace RCS.PortableShop.ViewModels
     // TODO Might as well keep this view and just change MainRegionContent.
     public class ShoppingWrapperViewModel : ViewModel
     {
-        #region Construct
+        #region Construction
         protected override void SetCommands()
         {
             base.SetCommands();

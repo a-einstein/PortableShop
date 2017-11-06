@@ -10,7 +10,7 @@ namespace RCS.PortableShop.ViewModels
 {
     public class ProductViewModel : ItemViewModel<Product>, IShopper
     {
-        #region Construct
+        #region Construction
         protected override void SetCommands()
         {
             base.SetCommands();

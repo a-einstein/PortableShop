@@ -15,7 +15,7 @@ namespace RCS.PortableShop.Common.ViewModels
         where FM : DomainClass
         where FD : DomainClass
     {
-        #region Construct
+        #region Construction
         protected override void SetCommands()
         {
             base.SetCommands();

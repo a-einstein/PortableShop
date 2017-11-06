@@ -16,7 +16,7 @@ namespace RCS.PortableShop.ViewModels
     {
         // Note currently this class only stores in memory.
 
-        #region Construct
+        #region Construction
         private ShoppingCartViewModel()
         {
             // HACK Typing is unclear here.

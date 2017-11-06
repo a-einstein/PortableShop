@@ -8,7 +8,7 @@ namespace RCS.PortableShop.Model
 {
     public class ProductCategoriesRepository : Repository<ProductCategory>
     {
-        #region Initialization
+        #region Construction
         private ProductCategoriesRepository()
         { }
 

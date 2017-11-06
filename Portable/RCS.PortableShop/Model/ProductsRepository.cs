@@ -9,7 +9,7 @@ namespace RCS.PortableShop.Model
 {
     public class ProductsRepository : Repository<ProductsOverviewObject>
     {
-        #region Initialization
+        #region Construction
         private ProductsRepository()
         { }
 
@@ -85,7 +85,6 @@ namespace RCS.PortableShop.Model
             }
 
             return product;
-
         }
         #endregion
     }
