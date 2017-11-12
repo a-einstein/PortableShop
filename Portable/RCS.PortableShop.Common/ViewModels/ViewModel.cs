@@ -48,6 +48,8 @@ namespace RCS.PortableShop.Common.ViewModels
             Awaiting = false;
         }
 
+        protected virtual void Clear() { }
+
         private bool initialized;
 
         protected virtual async Task<bool> Initialize()
@@ -61,8 +63,6 @@ namespace RCS.PortableShop.Common.ViewModels
 
             return initialized;
         }
-
-        protected virtual void Clear() { }
 
         protected virtual async Task<bool> Read() { return true; }
 

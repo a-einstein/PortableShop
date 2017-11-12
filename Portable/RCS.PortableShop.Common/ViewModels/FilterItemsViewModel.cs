@@ -112,7 +112,7 @@ namespace RCS.PortableShop.Common.ViewModels
 
         // Note this function does NOT filter Items, just updates DetailFilterItems and DetailFilterValue.
         // Currently the FilterCommand is just bound to a Button, implying it always has to be activated explicitly.
-        public static void OnMasterFilterValueChanged(BindableObject bindableObject, object oldValue, object newValue)
+        private static void OnMasterFilterValueChanged(BindableObject bindableObject, object oldValue, object newValue)
         {
             var viewModel = bindableObject as FilterItemsViewModel<I, FM, FD>;
 
@@ -125,7 +125,7 @@ namespace RCS.PortableShop.Common.ViewModels
         {
             var detailFilterItemsSelection = detailFilterItemsSource.Where(DetailFilterItemsSelector());
 
-            ObservableCollection<FD> detailFilterItems = new ObservableCollection<FD>(); ;
+            var detailFilterItems = new ObservableCollection<FD>(); ;
 
             // Note that the query is executed on the foreach.
             foreach (var item in detailFilterItemsSelection)

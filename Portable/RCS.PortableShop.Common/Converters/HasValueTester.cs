@@ -21,6 +21,7 @@ namespace RCS.PortableShop.Common.Converters
 
         public static bool HasValue(object testObject)
         {
+            // Note the tests sometimes are a matter of arbitrary definition.
             return !(
                 testObject == null ||
                 testObject is string && (testObject as string) == string.Empty ||

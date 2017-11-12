@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using Xamarin.Forms;
 
 namespace RCS.PortableShop.Common.ViewModels
@@ -33,7 +34,7 @@ namespace RCS.PortableShop.Common.ViewModels
             Items.CollectionChanged += Items_CollectionChanged;
         }
 
-        private void Items_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void Items_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             RaisePropertyChanged(nameof(ItemsCount));
         }
