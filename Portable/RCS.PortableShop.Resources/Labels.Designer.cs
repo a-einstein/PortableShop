@@ -91,15 +91,6 @@ namespace RCS.PortableShop.Resources {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
-        public static string CartError {
-            get {
-                return ResourceManager.GetString("CartError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
         public static string Category {
             get {
                 return ResourceManager.GetString("Category", resourceCulture);
@@ -166,6 +157,24 @@ namespace RCS.PortableShop.Resources {
         public static string Error {
             get {
                 return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string ErrorCart {
+            get {
+                return ResourceManager.GetString("ErrorCart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string ErrorService {
+            get {
+                return ResourceManager.GetString("ErrorService", resourceCulture);
             }
         }
         
@@ -301,15 +310,6 @@ namespace RCS.PortableShop.Resources {
         public static string Searching {
             get {
                 return ResourceManager.GetString("Searching", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        public static string ServiceError {
-            get {
-                return ResourceManager.GetString("ServiceError", resourceCulture);
             }
         }
         

@@ -42,19 +42,17 @@ namespace RCS.PortableShop.ViewModels
         // TODO This would better be handled inside the repository.
         protected override async Task<bool> InitializeFilters()
         {
-            bool succeeded;
+            var results = await Task.WhenAll
+            (
+                ProductCategoriesRepository.Instance.ReadList(),
+                ProductSubcategoriesRepository.Instance.ReadList()
+            );
 
-            try
+            var succeeded = results.All<bool>(result => result == true);
+
+            if (succeeded)
+            // Note that using the UI thread (by BeginInvokeOnMainThread) only did bad.
             {
-                var results = await Task.WhenAll
-                (
-                    ProductCategoriesRepository.Instance.ReadList(),
-                    ProductSubcategoriesRepository.Instance.ReadList()
-                );
-                succeeded = results.All<bool>(result => result == true);
-
-                // Note that using the UI thread (by BeginInvokeOnMainThread) only did bad.
-
                 var masterFilterItems = new ObservableCollection<ProductCategory>();
 
                 foreach (var item in ProductCategoriesRepository.Instance.List)
@@ -79,11 +77,6 @@ namespace RCS.PortableShop.ViewModels
                 DetailFilterValue = DetailFilterItems.FirstOrDefault(subcategory => subcategory.Id == detailDefaultId);
 
                 TextFilterValue = default(string);
-
-            }
-            catch (Exception)
-            {
-                succeeded = false;
             }
 
             return succeeded;

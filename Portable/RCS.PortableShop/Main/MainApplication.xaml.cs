@@ -73,10 +73,10 @@ namespace RCS.PortableShop.Main
                     serviceErrorFirstDisplayed = DateTime.Now;
 
                     if (string.IsNullOrWhiteSpace(details))
-                        await page.DisplayAlert(Labels.Error, Labels.ServiceError, Labels.Close);
+                        await page.DisplayAlert(Labels.Error, Labels.ErrorService, Labels.Close);
                     else
                     {
-                        var showDetails = await page.DisplayAlert(Labels.Error, Labels.ServiceError, Labels.Details, Labels.Close);
+                        var showDetails = await page.DisplayAlert(Labels.Error, Labels.ErrorService, Labels.Details, Labels.Close);
 
                         if (showDetails)
                             await page.DisplayAlert(Labels.Details, details, Labels.Close);
@@ -88,7 +88,7 @@ namespace RCS.PortableShop.Main
 
             MessagingCenter.Subscribe<CartItemsRepository>(this, CartItemsRepository.Errors.CartError.ToString(), (sender) =>
             {
-                page.DisplayAlert(Labels.Error, Labels.CartError, Labels.Close);
+                page.DisplayAlert(Labels.Error, Labels.ErrorCart, Labels.Close);
             });
         }
 

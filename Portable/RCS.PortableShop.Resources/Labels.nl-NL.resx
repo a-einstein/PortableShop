@@ -129,10 +129,6 @@ Versie {2}</value>
   <data name="Cart" xml:space="preserve">
     <value>Winkelwagen</value>
   </data>
-  <data name="CartError" xml:space="preserve">
-    <value>Er is een technisch probleem met uw Winkelwagentje.
-Controleer a.u.b. grondig of herstart de applicatie (aanbevolen).</value>
-  </data>
   <data name="Category" xml:space="preserve">
     <value>Categorie</value>
   </data>
@@ -156,6 +152,15 @@ Controleer a.u.b. grondig of herstart de applicatie (aanbevolen).</value>
   </data>
   <data name="Error" xml:space="preserve">
     <value>Probleem</value>
+  </data>
+  <data name="ErrorCart" xml:space="preserve">
+    <value>Er is een technisch probleem met uw Winkelwagentje.
+Controleer a.u.b. grondig of herstart de applicatie (aanbevolen).</value>
+  </data>
+  <data name="ErrorService" xml:space="preserve">
+    <value>Er is een probleem in het gebruik van onze data service.
+Gebruik a.u.b. de verversknop,
+of probeer het later nog eens.</value>
   </data>
   <data name="Filter" xml:space="preserve">
     <value>Zoek</value>
@@ -202,11 +207,6 @@ Pas a.u.b. uw zoekopdracht aan.</value>
   </data>
   <data name="Searching" xml:space="preserve">
     <value>Zoeken...</value>
-  </data>
-  <data name="ServiceError" xml:space="preserve">
-    <value>Er is een probleem in het gebruik van onze data service.
-Gebruik a.u.b. de verversknop,
-of probeer het later nog eens.</value>
   </data>
   <data name="Shop" xml:space="preserve">
     <value>CyclOne</value>

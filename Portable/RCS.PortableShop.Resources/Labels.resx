@@ -127,9 +127,6 @@
   <data name="Cart" xml:space="preserve">
     <value />
   </data>
-  <data name="CartError" xml:space="preserve">
-    <value />
-  </data>
   <data name="Category" xml:space="preserve">
     <value />
   </data>
@@ -152,6 +149,12 @@
     <value />
   </data>
   <data name="Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ErrorCart" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ErrorService" xml:space="preserve">
     <value />
   </data>
   <data name="Filter" xml:space="preserve">
@@ -197,9 +200,6 @@
     <value />
   </data>
   <data name="Searching" xml:space="preserve">
-    <value />
-  </data>
-  <data name="ServiceError" xml:space="preserve">
     <value />
   </data>
   <data name="Shop" xml:space="preserve">

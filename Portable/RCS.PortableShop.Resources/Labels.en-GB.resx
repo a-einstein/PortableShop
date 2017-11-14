@@ -129,10 +129,6 @@ Version {2}</value>
   <data name="Cart" xml:space="preserve">
     <value>Shopping Cart</value>
   </data>
-  <data name="CartError" xml:space="preserve">
-    <value>There is a technical problem with your Shopping Cart.
-Please check thoroughly or restart the application (recommended).</value>
-  </data>
   <data name="Category" xml:space="preserve">
     <value>Category</value>
   </data>
@@ -156,6 +152,15 @@ Please check thoroughly or restart the application (recommended).</value>
   </data>
   <data name="Error" xml:space="preserve">
     <value>Error</value>
+  </data>
+  <data name="ErrorCart" xml:space="preserve">
+    <value>There is a technical problem with your Shopping Cart.
+Please check thoroughly or restart the application (recommended).</value>
+  </data>
+  <data name="ErrorService" xml:space="preserve">
+    <value>There is a problem using our data service.
+Please use the refresh button,
+or try again later.</value>
   </data>
   <data name="Filter" xml:space="preserve">
     <value>Search</value>
@@ -202,11 +207,6 @@ Please try a different query.</value>
   </data>
   <data name="Searching" xml:space="preserve">
     <value>Searching...</value>
-  </data>
-  <data name="ServiceError" xml:space="preserve">
-    <value>There is a problem using our data service.
-Please use the refresh button,
-or try again later.</value>
   </data>
   <data name="Shop" xml:space="preserve">
     <value>CyclOne</value>
