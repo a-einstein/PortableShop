@@ -33,6 +33,6 @@ This application is now plug & play.
 * Splash screen (Android).
 * Rotation.
 * Custom controls.
-* Extension.
-* Behaviour.
+* Extensions.
+* Attached behaviours.
 * Application icon (Android).

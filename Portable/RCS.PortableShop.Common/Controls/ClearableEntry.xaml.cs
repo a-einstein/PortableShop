@@ -6,13 +6,16 @@ namespace RCS.PortableShop.Common.Controls
 {
     public partial class ClearableEntry : CustomContentView
     {
+        #region Construction
         public ClearableEntry()
         {
             InitializeComponent();
 
             ClearCommand = new Command(Clear);
         }
+        #endregion
 
+        #region Text
         public static readonly BindableProperty TextProperty =
             BindableProperty.Create(nameof(Text), typeof(string), typeof(ClearableEntry));
 
@@ -25,7 +28,9 @@ namespace RCS.PortableShop.Common.Controls
                 RaisePropertyChanged(nameof(Text));
             }
         }
+        #endregion
 
+        #region Placeholder
         public static readonly BindableProperty PlaceholderProperty =
             BindableProperty.Create(nameof(Placeholder), typeof(string), typeof(ClearableEntry));
 
@@ -34,8 +39,9 @@ namespace RCS.PortableShop.Common.Controls
             get { return (string)GetValue(PlaceholderProperty); }
             set { SetValue(PlaceholderProperty, value); }
         }
+        #endregion
 
-
+        #region Command
         public static readonly BindableProperty ClearCommandProperty =
             BindableProperty.Create(nameof(ClearCommand), typeof(ICommand), typeof(ClearableEntry));
 
@@ -53,7 +59,9 @@ namespace RCS.PortableShop.Common.Controls
         {
             Text = string.Empty;
         }
+        #endregion
 
+        #region Behaviors
         public IList<Behavior> EntryBehaviors
         {
             get { return entry.Behaviors; }
@@ -67,5 +75,6 @@ namespace RCS.PortableShop.Common.Controls
                 }
             }
         }
+        #endregion
     }
 }
