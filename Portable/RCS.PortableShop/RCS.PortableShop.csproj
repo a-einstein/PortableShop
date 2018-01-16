@@ -102,7 +102,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="RCS.AdventureWorks.Common">
-      <HintPath>..\..\..\..\services\AdventureWorks\RCS.AdventureWorks.Services.Products\bin\RCS.AdventureWorks.Common.dll</HintPath>
+      <HintPath>..\..\AdventureWorks\RCS.AdventureWorks.Common\bin\Debug\RCS.AdventureWorks.Common.dll</HintPath>
     </Reference>
     <Reference Include="Syncfusion.SfNumericUpDown.XForms, Version=15.3451.0.33, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Syncfusion.Xamarin.SfNumericUpDown.15.3.0.33\lib\portable-win+net45+wp80+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Syncfusion.SfNumericUpDown.XForms.dll</HintPath>

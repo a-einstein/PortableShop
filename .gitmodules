@@ -1,0 +1,4 @@
+[submodule "AdventureWorks"]
+	path = AdventureWorks
+	url = https://github.com/a-einstein/AdventureWorks.git
+	branch = master
