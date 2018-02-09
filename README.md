@@ -1,7 +1,7 @@
 ## PortableShop
 
 #### Description
-Working desktop application for test and demo purpose based on Xamarin Forms. It simulates limited shopping capabilities based on the AdventureWorks database. It can be installed plug & play (see **Installation**).
+Working portable (Android) application for test and demo purpose based on Xamarin Forms. It simulates limited shopping capabilities based on the AdventureWorks database. It can be installed plug & play (see **Installation**).
 
 #### News
 This project is now integrated with Visual Studio Team Services (VSTS) too.
