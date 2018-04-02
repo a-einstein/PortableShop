@@ -1,10 +1,10 @@
 ## PortableShop
 
 #### Description
-Working portable (Android) application for test and demo purpose based on Xamarin Forms. It simulates limited shopping capabilities based on the AdventureWorks database. It can be installed plug & play (see **Installation**).
+Working portable (Android) application for test and demo purpose based on Xamarin Forms. It simulates limited shopping capabilities based on the AdventureWorks database.
 
 #### News
-This project is now integrated with Visual Studio Team Services (VSTS) too.
+The data service on Azure is no longer functional.
 
 #### Purpose
 * Explore various techniques based on C# and XAML.
@@ -14,7 +14,6 @@ This project is now integrated with Visual Studio Team Services (VSTS) too.
 
 #### Prerequisites
 * The application must be configured for a running instance of my [AdventureWorks services](https://github.com/a-einstein/AdventureWorks/blob/master/README.md).
-* Currently this is met by configuration to my service on Azure.
 
 #### Notes
 * This is a near equivalent of my [WpfShop](https://github.com/a-einstein/WpfShop).
@@ -40,7 +39,9 @@ This project is now integrated with Visual Studio Team Services (VSTS) too.
 * Application icon (Android).
 
 #### Installation
-The application currently is plug & play. The application can be installed directly to Android from GitHub. It is configured to use my data service running on Azure.
+Currently one has to both compile this client as well as the data service, and create the database.
+
+The application no longer is plug & play. Just for its own sake the application can still be directly installed. It is still configured to use my data service on Azure, so it will fail to work.
 * Download the latest APK from **[releases](https://github.com/a-einstein/PortableShop/releases)** to your Android phone.
 * When completed, choose install.
 
