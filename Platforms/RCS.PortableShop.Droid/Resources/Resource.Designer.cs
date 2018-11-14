@@ -26,6 +26,7 @@ namespace RCS.PortableShop.Droid
 		
 		public static void UpdateIdValues()
 		{
+			global::Com.Syncfusion.Numericupdown.Resource.String.library_name = global::RCS.PortableShop.Droid.Resource.String.library_name;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::RCS.PortableShop.Droid.Resource.Attribute.actionBarSize;
 		}
 		
@@ -1798,9 +1799,6 @@ namespace RCS.PortableShop.Droid
 			// aapt resource value: 0x7f070013
 			public const int abc_text_size_title_material_toolbar = 2131165203;
 			
-			// aapt resource value: 0x7f0700a4
-			public const int button_font_size = 2131165348;
-			
 			// aapt resource value: 0x7f07000c
 			public const int cardview_compat_inset_shadow = 2131165196;
 			
@@ -1953,9 +1951,6 @@ namespace RCS.PortableShop.Droid
 			
 			// aapt resource value: 0x7f070002
 			public const int fastscroll_minimum_range = 2131165186;
-			
-			// aapt resource value: 0x7f0700a5
-			public const int font_size = 2131165349;
 			
 			// aapt resource value: 0x7f07005b
 			public const int highlight_alpha_material_colored = 2131165275;
@@ -2348,26 +2343,26 @@ namespace RCS.PortableShop.Droid
 			// aapt resource value: 0x7f020056
 			public const int avd_hide_password = 2130837590;
 			
+			// aapt resource value: 0x7f020134
+			public const int avd_hide_password_1 = 2130837812;
+			
 			// aapt resource value: 0x7f020135
-			public const int avd_hide_password_1 = 2130837813;
+			public const int avd_hide_password_2 = 2130837813;
 			
 			// aapt resource value: 0x7f020136
-			public const int avd_hide_password_2 = 2130837814;
-			
-			// aapt resource value: 0x7f020137
-			public const int avd_hide_password_3 = 2130837815;
+			public const int avd_hide_password_3 = 2130837814;
 			
 			// aapt resource value: 0x7f020057
 			public const int avd_show_password = 2130837591;
 			
+			// aapt resource value: 0x7f020137
+			public const int avd_show_password_1 = 2130837815;
+			
 			// aapt resource value: 0x7f020138
-			public const int avd_show_password_1 = 2130837816;
+			public const int avd_show_password_2 = 2130837816;
 			
 			// aapt resource value: 0x7f020139
-			public const int avd_show_password_2 = 2130837817;
-			
-			// aapt resource value: 0x7f02013a
-			public const int avd_show_password_3 = 2130837818;
+			public const int avd_show_password_3 = 2130837817;
 			
 			// aapt resource value: 0x7f020058
 			public const int design_bottom_navigation_item_background = 2130837592;
@@ -3005,11 +3000,11 @@ namespace RCS.PortableShop.Droid
 			// aapt resource value: 0x7f02012b
 			public const int notification_icon_background = 2130837803;
 			
-			// aapt resource value: 0x7f020133
-			public const int notification_template_icon_bg = 2130837811;
+			// aapt resource value: 0x7f020132
+			public const int notification_template_icon_bg = 2130837810;
 			
-			// aapt resource value: 0x7f020134
-			public const int notification_template_icon_low_bg = 2130837812;
+			// aapt resource value: 0x7f020133
+			public const int notification_template_icon_low_bg = 2130837811;
 			
 			// aapt resource value: 0x7f02012c
 			public const int notification_tile_bg = 2130837804;
@@ -3028,9 +3023,6 @@ namespace RCS.PortableShop.Droid
 			
 			// aapt resource value: 0x7f020131
 			public const int tooltip_frame_light = 2130837809;
-			
-			// aapt resource value: 0x7f020132
-			public const int updownbuttons = 2130837810;
 			
 			static Drawable()
 			{
@@ -4048,9 +4040,6 @@ namespace RCS.PortableShop.Droid
 			// aapt resource value: 0x7f090027
 			public const int abc_toolbar_collapse_description = 2131296295;
 			
-			// aapt resource value: 0x7f09003e
-			public const int app_name = 2131296318;
-			
 			// aapt resource value: 0x7f090036
 			public const int appbar_scrolling_view_behavior = 2131296310;
 			
@@ -4059,6 +4048,9 @@ namespace RCS.PortableShop.Droid
 			
 			// aapt resource value: 0x7f090038
 			public const int character_counter_pattern = 2131296312;
+			
+			// aapt resource value: 0x7f09003e
+			public const int library_name = 2131296318;
 			
 			// aapt resource value: 0x7f090000
 			public const int mr_button_content_description = 2131296256;

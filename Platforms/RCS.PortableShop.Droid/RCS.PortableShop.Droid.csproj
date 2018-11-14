@@ -65,17 +65,17 @@
       <HintPath>..\..\packages\Xamarin.Forms.2.4.0.18342\lib\MonoAndroid10\FormsViewGroup.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Android" />
-    <Reference Include="Syncfusion.SfNumericUpDown.Android">
-      <HintPath>..\..\packages\Syncfusion.Xamarin.SfNumericUpDown.15.3.0.33\lib\MonoAndroid10\Syncfusion.SfNumericUpDown.Android.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Syncfusion.Licensing, Version=16.3.0.29, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Syncfusion.Licensing.16.3.0.29\lib\MonoAndroid10\Syncfusion.Licensing.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.SfNumericUpDown.XForms">
-      <HintPath>..\..\packages\Syncfusion.Xamarin.SfNumericUpDown.15.3.0.33\lib\MonoAndroid10\Syncfusion.SfNumericUpDown.XForms.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Syncfusion.SfNumericUpDown.Android, Version=16.3451.0.29, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Syncfusion.Xamarin.SfNumericUpDown.16.3.0.29\lib\MonoAndroid10\Syncfusion.SfNumericUpDown.Android.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.SfNumericUpDown.XForms.Android">
-      <HintPath>..\..\packages\Syncfusion.Xamarin.SfNumericUpDown.15.3.0.33\lib\MonoAndroid10\Syncfusion.SfNumericUpDown.XForms.Android.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Syncfusion.SfNumericUpDown.XForms, Version=16.3451.0.29, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Syncfusion.Xamarin.SfNumericUpDown.16.3.0.29\lib\MonoAndroid10\Syncfusion.SfNumericUpDown.XForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfNumericUpDown.XForms.Android, Version=16.3451.0.29, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Syncfusion.Xamarin.SfNumericUpDown.16.3.0.29\lib\MonoAndroid10\Syncfusion.SfNumericUpDown.XForms.Android.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
