@@ -52,7 +52,7 @@ namespace RCS.PortableShop.Common.Pages
         public async void About()
         {
             // TODO The version has to get shared with the Android manifest (to start with).
-            await DisplayAlert(Labels.AboutLabel, string.Format(Labels.AboutText, Labels.Shop, Labels.Developer, "0.9.0"), Labels.Close);
+            await DisplayAlert(Labels.AboutLabel, string.Format(Labels.AboutText, Labels.Shop, Labels.Developer, "0.10.0"), Labels.Close);
         }
 
         public async Task Refresh()

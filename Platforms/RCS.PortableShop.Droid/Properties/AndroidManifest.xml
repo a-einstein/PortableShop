@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="auto" package="RCS.CyclOne" android:versionName="0.9.0">
-	<uses-sdk android:minSdkVersion="15" />
-	<application android:label="CyclOne"></application>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="auto" package="RCS.CyclOne" android:versionName="0.10.0">
+	<uses-sdk android:minSdkVersion="15" android:targetSdkVersion="27" />
+	<application android:label="CyclOne 0.10.0"></application>
 </manifest>
