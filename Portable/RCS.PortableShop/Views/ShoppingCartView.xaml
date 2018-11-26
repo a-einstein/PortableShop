@@ -44,6 +44,12 @@
                                 </StackLayout>
 
                                 <StackLayout Orientation="Horizontal">
+                                    <!--
+                                    Note currently a license warning is displayed.
+                                    https://help.syncfusion.com/common/essential-studio/licensing/license-key
+                                    TODO Check release notes for relevant changes.
+                                    https://help.syncfusion.com/xamarin/release-notes
+                                    -->
                                     <NumericUpDown:SfNumericUpDown Value="{Binding Quantity, Mode=TwoWay}"/>
 
                                     <!--Using ContentButton plus Label to create a flat style Button without border. -->

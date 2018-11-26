@@ -54,12 +54,13 @@ namespace RCS.PortableShop.Model
                 if (productsServiceClient == null)
                 {
                     // TODO Make this better configurable. There does not seem to be a config file like on WPF.
+                    // TODO If possible get transformation on configs. 
 
                     // Note that currently wsHttpBinding is not supported, but should be as it is part of System.ServiceModel 4.0.0.0.
                     var binding = new BasicHttpBinding(BasicHttpSecurityMode.Transport) { OpenTimeout = Timeout, SendTimeout = Timeout, ReceiveTimeout = Timeout, CloseTimeout = Timeout };
 
                     // Note this points to a BasicHttpBinding variant on the server.
-                    const string endpointAddress = "https://rcs-adventureworksservices.azurewebsites.net/ProductsService.svc/ProductsServiceB";
+                    const string endpointAddress = "https://192.168.178.15/ProductsServicePub/ProductsService.svc/ProductsServiceB";
 
                     // Note the example bindings in ProductsServiceClient which could also be applied here by using EndpointConfiguration
                     productsServiceClient = new ProductsServiceClient(binding, new EndpointAddress(endpointAddress));
