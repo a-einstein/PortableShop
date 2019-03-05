@@ -65,17 +65,23 @@
       <HintPath>..\..\packages\Xamarin.Forms.3.5.0.169047\lib\MonoAndroid81\FormsViewGroup.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Android" />
-    <Reference Include="Syncfusion.Licensing, Version=16.3.0.29, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Syncfusion.Licensing.16.3.0.29\lib\MonoAndroid10\Syncfusion.Licensing.dll</HintPath>
+    <Reference Include="Syncfusion.Core.XForms, Version=16.4451.0.54, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Syncfusion.Xamarin.Core.16.4.0.54\lib\MonoAndroid10\Syncfusion.Core.XForms.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.SfNumericUpDown.Android, Version=16.3451.0.29, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Syncfusion.Xamarin.SfNumericUpDown.16.3.0.29\lib\MonoAndroid10\Syncfusion.SfNumericUpDown.Android.dll</HintPath>
+    <Reference Include="Syncfusion.Core.XForms.Android, Version=16.4451.0.54, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Syncfusion.Xamarin.Core.16.4.0.54\lib\MonoAndroid10\Syncfusion.Core.XForms.Android.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.SfNumericUpDown.XForms, Version=16.3451.0.29, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Syncfusion.Xamarin.SfNumericUpDown.16.3.0.29\lib\MonoAndroid10\Syncfusion.SfNumericUpDown.XForms.dll</HintPath>
+    <Reference Include="Syncfusion.Licensing, Version=16.4.0.54, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Syncfusion.Licensing.16.4.0.54\lib\MonoAndroid10\Syncfusion.Licensing.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.SfNumericUpDown.XForms.Android, Version=16.3451.0.29, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Syncfusion.Xamarin.SfNumericUpDown.16.3.0.29\lib\MonoAndroid10\Syncfusion.SfNumericUpDown.XForms.Android.dll</HintPath>
+    <Reference Include="Syncfusion.SfNumericUpDown.Android, Version=16.4451.0.54, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Syncfusion.Xamarin.SfNumericUpDown.16.4.0.54\lib\MonoAndroid10\Syncfusion.SfNumericUpDown.Android.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfNumericUpDown.XForms, Version=16.4451.0.54, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Syncfusion.Xamarin.SfNumericUpDown.16.4.0.54\lib\MonoAndroid10\Syncfusion.SfNumericUpDown.XForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfNumericUpDown.XForms.Android, Version=16.4451.0.54, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Syncfusion.Xamarin.SfNumericUpDown.16.4.0.54\lib\MonoAndroid10\Syncfusion.SfNumericUpDown.XForms.Android.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

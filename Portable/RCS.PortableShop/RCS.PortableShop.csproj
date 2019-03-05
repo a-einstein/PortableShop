@@ -105,11 +105,14 @@
     <Reference Include="RCS.AdventureWorks.Common">
       <HintPath>..\..\AdventureWorks\RCS.AdventureWorks.Common\bin\$(Configuration)\RCS.AdventureWorks.Common.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.Licensing, Version=16.3.0.29, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Syncfusion.Licensing.16.3.0.29\lib\portable-win+net45+wp80+win81+wpa81\Syncfusion.Licensing.dll</HintPath>
+    <Reference Include="Syncfusion.Core.XForms, Version=16.4451.0.54, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Syncfusion.Xamarin.Core.16.4.0.54\lib\portable-win+net45+wp80+win81+wpa81\Syncfusion.Core.XForms.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.SfNumericUpDown.XForms, Version=16.3451.0.29, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Syncfusion.Xamarin.SfNumericUpDown.16.3.0.29\lib\portable-win+net45+wp80+win81+wpa81\Syncfusion.SfNumericUpDown.XForms.dll</HintPath>
+    <Reference Include="Syncfusion.Licensing, Version=16.4.0.54, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Syncfusion.Licensing.16.4.0.54\lib\portable-win+net45+wp80+win81+wpa81\Syncfusion.Licensing.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfNumericUpDown.XForms, Version=16.4451.0.54, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Syncfusion.Xamarin.SfNumericUpDown.16.4.0.54\lib\portable-win+net45+wp80+win81+wpa81\Syncfusion.SfNumericUpDown.XForms.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xamarin.Forms.3.5.0.169047\lib\netstandard1.0\Xamarin.Forms.Core.dll</HintPath>
