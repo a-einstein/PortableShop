@@ -39,8 +39,8 @@
                                     <Label Text="{Binding ProductSize}" Style="{StaticResource ValueLabelStyle}"/>
                                     <Label Text="{Binding ProductSizeUnitMeasureCode}" Style="{StaticResource ValueLabelStyle}"/>
                                     <Label Text="{Binding ProductColor}" Style="{StaticResource ValueLabelStyle}"/>
-                                    <Label Text="{Binding ProductListPrice, StringFormat=\{0:C2\}}" Style="{StaticResource ValueLabelStyle}"/>
-                                    <Label Text="{Binding Value, StringFormat=\{0:C2\}}" Style="{StaticResource ValueEmphasisLabelStyle}"/>
+                                    <Label Text="{Binding ProductListPrice, StringFormat='{}{0:C2}'}" Style="{StaticResource ValueLabelStyle}"/>
+                                    <Label Text="{Binding Value, StringFormat='{}{0:C2}'}" Style="{StaticResource ValueEmphasisLabelStyle}"/>
                                 </StackLayout>
 
                                 <StackLayout Orientation="Horizontal">

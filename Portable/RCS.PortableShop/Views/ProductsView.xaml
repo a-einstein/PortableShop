@@ -106,7 +106,8 @@
 
                                                     <Label Text="{Binding Name}" Style="{StaticResource ValueEmphasisMediumLabelStyle}"/>
 
-                                                    <Label Text="{Binding ListPrice, StringFormat=\{0:C2\}}" Style="{StaticResource ValueEmphasisLabelStyle}"/>
+                                                    <!--HACK All similar occurrences of StringFormat are (temporarily) in this format because of this bug https://github.com/xamarin/Xamarin.Forms/issues/5282 -->
+                                                    <Label Text="{Binding ListPrice, StringFormat='{}{0:C2}'}" Style="{StaticResource ValueEmphasisLabelStyle}"/>
 
                                                     <StackLayout Orientation="Horizontal">
                                                         <Label Text="{Binding Size}" Style="{StaticResource ValueLabelStyle}"/>
