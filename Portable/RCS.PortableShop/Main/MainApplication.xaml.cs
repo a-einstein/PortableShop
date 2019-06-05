@@ -1,7 +1,5 @@
 ﻿using RCS.PortableShop.Localization;
-using RCS.PortableShop.Model;
 using RCS.PortableShop.Resources;
-using System;
 using System.Diagnostics;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -12,14 +10,6 @@ namespace RCS.PortableShop.Main
     public partial class MainApplication : Application
     {
         private const string debugPrefix = ">>>> Debug:";
-
-        private bool serviceErrorDisplaying;
-
-        // Note this initializes to 2001.
-        private DateTime serviceErrorFirstDisplayed;
-
-        // This value is tested on 3 service calls at startup. There is no multiplication operator.
-        private TimeSpan serviceErrorGraceTime = ProductsServiceConsumer.Timeout + ProductsServiceConsumer.Timeout;
 
         public MainApplication()
         {
@@ -59,38 +49,6 @@ namespace RCS.PortableShop.Main
             }
         }
 
-        private void SubscribeMessages(Page page)
-        {
-            // Use the MessagingCenter mechanism to connect ViewModels or other (non GUI) code to this Page.
-
-            MessagingCenter.Subscribe<ProductsServiceConsumer, string>(this, ProductsServiceConsumer.Errors.ServiceError.ToString(), async (sender, details) =>
-            {
-                // Try to prevent stacking muliple related messages, like at startup.
-                // TODO Finetune this. It can also unwantedly prevent messages, like after changing page.
-                if (!serviceErrorDisplaying && DateTime.Now > serviceErrorFirstDisplayed + serviceErrorGraceTime)
-                {
-                    serviceErrorDisplaying = true;
-                    serviceErrorFirstDisplayed = DateTime.Now;
-
-                    if (string.IsNullOrWhiteSpace(details))
-                        await page.DisplayAlert(Labels.Error, Labels.ErrorService, Labels.Close);
-                    else
-                    {
-                        var showDetails = await page.DisplayAlert(Labels.Error, Labels.ErrorService, Labels.Details, Labels.Close);
-
-                        if (showDetails)
-                            await page.DisplayAlert(Labels.Details, details, Labels.Close);
-                    }
-
-                    serviceErrorDisplaying = false;
-                }
-            });
-
-            MessagingCenter.Subscribe<CartItemsRepository>(this, CartItemsRepository.Errors.CartError.ToString(), (sender) =>
-            {
-                page.DisplayAlert(Labels.Error, Labels.ErrorCart, Labels.Close);
-            });
-        }
 
         protected override async void OnStart()
         {
@@ -107,10 +65,7 @@ namespace RCS.PortableShop.Main
 #endif
             SetCulture();
 
-            var mainPage = new MainPage();
-            SubscribeMessages(mainPage);
-            MainPage = new NavigationPage(mainPage);
-            await mainPage.Refresh();
+            MainPage = new MainShell();
         }
     }
 }

@@ -47,6 +47,9 @@
       <DependentUpon>MainApplication.xaml</DependentUpon>
     </Compile>
     <Compile Include="Main\MainPage.cs" />
+    <Compile Include="Main\MainShell.xaml.cs">
+      <DependentUpon>MainShell.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\CartItemsRepository.cs" />
     <Compile Include="Model\ProductCategoriesRepository.cs" />
     <Compile Include="Model\ProductsRepository.cs" />
@@ -145,6 +148,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\ShoppingCartSummaryView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Main\MainShell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
