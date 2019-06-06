@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-    
+
 <Shell 
     x:Class="RCS.PortableShop.Main.MainShell"
     xmlns="http://xamarin.com/schemas/2014/forms"
@@ -9,14 +9,24 @@
     xmlns:Main="clr-namespace:RCS.PortableShop.Main"
     mc:Ignorable="d"
     >
-    
-    <!--Note this still boils down to a single page application.-->
-    <!--TODO Explore more functionalities of Shell.-->
-    <TabBar>
+
+    <Shell.FlyoutHeader>
+        <ContentView Padding="10" BackgroundColor="White">
+            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <!--TODO Fill available width. Maybe have a bigger icon too. Check necessity of options.-->
+                <Image Source="Application.png" Opacity="0.3" Scale="4" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFit"/>
+                <Label x:Name="aboutLabel" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="Center"/>
+            </Grid>
+        </ContentView>
+    </Shell.FlyoutHeader>
+
+    <!--TODO Get working navigation for both shop and cart.-->
+    <!--TODO Get more color for buttons, preferably the functional colours.-->
+    <FlyoutItem Title="Shop" >
         <Tab>
             <ShellContent>
                 <Main:MainPage />
             </ShellContent>
         </Tab>
-    </TabBar>
+    </FlyoutItem>
 </Shell>

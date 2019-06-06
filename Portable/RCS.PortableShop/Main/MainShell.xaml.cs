@@ -1,5 +1,5 @@
-﻿using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿using RCS.PortableShop.Resources;
+using Xamarin.Forms;
 
 namespace RCS.PortableShop.Main
 {
@@ -8,6 +8,9 @@ namespace RCS.PortableShop.Main
         public MainShell()
         {
             InitializeComponent();
+
+            // TODO The version has to get shared with the Android manifest (to start with).
+            aboutLabel.Text = string.Format(Labels.AboutText, Labels.Shop, Labels.Developer, "0.10.0");
         }
     }
 }
