@@ -4,6 +4,13 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+// Note this is on assembly level. The stated namespace below does not seem to matter.
+// It is applied on all assemblies containing XAML. I tried this separately on the classes at first.
+// It all turned out to be fragile, sometimes causing compilation problems. 
+// Check out the local settings of XamlCompilation.
+[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 
 namespace RCS.PortableShop.Main
 {
