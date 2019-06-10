@@ -58,6 +58,8 @@
     <Compile Include="Model\Repository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Localization\TranslateExtension.cs" />
+    <Compile Include="ViewModels\MainShellViewModel.cs" />
+    <Compile Include="ViewModels\ShoppingViewModel.cs" />
     <Compile Include="ViewModels\ShoppingWrapperViewModel.cs" />
     <Compile Include="ViewModels\ProductsViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModel.cs" />

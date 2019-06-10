@@ -47,6 +47,7 @@ namespace RCS.PortableShop.Main
         // This value is tested on 3 service calls at startup. There is no multiplication operator.
         private TimeSpan serviceErrorGraceTime = ProductsServiceConsumer.Timeout + ProductsServiceConsumer.Timeout;
 
+        // TODO May no lo longer work. Move to Shell?
         private void SubscribeMessages(Page page)
         {
             // Use the MessagingCenter mechanism to connect ViewModels or other (non GUI) code to this Page.
@@ -83,6 +84,8 @@ namespace RCS.PortableShop.Main
         // TODO It would be desirable to stack and pop query pages, enabling return to previous ones without having to set the filter again.
         // A forward button would also be a logical addition.
         // But care should be taken to limit the possibilities to prevent over complication..
+       
+        // TODO Does not seem to work anymore. Move to Shell?
         protected override bool OnBackButtonPressed()
         {
             // Prevent backing out of the application.

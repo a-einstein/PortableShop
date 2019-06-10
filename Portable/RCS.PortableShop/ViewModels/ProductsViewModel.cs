@@ -113,7 +113,7 @@ namespace RCS.PortableShop.ViewModels
         }
         #endregion
 
-        #region Details
+        #region Navigation
         protected override async void ShowDetails(ProductsOverviewObject productsOverviewObject)
         {
             var productView = new ProductView() { ViewModel = new ProductViewModel() { ItemId = productsOverviewObject.Id } };
