@@ -4,13 +4,14 @@
 Working portable (Android) application for test and demo purpose based on Xamarin Forms. It simulates limited shopping capabilities based on the AdventureWorks database.
 
 #### News
-The data service on Azure is no longer functional.
+* Added the new Flyout, part of Shell navigation in Xamarin Forms 4.0.
+* The data service on Azure is no longer functional.
 
 #### Purpose
-* Explore various techniques based on C# and XAML.
+* Explore various techniques based on C#, XAML and Xamarin Forms.
 * Manage the code and releases by Git and GitHub.
-* Explore continuous integration by using combinations of Git, GitHub, TeamCity and Visual Studio Team Services (VSTS).
-* Explore Scrum process management by integration with Jira and Visual Studio Team Services.
+* Explore continuous integration by using combinations of Git, GitHub, TeamCity and Azure DevOps.
+* Explore Scrum process management by integration with Jira and Azure DevOps.
 
 #### Prerequisites
 * The application must be configured for a running instance of my [AdventureWorks services](https://github.com/a-einstein/AdventureWorks/blob/master/README.md).
@@ -32,6 +33,7 @@ The data service on Azure is no longer functional.
 * Globalized resources.
 * Basic styling.
 * Splash screen (Android).
+* Shell navigation.
 * Rotation.
 * Custom controls.
 * Extensions.
