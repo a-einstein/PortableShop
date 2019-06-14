@@ -19,8 +19,8 @@ namespace RCS.PortableShop.Main
             BindingContext = new MainShellViewModel();
             (BindingContext as ViewModel)?.Refresh();
 
-            // TODO This results is a corrupt Navigation.NavigationStack.
-            CurrentItem = new MainPage();
+            // TODO This resulted is a corrupt Navigation.NavigationStack.
+            //CurrentItem = new MainPage();
         }
     }
 }

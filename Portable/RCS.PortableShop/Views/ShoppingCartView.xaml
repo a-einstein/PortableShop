@@ -49,6 +49,8 @@
                                     https://help.syncfusion.com/common/essential-studio/licensing/license-key
                                     TODO Check release notes for relevant changes.
                                     https://help.syncfusion.com/xamarin/release-notes
+                                    TODO Get font size right for quantity.
+                                    TODO Number displays decimals now, remove.
                                     -->
                                     <NumericUpDown:SfNumericUpDown Value="{Binding Quantity, Mode=TwoWay}"/>
 
