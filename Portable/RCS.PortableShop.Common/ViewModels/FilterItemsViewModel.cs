@@ -198,7 +198,7 @@ namespace RCS.PortableShop.Common.ViewModels
         }
         #endregion
 
-        #region Details
+        #region Navigation
         public static readonly BindableProperty DetailsCommandProperty =
             BindableProperty.Create(nameof(DetailsCommand), typeof(ICommand), typeof(FilterItemsViewModel<I, FM, FD>));
 

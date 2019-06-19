@@ -72,7 +72,7 @@
                 <Label Grid.Row="3" Grid.Column="1" Text="{Binding Item.ProductNumber}" Style="{StaticResource ValueLabelStyle}"/>
 
                 <Label Grid.Row="4" Grid.Column="0" Text="{Localization:Translate Price}" Style="{StaticResource LabelLabelStyle}"/>
-                <Label Grid.Row="4" Grid.Column="1" Text="{Binding Item.ListPrice, StringFormat=\{0:C2\}}" Style="{StaticResource ValueEmphasisLabelStyle}"/>
+                <Label Grid.Row="4" Grid.Column="1" Text="{Binding Item.ListPrice, StringFormat='{}{0:C2}'}" Style="{StaticResource ValueEmphasisLabelStyle}"/>
 
                 <Label Grid.Row="5" Grid.Column="0" Text="{Localization:Translate Size}" Style="{StaticResource LabelLabelStyle}"/>
                 <StackLayout Grid.Row="5" Grid.Column="1" Orientation="Horizontal">

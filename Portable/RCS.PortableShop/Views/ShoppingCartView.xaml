@@ -39,8 +39,8 @@
                                     <Label Text="{Binding ProductSize}" Style="{StaticResource ValueLabelStyle}"/>
                                     <Label Text="{Binding ProductSizeUnitMeasureCode}" Style="{StaticResource ValueLabelStyle}"/>
                                     <Label Text="{Binding ProductColor}" Style="{StaticResource ValueLabelStyle}"/>
-                                    <Label Text="{Binding ProductListPrice, StringFormat=\{0:C2\}}" Style="{StaticResource ValueLabelStyle}"/>
-                                    <Label Text="{Binding Value, StringFormat=\{0:C2\}}" Style="{StaticResource ValueEmphasisLabelStyle}"/>
+                                    <Label Text="{Binding ProductListPrice, StringFormat='{}{0:C2}'}" Style="{StaticResource ValueLabelStyle}"/>
+                                    <Label Text="{Binding Value, StringFormat='{}{0:C2}'}" Style="{StaticResource ValueEmphasisLabelStyle}"/>
                                 </StackLayout>
 
                                 <StackLayout Orientation="Horizontal">
@@ -49,6 +49,8 @@
                                     https://help.syncfusion.com/common/essential-studio/licensing/license-key
                                     TODO Check release notes for relevant changes.
                                     https://help.syncfusion.com/xamarin/release-notes
+                                    TODO Get font size right for quantity.
+                                    TODO Number displays decimals now, remove.
                                     -->
                                     <NumericUpDown:SfNumericUpDown Value="{Binding Quantity, Mode=TwoWay}"/>
 

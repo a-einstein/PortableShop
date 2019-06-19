@@ -1,22 +1,13 @@
-﻿using RCS.PortableShop.Common.ViewModels;
-using RCS.PortableShop.Views;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Threading.Tasks;
 using Xamarin.Forms;
 using View = RCS.PortableShop.Common.Views.View;
 
 namespace RCS.PortableShop.ViewModels
 {
     // TODO Might as well keep this view and just change MainRegionContent.
-    public class ShoppingWrapperViewModel : ViewModel
+    public class ShoppingWrapperViewModel : ShoppingViewModel
     {
         #region Construction
-        protected override void SetCommands()
-        {
-            base.SetCommands();
-
-            ShowCartCommand = new Command(ShowCart);
-        }
 
         public static readonly BindableProperty WrappedContentProperty =
             BindableProperty.Create(nameof(WrappedContent), typeof(View), typeof(ShoppingWrapperViewModel));
@@ -37,7 +28,6 @@ namespace RCS.PortableShop.ViewModels
         #endregion
 
         #region Refresh
-
         public override async Task Refresh()
         {
             if (await Initialize())
@@ -45,28 +35,6 @@ namespace RCS.PortableShop.ViewModels
         }
 
         public override string MakeTitle() { return WrappedContent?.ViewModel.MakeTitle(); }
-        #endregion
-
-        #region Shopping
-        public static readonly BindableProperty ShowCartCommandProperty =
-             BindableProperty.Create(nameof(ShowCartCommand), typeof(ICommand), typeof(ShoppingWrapperViewModel));
-
-        public ICommand ShowCartCommand
-        {
-            get { return (ICommand)GetValue(ShowCartCommandProperty); }
-            private set
-            {
-                SetValue(ShowCartCommandProperty, value);
-                RaisePropertyChanged(nameof(ShowCartCommand));
-            }
-        }
-
-        protected async void ShowCart()
-        {
-            var shoppingCartView = new ShoppingCartView() { ViewModel = ShoppingCartViewModel.Instance };
-
-            await PushPage(shoppingCartView);
-        }
         #endregion
     }
 }

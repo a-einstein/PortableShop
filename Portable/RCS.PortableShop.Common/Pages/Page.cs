@@ -45,14 +45,8 @@ namespace RCS.PortableShop.Common.Pages
         private void Adorn()
         {
             // TODO Add application icon here for better layout?
+            // TODO As of using Shell the icons are not displayed, though the commands work.
             ToolbarItems.Add(new ToolbarItem("R", "Refresh.png", async () => await Content.ViewModel.Refresh(), priority: 10));
-            ToolbarItems.Add(new ToolbarItem("I", "About.png", About, priority: 90));
-        }
-
-        public async void About()
-        {
-            // TODO The version has to get shared with the Android manifest (to start with).
-            await DisplayAlert(Labels.AboutLabel, string.Format(Labels.AboutText, Labels.Shop, Labels.Developer, "0.10.0"), Labels.Close);
         }
 
         public async Task Refresh()

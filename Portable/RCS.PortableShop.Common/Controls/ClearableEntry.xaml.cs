@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Input;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace RCS.PortableShop.Common.Controls
 {
+    [XamlCompilation(XamlCompilationOptions.Skip)]
     public partial class ClearableEntry : CustomContentView
     {
         #region Construction

@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace RCS.PortableShop.Common.Converters
 {
-    class ByteArrayToImageSourceConverter : SingleDirectionConverter
+    public class ByteArrayToImageSourceConverter : SingleDirectionConverter
     {
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

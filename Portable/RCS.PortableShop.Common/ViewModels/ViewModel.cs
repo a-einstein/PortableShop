@@ -2,8 +2,13 @@
 using System.ComponentModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 using Page = RCS.PortableShop.Common.Pages.Page;
 using View = RCS.PortableShop.Common.Views.View;
+
+// Arbitrarily put here for the assembly.
+// Also check comments on XamlCompilation elsewhere.
+[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 
 namespace RCS.PortableShop.Common.ViewModels
 {
@@ -112,12 +117,20 @@ namespace RCS.PortableShop.Common.ViewModels
         #region Navigation
         // TODO The use of classes from Xamarin.Forms here is a bit of a hack. Better keep this independent.
 
+        public Shell Shell { get { return Application.Current.MainPage as Shell; } }
+        public INavigation Navigation { get { return Application.Current.MainPage.Navigation; } }
+
+        protected async Task PopToRoot()
+        {
+            await Navigation.PopToRootAsync();
+        }
+
         // Note that a potential Color parameter cannot have a default value.
         protected async Task PushPage(Xamarin.Forms.View view, string title = null)
         {
             var page = new ContentPage() { Content = view, Title = title };
 
-            await Application.Current.MainPage.Navigation.PushAsync(page);
+            await Navigation.PushAsync(page);
         }
 
         protected async Task PushPage(View view)
@@ -126,7 +139,7 @@ namespace RCS.PortableShop.Common.ViewModels
             page.SetBinding(Page.TitleProperty, new Binding() { Path = nameof(Title), Source = view.ViewModel });
             page.Content = view;
 
-            await Application.Current.MainPage.Navigation.PushAsync(page);
+            await Navigation.PushAsync(page);
             await view.Refresh();
         }
         #endregion

@@ -20,7 +20,7 @@
         <Label Text="{Binding ProductItemsCount}" Style="{StaticResource ValueEmphasisMediumLabelStyle}"/>
         <Label Text="{Localization:Translate Items}" FontSize="Medium"/>
 
-        <Label Text="{Binding TotalValue, StringFormat=\{0:C2\}}" Style="{StaticResource ValueEmphasisMediumLabelStyle}"/>
+        <Label Text="{Binding TotalValue, StringFormat='{}{0:C2}'}" Style="{StaticResource ValueEmphasisMediumLabelStyle}"/>
         <Label Text="{Localization:Translate TotalValue}" FontSize="Medium"/>
     </StackLayout>
 </BaseClasses:ImplicitModelView>
