@@ -4,8 +4,9 @@
 Working portable (Android) application for test and demo purpose based on Xamarin Forms. It simulates limited shopping capabilities based on the AdventureWorks database.
 
 #### News
+* Integrated with Connected to Azure Devops build and release pipelines.
 * Added the new Flyout, part of Shell navigation in Xamarin Forms 4.0.
-* The data service on Azure is no longer functional.
+* For full demonstration/test purposes, the data service is on request.
 
 #### Purpose
 * Explore various techniques based on C#, XAML and Xamarin Forms.
@@ -20,6 +21,7 @@ Working portable (Android) application for test and demo purpose based on Xamari
 * This is a near equivalent of my [WpfShop](https://github.com/a-einstein/WpfShop).
 * Currently this is only tested on Android API 21, and no longer suited for all platforms anyway.
 * Submitted to code analysis by **[Better Code Hub](https://bettercodehub.com)**. Current score: [![BCH compliance](https://bettercodehub.com/edge/badge/a-einstein/PortableShop)](https://bettercodehub.com)
+* Connected to automated Azure Devops build and release pipelines. Current build status for the master branch: [![Build Status](https://dev.azure.com/RcsProjects/PortableShop/_apis/build/status/Build%20APK?branchName=master)](https://dev.azure.com/RcsProjects/PortableShop/_build/latest?definitionId=13&branchName=master)
 
 #### Aspects
 * Xamarin Forms.
@@ -41,9 +43,7 @@ Working portable (Android) application for test and demo purpose based on Xamari
 * Application icon (Android).
 
 #### Installation
-Currently one has to both compile this client as well as the data service, and create the database.
-
-The application no longer is plug & play. Just for its own sake the application can still be directly installed. It is still configured to use my data service on Azure, so it will fail to work.
-* Download the latest APK from **[releases](https://github.com/a-einstein/PortableShop/releases)** to your Android phone.
-* When completed, choose install.
+The application is plug & play, but use of the data service is on request. Contact the developer ahead. 
+* Download and install the **[latest APK](https://rcsadventureworac85.blob.core.windows.net/portableshop-releases/latest/RCS.CyclOne.apk)** to your Android phone.
+* Start the application. Either it will start 'empty' displaying a warning, or if the data service is running one can 'shop' the contents.
 
