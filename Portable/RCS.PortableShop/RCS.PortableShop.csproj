@@ -38,6 +38,9 @@
     <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\..\GlobalAssemblyInfo.cs">
+      <Link>Properties\GlobalAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="Converters\SizeFormatter.cs" />
     <Compile Include="Converters\WeightFormatter.cs" />
     <Compile Include="Interfaces\IShopper.cs" />

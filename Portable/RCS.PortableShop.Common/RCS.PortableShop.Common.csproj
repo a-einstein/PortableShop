@@ -38,6 +38,9 @@
     <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\..\GlobalAssemblyInfo.cs">
+      <Link>Properties\GlobalAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="Behaviors\EntryRegexValidationBehavior.cs" />
     <Compile Include="Controls\ClearableEntry.xaml.cs">
       <DependentUpon>ClearableEntry.xaml</DependentUpon>
