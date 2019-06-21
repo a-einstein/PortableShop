@@ -1,5 +1,4 @@
-﻿using RCS.PortableShop.Resources;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Xamarin.Forms;
 using View = RCS.PortableShop.Common.Views.View;
 

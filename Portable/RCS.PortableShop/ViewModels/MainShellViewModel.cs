@@ -12,7 +12,7 @@ namespace RCS.PortableShop.ViewModels
             base.SetCommands();
 
             ShowProductsCommand = new Command(async () => await ShowProducts());
-            OpenSupportCommand = new Command(() =>  OpenSupport());
+            OpenSupportCommand = new Command(() => OpenSupport());
         }
 
         public static readonly BindableProperty ShowProductsCommandProperty =

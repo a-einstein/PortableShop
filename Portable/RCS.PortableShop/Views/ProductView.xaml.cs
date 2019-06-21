@@ -16,7 +16,7 @@ namespace RCS.PortableShop.Views
         {
             base.OnSizeAllocated(width, height);
 
-            Orientate(ref productControl, ref preservedProductControlWidth, ref preservedProductControlHeight,  width, height);
+            Orientate(ref productControl, ref preservedProductControlWidth, ref preservedProductControlHeight, width, height);
         }
     }
 }
