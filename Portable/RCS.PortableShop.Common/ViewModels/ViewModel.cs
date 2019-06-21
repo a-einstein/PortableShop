@@ -117,23 +117,23 @@ namespace RCS.PortableShop.Common.ViewModels
         #region Navigation
         // TODO The use of classes from Xamarin.Forms here is a bit of a hack. Better keep this independent.
 
-        public Shell Shell { get { return Application.Current.MainPage as Shell; } }
-        public INavigation Navigation { get { return Application.Current.MainPage.Navigation; } }
+        public static Shell Shell { get { return Application.Current.MainPage as Shell; } }
+        public static INavigation Navigation { get { return Application.Current.MainPage.Navigation; } }
 
-        protected async Task PopToRoot()
+        protected static async Task PopToRoot()
         {
             await Navigation.PopToRootAsync();
         }
 
         // Note that a potential Color parameter cannot have a default value.
-        protected async Task PushPage(Xamarin.Forms.View view, string title = null)
+        protected static async Task PushPage(Xamarin.Forms.View view, string title = null)
         {
             var page = new ContentPage() { Content = view, Title = title };
 
             await Navigation.PushAsync(page);
         }
 
-        protected async Task PushPage(View view)
+        protected static async Task PushPage(View view)
         {
             var page = new Page();
             page.SetBinding(Page.TitleProperty, new Binding() { Path = nameof(Title), Source = view.ViewModel });

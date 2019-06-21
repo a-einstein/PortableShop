@@ -28,7 +28,7 @@ namespace RCS.PortableShop.ViewModels
             }
         }
 
-        protected async Task ShowProducts()
+        protected static async Task ShowProducts()
         {
             Shell.FlyoutIsPresented = false;
             await PopToRoot();
@@ -53,7 +53,7 @@ namespace RCS.PortableShop.ViewModels
             }
         }
 
-        protected void OpenSupport()
+        protected static void OpenSupport()
         {
             Shell.FlyoutIsPresented = false;
 

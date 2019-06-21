@@ -121,7 +121,7 @@ namespace RCS.PortableShop.Common.ViewModels
         }
 
         // TODO Some sort of view would be more convenient.
-        private void SetDetailFilterItems(bool addEmptyElement = true)
+        private void SetDetailFilterItems()
         {
             var detailFilterItemsSelection = detailFilterItemsSource.Where(DetailFilterItemsSelector());
 
