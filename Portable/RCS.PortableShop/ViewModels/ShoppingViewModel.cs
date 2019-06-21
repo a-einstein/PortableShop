@@ -6,7 +6,7 @@ using Xamarin.Forms;
 
 namespace RCS.PortableShop.ViewModels
 {
-    public abstract class ShoppingViewModel: ViewModel
+    public abstract class ShoppingViewModel : ViewModel
     {
         #region Construction
         protected override void SetCommands()

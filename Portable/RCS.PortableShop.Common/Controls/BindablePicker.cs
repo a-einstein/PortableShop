@@ -16,14 +16,14 @@ namespace RCS.PortableShop.Common.Controls
         public static new BindableProperty ItemsSourceProperty =
             BindableProperty.Create(nameof(ItemsSource), typeof(IList), typeof(BindablePicker), propertyChanged: new BindingPropertyChangedDelegate(OnItemsSourceChanged));
 
-        public static new BindableProperty SelectedItemProperty =
-            BindableProperty.Create(nameof(SelectedItem), typeof(object), typeof(BindablePicker), propertyChanged: new BindingPropertyChangedDelegate(OnSelectedItemChanged));
-
         public new IList ItemsSource
         {
             get { return (IList)GetValue(ItemsSourceProperty); }
             set { SetValue(ItemsSourceProperty, value); }
         }
+
+        public static new BindableProperty SelectedItemProperty =
+            BindableProperty.Create(nameof(SelectedItem), typeof(object), typeof(BindablePicker), propertyChanged: new BindingPropertyChangedDelegate(OnSelectedItemChanged));
 
         public new object SelectedItem
         {

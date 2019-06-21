@@ -20,7 +20,7 @@ namespace RCS.PortableShop.Common.Views
             await ViewModel?.Refresh();
         }
 
-        protected void Orientate(ref StackLayout stack, ref int preservedWidth, ref int preservedHeight, double width, double height)
+        protected static void Orientate(ref StackLayout stack, ref int preservedWidth, ref int preservedHeight, double width, double height)
         {
             //Make comparison more robust.
             int newWidth = (int)Math.Round(width);

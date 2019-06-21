@@ -12,7 +12,7 @@ namespace RCS.PortableShop.ViewModels
             base.SetCommands();
 
             ShowProductsCommand = new Command(async () => await ShowProducts());
-            OpenSupportCommand = new Command(() =>  OpenSupport());
+            OpenSupportCommand = new Command(() => OpenSupport());
         }
 
         public static readonly BindableProperty ShowProductsCommandProperty =
@@ -28,7 +28,7 @@ namespace RCS.PortableShop.ViewModels
             }
         }
 
-        protected async Task ShowProducts()
+        protected static async Task ShowProducts()
         {
             Shell.FlyoutIsPresented = false;
             await PopToRoot();
@@ -53,7 +53,7 @@ namespace RCS.PortableShop.ViewModels
             }
         }
 
-        protected void OpenSupport()
+        protected static void OpenSupport()
         {
             Shell.FlyoutIsPresented = false;
 

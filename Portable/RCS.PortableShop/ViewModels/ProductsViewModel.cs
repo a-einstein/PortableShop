@@ -84,9 +84,9 @@ namespace RCS.PortableShop.ViewModels
 
         protected override async Task<bool> ReadFiltered()
         {
-            ProductCategory masterFilterValue = null;
-            ProductSubcategory detailFilterValue = null;
-            string textFilterValue = null;
+            ProductCategory masterFilterValue;
+            ProductSubcategory detailFilterValue;
+            string textFilterValue;
 
             // Note that using the UI thread (by BeginInvokeOnMainThread) only did bad.
             masterFilterValue = MasterFilterValue;

@@ -24,7 +24,7 @@ namespace RCS.PortableShop.Common.Converters
             // Note the tests sometimes are a matter of arbitrary definition.
             return !(
                 testObject == null ||
-                testObject is string && (testObject as string) == string.Empty ||
+                testObject is string && string.IsNullOrEmpty((testObject as string)) ||
                 testObject is bool && (bool)testObject == false ||
                 testObject is int && ((int)testObject) == 0 ||
                 testObject is IEmptyAble && (testObject as IEmptyAble).IsEmpty ||
