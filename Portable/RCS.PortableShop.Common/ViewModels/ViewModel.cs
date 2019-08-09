@@ -2,13 +2,8 @@
 using System.ComponentModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 using Page = RCS.PortableShop.Common.Pages.Page;
 using View = RCS.PortableShop.Common.Views.View;
-
-// Arbitrarily put here for the assembly.
-// Also check comments on XamlCompilation elsewhere.
-[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 
 namespace RCS.PortableShop.Common.ViewModels
 {

@@ -5,6 +5,7 @@ using Xamarin.Forms.Xaml;
 
 namespace RCS.PortableShop.Common.Controls
 {
+    // HACK Prevents compilation error for unknown reason.
     [XamlCompilation(XamlCompilationOptions.Skip)]
     public partial class ClearableEntry : CustomContentView
     {

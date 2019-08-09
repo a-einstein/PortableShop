@@ -1,13 +1,13 @@
 ﻿using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace RCS.PortableShop.Common.Styles
 {
-    [XamlCompilation(XamlCompilationOptions.Skip)]
     public partial class Stylesheet : ResourceDictionary
     {
         public Stylesheet()
         {
+            // HACK Needed this file and constructor to enable merging.
+            // https://forums.xamarin.com/discussion/84382/how-to-get-resourcedictionary-mergedwith-working
             InitializeComponent();
         }
     }
