@@ -6,6 +6,8 @@ namespace RCS.PortableShop.Model
         ProductsServiceConsumer
         where TCollection : Collection<TElement>, new()
     {
+        // Note Derived singletons duplicate construction code, but it it does not seem feasible to share that here.
+
         #region CRUD
         public TCollection List { get; } = new TCollection();
 
