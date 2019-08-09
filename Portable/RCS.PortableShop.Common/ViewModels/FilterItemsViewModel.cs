@@ -123,7 +123,7 @@ namespace RCS.PortableShop.Common.ViewModels
         // TODO Some sort of view would be more convenient.
         private void SetDetailFilterItems()
         {
-            var detailFilterItemsSelection = detailFilterItemsSource.Where(DetailFilterItemsSelector());
+            var detailFilterItemsSelection = DetailFilterItemsSource.Where(DetailFilterItemsSelector());
 
             var detailFilterItems = new ObservableCollection<FD>(); ;
 
@@ -140,7 +140,7 @@ namespace RCS.PortableShop.Common.ViewModels
 
         protected abstract Func<FD, bool> DetailFilterItemsSelector(bool addEmptyElement = true);
 
-        protected Collection<FD> detailFilterItemsSource = new Collection<FD>();
+        protected Collection<FD> DetailFilterItemsSource { get; } = new Collection<FD>();
 
         public static readonly BindableProperty DetailFilterItemsProperty =
             BindableProperty.Create(nameof(DetailFilterItems), typeof(ObservableCollection<FD>), typeof(FilterItemsViewModel<I, FM, FD>), defaultValue: new ObservableCollection<FD>());
