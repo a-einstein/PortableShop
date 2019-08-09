@@ -6,8 +6,7 @@ namespace RCS.PortableShop.Common.Styles
     {
         public Stylesheet()
         {
-            // HACK Needed this file and constructor to enable merging.
-            // https://forums.xamarin.com/discussion/84382/how-to-get-resourcedictionary-mergedwith-working
+            // HACK Still needed this file and constructor to enable merging using ResourceDictionary.MergedDictionaries.
             InitializeComponent();
         }
     }

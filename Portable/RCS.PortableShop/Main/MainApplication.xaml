@@ -9,11 +9,15 @@
 
     <Application.Resources>
         <!--
-        Currently this is still the only way I got merging working, though it is obsolete.
-        Other ways are suggested with either property Source or MergedDictionaries.
+        Move from the obsolete MergedWith to this.
+        There is another way suggested using property Source, I did not get that working with separate assemblies.
         https://docs.microsoft.com/en-us/xamarin/xamarin-forms/xaml/resource-dictionaries
         TODO Follow up.
         -->
-        <ResourceDictionary MergedWith="CommonStyles:Stylesheet"/>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <CommonStyles:Stylesheet />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
