@@ -2,10 +2,12 @@
 
 namespace RCS.PortableShop.Model
 {
-    public abstract class Repository<T> : ProductsServiceConsumer
+    public abstract class Repository<TCollection, TElement> :
+        ProductsServiceConsumer
+        where TCollection : Collection<TElement>, new()
     {
         #region CRUD
-        public Collection<T> List = new Collection<T>();
+        public TCollection List { get; } = new TCollection();
 
         public void Clear()
         {
