@@ -3,7 +3,7 @@ using Xamarin.Forms;
 
 namespace RCS.PortableShop.Common.ViewModels
 {
-    public abstract class ItemViewModel<I> : ViewModel where I : DomainClass
+    public abstract class ItemViewModel<TItem> : ViewModel where TItem : DomainClass
     {
         #region Item
         // Store the ID separately to enable a retry on an interrupted Refresh.
@@ -11,11 +11,11 @@ namespace RCS.PortableShop.Common.ViewModels
         public int? ItemId { get; set; }
 
         public static readonly BindableProperty ItemProperty =
-            BindableProperty.Create(nameof(Item), typeof(I), typeof(ItemViewModel<I>));
+            BindableProperty.Create(nameof(Item), typeof(TItem), typeof(ItemViewModel<TItem>));
 
-        public I Item
+        public TItem Item
         {
-            get { return (I)GetValue(ItemProperty); }
+            get { return (TItem)GetValue(ItemProperty); }
             set
             {
                 SetValue(ItemProperty, value);

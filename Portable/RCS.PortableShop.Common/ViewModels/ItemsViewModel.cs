@@ -4,7 +4,7 @@ using Xamarin.Forms;
 
 namespace RCS.PortableShop.Common.ViewModels
 {
-    public abstract class ItemsViewModel<I> : ViewModel
+    public abstract class ItemsViewModel<TItem> : ViewModel
     {
         #region Construction
         public ItemsViewModel()
@@ -16,12 +16,12 @@ namespace RCS.PortableShop.Common.ViewModels
 
         #region Items
         public static readonly BindableProperty ItemsProperty =
-            BindableProperty.Create(nameof(Items), typeof(ObservableCollection<I>), typeof(ItemsViewModel<I>), defaultValue: new ObservableCollection<I>());
+            BindableProperty.Create(nameof(Items), typeof(ObservableCollection<TItem>), typeof(ItemsViewModel<TItem>), defaultValue: new ObservableCollection<TItem>());
 
         // TODO Some sort of view would be more convenient to enable sorting in situ (filtering is no longer done so). But remember: that no longer applies when paging.
-        public ObservableCollection<I> Items
+        public ObservableCollection<TItem> Items
         {
-            get { return (ObservableCollection<I>)GetValue(ItemsProperty); }
+            get { return (ObservableCollection<TItem>)GetValue(ItemsProperty); }
             set
             {
                 SetValue(ItemsProperty, value);
