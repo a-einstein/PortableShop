@@ -22,6 +22,12 @@ namespace RCS.PortableShop.Common.ViewModels
         public ObservableCollection<TItem> Items
         {
             get { return (ObservableCollection<TItem>)GetValue(ItemsProperty); }
+
+            /*
+            TODO Preferable get rid of this kind of setters (warning CA2227). 
+            Thereby rationalizing the use of ObservableCollection versus PropertyChanged etcetera in general.
+            See other comments.
+            */
             set
             {
                 SetValue(ItemsProperty, value);
