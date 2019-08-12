@@ -73,7 +73,7 @@ namespace RCS.PortableShop.Common.ViewModels
 
         // TODO Apparently the explicit translation is superfluous. Check this for xaml and possibly cleanup.
         // TranslateExtension.ProvideValue(Labels.Shop) as string;
-        protected static string TitleDefault = Labels.Shop;
+        protected static readonly string TitleDefault = Labels.Shop;
 
         public virtual string MakeTitle() { return TitleDefault; }
 
