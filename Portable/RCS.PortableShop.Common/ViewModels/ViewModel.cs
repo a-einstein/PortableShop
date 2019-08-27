@@ -2,13 +2,8 @@
 using System.ComponentModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 using Page = RCS.PortableShop.Common.Pages.Page;
 using View = RCS.PortableShop.Common.Views.View;
-
-// Arbitrarily put here for the assembly.
-// Also check comments on XamlCompilation elsewhere.
-[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 
 namespace RCS.PortableShop.Common.ViewModels
 {
@@ -78,7 +73,7 @@ namespace RCS.PortableShop.Common.ViewModels
 
         // TODO Apparently the explicit translation is superfluous. Check this for xaml and possibly cleanup.
         // TranslateExtension.ProvideValue(Labels.Shop) as string;
-        protected static string TitleDefault = Labels.Shop;
+        protected static readonly string TitleDefault = Labels.Shop;
 
         public virtual string MakeTitle() { return TitleDefault; }
 

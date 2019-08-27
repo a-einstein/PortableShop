@@ -70,7 +70,7 @@ namespace RCS.PortableShop.Common.Behaviors
             }
         }
 
-         public static BindableProperty InvalidBackgroundColourProperty =
+        public static readonly BindableProperty InvalidBackgroundColourProperty =
             BindableProperty.Create(nameof(InvalidBackgroundColour), typeof(Color), typeof(EntryRegexValidationBehavior), Color.Default);
 
         public Color InvalidBackgroundColour

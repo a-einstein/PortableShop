@@ -2,12 +2,13 @@
 using RCS.PortableShop.ServiceClients.Products.ProductsService;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ServiceModel;
 using System.Threading.Tasks;
 
 namespace RCS.PortableShop.Model
 {
-    public class ProductsRepository : Repository<ProductsOverviewObject>
+    public class ProductsRepository : Repository<ObservableCollection<ProductsOverviewObject>, ProductsOverviewObject>
     {
         #region Construction
         private ProductsRepository()

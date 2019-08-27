@@ -8,6 +8,16 @@
     >
 
     <Application.Resources>
-        <ResourceDictionary MergedWith="CommonStyles:Stylesheet"/>
+        <!--
+        Move from the obsolete MergedWith to this.
+        There is another way suggested using property Source, I did not get that working with separate assemblies.
+        https://docs.microsoft.com/en-us/xamarin/xamarin-forms/xaml/resource-dictionaries
+        TODO Follow up.
+        -->
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <CommonStyles:Stylesheet />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

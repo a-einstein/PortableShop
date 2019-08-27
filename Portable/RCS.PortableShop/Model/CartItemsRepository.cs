@@ -6,13 +6,11 @@ using Xamarin.Forms;
 
 namespace RCS.PortableShop.Model
 {
-    public class CartItemsRepository : Repository<CartItem>
+    public class CartItemsRepository : Repository<ObservableCollection<CartItem>, CartItem>
     {
         #region Construction
         private CartItemsRepository()
-        {
-            List = new ObservableCollection<CartItem>();
-        }
+        { }
 
         private static volatile CartItemsRepository instance;
         private static object syncRoot = new Object();

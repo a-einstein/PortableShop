@@ -66,7 +66,7 @@ namespace RCS.PortableShop.ViewModels
 
                 foreach (var item in ProductSubcategoriesRepository.Instance.List)
                 {
-                    detailFilterItemsSource.Add(item);
+                    DetailFilterItemsSource.Add(item);
                 }
 
                 int masterDefaultId = 1;

@@ -1,12 +1,13 @@
 ﻿using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.PortableShop.ServiceClients.Products.ProductsService;
 using System;
+using System.Collections.ObjectModel;
 using System.ServiceModel;
 using System.Threading.Tasks;
 
 namespace RCS.PortableShop.Model
 {
-    public class ProductSubcategoriesRepository : Repository<ProductSubcategory>
+    public class ProductSubcategoriesRepository : Repository<ObservableCollection<ProductSubcategory>, ProductSubcategory>
     {
         #region Construction
         private ProductSubcategoriesRepository()

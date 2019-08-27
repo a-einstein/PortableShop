@@ -3,7 +3,6 @@ using RCS.PortableShop.Common.ViewModels;
 using RCS.PortableShop.Model;
 using RCS.PortableShop.Resources;
 using System;
-using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Threading.Tasks;
@@ -14,23 +13,26 @@ namespace RCS.PortableShop.ViewModels
 {
     public class ShoppingCartViewModel : ItemsViewModel<CartItem>
     {
-        // Note currently this class only stores in memory.
+        /*
+        TODO This is a bit overdone. It is a double singleton. Only one of those is necessary because it stores in memory. 
+        Once bound to the combination of a user and a database with instant updates THAT would be the singleton data store.
+        The current sharing of List as Items is undesirable, but done to prevent the otherwise necessary synchronisation of them.
+        This relates to warning CA2227 on Items and the like.
+        */
 
         #region Construction
         private ShoppingCartViewModel()
         {
-            // HACK Typing is unclear here.
-            // Besides, this currently is the only binding to a repository List.
-            Items = CartItemsRepository.Instance.List as ObservableCollection<CartItem>;
+            // Note this currently is the only direct binding to a repository List. See other comments.
+            Items = CartItemsRepository.Instance.List;
 
-            (CartItemsRepository.Instance.List as ObservableCollection<CartItem>).CollectionChanged += List_CollectionChanged;
+            CartItemsRepository.Instance.List.CollectionChanged += List_CollectionChanged;
         }
 
         private static volatile ShoppingCartViewModel instance;
         private static object syncRoot = new Object();
 
         // Note this class is a singleton, implemented along the way (but not entirely) of https://msdn.microsoft.com/en-us/library/ff650316.aspx
-        // TODO This might no longer be necessary if properly shared on import.
         public static ShoppingCartViewModel Instance
         {
             get
@@ -110,7 +112,6 @@ namespace RCS.PortableShop.ViewModels
             }
 
             UpdateAggregates();
-
         }
 
         private void CartItem_PropertyChanged(object sender, PropertyChangedEventArgs e)

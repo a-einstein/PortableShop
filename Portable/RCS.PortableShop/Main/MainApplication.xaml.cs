@@ -7,9 +7,9 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 // Note this is on assembly level. The stated namespace below does not seem to matter.
-// It is applied on all assemblies containing XAML. I tried this separately on the classes at first.
-// It all turned out to be fragile, sometimes causing compilation problems. 
-// Check out the local settings of XamlCompilation.
+// I applied this on all assemblies containing XAML. I also tried this separately on the classes at first.
+// It all turned out to be fragile, sometimes causing compilation problems.
+// Check out the settings of and comments on XamlCompilation elsewhere.
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 
 namespace RCS.PortableShop.Main
