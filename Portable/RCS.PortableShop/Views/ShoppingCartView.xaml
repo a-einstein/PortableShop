@@ -47,12 +47,17 @@
                                     <!--
                                     Note currently a license warning is displayed.
                                     https://help.syncfusion.com/common/essential-studio/licensing/license-key
+                                    
                                     TODO Check release notes for relevant changes.
                                     https://help.syncfusion.com/xamarin/release-notes
+                                    
                                     TODO Get font size right for quantity.
                                     TODO Number displays decimals now, remove.
+                                    
+                                    Note beta version 17.3.0.9-beta was necessary to solve a crash on opening the cart.
+                                    https://www.syncfusion.com/forums/147484/uwp-crash-with-v17-2-0-51
                                     -->
-                                    <NumericUpDown:SfNumericUpDown Value="{Binding Quantity, Mode=TwoWay}"/>
+                                    <NumericUpDown:SfNumericUpDown Value="{Binding Quantity, Mode=TwoWay}" Minimum="0"/>
 
                                     <!--Using ContentButton plus Label to create a flat style Button without border. -->
                                     <Controls:ContentButton Grid.Column="1" Command="{Binding BindingContext.DeleteCommand, Source={x:Reference shoppingCartItemsListView}}" CommandParameter="{Binding}" HorizontalOptions="Start">
