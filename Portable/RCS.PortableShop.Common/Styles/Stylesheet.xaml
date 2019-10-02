@@ -135,13 +135,25 @@
 
     <!--NumericUpDowns ======================================== -->
 
-    <!--Note this need HorizontalOptions to prevent taking all width. It is hard to reduce its size, because of its Buttons to start with. WidthRequest needs to be considerable large to preserve the text area. HeightRequest only crops it.-->
-    <!--Note the (differently named) FontAttribute does not work. Fontsize is numeric instead of an enum.-->
+    <!--
+    Documentation:
+    https://help.syncfusion.com/xamarin/sfnumericupdown/overview
+    
+    Note this need HorizontalOptions to prevent taking all width. 
+    It is hard to reduce its size, because of its Buttons to start with. 
+    WidthRequest needs to be considerable large to preserve the text area. 
+    HeightRequest only crops it.
+    Related:
+    https://www.syncfusion.com/forums/128080/can-the-size-of-the-numericupdown-component-be-made-smaller
+    -->
     <Style TargetType="NumericUpDown:SfNumericUpDown">
         <Setter Property="VerticalOptions" Value="{StaticResource LineVerticalOptions}"/>
         <Setter Property="HorizontalOptions" Value="Start"/>
         <Setter Property="WidthRequest" Value="130"/>
-        <Setter Property="FontSize" Value="10"/>
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="FontAttribute" Value="Bold"/>
         <Setter Property="TextColor" Value="{StaticResource ValueTextColour}"/>
+        <Setter Property="Minimum" Value="0"/>
+        <Setter Property="MaximumDecimalDigits" Value="0"/>
     </Style>
 </ResourceDictionary>
