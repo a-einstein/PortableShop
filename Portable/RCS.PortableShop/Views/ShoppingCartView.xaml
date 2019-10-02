@@ -45,24 +45,21 @@
 
                                 <StackLayout Orientation="Horizontal">
                                     <!--
-                                    Note currently a license warning is displayed.
+                                    Note currently a big license message is displayed.
                                     https://help.syncfusion.com/common/essential-studio/licensing/license-key
-                                    
-                                    TODO Check release notes for relevant changes.
-                                    https://help.syncfusion.com/xamarin/release-notes
-                                    
-                                    TODO Get font size right for quantity.
-                                    TODO Number displays decimals now, remove.
-                                    
+                                     
                                     Note beta version 17.3.0.9-beta was necessary to solve a crash on opening the cart.
                                     https://www.syncfusion.com/forums/147484/uwp-crash-with-v17-2-0-51
+                                    
+                                    Note the defined style with comments.
                                     -->
-                                    <NumericUpDown:SfNumericUpDown Value="{Binding Quantity, Mode=TwoWay}" Minimum="0"/>
+                                    <NumericUpDown:SfNumericUpDown Value="{Binding Quantity, Mode=TwoWay}"/>
 
                                     <!--Using ContentButton plus Label to create a flat style Button without border. -->
-                                    <Controls:ContentButton Grid.Column="1" Command="{Binding BindingContext.DeleteCommand, Source={x:Reference shoppingCartItemsListView}}" CommandParameter="{Binding}" HorizontalOptions="Start">
+                                    <!--TODO Get it better aligned with SfNumericUpDown.-->
+                                    <Controls:ContentButton Grid.Column="1" Command="{Binding BindingContext.DeleteCommand, Source={x:Reference shoppingCartItemsListView}}" CommandParameter="{Binding}" HorizontalOptions="Start" VerticalOptions="Center">
                                         <Controls:ContentButton.Content>
-                                            <Label Text="{Localization:Translate Remove}" Margin="10,0" FontSize="Large" TextColor="{StaticResource LabelTextColour}"/>
+                                            <Label Text="{Localization:Translate Remove}" Margin="10,0" FontSize="Small" FontAttributes="Bold" TextColor="{StaticResource LabelTextColour}" VerticalOptions="Start"/>
                                         </Controls:ContentButton.Content>
                                     </Controls:ContentButton>
                                 </StackLayout>
