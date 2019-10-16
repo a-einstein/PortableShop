@@ -2,6 +2,7 @@
 using Android.Content.PM;
 using Android.OS;
 using RCS.PortableShop.Main;
+using System;
 using System.Net;
 using Xamarin.Forms.Platform.Android;
 
@@ -23,6 +24,11 @@ namespace RCS.PortableShop.Droid
 
             base.OnCreate(bundle);
 
+            // Note this currently would not do anything, as mentioned here:
+            // https://forums.xamarin.com/discussion/149309/global-exception-handling
+            // TODO Follow this matter.
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomainUnhandledException;
+
             ServicePointManager.ServerCertificateValidationCallback = delegate 
             {
                 // Note that a simple exported self certified crt file does not really get installed on Android.
@@ -33,6 +39,11 @@ namespace RCS.PortableShop.Droid
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new MainApplication());
+        }
+
+        private void CurrentDomainUnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

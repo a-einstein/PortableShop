@@ -15,7 +15,19 @@ namespace RCS.PortableShop.Main
         {
             base.OnAppearing();
 
-            await Refresh();
+            // TODO Crashes in Mono when service is not entirely working, particularly during startup.
+            // Note this only occurs during debugging, as installed application it is resistant.
+            // Currently have no way of catching this, not even in Android.
+            // Also see here:
+            // https://forums.xamarin.com/discussion/149309/global-exception-handling
+            try
+            {
+                await Refresh();
+            }
+            catch (Exception)
+            {
+                 throw;
+            }
         }
 
         private bool initialized;
@@ -47,7 +59,7 @@ namespace RCS.PortableShop.Main
         // This value is tested on 3 service calls at startup. There is no multiplication operator.
         private TimeSpan serviceErrorGraceTime = ProductsServiceConsumer.Timeout + ProductsServiceConsumer.Timeout;
 
-        // TODO May no lo longer work. Move to Shell?
+        // Note this only works for pages.
         private void SubscribeMessages(Page page)
         {
             // Use the MessagingCenter mechanism to connect ViewModels or other (non GUI) code to this Page.
