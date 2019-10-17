@@ -74,9 +74,6 @@
     <Reference Include="Syncfusion.Licensing, Version=17.3.0.17, Culture=neutral, PublicKeyToken=632609b4d040f6b4, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Syncfusion.Licensing.17.3.0.17\lib\MonoAndroid10\Syncfusion.Licensing.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.SfNumericUpDown.Android, Version=17.3451.0.17, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Syncfusion.Xamarin.SfNumericUpDown.Android.17.3.0.17\lib\MonoAndroid10\Syncfusion.SfNumericUpDown.Android.dll</HintPath>
-    </Reference>
     <Reference Include="Syncfusion.SfNumericUpDown.XForms, Version=17.3451.0.17, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Syncfusion.Xamarin.SfNumericUpDown.17.3.0.17\lib\MonoAndroid10\Syncfusion.SfNumericUpDown.XForms.dll</HintPath>
     </Reference>
