@@ -62,6 +62,9 @@ namespace RCS.PortableShop.Droid
 			global::Com.Syncfusion.Numericupdown.Resource.String.library_name = global::RCS.PortableShop.Droid.Resource.String.library_name;
 			global::Com.Syncfusion.Numericupdown.Resource.String.sfnumericupdown_decrement_button_accessibility_label = global::RCS.PortableShop.Droid.Resource.String.sfnumericupdown_decrement_button_accessibility_label;
 			global::Com.Syncfusion.Numericupdown.Resource.String.sfnumericupdown_increment_button_accessibility_label = global::RCS.PortableShop.Droid.Resource.String.sfnumericupdown_increment_button_accessibility_label;
+			global::Com.Syncfusion.Numericupdown.Resource.String.library_name = global::RCS.PortableShop.Droid.Resource.String.library_name;
+			global::Com.Syncfusion.Numericupdown.Resource.String.sfnumericupdown_decrement_button_accessibility_label = global::RCS.PortableShop.Droid.Resource.String.sfnumericupdown_decrement_button_accessibility_label;
+			global::Com.Syncfusion.Numericupdown.Resource.String.sfnumericupdown_increment_button_accessibility_label = global::RCS.PortableShop.Droid.Resource.String.sfnumericupdown_increment_button_accessibility_label;
 			global::Xamarin.Forms.Platform.Android.Resource.Animation.abc_fade_in = global::RCS.PortableShop.Droid.Resource.Animation.abc_fade_in;
 			global::Xamarin.Forms.Platform.Android.Resource.Animation.abc_fade_out = global::RCS.PortableShop.Droid.Resource.Animation.abc_fade_out;
 			global::Xamarin.Forms.Platform.Android.Resource.Animation.abc_grow_fade_in_from_bottom = global::RCS.PortableShop.Droid.Resource.Animation.abc_grow_fade_in_from_bottom;
