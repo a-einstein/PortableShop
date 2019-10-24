@@ -84,7 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="RCS.AdventureWorks.Common">
-      <HintPath>..\..\AdventureWorks\RCS.AdventureWorks.Common\bin\$(Configuration)\RCS.AdventureWorks.Common.dll</HintPath>
+      <HintPath>..\..\RCS.AdventureWorks.Common\bin\$(Configuration)\RCS.AdventureWorks.Common.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
