@@ -193,5 +193,4 @@
     <Error Condition="!Exists('..\..\packages\Xamarin.Forms.4.3.0.991221\build\Xamarin.Forms.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Xamarin.Forms.4.3.0.991221\build\Xamarin.Forms.props'))" />
     <Error Condition="!Exists('..\..\packages\Xamarin.Forms.4.3.0.991221\build\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Xamarin.Forms.4.3.0.991221\build\Xamarin.Forms.targets'))" />
   </Target>
-  <Import Project="..\..\packages\Xamarin.Forms.4.3.0.991221\build\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.4.3.0.991221\build\Xamarin.Forms.targets')" />
 </Project>
