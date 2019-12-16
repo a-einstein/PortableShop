@@ -19,7 +19,7 @@ namespace RCS.PortableShop.Common.Controls
         public new IList ItemsSource
         {
             get { return (IList)GetValue(ItemsSourceProperty); }
-            set { SetValue(ItemsSourceProperty, value); }
+            private set { SetValue(ItemsSourceProperty, value); }
         }
 
         public static readonly new BindableProperty SelectedItemProperty =
