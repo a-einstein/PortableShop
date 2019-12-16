@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace RCS.PortableShop.ViewModels
@@ -58,7 +59,8 @@ namespace RCS.PortableShop.ViewModels
             Shell.FlyoutIsPresented = false;
 
             // TODO Make this Configureable.
-            Device.OpenUri(new Uri("https://github.com/a-einstein/PortableShop/blob/master/README.md"));
+            Browser.OpenAsync(new Uri("https://github.com/a-einstein/PortableShop/blob/master/README.md"));
+
         }
     }
 }
