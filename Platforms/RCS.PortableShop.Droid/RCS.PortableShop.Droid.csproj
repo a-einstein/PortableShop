@@ -97,7 +97,7 @@
       <Name>RCS.PortableShop.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Portable\RCS.PortableShop\RCS.PortableShop.csproj">
-      <Project>{ccf5bf7a-5a36-4e98-a978-023bcd877008}</Project>
+      <Project>{0ab58e97-3cf9-47f3-ada4-e4dccf311f51}</Project>
       <Name>RCS.PortableShop</Name>
     </ProjectReference>
   </ItemGroup>
