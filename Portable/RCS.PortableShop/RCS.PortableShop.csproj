@@ -1,5 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>RCS.PortableShop</RootNamespace>
@@ -17,99 +16,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="Converters\SizeFormatter.cs" />
-    <Compile Include="Converters\WeightFormatter.cs" />
-    <Compile Include="Interfaces\IShopper.cs" />
-    <Compile Include="Localization\ILocalize.cs" />
-    <Compile Include="Localization\PlatformCulture.cs" />
-    <Compile Include="Main\MainApplication.xaml.cs">
-      <DependentUpon>MainApplication.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Main\MainPage.cs" />
-    <Compile Include="Main\MainShell.xaml.cs">
-      <DependentUpon>MainShell.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Model\CartItemsRepository.cs" />
-    <Compile Include="Model\ProductCategoriesRepository.cs" />
-    <Compile Include="Model\ProductsRepository.cs" />
-    <Compile Include="Model\ProductsServiceConsumer.cs" />
-    <Compile Include="Model\ProductSubcategoriesRepository.cs" />
-    <Compile Include="Model\Repository.cs" />
-    <Compile Include="Localization\TranslateExtension.cs" />
-    <Compile Include="ViewModels\MainShellViewModel.cs" />
-    <Compile Include="ViewModels\ShoppingViewModel.cs" />
-    <Compile Include="ViewModels\ShoppingWrapperViewModel.cs" />
-    <Compile Include="ViewModels\ProductsViewModel.cs" />
-    <Compile Include="ViewModels\ProductViewModel.cs" />
-    <Compile Include="ViewModels\ShoppingCartViewModel.cs" />
-    <Compile Include="Views\ShoppingWrapperView.xaml.cs">
-      <DependentUpon>ShoppingWrapperView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ProductsView.xaml.cs">
-      <DependentUpon>ProductsView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ProductView.xaml.cs">
-      <DependentUpon>ProductView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ShoppingCartSummaryView.xaml.cs">
-      <DependentUpon>ShoppingCartSummaryView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ShoppingCartView.xaml.cs">
-      <DependentUpon>ShoppingCartView.xaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="Main\MainApplication.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\..\RCS.AdventureWorks.Common\RCS.AdventureWorks.Common.csproj" />
     <ProjectReference Include="..\RCS.PortableShop.Common\RCS.PortableShop.Common.csproj" />
     <ProjectReference Include="..\RCS.PortableShop.Resources\RCS.PortableShop.Resources.csproj" />
     <ProjectReference Include="..\RCS.PortableShop.ServiceClients.Products\RCS.PortableShop.ServiceClients.Products.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="Views\ShoppingWrapperView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\RCS.AdventureWorks.Common\RCS.AdventureWorks.Common.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="Views\ProductsView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\ProductView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\ShoppingCartView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="Views\ShoppingCartSummaryView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="Main\MainShell.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
@@ -128,4 +38,84 @@
     <PackageReference Include="System.ServiceModel.Primitives" Version="4.7.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Include="Converters\SizeFormatter.cs" />
+    <Compile Include="Converters\WeightFormatter.cs" />
+
+    <Compile Include="Interfaces\IShopper.cs" />
+
+    <Compile Include="Localization\ILocalize.cs" />
+    <Compile Include="Localization\PlatformCulture.cs" />
+    <Compile Include="Localization\TranslateExtension.cs" />
+
+    <Compile Include="Main\MainApplication.xaml.cs" />
+    <Compile Include="Main\MainPage.cs" />
+    <Compile Include="Main\MainShell.xaml.cs" />
+
+    <Compile Include="Model\CartItemsRepository.cs" />
+    <Compile Include="Model\ProductCategoriesRepository.cs" />
+    <Compile Include="Model\ProductsRepository.cs" />
+    <Compile Include="Model\ProductsServiceConsumer.cs" />
+    <Compile Include="Model\ProductSubcategoriesRepository.cs" />
+    <Compile Include="Model\Repository.cs" />
+
+    <Compile Include="ViewModels\MainShellViewModel.cs" />
+    <Compile Include="ViewModels\ShoppingViewModel.cs" />
+    <Compile Include="ViewModels\ShoppingWrapperViewModel.cs" />
+    <Compile Include="ViewModels\ProductsViewModel.cs" />
+    <Compile Include="ViewModels\ProductViewModel.cs" />
+    <Compile Include="ViewModels\ShoppingCartViewModel.cs" />
+
+    <Compile Include="Views\ShoppingWrapperView.xaml.cs" />
+    <Compile Include="Views\ProductsView.xaml.cs" />
+    <Compile Include="Views\ProductView.xaml.cs" />
+    <Compile Include="Views\ShoppingCartSummaryView.xaml.cs" />
+    <Compile Include="Views\ShoppingCartView.xaml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Main\MainApplication.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+
+    <EmbeddedResource Include="Main\MainShell.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+
+    <EmbeddedResource Include="Views\ShoppingWrapperView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+
+    <EmbeddedResource Include="Views\ProductsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+
+    <EmbeddedResource Include="Views\ProductView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ShoppingCartSummaryView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ShoppingCartView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
 </Project>
