@@ -18,7 +18,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\RCS.AdventureWorks.Common\RCS.AdventureWorks.Common.csproj" />
     <ProjectReference Include="..\RCS.PortableShop.Common\RCS.PortableShop.Common.csproj" />
-    <ProjectReference Include="..\RCS.PortableShop.Resources\RCS.PortableShop.Resources.csproj" />
     <ProjectReference Include="..\RCS.PortableShop.ServiceClients.Products\RCS.PortableShop.ServiceClients.Products.csproj" />
   </ItemGroup>
 
