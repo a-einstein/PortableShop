@@ -59,7 +59,6 @@ namespace RCS.PortableShop.Droid
 			global::Syncfusion.XForms.Android.Core.Resource.Drawable.input_layout_drop_down_icon = global::RCS.PortableShop.Droid.Resource.Drawable.input_layout_drop_down_icon;
 			global::Syncfusion.XForms.Android.Core.Resource.Drawable.inputlayout_togglecollapseicon = global::RCS.PortableShop.Droid.Resource.Drawable.inputlayout_togglecollapseicon;
 			global::Syncfusion.XForms.Android.Core.Resource.Drawable.inputlayout_togglevisibleicon = global::RCS.PortableShop.Droid.Resource.Drawable.inputlayout_togglevisibleicon;
-			global::Com.Syncfusion.Numericupdown.Resource.String.library_name = global::RCS.PortableShop.Droid.Resource.String.library_name;
 			global::Com.Syncfusion.Numericupdown.Resource.String.sfnumericupdown_decrement_button_accessibility_label = global::RCS.PortableShop.Droid.Resource.String.sfnumericupdown_decrement_button_accessibility_label;
 			global::Com.Syncfusion.Numericupdown.Resource.String.sfnumericupdown_increment_button_accessibility_label = global::RCS.PortableShop.Droid.Resource.String.sfnumericupdown_increment_button_accessibility_label;
 			global::Xamarin.Essentials.Resource.Attribute.alpha = global::RCS.PortableShop.Droid.Resource.Attribute.alpha;
@@ -7036,37 +7035,34 @@ namespace RCS.PortableShop.Droid
 			public const int hide_bottom_view_on_scroll_behavior = 2131492909;
 			
 			// aapt resource value: 0x7F0C002E
-			public const int library_name = 2131492910;
+			public const int mtrl_chip_close_icon_content_description = 2131492910;
 			
 			// aapt resource value: 0x7F0C002F
-			public const int mtrl_chip_close_icon_content_description = 2131492911;
+			public const int password_toggle_content_description = 2131492911;
 			
 			// aapt resource value: 0x7F0C0030
-			public const int password_toggle_content_description = 2131492912;
+			public const int path_password_eye = 2131492912;
 			
 			// aapt resource value: 0x7F0C0031
-			public const int path_password_eye = 2131492913;
+			public const int path_password_eye_mask_strike_through = 2131492913;
 			
 			// aapt resource value: 0x7F0C0032
-			public const int path_password_eye_mask_strike_through = 2131492914;
+			public const int path_password_eye_mask_visible = 2131492914;
 			
 			// aapt resource value: 0x7F0C0033
-			public const int path_password_eye_mask_visible = 2131492915;
+			public const int path_password_strike_through = 2131492915;
 			
 			// aapt resource value: 0x7F0C0034
-			public const int path_password_strike_through = 2131492916;
+			public const int search_menu_title = 2131492916;
 			
 			// aapt resource value: 0x7F0C0035
-			public const int search_menu_title = 2131492917;
+			public const int sfnumericupdown_decrement_button_accessibility_label = 2131492917;
 			
 			// aapt resource value: 0x7F0C0036
-			public const int sfnumericupdown_decrement_button_accessibility_label = 2131492918;
+			public const int sfnumericupdown_increment_button_accessibility_label = 2131492918;
 			
 			// aapt resource value: 0x7F0C0037
-			public const int sfnumericupdown_increment_button_accessibility_label = 2131492919;
-			
-			// aapt resource value: 0x7F0C0038
-			public const int status_bar_notification_info_overflow = 2131492920;
+			public const int status_bar_notification_info_overflow = 2131492919;
 			
 			static String()
 			{
