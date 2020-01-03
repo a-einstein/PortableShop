@@ -4,6 +4,7 @@
 Working portable (Android) application for test and demo purpose based on Xamarin Forms. It simulates limited shopping capabilities based on the AdventureWorks database.
 
 #### News
+* The APK installation file can be downloaded from Azure again, as described below.
 * Migrated to .Net Standard.
 * Integrated with Azure Devops build and release pipelines.
 * Added the new Flyout, part of Shell navigation in Xamarin Forms 4.0.
@@ -46,6 +47,6 @@ Working portable (Android) application for test and demo purpose based on Xamari
 
 #### Installation
 The application is plug & play, but use of the data service is on request. Contact the developer ahead. 
-* Download and install the **[latest APK](https://rcsadventureworac85.blob.core.windows.net/portableshop-releases/latest/RCS.CyclOne.apk)** to your Android phone.
+* Download and install the **[latest APK](https://rcsadventureworac85.blob.core.windows.net/portableshop-releases/latest/RCS.CyclOne.apk)** to your Android phone. You probably have to suppress some warnings.
 * Start the application. Either it will start 'empty' displaying a warning, or if the data service is running one can 'shop' the contents.
 
