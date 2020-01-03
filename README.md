@@ -4,6 +4,7 @@
 Working portable (Android) application for test and demo purpose based on Xamarin Forms. It simulates limited shopping capabilities based on the AdventureWorks database.
 
 #### News
+* Migrated to .Net Standard.
 * Integrated with Azure Devops build and release pipelines.
 * Added the new Flyout, part of Shell navigation in Xamarin Forms 4.0.
 * For full demonstration/test purposes, the data service is on request.
@@ -25,6 +26,7 @@ Working portable (Android) application for test and demo purpose based on Xamari
 
 #### Aspects
 * Xamarin Forms.
+* .Net Standard.
 * C# + XAML.
 * MVVM.
 * Make use of an Azure service.

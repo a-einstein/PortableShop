@@ -1,162 +1,120 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CCF5BF7A-5A36-4E98-A978-023BCD877008}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>RCS.PortableShop</RootNamespace>
     <AssemblyName>RCS.PortableShop</AssemblyName>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Profile44</TargetFrameworkProfile>
-    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>RCS.PortableShop.ruleset</CodeAnalysisRuleSet>
+
+  <PropertyGroup>
+    <EnableDefaultItems>false</EnableDefaultItems>
+    <Authors>RCS</Authors>
+    <Product>PortableShop</Product>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>RCS.PortableShop.ruleset</CodeAnalysisRuleSet>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
   </PropertyGroup>
+
   <ItemGroup>
-    <Compile Include="..\..\GlobalAssemblyInfo.cs">
-      <Link>Properties\GlobalAssemblyInfo.cs</Link>
-    </Compile>
+    <ProjectReference Include="..\..\RCS.AdventureWorks.Common\RCS.AdventureWorks.Common.csproj" />
+    <ProjectReference Include="..\RCS.PortableShop.Common\RCS.PortableShop.Common.csproj" />
+    <ProjectReference Include="..\RCS.PortableShop.ServiceClients.Products\RCS.PortableShop.ServiceClients.Products.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.DotNet.Analyzers.Compatibility" Version="0.2.12-alpha">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfNumericUpDown" Version="17.3.0.34" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
+    <PackageReference Include="Xamarin.Forms" Version="4.3.0.991221" />
+    <PackageReference Include="System.ServiceModel.Http" Version="4.7.0" />
+    <PackageReference Include="System.ServiceModel.Primitives" Version="4.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Include="Converters\SizeFormatter.cs" />
     <Compile Include="Converters\WeightFormatter.cs" />
+
     <Compile Include="Interfaces\IShopper.cs" />
+
     <Compile Include="Localization\ILocalize.cs" />
     <Compile Include="Localization\PlatformCulture.cs" />
-    <Compile Include="Main\MainApplication.xaml.cs">
-      <DependentUpon>MainApplication.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Localization\TranslateExtension.cs" />
+
+    <Compile Include="Main\MainApplication.xaml.cs" />
     <Compile Include="Main\MainPage.cs" />
-    <Compile Include="Main\MainShell.xaml.cs">
-      <DependentUpon>MainShell.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Main\MainShell.xaml.cs" />
+
     <Compile Include="Model\CartItemsRepository.cs" />
     <Compile Include="Model\ProductCategoriesRepository.cs" />
     <Compile Include="Model\ProductsRepository.cs" />
     <Compile Include="Model\ProductsServiceConsumer.cs" />
     <Compile Include="Model\ProductSubcategoriesRepository.cs" />
     <Compile Include="Model\Repository.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Localization\TranslateExtension.cs" />
+
     <Compile Include="ViewModels\MainShellViewModel.cs" />
     <Compile Include="ViewModels\ShoppingViewModel.cs" />
     <Compile Include="ViewModels\ShoppingWrapperViewModel.cs" />
     <Compile Include="ViewModels\ProductsViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModel.cs" />
     <Compile Include="ViewModels\ShoppingCartViewModel.cs" />
-    <Compile Include="Views\ShoppingWrapperView.xaml.cs">
-      <DependentUpon>ShoppingWrapperView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ProductsView.xaml.cs">
-      <DependentUpon>ProductsView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ProductView.xaml.cs">
-      <DependentUpon>ProductView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ShoppingCartSummaryView.xaml.cs">
-      <DependentUpon>ShoppingCartSummaryView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ShoppingCartView.xaml.cs">
-      <DependentUpon>ShoppingCartView.xaml</DependentUpon>
-    </Compile>
+
+    <Compile Include="Views\ShoppingWrapperView.xaml.cs" />
+    <Compile Include="Views\ProductsView.xaml.cs" />
+    <Compile Include="Views\ProductView.xaml.cs" />
+    <Compile Include="Views\ShoppingCartSummaryView.xaml.cs" />
+    <Compile Include="Views\ShoppingCartView.xaml.cs" />
   </ItemGroup>
+
   <ItemGroup>
     <EmbeddedResource Include="Main\MainApplication.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>
+
   <ItemGroup>
-    <ProjectReference Include="..\RCS.PortableShop.Common\RCS.PortableShop.Common.csproj">
-      <Project>{67f9d3a8-f71e-4428-913f-c37ae82cdb24}</Project>
-      <Name>RCS.PortableShop.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\RCS.PortableShop.Resources\RCS.PortableShop.Resources.csproj">
-      <Project>{0d6c7470-ae24-4262-bef4-f26ed7d2d76c}</Project>
-      <Name>RCS.PortableShop.Resources</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\RCS.PortableShop.ServiceClients.Products\RCS.PortableShop.ServiceClients.Products.csproj">
-      <Project>{301ee603-c92b-4552-a7e5-c63a091563a8}</Project>
-      <Name>RCS.PortableShop.ServiceClients.Products</Name>
-    </ProjectReference>
+
+    <EmbeddedResource Include="Main\MainShell.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
   </ItemGroup>
+
   <ItemGroup>
+
     <EmbeddedResource Include="Views\ShoppingWrapperView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>
+
   <ItemGroup>
-    <Reference Include="RCS.AdventureWorks.Common">
-      <HintPath>..\..\RCS.AdventureWorks.Common\bin\$(Configuration)\RCS.AdventureWorks.Common.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
+
     <EmbeddedResource Include="Views\ProductsView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\ProductView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\ShoppingCartView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>
+
   <ItemGroup>
-    <None Include="RCS.PortableShop.ruleset" />
+
+    <EmbeddedResource Include="Views\ProductView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
   </ItemGroup>
+
   <ItemGroup>
     <EmbeddedResource Include="Views\ShoppingCartSummaryView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>
+
   <ItemGroup>
-    <EmbeddedResource Include="Main\MainShell.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
+    <EmbeddedResource Include="Views\ShoppingCartView.xaml">
+      <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers">
-      <Version>2.9.8</Version>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-    <PackageReference Include="Syncfusion.Xamarin.SfNumericUpDown">
-      <Version>17.3.0.34</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Essentials">
-      <Version>1.3.1</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Forms">
-      <Version>4.3.0.991221</Version>
-    </PackageReference>
-  </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
 </Project>
