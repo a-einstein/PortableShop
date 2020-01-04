@@ -13,6 +13,7 @@ namespace RCS.PortableShop.ViewModels
         {
             base.SetCommands();
 
+            // Note it is not possible to set this in BindableProperty.Create().
             ShowCartCommand = new Command(async () => await ShowCart());
         }
         #endregion
