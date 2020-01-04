@@ -4,10 +4,9 @@
 Working portable (Android) application for test and demo purpose based on Xamarin Forms. It simulates limited shopping capabilities based on the AdventureWorks database.
 
 #### News
+* Started on Xamarin.Essentials.
 * The APK installation file can be downloaded from Azure again, as described below.
 * Migrated to .Net Standard.
-* Integrated with Azure Devops build and release pipelines.
-* Added the new Flyout, part of Shell navigation in Xamarin Forms 4.0.
 * For full demonstration/test purposes, the data service is on request.
 
 #### Purpose
@@ -26,7 +25,7 @@ Working portable (Android) application for test and demo purpose based on Xamari
 * Connected to automated Azure Devops build and release pipelines. Current build status for the master branch: [![Build Status](https://dev.azure.com/RcsProjects/PortableShop/_apis/build/status/Build%20APK?branchName=master)](https://dev.azure.com/RcsProjects/PortableShop/_build/latest?definitionId=13&branchName=master)
 
 #### Aspects
-* Xamarin Forms.
+* Xamarin Forms including Xamarin.Essentials.
 * .Net Standard.
 * C# + XAML.
 * MVVM.
@@ -38,7 +37,7 @@ Working portable (Android) application for test and demo purpose based on Xamari
 * Globalized resources.
 * Basic styling.
 * Splash screen (Android).
-* Shell navigation.
+* Shell navigation including Fly out.
 * Rotation.
 * Custom controls.
 * Extensions.
