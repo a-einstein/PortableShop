@@ -1,6 +1,9 @@
-﻿using RCS.PortableShop.ServiceClients.Products.ProductsService;
+﻿using Newtonsoft.Json;
+using RCS.PortableShop.ServiceClients.Products.ProductsService;
 using System;
+using System.Net.Http;
 using System.ServiceModel;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace RCS.PortableShop.Model
@@ -9,8 +12,8 @@ namespace RCS.PortableShop.Model
     {
         #region Constants
         static public TimeSpan Timeout { get; } = new TimeSpan(0, 0, 15);
-        static protected string serviceDomain = "https://rcsworks.nl";
-        static protected string productsApi = $"{serviceDomain}/ProductsApi/api";
+        static private string serviceDomain = "https://rcsworks.nl";
+        static private string productsApi = $"{serviceDomain}/ProductsApi/api";
 
         // TODO Move elsewhere if both kept .
         public enum ServiceType
@@ -57,7 +60,7 @@ namespace RCS.PortableShop.Model
 
         #endregion
 
-        #region Service
+        #region WCF Service
         private ProductsServiceClient productsServiceClient;
 
         protected IProductsService ProductsServiceClient
@@ -90,6 +93,25 @@ namespace RCS.PortableShop.Model
 
                 return productsServiceClient;
             }
+        }
+        #endregion
+
+        #region Web API
+        protected static async Task<TList> ReadListApi<TList>(string function, TList result)
+        {
+            // TODO Should be instantiated once. (Or Disposed of?)
+            var httpClient = new HttpClient();
+            var uri = new Uri($"{productsApi}/{function}");
+
+            var response = await httpClient.GetAsync(uri);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+                result = JsonConvert.DeserializeObject<TList>(content);
+            }
+
+            return result;
         }
         #endregion
 
