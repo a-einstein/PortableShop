@@ -1,5 +1,5 @@
 ﻿using RCS.AdventureWorks.Common.DomainClasses;
-using RCS.PortableShop.ServiceClients.Products.ProductsService;
+using RCS.AdventureWorks.Common.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

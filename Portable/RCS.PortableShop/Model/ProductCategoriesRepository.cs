@@ -1,9 +1,7 @@
-﻿using Newtonsoft.Json;
-using RCS.AdventureWorks.Common.DomainClasses;
-using RCS.PortableShop.ServiceClients.Products.ProductsService;
+﻿using RCS.AdventureWorks.Common.DomainClasses;
+using RCS.AdventureWorks.Common.Dtos;
 using System;
 using System.Collections.ObjectModel;
-using System.Net.Http;
 using System.ServiceModel;
 using System.Threading.Tasks;
 
@@ -55,19 +53,10 @@ namespace RCS.PortableShop.Model
                             null);
                         break;
                     case ServiceType.WebApi:
-                        // TODO Should be instantiated once. (Or Disposed of?)
-                        var httpClient = new HttpClient();
-                        var uri = new Uri($"{productsApi}/ProductCategories");
-
-                        var response = await httpClient.GetAsync(uri);
-
-                        if (response.IsSuccessStatusCode)
-                        {
-                            var content = await response.Content.ReadAsStringAsync();
-                            categories = JsonConvert.DeserializeObject<ProductCategoryList>(content);
-                        }
+                        categories = await ReadListApi<ProductCategoryList>("ProductCategories", categories);
                         break;
                     default:
+                        throw new NotImplementedException($"Unknown {nameof(ServiceType)}");
                         break;
                 }
             }
