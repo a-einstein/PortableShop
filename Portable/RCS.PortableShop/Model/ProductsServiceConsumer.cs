@@ -7,8 +7,21 @@ namespace RCS.PortableShop.Model
 {
     public abstract class ProductsServiceConsumer : IDisposable
     {
-        #region Public constants
+        #region Constants
         static public TimeSpan Timeout { get; } = new TimeSpan(0, 0, 15);
+        static protected string serviceDomain = "https://rcsworks.nl";
+        static protected string productsApi = $"{serviceDomain}/ProductsApi/api";
+
+        // TODO Move elsewhere if both kept .
+        public enum ServiceType
+        {
+            WCF,
+            WebApi
+        }
+
+        // TODO Move to settings.
+        protected ServiceType preferredServiceType = ServiceType.WebApi;
+
         #endregion
 
         #region Messaging
@@ -63,7 +76,7 @@ namespace RCS.PortableShop.Model
                         var binding = new BasicHttpBinding(BasicHttpSecurityMode.Transport) { OpenTimeout = Timeout, SendTimeout = Timeout, ReceiveTimeout = Timeout, CloseTimeout = Timeout };
 
                         // Note this points to a BasicHttpBinding variant on the server.
-                        const string endpointAddress = "https://83.163.75.61/ProductsServicePub/ProductsService.svc/ProductsServiceB";
+                        string endpointAddress = $"{serviceDomain}/ProductsServicePub/ProductsService.svc/ProductsServiceB";
 
                         // Note the example bindings in ProductsServiceClient which could also be applied here by using EndpointConfiguration
                         productsServiceClient = new ProductsServiceClient(binding, new EndpointAddress(endpointAddress));

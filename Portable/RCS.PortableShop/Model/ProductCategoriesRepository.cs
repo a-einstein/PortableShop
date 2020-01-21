@@ -1,7 +1,9 @@
-﻿using RCS.AdventureWorks.Common.DomainClasses;
+﻿using Newtonsoft.Json;
+using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.PortableShop.ServiceClients.Products.ProductsService;
 using System;
 using System.Collections.ObjectModel;
+using System.Net.Http;
 using System.ServiceModel;
 using System.Threading.Tasks;
 
@@ -43,10 +45,31 @@ namespace RCS.PortableShop.Model
 
             try
             {
-                categories = await Task.Factory.FromAsync<ProductCategoryList>(
-                    ProductsServiceClient.BeginGetProductCategories,
-                    ProductsServiceClient.EndGetProductCategories,
-                    null);
+                // TODO Create some sort of injection somewhere?
+                switch (preferredServiceType)
+                {
+                    case ServiceType.WCF:
+                        categories = await Task.Factory.FromAsync<ProductCategoryList>(
+                            ProductsServiceClient.BeginGetProductCategories,
+                            ProductsServiceClient.EndGetProductCategories,
+                            null);
+                        break;
+                    case ServiceType.WebApi:
+                        // TODO Should be instantiated once. (Or Disposed of?)
+                        var httpClient = new HttpClient();
+                        var uri = new Uri($"{productsApi}/ProductCategories");
+
+                        var response = await httpClient.GetAsync(uri);
+
+                        if (response.IsSuccessStatusCode)
+                        {
+                            var content = await response.Content.ReadAsStringAsync();
+                            categories = JsonConvert.DeserializeObject<ProductCategoryList>(content);
+                        }
+                        break;
+                    default:
+                        break;
+                }
             }
             catch (FaultException<ExceptionDetail> exception)
             {
