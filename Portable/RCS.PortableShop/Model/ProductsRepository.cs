@@ -36,6 +36,7 @@ namespace RCS.PortableShop.Model
         #endregion
 
         #region CRUD
+        protected override string EntitiesName => "Products";
 
         // TODO This should get paged with an optional pagesize.
         public async Task<IList<ProductsOverviewObject>> ReadList(ProductCategory category, ProductSubcategory subcategory, string namePart)
@@ -70,11 +71,23 @@ namespace RCS.PortableShop.Model
 
             try
             {
-                product = await Task.Factory.FromAsync<int, Product>(
-                  ProductsServiceClient.BeginGetProductDetails,
-                  ProductsServiceClient.EndGetProductDetails,
-                  productID,
-                  null);
+                // TODO Create some sort of injection somewhere?
+                switch (preferredServiceType)
+                {
+                    case ServiceType.WCF:
+                        product = await Task.Factory.FromAsync<int, Product>(
+                            ProductsServiceClient.BeginGetProductDetails,
+                            ProductsServiceClient.EndGetProductDetails,
+                            productID,
+                            null);
+                        break;
+                    case ServiceType.WebApi:
+                        product = await ReadApi<Product>(product, productID);
+                        break;
+                    default:
+                        throw new NotImplementedException($"Unknown {nameof(ServiceType)}");
+                        break;
+                }
             }
             catch (FaultException<ExceptionDetail> exception)
             {

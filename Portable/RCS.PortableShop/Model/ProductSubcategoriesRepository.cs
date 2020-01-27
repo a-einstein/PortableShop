@@ -35,6 +35,8 @@ namespace RCS.PortableShop.Model
         #endregion
 
         #region CRUD
+        protected override string EntitiesName => "ProductSubcategories";
+
         public async Task<bool> ReadList(bool addEmptyElement = true)
         {
             Clear();
@@ -53,7 +55,7 @@ namespace RCS.PortableShop.Model
                             null);
                         break;
                     case ServiceType.WebApi:
-                        subcategories = await ReadListApi<ProductSubcategoryList>("ProductSubcategories", subcategories); 
+                        subcategories = await ReadApi<ProductSubcategoryList>(subcategories); 
                         break;
                     default:
                         throw new NotImplementedException($"Unknown {nameof(ServiceType)}");

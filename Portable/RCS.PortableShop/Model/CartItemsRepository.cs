@@ -41,6 +41,8 @@ namespace RCS.PortableShop.Model
         #endregion
 
         #region CRUD
+        // Currently not used.
+        protected override string EntitiesName => null;
 
         // Note that the cart is only kept in memory and is not preserved. 
         // It is anticipated that only real orders would be preserved and stored on the server.

@@ -97,18 +97,35 @@ namespace RCS.PortableShop.Model
         #endregion
 
         #region Web API
-        protected static async Task<TList> ReadListApi<TList>(string function, TList result)
+
+        // Note this needs to be a plural.
+        protected  abstract string EntitiesName { get; }
+
+        protected async Task<TResult> ReadApi<TResult>(TResult result)
         {
+            var uri = new Uri($"{productsApi}/{EntitiesName}");
+
+            return await ReadApi<TResult>(result, uri);
+        }
+
+        protected async Task<TResult> ReadApi<TResult>(TResult result, int id)
+        {
+            var uri = new Uri($"{productsApi}/{EntitiesName}/{id}");
+
+            return await ReadApi<TResult>(result, uri);
+        }
+
+        private static async Task<TResult> ReadApi<TResult>(TResult result, Uri uri)
+        {  
             // TODO Should be instantiated once. (Or Disposed of?)
             var httpClient = new HttpClient();
-            var uri = new Uri($"{productsApi}/{function}");
 
             var response = await httpClient.GetAsync(uri);
 
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
-                result = JsonConvert.DeserializeObject<TList>(content);
+                result = JsonConvert.DeserializeObject<TResult>(content);
             }
 
             return result;
