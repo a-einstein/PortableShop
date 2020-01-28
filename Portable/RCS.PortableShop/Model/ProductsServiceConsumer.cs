@@ -108,9 +108,9 @@ namespace RCS.PortableShop.Model
             return await ReadApi<TResult>(result, uri);
         }
 
-        protected async Task<TResult> ReadApi<TResult>(TResult result, int id)
+        protected async Task<TResult> ReadApi<TResult>(TResult result, string action, string parameters)
         {
-            var uri = new Uri($"{productsApi}/{EntitiesName}/{id}");
+            var uri = new Uri($"{productsApi}/{EntitiesName}/{action}?{parameters}");
 
             return await ReadApi<TResult>(result, uri);
         }

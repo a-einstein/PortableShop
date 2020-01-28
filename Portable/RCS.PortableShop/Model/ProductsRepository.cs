@@ -45,11 +45,31 @@ namespace RCS.PortableShop.Model
 
             try
             {
-                productsOverview = await Task.Factory.FromAsync<int?, int?, string, ProductsOverviewList>(
-                     ProductsServiceClient.BeginGetProductsOverviewBy,
-                     ProductsServiceClient.EndGetProductsOverviewBy,
-                     category?.Id, subcategory?.Id, namePart,
-                     null);
+                // TODO Create some sort of injection somewhere?
+                switch (preferredServiceType)
+                {
+                    case ServiceType.WCF:
+                        productsOverview = await Task.Factory.FromAsync<int?, int?, string, ProductsOverviewList>(
+                            ProductsServiceClient.BeginGetProductsOverviewBy,
+                            ProductsServiceClient.EndGetProductsOverviewBy,
+                            category?.Id, subcategory?.Id, namePart,
+                            null);
+                        break;
+                    case ServiceType.WebApi:
+                        // Note the parameternames have to mach those of the web API. 
+                        string categoryParameter = category != null ? $"category={category.Id}" : null;
+                        string subcategoryParameter = subcategory != null ? $"subcategory={subcategory.Id}" : null;
+                        string wordParameter = namePart != null ? $"word={namePart}" : null;
+
+                        // Note that extra occurrences of # are acceptable and order does not matter.
+                        var parameters = $"{categoryParameter}&{subcategoryParameter}&{wordParameter}";
+
+                        productsOverview = await ReadApi<ProductsOverviewList>(productsOverview, "overview", parameters);
+                        break;
+                    default:
+                        throw new NotImplementedException($"Unknown {nameof(ServiceType)}");
+                        break;
+                }
             }
             catch (FaultException<ExceptionDetail> exception)
             {
@@ -82,7 +102,10 @@ namespace RCS.PortableShop.Model
                             null);
                         break;
                     case ServiceType.WebApi:
-                        product = await ReadApi<Product>(product, productID);
+                        var parameters = $"id={productID}";
+
+                        // TODO Check double use of product. Elsewhere likewise.
+                        product = await ReadApi<Product>(product, "details", parameters);
                         break;
                     default:
                         throw new NotImplementedException($"Unknown {nameof(ServiceType)}");
