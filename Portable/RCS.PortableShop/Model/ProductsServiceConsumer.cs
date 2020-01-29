@@ -13,7 +13,7 @@ namespace RCS.PortableShop.Model
         #region Constants
         static public TimeSpan Timeout { get; } = new TimeSpan(0, 0, 15);
         static private string serviceDomain = "https://rcsworks.nl";
-        static private string productsApi = $"{serviceDomain}/ProductsApi/api";
+        static private string productsApi = $"{serviceDomain}/ProductsApi";
 
         // TODO Move elsewhere if both kept .
         public enum ServiceType
