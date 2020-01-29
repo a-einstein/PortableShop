@@ -55,7 +55,7 @@ namespace RCS.PortableShop.Model
                             null);
                         break;
                     case ServiceType.WebApi:
-                        subcategories = await ReadApi<ProductSubcategoryList>(subcategories); 
+                        subcategories = await ReadApi<ProductSubcategoryList>(); 
                         break;
                     default:
                         throw new NotImplementedException($"Unknown {nameof(ServiceType)}");

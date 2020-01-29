@@ -101,21 +101,21 @@ namespace RCS.PortableShop.Model
         // Note this needs to be a plural.
         protected  abstract string EntitiesName { get; }
 
-        protected async Task<TResult> ReadApi<TResult>(TResult result)
+        protected async Task<TResult> ReadApi<TResult>()
         {
             var uri = new Uri($"{productsApi}/{EntitiesName}");
 
-            return await ReadApi<TResult>(result, uri);
+            return await ReadApi<TResult>(uri);
         }
 
-        protected async Task<TResult> ReadApi<TResult>(TResult result, string action, string parameters)
+        protected async Task<TResult> ReadApi<TResult>(string action, string parameters)
         {
             var uri = new Uri($"{productsApi}/{EntitiesName}/{action}?{parameters}");
 
-            return await ReadApi<TResult>(result, uri);
+            return await ReadApi<TResult>(uri);
         }
 
-        private static async Task<TResult> ReadApi<TResult>(TResult result, Uri uri)
+        private static async Task<TResult> ReadApi<TResult>(Uri uri)
         {  
             // TODO Should be instantiated once. (Or Disposed of?)
             var httpClient = new HttpClient();
@@ -125,10 +125,12 @@ namespace RCS.PortableShop.Model
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
-                result = JsonConvert.DeserializeObject<TResult>(content);
+                return JsonConvert.DeserializeObject<TResult>(content);
             }
-
-            return result;
+            else
+            {
+                return default(TResult);
+            }
         }
         #endregion
 

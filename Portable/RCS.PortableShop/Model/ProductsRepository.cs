@@ -64,7 +64,7 @@ namespace RCS.PortableShop.Model
                         // Note that extra occurrences of # are acceptable and order does not matter.
                         var parameters = $"{categoryParameter}&{subcategoryParameter}&{wordParameter}";
 
-                        productsOverview = await ReadApi<ProductsOverviewList>(productsOverview, "overview", parameters);
+                        productsOverview = await ReadApi<ProductsOverviewList>("overview", parameters);
                         break;
                     default:
                         throw new NotImplementedException($"Unknown {nameof(ServiceType)}");
@@ -104,8 +104,7 @@ namespace RCS.PortableShop.Model
                     case ServiceType.WebApi:
                         var parameters = $"id={productID}";
 
-                        // TODO Check double use of product. Elsewhere likewise.
-                        product = await ReadApi<Product>(product, "details", parameters);
+                        product = await ReadApi<Product>("details", parameters);
                         break;
                     default:
                         throw new NotImplementedException($"Unknown {nameof(ServiceType)}");
