@@ -10,6 +10,17 @@ namespace RCS.PortableShop.Model
 {
     public abstract class ProductsServiceConsumer : IDisposable
     {
+        #region Construction        
+        private readonly HttpClient httpClient;
+
+        protected ProductsServiceConsumer()
+        {
+            // Simple optimisation.
+            // TODO Improve as described here, as far as applicable https://josefottosson.se/you-are-probably-still-using-httpclient-wrong-and-it-is-destabilizing-your-software/
+            httpClient = new HttpClient();
+        }
+        #endregion
+
         #region Constants
         static public TimeSpan Timeout { get; } = new TimeSpan(0, 0, 15);
         static private string serviceDomain = "https://rcsworks.nl";
@@ -23,8 +34,8 @@ namespace RCS.PortableShop.Model
         }
 
         // TODO Move to settings.
+        // TODO Separate these 2 types of service clients.
         protected ServiceType preferredServiceType = ServiceType.WebApi;
-
         #endregion
 
         #region Messaging
@@ -97,9 +108,8 @@ namespace RCS.PortableShop.Model
         #endregion
 
         #region Web API
-
         // Note this needs to be a plural.
-        protected  abstract string EntitiesName { get; }
+        protected abstract string EntitiesName { get; }
 
         protected async Task<TResult> ReadApi<TResult>()
         {
@@ -115,11 +125,8 @@ namespace RCS.PortableShop.Model
             return await ReadApi<TResult>(uri);
         }
 
-        private static async Task<TResult> ReadApi<TResult>(Uri uri)
-        {  
-            // TODO Should be instantiated once. (Or Disposed of?)
-            var httpClient = new HttpClient();
-
+        private async Task<TResult> ReadApi<TResult>(Uri uri)
+        {
             var response = await httpClient.GetAsync(uri);
 
             if (response.IsSuccessStatusCode)
@@ -135,7 +142,6 @@ namespace RCS.PortableShop.Model
         #endregion
 
         #region IDisposable
-
         // Check out the IDisposable documentation for details on the pattern applied here.
         // Note that it can have implications on derived classes too.
 
@@ -157,6 +163,7 @@ namespace RCS.PortableShop.Model
             if (disposing)
             {
                 productsServiceClient?.CloseAsync();
+                httpClient?.Dispose();
             }
 
             // Free unmanaged objects here.
@@ -169,7 +176,6 @@ namespace RCS.PortableShop.Model
         {
             Dispose(false);
         }
-
         #endregion
     }
 }
