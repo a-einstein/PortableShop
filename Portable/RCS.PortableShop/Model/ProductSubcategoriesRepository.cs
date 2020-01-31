@@ -1,5 +1,5 @@
 ﻿using RCS.AdventureWorks.Common.DomainClasses;
-using RCS.PortableShop.ServiceClients.Products.ProductsService;
+using RCS.AdventureWorks.Common.Dtos;
 using System;
 using System.Collections.ObjectModel;
 using System.ServiceModel;
@@ -35,6 +35,8 @@ namespace RCS.PortableShop.Model
         #endregion
 
         #region CRUD
+        protected override string EntitiesName => "ProductSubcategories";
+
         public async Task<bool> ReadList(bool addEmptyElement = true)
         {
             Clear();
@@ -43,10 +45,22 @@ namespace RCS.PortableShop.Model
 
             try
             {
-                subcategories = await Task.Factory.FromAsync<ProductSubcategoryList>(
-                    ProductsServiceClient.BeginGetProductSubcategories,
-                    ProductsServiceClient.EndGetProductSubcategories,
-                    null);
+                // TODO Create some sort of injection somewhere?
+                switch (preferredServiceType)
+                {
+                    case ServiceType.WCF:
+                        subcategories = await Task.Factory.FromAsync<ProductSubcategoryList>(
+                            ProductsServiceClient.BeginGetProductSubcategories,
+                            ProductsServiceClient.EndGetProductSubcategories,
+                            null);
+                        break;
+                    case ServiceType.WebApi:
+                        subcategories = await ReadApi<ProductSubcategoryList>(); 
+                        break;
+                    default:
+                        throw new NotImplementedException($"Unknown {nameof(ServiceType)}");
+                        break;
+                }
             }
             catch (FaultException<ExceptionDetail> exception)
             {

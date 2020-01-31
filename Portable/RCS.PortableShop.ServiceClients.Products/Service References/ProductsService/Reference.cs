@@ -10,26 +10,9 @@
 
 namespace RCS.PortableShop.ServiceClients.Products.ProductsService {
     using System.Runtime.Serialization;
-    
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ProductsOverviewList", Namespace="http://schemas.datacontract.org/2004/07/RCS.AdventureWorks.Common.Dtos", ItemName="ProductsOverviewObject")]
-    public class ProductsOverviewList : System.Collections.ObjectModel.ObservableCollection<RCS.AdventureWorks.Common.DomainClasses.ProductsOverviewObject> {
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ProductCategoryList", Namespace="http://schemas.datacontract.org/2004/07/RCS.AdventureWorks.Common.Dtos", ItemName="ProductCategory")]
-    public class ProductCategoryList : System.Collections.ObjectModel.ObservableCollection<RCS.AdventureWorks.Common.DomainClasses.ProductCategory> {
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ProductSubcategoryList", Namespace="http://schemas.datacontract.org/2004/07/RCS.AdventureWorks.Common.Dtos", ItemName="ProductSubcategory")]
-    public class ProductSubcategoryList : System.Collections.ObjectModel.ObservableCollection<RCS.AdventureWorks.Common.DomainClasses.ProductSubcategory> {
-    }
-    
+    using RCS.AdventureWorks.Common.Dtos;
+
+
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ProductsService.IProductsService")]
     public interface IProductsService {
@@ -37,7 +20,7 @@ namespace RCS.PortableShop.ServiceClients.Products.ProductsService {
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IProductsService/GetProductsOverviewBy", ReplyAction="http://tempuri.org/IProductsService/GetProductsOverviewByResponse")]
         System.IAsyncResult BeginGetProductsOverviewBy(System.Nullable<int> productCategoryID, System.Nullable<int> productSubcategoryID, string productNameString, System.AsyncCallback callback, object asyncState);
         
-        RCS.PortableShop.ServiceClients.Products.ProductsService.ProductsOverviewList EndGetProductsOverviewBy(System.IAsyncResult result);
+        ProductsOverviewList EndGetProductsOverviewBy(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IProductsService/GetProductDetails", ReplyAction="http://tempuri.org/IProductsService/GetProductDetailsResponse")]
         System.IAsyncResult BeginGetProductDetails(int productId, System.AsyncCallback callback, object asyncState);
@@ -47,12 +30,12 @@ namespace RCS.PortableShop.ServiceClients.Products.ProductsService {
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IProductsService/GetProductCategories", ReplyAction="http://tempuri.org/IProductsService/GetProductCategoriesResponse")]
         System.IAsyncResult BeginGetProductCategories(System.AsyncCallback callback, object asyncState);
         
-        RCS.PortableShop.ServiceClients.Products.ProductsService.ProductCategoryList EndGetProductCategories(System.IAsyncResult result);
+        ProductCategoryList EndGetProductCategories(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IProductsService/GetProductSubcategories", ReplyAction="http://tempuri.org/IProductsService/GetProductSubcategoriesResponse")]
         System.IAsyncResult BeginGetProductSubcategories(System.AsyncCallback callback, object asyncState);
         
-        RCS.PortableShop.ServiceClients.Products.ProductsService.ProductSubcategoryList EndGetProductSubcategories(System.IAsyncResult result);
+        ProductSubcategoryList EndGetProductSubcategories(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -70,10 +53,10 @@ namespace RCS.PortableShop.ServiceClients.Products.ProductsService {
             this.results = results;
         }
         
-        public RCS.PortableShop.ServiceClients.Products.ProductsService.ProductsOverviewList Result {
+        public ProductsOverviewList Result {
             get {
                 base.RaiseExceptionIfNecessary();
-                return ((RCS.PortableShop.ServiceClients.Products.ProductsService.ProductsOverviewList)(this.results[0]));
+                return ((ProductsOverviewList)(this.results[0]));
             }
         }
     }
@@ -108,10 +91,10 @@ namespace RCS.PortableShop.ServiceClients.Products.ProductsService {
             this.results = results;
         }
         
-        public RCS.PortableShop.ServiceClients.Products.ProductsService.ProductCategoryList Result {
+        public ProductCategoryList Result {
             get {
                 base.RaiseExceptionIfNecessary();
-                return ((RCS.PortableShop.ServiceClients.Products.ProductsService.ProductCategoryList)(this.results[0]));
+                return ((ProductCategoryList)(this.results[0]));
             }
         }
     }
@@ -127,10 +110,10 @@ namespace RCS.PortableShop.ServiceClients.Products.ProductsService {
             this.results = results;
         }
         
-        public RCS.PortableShop.ServiceClients.Products.ProductsService.ProductSubcategoryList Result {
+        public ProductSubcategoryList Result {
             get {
                 base.RaiseExceptionIfNecessary();
-                return ((RCS.PortableShop.ServiceClients.Products.ProductsService.ProductSubcategoryList)(this.results[0]));
+                return ((ProductSubcategoryList)(this.results[0]));
             }
         }
     }
@@ -231,7 +214,7 @@ namespace RCS.PortableShop.ServiceClients.Products.ProductsService {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        RCS.PortableShop.ServiceClients.Products.ProductsService.ProductsOverviewList RCS.PortableShop.ServiceClients.Products.ProductsService.IProductsService.EndGetProductsOverviewBy(System.IAsyncResult result) {
+        ProductsOverviewList RCS.PortableShop.ServiceClients.Products.ProductsService.IProductsService.EndGetProductsOverviewBy(System.IAsyncResult result) {
             return base.Channel.EndGetProductsOverviewBy(result);
         }
         
@@ -243,7 +226,7 @@ namespace RCS.PortableShop.ServiceClients.Products.ProductsService {
         }
         
         private object[] OnEndGetProductsOverviewBy(System.IAsyncResult result) {
-            RCS.PortableShop.ServiceClients.Products.ProductsService.ProductsOverviewList retVal = ((RCS.PortableShop.ServiceClients.Products.ProductsService.IProductsService)(this)).EndGetProductsOverviewBy(result);
+            ProductsOverviewList retVal = ((RCS.PortableShop.ServiceClients.Products.ProductsService.IProductsService)(this)).EndGetProductsOverviewBy(result);
             return new object[] {
                     retVal};
         }
@@ -322,12 +305,12 @@ namespace RCS.PortableShop.ServiceClients.Products.ProductsService {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult RCS.PortableShop.ServiceClients.Products.ProductsService.IProductsService.BeginGetProductCategories(System.AsyncCallback callback, object asyncState) {
+        System.IAsyncResult IProductsService.BeginGetProductCategories(System.AsyncCallback callback, object asyncState) {
             return base.Channel.BeginGetProductCategories(callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        RCS.PortableShop.ServiceClients.Products.ProductsService.ProductCategoryList RCS.PortableShop.ServiceClients.Products.ProductsService.IProductsService.EndGetProductCategories(System.IAsyncResult result) {
+        ProductCategoryList RCS.PortableShop.ServiceClients.Products.ProductsService.IProductsService.EndGetProductCategories(System.IAsyncResult result) {
             return base.Channel.EndGetProductCategories(result);
         }
         
@@ -336,7 +319,7 @@ namespace RCS.PortableShop.ServiceClients.Products.ProductsService {
         }
         
         private object[] OnEndGetProductCategories(System.IAsyncResult result) {
-            RCS.PortableShop.ServiceClients.Products.ProductsService.ProductCategoryList retVal = ((RCS.PortableShop.ServiceClients.Products.ProductsService.IProductsService)(this)).EndGetProductCategories(result);
+            ProductCategoryList retVal = ((RCS.PortableShop.ServiceClients.Products.ProductsService.IProductsService)(this)).EndGetProductCategories(result);
             return new object[] {
                     retVal};
         }
@@ -371,7 +354,7 @@ namespace RCS.PortableShop.ServiceClients.Products.ProductsService {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        RCS.PortableShop.ServiceClients.Products.ProductsService.ProductSubcategoryList RCS.PortableShop.ServiceClients.Products.ProductsService.IProductsService.EndGetProductSubcategories(System.IAsyncResult result) {
+        ProductSubcategoryList RCS.PortableShop.ServiceClients.Products.ProductsService.IProductsService.EndGetProductSubcategories(System.IAsyncResult result) {
             return base.Channel.EndGetProductSubcategories(result);
         }
         
@@ -380,7 +363,7 @@ namespace RCS.PortableShop.ServiceClients.Products.ProductsService {
         }
         
         private object[] OnEndGetProductSubcategories(System.IAsyncResult result) {
-            RCS.PortableShop.ServiceClients.Products.ProductsService.ProductSubcategoryList retVal = ((RCS.PortableShop.ServiceClients.Products.ProductsService.IProductsService)(this)).EndGetProductSubcategories(result);
+            ProductSubcategoryList retVal = ((RCS.PortableShop.ServiceClients.Products.ProductsService.IProductsService)(this)).EndGetProductSubcategories(result);
             return new object[] {
                     retVal};
         }
@@ -525,9 +508,9 @@ namespace RCS.PortableShop.ServiceClients.Products.ProductsService {
                 return _result;
             }
             
-            public RCS.PortableShop.ServiceClients.Products.ProductsService.ProductsOverviewList EndGetProductsOverviewBy(System.IAsyncResult result) {
+            public ProductsOverviewList EndGetProductsOverviewBy(System.IAsyncResult result) {
                 object[] _args = new object[0];
-                RCS.PortableShop.ServiceClients.Products.ProductsService.ProductsOverviewList _result = ((RCS.PortableShop.ServiceClients.Products.ProductsService.ProductsOverviewList)(base.EndInvoke("GetProductsOverviewBy", _args, result)));
+                ProductsOverviewList _result = ((ProductsOverviewList)(base.EndInvoke("GetProductsOverviewBy", _args, result)));
                 return _result;
             }
             
@@ -550,9 +533,9 @@ namespace RCS.PortableShop.ServiceClients.Products.ProductsService {
                 return _result;
             }
             
-            public RCS.PortableShop.ServiceClients.Products.ProductsService.ProductCategoryList EndGetProductCategories(System.IAsyncResult result) {
+            public ProductCategoryList EndGetProductCategories(System.IAsyncResult result) {
                 object[] _args = new object[0];
-                RCS.PortableShop.ServiceClients.Products.ProductsService.ProductCategoryList _result = ((RCS.PortableShop.ServiceClients.Products.ProductsService.ProductCategoryList)(base.EndInvoke("GetProductCategories", _args, result)));
+                ProductCategoryList _result = ((ProductCategoryList)(base.EndInvoke("GetProductCategories", _args, result)));
                 return _result;
             }
             
@@ -562,9 +545,9 @@ namespace RCS.PortableShop.ServiceClients.Products.ProductsService {
                 return _result;
             }
             
-            public RCS.PortableShop.ServiceClients.Products.ProductsService.ProductSubcategoryList EndGetProductSubcategories(System.IAsyncResult result) {
+            public ProductSubcategoryList EndGetProductSubcategories(System.IAsyncResult result) {
                 object[] _args = new object[0];
-                RCS.PortableShop.ServiceClients.Products.ProductsService.ProductSubcategoryList _result = ((RCS.PortableShop.ServiceClients.Products.ProductsService.ProductSubcategoryList)(base.EndInvoke("GetProductSubcategories", _args, result)));
+                ProductSubcategoryList _result = ((ProductSubcategoryList)(base.EndInvoke("GetProductSubcategories", _args, result)));
                 return _result;
             }
         }

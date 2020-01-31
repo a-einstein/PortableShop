@@ -1,14 +1,41 @@
-﻿using RCS.PortableShop.ServiceClients.Products.ProductsService;
+﻿using Newtonsoft.Json;
+using RCS.PortableShop.ServiceClients.Products.ProductsService;
 using System;
+using System.Net.Http;
 using System.ServiceModel;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace RCS.PortableShop.Model
 {
     public abstract class ProductsServiceConsumer : IDisposable
     {
-        #region Public constants
+        #region Construction        
+        private readonly HttpClient httpClient;
+
+        protected ProductsServiceConsumer()
+        {
+            // Simple optimisation.
+            // TODO Improve as described here, as far as applicable https://josefottosson.se/you-are-probably-still-using-httpclient-wrong-and-it-is-destabilizing-your-software/
+            httpClient = new HttpClient();
+        }
+        #endregion
+
+        #region Constants
         static public TimeSpan Timeout { get; } = new TimeSpan(0, 0, 15);
+        static private string serviceDomain = "https://rcsworks.nl";
+        static private string productsApi = $"{serviceDomain}/ProductsApi";
+
+        // TODO Move elsewhere if both kept .
+        public enum ServiceType
+        {
+            WCF,
+            WebApi
+        }
+
+        // TODO Move to settings.
+        // TODO Separate these 2 types of service clients.
+        protected ServiceType preferredServiceType = ServiceType.WebApi;
         #endregion
 
         #region Messaging
@@ -44,7 +71,7 @@ namespace RCS.PortableShop.Model
 
         #endregion
 
-        #region Service
+        #region WCF Service
         private ProductsServiceClient productsServiceClient;
 
         protected IProductsService ProductsServiceClient
@@ -63,7 +90,7 @@ namespace RCS.PortableShop.Model
                         var binding = new BasicHttpBinding(BasicHttpSecurityMode.Transport) { OpenTimeout = Timeout, SendTimeout = Timeout, ReceiveTimeout = Timeout, CloseTimeout = Timeout };
 
                         // Note this points to a BasicHttpBinding variant on the server.
-                        const string endpointAddress = "https://83.163.75.61/ProductsServicePub/ProductsService.svc/ProductsServiceB";
+                        string endpointAddress = $"{serviceDomain}/ProductsServicePub/ProductsService.svc/ProductsServiceB";
 
                         // Note the example bindings in ProductsServiceClient which could also be applied here by using EndpointConfiguration
                         productsServiceClient = new ProductsServiceClient(binding, new EndpointAddress(endpointAddress));
@@ -80,8 +107,41 @@ namespace RCS.PortableShop.Model
         }
         #endregion
 
-        #region IDisposable
+        #region Web API
+        // Note this needs to be a plural.
+        protected abstract string EntitiesName { get; }
 
+        protected async Task<TResult> ReadApi<TResult>()
+        {
+            var uri = new Uri($"{productsApi}/{EntitiesName}");
+
+            return await ReadApi<TResult>(uri);
+        }
+
+        protected async Task<TResult> ReadApi<TResult>(string action, string parameters)
+        {
+            var uri = new Uri($"{productsApi}/{EntitiesName}/{action}?{parameters}");
+
+            return await ReadApi<TResult>(uri);
+        }
+
+        private async Task<TResult> ReadApi<TResult>(Uri uri)
+        {
+            var response = await httpClient.GetAsync(uri);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<TResult>(content);
+            }
+            else
+            {
+                return default(TResult);
+            }
+        }
+        #endregion
+
+        #region IDisposable
         // Check out the IDisposable documentation for details on the pattern applied here.
         // Note that it can have implications on derived classes too.
 
@@ -103,6 +163,7 @@ namespace RCS.PortableShop.Model
             if (disposing)
             {
                 productsServiceClient?.CloseAsync();
+                httpClient?.Dispose();
             }
 
             // Free unmanaged objects here.
@@ -115,7 +176,6 @@ namespace RCS.PortableShop.Model
         {
             Dispose(false);
         }
-
         #endregion
     }
 }

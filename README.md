@@ -4,10 +4,10 @@
 Working portable (Android) application for test and demo purpose based on Xamarin Forms. It simulates limited shopping capabilities based on the AdventureWorks database.
 
 #### News
+* Added usage of Web API service as alternative to WCF.
 * Started on Xamarin.Essentials.
 * The APK installation file can be downloaded from Azure again, as described below.
 * Migrated to .Net Standard.
-* For full demonstration/test purposes, the data service is on request.
 
 #### Purpose
 * Explore various techniques based on C#, XAML and Xamarin Forms.
@@ -16,12 +16,12 @@ Working portable (Android) application for test and demo purpose based on Xamari
 * Explore Scrum process management by integration with Jira and Azure DevOps.
 
 #### Prerequisites
-* The application must be configured for a running instance of my [AdventureWorks services](https://github.com/a-einstein/AdventureWorks/blob/master/README.md).
+* The application must be configured for a running instance of my **[AdventureWorks services](https://github.com/a-einstein/AdventureWorks/blob/master/README.md)**.
 
 #### Notes
-* This is a near equivalent of my [WpfShop](https://github.com/a-einstein/WpfShop).
+* This is a near equivalent of my **[WpfShop](https://github.com/a-einstein/WpfShop)**.
 * Currently this is only tested on Android API 21, and no longer suited for all platforms anyway.
-* Submitted to code analysis by **[Better Code Hub](https://bettercodehub.com)**. Current score: [![BCH compliance](https://bettercodehub.com/edge/badge/a-einstein/PortableShop)](https://bettercodehub.com)
+* Submitted to code analysis by [Better Code Hub](https://bettercodehub.com). Current score: [![BCH compliance](https://bettercodehub.com/edge/badge/a-einstein/PortableShop)](https://bettercodehub.com)
 * Connected to automated Azure Devops build and release pipelines. Current build status for the master branch: [![Build Status](https://dev.azure.com/RcsProjects/PortableShop/_apis/build/status/Build%20APK?branchName=master)](https://dev.azure.com/RcsProjects/PortableShop/_build/latest?definitionId=13&branchName=master)
 
 #### Aspects
@@ -29,10 +29,11 @@ Working portable (Android) application for test and demo purpose based on Xamari
 * .Net Standard.
 * C# + XAML.
 * MVVM.
-* Make use of an Azure service.
-* Client-server.
-* WCF + SSL.
+* Client-server + SSL.
 * Asynchronisity.
+* WCF.
+* Web API.
+* Has made use of an Azure service.
 * Error handling.
 * Globalized resources.
 * Basic styling.

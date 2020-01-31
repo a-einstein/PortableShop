@@ -2,8 +2,7 @@
 
 namespace RCS.PortableShop.Model
 {
-    public abstract class Repository<TCollection, TElement> :
-        ProductsServiceConsumer
+    public abstract class Repository<TCollection, TElement> : ProductsServiceConsumer
         where TCollection : Collection<TElement>, new()
     {
         // Note Derived singletons duplicate construction code, but it it does not seem feasible to share that here.

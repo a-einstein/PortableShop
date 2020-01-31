@@ -1,5 +1,5 @@
 ﻿using RCS.AdventureWorks.Common.DomainClasses;
-using RCS.PortableShop.ServiceClients.Products.ProductsService;
+using RCS.AdventureWorks.Common.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -36,6 +36,7 @@ namespace RCS.PortableShop.Model
         #endregion
 
         #region CRUD
+        protected override string EntitiesName => "Products";
 
         // TODO This should get paged with an optional pagesize.
         public async Task<IList<ProductsOverviewObject>> ReadList(ProductCategory category, ProductSubcategory subcategory, string namePart)
@@ -44,11 +45,31 @@ namespace RCS.PortableShop.Model
 
             try
             {
-                productsOverview = await Task.Factory.FromAsync<int?, int?, string, ProductsOverviewList>(
-                     ProductsServiceClient.BeginGetProductsOverviewBy,
-                     ProductsServiceClient.EndGetProductsOverviewBy,
-                     category?.Id, subcategory?.Id, namePart,
-                     null);
+                // TODO Create some sort of injection somewhere?
+                switch (preferredServiceType)
+                {
+                    case ServiceType.WCF:
+                        productsOverview = await Task.Factory.FromAsync<int?, int?, string, ProductsOverviewList>(
+                            ProductsServiceClient.BeginGetProductsOverviewBy,
+                            ProductsServiceClient.EndGetProductsOverviewBy,
+                            category?.Id, subcategory?.Id, namePart,
+                            null);
+                        break;
+                    case ServiceType.WebApi:
+                        // Note the parameternames have to mach those of the web API. 
+                        string categoryParameter = category != null ? $"category={category.Id}" : null;
+                        string subcategoryParameter = subcategory != null ? $"subcategory={subcategory.Id}" : null;
+                        string wordParameter = namePart != null ? $"word={namePart}" : null;
+
+                        // Note that extra occurrences of # are acceptable and order does not matter.
+                        var parameters = $"{categoryParameter}&{subcategoryParameter}&{wordParameter}";
+
+                        productsOverview = await ReadApi<ProductsOverviewList>("overview", parameters);
+                        break;
+                    default:
+                        throw new NotImplementedException($"Unknown {nameof(ServiceType)}");
+                        break;
+                }
             }
             catch (FaultException<ExceptionDetail> exception)
             {
@@ -70,11 +91,25 @@ namespace RCS.PortableShop.Model
 
             try
             {
-                product = await Task.Factory.FromAsync<int, Product>(
-                  ProductsServiceClient.BeginGetProductDetails,
-                  ProductsServiceClient.EndGetProductDetails,
-                  productID,
-                  null);
+                // TODO Create some sort of injection somewhere?
+                switch (preferredServiceType)
+                {
+                    case ServiceType.WCF:
+                        product = await Task.Factory.FromAsync<int, Product>(
+                            ProductsServiceClient.BeginGetProductDetails,
+                            ProductsServiceClient.EndGetProductDetails,
+                            productID,
+                            null);
+                        break;
+                    case ServiceType.WebApi:
+                        var parameters = $"id={productID}";
+
+                        product = await ReadApi<Product>("details", parameters);
+                        break;
+                    default:
+                        throw new NotImplementedException($"Unknown {nameof(ServiceType)}");
+                        break;
+                }
             }
             catch (FaultException<ExceptionDetail> exception)
             {

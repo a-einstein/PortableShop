@@ -32,14 +32,6 @@ namespace RCS.PortableShop.Droid
             // https://docs.microsoft.com/en-gb/xamarin/essentials/get-started
             Xamarin.Essentials.Platform.Init(this, bundle);
 
-            ServicePointManager.ServerCertificateValidationCallback = delegate
-            {
-                // Note that a simple exported self certified crt file does not really get installed on Android.
-                // TODO Improve this for own server.
-                // HACK
-                return true;
-            };
-
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new MainApplication());
         }
