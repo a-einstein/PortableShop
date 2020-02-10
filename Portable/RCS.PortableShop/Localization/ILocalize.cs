@@ -5,6 +5,9 @@ namespace RCS.PortableShop.Localization
     public interface ILocalize
     {
         CultureInfo GetCurrentCultureInfo();
-        void SetLocale(CultureInfo ci);
+
+        CultureInfo GetFallbackCultureInfo(string dotnetLanguage);
+
+        void SetLocale(CultureInfo cultureInfo);
     }
 }

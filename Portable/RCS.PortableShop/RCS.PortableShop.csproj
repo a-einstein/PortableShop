@@ -9,6 +9,7 @@
     <EnableDefaultItems>false</EnableDefaultItems>
     <Authors>RCS</Authors>
     <Product>PortableShop</Product>
+    <NeutralLanguage>en-GB</NeutralLanguage>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
