@@ -13,6 +13,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Labels.en-GB.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Labels.en-GB.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.DotNet.Analyzers.Compatibility" Version="0.2.12-alpha">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -25,11 +33,6 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
-    <Compile Update="Labels.en-GB.Designer.cs">
-      <DependentUpon>Labels.en-GB.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
     <Compile Update="Labels.nl-NL.Designer.cs">
       <DependentUpon>Labels.nl-NL.resx</DependentUpon>
       <DesignTime>True</DesignTime>
@@ -38,9 +41,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Labels.en-GB.resx">
-      <LastGenOutput>Labels.en-GB.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Update="Labels.nl-NL.resx">
       <LastGenOutput>Labels.nl-NL.Designer.cs</LastGenOutput>
     </EmbeddedResource>

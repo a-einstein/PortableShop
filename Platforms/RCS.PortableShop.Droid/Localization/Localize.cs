@@ -11,8 +11,7 @@ namespace RCS.PortableShop.Droid.Localization
     // Based on https://github.com/xamarin/xamarin-forms-samples/blob/master/TodoLocalized/TodoLocalized.Android/Locale_Android.cs
     public class Localize : ILocalize
     {
-        // TODO Centrally define this.
-        const string debugPrefix = ">>>> Debug:"; 
+        const string debugPrefix = ">>>> Debug:";
 
         public void SetLocale(CultureInfo cultureInfo)
         {
@@ -24,35 +23,20 @@ namespace RCS.PortableShop.Droid.Localization
 
         public CultureInfo GetCurrentCultureInfo()
         {
-            // TODO Centrally define codes.
-            var englishCode = "en";
-
             var androidLocale = Java.Util.Locale.Default;
-            var dotnetLanguage = AndroidToDotnetLanguage(androidLocale.ToString().Replace("_", "-"));
+            var dotnetLanguage = AndroidToDotnetLanguage(androidLocale.ToString());
 
             // this gets called a lot - try/catch can be expensive so consider caching or something
             CultureInfo cultureInfo = null;
+
             try
             {
                 cultureInfo = new CultureInfo(dotnetLanguage);
             }
-            catch (CultureNotFoundException cultureNotFoundException1)
+            catch (CultureNotFoundException exception)
             {
-                // iOS locale not valid .NET culture (eg. "en-ES" : English in Spain)
-                // fallback to first characters, in this case englishCode.
-                var fallback = ToDotnetFallbackLanguage(new PlatformCulture(dotnetLanguage));
-
-                try
-                {
-                    Console.WriteLine($"{debugPrefix} Setting cultureInfo to '{dotnetLanguage}' failed, trying {fallback}. ({cultureNotFoundException1.Message})");
-                    cultureInfo = new CultureInfo(fallback);
-                }
-                catch (CultureNotFoundException cultureNotFoundException2)
-                {
-                    // iOS language not valid .NET culture, falling back to English
-                    Console.WriteLine($"{debugPrefix} {fallback} couldn't be set, using '{englishCode}'. ({cultureNotFoundException2.Message})");
-                    cultureInfo = new CultureInfo(englishCode);
-                }
+                Console.WriteLine($"{debugPrefix} Setting {nameof(cultureInfo)} to '{dotnetLanguage}' failed. ({exception.Message})");
+                cultureInfo = GetFallbackCultureInfo(dotnetLanguage);
             }
 
             return cultureInfo;
@@ -62,7 +46,10 @@ namespace RCS.PortableShop.Droid.Localization
         {
             Console.WriteLine($"{debugPrefix} Android Language: {androidLanguage}");
 
-            var dotnetLanguage = androidLanguage;
+            // See some background here:
+            // https://docs.microsoft.com/en-us/xamarin/android/app-fundamentals/localization
+
+            var dotnetLanguage = androidLanguage.Replace("_", "-");
 
             //certain languages need to be converted to CultureInfo equivalent
             switch (androidLanguage)
@@ -86,10 +73,34 @@ namespace RCS.PortableShop.Droid.Localization
 
             return dotnetLanguage;
         }
-        string ToDotnetFallbackLanguage(PlatformCulture platformCulture)
-        {
-            Console.WriteLine($"{debugPrefix} .NET Fallback Language: {platformCulture.LanguageCode}");
 
+        public CultureInfo GetFallbackCultureInfo(string dotnetLanguage)
+        {
+            CultureInfo cultureInfo;
+            const string englishCode = "en";
+
+            var fallback = DotnetFallbackLanguage(new PlatformCulture(dotnetLanguage));
+
+            try
+            {
+                Console.WriteLine($"{debugPrefix} Trying {fallback}.");
+                cultureInfo = new CultureInfo(fallback);
+            }
+            catch (CultureNotFoundException exception)
+            {
+                // iOS language not valid .NET culture, falling back to English
+                Console.WriteLine($"{debugPrefix} {fallback} couldn't be set, using '{englishCode}'. ({exception.Message})");
+                cultureInfo = new CultureInfo(englishCode);
+            }
+
+            return cultureInfo;
+        }
+
+        string DotnetFallbackLanguage(PlatformCulture platformCulture)
+        {
+            // iOS locale not valid .NET culture (eg. "en-ES" : English in Spain)
+            // fallback to first characters, in this case "en".
+            Console.WriteLine($"{debugPrefix} .NET Fallback Language: {platformCulture.LanguageCode}");
             var dotnetLanguage = platformCulture.LanguageCode; // use the first part of the identifier (two chars, usually);
 
             switch (platformCulture.LanguageCode)
