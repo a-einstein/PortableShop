@@ -39,12 +39,12 @@ namespace RCS.PortableShop.Model
         #endregion
 
         #region Messaging
-        public enum Error
+        public enum Message
         {
             ServiceError
         }
 
-        protected void Message(FaultException<ExceptionDetail> exception)
+        protected void SendMessage(FaultException<ExceptionDetail> exception)
         {
             var detail = exception?.Detail?.InnerException?.Message;
 
@@ -52,21 +52,21 @@ namespace RCS.PortableShop.Model
                 // Trim trailing details like user name.
                 detail = $"{detail.Remove(11)}...";
 
-            Message(exception, detail);
+            SendMessage(exception, detail);
         }
 
-        protected void Message(Exception exception)
+        protected void SendMessage(Exception exception)
         {
             var detail = exception?.InnerException?.Message;
 
-            Message(exception, detail);
+            SendMessage(exception, detail);
         }
 
-        private void Message(Exception exception, string detail)
+        private void SendMessage(Exception exception, string detail)
         {
             var message = $"{exception?.Message}{Environment.NewLine}{detail}";
 
-            MessagingCenter.Send<ProductsServiceConsumer, string>(this, Error.ServiceError.ToString(), message);
+            MessagingCenter.Send<ProductsServiceConsumer, string>(this, Message.ServiceError.ToString(), message);
         }
 
         #endregion

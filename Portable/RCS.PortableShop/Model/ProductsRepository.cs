@@ -73,12 +73,12 @@ namespace RCS.PortableShop.Model
             }
             catch (FaultException<ExceptionDetail> exception)
             {
-                Message(exception);
+                SendMessage(exception);
                 return null;
             }
             catch (Exception exception)
             {
-                Message(exception);
+                SendMessage(exception);
                 return null;
             }
 
@@ -113,11 +113,11 @@ namespace RCS.PortableShop.Model
             }
             catch (FaultException<ExceptionDetail> exception)
             {
-                Message(exception);
+                SendMessage(exception);
             }
             catch (Exception exception)
             {
-                Message(exception);
+                SendMessage(exception);
             }
 
             return product;

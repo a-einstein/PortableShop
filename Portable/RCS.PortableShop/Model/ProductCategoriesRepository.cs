@@ -65,12 +65,12 @@ namespace RCS.PortableShop.Model
             }
             catch (FaultException<ExceptionDetail> exception)
             {
-                Message(exception);
+                SendMessage(exception);
                 return false;
             }
             catch (Exception exception)
             {
-                Message(exception);
+                SendMessage(exception);
                 return false;
             }
 
