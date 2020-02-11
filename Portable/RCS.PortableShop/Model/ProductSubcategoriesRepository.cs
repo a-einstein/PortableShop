@@ -59,7 +59,6 @@ namespace RCS.PortableShop.Model
                         break;
                     default:
                         throw new NotImplementedException($"Unknown {nameof(ServiceType)}");
-                        break;
                 }
             }
             catch (FaultException<ExceptionDetail> exception)
