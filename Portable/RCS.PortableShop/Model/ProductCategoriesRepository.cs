@@ -53,10 +53,10 @@ namespace RCS.PortableShop.Model
                         categories = await Task.Factory.FromAsync<ProductCategoryList>(
                             ProductsServiceClient.BeginGetProductCategories,
                             ProductsServiceClient.EndGetProductCategories,
-                            null);
+                            null).ConfigureAwait(true);
                         break;
                     case ServiceType.WebApi:
-                        categories = await ReadApi<ProductCategoryList>();
+                        categories = await ReadApi<ProductCategoryList>().ConfigureAwait(true);
                         break;
                     default:
                         throw new NotImplementedException($"Unknown {nameof(ServiceType)}");

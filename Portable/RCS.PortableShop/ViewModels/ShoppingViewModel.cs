@@ -14,7 +14,7 @@ namespace RCS.PortableShop.ViewModels
             base.SetCommands();
 
             // Note it is not possible to set this in BindableProperty.Create().
-            ShowCartCommand = new Command(async () => await ShowCart());
+            ShowCartCommand = new Command(async () => await ShowCart().ConfigureAwait(true));
         }
         #endregion
 
@@ -36,7 +36,7 @@ namespace RCS.PortableShop.ViewModels
         {
             var shoppingCartView = new ShoppingCartView() { ViewModel = ShoppingCartViewModel.Instance };
 
-            await PushPage(shoppingCartView);
+            await PushPage(shoppingCartView).ConfigureAwait(true);
         }
         #endregion
     }

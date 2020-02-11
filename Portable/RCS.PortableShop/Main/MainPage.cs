@@ -22,7 +22,7 @@ namespace RCS.PortableShop.Main
             // https://forums.xamarin.com/discussion/149309/global-exception-handling
             try
             {
-                await Refresh();
+                await Refresh().ConfigureAwait(true);
             }
             catch (Exception)
             {
@@ -34,7 +34,7 @@ namespace RCS.PortableShop.Main
 
         protected override async Task Initialize()
         {
-            await base.Initialize();
+            await base.Initialize().ConfigureAwait(true);
 
             if (!initialized)
             {
@@ -74,13 +74,13 @@ namespace RCS.PortableShop.Main
                     serviceErrorFirstDisplayed = DateTime.Now;
 
                     if (string.IsNullOrWhiteSpace(details))
-                        await page.DisplayAlert(Labels.Error, Labels.ErrorService, Labels.Close);
+                        await page.DisplayAlert(Labels.Error, Labels.ErrorService, Labels.Close).ConfigureAwait(true);
                     else
                     {
-                        var showDetails = await page.DisplayAlert(Labels.Error, Labels.ErrorService, Labels.Details, Labels.Close);
+                        var showDetails = await page.DisplayAlert(Labels.Error, Labels.ErrorService, Labels.Details, Labels.Close).ConfigureAwait(true);
 
                         if (showDetails)
-                            await page.DisplayAlert(Labels.Details, details, Labels.Close);
+                            await page.DisplayAlert(Labels.Details, details, Labels.Close).ConfigureAwait(true);
                     }
 
                     serviceErrorDisplaying = false;

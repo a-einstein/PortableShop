@@ -53,7 +53,7 @@ namespace RCS.PortableShop.Model
                             ProductsServiceClient.BeginGetProductsOverviewBy,
                             ProductsServiceClient.EndGetProductsOverviewBy,
                             category?.Id, subcategory?.Id, namePart,
-                            null);
+                            null).ConfigureAwait(true);
                         break;
                     case ServiceType.WebApi:
                         // Note the parameternames have to mach those of the web API. 
@@ -64,7 +64,7 @@ namespace RCS.PortableShop.Model
                         // Note that extra occurrences of # are acceptable and order does not matter.
                         var parameters = $"{categoryParameter}&{subcategoryParameter}&{wordParameter}";
 
-                        productsOverview = await ReadApi<ProductsOverviewList>("overview", parameters);
+                        productsOverview = await ReadApi<ProductsOverviewList>("overview", parameters).ConfigureAwait(true);
                         break;
                     default:
                         throw new NotImplementedException($"Unknown {nameof(ServiceType)}");
@@ -99,12 +99,12 @@ namespace RCS.PortableShop.Model
                             ProductsServiceClient.BeginGetProductDetails,
                             ProductsServiceClient.EndGetProductDetails,
                             productID,
-                            null);
+                            null).ConfigureAwait(true);
                         break;
                     case ServiceType.WebApi:
                         var parameters = $"id={productID}";
 
-                        product = await ReadApi<Product>("details", parameters);
+                        product = await ReadApi<Product>("details", parameters).ConfigureAwait(true);
                         break;
                     default:
                         throw new NotImplementedException($"Unknown {nameof(ServiceType)}");

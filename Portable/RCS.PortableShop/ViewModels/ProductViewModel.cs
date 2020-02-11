@@ -27,7 +27,7 @@ namespace RCS.PortableShop.ViewModels
 
             if (ItemId.HasValue)
             {
-                var result = await ProductsRepository.Instance.ReadDetails((int)ItemId);
+                var result = await ProductsRepository.Instance.ReadDetails((int)ItemId).ConfigureAwait(true);
                 succeeded = result != null;
                 Item = result;
             }
@@ -64,7 +64,7 @@ namespace RCS.PortableShop.ViewModels
                 Content = new Image() { Source = imageSource }
             };
 
-            await PushPage(contentView, Title);
+            await PushPage(contentView, Title).ConfigureAwait(true);
         }
         #endregion
 

@@ -52,10 +52,10 @@ namespace RCS.PortableShop.Model
                         subcategories = await Task.Factory.FromAsync<ProductSubcategoryList>(
                             ProductsServiceClient.BeginGetProductSubcategories,
                             ProductsServiceClient.EndGetProductSubcategories,
-                            null);
+                            null).ConfigureAwait(true);
                         break;
                     case ServiceType.WebApi:
-                        subcategories = await ReadApi<ProductSubcategoryList>(); 
+                        subcategories = await ReadApi<ProductSubcategoryList>().ConfigureAwait(true); 
                         break;
                     default:
                         throw new NotImplementedException($"Unknown {nameof(ServiceType)}");

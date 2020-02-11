@@ -115,23 +115,23 @@ namespace RCS.PortableShop.Model
         {
             var uri = new Uri($"{productsApi}/{EntitiesName}");
 
-            return await ReadApi<TResult>(uri);
+            return await ReadApi<TResult>(uri).ConfigureAwait(true);
         }
 
         protected async Task<TResult> ReadApi<TResult>(string action, string parameters)
         {
             var uri = new Uri($"{productsApi}/{EntitiesName}/{action}?{parameters}");
 
-            return await ReadApi<TResult>(uri);
+            return await ReadApi<TResult>(uri).ConfigureAwait(true);
         }
 
         private async Task<TResult> ReadApi<TResult>(Uri uri)
         {
-            var response = await httpClient.GetAsync(uri);
+            var response = await httpClient.GetAsync(uri).ConfigureAwait(true);
 
             if (response.IsSuccessStatusCode)
             {
-                var content = await response.Content.ReadAsStringAsync();
+                var content = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
                 return JsonConvert.DeserializeObject<TResult>(content);
             }
             else

@@ -13,7 +13,7 @@ namespace RCS.PortableShop.ViewModels
         {
             base.SetCommands();
 
-            ShowProductsCommand = new Command(async () => await ShowProducts());
+            ShowProductsCommand = new Command(async () => await ShowProducts().ConfigureAwait(true));
             OpenSupportCommand = new Command(() => OpenSupport());
             UpdateCommand = new Command(() => Update());
         }
@@ -36,7 +36,7 @@ namespace RCS.PortableShop.ViewModels
         protected static async Task ShowProducts()
         {
             Shell.FlyoutIsPresented = false;
-            await PopToRoot();
+            await PopToRoot().ConfigureAwait(true);
         }
         #endregion
 
@@ -44,7 +44,7 @@ namespace RCS.PortableShop.ViewModels
         protected override async Task ShowCart()
         {
             Shell.FlyoutIsPresented = false;
-            await base.ShowCart();
+            await base.ShowCart().ConfigureAwait(true);
         }
         #endregion
 

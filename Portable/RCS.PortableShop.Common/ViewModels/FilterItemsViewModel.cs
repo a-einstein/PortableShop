@@ -20,7 +20,7 @@ namespace RCS.PortableShop.Common.ViewModels
         {
             base.SetCommands();
 
-            FilterCommand = new Command(async () => await Refresh());
+            FilterCommand = new Command(async () => await Refresh().ConfigureAwait(true));
             DetailsCommand = new Command<TItem>(ShowDetails);
         }
         #endregion
@@ -43,14 +43,14 @@ namespace RCS.PortableShop.Common.ViewModels
 
         protected override async Task<bool> Initialize()
         {
-            var baseInitialized = await base.Initialize();
+            var baseInitialized = await base.Initialize().ConfigureAwait(true);
 
             if (baseInitialized && !filterInitialized)
             {
                 Message = Labels.Initializing;
 
                 // TODO This was intended to (also) be shown by the ActivityIndicator, but that currently does not work.
-                filterInitialized = await InitializeFilters();
+                filterInitialized = await InitializeFilters().ConfigureAwait(true);
 
                 Message = string.Empty;
             }
@@ -63,7 +63,7 @@ namespace RCS.PortableShop.Common.ViewModels
             // TODO This was intended to (also) be shown by the ActivityIndicator, but that currently does not work.
             Message = Labels.Searching;
 
-            var succeeded = await ReadFiltered();
+            var succeeded = await ReadFiltered().ConfigureAwait(true);
 
             Message = (succeeded && ItemsCount == 0) ? Labels.NotFound : string.Empty;
 

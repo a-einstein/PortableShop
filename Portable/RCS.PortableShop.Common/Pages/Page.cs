@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using RCS.PortableShop.Common.Extensions;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using View = RCS.PortableShop.Common.Views.View;
 
@@ -13,7 +14,7 @@ namespace RCS.PortableShop.Common.Pages
         {
             base.OnAppearing();
 
-            await Initialize();
+            await Initialize().ConfigureAwait(true);
         }
 
         private bool initialized;
@@ -45,13 +46,16 @@ namespace RCS.PortableShop.Common.Pages
         {
             // TODO Add application icon here for better layout?
             // TODO As of using Shell the icons are not displayed, though the commands work.
-            ToolbarItems.Add(new ToolbarItem("R", "Refresh.png", async () => await Content.ViewModel.Refresh(), priority: 10));
+            ToolbarItems.Add(new ToolbarItem("R", "Refresh.png", async () => await Content.ViewModel.Refresh().ConfigureAwait(true), priority: 10));
         }
 
         public async Task Refresh()
         {
-            await Initialize();
-            await Content?.Refresh();
+            await Initialize().ConfigureAwait(true);
+
+            // Use this because of the ConfigureAwait.
+            //Content.IfNotNull(page => await Refresh()?.ConfigureAwait(true));
+            Content.IfNotNull(async content => await content.Refresh().ConfigureAwait(true));
         }
     }
 }

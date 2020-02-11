@@ -62,7 +62,7 @@ namespace RCS.PortableShop.Main
             base.OnStart();
 
             // Moved to constructor because of https://bugzilla.xamarin.com/show_bug.cgi?id=60337
-            //await StartActions();
+            //await StartActions().ConfigureAwait(true);
         }
 
         private async Task StartActions()

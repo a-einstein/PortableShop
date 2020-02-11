@@ -38,9 +38,9 @@ namespace RCS.PortableShop.Common.ViewModels
 
             UpdateTitle();
 
-            if (await Initialize())
+            if (await Initialize().ConfigureAwait(true))
             {
-                await Read();
+                await Read().ConfigureAwait(true);
 
                 UpdateTitle();
             }
@@ -117,7 +117,7 @@ namespace RCS.PortableShop.Common.ViewModels
 
         protected static async Task PopToRoot()
         {
-            await Navigation.PopToRootAsync();
+            await Navigation.PopToRootAsync().ConfigureAwait(true);
         }
 
         // Note that a potential Color parameter cannot have a default value.
@@ -125,7 +125,7 @@ namespace RCS.PortableShop.Common.ViewModels
         {
             var page = new ContentPage() { Content = view, Title = title };
 
-            await Navigation.PushAsync(page);
+            await Navigation.PushAsync(page).ConfigureAwait(true);
         }
 
         protected static async Task PushPage(View view)
@@ -134,8 +134,8 @@ namespace RCS.PortableShop.Common.ViewModels
             page.SetBinding(Page.TitleProperty, new Binding() { Path = nameof(Title), Source = view.ViewModel });
             page.Content = view;
 
-            await Navigation.PushAsync(page);
-            await view.Refresh();
+            await Navigation.PushAsync(page).ConfigureAwait(true);
+            await view.Refresh().ConfigureAwait(true);
         }
         #endregion
     }
