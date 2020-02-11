@@ -66,8 +66,12 @@ namespace RCS.PortableShop.ViewModels
 
         protected override async Task<bool> Read()
         {
-            // This is not terribly useful. Alternatively the refresh button could be suppressed or disabled.
-            UpdateAggregates();
+            await Task.Run(() =>
+            {
+                // This is not terribly useful. Alternatively the refresh button could be suppressed or disabled.
+                UpdateAggregates();
+            }
+            ).ConfigureAwait(true);
 
             return true;
         }

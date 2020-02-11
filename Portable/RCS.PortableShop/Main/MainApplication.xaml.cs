@@ -23,6 +23,7 @@ namespace RCS.PortableShop.Main
             InitializeComponent();
 
             // HACK See OnStart.
+            // Note See no way to get rid of warning CS4014.
             StartActions();
         }
 
@@ -56,22 +57,29 @@ namespace RCS.PortableShop.Main
             }
         }
 
-
         protected override async void OnStart()
         {
-            base.OnStart();
+            await Task.Run(() =>
+            {
+                base.OnStart();
 
-            // Moved to constructor because of https://bugzilla.xamarin.com/show_bug.cgi?id=60337
-            //await StartActions();
+                // Moved to constructor because of https://bugzilla.xamarin.com/show_bug.cgi?id=60337
+                //await StartActions().ConfigureAwait(true);
+            }
+            ).ConfigureAwait(true);
         }
 
         private async Task StartActions()
         {
+            // As awaiting other actions caused problems this is just to suppress warning CS1998.
+            await Task.Run(() => { }).ConfigureAwait(true);
+
 #if DEBUG
             ListResources();
 #endif
             SetCulture();
 
+            // Note this needs to be on the main thread.
             MainPage = new MainShell();
         }
     }

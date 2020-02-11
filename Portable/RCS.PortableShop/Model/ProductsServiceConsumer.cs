@@ -39,12 +39,12 @@ namespace RCS.PortableShop.Model
         #endregion
 
         #region Messaging
-        public enum Errors
+        public enum Message
         {
             ServiceError
         }
 
-        protected void Message(FaultException<ExceptionDetail> exception)
+        protected void SendMessage(FaultException<ExceptionDetail> exception)
         {
             var detail = exception?.Detail?.InnerException?.Message;
 
@@ -52,21 +52,21 @@ namespace RCS.PortableShop.Model
                 // Trim trailing details like user name.
                 detail = $"{detail.Remove(11)}...";
 
-            Message(exception, detail);
+            SendMessage(exception, detail);
         }
 
-        protected void Message(Exception exception)
+        protected void SendMessage(Exception exception)
         {
             var detail = exception?.InnerException?.Message;
 
-            Message(exception, detail);
+            SendMessage(exception, detail);
         }
 
-        private void Message(Exception exception, string detail)
+        private void SendMessage(Exception exception, string detail)
         {
             var message = $"{exception?.Message}{Environment.NewLine}{detail}";
 
-            MessagingCenter.Send<ProductsServiceConsumer, string>(this, Errors.ServiceError.ToString(), message);
+            MessagingCenter.Send<ProductsServiceConsumer, string>(this, Message.ServiceError.ToString(), message);
         }
 
         #endregion
@@ -115,23 +115,23 @@ namespace RCS.PortableShop.Model
         {
             var uri = new Uri($"{productsApi}/{EntitiesName}");
 
-            return await ReadApi<TResult>(uri);
+            return await ReadApi<TResult>(uri).ConfigureAwait(true);
         }
 
         protected async Task<TResult> ReadApi<TResult>(string action, string parameters)
         {
             var uri = new Uri($"{productsApi}/{EntitiesName}/{action}?{parameters}");
 
-            return await ReadApi<TResult>(uri);
+            return await ReadApi<TResult>(uri).ConfigureAwait(true);
         }
 
         private async Task<TResult> ReadApi<TResult>(Uri uri)
         {
-            var response = await httpClient.GetAsync(uri);
+            var response = await httpClient.GetAsync(uri).ConfigureAwait(true);
 
             if (response.IsSuccessStatusCode)
             {
-                var content = await response.Content.ReadAsStringAsync();
+                var content = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
                 return JsonConvert.DeserializeObject<TResult>(content);
             }
             else
@@ -145,7 +145,6 @@ namespace RCS.PortableShop.Model
         // Check out the IDisposable documentation for details on the pattern applied here.
         // Note that it can have implications on derived classes too.
 
-        // Has Dispose already been called?
         private bool disposed = false;
 
         public void Dispose()
@@ -159,15 +158,11 @@ namespace RCS.PortableShop.Model
             if (disposed)
                 return;
 
-            // Free managed objects here.
             if (disposing)
             {
-                productsServiceClient?.CloseAsync();
+                productsServiceClient?.Dispose();
                 httpClient?.Dispose();
             }
-
-            // Free unmanaged objects here.
-            { }
 
             disposed = true;
         }

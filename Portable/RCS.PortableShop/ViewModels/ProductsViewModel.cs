@@ -46,7 +46,7 @@ namespace RCS.PortableShop.ViewModels
             (
                 ProductCategoriesRepository.Instance.ReadList(),
                 ProductSubcategoriesRepository.Instance.ReadList()
-            );
+            ).ConfigureAwait(true);
 
             var succeeded = results.All<bool>(result => result == true);
 
@@ -93,7 +93,7 @@ namespace RCS.PortableShop.ViewModels
             detailFilterValue = DetailFilterValue;
             textFilterValue = TextFilterValue;
 
-            var result = await ProductsRepository.Instance.ReadList(masterFilterValue, detailFilterValue, textFilterValue);
+            var result = await ProductsRepository.Instance.ReadList(masterFilterValue, detailFilterValue, textFilterValue).ConfigureAwait(true);
             var succeeded = result != null;
 
             if (succeeded)
@@ -121,7 +121,7 @@ namespace RCS.PortableShop.ViewModels
             var wrapperViewModel = new ShoppingWrapperViewModel() { WrappedContent = productView };
             var wrapperView = new ShoppingWrapperView() { ViewModel = wrapperViewModel };
 
-            await PushPage(wrapperView);
+            await PushPage(wrapperView).ConfigureAwait(true);
         }
         #endregion
 

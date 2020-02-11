@@ -34,7 +34,7 @@ namespace RCS.PortableShop.Model
         #endregion
 
         #region Constants
-        public new enum Errors
+        public new enum Message
         {
             CartError
         }
@@ -77,7 +77,7 @@ namespace RCS.PortableShop.Model
             }
             else
             {
-                MessagingCenter.Send<CartItemsRepository>(this, CartItemsRepository.Errors.CartError.ToString());
+                MessagingCenter.Send<CartItemsRepository>(this, CartItemsRepository.Message.CartError.ToString());
             }
 
             return productCartItem;
