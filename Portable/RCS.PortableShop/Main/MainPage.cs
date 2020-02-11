@@ -64,7 +64,7 @@ namespace RCS.PortableShop.Main
         {
             // Use the MessagingCenter mechanism to connect ViewModels or other (non GUI) code to this Page.
 
-            MessagingCenter.Subscribe<ProductsServiceConsumer, string>(this, ProductsServiceConsumer.Errors.ServiceError.ToString(), async (sender, details) =>
+            MessagingCenter.Subscribe<ProductsServiceConsumer, string>(this, ProductsServiceConsumer.Error.ServiceError.ToString(), async (sender, details) =>
             {
                 // Try to prevent stacking muliple related messages, like at startup.
                 // TODO Finetune this. It can also unwantedly prevent messages, like after changing page.
@@ -87,7 +87,7 @@ namespace RCS.PortableShop.Main
                 }
             });
 
-            MessagingCenter.Subscribe<CartItemsRepository>(this, CartItemsRepository.Errors.CartError.ToString(), (sender) =>
+            MessagingCenter.Subscribe<CartItemsRepository>(this, CartItemsRepository.Error.CartError.ToString(), (sender) =>
             {
                 page.DisplayAlert(Labels.Error, Labels.ErrorCart, Labels.Close);
             });

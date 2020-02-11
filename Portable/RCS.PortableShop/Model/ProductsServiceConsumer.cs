@@ -39,7 +39,7 @@ namespace RCS.PortableShop.Model
         #endregion
 
         #region Messaging
-        public enum Errors
+        public enum Error
         {
             ServiceError
         }
@@ -66,7 +66,7 @@ namespace RCS.PortableShop.Model
         {
             var message = $"{exception?.Message}{Environment.NewLine}{detail}";
 
-            MessagingCenter.Send<ProductsServiceConsumer, string>(this, Errors.ServiceError.ToString(), message);
+            MessagingCenter.Send<ProductsServiceConsumer, string>(this, Error.ServiceError.ToString(), message);
         }
 
         #endregion
