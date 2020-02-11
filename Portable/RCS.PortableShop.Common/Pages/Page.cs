@@ -21,12 +21,14 @@ namespace RCS.PortableShop.Common.Pages
 
         protected virtual async Task Initialize()
         {
-            if (!initialized)
-            {
-                Adorn();
 
-                initialized = true;
-            }
+            if (!initialized)
+                await Task.Run(() =>
+                {
+                    Adorn();
+                    initialized = true;
+                }
+                ).ConfigureAwait(true);
         }
 
         // Force new type here.

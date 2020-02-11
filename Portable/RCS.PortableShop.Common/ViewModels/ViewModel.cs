@@ -55,16 +55,22 @@ namespace RCS.PortableShop.Common.ViewModels
         protected virtual async Task<bool> Initialize()
         {
             if (!initialized)
-            {
-                SetCommands();
-
-                initialized = true;
-            }
+                await Task.Run(() =>
+                {
+                    SetCommands();
+                    initialized = true;
+                }
+                ).ConfigureAwait(true);
 
             return initialized;
         }
 
-        protected virtual async Task<bool> Read() { return true; }
+        protected virtual async Task<bool> Read()
+        {
+            await Task.Run(() => { }).ConfigureAwait(true);
+
+            return true;
+        }
 
         protected void UpdateTitle()
         {
