@@ -1,48 +1,31 @@
 ﻿using RCS.PortableShop.Common.ViewModels;
+using RCS.PortableShop.Model;
 using RCS.PortableShop.Resources;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using Xamarin.Essentials;
-using static RCS.PortableShop.Model.ProductsServiceConsumer;
 
 namespace RCS.PortableShop.ViewModels
 {
     public class SettingsViewModel : ViewModel
     {
-        public SettingsViewModel()
-        {
-            ServiceTypes = Enum.GetValues(typeof(ServiceType)).Cast<ServiceType>().ToList();
-            ServiceType = (ServiceType)Preferences.Get(serviceTypeKey, 1);
-        }
-
         public override string MakeTitle()
         {
             return Labels.Settings; ;
         }
 
-        List<ServiceType> serviceTypes;
-        public List<ServiceType> ServiceTypes
+        public List<Settings.ServiceType> ServiceTypes
         {
-            get => serviceTypes;
-            private set
-            {
-                serviceTypes = value;
-
-                OnPropertyChanged();
-            }
+            get => Settings.ServiceTypes;
         }
 
-        const string serviceTypeKey = "ServiceType";
-        ServiceType serviceType;
-        public ServiceType ServiceType
+        public Settings.ServiceType ServiceType
         {
-            get => serviceType;
+            get
+            {
+                return Settings.ServiceTypeSelected;
+            }
             set
             {
-                serviceType = value;
-                Preferences.Set(serviceTypeKey, (int)value);
-
+                Settings.ServiceTypeSelected = value;
                 OnPropertyChanged();
             }
         }

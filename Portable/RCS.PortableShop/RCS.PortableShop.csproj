@@ -59,6 +59,7 @@
     <Compile Include="Model\ProductsServiceConsumer.cs" />
     <Compile Include="Model\ProductSubcategoriesRepository.cs" />
     <Compile Include="Model\Repository.cs" />
+    <Compile Include="Model\Settings.cs" />
 
     <Compile Include="ViewModels\MainShellViewModel.cs" />
 

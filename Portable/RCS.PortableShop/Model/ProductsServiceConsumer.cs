@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.ServiceModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using static RCS.PortableShop.Model.Settings;
 
 namespace RCS.PortableShop.Model
 {
@@ -26,14 +27,6 @@ namespace RCS.PortableShop.Model
         static private string serviceDomain = "https://rcsworks.nl";
         static private string productsApi = $"{serviceDomain}/ProductsApi";
 
-        // TODO Move elsewhere if both kept .
-        public enum ServiceType
-        {
-            WCF,
-            WebApi
-        }
-
-        // TODO Move to settings.
         // TODO Separate these 2 types of service clients.
         protected ServiceType serviceType = ServiceType.WebApi;
         #endregion
