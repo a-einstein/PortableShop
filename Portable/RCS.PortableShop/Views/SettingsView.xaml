@@ -12,7 +12,7 @@
     mc:Ignorable="d"
     >
 
-    <Grid Margin="10">
+    <Grid VerticalOptions="Start" HorizontalOptions="Start" Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
