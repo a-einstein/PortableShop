@@ -5,8 +5,8 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:BaseClasses="clr-namespace:RCS.PortableShop.Common.Views;assembly=RCS.PortableShop.Common"
-    xmlns:ViewModels="clr-namespace:RCS.PortableShop.ViewModels;assembly=RCS.PortableShop"
     xmlns:Localization="clr-namespace:RCS.PortableShop.Localization;assembly=RCS.PortableShop"
+    xmlns:ViewModels="clr-namespace:RCS.PortableShop.ViewModels;assembly=RCS.PortableShop"
     BaseClasses:View.ViewModel="{x:Static ViewModels:ShoppingCartViewModel.Instance}"
     >
 
