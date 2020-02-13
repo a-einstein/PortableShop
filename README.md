@@ -4,10 +4,15 @@
 Working portable (Android) application for test and demo purpose based on Xamarin Forms. It simulates limited shopping capabilities based on the AdventureWorks database.
 
 #### News
+* Added storage and retrieval of the full overview filter.
+* Added ability to switch between the two service types and store this in settings.
 * Added usage of Web API service as alternative to WCF.
-* Started on Xamarin.Essentials.
 * The APK installation file can be downloaded from Azure again, as described below.
 * Migrated to .Net Standard.
+
+#### Known issues
+* The application may show a blank screen after the splash screen, then has to be restarted.
+* Restoring the text filter does work but does not visibly show in the entry field.
 
 #### Purpose
 * Explore various techniques based on C#, XAML and Xamarin Forms.

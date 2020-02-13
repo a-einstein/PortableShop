@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ServiceModel;
 using System.Threading.Tasks;
+using static RCS.PortableShop.Model.Settings;
 
 namespace RCS.PortableShop.Model
 {
@@ -46,7 +47,7 @@ namespace RCS.PortableShop.Model
             try
             {
                 // TODO Create some sort of injection somewhere?
-                switch (preferredServiceType)
+                switch (ServiceTypeSelected)
                 {
                     case ServiceType.WCF:
                         productsOverview = await Task.Factory.FromAsync<int?, int?, string, ProductsOverviewList>(
@@ -91,7 +92,7 @@ namespace RCS.PortableShop.Model
             try
             {
                 // TODO Create some sort of injection somewhere?
-                switch (preferredServiceType)
+                switch (ServiceTypeSelected)
                 {
                     case ServiceType.WCF:
                         product = await Task.Factory.FromAsync<int, Product>(

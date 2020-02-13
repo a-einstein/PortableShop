@@ -4,6 +4,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.ServiceModel;
 using System.Threading.Tasks;
+using static RCS.PortableShop.Model.Settings;
 
 namespace RCS.PortableShop.Model
 {
@@ -35,7 +36,6 @@ namespace RCS.PortableShop.Model
         #endregion
 
         #region CRUD
-
         protected override string EntitiesName => "ProductCategories";
 
         public async Task<bool> ReadList(bool addEmptyElement = true)
@@ -47,7 +47,7 @@ namespace RCS.PortableShop.Model
             try
             {
                 // TODO Create some sort of injection somewhere?
-                switch (preferredServiceType)
+                switch (ServiceTypeSelected)
                 {
                     case ServiceType.WCF:
                         categories = await Task.Factory.FromAsync<ProductCategoryList>(

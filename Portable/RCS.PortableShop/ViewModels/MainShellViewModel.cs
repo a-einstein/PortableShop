@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RCS.PortableShop.Views;
+using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Essentials;
@@ -16,6 +17,7 @@ namespace RCS.PortableShop.ViewModels
             ShowProductsCommand = new Command(async () => await ShowProducts().ConfigureAwait(true));
             OpenSupportCommand = new Command(() => OpenSupport());
             UpdateCommand = new Command(() => Update());
+            SettingsCommand = new Command(async () => await OpenSettings().ConfigureAwait(true));
         }
         #endregion
 
@@ -77,9 +79,9 @@ namespace RCS.PortableShop.ViewModels
         public ICommand UpdateCommand
         {
             get { return (ICommand)GetValue(UpdateCommandProperty); }
-            set 
-            { 
-                SetValue(UpdateCommandProperty, value); 
+            set
+            {
+                SetValue(UpdateCommandProperty, value);
                 RaisePropertyChanged(nameof(UpdateCommand));
             }
         }
@@ -92,6 +94,30 @@ namespace RCS.PortableShop.ViewModels
 
             // TODO Make this Configureable.
             OpenWeb("https://rcsadventureworac85.blob.core.windows.net/portableshop-releases/latest/RCS.CyclOne.apk");
+        }
+        #endregion
+
+        #region Settings
+        public static readonly BindableProperty SettingsCommandProperty =
+             BindableProperty.Create(nameof(SettingsCommand), typeof(ICommand), typeof(MainShellViewModel));
+
+        public ICommand SettingsCommand
+        {
+            get { return (ICommand)GetValue(SettingsCommandProperty); }
+            set
+            {
+                SetValue(SettingsCommandProperty, value);
+                RaisePropertyChanged(nameof(SettingsCommand));
+            }
+        }
+
+        protected static async Task OpenSettings()
+        {
+            // TODO Open this IN flyout?
+            Shell.FlyoutIsPresented = false;
+
+            var settingsView = new SettingsView() { ViewModel = new SettingsViewModel() };
+            await PushPage(settingsView).ConfigureAwait(true);
         }
         #endregion
 

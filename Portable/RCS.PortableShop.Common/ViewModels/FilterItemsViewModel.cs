@@ -100,7 +100,7 @@ namespace RCS.PortableShop.Common.ViewModels
         public static readonly BindableProperty MasterFilterValueProperty =
             BindableProperty.Create(nameof(MasterFilterValue), typeof(TMasterFilterItem), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>), propertyChanged: new BindingPropertyChangedDelegate(OnMasterFilterValueChanged));
 
-        public TMasterFilterItem MasterFilterValue
+        public virtual TMasterFilterItem MasterFilterValue
         {
             get { return (TMasterFilterItem)GetValue(MasterFilterValueProperty); }
             set
@@ -146,7 +146,7 @@ namespace RCS.PortableShop.Common.ViewModels
             BindableProperty.Create(nameof(DetailFilterItems), typeof(ObservableCollection<TDetailFilterItem>), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>), defaultValue: new ObservableCollection<TDetailFilterItem>());
 
         // Note there seems to be an issue with updating bindings by ObservableCollection, or on the particular controls. See consequences elsewhere.
-        public ObservableCollection<TDetailFilterItem> DetailFilterItems
+        public virtual ObservableCollection<TDetailFilterItem> DetailFilterItems
         {
             get { return (ObservableCollection<TDetailFilterItem>)GetValue(DetailFilterItemsProperty); }
             set
@@ -172,7 +172,7 @@ namespace RCS.PortableShop.Common.ViewModels
         public static readonly BindableProperty TextFilterValueProperty =
             BindableProperty.Create(nameof(TextFilterValue), typeof(string), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>));
 
-        public string TextFilterValue
+        public virtual string TextFilterValue
         {
             get { return (string)GetValue(TextFilterValueProperty); }
             set

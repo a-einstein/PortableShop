@@ -40,6 +40,8 @@
         <Setter Property="HasUnevenRows" Value="True"/>
     </Style>
 
+    <!--Grids ======================================== -->
+ 
     <Style x:Key="ListItemStyle" TargetType="Grid">
         <Setter Property="Margin" Value="2,2,2,0"/>
         <Setter Property="Padding" Value="3"/>

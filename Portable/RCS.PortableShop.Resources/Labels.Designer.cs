@@ -319,6 +319,24 @@ namespace RCS.PortableShop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Service Type.
+        /// </summary>
+        public static string ServiceType {
+            get {
+                return ResourceManager.GetString("ServiceType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        public static string Settings {
+            get {
+                return ResourceManager.GetString("Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to CyclOne.
         /// </summary>
         public static string Shop {

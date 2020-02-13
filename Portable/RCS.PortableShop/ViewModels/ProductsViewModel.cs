@@ -69,17 +69,60 @@ namespace RCS.PortableShop.ViewModels
                     DetailFilterItemsSource.Add(item);
                 }
 
-                int masterDefaultId = 1;
-                MasterFilterValue = MasterFilterItems.FirstOrDefault(category => category.Id == masterDefaultId);
+                var retrievedCategoryId = Settings.ProductCategoryId;
+
+                MasterFilterValue = retrievedCategoryId.HasValue
+                    ? MasterFilterItems.FirstOrDefault(value => value.Id == retrievedCategoryId.Value)
+                    : MasterFilterItems.FirstOrDefault(value => !value.IsEmpty);
+
+                var retrievedSubcategoryId = Settings.ProductSubategoryId;
 
                 // Note that MasterFilterValue also determines DetailFilterItems.
-                int detailDefaultId = 1;
-                DetailFilterValue = DetailFilterItems.FirstOrDefault(subcategory => subcategory.Id == detailDefaultId);
+                DetailFilterValue = retrievedSubcategoryId.HasValue
+                    ? DetailFilterItems.FirstOrDefault(value => value.Id == retrievedSubcategoryId.Value)
+                    : DetailFilterItems.FirstOrDefault(value => !value.IsEmpty);
 
-                TextFilterValue = default(string);
+                // TODO This seems to work, but the view field is not updated.
+                TextFilterValue = Settings.TextFilter;
             }
 
             return succeeded;
+        }
+
+        public new ProductCategory MasterFilterValue
+        {
+            get
+            {
+                return base.MasterFilterValue;
+            }
+            set
+            {
+                Settings.ProductCategoryId = value?.Id ?? null;
+                base.MasterFilterValue = value;
+            }
+        }
+
+        public new ProductSubcategory DetailFilterValue
+        {
+            get
+            {
+                return base.DetailFilterValue;
+            }
+            set
+            {
+                Settings.ProductSubategoryId = value?.Id ?? null;
+                base.DetailFilterValue = value;
+            }
+        }
+
+        public override string TextFilterValue
+        {
+            get => base.TextFilterValue;
+            set
+            {
+                Settings.TextFilter = value;
+                base.TextFilterValue = value;
+            }
         }
 
         protected override async Task<bool> ReadFiltered()

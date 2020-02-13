@@ -208,6 +208,12 @@ Pas a.u.b. uw zoekopdracht aan.</value>
   <data name="Searching" xml:space="preserve">
     <value>Zoeken...</value>
   </data>
+  <data name="ServiceType" xml:space="preserve">
+    <value>Servicetype</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Instellingen</value>
+  </data>
   <data name="Shop" xml:space="preserve">
     <value>CyclOne</value>
   </data>

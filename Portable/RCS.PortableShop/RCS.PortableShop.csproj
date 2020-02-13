@@ -59,13 +59,17 @@
     <Compile Include="Model\ProductsServiceConsumer.cs" />
     <Compile Include="Model\ProductSubcategoriesRepository.cs" />
     <Compile Include="Model\Repository.cs" />
+    <Compile Include="Model\Settings.cs" />
 
     <Compile Include="ViewModels\MainShellViewModel.cs" />
+
+    <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\ShoppingViewModel.cs" />
     <Compile Include="ViewModels\ShoppingWrapperViewModel.cs" />
     <Compile Include="ViewModels\ProductsViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModel.cs" />
     <Compile Include="ViewModels\ShoppingCartViewModel.cs" />
+    <Compile Include="Views\SettingsView.xaml.cs" />
 
     <Compile Include="Views\ShoppingWrapperView.xaml.cs" />
     <Compile Include="Views\ProductsView.xaml.cs" />
@@ -116,6 +120,12 @@
 
   <ItemGroup>
     <EmbeddedResource Include="Views\ShoppingCartView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Views\SettingsView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>

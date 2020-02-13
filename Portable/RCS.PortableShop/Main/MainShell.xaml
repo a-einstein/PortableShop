@@ -42,4 +42,6 @@
     <MenuItem Command="{Binding OpenSupportCommand}" Text="Support" />
 
     <MenuItem Command="{Binding UpdateCommand}" Text="Update" />
+
+    <MenuItem Command="{Binding SettingsCommand}" Text="Settings" />
 </Shell>
