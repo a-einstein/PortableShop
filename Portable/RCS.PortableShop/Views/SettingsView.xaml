@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<BaseClasses:View 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:BaseClasses="clr-namespace:RCS.PortableShop.Common.Views;assembly=RCS.PortableShop.Common"
+    mc:Ignorable="d"
+    x:Class="RCS.PortableShop.Views.SettingsView"
+    >
+
+    <ContentView.Content>
+        <StackLayout>
+            <Label Text="Hello Xamarin.Forms!" />
+        </StackLayout>
+    </ContentView.Content>
+</BaseClasses:View>
