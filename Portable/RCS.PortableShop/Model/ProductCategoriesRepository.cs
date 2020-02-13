@@ -47,7 +47,7 @@ namespace RCS.PortableShop.Model
             try
             {
                 // TODO Create some sort of injection somewhere?
-                switch (preferredServiceType)
+                switch (serviceType)
                 {
                     case ServiceType.WCF:
                         categories = await Task.Factory.FromAsync<ProductCategoryList>(

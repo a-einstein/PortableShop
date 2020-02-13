@@ -208,6 +208,12 @@ Please try a different query.</value>
   <data name="Searching" xml:space="preserve">
     <value>Searching...</value>
   </data>
+  <data name="ServiceType" xml:space="preserve">
+    <value>Service Type</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
   <data name="Shop" xml:space="preserve">
     <value>CyclOne</value>
   </data>

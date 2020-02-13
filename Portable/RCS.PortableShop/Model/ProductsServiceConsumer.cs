@@ -35,7 +35,7 @@ namespace RCS.PortableShop.Model
 
         // TODO Move to settings.
         // TODO Separate these 2 types of service clients.
-        protected ServiceType preferredServiceType = ServiceType.WebApi;
+        protected ServiceType serviceType = ServiceType.WebApi;
         #endregion
 
         #region Messaging
