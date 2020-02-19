@@ -41,7 +41,7 @@
 
     <MenuItem Command="{Binding ShowCartCommand}" Text="Cart" IconImageSource="Cart"/>
 
-    <MenuItem Command="{Binding OpenSupportCommand}" Text="Support" />
+    <MenuItem Command="{Binding OpenSupportCommand}" Text="Support" IconImageSource="Information"/>
 
     <MenuItem Command="{Binding UpdateCommand}" Text="Update" />
 
