@@ -220,11 +220,17 @@ Pas a.u.b. uw zoekopdracht aan.</value>
   <data name="Size" xml:space="preserve">
     <value>Maat</value>
   </data>
+  <data name="Support" xml:space="preserve">
+    <value>Hulp</value>
+  </data>
   <data name="TextFilter" xml:space="preserve">
     <value>Naam of Kleur</value>
   </data>
   <data name="TotalValue" xml:space="preserve">
     <value>Waarde</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Bijwerken</value>
   </data>
   <data name="Weight" xml:space="preserve">
     <value>Gewicht</value>

@@ -4,12 +4,11 @@
     x:Class="RCS.PortableShop.Main.MainShell"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:Localization="clr-namespace:RCS.PortableShop.Localization;assembly=RCS.PortableShop"
     xmlns:Main="clr-namespace:RCS.PortableShop.Main"
-    xmlns:BaseClasses="clr-namespace:RCS.PortableShop.Common.Views;assembly=RCS.PortableShop.Common"
-    mc:Ignorable="d"
-    >
+    mc:Ignorable="d">
 
     <Shell.FlyoutHeader>
         <ContentView Padding="10" BackgroundColor="White">
@@ -31,17 +30,14 @@
     </FlyoutItem>
 
     <!--TODO Would prefer to have hamburger visible on all pages, besides a back button. But is seems intended to only have it on the root page.-->
-    <!--TODO Add icons.-->
-    <!--TODO Add some styling, possibly functional colours for the page buttons.-->
-    <!--TODO Take texts from resources.-->
 
-    <MenuItem Command="{Binding ShowProductsCommand}" Text="Products" />
+    <MenuItem Command="{Binding SettingsCommand}" Text="{Localization:Translate Settings}" IconImageSource="Settings"/>
 
-    <MenuItem Command="{Binding ShowCartCommand}" Text="Cart" />
+    <MenuItem Command="{Binding ShowProductsCommand}" Text="{Localization:Translate Products}" IconImageSource="Overview"/>
 
-    <MenuItem Command="{Binding OpenSupportCommand}" Text="Support" />
+    <MenuItem Command="{Binding ShowCartCommand}" Text="{Localization:Translate Cart}" IconImageSource="Cart"/>
 
-    <MenuItem Command="{Binding UpdateCommand}" Text="Update" />
+    <MenuItem Command="{Binding OpenSupportCommand}" Text="{Localization:Translate Support}" IconImageSource="Information"/>
 
-    <MenuItem Command="{Binding SettingsCommand}" Text="Settings" />
+    <MenuItem Command="{Binding UpdateCommand}" Text="{Localization:Translate Update}" IconImageSource="CloudDownload"/>
 </Shell>
