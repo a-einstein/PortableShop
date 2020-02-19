@@ -40,5 +40,4 @@
     <MenuItem Command="{Binding OpenSupportCommand}" Text="{Localization:Translate Support}" IconImageSource="Information"/>
 
     <MenuItem Command="{Binding UpdateCommand}" Text="{Localization:Translate Update}" IconImageSource="CloudDownload"/>
-
 </Shell>
