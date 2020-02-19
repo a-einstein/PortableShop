@@ -35,7 +35,7 @@
     <!--TODO Add some styling, possibly functional colours for the page buttons.-->
     <!--TODO Take texts from resources.-->
 
-    <MenuItem Command="{Binding SettingsCommand}" Text="Settings" />
+    <MenuItem Command="{Binding SettingsCommand}" Text="Settings" IconImageSource="Settings"/>
 
     <MenuItem Command="{Binding ShowProductsCommand}" Text="Products" />
 
