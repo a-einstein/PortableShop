@@ -31,8 +31,6 @@
     </FlyoutItem>
 
     <!--TODO Would prefer to have hamburger visible on all pages, besides a back button. But is seems intended to only have it on the root page.-->
-    <!--TODO Add icons.-->
-    <!--TODO Add some styling, possibly functional colours for the page buttons.-->
     <!--TODO Take texts from resources.-->
 
     <MenuItem Command="{Binding SettingsCommand}" Text="Settings" IconImageSource="Settings"/>
@@ -43,6 +41,6 @@
 
     <MenuItem Command="{Binding OpenSupportCommand}" Text="Support" IconImageSource="Information"/>
 
-    <MenuItem Command="{Binding UpdateCommand}" Text="Update" />
+    <MenuItem Command="{Binding UpdateCommand}" Text="Update" IconImageSource="CloudDownload"/>
 
 </Shell>
