@@ -7,12 +7,7 @@ namespace RCS.PortableShop.Common.Converters
     {
         public override object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            bool hasValue = false;
-
-            foreach (var item in values)
-            {
-                hasValue = hasValue || HasValueTester.HasValue(item);
-            }
+            bool hasValue = HasValue(values);
 
             // Invert if any parameter is passed.
             var result = parameter != null
@@ -20,6 +15,18 @@ namespace RCS.PortableShop.Common.Converters
                 : hasValue;
 
             return result;
+        }
+
+        public static bool HasValue(object[] values)
+        {
+            bool hasValue = false;
+
+            foreach (var item in values)
+            {
+                hasValue = hasValue || HasValueTester.HasValue(item);
+            }
+
+            return hasValue;
         }
     }
 }

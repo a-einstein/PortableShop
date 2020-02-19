@@ -16,18 +16,12 @@ namespace RCS.PortableShop.Main
             base.OnAppearing();
 
             // TODO Crashes in Mono when service is not entirely working, particularly during startup.
-            // Note this only occurs during debugging, as installed application it is resistant.
-            // Currently have no way of catching this, not even in Android.
+            // Crashes are not properly caught and reported.
             // Also see here:
             // https://forums.xamarin.com/discussion/149309/global-exception-handling
-            try
-            {
-                await Refresh().ConfigureAwait(true);
-            }
-            catch (Exception)
-            {
-                 throw;
-            }
+
+            // Make sure to do this not earlier than OnAppearing as exceptions may appear, like because of application being in background.
+            await Refresh().ConfigureAwait(true);
         }
 
         private bool initialized;
@@ -96,7 +90,7 @@ namespace RCS.PortableShop.Main
         // TODO It would be desirable to stack and pop query pages, enabling return to previous ones without having to set the filter again.
         // A forward button would also be a logical addition.
         // But care should be taken to limit the possibilities to prevent over complication..
-       
+
         // TODO Does not seem to work anymore. Move to Shell?
         protected override bool OnBackButtonPressed()
         {

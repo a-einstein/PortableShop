@@ -51,20 +51,7 @@
                     <!--Put at Start, as changes in orientation did not work out correctly on the last Label.-->
                     <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
                         <!--IsDefault="True"-->
-                        <Button Text="{Localization:Translate Filter}" Command="{Binding FilterCommand}" BackgroundColor="{StaticResource ProductsLevel1Colour}" HorizontalOptions="Start">
-                            <!--Note this prevents unfiltered queries.-->
-                            <!--TODO Combine with validation.-->
-                            <Button.IsEnabled>
-                                <Extensions:MultiBinding Converter="{StaticResource HasValueMultiTester}">
-                                    <Binding Path="MasterFilterValue"/>
-                                    <Binding Path="DetailFilterValue"/>
-                                    <Binding Path="IsValid" Source="{x:Reference TextFilterValidator}"/>
-                                    <!--TODO Prefereably disable whole view and hide it under an opaque overlay.-->
-                                    <Binding Path="Awaiting" Source="{x:Reference TextFilterValidator}" Converter="{StaticResource BooleanInverter}"/>
-                                </Extensions:MultiBinding>
-                            </Button.IsEnabled>
-                        </Button>
-
+                        <Button Text="{Localization:Translate Filter}" Command="{Binding FilterCommand}" BackgroundColor="{StaticResource ProductsLevel1Colour}" HorizontalOptions="Start"/>
                         <Label Text="{Binding ItemsCount}" Style="{StaticResource ValueEmphasisMediumLabelStyle}"/>
                         <Label Text="{Localization:Translate Products}" Style="{StaticResource EmphasisMediumLabelStyle}"/>
                     </StackLayout>

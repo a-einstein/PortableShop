@@ -6,6 +6,7 @@ using RCS.PortableShop.Views;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -123,6 +124,14 @@ namespace RCS.PortableShop.ViewModels
                 Settings.TextFilter = value;
                 base.TextFilterValue = value;
             }
+        }
+
+        protected override bool FilterCanExecute()
+        {
+            return
+                !Awaiting &&
+                ((MasterFilterValue != null && !MasterFilterValue.IsEmpty) || 
+                (!string.IsNullOrEmpty(TextFilterValue) && (Regex.IsMatch(TextFilterValue, @"\w{3}", RegexOptions.IgnoreCase))));
         }
 
         protected override async Task<bool> ReadFiltered()

@@ -55,8 +55,7 @@ namespace RCS.PortableShop.Common.Pages
         {
             await Initialize().ConfigureAwait(true);
 
-            // Use this because of the ConfigureAwait.
-            //Content.IfNotNull(page => await Refresh()?.ConfigureAwait(true));
+            // Use IfNotNull because of ConfigureAwait.
             Content.IfNotNull(async content => await content.Refresh().ConfigureAwait(true));
         }
     }

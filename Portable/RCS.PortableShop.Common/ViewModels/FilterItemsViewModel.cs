@@ -20,7 +20,7 @@ namespace RCS.PortableShop.Common.ViewModels
         {
             base.SetCommands();
 
-            FilterCommand = new Command(async () => await Refresh().ConfigureAwait(true));
+            FilterCommand = new Command(async () => await Refresh().ConfigureAwait(true), FilterCanExecute);
             DetailsCommand = new Command<TItem>(ShowDetails);
         }
         #endregion
@@ -78,6 +78,18 @@ namespace RCS.PortableShop.Common.ViewModels
 
             return (ItemsCount != 0 && !string.IsNullOrEmpty(title)) ? title : TitleDefault;
         }
+
+        public override bool Awaiting
+        {
+            get => base.Awaiting;
+            set
+            {
+                base.Awaiting = value;
+
+                // Needed BeginInvokeOnMainThread to avoid Android exception about Looper threads because of ActivityIndicator.
+                Device.BeginInvokeOnMainThread(() => (FilterCommand as Command)?.ChangeCanExecute());
+            }
+        }
         #endregion
 
         #region Filtering
@@ -106,6 +118,7 @@ namespace RCS.PortableShop.Common.ViewModels
             set
             {
                 SetValue(MasterFilterValueProperty, value);
+                (FilterCommand as Command)?.ChangeCanExecute();
                 RaisePropertyChanged(nameof(MasterFilterValue));
             }
         }
@@ -159,6 +172,7 @@ namespace RCS.PortableShop.Common.ViewModels
         public static readonly BindableProperty DetailFilterValueProperty =
             BindableProperty.Create(nameof(DetailFilterValue), typeof(TDetailFilterItem), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>));
 
+        // Note DetailFilterValue should only have a value if MasterFilterValue has.
         public TDetailFilterItem DetailFilterValue
         {
             get { return (TDetailFilterItem)GetValue(DetailFilterValueProperty); }
@@ -178,9 +192,12 @@ namespace RCS.PortableShop.Common.ViewModels
             set
             {
                 SetValue(TextFilterValueProperty, value);
+                (FilterCommand as Command)?.ChangeCanExecute();
                 RaisePropertyChanged(nameof(TextFilterValue));
             }
         }
+
+        protected abstract bool FilterCanExecute();
 
         protected abstract Task<bool> ReadFiltered();
 

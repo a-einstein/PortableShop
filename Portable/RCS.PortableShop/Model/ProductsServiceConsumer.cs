@@ -26,9 +26,6 @@ namespace RCS.PortableShop.Model
         static public TimeSpan Timeout { get; } = new TimeSpan(0, 0, 15);
         static private string serviceDomain = "https://rcsworks.nl";
         static private string productsApi = $"{serviceDomain}/ProductsApi";
-
-        // TODO Separate these 2 types of service clients.
-        protected ServiceType serviceType = ServiceType.WebApi;
         #endregion
 
         #region Messaging
@@ -63,6 +60,8 @@ namespace RCS.PortableShop.Model
         }
 
         #endregion
+
+        // TODO Separate these 2 types of service clients.
 
         #region WCF Service
         private ProductsServiceClient productsServiceClient;
