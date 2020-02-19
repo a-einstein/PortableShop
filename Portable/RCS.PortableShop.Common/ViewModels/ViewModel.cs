@@ -17,7 +17,7 @@ namespace RCS.PortableShop.Common.ViewModels
         public static readonly BindableProperty AwaitingProperty =
             BindableProperty.Create(nameof(Awaiting), typeof(bool), typeof(ViewModel), defaultValue: false);
 
-        public bool Awaiting
+        public virtual bool Awaiting
         {
             get { return (bool)GetValue(AwaitingProperty); }
             set

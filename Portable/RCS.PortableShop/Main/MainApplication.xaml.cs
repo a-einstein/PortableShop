@@ -2,7 +2,6 @@
 using RCS.PortableShop.Resources;
 using System.Diagnostics;
 using System.Reflection;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -21,10 +20,6 @@ namespace RCS.PortableShop.Main
         public MainApplication()
         {
             InitializeComponent();
-
-            // HACK See OnStart.
-            // Note See no way to get rid of warning CS4014.
-            StartActions();
         }
 
         private static void ListResources()
@@ -57,23 +52,14 @@ namespace RCS.PortableShop.Main
             }
         }
 
-        protected override async void OnStart()
+        protected override void OnStart()
         {
-            await Task.Run(() =>
-            {
-                base.OnStart();
-
-                // Moved to constructor because of https://bugzilla.xamarin.com/show_bug.cgi?id=60337
-                //await StartActions().ConfigureAwait(true);
-            }
-            ).ConfigureAwait(true);
+            base.OnStart();
+            StartActions();
         }
 
-        private async Task StartActions()
+        private void StartActions()
         {
-            // As awaiting other actions caused problems this is just to suppress warning CS1998.
-            await Task.Run(() => { }).ConfigureAwait(true);
-
 #if DEBUG
             ListResources();
 #endif
