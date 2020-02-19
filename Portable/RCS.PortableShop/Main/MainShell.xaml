@@ -30,7 +30,6 @@
     </FlyoutItem>
 
     <!--TODO Would prefer to have hamburger visible on all pages, besides a back button. But is seems intended to only have it on the root page.-->
-    <!--TODO Take texts from resources.-->
 
     <MenuItem Command="{Binding SettingsCommand}" Text="{Localization:Translate Settings}" IconImageSource="Settings"/>
 
