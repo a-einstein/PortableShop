@@ -355,6 +355,15 @@ namespace RCS.PortableShop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Support.
+        /// </summary>
+        public static string Support {
+            get {
+                return ResourceManager.GetString("Support", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name or Colour.
         /// </summary>
         public static string TextFilter {
@@ -369,6 +378,15 @@ namespace RCS.PortableShop.Resources {
         public static string TotalValue {
             get {
                 return ResourceManager.GetString("TotalValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update.
+        /// </summary>
+        public static string Update {
+            get {
+                return ResourceManager.GetString("Update", resourceCulture);
             }
         }
         

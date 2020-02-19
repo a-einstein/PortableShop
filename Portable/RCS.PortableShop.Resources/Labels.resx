@@ -220,12 +220,18 @@ Please try a different query.</value>
   <data name="Size" xml:space="preserve">
     <value>Size</value>
   </data>
+  <data name="Support" xml:space="preserve">
+    <value>Support</value>
+  </data>
   <data name="TextFilter" xml:space="preserve">
     <value>Name or Colour</value>
   </data>
   <data name="TotalValue" xml:space="preserve">
     <value>Value</value>
     <comment>Keep it short for layout.</comment>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Update</value>
   </data>
   <data name="Weight" xml:space="preserve">
     <value>Weight</value>
