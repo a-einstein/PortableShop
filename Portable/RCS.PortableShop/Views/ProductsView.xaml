@@ -78,7 +78,7 @@
                                                 <StackLayout Grid.Column="0" VerticalOptions="Start">
                                                     <!--TODO Get these elements better aligned.-->
                                                     <Image Source="{Binding ThumbNailPhoto, Converter={StaticResource ByteArrayToImageSourceConverter}}" VerticalOptions="Start" HorizontalOptions="End" HeightRequest="75" WidthRequest="100"/>
-                                                    <Button Text="{Localization:Translate IncreaseProduct}" Command="{Binding BindingContext.CartCommand, Source={x:Reference productsItemsControl}}" CommandParameter="{Binding}" Style="{StaticResource CartButtonStyle}" VerticalOptions="Start" HorizontalOptions="End"/>
+                                                    <Button ImageSource="CartPlus" Command="{Binding BindingContext.CartCommand, Source={x:Reference productsItemsControl}}" CommandParameter="{Binding}" Style="{StaticResource CartButtonStyle}" VerticalOptions="Start" HorizontalOptions="End"/>
                                                 </StackLayout>
 
                                                 <StackLayout Grid.Column="1" VerticalOptions="Start">
