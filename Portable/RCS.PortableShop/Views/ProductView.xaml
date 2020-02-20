@@ -33,7 +33,7 @@
                     </Controls:ContentButton.Content>
                 </Controls:ContentButton>
 
-                <Button Text="{Localization:Translate IncreaseProduct}" Command="{Binding CartCommand}" CommandParameter="{Binding Item}" Style="{StaticResource CartButtonStyle}" VerticalOptions="Start" HorizontalOptions="End"/>
+                <Button ImageSource="CartPlus" Command="{Binding CartCommand}" CommandParameter="{Binding Item}" Style="{StaticResource CartButtonStyle}" VerticalOptions="Start" HorizontalOptions="End"/>
             </StackLayout>
 
             <Grid>
