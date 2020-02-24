@@ -5,21 +5,14 @@ using System.Net.Http;
 using System.ServiceModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
-using static RCS.PortableShop.Model.Settings;
 
 namespace RCS.PortableShop.Model
 {
     public abstract class ProductsServiceConsumer : IDisposable
     {
         #region Construction        
-        private readonly HttpClient httpClient;
-
-        protected ProductsServiceConsumer()
-        {
-            // Simple optimisation.
-            // TODO Improve as described here, as far as applicable https://josefottosson.se/you-are-probably-still-using-httpclient-wrong-and-it-is-destabilizing-your-software/
-            httpClient = new HttpClient();
-        }
+        // TODO Improve as described here, as far as applicable https://josefottosson.se/you-are-probably-still-using-httpclient-wrong-and-it-is-destabilizing-your-software/
+        private readonly HttpClient httpClient = new HttpClient();
         #endregion
 
         #region Constants
