@@ -46,8 +46,8 @@ namespace RCS.PortableShop.Common.Pages
 
         private void Adorn()
         {
-            // TODO Add application icon here for better layout?
-            // TODO As of using Shell the icons are not displayed, though the commands work.
+            // TODO Since applying Shell, icons are not displayed, though the commands work.
+            // https://github.com/xamarin/Xamarin.Forms/issues/7351
             ToolbarItems.Add(new ToolbarItem("R", "Refresh.png", async () => await Content.ViewModel.Refresh().ConfigureAwait(true), priority: 10));
         }
 
