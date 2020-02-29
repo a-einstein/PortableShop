@@ -37,8 +37,6 @@ namespace RCS.PortableShop.Model
         #endregion
 
         #region CRUD
-        protected override string EntitiesName => "Products";
-
         // TODO This should get paged with an optional pagesize.
         public async Task<IList<ProductsOverviewObject>> ReadList(ProductCategory category, ProductSubcategory subcategory, string namePart)
         {
@@ -57,15 +55,7 @@ namespace RCS.PortableShop.Model
                             null).ConfigureAwait(true);
                         break;
                     case ServiceType.WebApi:
-                        // Note the parameternames have to mach those of the web API. 
-                        string categoryParameter = category != null ? $"category={category.Id}" : null;
-                        string subcategoryParameter = subcategory != null ? $"subcategory={subcategory.Id}" : null;
-                        string wordParameter = namePart != null ? $"word={namePart}" : null;
-
-                        // Note that extra occurrences of # are acceptable and order does not matter.
-                        var parameters = $"{categoryParameter}&{subcategoryParameter}&{wordParameter}";
-
-                        productsOverview = await ReadApi<ProductsOverviewList>("overview", parameters).ConfigureAwait(true);
+                        productsOverview = await WebApiClient.GetProducts(category, subcategory, namePart).ConfigureAwait(true);
                         break;
                     default:
                         throw new NotImplementedException($"Unknown {nameof(ServiceType)}");
@@ -102,9 +92,7 @@ namespace RCS.PortableShop.Model
                             null).ConfigureAwait(true);
                         break;
                     case ServiceType.WebApi:
-                        var parameters = $"id={productID}";
-
-                        product = await ReadApi<Product>("details", parameters).ConfigureAwait(true);
+                        product = await WebApiClient.GetProduct(productID).ConfigureAwait(true);
                         break;
                     default:
                         throw new NotImplementedException($"Unknown {nameof(ServiceType)}");

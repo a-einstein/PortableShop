@@ -65,6 +65,8 @@ namespace RCS.PortableShop.Main
 #endif
             SetCulture();
 
+            Startup.Init();
+
             // Note this needs to be on the main thread.
             MainPage = new MainShell();
         }

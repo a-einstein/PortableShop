@@ -1,24 +1,20 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Extensions.DependencyInjection;
+using RCS.PortableShop.Main;
 using RCS.PortableShop.ServiceClients.Products.ProductsService;
+using RCS.PortableShop.ServiceClients.Products.Wrappers;
 using System;
-using System.Net.Http;
 using System.ServiceModel;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace RCS.PortableShop.Model
 {
     public abstract class ProductsServiceConsumer : IDisposable
     {
-        #region Construction        
-        // TODO Improve as described here, as far as applicable https://josefottosson.se/you-are-probably-still-using-httpclient-wrong-and-it-is-destabilizing-your-software/
-        private readonly HttpClient httpClient = new HttpClient();
-        #endregion
-
         #region Constants
         static public TimeSpan Timeout { get; } = new TimeSpan(0, 0, 15);
+
+        // TODO See comment at another occurrance.
         static private string serviceDomain = "https://rcsworks.nl";
-        static private string productsApi = $"{serviceDomain}/ProductsApi";
         #endregion
 
         #region Messaging
@@ -54,7 +50,8 @@ namespace RCS.PortableShop.Model
 
         #endregion
 
-        // TODO Separate these 2 types of service clients.
+        // TODO Also wrap ProductsServiceClient in WebApiClient and inject as a singleton.
+        // TODO Find some way to elegantly change injection on ServiceType, eliminating the switches in the derived classes.
 
         #region WCF Service
         private ProductsServiceClient productsServiceClient;
@@ -93,36 +90,9 @@ namespace RCS.PortableShop.Model
         #endregion
 
         #region Web API
-        // Note this needs to be a plural.
-        protected abstract string EntitiesName { get; }
-
-        protected async Task<TResult> ReadApi<TResult>()
+        protected static IProductService WebApiClient
         {
-            var uri = new Uri($"{productsApi}/{EntitiesName}");
-
-            return await ReadApi<TResult>(uri).ConfigureAwait(true);
-        }
-
-        protected async Task<TResult> ReadApi<TResult>(string action, string parameters)
-        {
-            var uri = new Uri($"{productsApi}/{EntitiesName}/{action}?{parameters}");
-
-            return await ReadApi<TResult>(uri).ConfigureAwait(true);
-        }
-
-        private async Task<TResult> ReadApi<TResult>(Uri uri)
-        {
-            var response = await httpClient.GetAsync(uri).ConfigureAwait(true);
-
-            if (response.IsSuccessStatusCode)
-            {
-                var content = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
-                return JsonConvert.DeserializeObject<TResult>(content);
-            }
-            else
-            {
-                return default(TResult);
-            }
+            get => Startup.ServiceProvider.GetRequiredService<WebApiClient>();
         }
         #endregion
 
@@ -146,7 +116,6 @@ namespace RCS.PortableShop.Model
             if (disposing)
             {
                 productsServiceClient?.Dispose();
-                httpClient?.Dispose();
             }
 
             disposed = true;
