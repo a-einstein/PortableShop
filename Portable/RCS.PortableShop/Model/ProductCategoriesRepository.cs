@@ -48,10 +48,7 @@ namespace RCS.PortableShop.Model
                 switch (ServiceTypeSelected)
                 {
                     case ServiceType.WCF:
-                        categories = await Task.Factory.FromAsync<ProductCategoryList>(
-                            ProductsServiceClient.BeginGetProductCategories,
-                            ProductsServiceClient.EndGetProductCategories,
-                            null).ConfigureAwait(true);
+                        categories = await WcfClient.GetCategories().ConfigureAwait(true);
                         break;
                     case ServiceType.WebApi:
                         categories = await WebApiClient.GetCategories().ConfigureAwait(true);

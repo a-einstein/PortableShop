@@ -48,11 +48,7 @@ namespace RCS.PortableShop.Model
                 switch (ServiceTypeSelected)
                 {
                     case ServiceType.WCF:
-                        productsOverview = await Task.Factory.FromAsync<int?, int?, string, ProductsOverviewList>(
-                            ProductsServiceClient.BeginGetProductsOverviewBy,
-                            ProductsServiceClient.EndGetProductsOverviewBy,
-                            category?.Id, subcategory?.Id, namePart,
-                            null).ConfigureAwait(true);
+                        productsOverview = await WcfClient.GetProducts(category, subcategory, namePart).ConfigureAwait(true);
                         break;
                     case ServiceType.WebApi:
                         productsOverview = await WebApiClient.GetProducts(category, subcategory, namePart).ConfigureAwait(true);
@@ -85,11 +81,7 @@ namespace RCS.PortableShop.Model
                 switch (ServiceTypeSelected)
                 {
                     case ServiceType.WCF:
-                        product = await Task.Factory.FromAsync<int, Product>(
-                            ProductsServiceClient.BeginGetProductDetails,
-                            ProductsServiceClient.EndGetProductDetails,
-                            productID,
-                            null).ConfigureAwait(true);
+                        product = await WcfClient.GetProduct(productID).ConfigureAwait(true);
                         break;
                     case ServiceType.WebApi:
                         product = await WebApiClient.GetProduct(productID).ConfigureAwait(true);

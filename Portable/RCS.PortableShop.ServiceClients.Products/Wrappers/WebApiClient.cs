@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RCS.PortableShop.ServiceClients.Products.Wrappers
 {
-    public class WebApiClient : IProductService
+    public class WebApiClient : ServiceClient, IProductService
     {
         #region Construction        
         private readonly IHttpClientFactory httpClientFactory;
@@ -65,15 +65,9 @@ namespace RCS.PortableShop.ServiceClients.Products.Wrappers
         #endregion
 
         #region Utilities
-        // TODO Store this centrally or pass as a parameter somewhere.
-        // Probably use https://docs.microsoft.com/en-us/aspnet/core/fundamentals/configuration/options.
-        // Note HttpClient.BaseAddress could also be set instead.
-        static private string serviceDomain = "https://rcsworks.nl";
-
         static private string productsApi = $"{serviceDomain}/ProductsApi";
 
         private HttpClient HttpClient { get => httpClientFactory.CreateClient(); }
-
 
         protected async Task<TResult> ReadApi<TResult>(string entityName)
         {
