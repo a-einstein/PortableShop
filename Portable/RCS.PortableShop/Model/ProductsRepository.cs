@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ServiceModel;
 using System.Threading.Tasks;
-using static RCS.PortableShop.Model.Settings;
 
 namespace RCS.PortableShop.Model
 {
@@ -44,18 +43,7 @@ namespace RCS.PortableShop.Model
 
             try
             {
-                // TODO Create some sort of injection somewhere?
-                switch (ServiceTypeSelected)
-                {
-                    case ServiceType.WCF:
-                        productsOverview = await WcfClient.GetProducts(category, subcategory, namePart).ConfigureAwait(true);
-                        break;
-                    case ServiceType.WebApi:
-                        productsOverview = await WebApiClient.GetProducts(category, subcategory, namePart).ConfigureAwait(true);
-                        break;
-                    default:
-                        throw new NotImplementedException($"Unknown {nameof(ServiceType)}");
-                }
+                productsOverview = await ServiceClient.GetProducts(category, subcategory, namePart).ConfigureAwait(true);
             }
             catch (FaultException<ExceptionDetail> exception)
             {
@@ -77,18 +65,7 @@ namespace RCS.PortableShop.Model
 
             try
             {
-                // TODO Create some sort of injection somewhere?
-                switch (ServiceTypeSelected)
-                {
-                    case ServiceType.WCF:
-                        product = await WcfClient.GetProduct(productID).ConfigureAwait(true);
-                        break;
-                    case ServiceType.WebApi:
-                        product = await WebApiClient.GetProduct(productID).ConfigureAwait(true);
-                        break;
-                    default:
-                        throw new NotImplementedException($"Unknown {nameof(ServiceType)}");
-                }
+                product = await ServiceClient.GetProduct(productID).ConfigureAwait(true);
             }
             catch (FaultException<ExceptionDetail> exception)
             {

@@ -4,9 +4,11 @@ using RCS.PortableShop.ServiceClients.Products.Wrappers;
 using System;
 using System.ServiceModel;
 using Xamarin.Forms;
+using static RCS.PortableShop.Model.Settings;
 
 namespace RCS.PortableShop.Model
 {
+    // TODO Move this to Repository.
     public abstract class ProductsServiceConsumer 
     {
         #region Messaging
@@ -42,21 +44,28 @@ namespace RCS.PortableShop.Model
 
         #endregion
 
-        // TODO Find some way to elegantly change injection on ServiceType, eliminating the switches in the derived classes.
 
-        #region WCF Service
-        protected static IProductService WcfClient
-        {
-            // HACK Temporary.
-            get => Startup.ServiceProvider.GetRequiredService<ServiceClients.Products.Wrappers.WcfClient>();
-        }
-        #endregion
+        #region ServiceClient
+        // TODO Find some way to truly inject IProductService and switch on ServiceType.
 
-        #region Web API
-        protected static IProductService WebApiClient
+        protected static IProductService ServiceClient
         {
-            // HACK Temporary.
-            get => Startup.ServiceProvider.GetRequiredService<WebApiClient>();
+            get 
+            {
+                IProductService serviceClient = null;
+
+                switch (ServiceTypeSelected)
+                {
+                    case ServiceType.WCF:
+                        serviceClient = Startup.ServiceProvider.GetRequiredService<ServiceClients.Products.Wrappers.WcfClient>();
+                        break;
+                    case ServiceType.WebApi:
+                        serviceClient= Startup.ServiceProvider.GetRequiredService<ServiceClients.Products.Wrappers.WebApiClient>();
+                        break;
+                }
+
+                return serviceClient;
+            }
         }
         #endregion
     }

@@ -4,7 +4,6 @@ using System;
 using System.Collections.ObjectModel;
 using System.ServiceModel;
 using System.Threading.Tasks;
-using static RCS.PortableShop.Model.Settings;
 
 namespace RCS.PortableShop.Model
 {
@@ -44,18 +43,7 @@ namespace RCS.PortableShop.Model
 
             try
             {
-                // TODO Create some sort of injection somewhere?
-                switch (ServiceTypeSelected)
-                {
-                    case ServiceType.WCF:
-                        categories = await WcfClient.GetCategories().ConfigureAwait(true);
-                        break;
-                    case ServiceType.WebApi:
-                        categories = await WebApiClient.GetCategories().ConfigureAwait(true);
-                        break;
-                    default:
-                        throw new NotImplementedException($"Unknown {nameof(ServiceType)}");
-                }
+                categories = await ServiceClient.GetCategories().ConfigureAwait(true);
             }
             catch (FaultException<ExceptionDetail> exception)
             {
