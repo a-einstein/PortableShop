@@ -92,7 +92,7 @@ namespace RCS.PortableShop.Model
         #region Web API
         protected static IProductService WebApiClient
         {
-            get => Startup.ServiceProvider.GetRequiredService<WebApiClient>();
+            get => Startup.ServiceProvider.GetRequiredService<IProductService>();
         }
         #endregion
 

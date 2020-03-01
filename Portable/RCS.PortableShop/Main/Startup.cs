@@ -19,7 +19,7 @@ namespace RCS.PortableShop.Main
                 ConfigureServices((context, services) =>
                 {
                     services.AddHttpClient();
-                    services.AddSingleton<WebApiClient>();
+                    services.AddSingleton<IProductService, WebApiClient>();
                 });
 
             var host = hostBuilder.Build();
