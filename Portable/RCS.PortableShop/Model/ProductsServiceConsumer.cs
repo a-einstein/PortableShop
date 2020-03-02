@@ -1,16 +1,18 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using RCS.PortableShop.Main;
-using RCS.PortableShop.ServiceClients.Products.Wrappers;
+﻿using RCS.PortableShop.ServiceClients.Products.Wrappers;
 using System;
 using System.ServiceModel;
 using Xamarin.Forms;
-using static RCS.PortableShop.Model.Settings;
 
 namespace RCS.PortableShop.Model
 {
     // TODO Move this to Repository.
     public abstract class ProductsServiceConsumer 
     {
+        public ProductsServiceConsumer(IProductService productService)
+        {
+            ServiceClient = productService;
+        }
+
         #region Messaging
         public enum Message
         {
@@ -44,29 +46,8 @@ namespace RCS.PortableShop.Model
 
         #endregion
 
-
         #region ServiceClient
-        // TODO Find some way to truly inject IProductService and switch on ServiceType.
-
-        protected static IProductService ServiceClient
-        {
-            get 
-            {
-                IProductService serviceClient = null;
-
-                switch (ServiceTypeSelected)
-                {
-                    case ServiceType.WCF:
-                        serviceClient = Startup.ServiceProvider.GetRequiredService<ServiceClients.Products.Wrappers.WcfClient>();
-                        break;
-                    case ServiceType.WebApi:
-                        serviceClient= Startup.ServiceProvider.GetRequiredService<ServiceClients.Products.Wrappers.WebApiClient>();
-                        break;
-                }
-
-                return serviceClient;
-            }
-        }
+        protected IProductService ServiceClient { get; }
         #endregion
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using RCS.PortableShop.Model;
 using RCS.PortableShop.ServiceClients.Products.Wrappers;
 using System;
 
@@ -19,8 +20,24 @@ namespace RCS.PortableShop.Main
                 ConfigureServices((context, services) =>
                 {
                     services.AddHttpClient();
-                    services.AddSingleton<WebApiClient>();
-                    services.AddSingleton<WcfClient>();
+
+                    // Note a restart is needed to actually switch IProductService,
+                    // as there does not seem to be a feasible way to do that while running.
+                    switch (Settings.ServiceTypeSelected)
+                    {
+                        case Model.Settings.ServiceType.WCF:
+                            services.AddSingleton<IProductService, WcfClient>();
+                            break;
+                        case Model.Settings.ServiceType.WebApi:
+                            services.AddSingleton<IProductService,WebApiClient>();
+                            break;
+                    }
+
+                    // Note this does not work (yet) as true injection by an interface.
+                    services.AddSingleton<ProductCategoriesRepository>();
+                    services.AddSingleton<ProductSubcategoriesRepository>();
+                    services.AddSingleton<ProductsRepository>();
+                    services.AddSingleton<CartItemsRepository>();
                 });
 
             var host = hostBuilder.Build();

@@ -1,5 +1,8 @@
-﻿using RCS.AdventureWorks.Common.DomainClasses;
+﻿using Microsoft.Extensions.DependencyInjection;
+using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.AdventureWorks.Common.Dtos;
+using RCS.PortableShop.Main;
+using RCS.PortableShop.ServiceClients.Products.Wrappers;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,8 +14,11 @@ namespace RCS.PortableShop.Model
     public class ProductsRepository : Repository<ObservableCollection<ProductsOverviewObject>, ProductsOverviewObject>
     {
         #region Construction
-        private ProductsRepository()
-        { }
+        public ProductsRepository(IProductService productService)
+        : base(productService)
+        {
+            instance = this;
+        }
 
         private static volatile ProductsRepository instance;
         private static object syncRoot = new Object();
@@ -26,7 +32,7 @@ namespace RCS.PortableShop.Model
                     lock (syncRoot)
                     {
                         if (instance == null)
-                            instance = new ProductsRepository();
+                            instance = Startup.ServiceProvider.GetRequiredService<ProductsRepository>();
                     }
                 }
 

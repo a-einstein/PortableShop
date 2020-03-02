@@ -209,7 +209,7 @@ Pas a.u.b. uw zoekopdracht aan.</value>
     <value>Zoeken...</value>
   </data>
   <data name="ServiceType" xml:space="preserve">
-    <value>Servicetype</value>
+    <value>Servicetype (herstart nodig)</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Instellingen</value>
