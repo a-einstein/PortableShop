@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--TODO Reduce height. Properties android:padding and android:titleMargin did not work in any way.-->
-<android.support.v7.widget.Toolbar
+<androidx.appcompat.widget.Toolbar
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
@@ -20,4 +20,4 @@
 
     <!--Note that ToolbarItems are inserted here.-->
     <!--TODO Get less margin around them.-->
-</android.support.v7.widget.Toolbar>
+</androidx.appcompat.widget.Toolbar>
