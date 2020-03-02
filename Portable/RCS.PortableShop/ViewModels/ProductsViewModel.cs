@@ -1,6 +1,8 @@
-﻿using RCS.AdventureWorks.Common.DomainClasses;
+﻿using Microsoft.Extensions.DependencyInjection;
+using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.PortableShop.Common.ViewModels;
 using RCS.PortableShop.Interfaces;
+using RCS.PortableShop.Main;
 using RCS.PortableShop.Model;
 using RCS.PortableShop.Views;
 using System;
@@ -24,6 +26,12 @@ namespace RCS.PortableShop.ViewModels
         }
         #endregion
 
+        #region Repositories
+        private static ProductCategoriesRepository ProductCategoriesRepository => Startup.ServiceProvider.GetRequiredService<ProductCategoriesRepository>();
+        private static ProductSubcategoriesRepository ProductSubcategoriesRepository => Startup.ServiceProvider.GetRequiredService<ProductSubcategoriesRepository>();
+        private static ProductsRepository ProductsRepository => Startup.ServiceProvider.GetRequiredService<ProductsRepository>();
+        #endregion
+
         #region Filtering
 
         // At least 3 characters.
@@ -45,8 +53,8 @@ namespace RCS.PortableShop.ViewModels
         {
             var results = await Task.WhenAll
             (
-                ProductCategoriesRepository.Instance.ReadList(),
-                ProductSubcategoriesRepository.Instance.ReadList()
+                ProductCategoriesRepository.ReadList(),
+                ProductSubcategoriesRepository.ReadList()
             ).ConfigureAwait(true);
 
             var succeeded = results.All<bool>(result => result == true);
@@ -56,7 +64,7 @@ namespace RCS.PortableShop.ViewModels
             {
                 var masterFilterItems = new ObservableCollection<ProductCategory>();
 
-                foreach (var item in ProductCategoriesRepository.Instance.List)
+                foreach (var item in ProductCategoriesRepository.List)
                 {
                     masterFilterItems.Add(item);
                 }
@@ -65,7 +73,7 @@ namespace RCS.PortableShop.ViewModels
                 // TODO maybe follow the approach on ItemsViewModel.Items.
                 MasterFilterItems = masterFilterItems;
 
-                foreach (var item in ProductSubcategoriesRepository.Instance.List)
+                foreach (var item in ProductSubcategoriesRepository.List)
                 {
                     DetailFilterItemsSource.Add(item);
                 }
@@ -145,7 +153,7 @@ namespace RCS.PortableShop.ViewModels
             detailFilterValue = DetailFilterValue;
             textFilterValue = TextFilterValue;
 
-            var result = await ProductsRepository.Instance.ReadList(masterFilterValue, detailFilterValue, textFilterValue).ConfigureAwait(true);
+            var result = await ProductsRepository.ReadList(masterFilterValue, detailFilterValue, textFilterValue).ConfigureAwait(true);
             var succeeded = result != null;
 
             if (succeeded)
@@ -193,6 +201,7 @@ namespace RCS.PortableShop.ViewModels
 
         private void CartProduct(ProductsOverviewObject productsOverviewObject)
         {
+            // TODO Do this directly on the repository? (Might need initialisation first.)
             ShoppingCartViewModel.Instance.CartProduct(productsOverviewObject);
         }
         #endregion

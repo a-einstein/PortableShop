@@ -5,7 +5,6 @@ using Xamarin.Forms;
 
 namespace RCS.PortableShop.Model
 {
-    // TODO Move this to Repository.
     public abstract class ProductsServiceConsumer 
     {
         public ProductsServiceConsumer(IProductService productService)

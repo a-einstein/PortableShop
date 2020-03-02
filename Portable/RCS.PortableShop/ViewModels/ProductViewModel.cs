@@ -1,6 +1,8 @@
-﻿using RCS.AdventureWorks.Common.DomainClasses;
+﻿using Microsoft.Extensions.DependencyInjection;
+using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.PortableShop.Common.ViewModels;
 using RCS.PortableShop.Interfaces;
+using RCS.PortableShop.Main;
 using RCS.PortableShop.Model;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -20,6 +22,10 @@ namespace RCS.PortableShop.ViewModels
         }
         #endregion
 
+        #region Repositories
+        private static ProductsRepository ProductsRepository => Startup.ServiceProvider.GetRequiredService<ProductsRepository>();
+        #endregion
+
         #region Refresh
         protected override async Task<bool> Read()
         {
@@ -27,7 +33,7 @@ namespace RCS.PortableShop.ViewModels
 
             if (ItemId.HasValue)
             {
-                var result = await ProductsRepository.Instance.ReadDetails((int)ItemId).ConfigureAwait(true);
+                var result = await ProductsRepository.ReadDetails((int)ItemId).ConfigureAwait(true);
                 succeeded = result != null;
                 Item = result;
             }
@@ -84,6 +90,7 @@ namespace RCS.PortableShop.ViewModels
 
         private void CartProduct(Product product)
         {
+            // TODO Do this directly on the repository? (Might need initialisation first.)
             ShoppingCartViewModel.Instance.CartProduct(product);
         }
         #endregion

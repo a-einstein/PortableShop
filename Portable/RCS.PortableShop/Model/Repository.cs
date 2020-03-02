@@ -7,10 +7,8 @@ namespace RCS.PortableShop.Model
         where TCollection : Collection<TElement>, new()
     {
         #region Construction
-        // Note Derived singletons duplicate construction code, but it it does not seem feasible to share that here.
-
         public Repository(IProductService productService)
-                   : base(productService)
+            : base(productService)
         { }
         #endregion
 

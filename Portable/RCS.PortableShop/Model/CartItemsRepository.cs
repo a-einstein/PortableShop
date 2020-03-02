@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using RCS.AdventureWorks.Common.DomainClasses;
-using RCS.PortableShop.Main;
+﻿using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.PortableShop.ServiceClients.Products.Wrappers;
 using System;
 using System.Collections.ObjectModel;
@@ -13,30 +11,8 @@ namespace RCS.PortableShop.Model
     {
         #region Construction
         public CartItemsRepository(IProductService productService)
-           : base(productService)
-        {
-            instance = this;
-        }
-
-        private static volatile CartItemsRepository instance;
-        private static object syncRoot = new Object();
-
-        public static CartItemsRepository Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    lock (syncRoot)
-                    {
-                        if (instance == null)
-                            instance = Startup.ServiceProvider.GetRequiredService<CartItemsRepository>();
-                    }
-                }
-
-                return instance;
-            }
-        }
+            : base(productService)
+        { }
         #endregion
 
         #region Constants
