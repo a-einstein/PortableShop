@@ -3,7 +3,6 @@ using Android.Content.PM;
 using Android.OS;
 using RCS.PortableShop.Main;
 using System;
-using System.Net;
 using Xamarin.Forms.Platform.Android;
 
 namespace RCS.PortableShop.Droid

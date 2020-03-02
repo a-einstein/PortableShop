@@ -1,6 +1,6 @@
 using Android.App;
 using Android.Content;
-using Android.Support.V7.App;
+using AndroidX.AppCompat.App;
 using System.Threading.Tasks;
 
 namespace RCS.PortableShop.Droid
