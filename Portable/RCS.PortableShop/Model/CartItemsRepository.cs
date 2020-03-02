@@ -1,4 +1,5 @@
 ﻿using RCS.AdventureWorks.Common.DomainClasses;
+using RCS.PortableShop.ServiceClients.Products.Wrappers;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -9,28 +10,9 @@ namespace RCS.PortableShop.Model
     public class CartItemsRepository : Repository<ObservableCollection<CartItem>, CartItem>
     {
         #region Construction
-        private CartItemsRepository()
+        public CartItemsRepository(IProductService productService)
+            : base(productService)
         { }
-
-        private static volatile CartItemsRepository instance;
-        private static object syncRoot = new Object();
-
-        public static CartItemsRepository Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    lock (syncRoot)
-                    {
-                        if (instance == null)
-                            instance = new CartItemsRepository();
-                    }
-                }
-
-                return instance;
-            }
-        }
         #endregion
 
         #region Constants
@@ -41,9 +23,6 @@ namespace RCS.PortableShop.Model
         #endregion
 
         #region CRUD
-        // Currently not used.
-        protected override string EntitiesName => null;
-
         // Note that the cart is only kept in memory and is not preserved. 
         // It is anticipated that only real orders would be preserved and stored on the server.
         public CartItem AddProduct(IShoppingProduct product)

@@ -319,7 +319,7 @@ namespace RCS.PortableShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Service Type.
+        ///   Looks up a localized string similar to Service Type (needs restart).
         /// </summary>
         public static string ServiceType {
             get {

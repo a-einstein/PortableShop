@@ -1,43 +1,22 @@
 ﻿using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.AdventureWorks.Common.Dtos;
+using RCS.PortableShop.ServiceClients.Products.Wrappers;
 using System;
 using System.Collections.ObjectModel;
 using System.ServiceModel;
 using System.Threading.Tasks;
-using static RCS.PortableShop.Model.Settings;
 
 namespace RCS.PortableShop.Model
 {
     public class ProductSubcategoriesRepository : Repository<ObservableCollection<ProductSubcategory>, ProductSubcategory>
     {
         #region Construction
-        private ProductSubcategoriesRepository()
+        public ProductSubcategoriesRepository(IProductService productService)
+            : base(productService)
         { }
-
-        private static volatile ProductSubcategoriesRepository instance;
-        private static object syncRoot = new Object();
-
-        public static ProductSubcategoriesRepository Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    lock (syncRoot)
-                    {
-                        if (instance == null)
-                            instance = new ProductSubcategoriesRepository();
-                    }
-                }
-
-                return instance;
-            }
-        }
         #endregion
 
         #region CRUD
-        protected override string EntitiesName => "ProductSubcategories";
-
         public async Task<bool> ReadList(bool addEmptyElement = true)
         {
             Clear();
@@ -46,21 +25,7 @@ namespace RCS.PortableShop.Model
 
             try
             {
-                // TODO Create some sort of injection somewhere?
-                switch (ServiceTypeSelected)
-                {
-                    case ServiceType.WCF:
-                        subcategories = await Task.Factory.FromAsync<ProductSubcategoryList>(
-                            ProductsServiceClient.BeginGetProductSubcategories,
-                            ProductsServiceClient.EndGetProductSubcategories,
-                            null).ConfigureAwait(true);
-                        break;
-                    case ServiceType.WebApi:
-                        subcategories = await ReadApi<ProductSubcategoryList>().ConfigureAwait(true); 
-                        break;
-                    default:
-                        throw new NotImplementedException($"Unknown {nameof(ServiceType)}");
-                }
+                subcategories = await ServiceClient.GetSubcategories().ConfigureAwait(true);
             }
             catch (FaultException<ExceptionDetail> exception)
             {

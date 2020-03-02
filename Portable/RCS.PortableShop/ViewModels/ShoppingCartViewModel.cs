@@ -1,5 +1,7 @@
-﻿using RCS.AdventureWorks.Common.DomainClasses;
+﻿using Microsoft.Extensions.DependencyInjection;
+using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.PortableShop.Common.ViewModels;
+using RCS.PortableShop.Main;
 using RCS.PortableShop.Model;
 using RCS.PortableShop.Resources;
 using System;
@@ -24,9 +26,9 @@ namespace RCS.PortableShop.ViewModels
         private ShoppingCartViewModel()
         {
             // Note this currently is the only direct binding to a repository List. See other comments.
-            Items = CartItemsRepository.Instance.List;
+            Items = CartItemsRepository.List;
 
-            CartItemsRepository.Instance.List.CollectionChanged += List_CollectionChanged;
+            CartItemsRepository.List.CollectionChanged += List_CollectionChanged;
         }
 
         private static volatile ShoppingCartViewModel instance;
@@ -58,6 +60,10 @@ namespace RCS.PortableShop.ViewModels
         }
         #endregion
 
+        #region Repositories
+        private static CartItemsRepository CartItemsRepository => Startup.ServiceProvider.GetRequiredService<CartItemsRepository>();
+        #endregion
+
         #region Refresh
         protected override void Clear()
         {
@@ -82,7 +88,7 @@ namespace RCS.PortableShop.ViewModels
         #region CRUD
         public void CartProduct(IShoppingProduct productsOverviewObject)
         {
-            CartItemsRepository.Instance.AddProduct(productsOverviewObject);
+            CartItemsRepository.AddProduct(productsOverviewObject);
         }
 
         public static readonly BindableProperty DeleteCommandProperty =
@@ -100,7 +106,7 @@ namespace RCS.PortableShop.ViewModels
 
         private void Delete(CartItem cartItem)
         {
-            CartItemsRepository.Instance.DeleteProduct(cartItem);
+            CartItemsRepository.DeleteProduct(cartItem);
         }
 
         private void List_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -136,8 +142,8 @@ namespace RCS.PortableShop.ViewModels
 
         private void UpdateAggregates()
         {
-            ProductItemsCount = CartItemsRepository.Instance.ProductsCount();
-            TotalValue = CartItemsRepository.Instance.CartValue();
+            ProductItemsCount = CartItemsRepository.ProductsCount();
+            TotalValue = CartItemsRepository.CartValue();
         }
 
         public static readonly BindableProperty ProductItemCountProperty =

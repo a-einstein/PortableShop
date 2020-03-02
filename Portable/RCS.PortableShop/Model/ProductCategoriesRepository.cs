@@ -1,43 +1,22 @@
 ﻿using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.AdventureWorks.Common.Dtos;
+using RCS.PortableShop.ServiceClients.Products.Wrappers;
 using System;
 using System.Collections.ObjectModel;
 using System.ServiceModel;
 using System.Threading.Tasks;
-using static RCS.PortableShop.Model.Settings;
 
 namespace RCS.PortableShop.Model
 {
     public class ProductCategoriesRepository : Repository<ObservableCollection<ProductCategory>, ProductCategory>
     {
         #region Construction
-        private ProductCategoriesRepository()
+        public ProductCategoriesRepository(IProductService productService)
+            : base(productService)
         { }
-
-        private static volatile ProductCategoriesRepository instance;
-        private static object syncRoot = new Object();
-
-        public static ProductCategoriesRepository Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    lock (syncRoot)
-                    {
-                        if (instance == null)
-                            instance = new ProductCategoriesRepository();
-                    }
-                }
-
-                return instance;
-            }
-        }
         #endregion
 
         #region CRUD
-        protected override string EntitiesName => "ProductCategories";
-
         public async Task<bool> ReadList(bool addEmptyElement = true)
         {
             Clear();
@@ -46,21 +25,7 @@ namespace RCS.PortableShop.Model
 
             try
             {
-                // TODO Create some sort of injection somewhere?
-                switch (ServiceTypeSelected)
-                {
-                    case ServiceType.WCF:
-                        categories = await Task.Factory.FromAsync<ProductCategoryList>(
-                            ProductsServiceClient.BeginGetProductCategories,
-                            ProductsServiceClient.EndGetProductCategories,
-                            null).ConfigureAwait(true);
-                        break;
-                    case ServiceType.WebApi:
-                        categories = await ReadApi<ProductCategoryList>().ConfigureAwait(true);
-                        break;
-                    default:
-                        throw new NotImplementedException($"Unknown {nameof(ServiceType)}");
-                }
+                categories = await ServiceClient.GetCategories().ConfigureAwait(true);
             }
             catch (FaultException<ExceptionDetail> exception)
             {

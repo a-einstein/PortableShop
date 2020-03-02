@@ -4,6 +4,8 @@
 Working portable (Android) application for test and demo purpose based on Xamarin Forms. It simulates limited shopping capabilities based on the AdventureWorks database.
 
 #### News
+* Applied dependency injection.
+* Improved use of HttpClient.
 * Improved Flyout Menu.
 * Added storage and retrieval of the overview filter between sessions.
 * Added ability to switch between the two service types and store this in settings.
@@ -35,6 +37,7 @@ Working portable (Android) application for test and demo purpose based on Xamari
 * .Net Standard.
 * C# + XAML.
 * MVVM.
+* Dependency injection.
 * Client-server + SSL.
 * Asynchronisity.
 * WCF.

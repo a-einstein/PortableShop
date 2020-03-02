@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <RootNamespace>RCS.PortableShop</RootNamespace>
     <AssemblyName>RCS.PortableShop</AssemblyName>
   </PropertyGroup>
@@ -31,6 +31,9 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.2" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.1.2" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="3.1.2" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Syncfusion.Xamarin.SfNumericUpDown" Version="17.4.0.50" />
     <PackageReference Include="Xamarin.Essentials" Version="1.4.0" />
@@ -52,6 +55,7 @@
     <Compile Include="Main\MainApplication.xaml.cs" />
     <Compile Include="Main\MainPage.cs" />
     <Compile Include="Main\MainShell.xaml.cs" />
+    <Compile Include="Main\Startup.cs" />
 
     <Compile Include="Model\CartItemsRepository.cs" />
     <Compile Include="Model\ProductCategoriesRepository.cs" />
