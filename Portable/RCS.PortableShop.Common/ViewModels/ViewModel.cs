@@ -15,7 +15,7 @@ namespace RCS.PortableShop.Common.ViewModels
 
         #region Refresh
         public static readonly BindableProperty AwaitingProperty =
-            BindableProperty.Create(nameof(Awaiting), typeof(bool), typeof(ViewModel), defaultValue: false);
+            BindableProperty.Create(nameof(Awaiting), typeof(bool), typeof(ViewModel), false);
 
         public virtual bool Awaiting
         {

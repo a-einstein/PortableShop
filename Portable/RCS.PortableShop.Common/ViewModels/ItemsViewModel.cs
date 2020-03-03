@@ -17,7 +17,7 @@ namespace RCS.PortableShop.Common.ViewModels
 
         #region Items
         public static readonly BindableProperty ItemsProperty =
-            BindableProperty.Create(nameof(Items), typeof(ObservableCollection<TItem>), typeof(ItemsViewModel<TItem>), defaultValue: new ObservableCollection<TItem>());
+            BindableProperty.Create(nameof(Items), typeof(ObservableCollection<TItem>), typeof(ItemsViewModel<TItem>), new ObservableCollection<TItem>());
 
         // TODO Some sort of view would be more convenient to enable sorting in situ (filtering is no longer done so). But remember: that no longer applies when paging.
         public ObservableCollection<TItem> Items

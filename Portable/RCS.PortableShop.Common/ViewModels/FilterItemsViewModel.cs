@@ -93,7 +93,7 @@ namespace RCS.PortableShop.Common.ViewModels
         protected abstract Task<bool> InitializeFilters();
 
         public static readonly BindableProperty MasterFilterItemsProperty =
-            BindableProperty.Create(nameof(MasterFilterItems), typeof(ObservableCollection<TMasterFilterItem>), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>), defaultValue: new ObservableCollection<TMasterFilterItem>());
+            BindableProperty.Create(nameof(MasterFilterItems), typeof(ObservableCollection<TMasterFilterItem>), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>), new ObservableCollection<TMasterFilterItem>());
 
         // Note there seems to be an issue with updating bindings by ObservableCollection, or on the particular controls. See consequences elsewhere.
         public ObservableCollection<TMasterFilterItem> MasterFilterItems
@@ -153,7 +153,7 @@ namespace RCS.PortableShop.Common.ViewModels
         protected Collection<TDetailFilterItem> DetailFilterItemsSource { get; } = new Collection<TDetailFilterItem>();
 
         public static readonly BindableProperty DetailFilterItemsProperty =
-            BindableProperty.Create(nameof(DetailFilterItems), typeof(ObservableCollection<TDetailFilterItem>), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>), defaultValue: new ObservableCollection<TDetailFilterItem>());
+            BindableProperty.Create(nameof(DetailFilterItems), typeof(ObservableCollection<TDetailFilterItem>), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>), new ObservableCollection<TDetailFilterItem>());
 
         // Note there seems to be an issue with updating bindings by ObservableCollection, or on the particular controls. See consequences elsewhere.
         public virtual ObservableCollection<TDetailFilterItem> DetailFilterItems
