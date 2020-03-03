@@ -73,7 +73,7 @@ namespace RCS.PortableShop.Model
                 : 0;
         }
 
-        public Decimal CartValue()
+        public decimal CartValue()
         {
             return List.Count > 0
                 ? List.Sum(cartItem => cartItem.Value)

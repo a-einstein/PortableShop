@@ -32,7 +32,7 @@ namespace RCS.PortableShop.ViewModels
         }
 
         private static volatile ShoppingCartViewModel instance;
-        private static object syncRoot = new Object();
+        private static object syncRoot = new object();
 
         // Note this class is a singleton, implemented along the way (but not entirely) of https://msdn.microsoft.com/en-us/library/ff650316.aspx
         public static ShoppingCartViewModel Instance
@@ -158,11 +158,11 @@ namespace RCS.PortableShop.ViewModels
         }
 
         public static readonly BindableProperty TotalValueProperty =
-            BindableProperty.Create(nameof(TotalValue), typeof(Decimal), typeof(ShoppingCartViewModel), (Decimal)0);
+            BindableProperty.Create(nameof(TotalValue), typeof(decimal), typeof(ShoppingCartViewModel), (decimal)0);
 
-        public Decimal TotalValue
+        public decimal TotalValue
         {
-            get => (Decimal)GetValue(TotalValueProperty);
+            get => (decimal)GetValue(TotalValueProperty);
             set
             {
                 SetValue(TotalValueProperty, value);
