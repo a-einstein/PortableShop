@@ -39,7 +39,7 @@ namespace RCS.PortableShop.Common.Behaviors
 
         public bool IsValid
         {
-            get { return (bool)GetValue(IsValidProperty); }
+            get => (bool)GetValue(IsValidProperty);
             private set
             {
                 SetValue(IsValidPropertyKey, value);
@@ -62,7 +62,7 @@ namespace RCS.PortableShop.Common.Behaviors
 
         public string Expression
         {
-            get { return (string)GetValue(ExpressionProperty); }
+            get => (string)GetValue(ExpressionProperty);
             set
             {
                 SetValue(ExpressionProperty, value);
@@ -75,7 +75,7 @@ namespace RCS.PortableShop.Common.Behaviors
 
         public Color InvalidBackgroundColour
         {
-            get { return (Color)GetValue(InvalidBackgroundColourProperty); }
+            get => (Color)GetValue(InvalidBackgroundColourProperty);
             set
             {
                 SetValue(InvalidBackgroundColourProperty, value);

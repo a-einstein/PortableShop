@@ -19,7 +19,7 @@ namespace RCS.PortableShop.Common.ViewModels
 
         public virtual bool Awaiting
         {
-            get { return (bool)GetValue(AwaitingProperty); }
+            get => (bool)GetValue(AwaitingProperty);
             set
             {
                 SetValue(AwaitingProperty, value);
@@ -88,8 +88,8 @@ namespace RCS.PortableShop.Common.ViewModels
 
         public string Title
         {
-            get { return (string)GetValue(TitleProperty); }
-            set { SetValue(TitleProperty, value); }
+            get => (string)GetValue(TitleProperty);
+            set => SetValue(TitleProperty, value);
         }
 
         // Note this is particularly needed for the chaining within the ShoppingWrapperViewModel,
@@ -118,8 +118,8 @@ namespace RCS.PortableShop.Common.ViewModels
         #region Navigation
         // TODO The use of classes from Xamarin.Forms here is a bit of a hack. Better keep this independent.
 
-        protected static Shell Shell { get { return Application.Current.MainPage as Shell; } }
-        private static INavigation Navigation { get { return Application.Current.MainPage.Navigation; } }
+        protected static Shell Shell => Application.Current.MainPage as Shell;
+        private static INavigation Navigation => Application.Current.MainPage.Navigation;
 
         protected static async Task PopToRoot()
         {

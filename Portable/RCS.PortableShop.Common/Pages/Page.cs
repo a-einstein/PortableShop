@@ -34,7 +34,7 @@ namespace RCS.PortableShop.Common.Pages
         // Force new type here.
         public new View Content
         {
-            get { return base.Content as View; }
+            get => base.Content as View;
             set
             {
                 base.Content = value;

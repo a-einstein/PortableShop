@@ -40,7 +40,7 @@ namespace RCS.PortableShop.ViewModels
 
         public string ValidTextFilterExpression
         {
-            get { return (string)GetValue(ValidTextFilterExpressionProperty); }
+            get => (string)GetValue(ValidTextFilterExpressionProperty);
             set
             {
                 SetValue(ValidTextFilterExpressionProperty, value);
@@ -100,10 +100,7 @@ namespace RCS.PortableShop.ViewModels
 
         public new ProductCategory MasterFilterValue
         {
-            get
-            {
-                return base.MasterFilterValue;
-            }
+            get => base.MasterFilterValue;
             set
             {
                 Settings.ProductCategoryId = value?.Id ?? null;
@@ -113,10 +110,7 @@ namespace RCS.PortableShop.ViewModels
 
         public new ProductSubcategory DetailFilterValue
         {
-            get
-            {
-                return base.DetailFilterValue;
-            }
+            get => base.DetailFilterValue;
             set
             {
                 Settings.ProductSubategoryId = value?.Id ?? null;
@@ -187,7 +181,7 @@ namespace RCS.PortableShop.ViewModels
 
         public ICommand CartCommand
         {
-            get { return (ICommand)GetValue(CartCommandProperty); }
+            get => (ICommand)GetValue(CartCommandProperty);
             set
             {
                 SetValue(CartCommandProperty, value);

@@ -24,7 +24,7 @@ namespace RCS.PortableShop.ViewModels
 
         public ICommand ShowCartCommand
         {
-            get { return (ICommand)GetValue(ShowCartCommandProperty); }
+            get => (ICommand)GetValue(ShowCartCommandProperty);
             private set
             {
                 SetValue(ShowCartCommandProperty, value);

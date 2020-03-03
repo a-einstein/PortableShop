@@ -67,7 +67,7 @@ namespace RCS.PortableShop.ServiceClients.Products.Wrappers
         #region Utilities
         static private string productsApi = $"{serviceDomain}/ProductsApi";
 
-        private HttpClient HttpClient { get => httpClientFactory.CreateClient(); }
+        private HttpClient HttpClient => httpClientFactory.CreateClient();
 
         private async Task<TResult> ReadApi<TResult>(string entityName)
         {

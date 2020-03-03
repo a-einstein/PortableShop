@@ -94,7 +94,7 @@ namespace RCS.PortableShop.ViewModels
 
         public ICommand DeleteCommand
         {
-            get { return (ICommand)GetValue(DeleteCommandProperty); }
+            get => (ICommand)GetValue(DeleteCommandProperty);
             private set
             {
                 SetValue(DeleteCommandProperty, value);
@@ -149,7 +149,7 @@ namespace RCS.PortableShop.ViewModels
 
         public int ProductItemsCount
         {
-            get { return (int)GetValue(ProductItemCountProperty); }
+            get => (int)GetValue(ProductItemCountProperty);
             set
             {
                 SetValue(ProductItemCountProperty, value);
@@ -162,7 +162,7 @@ namespace RCS.PortableShop.ViewModels
 
         public Decimal TotalValue
         {
-            get { return (Decimal)GetValue(TotalValueProperty); }
+            get => (Decimal)GetValue(TotalValueProperty);
             set
             {
                 SetValue(TotalValueProperty, value);

@@ -91,7 +91,7 @@ namespace RCS.PortableShop.Common.Extensions
             private object value;
             public object Value
             {
-                get { return value; }
+                get => value;
                 set
                 {
                     if (!Equals(this.value, value))

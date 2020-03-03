@@ -16,7 +16,7 @@ namespace RCS.PortableShop.ViewModels
         // TODO Once a View is assigned to MainView instead of MainViewModel the latter can be made implicit too.
         public View WrappedContent
         {
-            get { return (View)GetValue(WrappedContentProperty); }
+            get => (View)GetValue(WrappedContentProperty);
             set
             {
                 SetValue(WrappedContentProperty, value);

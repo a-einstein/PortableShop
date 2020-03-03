@@ -17,8 +17,8 @@ namespace RCS.PortableShop.Common.Views
     {
         public ViewModel ViewModel
         {
-            get { return BindingContext as ViewModel; }
-            set { BindingContext = value; }
+            get => BindingContext as ViewModel;
+            set => BindingContext = value;
         }
 
         public async Task Refresh()

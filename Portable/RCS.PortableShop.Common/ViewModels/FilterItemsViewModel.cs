@@ -30,7 +30,7 @@ namespace RCS.PortableShop.Common.ViewModels
 
         public string Message
         {
-            get { return (string)GetValue(MessageProperty); }
+            get => (string)GetValue(MessageProperty);
             set
             {
                 SetValue(MessageProperty, value);
@@ -98,7 +98,7 @@ namespace RCS.PortableShop.Common.ViewModels
         // Note there seems to be an issue with updating bindings by ObservableCollection, or on the particular controls. See consequences elsewhere.
         public ObservableCollection<TMasterFilterItem> MasterFilterItems
         {
-            get { return (ObservableCollection<TMasterFilterItem>)GetValue(MasterFilterItemsProperty); }
+            get => (ObservableCollection<TMasterFilterItem>)GetValue(MasterFilterItemsProperty);
             set
             {
                 SetValue(MasterFilterItemsProperty, value);
@@ -111,7 +111,7 @@ namespace RCS.PortableShop.Common.ViewModels
 
         public virtual TMasterFilterItem MasterFilterValue
         {
-            get { return (TMasterFilterItem)GetValue(MasterFilterValueProperty); }
+            get => (TMasterFilterItem)GetValue(MasterFilterValueProperty);
             set
             {
                 SetValue(MasterFilterValueProperty, value);
@@ -158,7 +158,7 @@ namespace RCS.PortableShop.Common.ViewModels
         // Note there seems to be an issue with updating bindings by ObservableCollection, or on the particular controls. See consequences elsewhere.
         public virtual ObservableCollection<TDetailFilterItem> DetailFilterItems
         {
-            get { return (ObservableCollection<TDetailFilterItem>)GetValue(DetailFilterItemsProperty); }
+            get => (ObservableCollection<TDetailFilterItem>)GetValue(DetailFilterItemsProperty);
             set
             {
                 SetValue(DetailFilterItemsProperty, value);
@@ -172,7 +172,7 @@ namespace RCS.PortableShop.Common.ViewModels
         // Note DetailFilterValue should only have a value if MasterFilterValue has.
         public TDetailFilterItem DetailFilterValue
         {
-            get { return (TDetailFilterItem)GetValue(DetailFilterValueProperty); }
+            get => (TDetailFilterItem)GetValue(DetailFilterValueProperty);
             set
             {
                 SetValue(DetailFilterValueProperty, value);
@@ -185,7 +185,7 @@ namespace RCS.PortableShop.Common.ViewModels
 
         public virtual string TextFilterValue
         {
-            get { return (string)GetValue(TextFilterValueProperty); }
+            get => (string)GetValue(TextFilterValueProperty);
             set
             {
                 SetValue(TextFilterValueProperty, value);
@@ -203,7 +203,7 @@ namespace RCS.PortableShop.Common.ViewModels
 
         public ICommand FilterCommand
         {
-            get { return (ICommand)GetValue(FilterCommandProperty); }
+            get => (ICommand)GetValue(FilterCommandProperty);
             private set
             {
                 SetValue(FilterCommandProperty, value);
@@ -218,7 +218,7 @@ namespace RCS.PortableShop.Common.ViewModels
 
         public ICommand DetailsCommand
         {
-            get { return (ICommand)GetValue(DetailsCommandProperty); }
+            get => (ICommand)GetValue(DetailsCommandProperty);
             private set
             {
                 SetValue(DetailsCommandProperty, value);

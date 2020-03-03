@@ -27,7 +27,7 @@ namespace RCS.PortableShop.ViewModels
 
         public ICommand ShowProductsCommand
         {
-            get { return (ICommand)GetValue(ShowProductsCommandProperty); }
+            get => (ICommand)GetValue(ShowProductsCommandProperty);
             private set
             {
                 SetValue(ShowProductsCommandProperty, value);
@@ -57,7 +57,7 @@ namespace RCS.PortableShop.ViewModels
 
         public ICommand OpenSupportCommand
         {
-            get { return (ICommand)GetValue(OpenSupportCommandProperty); }
+            get => (ICommand)GetValue(OpenSupportCommandProperty);
             private set
             {
                 SetValue(OpenSupportCommandProperty, value);
@@ -78,7 +78,7 @@ namespace RCS.PortableShop.ViewModels
 
         public ICommand UpdateCommand
         {
-            get { return (ICommand)GetValue(UpdateCommandProperty); }
+            get => (ICommand)GetValue(UpdateCommandProperty);
             set
             {
                 SetValue(UpdateCommandProperty, value);
@@ -103,7 +103,7 @@ namespace RCS.PortableShop.ViewModels
 
         public ICommand SettingsCommand
         {
-            get { return (ICommand)GetValue(SettingsCommandProperty); }
+            get => (ICommand)GetValue(SettingsCommandProperty);
             set
             {
                 SetValue(SettingsCommandProperty, value);

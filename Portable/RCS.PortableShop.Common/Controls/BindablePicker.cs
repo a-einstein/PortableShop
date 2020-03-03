@@ -17,8 +17,8 @@ namespace RCS.PortableShop.Common.Controls
 
         public new IList ItemsSource
         {
-            get { return (IList)GetValue(ItemsSourceProperty); }
-            private set { SetValue(ItemsSourceProperty, value); }
+            get => (IList)GetValue(ItemsSourceProperty);
+            private set => SetValue(ItemsSourceProperty, value);
         }
 
         public static readonly new BindableProperty SelectedItemProperty =
@@ -26,8 +26,8 @@ namespace RCS.PortableShop.Common.Controls
 
         public new object SelectedItem
         {
-            get { return (object)GetValue(SelectedItemProperty); }
-            set { SetValue(SelectedItemProperty, value); }
+            get => (object)GetValue(SelectedItemProperty);
+            set => SetValue(SelectedItemProperty, value);
         }
 
         private static void OnItemsSourceChanged(BindableObject bindable, object oldValue, object newValue)

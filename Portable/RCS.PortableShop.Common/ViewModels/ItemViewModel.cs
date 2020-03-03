@@ -15,7 +15,7 @@ namespace RCS.PortableShop.Common.ViewModels
 
         public TItem Item
         {
-            get { return (TItem)GetValue(ItemProperty); }
+            get => (TItem)GetValue(ItemProperty);
             set
             {
                 SetValue(ItemProperty, value);

@@ -6,8 +6,8 @@ namespace RCS.PortableShop.Common.Views
     {
         public new ViewModel ViewModel
         {
-            get { return base.ViewModel; }
-            protected set { base.ViewModel = value; }
+            get => base.ViewModel;
+            protected set => base.ViewModel = value;
         }
     }
 }

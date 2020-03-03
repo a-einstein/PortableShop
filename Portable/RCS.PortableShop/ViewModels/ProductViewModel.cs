@@ -43,7 +43,7 @@ namespace RCS.PortableShop.ViewModels
 
         public ICommand PhotoCommand
         {
-            get { return (ICommand)GetValue(PhotoCommandProperty); }
+            get => (ICommand)GetValue(PhotoCommandProperty);
             private set
             {
                 SetValue(PhotoCommandProperty, value);
@@ -75,7 +75,7 @@ namespace RCS.PortableShop.ViewModels
 
         public ICommand CartCommand
         {
-            get { return (ICommand)GetValue(CartCommandProperty); }
+            get => (ICommand)GetValue(CartCommandProperty);
             set
             {
                 SetValue(CartCommandProperty, value);
