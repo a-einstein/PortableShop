@@ -30,31 +30,31 @@ namespace RCS.PortableShop.Model
 
             CartItem productCartItem;
 
-            if (existingCartItems.Count == 0)
+            switch (existingCartItems.Count)
             {
-                productCartItem = new CartItem()
-                {
-                    ProductID = product.Id.Value,
-                    Name = product.Name,
-                    ProductSize = product.Size,
-                    ProductSizeUnitMeasureCode = product.SizeUnitMeasureCode,
-                    ProductColor = product.Color,
-                    ProductListPrice = product.ListPrice,
-                    Quantity = 1
-                };
+                case 0:
+                    productCartItem = new CartItem()
+                    {
+                        ProductID = product.Id.Value,
+                        Name = product.Name,
+                        ProductSize = product.Size,
+                        ProductSizeUnitMeasureCode = product.SizeUnitMeasureCode,
+                        ProductColor = product.Color,
+                        ProductListPrice = product.ListPrice,
+                        Quantity = 1
+                    };
 
-                List.Add(productCartItem);
-            }
-            else if (existingCartItems.Count == 1)
-            {
-                productCartItem = existingCartItems.First();
+                    List.Add(productCartItem);
+                    break;
+                case 1:
+                    productCartItem = existingCartItems.First();
 
-                productCartItem.Quantity += 1;
-                productCartItem.Value = productCartItem.ProductListPrice * productCartItem.Quantity;
-            }
-            else
-            {
-                MessagingCenter.Send<CartItemsRepository>(this, Message.CartError.ToString());
+                    productCartItem.Quantity += 1;
+                    productCartItem.Value = productCartItem.ProductListPrice * productCartItem.Quantity;
+                    break;
+                default:
+                    MessagingCenter.Send<CartItemsRepository>(this, Message.CartError.ToString());
+                    break;
             }
         }
 
