@@ -22,7 +22,7 @@
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
-        <Label Grid.Row="1" Grid.Column="0" Text="{Localization:Translate ServiceType}" Style="{StaticResource LabelLabelStyle}" />
-        <Controls:BindablePicker Grid.Row="1" Grid.Column="1" Title="{Localization:Translate ServiceType}" ItemsSource="{Binding ServiceTypes, Mode=OneTime}" SelectedItem="{Binding ServiceType, Mode=TwoWay}"/>
+        <Label Grid.Column="0" Text="{Localization:Translate ServiceType}" Style="{StaticResource LabelLabelStyle}" />
+        <Controls:BindablePicker Grid.Column="1" Title="{Localization:Translate ServiceType}" ItemsSource="{Binding ServiceTypes, Mode=OneTime}" SelectedItem="{Binding ServiceType, Mode=TwoWay}"/>
     </Grid>
 </BaseClasses:View>
