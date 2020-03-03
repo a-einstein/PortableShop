@@ -35,7 +35,7 @@ namespace RCS.PortableShop.Droid
             LoadApplication(new MainApplication());
         }
 
-        private void CurrentDomainUnhandledException(object sender, UnhandledExceptionEventArgs e)
+        private static void CurrentDomainUnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             throw new NotImplementedException();
         }

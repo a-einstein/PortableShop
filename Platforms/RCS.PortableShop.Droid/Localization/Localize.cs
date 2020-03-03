@@ -42,7 +42,7 @@ namespace RCS.PortableShop.Droid.Localization
             return cultureInfo;
         }
 
-        string AndroidToDotnetLanguage(string androidLanguage)
+        static string AndroidToDotnetLanguage(string androidLanguage)
         {
             Console.WriteLine($"{debugPrefix} Android Language: {androidLanguage}");
 
@@ -96,7 +96,7 @@ namespace RCS.PortableShop.Droid.Localization
             return cultureInfo;
         }
 
-        string DotnetFallbackLanguage(PlatformCulture platformCulture)
+        static string DotnetFallbackLanguage(PlatformCulture platformCulture)
         {
             // iOS locale not valid .NET culture (eg. "en-ES" : English in Spain)
             // fallback to first characters, in this case "en".
