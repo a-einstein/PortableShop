@@ -12,7 +12,7 @@ namespace RCS.PortableShop.Common.Controls
             SelectedIndexChanged += OnSelectedIndexChanged;
         }
 
-        public static readonly new BindableProperty ItemsSourceProperty =
+        public new static readonly BindableProperty ItemsSourceProperty =
             BindableProperty.Create(nameof(ItemsSource), typeof(IList), typeof(BindablePicker), propertyChanged: OnItemsSourceChanged);
 
         public new IList ItemsSource
@@ -21,7 +21,7 @@ namespace RCS.PortableShop.Common.Controls
             private set => SetValue(ItemsSourceProperty, value);
         }
 
-        public static readonly new BindableProperty SelectedItemProperty =
+        public new static readonly BindableProperty SelectedItemProperty =
             BindableProperty.Create(nameof(SelectedItem), typeof(object), typeof(BindablePicker), propertyChanged: OnSelectedItemChanged);
 
         public new object SelectedItem

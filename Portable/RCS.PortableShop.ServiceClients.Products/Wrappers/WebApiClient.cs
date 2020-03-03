@@ -65,7 +65,7 @@ namespace RCS.PortableShop.ServiceClients.Products.Wrappers
         #endregion
 
         #region Utilities
-        static private string productsApi = $"{serviceDomain}/ProductsApi";
+        private static string productsApi = $"{serviceDomain}/ProductsApi";
 
         private HttpClient HttpClient => httpClientFactory.CreateClient();
 
