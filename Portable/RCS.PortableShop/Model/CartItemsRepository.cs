@@ -25,7 +25,7 @@ namespace RCS.PortableShop.Model
         #region CRUD
         // Note that the cart is only kept in memory and is not preserved. 
         // It is anticipated that only real orders would be preserved and stored on the server.
-        public CartItem AddProduct(IShoppingProduct product)
+        public void AddProduct(IShoppingProduct product)
         {
             var existingCartItems = List.Where(cartItem => cartItem.ProductID == product.Id);
             var existingCartItemsCount = existingCartItems.Count();
@@ -58,8 +58,6 @@ namespace RCS.PortableShop.Model
             {
                 MessagingCenter.Send<CartItemsRepository>(this, CartItemsRepository.Message.CartError.ToString());
             }
-
-            return productCartItem;
         }
 
         public void DeleteProduct(CartItem cartItem)
