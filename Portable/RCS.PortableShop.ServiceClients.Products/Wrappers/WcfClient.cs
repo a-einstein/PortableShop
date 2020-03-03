@@ -86,7 +86,7 @@ namespace RCS.PortableShop.ServiceClients.Products.Wrappers
         // Check out the IDisposable documentation for details on the pattern applied here.
         // Note that it can have implications on derived classes too.
 
-        private bool disposed = false;
+        private bool disposed;
 
         public void Dispose()
         {

@@ -9,8 +9,8 @@ namespace RCS.PortableShop.Views
             InitializeComponent();
         }
 
-        private int preservedActionBlockWidth = 0;
-        private int preservedActionBlockHeight = 0;
+        private int preservedActionBlockWidth;
+        private int preservedActionBlockHeight;
 
         protected override void OnSizeAllocated(double width, double height)
         {
