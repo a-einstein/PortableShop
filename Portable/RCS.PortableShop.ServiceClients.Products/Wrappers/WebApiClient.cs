@@ -54,9 +54,9 @@ namespace RCS.PortableShop.ServiceClients.Products.Wrappers
             return result;
         }
 
-        public async Task<Product> GetProduct(int productID)
+        public async Task<Product> GetProduct(int productId)
         {
-            var parameters = $"id={productID}";
+            var parameters = $"id={productId}";
 
             var result = await ReadApi<Product>(ProductEntityName, "details", parameters).ConfigureAwait(true);
 

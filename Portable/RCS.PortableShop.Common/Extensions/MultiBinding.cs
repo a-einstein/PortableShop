@@ -88,15 +88,15 @@ namespace RCS.PortableShop.Common.Extensions
 
         private sealed class InternalValue : INotifyPropertyChanged
         {
-            private object _value;
+            private object value;
             public object Value
             {
-                get { return _value; }
+                get { return value; }
                 set
                 {
-                    if (!Equals(_value, value))
+                    if (!Equals(this.value, value))
                     {
-                        _value = value;
+                        this.value = value;
                         OnPropertyChanged();
                     }
                 }

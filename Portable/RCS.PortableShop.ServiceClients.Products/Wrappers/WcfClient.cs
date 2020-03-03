@@ -41,12 +41,12 @@ namespace RCS.PortableShop.ServiceClients.Products.Wrappers
             return result;
         }
 
-        public async Task<Product> GetProduct(int productID)
+        public async Task<Product> GetProduct(int productId)
         {
             var result = await Task.Factory.FromAsync<int, Product>(
                   ProductsServiceClient.BeginGetProductDetails,
                   ProductsServiceClient.EndGetProductDetails,
-                  productID,
+                  productId,
                   null).ConfigureAwait(true);
 
             return result;
