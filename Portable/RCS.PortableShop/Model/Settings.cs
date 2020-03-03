@@ -60,7 +60,7 @@ namespace RCS.PortableShop.Model
             set
             {
                 productCategoryId = value;
-                Preferences.Set(productCategoryIdKey, value.HasValue ? value.Value : default);
+                Preferences.Set(productCategoryIdKey, value ?? default);
             }
         }
 
@@ -85,7 +85,7 @@ namespace RCS.PortableShop.Model
             set
             {
                 productSubategoryId = value;
-                Preferences.Set(productSubategoryIdKey, value.HasValue ? value.Value : default);
+                Preferences.Set(productSubategoryIdKey, value ?? default);
             }
         }
 
