@@ -39,10 +39,10 @@ namespace RCS.PortableShop.Common.Behaviors
 
         public bool IsValid
         {
-            get { return (bool)base.GetValue(IsValidProperty); }
+            get { return (bool)GetValue(IsValidProperty); }
             private set
             {
-                base.SetValue(IsValidPropertyKey, value);
+                SetValue(IsValidPropertyKey, value);
                 RaisePropertyChanged(nameof(IsValid));
             }
         }

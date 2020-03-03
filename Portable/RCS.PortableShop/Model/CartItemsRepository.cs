@@ -42,7 +42,7 @@ namespace RCS.PortableShop.Model
                     ProductSizeUnitMeasureCode = product.SizeUnitMeasureCode,
                     ProductColor = product.Color,
                     ProductListPrice = product.ListPrice,
-                    Quantity = 1,
+                    Quantity = 1
                 };
 
                 List.Add(productCartItem);
@@ -56,7 +56,7 @@ namespace RCS.PortableShop.Model
             }
             else
             {
-                MessagingCenter.Send<CartItemsRepository>(this, CartItemsRepository.Message.CartError.ToString());
+                MessagingCenter.Send<CartItemsRepository>(this, Message.CartError.ToString());
             }
         }
 

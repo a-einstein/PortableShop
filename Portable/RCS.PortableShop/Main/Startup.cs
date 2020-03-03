@@ -25,10 +25,10 @@ namespace RCS.PortableShop.Main
                     // as there does not seem to be a feasible way to do that while running.
                     switch (Settings.ServiceTypeSelected)
                     {
-                        case Model.Settings.ServiceType.WCF:
+                        case Settings.ServiceType.WCF:
                             services.AddSingleton<IProductService, WcfClient>();
                             break;
-                        case Model.Settings.ServiceType.WebApi:
+                        case Settings.ServiceType.WebApi:
                             services.AddSingleton<IProductService,WebApiClient>();
                             break;
                     }

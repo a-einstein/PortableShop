@@ -137,7 +137,7 @@ namespace RCS.PortableShop.Common.ViewModels
         protected static async Task PushPage(View view)
         {
             var page = new Page();
-            page.SetBinding(Page.TitleProperty, new Binding() { Path = nameof(Title), Source = view.ViewModel });
+            page.SetBinding(Xamarin.Forms.Page.TitleProperty, new Binding() { Path = nameof(Title), Source = view.ViewModel });
             page.Content = view;
 
             await Navigation.PushAsync(page).ConfigureAwait(true);
