@@ -97,7 +97,7 @@ namespace RCS.PortableShop.Common.ViewModels
         // So calling RaisePropertyChanged within the Title property does not work.
         private static void TitleChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            (bindable as ViewModel).RaisePropertyChanged(nameof(Title));
+            (bindable as ViewModel)?.RaisePropertyChanged(nameof(Title));
         }
         #endregion
 

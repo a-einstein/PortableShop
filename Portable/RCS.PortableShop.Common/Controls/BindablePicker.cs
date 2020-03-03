@@ -34,14 +34,14 @@ namespace RCS.PortableShop.Common.Controls
         private static void OnItemsSourceChanged(BindableObject bindable, object oldValue, object newValue)
         {
             var bindablePicker = bindable as BindablePicker;
-            bindablePicker.Items.Clear();
+            bindablePicker?.Items.Clear();
 
             if (newValue != null)
             {
                 //now it works like "subscribe once" but you can improve
                 foreach (var item in newValue as IList)
                 {
-                    bindablePicker.Items.Add(item.ToString());
+                    bindablePicker?.Items.Add(item.ToString());
                 }
             }
         }

@@ -129,7 +129,7 @@ namespace RCS.PortableShop.Common.ViewModels
         {
             var viewModel = bindableObject as FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>;
 
-            viewModel.SetDetailFilterItems();
+            viewModel?.SetDetailFilterItems();
             viewModel.DetailFilterValue = viewModel.DetailFilterItems.FirstOrDefault();
         }
 
