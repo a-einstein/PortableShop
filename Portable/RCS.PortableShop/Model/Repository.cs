@@ -15,7 +15,7 @@ namespace RCS.PortableShop.Model
         #region CRUD
         public TCollection List { get; } = new TCollection();
 
-        public void Clear()
+        protected void Clear()
         {
             List.Clear();
         }

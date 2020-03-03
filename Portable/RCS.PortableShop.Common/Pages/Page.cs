@@ -51,7 +51,7 @@ namespace RCS.PortableShop.Common.Pages
             ToolbarItems.Add(new ToolbarItem("R", "Refresh.png", async () => await Content.ViewModel.Refresh().ConfigureAwait(true), priority: 10));
         }
 
-        public async Task Refresh()
+        protected async Task Refresh()
         {
             await Initialize().ConfigureAwait(true);
 
