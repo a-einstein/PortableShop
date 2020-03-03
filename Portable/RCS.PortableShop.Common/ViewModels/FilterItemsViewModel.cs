@@ -57,7 +57,7 @@ namespace RCS.PortableShop.Common.ViewModels
             return (baseInitialized && filterInitialized);
         }
 
-        protected override async Task<bool> Read()
+        protected override async Task Read()
         {
             // TODO This was intended to (also) be shown by the ActivityIndicator, but that currently does not work.
             Message = Labels.Searching;
@@ -65,8 +65,6 @@ namespace RCS.PortableShop.Common.ViewModels
             var succeeded = await ReadFiltered().ConfigureAwait(true);
 
             Message = (succeeded && ItemsCount == 0) ? Labels.NotFound : string.Empty;
-
-            return succeeded;
         }
 
         public override string MakeTitle()

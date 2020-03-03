@@ -65,11 +65,11 @@ namespace RCS.PortableShop.Common.ViewModels
             return initialized;
         }
 
-        protected virtual async Task<bool> Read()
+        // Keep virtual as not all derivatives can have a sensible action.
+        protected virtual async Task Read()
         {
-            await Task.Run(() => { }).ConfigureAwait(true);
-
-            return true;
+            // Non action.
+            await Task.Delay(0).ConfigureAwait(true);
         }
 
         protected void UpdateTitle()

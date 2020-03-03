@@ -70,7 +70,7 @@ namespace RCS.PortableShop.ViewModels
             ClearAggregates();
         }
 
-        protected override async Task<bool> Read()
+        protected override async Task Read()
         {
             await Task.Run(() =>
             {
@@ -78,8 +78,6 @@ namespace RCS.PortableShop.ViewModels
                 UpdateAggregates();
             }
             ).ConfigureAwait(true);
-
-            return true;
         }
 
         public override string MakeTitle() { return Labels.Cart; }
