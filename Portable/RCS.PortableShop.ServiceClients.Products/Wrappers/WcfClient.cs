@@ -71,7 +71,7 @@ namespace RCS.PortableShop.ServiceClients.Products.Wrappers
                     var binding = new BasicHttpBinding(BasicHttpSecurityMode.Transport) { OpenTimeout = Timeout, SendTimeout = Timeout, ReceiveTimeout = Timeout, CloseTimeout = Timeout };
 
                     // Note this points to a BasicHttpBinding variant on the server.
-                    string endpointAddress = $"{serviceDomain}/ProductsServicePub/ProductsService.svc/ProductsServiceB";
+                    var endpointAddress = $"{serviceDomain}/ProductsServicePub/ProductsService.svc/ProductsServiceB";
 
                     // Note the example bindings in ProductsServiceClient which could also be applied here by using EndpointConfiguration
                     productsServiceClient = new ProductsServiceClient(binding, new EndpointAddress(endpointAddress));

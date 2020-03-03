@@ -42,9 +42,9 @@ namespace RCS.PortableShop.ServiceClients.Products.Wrappers
         public async Task<ProductsOverviewList> GetProducts(ProductCategory category, ProductSubcategory subcategory, string namePart)
         {
             // Note the parameternames have to mach those of the web API. 
-            string categoryParameter = category != null ? $"category={category.Id}" : null;
-            string subcategoryParameter = subcategory != null ? $"subcategory={subcategory.Id}" : null;
-            string wordParameter = namePart != null ? $"word={namePart}" : null;
+            var categoryParameter = category != null ? $"category={category.Id}" : null;
+            var subcategoryParameter = subcategory != null ? $"subcategory={subcategory.Id}" : null;
+            var wordParameter = namePart != null ? $"word={namePart}" : null;
 
             // Note that extra occurrences of # are acceptable and order does not matter.
             var parameters = $"{categoryParameter}&{subcategoryParameter}&{wordParameter}";

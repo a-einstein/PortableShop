@@ -44,7 +44,7 @@ namespace RCS.PortableShop.Common.Extensions
 
             if (targetObject == null) return null;
 
-            foreach (Binding binding in Bindings)
+            foreach (var binding in Bindings)
             {
                 var bindableProperty = BindableProperty.Create
                 (
@@ -124,7 +124,7 @@ namespace RCS.PortableShop.Common.Extensions
 
             public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
             {
-                object result = value;
+                var result = value;
 
                 if (converter != null)
                     // Convert.
@@ -134,7 +134,7 @@ namespace RCS.PortableShop.Common.Extensions
                 if (!string.IsNullOrWhiteSpace(format))
                 {
                     // Determine type again.
-                    object[] resultArray = result as object[];
+                    var resultArray = result as object[];
 
                     // Format.
                     // Distinguish formatting on type.

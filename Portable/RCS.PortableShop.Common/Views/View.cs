@@ -34,8 +34,8 @@ namespace RCS.PortableShop.Common.Views
         protected static void Orientate(ref StackLayout stack, ref int preservedWidth, ref int preservedHeight, double width, double height)
         {
             //Make comparison more robust.
-            int newWidth = (int)Math.Round(width);
-            int newHeight = (int)Math.Round(height);
+            var newWidth = (int)Math.Round(width);
+            var newHeight = (int)Math.Round(height);
             const int voidValue = -1;
 
             // Prevent unnecessary orientation changes.
