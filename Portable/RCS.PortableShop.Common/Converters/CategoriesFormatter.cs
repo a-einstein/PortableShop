@@ -1,9 +1,9 @@
-﻿using System;
+﻿/*
+using System;
 using System.Globalization;
 
 namespace RCS.PortableShop.Common.Converters
 {
-    /*
     public class CategoriesFormatter : SingleDirectionMultiConverter
     {
         public override object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
@@ -16,5 +16,6 @@ namespace RCS.PortableShop.Common.Converters
             return $"{category} {separator} {subcategory}";
         }
     }
-    */
 }
+*/
+

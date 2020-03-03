@@ -4,7 +4,6 @@ using RCS.PortableShop.Common.ViewModels;
 using RCS.PortableShop.Main;
 using RCS.PortableShop.Model;
 using RCS.PortableShop.Resources;
-using System;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Threading.Tasks;

@@ -1,6 +1,5 @@
 ﻿using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.PortableShop.ServiceClients.Products.Wrappers;
-using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Xamarin.Forms;
