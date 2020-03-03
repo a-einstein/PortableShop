@@ -36,7 +36,7 @@ namespace RCS.PortableShop.Common.Views
             //Make comparison more robust.
             int newWidth = (int)Math.Round(width);
             int newHeight = (int)Math.Round(height);
-            int voidValue = -1;
+            const int voidValue = -1;
 
             // Prevent unnecessary orientation changes.
             if (newWidth != voidValue && newHeight != voidValue &&

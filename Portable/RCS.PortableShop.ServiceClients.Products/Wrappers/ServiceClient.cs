@@ -10,6 +10,6 @@ namespace RCS.PortableShop.ServiceClients.Products.Wrappers
         static public TimeSpan Timeout { get; } = new TimeSpan(0, 0, 15);
 
          // Note HttpClient.BaseAddress could also be set instead.
-        static protected string serviceDomain = "https://rcsworks.nl";
+         protected const string serviceDomain = "https://rcsworks.nl";
     }
 }
