@@ -7,7 +7,8 @@ namespace RCS.PortableShop.Model
         where TCollection : Collection<TElement>, new()
     {
         #region Construction
-        public Repository(IProductService productService)
+
+        protected Repository(IProductService productService)
             : base(productService)
         { }
         #endregion

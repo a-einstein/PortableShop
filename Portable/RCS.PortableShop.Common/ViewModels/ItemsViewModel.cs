@@ -7,7 +7,8 @@ namespace RCS.PortableShop.Common.ViewModels
     public abstract class ItemsViewModel<TItem> : ViewModel
     {
         #region Construction
-        public ItemsViewModel()
+
+        protected ItemsViewModel()
         {
             // This is still needed after initialization, it cannot be set on the ItemsProperty.
             SetItemsCollectionChanged();

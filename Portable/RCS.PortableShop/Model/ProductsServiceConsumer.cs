@@ -7,7 +7,7 @@ namespace RCS.PortableShop.Model
 {
     public abstract class ProductsServiceConsumer 
     {
-        public ProductsServiceConsumer(IProductService productService)
+        protected ProductsServiceConsumer(IProductService productService)
         {
             ServiceClient = productService;
         }
