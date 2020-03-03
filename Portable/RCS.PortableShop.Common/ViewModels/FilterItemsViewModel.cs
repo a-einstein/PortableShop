@@ -135,7 +135,7 @@ namespace RCS.PortableShop.Common.ViewModels
         {
             var detailFilterItemsSelection = DetailFilterItemsSource.Where(DetailFilterItemsSelector());
 
-            var detailFilterItems = new ObservableCollection<TDetailFilterItem>(); ;
+            var detailFilterItems = new ObservableCollection<TDetailFilterItem>();
 
             // Note that the query is executed on the foreach.
             foreach (var item in detailFilterItemsSelection)

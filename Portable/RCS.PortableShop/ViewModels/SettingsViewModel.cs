@@ -9,7 +9,7 @@ namespace RCS.PortableShop.ViewModels
     {
         public override string MakeTitle()
         {
-            return Labels.Settings; ;
+            return Labels.Settings;
         }
 
         public List<Settings.ServiceType> ServiceTypes
