@@ -20,7 +20,7 @@ namespace RCS.PortableShop.Common.Behaviors
 
         void HandleTextChanged(object sender, TextChangedEventArgs e)
         {
-            IsValid = (Regex.IsMatch(e.NewTextValue, Expression, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)));
+            IsValid = Regex.IsMatch(e.NewTextValue, Expression, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250));
 
             // Use BackgroundColor as it stands out more.
             // This could be replaced by an entire style.

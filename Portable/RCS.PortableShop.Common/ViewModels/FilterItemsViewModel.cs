@@ -54,7 +54,7 @@ namespace RCS.PortableShop.Common.ViewModels
                 Message = string.Empty;
             }
 
-            return (baseInitialized && filterInitialized);
+            return baseInitialized && filterInitialized;
         }
 
         protected override async Task Read()
@@ -64,16 +64,16 @@ namespace RCS.PortableShop.Common.ViewModels
 
             var succeeded = await ReadFiltered().ConfigureAwait(true);
 
-            Message = (succeeded && ItemsCount == 0) ? Labels.NotFound : string.Empty;
+            Message = succeeded && ItemsCount == 0 ? Labels.NotFound : string.Empty;
         }
 
         public override string MakeTitle()
         {
-            var title = (!string.IsNullOrEmpty(DetailFilterValue?.Name))
+            var title = !string.IsNullOrEmpty(DetailFilterValue?.Name)
                ? DetailFilterValue?.Name
                : MasterFilterValue?.Name;
 
-            return (ItemsCount != 0 && !string.IsNullOrEmpty(title)) ? title : TitleDefault;
+            return ItemsCount != 0 && !string.IsNullOrEmpty(title) ? title : TitleDefault;
         }
 
         public override bool Awaiting

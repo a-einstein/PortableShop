@@ -132,8 +132,8 @@ namespace RCS.PortableShop.ViewModels
         {
             return
                 !Awaiting &&
-                ((MasterFilterValue != null && !MasterFilterValue.IsEmpty) || 
-                (!string.IsNullOrEmpty(TextFilterValue) && (Regex.IsMatch(TextFilterValue, @"\w{3}", RegexOptions.IgnoreCase))));
+                (MasterFilterValue != null && !MasterFilterValue.IsEmpty || 
+                !string.IsNullOrEmpty(TextFilterValue) && Regex.IsMatch(TextFilterValue, @"\w{3}", RegexOptions.IgnoreCase));
         }
 
         protected override async Task<bool> ReadFiltered()
