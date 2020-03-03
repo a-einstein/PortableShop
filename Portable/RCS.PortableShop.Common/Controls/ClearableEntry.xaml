@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
-<Controls:CustomContentView
+<controls:CustomContentView
     x:Class="RCS.PortableShop.Common.Controls.ClearableEntry"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:Controls="clr-namespace:RCS.PortableShop.Common.Controls;assembly=RCS.PortableShop.Common"
-    xmlns:Localization="clr-namespace:RCS.PortableShop.Localization;assembly=RCS.PortableShop"
+    xmlns:controls="clr-namespace:RCS.PortableShop.Common.Controls;assembly=RCS.PortableShop.Common"
+    xmlns:localization="clr-namespace:RCS.PortableShop.Localization;assembly=RCS.PortableShop"
     >
 
     <ContentView.Content>
@@ -18,11 +18,11 @@
             <Entry x:Name="entry" Grid.Column="0" Placeholder="{Binding Placeholder}" Text="{Binding Text, Mode=TwoWay}" Margin="0"/>
 
             <!--Using ContentButton plus Label to create a flat style Button without border. -->
-            <Controls:ContentButton Grid.Column="1" Command="{Binding ClearCommand}" VerticalOptions="Start">
-                <Controls:ContentButton.Content>
-                    <Label Text="{Localization:Translate Remove}" Margin="0,5,10,0" FontSize="Medium" TextColor="{StaticResource LabelTextColour}"/>
-                </Controls:ContentButton.Content>
-            </Controls:ContentButton>
+            <controls:ContentButton Grid.Column="1" Command="{Binding ClearCommand}" VerticalOptions="Start">
+                <controls:ContentButton.Content>
+                    <Label Text="{localization:Translate Remove}" Margin="0,5,10,0" FontSize="Medium" TextColor="{StaticResource LabelTextColour}"/>
+                </controls:ContentButton.Content>
+            </controls:ContentButton>
         </Grid>
     </ContentView.Content>
-</Controls:CustomContentView>
+</controls:CustomContentView>

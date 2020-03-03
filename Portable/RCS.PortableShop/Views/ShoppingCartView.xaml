@@ -1,26 +1,26 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
-<BaseClasses:View
+<baseClasses:View
     x:Class="RCS.PortableShop.Views.ShoppingCartView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:Controls="clr-namespace:RCS.PortableShop.Common.Controls;assembly=RCS.PortableShop.Common"
-    xmlns:BaseClasses="clr-namespace:RCS.PortableShop.Common.Views;assembly=RCS.PortableShop.Common"
-    xmlns:Localization="clr-namespace:RCS.PortableShop.Localization;assembly=RCS.PortableShop"
-    xmlns:Views="clr-namespace:RCS.PortableShop.Views;assembly=RCS.PortableShop"
-    xmlns:NumericUpDown="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
+    xmlns:controls="clr-namespace:RCS.PortableShop.Common.Controls;assembly=RCS.PortableShop.Common"
+    xmlns:baseClasses="clr-namespace:RCS.PortableShop.Common.Views;assembly=RCS.PortableShop.Common"
+    xmlns:localization="clr-namespace:RCS.PortableShop.Localization;assembly=RCS.PortableShop"
+    xmlns:views="clr-namespace:RCS.PortableShop.Views;assembly=RCS.PortableShop"
+    xmlns:numericUpDown="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
     BackgroundColor="{StaticResource CartLevel0Colour}"
     Padding="{StaticResource ViewPadding}"
     >
 
-    <BaseClasses:View.Resources>
+    <baseClasses:View.Resources>
         <ResourceDictionary>
             <!--<Converters:SizeFormatter x:Key="SizeFormatter"/>-->
         </ResourceDictionary>
-    </BaseClasses:View.Resources>
+    </baseClasses:View.Resources>
 
     <StackLayout>
-        <Views:ShoppingCartSummaryView/>
+        <views:ShoppingCartSummaryView/>
 
         <!--VerticalOptions is needed to fill the screen with no or just a few items.-->
         <!--Note that ListView has got its own scrolling.-->
@@ -51,15 +51,15 @@
                                     
                                     Note the defined style with comments.
                                     -->
-                                    <NumericUpDown:SfNumericUpDown Value="{Binding Quantity, Mode=TwoWay}"/>
+                                    <numericUpDown:SfNumericUpDown Value="{Binding Quantity, Mode=TwoWay}"/>
 
                                     <!--Using ContentButton plus Label to create a flat style Button without border. -->
                                     <!--TODO Get it better aligned with SfNumericUpDown.-->
-                                    <Controls:ContentButton Command="{Binding BindingContext.DeleteCommand, Source={x:Reference shoppingCartItemsListView}}" CommandParameter="{Binding}" HorizontalOptions="Start" VerticalOptions="Center">
-                                        <Controls:ContentButton.Content>
-                                            <Label Text="{Localization:Translate Remove}" Margin="10,0" FontSize="Small" FontAttributes="Bold" TextColor="{StaticResource LabelTextColour}" VerticalOptions="Start"/>
-                                        </Controls:ContentButton.Content>
-                                    </Controls:ContentButton>
+                                    <controls:ContentButton Command="{Binding BindingContext.DeleteCommand, Source={x:Reference shoppingCartItemsListView}}" CommandParameter="{Binding}" HorizontalOptions="Start" VerticalOptions="Center">
+                                        <controls:ContentButton.Content>
+                                            <Label Text="{localization:Translate Remove}" Margin="10,0" FontSize="Small" FontAttributes="Bold" TextColor="{StaticResource LabelTextColour}" VerticalOptions="Start"/>
+                                        </controls:ContentButton.Content>
+                                    </controls:ContentButton>
                                 </StackLayout>
                             </StackLayout>
                         </Grid>
@@ -68,4 +68,4 @@
             </ListView.ItemTemplate>
         </ListView>
     </StackLayout>
-</BaseClasses:View>
+</baseClasses:View>

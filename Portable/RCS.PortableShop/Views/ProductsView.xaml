@@ -1,28 +1,28 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
-<BaseClasses:View
+<baseClasses:View
     x:Class="RCS.PortableShop.Views.ProductsView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:Behaviors="clr-namespace:RCS.PortableShop.Common.Behaviors;assembly=RCS.PortableShop.Common"
-    xmlns:Controls="clr-namespace:RCS.PortableShop.Common.Controls;assembly=RCS.PortableShop.Common"
-    xmlns:Converters="clr-namespace:RCS.PortableShop.Common.Converters;assembly=RCS.PortableShop.Common"
-    xmlns:BaseClasses="clr-namespace:RCS.PortableShop.Common.Views;assembly=RCS.PortableShop.Common"
-    xmlns:Localization="clr-namespace:RCS.PortableShop.Localization;assembly=RCS.PortableShop"
+    xmlns:behaviors="clr-namespace:RCS.PortableShop.Common.Behaviors;assembly=RCS.PortableShop.Common"
+    xmlns:controls="clr-namespace:RCS.PortableShop.Common.Controls;assembly=RCS.PortableShop.Common"
+    xmlns:converters="clr-namespace:RCS.PortableShop.Common.Converters;assembly=RCS.PortableShop.Common"
+    xmlns:baseClasses="clr-namespace:RCS.PortableShop.Common.Views;assembly=RCS.PortableShop.Common"
+    xmlns:localization="clr-namespace:RCS.PortableShop.Localization;assembly=RCS.PortableShop"
     BackgroundColor="{StaticResource ProductsLevel0Colour}"
     Padding="{StaticResource ViewPadding}"
     >
 
-    <BaseClasses:View.Resources>
+    <baseClasses:View.Resources>
         <ResourceDictionary>
             <!--<Converters:CategoriesFormatter x:Key="CategoriesFormatter"/>-->
             <!--<Converters:SizeFormatter x:Key="SizeFormatter"/>-->
-            <Converters:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter"/>
-            <Converters:HasValueTester x:Key="HasValueTester"/>
-            <Converters:BooleanInverter x:Key="BooleanInverter"/>
-            <Converters:HasValueMultiTester x:Key="HasValueMultiTester"/>
+            <converters:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter"/>
+            <converters:HasValueTester x:Key="HasValueTester"/>
+            <converters:BooleanInverter x:Key="BooleanInverter"/>
+            <converters:HasValueMultiTester x:Key="HasValueMultiTester"/>
         </ResourceDictionary>
-    </BaseClasses:View.Resources>
+    </baseClasses:View.Resources>
 
     <Grid>
         <Grid>
@@ -36,23 +36,23 @@
                 <!--Note this Orientation may be changed depending on screen orientation. Assume Vertical.-->
                 <StackLayout x:Name="actionBlock" Orientation="Vertical" HorizontalOptions="Start">
                     <StackLayout Orientation="Horizontal">
-                        <Controls:BindablePicker Title="{Localization:Translate MasterFilter}" ItemsSource="{Binding MasterFilterItems, Mode=TwoWay}" SelectedItem="{Binding MasterFilterValue, Mode=TwoWay}" IsEnabled="{Binding MasterFilterItems, Converter={StaticResource HasValueTester}}" BackgroundColor="{StaticResource ProductsLevel1Colour}"/>
-                        <Controls:BindablePicker Title="{Localization:Translate DetailFilter}" ItemsSource="{Binding DetailFilterItems, Mode=TwoWay}" SelectedItem="{Binding DetailFilterValue, Mode=TwoWay}" IsEnabled="{Binding DetailFilterItems, Converter={StaticResource HasValueTester}}" BackgroundColor="{StaticResource ProductsLevel1Colour}"/>
-                        <Controls:ClearableEntry Placeholder="{Localization:Translate TextFilter}" Text="{Binding TextFilterValue, Mode=TwoWay}" BackgroundColor="{StaticResource ProductsLevel1Colour}" WidthRequest="130">
-                            <Controls:ClearableEntry.EntryBehaviors>
+                        <controls:BindablePicker Title="{localization:Translate MasterFilter}" ItemsSource="{Binding MasterFilterItems, Mode=TwoWay}" SelectedItem="{Binding MasterFilterValue, Mode=TwoWay}" IsEnabled="{Binding MasterFilterItems, Converter={StaticResource HasValueTester}}" BackgroundColor="{StaticResource ProductsLevel1Colour}"/>
+                        <controls:BindablePicker Title="{localization:Translate DetailFilter}" ItemsSource="{Binding DetailFilterItems, Mode=TwoWay}" SelectedItem="{Binding DetailFilterValue, Mode=TwoWay}" IsEnabled="{Binding DetailFilterItems, Converter={StaticResource HasValueTester}}" BackgroundColor="{StaticResource ProductsLevel1Colour}"/>
+                        <controls:ClearableEntry Placeholder="{localization:Translate TextFilter}" Text="{Binding TextFilterValue, Mode=TwoWay}" BackgroundColor="{StaticResource ProductsLevel1Colour}" WidthRequest="130">
+                            <controls:ClearableEntry.EntryBehaviors>
                                 <!--TODO Currently parameter passing does not work and is hard coded. See comments elsewhere.-->
                                 <!--<Behaviors:EntryRegexValidationBehavior Expression="{Binding ValidTextFilterExpression}" InvalidBackgroundColour="{StaticResource InvalidBackgroundColour}"/>-->
-                                <Behaviors:EntryRegexValidationBehavior Expression="\w{3}" InvalidBackgroundColour="{StaticResource InvalidBackgroundColour}"/>
-                            </Controls:ClearableEntry.EntryBehaviors>
-                        </Controls:ClearableEntry>
+                                <behaviors:EntryRegexValidationBehavior Expression="\w{3}" InvalidBackgroundColour="{StaticResource InvalidBackgroundColour}"/>
+                            </controls:ClearableEntry.EntryBehaviors>
+                        </controls:ClearableEntry>
                     </StackLayout>
 
                     <!--Put at Start, as changes in orientation did not work out correctly on the last Label.-->
                     <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
                         <!--IsDefault="True"-->
-                        <Button Text="{Localization:Translate Filter}" Command="{Binding FilterCommand}" BackgroundColor="{StaticResource ProductsLevel1Colour}" HorizontalOptions="Start"/>
+                        <Button Text="{localization:Translate Filter}" Command="{Binding FilterCommand}" BackgroundColor="{StaticResource ProductsLevel1Colour}" HorizontalOptions="Start"/>
                         <Label Text="{Binding ItemsCount}" Style="{StaticResource ValueEmphasisMediumLabelStyle}"/>
-                        <Label Text="{Localization:Translate Products}" Style="{StaticResource EmphasisMediumLabelStyle}"/>
+                        <Label Text="{localization:Translate Products}" Style="{StaticResource EmphasisMediumLabelStyle}"/>
                     </StackLayout>
                 </StackLayout>
             </StackLayout>
@@ -67,8 +67,8 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
-                                    <Controls:ContentButton Command="{Binding BindingContext.DetailsCommand, Source={x:Reference productsItemsControl}}" CommandParameter="{Binding}">
-                                        <Controls:ContentButton.Content>
+                                    <controls:ContentButton Command="{Binding BindingContext.DetailsCommand, Source={x:Reference productsItemsControl}}" CommandParameter="{Binding}">
+                                        <controls:ContentButton.Content>
                                             <Grid Style="{StaticResource ListItemStyle}" BackgroundColor="{StaticResource ProductsLevel1Colour}">
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="Auto"/>
@@ -82,7 +82,7 @@
                                                     <!--Had to revert this change because of an exception when navigating back (a second time) from a detail page. https://github.com/xamarin/Xamarin.Forms/issues/7877 -->
                                                     <!--
                                                     <Button ImageSource="CartPlus"                          Command="{Binding BindingContext.CartCommand, Source={x:Reference productsItemsControl}}" CommandParameter="{Binding}" Style="{StaticResource CartButtonStyle}" VerticalOptions="Start" HorizontalOptions="End"/>-->
-                                                    <Button Text="{Localization:Translate IncreaseProduct}" Command="{Binding BindingContext.CartCommand, Source={x:Reference productsItemsControl}}" CommandParameter="{Binding}" Style="{StaticResource CartButtonStyle}" VerticalOptions="Start" HorizontalOptions="End"/>
+                                                    <Button Text="{localization:Translate IncreaseProduct}" Command="{Binding BindingContext.CartCommand, Source={x:Reference productsItemsControl}}" CommandParameter="{Binding}" Style="{StaticResource CartButtonStyle}" VerticalOptions="Start" HorizontalOptions="End"/>
                                                 </StackLayout>
 
                                                 <StackLayout Grid.Column="1" VerticalOptions="Start">
@@ -105,8 +105,8 @@
                                                     <Label Text="{Binding Color}" Style="{StaticResource ValueLabelStyle}"/>
                                                 </StackLayout>
                                             </Grid>
-                                        </Controls:ContentButton.Content>
-                                    </Controls:ContentButton>
+                                        </controls:ContentButton.Content>
+                                    </controls:ContentButton>
                                 </ViewCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>
@@ -119,4 +119,4 @@
         <!--TODO Possibly use it elsewhere too, or just as one overlay on the whole application.-->
         <ActivityIndicator Color="Black" IsVisible="{Binding Awaiting}" IsRunning="{Binding Awaiting}" HorizontalOptions="Center" VerticalOptions="Center"/>
     </Grid>
-</BaseClasses:View>
+</baseClasses:View>

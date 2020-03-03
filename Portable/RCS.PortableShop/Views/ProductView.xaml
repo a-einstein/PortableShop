@@ -1,25 +1,25 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
-<BaseClasses:View
+<baseClasses:View
     x:Class="RCS.PortableShop.Views.ProductView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:Controls="clr-namespace:RCS.PortableShop.Common.Controls;assembly=RCS.PortableShop.Common"
-    xmlns:Converters="clr-namespace:RCS.PortableShop.Common.Converters;assembly=RCS.PortableShop.Common"
-    xmlns:BaseClasses="clr-namespace:RCS.PortableShop.Common.Views;assembly=RCS.PortableShop.Common"
-    xmlns:Localization="clr-namespace:RCS.PortableShop.Localization;assembly=RCS.PortableShop"
+    xmlns:controls="clr-namespace:RCS.PortableShop.Common.Controls;assembly=RCS.PortableShop.Common"
+    xmlns:converters="clr-namespace:RCS.PortableShop.Common.Converters;assembly=RCS.PortableShop.Common"
+    xmlns:baseClasses="clr-namespace:RCS.PortableShop.Common.Views;assembly=RCS.PortableShop.Common"
+    xmlns:localization="clr-namespace:RCS.PortableShop.Localization;assembly=RCS.PortableShop"
     BackgroundColor="{StaticResource ProductsLevel1Colour}"
     Padding="{StaticResource ViewPadding}"
     >
 
-    <BaseClasses:View.Resources>
+    <baseClasses:View.Resources>
         <ResourceDictionary>
             <!--<Converters:CategoriesFormatter x:Key="CategoriesFormatter"/>-->
             <!--<Converters:SizeFormatter x:Key="SizeFormatter"/>-->
             <!--<Converters:WeightFormatter x:Key="WeightFormatter"/>-->
-            <Converters:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter"/>
+            <converters:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter"/>
         </ResourceDictionary>
-    </BaseClasses:View.Resources>
+    </baseClasses:View.Resources>
 
     <!--Have an outermost ScrollView to keep all controls accessible.-->
     <ScrollView>
@@ -27,11 +27,11 @@
         <StackLayout x:Name="productControl" Orientation="Vertical">
             <StackLayout VerticalOptions="Start" HorizontalOptions="Start">
                 <!--TODO Get these elements better aligned.-->
-                <Controls:ContentButton Command="{Binding PhotoCommand}" CommandParameter="{Binding Source, Source={x:Reference imageControl}}" VerticalOptions="Start" HorizontalOptions="End">
-                    <Controls:ContentButton.Content>
+                <controls:ContentButton Command="{Binding PhotoCommand}" CommandParameter="{Binding Source, Source={x:Reference imageControl}}" VerticalOptions="Start" HorizontalOptions="End">
+                    <controls:ContentButton.Content>
                         <Image x:Name="imageControl" Source="{Binding Item.LargePhoto, Converter={StaticResource ByteArrayToImageSourceConverter}}" VerticalOptions="Start" HorizontalOptions="End" HeightRequest="180" WidthRequest="240"/>
-                    </Controls:ContentButton.Content>
-                </Controls:ContentButton>
+                    </controls:ContentButton.Content>
+                </controls:ContentButton>
 
                 <Button ImageSource="CartPlus" Command="{Binding CartCommand}" CommandParameter="{Binding Item}" Style="{StaticResource CartButtonStyle}" VerticalOptions="Start" HorizontalOptions="End"/>
             </StackLayout>
@@ -54,43 +54,43 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <Label Grid.Row="0" Grid.Column="0" Text="{Localization:Translate Category}" Style="{StaticResource LabelLabelStyle}"/>
+                <Label Grid.Row="0" Grid.Column="0" Text="{localization:Translate Category}" Style="{StaticResource LabelLabelStyle}"/>
                 <StackLayout Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
                     <Label Text="{Binding Item.ProductCategory}" Style="{StaticResource ValueLabelStyle}"/>
                     <Label Text="/" Style="{StaticResource ValueLabelStyle}"/>
                     <Label Text="{Binding Item.ProductSubcategory}" Style="{StaticResource ValueLabelStyle}"/>
                 </StackLayout>
 
-                <Label Grid.Row="1" Grid.Column="0" Text="{Localization:Translate Model}" Style="{StaticResource LabelLabelStyle}"/>
+                <Label Grid.Row="1" Grid.Column="0" Text="{localization:Translate Model}" Style="{StaticResource LabelLabelStyle}"/>
                 <Label Grid.Row="1" Grid.Column="1" Text="{Binding Item.ModelName}" Style="{StaticResource ValueLabelStyle}"/>
 
-                <Label Grid.Row="2" Grid.Column="0" Text="{Localization:Translate Name}" Style="{StaticResource LabelLabelStyle}"/>
+                <Label Grid.Row="2" Grid.Column="0" Text="{localization:Translate Name}" Style="{StaticResource LabelLabelStyle}"/>
                 <Label Grid.Row="2" Grid.Column="1" Text="{Binding Item.Name}" Style="{StaticResource ValueEmphasisMediumLabelStyle}"/>
 
-                <Label Grid.Row="3" Grid.Column="0" Text="{Localization:Translate Id}" Style="{StaticResource LabelLabelStyle}"/>
+                <Label Grid.Row="3" Grid.Column="0" Text="{localization:Translate Id}" Style="{StaticResource LabelLabelStyle}"/>
                 <Label Grid.Row="3" Grid.Column="1" Text="{Binding Item.ProductNumber}" Style="{StaticResource ValueLabelStyle}"/>
 
-                <Label Grid.Row="4" Grid.Column="0" Text="{Localization:Translate Price}" Style="{StaticResource LabelLabelStyle}"/>
+                <Label Grid.Row="4" Grid.Column="0" Text="{localization:Translate Price}" Style="{StaticResource LabelLabelStyle}"/>
                 <Label Grid.Row="4" Grid.Column="1" Text="{Binding Item.ListPrice, StringFormat='{}{0:C2}'}" Style="{StaticResource ValueEmphasisLabelStyle}"/>
 
-                <Label Grid.Row="5" Grid.Column="0" Text="{Localization:Translate Size}" Style="{StaticResource LabelLabelStyle}"/>
+                <Label Grid.Row="5" Grid.Column="0" Text="{localization:Translate Size}" Style="{StaticResource LabelLabelStyle}"/>
                 <StackLayout Grid.Row="5" Grid.Column="1" Orientation="Horizontal">
                     <Label Text="{Binding Item.Size}" Style="{StaticResource ValueLabelStyle}"/>
                     <Label Text="{Binding Item.SizeUnitMeasureCode}" Style="{StaticResource ValueLabelStyle}"/>
                 </StackLayout>
 
-                <Label Grid.Row="6" Grid.Column="0" Text="{Localization:Translate Weight}" Style="{StaticResource LabelLabelStyle}"/>
+                <Label Grid.Row="6" Grid.Column="0" Text="{localization:Translate Weight}" Style="{StaticResource LabelLabelStyle}"/>
                 <StackLayout Grid.Row="6" Grid.Column="1" Orientation="Horizontal">
                     <Label Text="{Binding Item.Weight}" Style="{StaticResource ValueLabelStyle}"/>
                     <Label Text="{Binding Item.WeightUnitMeasureCode}" Style="{StaticResource ValueLabelStyle}"/>
                 </StackLayout>
 
-                <Label Grid.Row="7" Grid.Column="0" Text="{Localization:Translate Colour}" Style="{StaticResource LabelLabelStyle}"/>
+                <Label Grid.Row="7" Grid.Column="0" Text="{localization:Translate Colour}" Style="{StaticResource LabelLabelStyle}"/>
                 <Label Grid.Row="7" Grid.Column="1" Text="{Binding Item.Color}" Style="{StaticResource ValueLabelStyle}"/>
 
-                <Label Grid.Row="8" Grid.Column="0" Text="{Localization:Translate Description}" Style="{StaticResource LabelLabelStyle}" VerticalOptions="Start"/>
+                <Label Grid.Row="8" Grid.Column="0" Text="{localization:Translate Description}" Style="{StaticResource LabelLabelStyle}" VerticalOptions="Start"/>
                 <Label Grid.Row="8" Grid.Column="1" Text="{Binding Item.Description}" Style="{StaticResource ValueLabelStyle}"/>
             </Grid>
         </StackLayout>
     </ScrollView>
-</BaseClasses:View>
+</baseClasses:View>

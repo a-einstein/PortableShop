@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
-<BaseClasses:View
+<baseClasses:View
     x:Class="RCS.PortableShop.Views.SettingsView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-    xmlns:Controls="clr-namespace:RCS.PortableShop.Common.Controls;assembly=RCS.PortableShop.Common"
-    xmlns:BaseClasses="clr-namespace:RCS.PortableShop.Common.Views;assembly=RCS.PortableShop.Common"
-    xmlns:Localization="clr-namespace:RCS.PortableShop.Localization;assembly=RCS.PortableShop"
+    xmlns:controls="clr-namespace:RCS.PortableShop.Common.Controls;assembly=RCS.PortableShop.Common"
+    xmlns:baseClasses="clr-namespace:RCS.PortableShop.Common.Views;assembly=RCS.PortableShop.Common"
+    xmlns:localization="clr-namespace:RCS.PortableShop.Localization;assembly=RCS.PortableShop"
     mc:Ignorable="d"
     >
 
@@ -22,7 +22,7 @@
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
-        <Label Grid.Column="0" Text="{Localization:Translate ServiceType}" Style="{StaticResource LabelLabelStyle}" />
-        <Controls:BindablePicker Grid.Column="1" Title="{Localization:Translate ServiceType}" ItemsSource="{Binding ServiceTypes, Mode=OneTime}" SelectedItem="{Binding ServiceType, Mode=TwoWay}"/>
+        <Label Grid.Column="0" Text="{localization:Translate ServiceType}" Style="{StaticResource LabelLabelStyle}" />
+        <controls:BindablePicker Grid.Column="1" Title="{localization:Translate ServiceType}" ItemsSource="{Binding ServiceTypes, Mode=OneTime}" SelectedItem="{Binding ServiceType, Mode=TwoWay}"/>
     </Grid>
-</BaseClasses:View>
+</baseClasses:View>
