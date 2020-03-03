@@ -61,28 +61,20 @@ namespace RCS.PortableShop.ServiceClients.Products.Wrappers
         {
             get
             {
-                try
+                // TODO >> Does not work as the intended singleton. Is that useful & necessary? Think to have seen not.
+                if (productsServiceClient == null)
                 {
-                    // TODO >> Does not work as the intended singleton. Is that useful & necessary? Think to have seen not.
-                    if (productsServiceClient == null)
-                    {
-                        // TODO Make this better configurable. There does not seem to be a config file like on WPF.
-                        // TODO If possible get transformation on configs. 
+                    // TODO Make this better configurable. There does not seem to be a config file like on WPF.
+                    // TODO If possible get transformation on configs. 
 
-                        // Note that currently wsHttpBinding is not supported, but should be as it is part of System.ServiceModel 4.0.0.0.
-                        var binding = new BasicHttpBinding(BasicHttpSecurityMode.Transport) { OpenTimeout = Timeout, SendTimeout = Timeout, ReceiveTimeout = Timeout, CloseTimeout = Timeout };
+                    // Note that currently wsHttpBinding is not supported, but should be as it is part of System.ServiceModel 4.0.0.0.
+                    var binding = new BasicHttpBinding(BasicHttpSecurityMode.Transport) { OpenTimeout = Timeout, SendTimeout = Timeout, ReceiveTimeout = Timeout, CloseTimeout = Timeout };
 
-                        // Note this points to a BasicHttpBinding variant on the server.
-                        string endpointAddress = $"{serviceDomain}/ProductsServicePub/ProductsService.svc/ProductsServiceB";
+                    // Note this points to a BasicHttpBinding variant on the server.
+                    string endpointAddress = $"{serviceDomain}/ProductsServicePub/ProductsService.svc/ProductsServiceB";
 
-                        // Note the example bindings in ProductsServiceClient which could also be applied here by using EndpointConfiguration
-                        productsServiceClient = new ProductsServiceClient(binding, new EndpointAddress(endpointAddress));
-                    }
-
-                }
-                catch (Exception)
-                {
-                    throw;
+                    // Note the example bindings in ProductsServiceClient which could also be applied here by using EndpointConfiguration
+                    productsServiceClient = new ProductsServiceClient(binding, new EndpointAddress(endpointAddress));
                 }
 
                 return productsServiceClient;
