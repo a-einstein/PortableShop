@@ -21,7 +21,7 @@ namespace RCS.PortableShop.Model
         {
             Clear();
 
-            var categories = new ProductCategoryList();
+            ProductCategoryList categories;
 
             try
             {

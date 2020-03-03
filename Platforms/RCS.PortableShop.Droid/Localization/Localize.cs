@@ -27,7 +27,7 @@ namespace RCS.PortableShop.Droid.Localization
             var dotnetLanguage = AndroidToDotnetLanguage(androidLocale.ToString());
 
             // this gets called a lot - try/catch can be expensive so consider caching or something
-            CultureInfo cultureInfo = null;
+            CultureInfo cultureInfo;
 
             try
             {

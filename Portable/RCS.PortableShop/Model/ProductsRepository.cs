@@ -21,7 +21,7 @@ namespace RCS.PortableShop.Model
         // TODO This should get paged with an optional pagesize.
         public async Task<IList<ProductsOverviewObject>> ReadList(ProductCategory category, ProductSubcategory subcategory, string namePart)
         {
-            var productsOverview = new ProductsOverviewList();
+            ProductsOverviewList productsOverview;
 
             try
             {

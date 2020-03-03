@@ -30,7 +30,7 @@ namespace RCS.PortableShop.Model
             var existingCartItems = List.Where(cartItem => cartItem.ProductID == product.Id);
             var existingCartItemsCount = existingCartItems.Count();
 
-            CartItem productCartItem = null;
+            CartItem productCartItem;
 
             if (existingCartItemsCount == 0)
             {
