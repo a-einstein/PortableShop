@@ -37,7 +37,7 @@ namespace RCS.PortableShop.ServiceClients.Products.Wrappers
             return result;
         }
 
-        const string ProductEntityName = "Products";
+        private const string ProductEntityName = "Products";
 
         public async Task<ProductsOverviewList> GetProducts(ProductCategory category, ProductSubcategory subcategory, string namePart)
         {

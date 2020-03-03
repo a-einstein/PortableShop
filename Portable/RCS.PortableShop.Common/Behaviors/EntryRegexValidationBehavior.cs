@@ -18,7 +18,7 @@ namespace RCS.PortableShop.Common.Behaviors
             entry.TextChanged -= HandleTextChanged;
         }
 
-        void HandleTextChanged(object sender, TextChangedEventArgs e)
+        private void HandleTextChanged(object sender, TextChangedEventArgs e)
         {
             IsValid = Regex.IsMatch(e.NewTextValue, Expression, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250));
 
@@ -32,7 +32,8 @@ namespace RCS.PortableShop.Common.Behaviors
         #endregion
 
         #region IsValid
-        static readonly BindablePropertyKey IsValidPropertyKey =
+
+        private static readonly BindablePropertyKey IsValidPropertyKey =
             BindableProperty.CreateReadOnly(nameof(IsValid), typeof(bool), typeof(EntryRegexValidationBehavior), false);
 
         public static readonly BindableProperty IsValidProperty = IsValidPropertyKey.BindableProperty;

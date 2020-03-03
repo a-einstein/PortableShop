@@ -15,7 +15,7 @@ namespace RCS.PortableShop.Model
 
         public static List<ServiceType> ServiceTypes { get; } = Enum.GetValues(typeof(ServiceType)).Cast<ServiceType>().ToList();
 
-        const string serviceTypeKey = "ServiceType";
+        private const string serviceTypeKey = "ServiceType";
         private static ServiceType? serviceTypeSelected;
 
         // Not entirely happy using Xamarin.Essentials here.
@@ -39,7 +39,7 @@ namespace RCS.PortableShop.Model
             }
         }
 
-        const string productCategoryIdKey = "ProductCategoryId";
+        private const string productCategoryIdKey = "ProductCategoryId";
         private static int? productCategoryId;
         public static int? ProductCategoryId
         {
@@ -64,7 +64,7 @@ namespace RCS.PortableShop.Model
             }
         }
 
-        const string productSubategoryIdKey = "ProductSubategoryId";
+        private const string productSubategoryIdKey = "ProductSubategoryId";
         private static int? productSubategoryId;
         public static int? ProductSubategoryId
         {
@@ -89,7 +89,7 @@ namespace RCS.PortableShop.Model
             }
         }
 
-        const string textFilterKey = "TextFilter";
+        private const string textFilterKey = "TextFilter";
         private static string textFilter;
         public static string TextFilter
         {
