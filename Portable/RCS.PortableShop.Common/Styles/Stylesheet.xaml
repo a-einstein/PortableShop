@@ -68,7 +68,6 @@
     </Style>
 
     <Style x:Key="EmphasisLabelStyle" TargetType="Label" BasedOn="{StaticResource LabelStyle}">
-        <Setter Property="FontSize" Value="Small"/>
         <Setter Property="FontAttributes" Value="Bold"/>
     </Style>
 
