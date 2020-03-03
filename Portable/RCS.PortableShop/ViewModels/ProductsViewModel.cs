@@ -57,7 +57,7 @@ namespace RCS.PortableShop.ViewModels
                 ProductSubcategoriesRepository.ReadList()
             ).ConfigureAwait(true);
 
-            var succeeded = results.All<bool>(result => result == true);
+            var succeeded = results.All<bool>(result => result);
 
             if (succeeded)
             // Note that using the UI thread (by BeginInvokeOnMainThread) only did bad.
