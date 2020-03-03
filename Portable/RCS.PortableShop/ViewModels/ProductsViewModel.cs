@@ -144,14 +144,10 @@ namespace RCS.PortableShop.ViewModels
 
         protected override async Task<bool> ReadFiltered()
         {
-            ProductCategory masterFilterValue;
-            ProductSubcategory detailFilterValue;
-            string textFilterValue;
-
             // Note that using the UI thread (by BeginInvokeOnMainThread) only did bad.
-            masterFilterValue = MasterFilterValue;
-            detailFilterValue = DetailFilterValue;
-            textFilterValue = TextFilterValue;
+            var masterFilterValue = MasterFilterValue;
+            var detailFilterValue = DetailFilterValue;
+            var textFilterValue = TextFilterValue;
 
             var result = await ProductsRepository.ReadList(masterFilterValue, detailFilterValue, textFilterValue).ConfigureAwait(true);
             var succeeded = result != null;
