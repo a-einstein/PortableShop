@@ -119,7 +119,7 @@ namespace RCS.PortableShop.Common.ViewModels
         // TODO The use of classes from Xamarin.Forms here is a bit of a hack. Better keep this independent.
 
         protected static Shell Shell { get { return Application.Current.MainPage as Shell; } }
-        public static INavigation Navigation { get { return Application.Current.MainPage.Navigation; } }
+        private static INavigation Navigation { get { return Application.Current.MainPage.Navigation; } }
 
         protected static async Task PopToRoot()
         {

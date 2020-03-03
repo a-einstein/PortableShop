@@ -57,7 +57,7 @@ namespace RCS.PortableShop.ServiceClients.Products.Wrappers
 
         private ProductsServiceClient productsServiceClient;
 
-        protected IProductsService ProductsServiceClient
+        private IProductsService ProductsServiceClient
         {
             get
             {

@@ -9,7 +9,7 @@ namespace RCS.PortableShop.Main
     // This could be integrated in MainApplication.
     public static class Startup
     {
-        public static IServiceProvider ServiceProvider { get; set; }
+        public static IServiceProvider ServiceProvider { get; private set; }
 
         public static void Init()
         {

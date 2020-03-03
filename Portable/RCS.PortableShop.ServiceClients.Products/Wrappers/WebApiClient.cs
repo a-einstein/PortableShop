@@ -69,14 +69,14 @@ namespace RCS.PortableShop.ServiceClients.Products.Wrappers
 
         private HttpClient HttpClient { get => httpClientFactory.CreateClient(); }
 
-        protected async Task<TResult> ReadApi<TResult>(string entityName)
+        private async Task<TResult> ReadApi<TResult>(string entityName)
         {
             var uri = new Uri($"{productsApi}/{entityName}");
 
             return await ReadApi<TResult>(uri).ConfigureAwait(true);
         }
 
-        protected async Task<TResult> ReadApi<TResult>(string entityName, string action, string parameters)
+        private async Task<TResult> ReadApi<TResult>(string entityName, string action, string parameters)
         {
             // Note that entityName has to be a plural.
             var uri = new Uri($"{productsApi}/{entityName}/{action}?{parameters}");
