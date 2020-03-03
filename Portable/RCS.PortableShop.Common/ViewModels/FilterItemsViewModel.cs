@@ -6,7 +6,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
-using static Xamarin.Forms.BindableProperty;
 
 namespace RCS.PortableShop.Common.ViewModels
 {
@@ -110,7 +109,7 @@ namespace RCS.PortableShop.Common.ViewModels
         }
 
         public static readonly BindableProperty MasterFilterValueProperty =
-            BindableProperty.Create(nameof(MasterFilterValue), typeof(TMasterFilterItem), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>), propertyChanged: new BindingPropertyChangedDelegate(OnMasterFilterValueChanged));
+            BindableProperty.Create(nameof(MasterFilterValue), typeof(TMasterFilterItem), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>), propertyChanged: OnMasterFilterValueChanged);
 
         public virtual TMasterFilterItem MasterFilterValue
         {

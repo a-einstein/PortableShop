@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using Xamarin.Forms;
-using static Xamarin.Forms.BindableProperty;
 
 namespace RCS.PortableShop.Common.Controls
 {
@@ -14,7 +13,7 @@ namespace RCS.PortableShop.Common.Controls
         }
 
         public static readonly new BindableProperty ItemsSourceProperty =
-            BindableProperty.Create(nameof(ItemsSource), typeof(IList), typeof(BindablePicker), propertyChanged: new BindingPropertyChangedDelegate(OnItemsSourceChanged));
+            BindableProperty.Create(nameof(ItemsSource), typeof(IList), typeof(BindablePicker), propertyChanged: OnItemsSourceChanged);
 
         public new IList ItemsSource
         {
@@ -23,7 +22,7 @@ namespace RCS.PortableShop.Common.Controls
         }
 
         public static readonly new BindableProperty SelectedItemProperty =
-            BindableProperty.Create(nameof(SelectedItem), typeof(object), typeof(BindablePicker), propertyChanged: new BindingPropertyChangedDelegate(OnSelectedItemChanged));
+            BindableProperty.Create(nameof(SelectedItem), typeof(object), typeof(BindablePicker), propertyChanged: OnSelectedItemChanged);
 
         public new object SelectedItem
         {
