@@ -55,7 +55,7 @@
 
                                     <!--Using ContentButton plus Label to create a flat style Button without border. -->
                                     <!--TODO Get it better aligned with SfNumericUpDown.-->
-                                    <Controls:ContentButton Grid.Column="1" Command="{Binding BindingContext.DeleteCommand, Source={x:Reference shoppingCartItemsListView}}" CommandParameter="{Binding}" HorizontalOptions="Start" VerticalOptions="Center">
+                                    <Controls:ContentButton Command="{Binding BindingContext.DeleteCommand, Source={x:Reference shoppingCartItemsListView}}" CommandParameter="{Binding}" HorizontalOptions="Start" VerticalOptions="Center">
                                         <Controls:ContentButton.Content>
                                             <Label Text="{Localization:Translate Remove}" Margin="10,0" FontSize="Small" FontAttributes="Bold" TextColor="{StaticResource LabelTextColour}" VerticalOptions="Start"/>
                                         </Controls:ContentButton.Content>
