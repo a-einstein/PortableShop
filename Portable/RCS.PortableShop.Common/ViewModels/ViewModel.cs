@@ -15,11 +15,11 @@ namespace RCS.PortableShop.Common.ViewModels
 
         #region Refresh
         public static readonly BindableProperty AwaitingProperty =
-            BindableProperty.Create(nameof(Awaiting), typeof(bool), typeof(ViewModel), defaultValue: false);
+            BindableProperty.Create(nameof(Awaiting), typeof(bool), typeof(ViewModel), false);
 
         public virtual bool Awaiting
         {
-            get { return (bool)GetValue(AwaitingProperty); }
+            get => (bool)GetValue(AwaitingProperty);
             set
             {
                 SetValue(AwaitingProperty, value);
@@ -65,11 +65,11 @@ namespace RCS.PortableShop.Common.ViewModels
             return initialized;
         }
 
-        protected virtual async Task<bool> Read()
+        // Keep virtual as not all derivatives can have a sensible action.
+        protected virtual async Task Read()
         {
-            await Task.Run(() => { }).ConfigureAwait(true);
-
-            return true;
+            // Non action.
+            await Task.Delay(0).ConfigureAwait(true);
         }
 
         protected void UpdateTitle()
@@ -88,8 +88,8 @@ namespace RCS.PortableShop.Common.ViewModels
 
         public string Title
         {
-            get { return (string)GetValue(TitleProperty); }
-            set { SetValue(TitleProperty, value); }
+            get => (string)GetValue(TitleProperty);
+            set => SetValue(TitleProperty, value);
         }
 
         // Note this is particularly needed for the chaining within the ShoppingWrapperViewModel,
@@ -97,7 +97,7 @@ namespace RCS.PortableShop.Common.ViewModels
         // So calling RaisePropertyChanged within the Title property does not work.
         private static void TitleChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            (bindable as ViewModel).RaisePropertyChanged(nameof(Title));
+            (bindable as ViewModel)?.RaisePropertyChanged(nameof(Title));
         }
         #endregion
 
@@ -118,8 +118,8 @@ namespace RCS.PortableShop.Common.ViewModels
         #region Navigation
         // TODO The use of classes from Xamarin.Forms here is a bit of a hack. Better keep this independent.
 
-        public static Shell Shell { get { return Application.Current.MainPage as Shell; } }
-        public static INavigation Navigation { get { return Application.Current.MainPage.Navigation; } }
+        protected static Shell Shell => Application.Current.MainPage as Shell;
+        private static INavigation Navigation => Application.Current.MainPage.Navigation;
 
         protected static async Task PopToRoot()
         {
@@ -137,7 +137,7 @@ namespace RCS.PortableShop.Common.ViewModels
         protected static async Task PushPage(View view)
         {
             var page = new Page();
-            page.SetBinding(Page.TitleProperty, new Binding() { Path = nameof(Title), Source = view.ViewModel });
+            page.SetBinding(Xamarin.Forms.Page.TitleProperty, new Binding() { Path = nameof(Title), Source = view.ViewModel });
             page.Content = view;
 
             await Navigation.PushAsync(page).ConfigureAwait(true);

@@ -41,12 +41,12 @@ namespace RCS.PortableShop.ServiceClients.Products.Wrappers
             return result;
         }
 
-        public async Task<Product> GetProduct(int productID)
+        public async Task<Product> GetProduct(int productId)
         {
             var result = await Task.Factory.FromAsync<int, Product>(
                   ProductsServiceClient.BeginGetProductDetails,
                   ProductsServiceClient.EndGetProductDetails,
-                  productID,
+                  productId,
                   null).ConfigureAwait(true);
 
             return result;
@@ -57,32 +57,24 @@ namespace RCS.PortableShop.ServiceClients.Products.Wrappers
 
         private ProductsServiceClient productsServiceClient;
 
-        protected IProductsService ProductsServiceClient
+        private IProductsService ProductsServiceClient
         {
             get
             {
-                try
+                // TODO >> Does not work as the intended singleton. Is that useful & necessary? Think to have seen not.
+                if (productsServiceClient == null)
                 {
-                    // TODO >> Does not work as the intended singleton. Is that useful & necessary? Think to have seen not.
-                    if (productsServiceClient == null)
-                    {
-                        // TODO Make this better configurable. There does not seem to be a config file like on WPF.
-                        // TODO If possible get transformation on configs. 
+                    // TODO Make this better configurable. There does not seem to be a config file like on WPF.
+                    // TODO If possible get transformation on configs. 
 
-                        // Note that currently wsHttpBinding is not supported, but should be as it is part of System.ServiceModel 4.0.0.0.
-                        var binding = new BasicHttpBinding(BasicHttpSecurityMode.Transport) { OpenTimeout = Timeout, SendTimeout = Timeout, ReceiveTimeout = Timeout, CloseTimeout = Timeout };
+                    // Note that currently wsHttpBinding is not supported, but should be as it is part of System.ServiceModel 4.0.0.0.
+                    var binding = new BasicHttpBinding(BasicHttpSecurityMode.Transport) { OpenTimeout = Timeout, SendTimeout = Timeout, ReceiveTimeout = Timeout, CloseTimeout = Timeout };
 
-                        // Note this points to a BasicHttpBinding variant on the server.
-                        string endpointAddress = $"{serviceDomain}/ProductsServicePub/ProductsService.svc/ProductsServiceB";
+                    // Note this points to a BasicHttpBinding variant on the server.
+                    var endpointAddress = $"{serviceDomain}/ProductsServicePub/ProductsService.svc/ProductsServiceB";
 
-                        // Note the example bindings in ProductsServiceClient which could also be applied here by using EndpointConfiguration
-                        productsServiceClient = new ProductsServiceClient(binding, new EndpointAddress(endpointAddress));
-                    }
-
-                }
-                catch (Exception)
-                {
-                    throw;
+                    // Note the example bindings in ProductsServiceClient which could also be applied here by using EndpointConfiguration
+                    productsServiceClient = new ProductsServiceClient(binding, new EndpointAddress(endpointAddress));
                 }
 
                 return productsServiceClient;
@@ -94,7 +86,7 @@ namespace RCS.PortableShop.ServiceClients.Products.Wrappers
         // Check out the IDisposable documentation for details on the pattern applied here.
         // Note that it can have implications on derived classes too.
 
-        private bool disposed = false;
+        private bool disposed;
 
         public void Dispose()
         {
@@ -102,7 +94,7 @@ namespace RCS.PortableShop.ServiceClients.Products.Wrappers
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing)
+        private void Dispose(bool disposing)
         {
             if (disposed)
                 return;

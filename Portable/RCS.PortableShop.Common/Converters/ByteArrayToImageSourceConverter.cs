@@ -14,7 +14,7 @@ namespace RCS.PortableShop.Common.Converters
 
         public static ImageSource Convert(object value)
         {
-            byte[] byteArray = value as byte[];
+            var byteArray = value as byte[];
 
             if (byteArray != null)
             {

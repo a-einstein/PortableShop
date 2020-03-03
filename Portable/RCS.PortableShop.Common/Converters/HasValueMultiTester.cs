@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Linq;
 
 namespace RCS.PortableShop.Common.Converters
 {
@@ -7,7 +8,7 @@ namespace RCS.PortableShop.Common.Converters
     {
         public override object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            bool hasValue = HasValue(values);
+            var hasValue = HasValue(values);
 
             // Invert if any parameter is passed.
             var result = parameter != null
@@ -19,14 +20,7 @@ namespace RCS.PortableShop.Common.Converters
 
         public static bool HasValue(object[] values)
         {
-            bool hasValue = false;
-
-            foreach (var item in values)
-            {
-                hasValue = hasValue || HasValueTester.HasValue(item);
-            }
-
-            return hasValue;
+            return values.Aggregate(false, (current, item) => current || HasValueTester.HasValue(item));
         }
     }
 }

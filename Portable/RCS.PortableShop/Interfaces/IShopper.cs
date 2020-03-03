@@ -2,7 +2,7 @@
 
 namespace RCS.PortableShop.Interfaces
 {
-    interface IShopper
+    internal interface IShopper
     {
         // Note that set cannot be made private here.
         ICommand CartCommand { get; set; }

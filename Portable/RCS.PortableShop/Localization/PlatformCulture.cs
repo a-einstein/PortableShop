@@ -6,7 +6,7 @@ namespace RCS.PortableShop.Localization
     {
         public PlatformCulture(string platformCultureString)
         {
-            if (String.IsNullOrEmpty(platformCultureString))
+            if (string.IsNullOrEmpty(platformCultureString))
                 throw new ArgumentException("Expected culture identifier", nameof(platformCultureString));
 
             PlatformString = platformCultureString.Replace("_", "-"); // .NET expects dash, not underscore

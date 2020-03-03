@@ -6,8 +6,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-    xmlns:Localization="clr-namespace:RCS.PortableShop.Localization;assembly=RCS.PortableShop"
-    xmlns:Main="clr-namespace:RCS.PortableShop.Main"
+    xmlns:localization="clr-namespace:RCS.PortableShop.Localization;assembly=RCS.PortableShop"
+    xmlns:main="clr-namespace:RCS.PortableShop.Main"
     mc:Ignorable="d">
 
     <Shell.FlyoutHeader>
@@ -24,20 +24,20 @@
     <FlyoutItem>
         <Tab>
             <ShellContent>
-                <Main:MainPage />
+                <main:MainPage />
             </ShellContent>
         </Tab>
     </FlyoutItem>
 
     <!--TODO Would prefer to have hamburger visible on all pages, besides a back button. But is seems intended to only have it on the root page.-->
 
-    <MenuItem Command="{Binding SettingsCommand}" Text="{Localization:Translate Settings}" IconImageSource="Settings"/>
+    <MenuItem Command="{Binding SettingsCommand}" Text="{localization:Translate Settings}" IconImageSource="Settings"/>
 
-    <MenuItem Command="{Binding ShowProductsCommand}" Text="{Localization:Translate Products}" IconImageSource="Overview"/>
+    <MenuItem Command="{Binding ShowProductsCommand}" Text="{localization:Translate Products}" IconImageSource="Overview"/>
 
-    <MenuItem Command="{Binding ShowCartCommand}" Text="{Localization:Translate Cart}" IconImageSource="Cart"/>
+    <MenuItem Command="{Binding ShowCartCommand}" Text="{localization:Translate Cart}" IconImageSource="Cart"/>
 
-    <MenuItem Command="{Binding OpenSupportCommand}" Text="{Localization:Translate Support}" IconImageSource="Information"/>
+    <MenuItem Command="{Binding OpenSupportCommand}" Text="{localization:Translate Support}" IconImageSource="Information"/>
 
-    <MenuItem Command="{Binding UpdateCommand}" Text="{Localization:Translate Update}" IconImageSource="CloudDownload"/>
+    <MenuItem Command="{Binding UpdateCommand}" Text="{localization:Translate Update}" IconImageSource="CloudDownload"/>
 </Shell>

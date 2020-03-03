@@ -37,14 +37,14 @@ namespace RCS.PortableShop.ServiceClients.Products.Wrappers
             return result;
         }
 
-        const string ProductEntityName = "Products";
+        private const string ProductEntityName = "Products";
 
         public async Task<ProductsOverviewList> GetProducts(ProductCategory category, ProductSubcategory subcategory, string namePart)
         {
             // Note the parameternames have to mach those of the web API. 
-            string categoryParameter = category != null ? $"category={category.Id}" : null;
-            string subcategoryParameter = subcategory != null ? $"subcategory={subcategory.Id}" : null;
-            string wordParameter = namePart != null ? $"word={namePart}" : null;
+            var categoryParameter = category != null ? $"category={category.Id}" : null;
+            var subcategoryParameter = subcategory != null ? $"subcategory={subcategory.Id}" : null;
+            var wordParameter = namePart != null ? $"word={namePart}" : null;
 
             // Note that extra occurrences of # are acceptable and order does not matter.
             var parameters = $"{categoryParameter}&{subcategoryParameter}&{wordParameter}";
@@ -54,9 +54,9 @@ namespace RCS.PortableShop.ServiceClients.Products.Wrappers
             return result;
         }
 
-        public async Task<Product> GetProduct(int productID)
+        public async Task<Product> GetProduct(int productId)
         {
-            var parameters = $"id={productID}";
+            var parameters = $"id={productId}";
 
             var result = await ReadApi<Product>(ProductEntityName, "details", parameters).ConfigureAwait(true);
 
@@ -65,18 +65,18 @@ namespace RCS.PortableShop.ServiceClients.Products.Wrappers
         #endregion
 
         #region Utilities
-        static private string productsApi = $"{serviceDomain}/ProductsApi";
+        private static string productsApi = $"{serviceDomain}/ProductsApi";
 
-        private HttpClient HttpClient { get => httpClientFactory.CreateClient(); }
+        private HttpClient HttpClient => httpClientFactory.CreateClient();
 
-        protected async Task<TResult> ReadApi<TResult>(string entityName)
+        private async Task<TResult> ReadApi<TResult>(string entityName)
         {
             var uri = new Uri($"{productsApi}/{entityName}");
 
             return await ReadApi<TResult>(uri).ConfigureAwait(true);
         }
 
-        protected async Task<TResult> ReadApi<TResult>(string entityName, string action, string parameters)
+        private async Task<TResult> ReadApi<TResult>(string entityName, string action, string parameters)
         {
             // Note that entityName has to be a plural.
             var uri = new Uri($"{productsApi}/{entityName}/{action}?{parameters}");
@@ -98,7 +98,7 @@ namespace RCS.PortableShop.ServiceClients.Products.Wrappers
             }
             else
             {
-                return default(TResult);
+                return default;
             }
         }
         #endregion

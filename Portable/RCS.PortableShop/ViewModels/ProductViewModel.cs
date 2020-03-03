@@ -27,18 +27,13 @@ namespace RCS.PortableShop.ViewModels
         #endregion
 
         #region Refresh
-        protected override async Task<bool> Read()
+        protected override async Task Read()
         {
-            bool succeeded = false;
-
             if (ItemId.HasValue)
             {
                 var result = await ProductsRepository.ReadDetails((int)ItemId).ConfigureAwait(true);
-                succeeded = result != null;
                 Item = result;
             }
-
-            return succeeded;
         }
         #endregion
 
@@ -48,7 +43,7 @@ namespace RCS.PortableShop.ViewModels
 
         public ICommand PhotoCommand
         {
-            get { return (ICommand)GetValue(PhotoCommandProperty); }
+            get => (ICommand)GetValue(PhotoCommandProperty);
             private set
             {
                 SetValue(PhotoCommandProperty, value);
@@ -80,7 +75,7 @@ namespace RCS.PortableShop.ViewModels
 
         public ICommand CartCommand
         {
-            get { return (ICommand)GetValue(CartCommandProperty); }
+            get => (ICommand)GetValue(CartCommandProperty);
             set
             {
                 SetValue(CartCommandProperty, value);

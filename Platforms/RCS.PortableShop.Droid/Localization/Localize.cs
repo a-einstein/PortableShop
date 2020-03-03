@@ -11,7 +11,7 @@ namespace RCS.PortableShop.Droid.Localization
     // Based on https://github.com/xamarin/xamarin-forms-samples/blob/master/TodoLocalized/TodoLocalized.Android/Locale_Android.cs
     public class Localize : ILocalize
     {
-        const string debugPrefix = ">>>> Debug:";
+        private const string debugPrefix = ">>>> Debug:";
 
         public void SetLocale(CultureInfo cultureInfo)
         {
@@ -27,7 +27,7 @@ namespace RCS.PortableShop.Droid.Localization
             var dotnetLanguage = AndroidToDotnetLanguage(androidLocale.ToString());
 
             // this gets called a lot - try/catch can be expensive so consider caching or something
-            CultureInfo cultureInfo = null;
+            CultureInfo cultureInfo;
 
             try
             {
@@ -42,7 +42,7 @@ namespace RCS.PortableShop.Droid.Localization
             return cultureInfo;
         }
 
-        string AndroidToDotnetLanguage(string androidLanguage)
+        private static string AndroidToDotnetLanguage(string androidLanguage)
         {
             Console.WriteLine($"{debugPrefix} Android Language: {androidLanguage}");
 
@@ -96,7 +96,7 @@ namespace RCS.PortableShop.Droid.Localization
             return cultureInfo;
         }
 
-        string DotnetFallbackLanguage(PlatformCulture platformCulture)
+        private static string DotnetFallbackLanguage(PlatformCulture platformCulture)
         {
             // iOS locale not valid .NET culture (eg. "en-ES" : English in Spain)
             // fallback to first characters, in this case "en".

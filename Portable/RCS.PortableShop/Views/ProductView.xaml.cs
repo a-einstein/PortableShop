@@ -9,8 +9,8 @@ namespace RCS.PortableShop.Views
             InitializeComponent();
         }
 
-        private int preservedProductControlWidth = 0;
-        private int preservedProductControlHeight = 0;
+        private int preservedProductControlWidth;
+        private int preservedProductControlHeight;
 
         protected override void OnSizeAllocated(double width, double height)
         {

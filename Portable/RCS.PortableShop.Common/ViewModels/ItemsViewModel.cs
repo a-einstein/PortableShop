@@ -7,7 +7,8 @@ namespace RCS.PortableShop.Common.ViewModels
     public abstract class ItemsViewModel<TItem> : ViewModel
     {
         #region Construction
-        public ItemsViewModel()
+
+        protected ItemsViewModel()
         {
             // This is still needed after initialization, it cannot be set on the ItemsProperty.
             SetItemsCollectionChanged();
@@ -16,12 +17,12 @@ namespace RCS.PortableShop.Common.ViewModels
 
         #region Items
         public static readonly BindableProperty ItemsProperty =
-            BindableProperty.Create(nameof(Items), typeof(ObservableCollection<TItem>), typeof(ItemsViewModel<TItem>), defaultValue: new ObservableCollection<TItem>());
+            BindableProperty.Create(nameof(Items), typeof(ObservableCollection<TItem>), typeof(ItemsViewModel<TItem>), new ObservableCollection<TItem>());
 
         // TODO Some sort of view would be more convenient to enable sorting in situ (filtering is no longer done so). But remember: that no longer applies when paging.
         public ObservableCollection<TItem> Items
         {
-            get { return (ObservableCollection<TItem>)GetValue(ItemsProperty); }
+            get => (ObservableCollection<TItem>)GetValue(ItemsProperty);
 
             /*
             TODO Preferable get rid of this kind of setters (warning CA2227). 
@@ -47,7 +48,8 @@ namespace RCS.PortableShop.Common.ViewModels
 
         // Convenience property to signal changes.
         // Note that just binding on Items.Count does not work.
-        public int ItemsCount { get { return Items?.Count ?? 0; } }
+        public int ItemsCount => Items?.Count ?? 0;
+
         #endregion
 
         #region Refresh

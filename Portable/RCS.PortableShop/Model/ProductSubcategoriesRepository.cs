@@ -21,7 +21,7 @@ namespace RCS.PortableShop.Model
         {
             Clear();
 
-            var subcategories = new ProductSubcategoryList();
+            ProductSubcategoryList subcategories;
 
             try
             {

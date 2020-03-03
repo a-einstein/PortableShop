@@ -15,7 +15,7 @@ namespace RCS.PortableShop.Common.ViewModels
 
         public TItem Item
         {
-            get { return (TItem)GetValue(ItemProperty); }
+            get => (TItem)GetValue(ItemProperty);
             set
             {
                 SetValue(ItemProperty, value);
@@ -27,7 +27,7 @@ namespace RCS.PortableShop.Common.ViewModels
         #endregion
 
         #region Refresh
-        public override string MakeTitle() { return (!string.IsNullOrEmpty(Item?.Name)) ? Item?.Name : TitleDefault; }
+        public override string MakeTitle() { return !string.IsNullOrEmpty(Item?.Name) ? Item?.Name : TitleDefault; }
         #endregion
     }
 }

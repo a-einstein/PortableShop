@@ -15,7 +15,7 @@ namespace RCS.PortableShop.Model
 
         public static List<ServiceType> ServiceTypes { get; } = Enum.GetValues(typeof(ServiceType)).Cast<ServiceType>().ToList();
 
-        const string serviceTypeKey = "ServiceType";
+        private const string serviceTypeKey = "ServiceType";
         private static ServiceType? serviceTypeSelected;
 
         // Not entirely happy using Xamarin.Essentials here.
@@ -39,7 +39,7 @@ namespace RCS.PortableShop.Model
             }
         }
 
-        const string productCategoryIdKey = "ProductCategoryId";
+        private const string productCategoryIdKey = "ProductCategoryId";
         private static int? productCategoryId;
         public static int? ProductCategoryId
         {
@@ -49,7 +49,7 @@ namespace RCS.PortableShop.Model
                 {
                     var retrievedValue = Preferences.Get(productCategoryIdKey, default(int));
 
-                    if (retrievedValue != default(int))
+                    if (retrievedValue != default)
                         productCategoryId = retrievedValue;
                     else
                         productCategoryId = null;
@@ -60,11 +60,11 @@ namespace RCS.PortableShop.Model
             set
             {
                 productCategoryId = value;
-                Preferences.Set(productCategoryIdKey, value.HasValue ? value.Value : default(int));
+                Preferences.Set(productCategoryIdKey, value ?? default);
             }
         }
 
-        const string productSubategoryIdKey = "ProductSubategoryId";
+        private const string productSubategoryIdKey = "ProductSubategoryId";
         private static int? productSubategoryId;
         public static int? ProductSubategoryId
         {
@@ -74,7 +74,7 @@ namespace RCS.PortableShop.Model
                 {
                     var retrievedValue = Preferences.Get(productSubategoryIdKey, default(int));
 
-                    if (retrievedValue != default(int))
+                    if (retrievedValue != default)
                         productSubategoryId = retrievedValue;
                     else
                         productSubategoryId = null;
@@ -85,21 +85,15 @@ namespace RCS.PortableShop.Model
             set
             {
                 productSubategoryId = value;
-                Preferences.Set(productSubategoryIdKey, value.HasValue ? value.Value : default(int));
+                Preferences.Set(productSubategoryIdKey, value ?? default);
             }
         }
 
-        const string textFilterKey = "TextFilter";
+        private const string textFilterKey = "TextFilter";
         private static string textFilter;
         public static string TextFilter
         {
-            get
-            {
-                if (textFilter == default)
-                    textFilter = Preferences.Get(textFilterKey, default(string));
-
-                return textFilter;
-            }
+            get { return textFilter ??= Preferences.Get(textFilterKey, default(string)); }
             set
             {
                 textFilter = value;

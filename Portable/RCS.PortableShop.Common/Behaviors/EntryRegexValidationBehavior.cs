@@ -18,9 +18,9 @@ namespace RCS.PortableShop.Common.Behaviors
             entry.TextChanged -= HandleTextChanged;
         }
 
-        void HandleTextChanged(object sender, TextChangedEventArgs e)
+        private void HandleTextChanged(object sender, TextChangedEventArgs e)
         {
-            IsValid = (Regex.IsMatch(e.NewTextValue, Expression, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)));
+            IsValid = Regex.IsMatch(e.NewTextValue, Expression, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250));
 
             // Use BackgroundColor as it stands out more.
             // This could be replaced by an entire style.
@@ -32,17 +32,18 @@ namespace RCS.PortableShop.Common.Behaviors
         #endregion
 
         #region IsValid
-        static readonly BindablePropertyKey IsValidPropertyKey =
+
+        private static readonly BindablePropertyKey IsValidPropertyKey =
             BindableProperty.CreateReadOnly(nameof(IsValid), typeof(bool), typeof(EntryRegexValidationBehavior), false);
 
         public static readonly BindableProperty IsValidProperty = IsValidPropertyKey.BindableProperty;
 
         public bool IsValid
         {
-            get { return (bool)base.GetValue(IsValidProperty); }
+            get => (bool)GetValue(IsValidProperty);
             private set
             {
-                base.SetValue(IsValidPropertyKey, value);
+                SetValue(IsValidPropertyKey, value);
                 RaisePropertyChanged(nameof(IsValid));
             }
         }
@@ -62,7 +63,7 @@ namespace RCS.PortableShop.Common.Behaviors
 
         public string Expression
         {
-            get { return (string)GetValue(ExpressionProperty); }
+            get => (string)GetValue(ExpressionProperty);
             set
             {
                 SetValue(ExpressionProperty, value);
@@ -75,7 +76,7 @@ namespace RCS.PortableShop.Common.Behaviors
 
         public Color InvalidBackgroundColour
         {
-            get { return (Color)GetValue(InvalidBackgroundColourProperty); }
+            get => (Color)GetValue(InvalidBackgroundColourProperty);
             set
             {
                 SetValue(InvalidBackgroundColourProperty, value);

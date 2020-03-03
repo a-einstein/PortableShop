@@ -4,7 +4,6 @@ using RCS.PortableShop.Common.ViewModels;
 using RCS.PortableShop.Main;
 using RCS.PortableShop.Model;
 using RCS.PortableShop.Resources;
-using System;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Threading.Tasks;
@@ -32,7 +31,7 @@ namespace RCS.PortableShop.ViewModels
         }
 
         private static volatile ShoppingCartViewModel instance;
-        private static object syncRoot = new Object();
+        private static object syncRoot = new object();
 
         // Note this class is a singleton, implemented along the way (but not entirely) of https://msdn.microsoft.com/en-us/library/ff650316.aspx
         public static ShoppingCartViewModel Instance
@@ -70,7 +69,7 @@ namespace RCS.PortableShop.ViewModels
             ClearAggregates();
         }
 
-        protected override async Task<bool> Read()
+        protected override async Task Read()
         {
             await Task.Run(() =>
             {
@@ -78,8 +77,6 @@ namespace RCS.PortableShop.ViewModels
                 UpdateAggregates();
             }
             ).ConfigureAwait(true);
-
-            return true;
         }
 
         public override string MakeTitle() { return Labels.Cart; }
@@ -96,7 +93,7 @@ namespace RCS.PortableShop.ViewModels
 
         public ICommand DeleteCommand
         {
-            get { return (ICommand)GetValue(DeleteCommandProperty); }
+            get => (ICommand)GetValue(DeleteCommandProperty);
             private set
             {
                 SetValue(DeleteCommandProperty, value);
@@ -147,11 +144,11 @@ namespace RCS.PortableShop.ViewModels
         }
 
         public static readonly BindableProperty ProductItemCountProperty =
-            BindableProperty.Create(nameof(ProductItemsCount), typeof(int), typeof(ShoppingCartViewModel), defaultValue: 0);
+            BindableProperty.Create(nameof(ProductItemsCount), typeof(int), typeof(ShoppingCartViewModel), 0);
 
         public int ProductItemsCount
         {
-            get { return (int)GetValue(ProductItemCountProperty); }
+            get => (int)GetValue(ProductItemCountProperty);
             set
             {
                 SetValue(ProductItemCountProperty, value);
@@ -160,11 +157,11 @@ namespace RCS.PortableShop.ViewModels
         }
 
         public static readonly BindableProperty TotalValueProperty =
-            BindableProperty.Create(nameof(TotalValue), typeof(Decimal), typeof(ShoppingCartViewModel), defaultValue: (Decimal)0);
+            BindableProperty.Create(nameof(TotalValue), typeof(decimal), typeof(ShoppingCartViewModel), (decimal)0);
 
-        public Decimal TotalValue
+        public decimal TotalValue
         {
-            get { return (Decimal)GetValue(TotalValueProperty); }
+            get => (decimal)GetValue(TotalValueProperty);
             set
             {
                 SetValue(TotalValueProperty, value);

@@ -7,7 +7,8 @@ namespace RCS.PortableShop.Model
         where TCollection : Collection<TElement>, new()
     {
         #region Construction
-        public Repository(IProductService productService)
+
+        protected Repository(IProductService productService)
             : base(productService)
         { }
         #endregion
@@ -15,7 +16,7 @@ namespace RCS.PortableShop.Model
         #region CRUD
         public TCollection List { get; } = new TCollection();
 
-        public void Clear()
+        protected void Clear()
         {
             List.Clear();
         }

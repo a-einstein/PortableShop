@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
-<BaseClasses:View
+<baseClasses:View
     x:Class="RCS.PortableShop.Views.ShoppingWrapperView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:Controls="clr-namespace:RCS.PortableShop.Common.Controls;assembly=RCS.PortableShop.Common"
-    xmlns:BaseClasses="clr-namespace:RCS.PortableShop.Common.Views;assembly=RCS.PortableShop.Common"
-    xmlns:Views="clr-namespace:RCS.PortableShop.Views;assembly=RCS.PortableShop">
+    xmlns:controls="clr-namespace:RCS.PortableShop.Common.Controls;assembly=RCS.PortableShop.Common"
+    xmlns:baseClasses="clr-namespace:RCS.PortableShop.Common.Views;assembly=RCS.PortableShop.Common"
+    xmlns:views="clr-namespace:RCS.PortableShop.Views;assembly=RCS.PortableShop">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -14,15 +14,15 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <BaseClasses:View Grid.Row="0" Content="{Binding WrappedContent}"/>
+        <baseClasses:View Grid.Row="0" Content="{Binding WrappedContent}"/>
 
         <!--TODO Get rid of gap here.-->
 
         <!--HACK Setting BackgroundColor here because of https://bugzilla.xamarin.com/show_bug.cgi?id=25943 -->
-        <Controls:ContentButton Grid.Row="1" Command="{Binding ShowCartCommand}" BackgroundColor="{StaticResource CartLevel0Colour}" Padding="{StaticResource ViewPadding}">
-            <Controls:ContentButton.Content>
-                <Views:ShoppingCartSummaryView/>
-            </Controls:ContentButton.Content>
-        </Controls:ContentButton>
+        <controls:ContentButton Grid.Row="1" Command="{Binding ShowCartCommand}" BackgroundColor="{StaticResource CartLevel0Colour}" Padding="{StaticResource ViewPadding}">
+            <controls:ContentButton.Content>
+                <views:ShoppingCartSummaryView/>
+            </controls:ContentButton.Content>
+        </controls:ContentButton>
     </Grid>
-</BaseClasses:View>
+</baseClasses:View>

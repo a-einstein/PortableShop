@@ -1,6 +1,5 @@
 ﻿using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.PortableShop.ServiceClients.Products.Wrappers;
-using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Xamarin.Forms;
@@ -25,41 +24,38 @@ namespace RCS.PortableShop.Model
         #region CRUD
         // Note that the cart is only kept in memory and is not preserved. 
         // It is anticipated that only real orders would be preserved and stored on the server.
-        public CartItem AddProduct(IShoppingProduct product)
+        public void AddProduct(IShoppingProduct product)
         {
-            var existingCartItems = List.Where(cartItem => cartItem.ProductID == product.Id);
-            var existingCartItemsCount = existingCartItems.Count();
+            var existingCartItems = List.Where(cartItem => cartItem.ProductID == product.Id).ToList();
 
-            CartItem productCartItem = null;
+            CartItem productCartItem;
 
-            if (existingCartItemsCount == 0)
+            switch (existingCartItems.Count)
             {
-                productCartItem = new CartItem()
-                {
-                    ProductID = product.Id.Value,
-                    Name = product.Name,
-                    ProductSize = product.Size,
-                    ProductSizeUnitMeasureCode = product.SizeUnitMeasureCode,
-                    ProductColor = product.Color,
-                    ProductListPrice = product.ListPrice,
-                    Quantity = 1,
-                };
+                case 0:
+                    productCartItem = new CartItem()
+                    {
+                        ProductID = product.Id.Value,
+                        Name = product.Name,
+                        ProductSize = product.Size,
+                        ProductSizeUnitMeasureCode = product.SizeUnitMeasureCode,
+                        ProductColor = product.Color,
+                        ProductListPrice = product.ListPrice,
+                        Quantity = 1
+                    };
 
-                List.Add(productCartItem);
-            }
-            else if (existingCartItemsCount == 1)
-            {
-                productCartItem = existingCartItems.First();
+                    List.Add(productCartItem);
+                    break;
+                case 1:
+                    productCartItem = existingCartItems.First();
 
-                productCartItem.Quantity += 1;
-                productCartItem.Value = productCartItem.ProductListPrice * productCartItem.Quantity;
+                    productCartItem.Quantity += 1;
+                    productCartItem.Value = productCartItem.ProductListPrice * productCartItem.Quantity;
+                    break;
+                default:
+                    MessagingCenter.Send<CartItemsRepository>(this, Message.CartError.ToString());
+                    break;
             }
-            else
-            {
-                MessagingCenter.Send<CartItemsRepository>(this, CartItemsRepository.Message.CartError.ToString());
-            }
-
-            return productCartItem;
         }
 
         public void DeleteProduct(CartItem cartItem)
@@ -76,7 +72,7 @@ namespace RCS.PortableShop.Model
                 : 0;
         }
 
-        public Decimal CartValue()
+        public decimal CartValue()
         {
             return List.Count > 0
                 ? List.Sum(cartItem => cartItem.Value)

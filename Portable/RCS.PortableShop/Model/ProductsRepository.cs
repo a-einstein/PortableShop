@@ -21,7 +21,7 @@ namespace RCS.PortableShop.Model
         // TODO This should get paged with an optional pagesize.
         public async Task<IList<ProductsOverviewObject>> ReadList(ProductCategory category, ProductSubcategory subcategory, string namePart)
         {
-            var productsOverview = new ProductsOverviewList();
+            ProductsOverviewList productsOverview;
 
             try
             {
@@ -41,13 +41,13 @@ namespace RCS.PortableShop.Model
             return productsOverview;
         }
 
-        public async Task<Product> ReadDetails(int productID)
+        public async Task<Product> ReadDetails(int productId)
         {
             Product product = null;
 
             try
             {
-                product = await ServiceClient.GetProduct(productID).ConfigureAwait(true);
+                product = await ServiceClient.GetProduct(productId).ConfigureAwait(true);
             }
             catch (FaultException<ExceptionDetail> exception)
             {

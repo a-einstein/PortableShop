@@ -31,17 +31,17 @@ namespace RCS.PortableShop.Droid
             // https://docs.microsoft.com/en-gb/xamarin/essentials/get-started
             Xamarin.Essentials.Platform.Init(this, bundle);
 
-            global::Xamarin.Forms.Forms.Init(this, bundle);
+            Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new MainApplication());
         }
 
-        private void CurrentDomainUnhandledException(object sender, UnhandledExceptionEventArgs e)
+        private static void CurrentDomainUnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             throw new NotImplementedException();
         }
 
         // https://docs.microsoft.com/en-gb/xamarin/essentials/get-started
-        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Android.Content.PM.Permission[] grantResults)
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 

@@ -40,7 +40,7 @@ namespace RCS.PortableShop.ViewModels
 
         public string ValidTextFilterExpression
         {
-            get { return (string)GetValue(ValidTextFilterExpressionProperty); }
+            get => (string)GetValue(ValidTextFilterExpressionProperty);
             set
             {
                 SetValue(ValidTextFilterExpressionProperty, value);
@@ -57,7 +57,7 @@ namespace RCS.PortableShop.ViewModels
                 ProductSubcategoriesRepository.ReadList()
             ).ConfigureAwait(true);
 
-            var succeeded = results.All<bool>(result => result == true);
+            var succeeded = results.All<bool>(result => result);
 
             if (succeeded)
             // Note that using the UI thread (by BeginInvokeOnMainThread) only did bad.
@@ -100,10 +100,7 @@ namespace RCS.PortableShop.ViewModels
 
         public new ProductCategory MasterFilterValue
         {
-            get
-            {
-                return base.MasterFilterValue;
-            }
+            get => base.MasterFilterValue;
             set
             {
                 Settings.ProductCategoryId = value?.Id ?? null;
@@ -113,10 +110,7 @@ namespace RCS.PortableShop.ViewModels
 
         public new ProductSubcategory DetailFilterValue
         {
-            get
-            {
-                return base.DetailFilterValue;
-            }
+            get => base.DetailFilterValue;
             set
             {
                 Settings.ProductSubategoryId = value?.Id ?? null;
@@ -138,20 +132,16 @@ namespace RCS.PortableShop.ViewModels
         {
             return
                 !Awaiting &&
-                ((MasterFilterValue != null && !MasterFilterValue.IsEmpty) || 
-                (!string.IsNullOrEmpty(TextFilterValue) && (Regex.IsMatch(TextFilterValue, @"\w{3}", RegexOptions.IgnoreCase))));
+                (MasterFilterValue != null && !MasterFilterValue.IsEmpty || 
+                !string.IsNullOrEmpty(TextFilterValue) && Regex.IsMatch(TextFilterValue, @"\w{3}", RegexOptions.IgnoreCase));
         }
 
         protected override async Task<bool> ReadFiltered()
         {
-            ProductCategory masterFilterValue;
-            ProductSubcategory detailFilterValue;
-            string textFilterValue;
-
             // Note that using the UI thread (by BeginInvokeOnMainThread) only did bad.
-            masterFilterValue = MasterFilterValue;
-            detailFilterValue = DetailFilterValue;
-            textFilterValue = TextFilterValue;
+            var masterFilterValue = MasterFilterValue;
+            var detailFilterValue = DetailFilterValue;
+            var textFilterValue = TextFilterValue;
 
             var result = await ProductsRepository.ReadList(masterFilterValue, detailFilterValue, textFilterValue).ConfigureAwait(true);
             var succeeded = result != null;
@@ -191,7 +181,7 @@ namespace RCS.PortableShop.ViewModels
 
         public ICommand CartCommand
         {
-            get { return (ICommand)GetValue(CartCommandProperty); }
+            get => (ICommand)GetValue(CartCommandProperty);
             set
             {
                 SetValue(CartCommandProperty, value);

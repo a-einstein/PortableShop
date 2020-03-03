@@ -44,14 +44,14 @@ namespace RCS.PortableShop.Common.Extensions
 
             if (targetObject == null) return null;
 
-            foreach (Binding binding in Bindings)
+            foreach (var binding in Bindings)
             {
                 var bindableProperty = BindableProperty.Create
                 (
                     $"Property-{Guid.NewGuid().ToString("N")}",
                     typeof(object),
                     typeof(MultiBinding),
-                    default(object),
+                    default,
                     propertyChanged: (b, o, n) => SetInternalValue()
                 );
 
@@ -88,15 +88,15 @@ namespace RCS.PortableShop.Common.Extensions
 
         private sealed class InternalValue : INotifyPropertyChanged
         {
-            private object _value;
+            private object value;
             public object Value
             {
-                get { return _value; }
+                get => value;
                 set
                 {
-                    if (!Equals(_value, value))
+                    if (!Equals(this.value, value))
                     {
-                        _value = value;
+                        this.value = value;
                         OnPropertyChanged();
                     }
                 }
@@ -124,7 +124,7 @@ namespace RCS.PortableShop.Common.Extensions
 
             public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
             {
-                object result = value;
+                var result = value;
 
                 if (converter != null)
                     // Convert.
@@ -134,7 +134,7 @@ namespace RCS.PortableShop.Common.Extensions
                 if (!string.IsNullOrWhiteSpace(format))
                 {
                     // Determine type again.
-                    object[] resultArray = result as object[];
+                    var resultArray = result as object[];
 
                     // Format.
                     // Distinguish formatting on type.

@@ -10,6 +10,6 @@ namespace RCS.PortableShop.ServiceClients.Products.Wrappers
         public Task<ProductSubcategoryList> GetSubcategories();
 
         public Task<ProductsOverviewList> GetProducts(ProductCategory category, ProductSubcategory subcategory, string namePart);
-        public Task<Product> GetProduct(int productID);
+        public Task<Product> GetProduct(int productId);
     }
 }

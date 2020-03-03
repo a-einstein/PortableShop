@@ -24,7 +24,7 @@ namespace RCS.PortableShop.Common.Controls
 
         public string Text
         {
-            get { return (string)GetValue(TextProperty); }
+            get => (string)GetValue(TextProperty);
             set
             {
                 SetValue(TextProperty, value);
@@ -39,8 +39,8 @@ namespace RCS.PortableShop.Common.Controls
 
         public string Placeholder
         {
-            get { return (string)GetValue(PlaceholderProperty); }
-            set { SetValue(PlaceholderProperty, value); }
+            get => (string)GetValue(PlaceholderProperty);
+            set => SetValue(PlaceholderProperty, value);
         }
         #endregion
 
@@ -50,7 +50,7 @@ namespace RCS.PortableShop.Common.Controls
 
         public ICommand ClearCommand
         {
-            get { return (ICommand)GetValue(ClearCommandProperty); }
+            get => (ICommand)GetValue(ClearCommandProperty);
             set
             {
                 SetValue(ClearCommandProperty, value);
@@ -67,7 +67,7 @@ namespace RCS.PortableShop.Common.Controls
         #region Behaviors
         public IList<Behavior> EntryBehaviors
         {
-            get { return entry.Behaviors; }
+            get => entry.Behaviors;
             set
             {
                 entry.Behaviors.Clear();

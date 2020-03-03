@@ -1,11 +1,11 @@
-﻿using RCS.PortableShop.Common.Extensions;
+﻿/*
+using RCS.PortableShop.Common.Extensions;
 using System;
 using System.Globalization;
 
 namespace RCS.PortableShop.Converters
 {
-    /*
-    public class WeightFormatter : IMultiValueConverter 
+    public class WeightFormatter : IMultiValueConverter
     {
         // TODO Should convert from Lb to Kg too.
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
@@ -24,5 +24,5 @@ namespace RCS.PortableShop.Converters
             throw new NotImplementedException();
         }
     }
-    */
 }
+*/
