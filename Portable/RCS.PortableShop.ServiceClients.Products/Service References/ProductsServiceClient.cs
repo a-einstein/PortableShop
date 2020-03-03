@@ -13,7 +13,7 @@ namespace RCS.PortableShop.ServiceClients.Products.ProductsService
             Dispose(true);
         }
 
-        protected virtual void Dispose(bool disposing)
+        private void Dispose(bool disposing)
         {
             if (disposing)
             {

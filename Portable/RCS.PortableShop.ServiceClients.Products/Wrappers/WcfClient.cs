@@ -102,7 +102,7 @@ namespace RCS.PortableShop.ServiceClients.Products.Wrappers
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing)
+        private void Dispose(bool disposing)
         {
             if (disposed)
                 return;
