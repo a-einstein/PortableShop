@@ -98,7 +98,7 @@ namespace RCS.PortableShop.ServiceClients.Products.Wrappers
             }
             else
             {
-                return default(TResult);
+                return default;
             }
         }
         #endregion

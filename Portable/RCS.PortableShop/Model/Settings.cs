@@ -49,7 +49,7 @@ namespace RCS.PortableShop.Model
                 {
                     var retrievedValue = Preferences.Get(productCategoryIdKey, default(int));
 
-                    if (retrievedValue != default(int))
+                    if (retrievedValue != default)
                         productCategoryId = retrievedValue;
                     else
                         productCategoryId = null;
@@ -60,7 +60,7 @@ namespace RCS.PortableShop.Model
             set
             {
                 productCategoryId = value;
-                Preferences.Set(productCategoryIdKey, value.HasValue ? value.Value : default(int));
+                Preferences.Set(productCategoryIdKey, value.HasValue ? value.Value : default);
             }
         }
 
@@ -74,7 +74,7 @@ namespace RCS.PortableShop.Model
                 {
                     var retrievedValue = Preferences.Get(productSubategoryIdKey, default(int));
 
-                    if (retrievedValue != default(int))
+                    if (retrievedValue != default)
                         productSubategoryId = retrievedValue;
                     else
                         productSubategoryId = null;
@@ -85,7 +85,7 @@ namespace RCS.PortableShop.Model
             set
             {
                 productSubategoryId = value;
-                Preferences.Set(productSubategoryIdKey, value.HasValue ? value.Value : default(int));
+                Preferences.Set(productSubategoryIdKey, value.HasValue ? value.Value : default);
             }
         }
 

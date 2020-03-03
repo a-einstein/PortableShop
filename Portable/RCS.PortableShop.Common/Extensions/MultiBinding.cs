@@ -51,7 +51,7 @@ namespace RCS.PortableShop.Common.Extensions
                     $"Property-{Guid.NewGuid().ToString("N")}",
                     typeof(object),
                     typeof(MultiBinding),
-                    default(object),
+                    default,
                     propertyChanged: (b, o, n) => SetInternalValue()
                 );
 
