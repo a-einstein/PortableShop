@@ -82,7 +82,7 @@ namespace RCS.PortableShop.Main
                 }
             });
 
-            MessagingCenter.Subscribe<CartItemsRepository>(this, CartItemsRepository.Message.CartError.ToString(), (sender) =>
+            MessagingCenter.Subscribe<CartItemsRepository>(this, CartItemsRepository.Message.CartError.ToString(), sender =>
             {
                 page.DisplayAlert(Labels.Error, Labels.ErrorCart, Labels.Close);
             });
