@@ -26,7 +26,7 @@ namespace RCS.PortableShop.Model
         // It is anticipated that only real orders would be preserved and stored on the server.
         public void AddProduct(IShoppingProduct product)
         {
-            var existingCartItems = List.Where(cartItem => cartItem.ProductID == product.Id).ToList();
+            var existingCartItems = List.Where(cartItem => cartItem.ProductId == product.Id).ToList();
 
             CartItem productCartItem;
 
@@ -35,7 +35,7 @@ namespace RCS.PortableShop.Model
                 case 0:
                     productCartItem = new CartItem()
                     {
-                        ProductID = product.Id.Value,
+                        ProductId = product.Id.Value,
                         Name = product.Name,
                         ProductSize = product.Size,
                         ProductSizeUnitMeasureCode = product.SizeUnitMeasureCode,
