@@ -18,7 +18,7 @@ namespace RCS.PortableShop.ServiceClients.Products.ProductsService {
     public interface IProductsService {
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IProductsService/GetProductsOverviewBy", ReplyAction="http://tempuri.org/IProductsService/GetProductsOverviewByResponse")]
-        System.IAsyncResult BeginGetProductsOverviewBy(System.Nullable<int> productCategoryID, System.Nullable<int> productSubcategoryID, string productNameString, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginGetProductsOverviewBy(System.Nullable<int> productCategoryId, System.Nullable<int> productSubcategoryId, string productNameString, System.AsyncCallback callback, object asyncState);
         
         ProductsOverviewList EndGetProductsOverviewBy(System.IAsyncResult result);
         
@@ -209,8 +209,8 @@ namespace RCS.PortableShop.ServiceClients.Products.ProductsService {
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> CloseCompleted;
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult RCS.PortableShop.ServiceClients.Products.ProductsService.IProductsService.BeginGetProductsOverviewBy(System.Nullable<int> productCategoryID, System.Nullable<int> productSubcategoryID, string productNameString, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginGetProductsOverviewBy(productCategoryID, productSubcategoryID, productNameString, callback, asyncState);
+        System.IAsyncResult RCS.PortableShop.ServiceClients.Products.ProductsService.IProductsService.BeginGetProductsOverviewBy(System.Nullable<int> productCategoryId, System.Nullable<int> productSubcategoryId, string productNameString, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetProductsOverviewBy(productCategoryId, productSubcategoryId, productNameString, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -219,10 +219,10 @@ namespace RCS.PortableShop.ServiceClients.Products.ProductsService {
         }
         
         private System.IAsyncResult OnBeginGetProductsOverviewBy(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            System.Nullable<int> productCategoryID = ((System.Nullable<int>)(inValues[0]));
-            System.Nullable<int> productSubcategoryID = ((System.Nullable<int>)(inValues[1]));
+            System.Nullable<int> productCategoryId = ((System.Nullable<int>)(inValues[0]));
+            System.Nullable<int> productSubcategoryId = ((System.Nullable<int>)(inValues[1]));
             string productNameString = ((string)(inValues[2]));
-            return ((RCS.PortableShop.ServiceClients.Products.ProductsService.IProductsService)(this)).BeginGetProductsOverviewBy(productCategoryID, productSubcategoryID, productNameString, callback, asyncState);
+            return ((RCS.PortableShop.ServiceClients.Products.ProductsService.IProductsService)(this)).BeginGetProductsOverviewBy(productCategoryId, productSubcategoryId, productNameString, callback, asyncState);
         }
         
         private object[] OnEndGetProductsOverviewBy(System.IAsyncResult result) {
@@ -238,11 +238,11 @@ namespace RCS.PortableShop.ServiceClients.Products.ProductsService {
             }
         }
         
-        public void GetProductsOverviewByAsync(System.Nullable<int> productCategoryID, System.Nullable<int> productSubcategoryID, string productNameString) {
-            this.GetProductsOverviewByAsync(productCategoryID, productSubcategoryID, productNameString, null);
+        public void GetProductsOverviewByAsync(System.Nullable<int> productCategoryId, System.Nullable<int> productSubcategoryId, string productNameString) {
+            this.GetProductsOverviewByAsync(productCategoryId, productSubcategoryId, productNameString, null);
         }
         
-        public void GetProductsOverviewByAsync(System.Nullable<int> productCategoryID, System.Nullable<int> productSubcategoryID, string productNameString, object userState) {
+        public void GetProductsOverviewByAsync(System.Nullable<int> productCategoryId, System.Nullable<int> productSubcategoryId, string productNameString, object userState) {
             if ((this.onBeginGetProductsOverviewByDelegate == null)) {
                 this.onBeginGetProductsOverviewByDelegate = new BeginOperationDelegate(this.OnBeginGetProductsOverviewBy);
             }
@@ -253,8 +253,8 @@ namespace RCS.PortableShop.ServiceClients.Products.ProductsService {
                 this.onGetProductsOverviewByCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetProductsOverviewByCompleted);
             }
             base.InvokeAsync(this.onBeginGetProductsOverviewByDelegate, new object[] {
-                        productCategoryID,
-                        productSubcategoryID,
+                        productCategoryId,
+                        productSubcategoryId,
                         productNameString}, this.onEndGetProductsOverviewByDelegate, this.onGetProductsOverviewByCompletedDelegate, userState);
         }
         
@@ -499,10 +499,10 @@ namespace RCS.PortableShop.ServiceClients.Products.ProductsService {
                     base(client) {
             }
             
-            public System.IAsyncResult BeginGetProductsOverviewBy(System.Nullable<int> productCategoryID, System.Nullable<int> productSubcategoryID, string productNameString, System.AsyncCallback callback, object asyncState) {
+            public System.IAsyncResult BeginGetProductsOverviewBy(System.Nullable<int> productCategoryId, System.Nullable<int> productSubcategoryId, string productNameString, System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[3];
-                _args[0] = productCategoryID;
-                _args[1] = productSubcategoryID;
+                _args[0] = productCategoryId;
+                _args[1] = productSubcategoryId;
                 _args[2] = productNameString;
                 System.IAsyncResult _result = base.BeginInvoke("GetProductsOverviewBy", _args, callback, asyncState);
                 return _result;
