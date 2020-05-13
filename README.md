@@ -10,17 +10,19 @@ Working portable (Android) application for test and demo purpose based on Xamari
 * Added storage and retrieval of the overview filter between sessions.
 * Added ability to switch between the two service types and store this in settings.
 * Added usage of Web API service as alternative to WCF.
+* Makes use of own certified domain for webservice.
 * The APK installation file can be downloaded from Azure again, as described below.
 * Migrated to .Net Standard.
 
 #### Known issues
-* The application may crash at startup if the data service is not available.
+* The application may crash at startup if the data service is not available, particularly in the error details message.
 * Restoring the text filter does work, but does not visibly show in the entry field.
+* The application icon is not correctly displayed on screen.
 
 #### Purpose
 * Explore various techniques based on C#, XAML and Xamarin Forms.
 * Manage the code and releases by Git and GitHub.
-* Explore continuous integration by using combinations of Git, GitHub, TeamCity and Azure DevOps.
+* Explore continuous integration by using combinations of Git, GitHub, Azure DevOps and TeamCity.
 * Explore Scrum process management by integration with Jira and Azure DevOps.
 
 #### Prerequisites
@@ -28,7 +30,7 @@ Working portable (Android) application for test and demo purpose based on Xamari
 
 #### Notes
 * This is a near equivalent of my **[WpfShop](https://github.com/a-einstein/WpfShop)**.
-* Currently this is only tested on Android API 21, and no longer suited for all platforms anyway.
+* Currently this is mainly tested on Android API 29.
 * Submitted to code analysis by [Better Code Hub](https://bettercodehub.com). Current score: [![BCH compliance](https://bettercodehub.com/edge/badge/a-einstein/PortableShop)](https://bettercodehub.com)
 * Connected to automated Azure Devops build and release pipelines. Current build status for the master branch: [![Build Status](https://dev.azure.com/RcsProjects/PortableShop/_apis/build/status/Build%20APK?branchName=master)](https://dev.azure.com/RcsProjects/PortableShop/_build/latest?definitionId=13&branchName=master)
 
