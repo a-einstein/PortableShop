@@ -4,6 +4,7 @@
 Working portable (Android) application for test and demo purpose based on Xamarin Forms. It simulates limited shopping capabilities based on the AdventureWorks database.
 
 #### News
+* Release is now to GitHub with an automatic change summary.
 * Applied dependency injection.
 * Improved use of HttpClient.
 * Improved Flyout Menu.
@@ -11,7 +12,6 @@ Working portable (Android) application for test and demo purpose based on Xamari
 * Added ability to switch between the two service types and store this in settings.
 * Added usage of Web API service as alternative to WCF.
 * Makes use of own certified domain for webservice.
-* The APK installation file can be downloaded from Azure again, as described below.
 * Migrated to .Net Standard.
 
 #### Known issues
@@ -60,7 +60,7 @@ Working portable (Android) application for test and demo purpose based on Xamari
 The application is plug & play, but use of the data service is on request. Contact the developer ahead. 
 * Download the APK from Assets of the latest available release from **[Releases](https://github.com/a-einstein/PortableShop/releases)** to your Android phone. 
 * Install the aplication from the notification or the download folder. You probably have to suppress some warnings.
-* Start the application. Either it will start 'empty' displaying a warning, or if the data service is running one can 'shop' the contents.
+* Start the application. Either it will start 'empty' displaying a warning, or if the data service is running, one can 'shop' the contents.
 * Uninstallation can be done by the normal Android procedure.
-* Updating is currently not reported, but can be done manually after uninstalling. One can also use the option from the application's menu to get to the Release page.
+* Updating is currently not supported, but can be done manually after uninstalling. One can also use the option from the application's menu to get to the Release page.
 
