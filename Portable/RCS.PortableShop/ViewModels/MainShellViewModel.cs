@@ -93,7 +93,7 @@ namespace RCS.PortableShop.ViewModels
             // TODO Check versions first. Proceed with either reporting no update needed, or consent to close the application. Even better: check automatically at startup.
 
             // TODO Make this Configureable.
-            OpenWeb("https://rcsadventureworac85.blob.core.windows.net/portableshop-releases/latest/RCS.CyclOne.apk");
+            OpenWeb("https://github.com/a-einstein/PortableShop/releases");
         }
         #endregion
 
