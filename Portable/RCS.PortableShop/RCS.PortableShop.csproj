@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -31,12 +31,12 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.2" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.1.2" />
-    <PackageReference Include="Microsoft.Extensions.Http" Version="3.1.2" />
-    <PackageReference Include="Syncfusion.Xamarin.SfNumericUpDown" Version="17.4.0.51" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.5.0" />
-    <PackageReference Include="Xamarin.Forms" Version="4.5.0.356" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.5" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.1.5" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="3.1.5" />
+    <PackageReference Include="Syncfusion.Xamarin.SfNumericUpDown" Version="18.1.0.59" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
+    <PackageReference Include="Xamarin.Forms" Version="4.7.0.968" />
     <PackageReference Include="System.ServiceModel.Http" Version="4.7.0" />
     <PackageReference Include="System.ServiceModel.Primitives" Version="4.7.0" />
   </ItemGroup>
