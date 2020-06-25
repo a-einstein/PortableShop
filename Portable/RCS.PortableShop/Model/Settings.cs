@@ -93,7 +93,13 @@ namespace RCS.PortableShop.Model
         private static string textFilter;
         public static string TextFilter
         {
-            get { return textFilter ??= Preferences.Get(textFilterKey, default(string)); }
+            get
+            {
+                if (textFilter == default)
+                    textFilter = Preferences.Get(textFilterKey, default(string));
+
+                return textFilter;
+            }
             set
             {
                 textFilter = value;

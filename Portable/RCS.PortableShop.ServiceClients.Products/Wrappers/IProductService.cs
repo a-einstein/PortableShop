@@ -6,10 +6,10 @@ namespace RCS.PortableShop.ServiceClients.Products.Wrappers
 {
     public interface IProductService
     {
-        public Task<ProductCategoryList> GetCategories();
-        public Task<ProductSubcategoryList> GetSubcategories();
+        Task<ProductCategoryList> GetCategories();
+        Task<ProductSubcategoryList> GetSubcategories();
 
-        public Task<ProductsOverviewList> GetProducts(ProductCategory category, ProductSubcategory subcategory, string namePart);
-        public Task<Product> GetProduct(int productId);
+        Task<ProductsOverviewList> GetProducts(ProductCategory category, ProductSubcategory subcategory, string namePart);
+        Task<Product> GetProduct(int productId);
     }
 }
