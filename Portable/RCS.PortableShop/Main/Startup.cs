@@ -24,9 +24,10 @@ namespace RCS.PortableShop.Main
              * */
 
             IHostBuilder hostBuilder;
+            Platform platform = default;
 
             // Make use of own enum to switch on. Astounding it did not already exist.
-            var platform = Enum.Parse(typeof(Platform), DeviceInfo.Platform.ToString());
+            Enum.TryParse(DeviceInfo.Platform.ToString(), out platform);
 
             // Had to differentiate for platforms, as described below.
             // https://github.com/dotnet/extensions/issues/2182
@@ -42,9 +43,8 @@ namespace RCS.PortableShop.Main
                     hostBuilder = new HostBuilder();
                     break;
                 default:
-                    // TODO Message.
-                    throw new Exception();
-                    break;
+                    // TODO Message instead. Note currently that sequentially is hard.
+                    throw new PlatformNotSupportedException($"Platform = '{platform}'.");
             }
 
             hostBuilder.ConfigureServices((context, services) =>
@@ -78,9 +78,9 @@ namespace RCS.PortableShop.Main
 
     enum Platform
     {
+        Unknown = 0,
         Android,
         iOS,
-        UWP,
-        Unknown
+        UWP
     }
 }
