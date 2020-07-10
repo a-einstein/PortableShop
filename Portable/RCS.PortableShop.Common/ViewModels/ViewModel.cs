@@ -34,21 +34,19 @@ namespace RCS.PortableShop.Common.ViewModels
         {
             Awaiting = true;
 
-            Clear();
-
+            await Clear().ConfigureAwait(true);
             UpdateTitle();
 
             if (await Initialize().ConfigureAwait(true))
             {
                 await Read().ConfigureAwait(true);
-
                 UpdateTitle();
             }
 
             Awaiting = false;
         }
 
-        protected virtual void Clear() { }
+        protected virtual async Task Clear() { }
 
         private bool initialized;
 

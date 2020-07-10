@@ -31,7 +31,7 @@ namespace RCS.PortableShop.ViewModels
         {
             if (ItemId.HasValue)
             {
-                var result = await ProductsRepository.ReadDetails((int)ItemId).ConfigureAwait(true);
+                var result = await ProductsRepository.Details((int)ItemId).ConfigureAwait(true);
                 Item = result;
             }
         }

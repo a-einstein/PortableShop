@@ -51,20 +51,21 @@ namespace RCS.PortableShop.ViewModels
         // TODO This would better be handled inside the repository.
         protected override async Task<bool> InitializeFilters()
         {
-            var results = await Task.WhenAll
+            var tasks = Task.WhenAll
             (
-                ProductCategoriesRepository.ReadList(),
-                ProductSubcategoriesRepository.ReadList()
-            ).ConfigureAwait(true);
+                ProductCategoriesRepository.Refresh(),
+                ProductSubcategoriesRepository.Refresh()
+            );
 
-            var succeeded = results.All<bool>(result => result);
+            await tasks.ConfigureAwait(true);
+            var succeeded = tasks.Status != TaskStatus.Faulted;
 
             if (succeeded)
-            // Note that using the UI thread (by BeginInvokeOnMainThread) only did bad.
             {
+                var categories = ProductCategoriesRepository.Items;
                 var masterFilterItems = new ObservableCollection<ProductCategory>();
 
-                foreach (var item in ProductCategoriesRepository.List)
+                foreach (var item in categories)
                 {
                     masterFilterItems.Add(item);
                 }
@@ -73,7 +74,9 @@ namespace RCS.PortableShop.ViewModels
                 // TODO maybe follow the approach on ItemsViewModel.Items.
                 MasterFilterItems = masterFilterItems;
 
-                foreach (var item in ProductSubcategoriesRepository.List)
+                var subcategories = ProductSubcategoriesRepository.Items;
+
+                foreach (var item in subcategories)
                 {
                     DetailFilterItemsSource.Add(item);
                 }
@@ -92,6 +95,7 @@ namespace RCS.PortableShop.ViewModels
                     : DetailFilterItems.FirstOrDefault(value => !value.IsEmpty);
 
                 // TODO This seems to work, but the view field is not updated.
+                // TODO Fix this, as it may even result in empty query results.
                 TextFilterValue = Settings.TextFilter;
             }
 
@@ -132,23 +136,22 @@ namespace RCS.PortableShop.ViewModels
         {
             return
                 !Awaiting &&
-                (MasterFilterValue != null && !MasterFilterValue.IsEmpty || 
+                (MasterFilterValue != null && !MasterFilterValue.IsEmpty ||
                 !string.IsNullOrEmpty(TextFilterValue) && Regex.IsMatch(TextFilterValue, @"\w{3}", RegexOptions.IgnoreCase));
         }
 
         protected override async Task<bool> ReadFiltered()
         {
-            // Note that using the UI thread (by BeginInvokeOnMainThread) only did bad.
             var masterFilterValue = MasterFilterValue;
             var detailFilterValue = DetailFilterValue;
             var textFilterValue = TextFilterValue;
 
-            var result = await ProductsRepository.ReadList(masterFilterValue, detailFilterValue, textFilterValue).ConfigureAwait(true);
-            var succeeded = result != null;
+            var task = ProductsRepository.Refresh(masterFilterValue, detailFilterValue, textFilterValue);
+            await task.ConfigureAwait(true);
+            var succeeded = task.Status != TaskStatus.Faulted;
 
             if (succeeded)
-                // Note that using the UI thread (by BeginInvokeOnMainThread) only did bad.
-                foreach (var item in result)
+                foreach (var item in ProductsRepository.Items)
                     Items.Add(item);
 
             return succeeded;

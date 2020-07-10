@@ -2,13 +2,13 @@
 using RCS.AdventureWorks.Common.Dtos;
 using RCS.PortableShop.ServiceClients.Products.Wrappers;
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.ServiceModel;
 using System.Threading.Tasks;
 
 namespace RCS.PortableShop.Model
 {
-    public class ProductCategoriesRepository : Repository<ObservableCollection<ProductCategory>, ProductCategory>
+    public class ProductCategoriesRepository : Repository<List<ProductCategory>, ProductCategory>
     {
         #region Construction
         public ProductCategoriesRepository(IProductService productService)
@@ -16,11 +16,17 @@ namespace RCS.PortableShop.Model
         { }
         #endregion
 
-        #region CRUD
-        public async Task<bool> ReadList(bool addEmptyElement = true)
+        #region Refresh
+        public async Task Refresh(bool addEmptyElement = true)
         {
-            Clear();
+            await Clear().ConfigureAwait(true);
+            await Read(addEmptyElement).ConfigureAwait(true);
+        }
+        #endregion
 
+        #region CRUD
+        protected async Task Read(bool addEmptyElement)
+        {
             ProductCategoryList categories;
 
             try
@@ -30,27 +36,25 @@ namespace RCS.PortableShop.Model
             catch (FaultException<ExceptionDetail> exception)
             {
                 SendMessage(exception);
-                return false;
+                return;
             }
             catch (Exception exception)
             {
                 SendMessage(exception);
-                return false;
+                return;
             }
 
             if (addEmptyElement)
             {
                 // Name is specifically needed on Android to avoid a NullPointerException.
                 var category = new ProductCategory() { Name = string.Empty };
-                List.Add(category);
+                items.Add(category);
             }
 
             foreach (var category in categories)
             {
-                List.Add(category);
+                items.Add(category);
             }
-
-            return true;
         }
         #endregion
     }

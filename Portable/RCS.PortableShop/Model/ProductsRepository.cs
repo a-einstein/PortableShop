@@ -3,13 +3,12 @@ using RCS.AdventureWorks.Common.Dtos;
 using RCS.PortableShop.ServiceClients.Products.Wrappers;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ServiceModel;
 using System.Threading.Tasks;
 
 namespace RCS.PortableShop.Model
 {
-    public class ProductsRepository : Repository<ObservableCollection<ProductsOverviewObject>, ProductsOverviewObject>
+    public class ProductsRepository : Repository<List<ProductsOverviewObject>, ProductsOverviewObject>
     {
         #region Construction
         public ProductsRepository(IProductService productService)
@@ -17,9 +16,17 @@ namespace RCS.PortableShop.Model
         { }
         #endregion
 
+        #region Refresh
+        public async Task Refresh(ProductCategory category, ProductSubcategory subcategory, string namePart)
+        {
+            await Clear().ConfigureAwait(true);
+            await Read(category, subcategory, namePart).ConfigureAwait(true);
+        }
+        #endregion
+
         #region CRUD
         // TODO This should get paged with an optional pagesize.
-        public async Task<IList<ProductsOverviewObject>> ReadList(ProductCategory category, ProductSubcategory subcategory, string namePart)
+        protected async Task Read(ProductCategory category, ProductSubcategory subcategory, string namePart)
         {
             ProductsOverviewList productsOverview;
 
@@ -30,18 +37,22 @@ namespace RCS.PortableShop.Model
             catch (FaultException<ExceptionDetail> exception)
             {
                 SendMessage(exception);
-                return null;
+                return;
             }
             catch (Exception exception)
             {
                 SendMessage(exception);
-                return null;
+                return;
             }
 
-            return productsOverview;
+            foreach (var product in productsOverview)
+            {
+                items.Add(product);
+            }
         }
 
-        public async Task<Product> ReadDetails(int productId)
+        // This creates a wrapper, besides the repository-like concept.
+        public async Task<Product> Details(int productId)
         {
             Product product = null;
 
