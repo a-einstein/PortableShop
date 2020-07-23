@@ -50,6 +50,7 @@ namespace RCS.PortableShop.UWP
 
                 // Had to add this because of:
                 // https://github.com/xamarin/Xamarin.Forms/issues/10514
+                // https://docs.microsoft.com/en-us/xamarin/xamarin-forms/app-fundamentals/shell/introduction
                 Xamarin.Forms.Forms.SetFlags("Shell_UWP_Experimental");
 
                 Xamarin.Forms.Forms.Init(e);
