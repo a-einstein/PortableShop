@@ -23,7 +23,10 @@ namespace RCS.PortableShop.ServiceClients.Products.Wrappers
         {
             const string entityName = "ProductCategories";
 
-            var result = await ReadApi<ProductCategoryList>(entityName).ConfigureAwait(true);
+            var result = 
+                await ReadApi<ProductCategoryList>(entityName).ConfigureAwait(true) ??
+                // Guarantee a list, even with failing service.
+                new ProductCategoryList();
 
             return result;
         }
@@ -32,7 +35,10 @@ namespace RCS.PortableShop.ServiceClients.Products.Wrappers
         {
             const string entityName = "ProductSubcategories";
 
-            var result = await ReadApi<ProductSubcategoryList>(entityName).ConfigureAwait(true);
+            var result = 
+                await ReadApi<ProductSubcategoryList>(entityName).ConfigureAwait(true) ??
+                // Guarantee a list, even with failing service.
+                new ProductSubcategoryList();
 
             return result;
         }
@@ -49,7 +55,10 @@ namespace RCS.PortableShop.ServiceClients.Products.Wrappers
             // Note that extra occurrences of # are acceptable and order does not matter.
             var parameters = $"{categoryParameter}&{subcategoryParameter}&{wordParameter}";
 
-            var result = await ReadApi<ProductsOverviewList>(ProductEntityName, "overview", parameters).ConfigureAwait(true);
+            var result = 
+                await ReadApi<ProductsOverviewList>(ProductEntityName, "overview", parameters).ConfigureAwait(true) ??
+                // Guarantee a list, even with failing service.
+                new ProductsOverviewList();
 
             return result;
         }
