@@ -16,16 +16,8 @@ namespace RCS.PortableShop.Model
         { }
         #endregion
 
-        #region Refresh
-        public async Task Refresh(bool addEmptyElement = true)
-        {
-            await Clear().ConfigureAwait(true);
-            await Read(addEmptyElement).ConfigureAwait(true);
-        }
-        #endregion
-
         #region CRUD
-        protected async Task Read(bool addEmptyElement = true)
+        protected override async Task Read(bool addEmptyElement = true)
         {
             ProductSubcategoryList subcategories;
 

@@ -1,6 +1,8 @@
 ﻿using RCS.PortableShop.ServiceClients.Products.Wrappers;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace RCS.PortableShop.Model
@@ -27,13 +29,29 @@ namespace RCS.PortableShop.Model
 
         public async Task Clear()
         {
-            items.Clear();
+            await Task.Run(() =>
+            {
+                // Use ToArray to prevent iteration problems in the original list.
+                foreach (var item in items.ToArray())
+                {
+                    // Remove separately to enable Items_CollectionChanged.
+                    items.Remove(item);
+                }
+            }).ConfigureAwait(true);
         }
 
-        public async Task Refresh()
+        public async Task Refresh(bool addEmptyElement = true)
         {
-            await Clear().ConfigureAwait(true);
-            await Read().ConfigureAwait(true);
+            try
+            {
+                await Clear().ConfigureAwait(true);
+                await Read(addEmptyElement).ConfigureAwait(true);
+            }
+            catch (Exception exception)
+            {
+                SendMessage(exception);
+                return;
+            }
         }
         #endregion
 
@@ -43,7 +61,7 @@ namespace RCS.PortableShop.Model
             items.Add(element);
         }
 
-        protected virtual async Task Read()
+        protected virtual async Task Read(bool addEmptyElement = true)
         { }
 
         public virtual async Task Update(TElement element)
