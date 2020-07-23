@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -56,7 +57,15 @@ namespace RCS.PortableShop.Common.ViewModels
         #region Refresh
         protected override async Task Clear()
         {
-            Items.Clear();
+            await Task.Run(() =>
+            {
+                // Use ToArray to prevent iteration problems in the original list.
+                foreach (var item in Items.ToArray())
+                {
+                    // Remove separately to enable Items_CollectionChanged.
+                    Items.Remove(item);
+                }
+            }).ConfigureAwait(true);
         }
         #endregion
     }

@@ -81,12 +81,7 @@ namespace RCS.PortableShop.ViewModels
 
         protected override async Task Clear()
         {
-            // Use ToArray to prevent iteration problems in the original list.
-            foreach (var item in Items.ToArray())
-            {
-                // Remove separately to enable Items_CollectionChanged.
-                Items.Remove(item);
-            }
+            await base.Clear().ConfigureAwait(true);
 
             UpdateAggregates();
         }
