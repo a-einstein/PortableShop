@@ -138,7 +138,10 @@ namespace RCS.PortableShop.Common.ViewModels
             page.SetBinding(Xamarin.Forms.Page.TitleProperty, new Binding() { Path = nameof(Title), Source = view.ViewModel });
             page.Content = view;
 
+            // Note this works for UWP only since Xamarin.Forms 4.8.
+            // https://github.com/xamarin/Xamarin.Forms/issues/8498
             await Navigation.PushAsync(page).ConfigureAwait(true);
+
             await view.Refresh().ConfigureAwait(true);
         }
         #endregion
