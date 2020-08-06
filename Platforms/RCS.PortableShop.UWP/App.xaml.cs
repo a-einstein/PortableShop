@@ -33,7 +33,10 @@ namespace RCS.PortableShop.UWP
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
             {
-                this.DebugSettings.EnableFrameRateCounter = true;
+                // True results in quite annoying displays in corners, useless to me.
+                // https://stackoverflow.com/questions/29364607/what-are-the-two-numbers-in-top-left-of-uap-app-using-vs2015-and-windows-10
+                // Also see the documentation.
+                this.DebugSettings.EnableFrameRateCounter = false;
             }
 #endif
 
