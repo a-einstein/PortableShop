@@ -2,6 +2,7 @@
 using System.Collections.Specialized;
 using System.Linq;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace RCS.PortableShop.Common.ViewModels
@@ -59,12 +60,15 @@ namespace RCS.PortableShop.Common.ViewModels
         {
             await Task.Run(() =>
             {
-                // Use ToArray to prevent iteration problems in the original list.
-                foreach (var item in Items.ToArray())
+                MainThread.BeginInvokeOnMainThread(() =>
                 {
-                    // Remove separately to enable Items_CollectionChanged.
-                    Items.Remove(item);
-                }
+                    // Use ToArray to prevent iteration problems in the original list.
+                    foreach (var item in Items.ToArray())
+                    {
+                        // Remove separately to enable Items_CollectionChanged.
+                        Items.Remove(item);
+                    }
+                });
             }).ConfigureAwait(true);
         }
         #endregion

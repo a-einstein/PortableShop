@@ -9,6 +9,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace RCS.PortableShop.ViewModels
@@ -113,12 +114,15 @@ namespace RCS.PortableShop.ViewModels
 
         protected override async Task Read()
         {
-            foreach (var item in CartItemsRepository.Items)
+            MainThread.BeginInvokeOnMainThread(() =>
             {
-                // Use a copy to maintain separation between this and the repository though they contain the same type of items.
-                Items.Add(item.Copy());
-            }
-
+                foreach (var item in CartItemsRepository.Items)
+                {
+                    // Use a copy to maintain separation between this and the repository though they contain the same type of items.
+                    Items.Add(item.Copy());
+                }
+            });
+  
             UpdateAggregates();
         }
 
@@ -166,6 +170,7 @@ namespace RCS.PortableShop.ViewModels
                 CartItemsRepository.Update(sender as CartItem).ConfigureAwait(true);
                 dirty = true;
 
+                // TODO This is not satisfactory as the whole  list is visibly refreshed.
                 Task.Run(async () => await Refresh().ConfigureAwait(true));
             }
         }
@@ -174,8 +179,11 @@ namespace RCS.PortableShop.ViewModels
         #region Aggregates
         private void UpdateAggregates()
         {
-            ProductItemsCount = Count();
-            TotalValue = Value();
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                ProductItemsCount = Count();
+                TotalValue = Value();
+            });
         }
 
         public int Count()

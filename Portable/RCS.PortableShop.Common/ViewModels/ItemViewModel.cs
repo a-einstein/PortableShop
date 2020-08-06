@@ -1,4 +1,5 @@
 ﻿using RCS.AdventureWorks.Common.DomainClasses;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace RCS.PortableShop.Common.ViewModels
@@ -18,10 +19,13 @@ namespace RCS.PortableShop.Common.ViewModels
             get => (TItem)GetValue(ItemProperty);
             set
             {
-                SetValue(ItemProperty, value);
-                RaisePropertyChanged(nameof(Item));
+                MainThread.BeginInvokeOnMainThread(async () =>
+                {
+                    SetValue(ItemProperty, value);
+                    RaisePropertyChanged(nameof(Item));
 
-                UpdateTitle();
+                    UpdateTitle();
+                });
             }
         }
         #endregion

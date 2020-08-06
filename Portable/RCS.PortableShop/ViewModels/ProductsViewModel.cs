@@ -7,10 +7,12 @@ using RCS.PortableShop.Model;
 using RCS.PortableShop.Views;
 using System;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace RCS.PortableShop.ViewModels
@@ -51,26 +53,30 @@ namespace RCS.PortableShop.ViewModels
         // TODO This would better be handled inside the repository.
         protected override async Task<bool> InitializeFilters()
         {
-            var tasks = Task.WhenAll
-            (
+            // TODO To base?
+            // TODO Reconsider this approach.
+            MasterFilterItems.CollectionChanged += MasterFilterItems_CollectionChanged;
+            DetailFilterItems.CollectionChanged += DetailFilterItems_CollectionChanged;
+
+            var tasks = new Task[]
+            {
                 ProductCategoriesRepository.Refresh(),
                 ProductSubcategoriesRepository.Refresh()
-            );
+            };
 
-            await tasks.ConfigureAwait(true);
-            var succeeded = tasks.Status != TaskStatus.Faulted;
+            await Task.WhenAll(tasks).ConfigureAwait(true);
 
-            if (succeeded)
+            var categories = ProductCategoriesRepository.Items;
+            var masterFilterItems = new ObservableCollection<ProductCategory>();
+
+            foreach (var item in categories)
             {
-                var categories = ProductCategoriesRepository.Items;
-                var masterFilterItems = new ObservableCollection<ProductCategory>();
+                masterFilterItems.Add(item);
+            }
 
-                foreach (var item in categories)
-                {
-                    masterFilterItems.Add(item);
-                }
-
-                // Do an assignment, as just changing the ObservableCollection plus even a PropertyChanged does not work. There seems to be no good way to handle CollectionChanged. 
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                // Do an assignment, as there is not much use to follow up on each item. 
                 // TODO maybe follow the approach on ItemsViewModel.Items.
                 MasterFilterItems = masterFilterItems;
 
@@ -91,15 +97,25 @@ namespace RCS.PortableShop.ViewModels
 
                 // Note that MasterFilterValue also determines DetailFilterItems.
                 DetailFilterValue = retrievedSubcategoryId.HasValue
-                    ? DetailFilterItems.FirstOrDefault(value => value.Id == retrievedSubcategoryId.Value)
-                    : DetailFilterItems.FirstOrDefault(value => !value.IsEmpty);
+                ? DetailFilterItems.FirstOrDefault(value => value.Id == retrievedSubcategoryId.Value)
+                : DetailFilterItems.FirstOrDefault(value => !value.IsEmpty);
 
                 // TODO This seems to work, but the view field is not updated.
                 // TODO Fix this, as it may even result in empty query results.
                 TextFilterValue = Settings.TextFilter;
-            }
+            });
 
-            return succeeded;
+            return true;
+        }
+
+        private void MasterFilterItems_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            RaisePropertyChanged(nameof(MasterFilterItems));
+        }
+
+        private void DetailFilterItems_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            RaisePropertyChanged(nameof(DetailFilterItems));
         }
 
         public new ProductCategory MasterFilterValue
@@ -151,8 +167,11 @@ namespace RCS.PortableShop.ViewModels
             var succeeded = task.Status != TaskStatus.Faulted;
 
             if (succeeded)
-                foreach (var item in ProductsRepository.Items)
-                    Items.Add(item);
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    foreach (var item in ProductsRepository.Items)
+                        Items.Add(item);
+                });
 
             return succeeded;
         }
