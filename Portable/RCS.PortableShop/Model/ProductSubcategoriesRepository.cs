@@ -2,13 +2,13 @@
 using RCS.AdventureWorks.Common.Dtos;
 using RCS.PortableShop.ServiceClients.Products.Wrappers;
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.ServiceModel;
 using System.Threading.Tasks;
 
 namespace RCS.PortableShop.Model
 {
-    public class ProductSubcategoriesRepository : Repository<ObservableCollection<ProductSubcategory>, ProductSubcategory>
+    public class ProductSubcategoriesRepository : Repository<List<ProductSubcategory>, ProductSubcategory>
     {
         #region Construction
         public ProductSubcategoriesRepository(IProductService productService)
@@ -17,10 +17,8 @@ namespace RCS.PortableShop.Model
         #endregion
 
         #region CRUD
-        public async Task<bool> ReadList(bool addEmptyElement = true)
+        protected override async Task Read(bool addEmptyElement = true)
         {
-            Clear();
-
             ProductSubcategoryList subcategories;
 
             try
@@ -30,27 +28,25 @@ namespace RCS.PortableShop.Model
             catch (FaultException<ExceptionDetail> exception)
             {
                 SendMessage(exception);
-                return false;
+                return;
             }
             catch (Exception exception)
             {
                 SendMessage(exception);
-                return false;
+                return;
             }
 
             if (addEmptyElement)
             {
                 // Name is specifically needed on Android to avoid a NullPointerException.
                 var subcategory = new ProductSubcategory() { Name = string.Empty };
-                List.Add(subcategory);
+                items.Add(subcategory);
             }
 
             foreach (var subcategory in subcategories)
             {
-                List.Add(subcategory);
+                items.Add(subcategory);
             }
-
-            return true;
         }
         #endregion
     }

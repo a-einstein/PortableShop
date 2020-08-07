@@ -58,6 +58,7 @@ namespace RCS.PortableShop.Droid
 			global::Syncfusion.XForms.Android.Core.Resource.Drawable.input_layout_drop_down_icon = global::RCS.PortableShop.Droid.Resource.Drawable.input_layout_drop_down_icon;
 			global::Syncfusion.XForms.Android.Core.Resource.Drawable.inputlayout_togglecollapseicon = global::RCS.PortableShop.Droid.Resource.Drawable.inputlayout_togglecollapseicon;
 			global::Syncfusion.XForms.Android.Core.Resource.Drawable.inputlayout_togglevisibleicon = global::RCS.PortableShop.Droid.Resource.Drawable.inputlayout_togglevisibleicon;
+			global::Syncfusion.XForms.Android.Core.Resource.Drawable.clear_button_icon = global::RCS.PortableShop.Droid.Resource.Drawable.clear_button_icon;
 			global::Com.Syncfusion.Numericupdown.Resource.String.sfnumericupdown_decrement_button_accessibility_label = global::RCS.PortableShop.Droid.Resource.String.sfnumericupdown_decrement_button_accessibility_label;
 			global::Com.Syncfusion.Numericupdown.Resource.String.sfnumericupdown_increment_button_accessibility_label = global::RCS.PortableShop.Droid.Resource.String.sfnumericupdown_increment_button_accessibility_label;
 			global::Xamarin.Essentials.Resource.Attribute.alpha = global::RCS.PortableShop.Droid.Resource.Attribute.alpha;
@@ -1671,6 +1672,7 @@ namespace RCS.PortableShop.Droid
 			global::Xamarin.Forms.Platform.Android.Resource.String.fab_transformation_sheet_behavior = global::RCS.PortableShop.Droid.Resource.String.fab_transformation_sheet_behavior;
 			global::Xamarin.Forms.Platform.Android.Resource.String.hide_bottom_view_on_scroll_behavior = global::RCS.PortableShop.Droid.Resource.String.hide_bottom_view_on_scroll_behavior;
 			global::Xamarin.Forms.Platform.Android.Resource.String.mtrl_chip_close_icon_content_description = global::RCS.PortableShop.Droid.Resource.String.mtrl_chip_close_icon_content_description;
+			global::Xamarin.Forms.Platform.Android.Resource.String.overflow_tab_title = global::RCS.PortableShop.Droid.Resource.String.overflow_tab_title;
 			global::Xamarin.Forms.Platform.Android.Resource.String.password_toggle_content_description = global::RCS.PortableShop.Droid.Resource.String.password_toggle_content_description;
 			global::Xamarin.Forms.Platform.Android.Resource.String.path_password_eye = global::RCS.PortableShop.Droid.Resource.String.path_password_eye;
 			global::Xamarin.Forms.Platform.Android.Resource.String.path_password_eye_mask_strike_through = global::RCS.PortableShop.Droid.Resource.String.path_password_eye_mask_strike_through;
@@ -4349,6 +4351,7 @@ namespace RCS.PortableShop.Droid
 			global::Xamarin.Forms.Platform.Resource.String.fab_transformation_sheet_behavior = global::RCS.PortableShop.Droid.Resource.String.fab_transformation_sheet_behavior;
 			global::Xamarin.Forms.Platform.Resource.String.hide_bottom_view_on_scroll_behavior = global::RCS.PortableShop.Droid.Resource.String.hide_bottom_view_on_scroll_behavior;
 			global::Xamarin.Forms.Platform.Resource.String.mtrl_chip_close_icon_content_description = global::RCS.PortableShop.Droid.Resource.String.mtrl_chip_close_icon_content_description;
+			global::Xamarin.Forms.Platform.Resource.String.overflow_tab_title = global::RCS.PortableShop.Droid.Resource.String.overflow_tab_title;
 			global::Xamarin.Forms.Platform.Resource.String.password_toggle_content_description = global::RCS.PortableShop.Droid.Resource.String.password_toggle_content_description;
 			global::Xamarin.Forms.Platform.Resource.String.path_password_eye = global::RCS.PortableShop.Droid.Resource.String.path_password_eye;
 			global::Xamarin.Forms.Platform.Resource.String.path_password_eye_mask_strike_through = global::RCS.PortableShop.Droid.Resource.String.path_password_eye_mask_strike_through;
@@ -8800,115 +8803,118 @@ namespace RCS.PortableShop.Droid
 			public const int CartPlus = 2131165319;
 			
 			// aapt resource value: 0x7F070088
-			public const int CloudDownload = 2131165320;
+			public const int clear_button_icon = 2131165320;
 			
 			// aapt resource value: 0x7F070089
-			public const int design_bottom_navigation_item_background = 2131165321;
+			public const int CloudDownload = 2131165321;
 			
 			// aapt resource value: 0x7F07008A
-			public const int design_fab_background = 2131165322;
+			public const int design_bottom_navigation_item_background = 2131165322;
 			
 			// aapt resource value: 0x7F07008B
-			public const int design_ic_visibility = 2131165323;
+			public const int design_fab_background = 2131165323;
 			
 			// aapt resource value: 0x7F07008C
-			public const int design_ic_visibility_off = 2131165324;
+			public const int design_ic_visibility = 2131165324;
 			
 			// aapt resource value: 0x7F07008D
-			public const int design_password_eye = 2131165325;
+			public const int design_ic_visibility_off = 2131165325;
 			
 			// aapt resource value: 0x7F07008E
-			public const int design_snackbar_background = 2131165326;
+			public const int design_password_eye = 2131165326;
 			
 			// aapt resource value: 0x7F07008F
-			public const int DownButton = 2131165327;
+			public const int design_snackbar_background = 2131165327;
 			
 			// aapt resource value: 0x7F070090
-			public const int ic_mtrl_chip_checked_black = 2131165328;
+			public const int DownButton = 2131165328;
 			
 			// aapt resource value: 0x7F070091
-			public const int ic_mtrl_chip_checked_circle = 2131165329;
+			public const int ic_mtrl_chip_checked_black = 2131165329;
 			
 			// aapt resource value: 0x7F070092
-			public const int ic_mtrl_chip_close_circle = 2131165330;
+			public const int ic_mtrl_chip_checked_circle = 2131165330;
 			
 			// aapt resource value: 0x7F070093
-			public const int Information = 2131165331;
-			
-			// aapt resource value: 0x7F070095
-			public const int inputlayout_togglecollapseicon = 2131165333;
-			
-			// aapt resource value: 0x7F070096
-			public const int inputlayout_togglevisibleicon = 2131165334;
+			public const int ic_mtrl_chip_close_circle = 2131165331;
 			
 			// aapt resource value: 0x7F070094
-			public const int input_layout_drop_down_icon = 2131165332;
+			public const int Information = 2131165332;
+			
+			// aapt resource value: 0x7F070096
+			public const int inputlayout_togglecollapseicon = 2131165334;
 			
 			// aapt resource value: 0x7F070097
-			public const int mtrl_snackbar_background = 2131165335;
+			public const int inputlayout_togglevisibleicon = 2131165335;
+			
+			// aapt resource value: 0x7F070095
+			public const int input_layout_drop_down_icon = 2131165333;
 			
 			// aapt resource value: 0x7F070098
-			public const int mtrl_tabs_default_indicator = 2131165336;
+			public const int mtrl_snackbar_background = 2131165336;
 			
 			// aapt resource value: 0x7F070099
-			public const int navigation_empty_icon = 2131165337;
+			public const int mtrl_tabs_default_indicator = 2131165337;
 			
 			// aapt resource value: 0x7F07009A
-			public const int notification_action_background = 2131165338;
+			public const int navigation_empty_icon = 2131165338;
 			
 			// aapt resource value: 0x7F07009B
-			public const int notification_bg = 2131165339;
+			public const int notification_action_background = 2131165339;
 			
 			// aapt resource value: 0x7F07009C
-			public const int notification_bg_low = 2131165340;
+			public const int notification_bg = 2131165340;
 			
 			// aapt resource value: 0x7F07009D
-			public const int notification_bg_low_normal = 2131165341;
+			public const int notification_bg_low = 2131165341;
 			
 			// aapt resource value: 0x7F07009E
-			public const int notification_bg_low_pressed = 2131165342;
+			public const int notification_bg_low_normal = 2131165342;
 			
 			// aapt resource value: 0x7F07009F
-			public const int notification_bg_normal = 2131165343;
+			public const int notification_bg_low_pressed = 2131165343;
 			
 			// aapt resource value: 0x7F0700A0
-			public const int notification_bg_normal_pressed = 2131165344;
+			public const int notification_bg_normal = 2131165344;
 			
 			// aapt resource value: 0x7F0700A1
-			public const int notification_icon_background = 2131165345;
+			public const int notification_bg_normal_pressed = 2131165345;
 			
 			// aapt resource value: 0x7F0700A2
-			public const int notification_template_icon_bg = 2131165346;
+			public const int notification_icon_background = 2131165346;
 			
 			// aapt resource value: 0x7F0700A3
-			public const int notification_template_icon_low_bg = 2131165347;
+			public const int notification_template_icon_bg = 2131165347;
 			
 			// aapt resource value: 0x7F0700A4
-			public const int notification_tile_bg = 2131165348;
+			public const int notification_template_icon_low_bg = 2131165348;
 			
 			// aapt resource value: 0x7F0700A5
-			public const int notify_panel_notification_icon_bg = 2131165349;
+			public const int notification_tile_bg = 2131165349;
 			
 			// aapt resource value: 0x7F0700A6
-			public const int Overview = 2131165350;
+			public const int notify_panel_notification_icon_bg = 2131165350;
 			
 			// aapt resource value: 0x7F0700A7
-			public const int Refresh = 2131165351;
+			public const int Overview = 2131165351;
 			
 			// aapt resource value: 0x7F0700A8
-			public const int Settings = 2131165352;
+			public const int Refresh = 2131165352;
 			
 			// aapt resource value: 0x7F0700A9
-			public const int SplashScreen = 2131165353;
+			public const int Settings = 2131165353;
 			
 			// aapt resource value: 0x7F0700AA
-			public const int tooltip_frame_dark = 2131165354;
+			public const int SplashScreen = 2131165354;
 			
 			// aapt resource value: 0x7F0700AB
-			public const int tooltip_frame_light = 2131165355;
+			public const int tooltip_frame_dark = 2131165355;
 			
 			// aapt resource value: 0x7F0700AC
-			public const int UpButton = 2131165356;
+			public const int tooltip_frame_light = 2131165356;
+			
+			// aapt resource value: 0x7F0700AD
+			public const int UpButton = 2131165357;
 			
 			static Drawable()
 			{
@@ -10131,31 +10137,34 @@ namespace RCS.PortableShop.Droid
 			public const int mtrl_chip_close_icon_content_description = 2131492898;
 			
 			// aapt resource value: 0x7F0C0023
-			public const int password_toggle_content_description = 2131492899;
+			public const int overflow_tab_title = 2131492899;
 			
 			// aapt resource value: 0x7F0C0024
-			public const int path_password_eye = 2131492900;
+			public const int password_toggle_content_description = 2131492900;
 			
 			// aapt resource value: 0x7F0C0025
-			public const int path_password_eye_mask_strike_through = 2131492901;
+			public const int path_password_eye = 2131492901;
 			
 			// aapt resource value: 0x7F0C0026
-			public const int path_password_eye_mask_visible = 2131492902;
+			public const int path_password_eye_mask_strike_through = 2131492902;
 			
 			// aapt resource value: 0x7F0C0027
-			public const int path_password_strike_through = 2131492903;
+			public const int path_password_eye_mask_visible = 2131492903;
 			
 			// aapt resource value: 0x7F0C0028
-			public const int search_menu_title = 2131492904;
+			public const int path_password_strike_through = 2131492904;
 			
 			// aapt resource value: 0x7F0C0029
-			public const int sfnumericupdown_decrement_button_accessibility_label = 2131492905;
+			public const int search_menu_title = 2131492905;
 			
 			// aapt resource value: 0x7F0C002A
-			public const int sfnumericupdown_increment_button_accessibility_label = 2131492906;
+			public const int sfnumericupdown_decrement_button_accessibility_label = 2131492906;
 			
 			// aapt resource value: 0x7F0C002B
-			public const int status_bar_notification_info_overflow = 2131492907;
+			public const int sfnumericupdown_increment_button_accessibility_label = 2131492907;
+			
+			// aapt resource value: 0x7F0C002C
+			public const int status_bar_notification_info_overflow = 2131492908;
 			
 			static String()
 			{

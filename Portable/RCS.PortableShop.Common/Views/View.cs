@@ -1,5 +1,4 @@
-﻿using RCS.PortableShop.Common.Extensions;
-using RCS.PortableShop.Common.ViewModels;
+﻿using RCS.PortableShop.Common.ViewModels;
 using System;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -23,12 +22,10 @@ namespace RCS.PortableShop.Common.Views
 
         public async Task Refresh()
         {
-            await Task.Run(() =>
+            await Task.Run(async () =>
             {
-                // Use this because of the ConfigureAwait.
-                ViewModel.IfNotNull(async viewModel => await viewModel.Refresh().ConfigureAwait(true));
-            }
-            ).ConfigureAwait(true);
+                await ViewModel.Refresh().ConfigureAwait(true);
+            }).ConfigureAwait(true);
         }
 
         protected static void Orientate(ref StackLayout stack, ref int preservedWidth, ref int preservedHeight, double width, double height)

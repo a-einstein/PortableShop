@@ -1,18 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 namespace RCS.PortableShop.UWP
@@ -43,7 +33,10 @@ namespace RCS.PortableShop.UWP
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
             {
-                this.DebugSettings.EnableFrameRateCounter = true;
+                // True results in quite annoying displays in corners, useless to me.
+                // https://stackoverflow.com/questions/29364607/what-are-the-two-numbers-in-top-left-of-uap-app-using-vs2015-and-windows-10
+                // Also see the documentation.
+                this.DebugSettings.EnableFrameRateCounter = false;
             }
 #endif
 
@@ -57,6 +50,11 @@ namespace RCS.PortableShop.UWP
                 rootFrame = new Frame();
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
+
+                // Had to add this because of:
+                // https://github.com/xamarin/Xamarin.Forms/issues/10514
+                // https://docs.microsoft.com/en-us/xamarin/xamarin-forms/app-fundamentals/shell/introduction
+                Xamarin.Forms.Forms.SetFlags("Shell_UWP_Experimental");
 
                 Xamarin.Forms.Forms.Init(e);
 

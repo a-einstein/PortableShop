@@ -1,5 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Linq;
+using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace RCS.PortableShop.Common.ViewModels
@@ -41,7 +44,7 @@ namespace RCS.PortableShop.Common.ViewModels
             Items.CollectionChanged += Items_CollectionChanged;
         }
 
-        private void Items_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        protected virtual void Items_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             RaisePropertyChanged(nameof(ItemsCount));
         }
@@ -53,11 +56,20 @@ namespace RCS.PortableShop.Common.ViewModels
         #endregion
 
         #region Refresh
-        protected override void Clear()
+        protected override async Task Clear()
         {
-            base.Clear();
-
-            Items.Clear();
+            await Task.Run(() =>
+            {
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    // Use ToArray to prevent iteration problems in the original list.
+                    foreach (var item in Items.ToArray())
+                    {
+                        // Remove separately to enable Items_CollectionChanged.
+                        Items.Remove(item);
+                    }
+                });
+            }).ConfigureAwait(true);
         }
         #endregion
     }

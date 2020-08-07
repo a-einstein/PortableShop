@@ -7,10 +7,12 @@ using RCS.PortableShop.Model;
 using RCS.PortableShop.Views;
 using System;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace RCS.PortableShop.ViewModels
@@ -51,29 +53,36 @@ namespace RCS.PortableShop.ViewModels
         // TODO This would better be handled inside the repository.
         protected override async Task<bool> InitializeFilters()
         {
-            var results = await Task.WhenAll
-            (
-                ProductCategoriesRepository.ReadList(),
-                ProductSubcategoriesRepository.ReadList()
-            ).ConfigureAwait(true);
+            // TODO To base?
+            // TODO Reconsider this approach.
+            MasterFilterItems.CollectionChanged += MasterFilterItems_CollectionChanged;
+            DetailFilterItems.CollectionChanged += DetailFilterItems_CollectionChanged;
 
-            var succeeded = results.All<bool>(result => result);
-
-            if (succeeded)
-            // Note that using the UI thread (by BeginInvokeOnMainThread) only did bad.
+            var tasks = new Task[]
             {
-                var masterFilterItems = new ObservableCollection<ProductCategory>();
+                ProductCategoriesRepository.Refresh(),
+                ProductSubcategoriesRepository.Refresh()
+            };
 
-                foreach (var item in ProductCategoriesRepository.List)
-                {
-                    masterFilterItems.Add(item);
-                }
+            await Task.WhenAll(tasks).ConfigureAwait(true);
 
-                // Do an assignment, as just changing the ObservableCollection plus even a PropertyChanged does not work. There seems to be no good way to handle CollectionChanged. 
+            var categories = ProductCategoriesRepository.Items;
+            var masterFilterItems = new ObservableCollection<ProductCategory>();
+
+            foreach (var item in categories)
+            {
+                masterFilterItems.Add(item);
+            }
+
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                // Do an assignment, as there is not much use to follow up on each item. 
                 // TODO maybe follow the approach on ItemsViewModel.Items.
                 MasterFilterItems = masterFilterItems;
 
-                foreach (var item in ProductSubcategoriesRepository.List)
+                var subcategories = ProductSubcategoriesRepository.Items;
+
+                foreach (var item in subcategories)
                 {
                     DetailFilterItemsSource.Add(item);
                 }
@@ -88,14 +97,25 @@ namespace RCS.PortableShop.ViewModels
 
                 // Note that MasterFilterValue also determines DetailFilterItems.
                 DetailFilterValue = retrievedSubcategoryId.HasValue
-                    ? DetailFilterItems.FirstOrDefault(value => value.Id == retrievedSubcategoryId.Value)
-                    : DetailFilterItems.FirstOrDefault(value => !value.IsEmpty);
+                ? DetailFilterItems.FirstOrDefault(value => value.Id == retrievedSubcategoryId.Value)
+                : DetailFilterItems.FirstOrDefault(value => !value.IsEmpty);
 
                 // TODO This seems to work, but the view field is not updated.
+                // TODO Fix this, as it may even result in empty query results.
                 TextFilterValue = Settings.TextFilter;
-            }
+            });
 
-            return succeeded;
+            return true;
+        }
+
+        private void MasterFilterItems_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            RaisePropertyChanged(nameof(MasterFilterItems));
+        }
+
+        private void DetailFilterItems_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            RaisePropertyChanged(nameof(DetailFilterItems));
         }
 
         public new ProductCategory MasterFilterValue
@@ -132,24 +152,26 @@ namespace RCS.PortableShop.ViewModels
         {
             return
                 !Awaiting &&
-                (MasterFilterValue != null && !MasterFilterValue.IsEmpty || 
+                (MasterFilterValue != null && !MasterFilterValue.IsEmpty ||
                 !string.IsNullOrEmpty(TextFilterValue) && Regex.IsMatch(TextFilterValue, @"\w{3}", RegexOptions.IgnoreCase));
         }
 
         protected override async Task<bool> ReadFiltered()
         {
-            // Note that using the UI thread (by BeginInvokeOnMainThread) only did bad.
             var masterFilterValue = MasterFilterValue;
             var detailFilterValue = DetailFilterValue;
             var textFilterValue = TextFilterValue;
 
-            var result = await ProductsRepository.ReadList(masterFilterValue, detailFilterValue, textFilterValue).ConfigureAwait(true);
-            var succeeded = result != null;
+            var task = ProductsRepository.Refresh(masterFilterValue, detailFilterValue, textFilterValue);
+            await task.ConfigureAwait(true);
+            var succeeded = task.Status != TaskStatus.Faulted;
 
             if (succeeded)
-                // Note that using the UI thread (by BeginInvokeOnMainThread) only did bad.
-                foreach (var item in result)
-                    Items.Add(item);
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    foreach (var item in ProductsRepository.Items)
+                        Items.Add(item);
+                });
 
             return succeeded;
         }

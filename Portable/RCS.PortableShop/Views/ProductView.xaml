@@ -33,6 +33,7 @@
                     </controls:ContentButton.Content>
                 </controls:ContentButton>
 
+                 <!--TODO This does not have an icon nor text in UWP.-->
                 <Button ImageSource="CartPlus" Command="{Binding CartCommand}" CommandParameter="{Binding Item}" Style="{StaticResource CartButtonStyle}" VerticalOptions="Start" HorizontalOptions="End"/>
             </StackLayout>
 

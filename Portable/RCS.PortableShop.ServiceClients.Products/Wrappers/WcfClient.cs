@@ -12,31 +12,40 @@ namespace RCS.PortableShop.ServiceClients.Products.Wrappers
         #region Interface
         public async Task<ProductCategoryList> GetCategories()
         {
-            var result = await Task.Factory.FromAsync<ProductCategoryList>(
-                ProductsServiceClient.BeginGetProductCategories,
-                ProductsServiceClient.EndGetProductCategories,
-                null).ConfigureAwait(true);
+            var result =
+                await Task.Factory.FromAsync<ProductCategoryList>(
+                    ProductsServiceClient.BeginGetProductCategories,
+                    ProductsServiceClient.EndGetProductCategories,
+                    null).ConfigureAwait(true) ??
+                // Guarantee a list, even with failing service.
+                new ProductCategoryList();
 
             return result;
         }
 
         public async Task<ProductSubcategoryList> GetSubcategories()
         {
-            var result = await Task.Factory.FromAsync<ProductSubcategoryList>(
-               ProductsServiceClient.BeginGetProductSubcategories,
-               ProductsServiceClient.EndGetProductSubcategories,
-               null).ConfigureAwait(true);
+            var result =
+                await Task.Factory.FromAsync<ProductSubcategoryList>(
+                    ProductsServiceClient.BeginGetProductSubcategories,
+                    ProductsServiceClient.EndGetProductSubcategories,
+                    null).ConfigureAwait(true) ??
+               // Guarantee a list, even with failing service.
+               new ProductSubcategoryList();
 
             return result;
         }
 
         public async Task<ProductsOverviewList> GetProducts(ProductCategory category, ProductSubcategory subcategory, string namePart)
         {
-            var result = await Task.Factory.FromAsync<int?, int?, string, ProductsOverviewList>(
-               ProductsServiceClient.BeginGetProductsOverviewBy,
-               ProductsServiceClient.EndGetProductsOverviewBy,
-               category?.Id, subcategory?.Id, namePart,
-               null).ConfigureAwait(true);
+            var result =
+               await Task.Factory.FromAsync<int?, int?, string, ProductsOverviewList>(
+                    ProductsServiceClient.BeginGetProductsOverviewBy,
+                    ProductsServiceClient.EndGetProductsOverviewBy,
+                    category?.Id, subcategory?.Id, namePart,
+                    null).ConfigureAwait(true) ??
+               // Guarantee a list, even with failing service.
+               new ProductsOverviewList();
 
             return result;
         }

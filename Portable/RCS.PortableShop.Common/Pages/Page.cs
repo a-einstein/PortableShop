@@ -1,5 +1,5 @@
-﻿using RCS.PortableShop.Common.Extensions;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using View = RCS.PortableShop.Common.Views.View;
 
@@ -48,15 +48,22 @@ namespace RCS.PortableShop.Common.Pages
         {
             // TODO Since applying Shell, icons are not displayed, though the commands work.
             // https://github.com/xamarin/Xamarin.Forms/issues/7351
-            ToolbarItems.Add(new ToolbarItem("R", "Refresh.png", async () => await Content.ViewModel.Refresh().ConfigureAwait(true), priority: 10));
+            ToolbarItems.Add(new ToolbarItem("R", "Refresh.png", () =>
+               MainThread.BeginInvokeOnMainThread(async () =>
+               {
+                   await Content.ViewModel.Refresh().ConfigureAwait(true);
+               }), priority: 10));
         }
 
         protected async Task Refresh()
         {
             await Initialize().ConfigureAwait(true);
 
-            // Use IfNotNull because of ConfigureAwait.
-            Content.IfNotNull(async content => await content.Refresh().ConfigureAwait(true));
+            await Task.Run(async () =>
+            {
+                // Note Content.IfNotNull could be used here.
+                await Content.Refresh().ConfigureAwait(true);
+            }).ConfigureAwait(true);
         }
     }
 }

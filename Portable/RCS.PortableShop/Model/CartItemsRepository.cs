@@ -1,14 +1,16 @@
 ﻿using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.PortableShop.ServiceClients.Products.Wrappers;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace RCS.PortableShop.Model
 {
-    public class CartItemsRepository : Repository<ObservableCollection<CartItem>, CartItem>
+    public class CartItemsRepository : Repository<List<CartItem>, CartItem>
     {
         #region Construction
+        // Note IProductService is currently not used.
         public CartItemsRepository(IProductService productService)
             : base(productService)
         { }
@@ -24,60 +26,46 @@ namespace RCS.PortableShop.Model
         #region CRUD
         // Note that the cart is only kept in memory and is not preserved. 
         // It is anticipated that only real orders would be preserved and stored on the server.
-        public void AddProduct(IShoppingProduct product)
+
+        public virtual async Task Create(CartItem proxy)
         {
-            var existingCartItems = List.Where(cartItem => cartItem.ProductId == product.Id).ToList();
+            items.Add(proxy.Copy());
+        }
 
-            CartItem productCartItem;
+        public async Task Create(IShoppingProduct product)
+        {
+            items.Add(new CartItem(product));
+        }
 
-            switch (existingCartItems.Count)
+        public async Task Update(CartItem proxy)
+        {
+            var current = items.FirstOrDefault(item => item.ProductId == proxy.ProductId);
+
+            if (current != default)
             {
-                case 0:
-                    productCartItem = new CartItem()
-                    {
-                        ProductId = product.Id.Value,
-                        Name = product.Name,
-                        ProductSize = product.Size,
-                        ProductSizeUnitMeasureCode = product.SizeUnitMeasureCode,
-                        ProductColor = product.Color,
-                        ProductListPrice = product.ListPrice,
-                        Quantity = 1
-                    };
-
-                    List.Add(productCartItem);
-                    break;
-                case 1:
-                    productCartItem = existingCartItems.First();
-
-                    productCartItem.Quantity += 1;
-                    productCartItem.Value = productCartItem.ProductListPrice * productCartItem.Quantity;
-                    break;
-                default:
-                    MessagingCenter.Send<CartItemsRepository>(this, Message.CartError.ToString());
-                    break;
+                // Just replace the item instead of updating it internally.
+                await Delete(current).ConfigureAwait(true);
+                await Create(proxy).ConfigureAwait(true);
+            }
+            else
+            {
+                MessagingCenter.Send<CartItemsRepository>(this, Message.CartError.ToString());
             }
         }
 
-        public void DeleteProduct(CartItem cartItem)
+        public override async Task Delete(CartItem proxy)
         {
-            List.Remove(cartItem);
-        }
-        #endregion
+            var current = items.FirstOrDefault(item => item.ProductId == proxy.ProductId);
 
-        #region Aggregates
-        public int ProductsCount()
-        {
-            return List.Count > 0
-                ? List.Sum(cartItem => cartItem.Quantity)
-                : 0;
+            if (current != default)
+            {
+                items.Remove(current);
+            }
+            else
+            {
+                MessagingCenter.Send<CartItemsRepository>(this, Message.CartError.ToString());
+            }
         }
-
-        public decimal CartValue()
-        {
-            return List.Count > 0
-                ? List.Sum(cartItem => cartItem.Value)
-                : 0;
-        }
-        #endregion
     }
+    #endregion
 }

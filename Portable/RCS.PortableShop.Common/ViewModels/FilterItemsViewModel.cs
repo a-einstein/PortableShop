@@ -62,7 +62,9 @@ namespace RCS.PortableShop.Common.ViewModels
             // TODO This was intended to (also) be shown by the ActivityIndicator, but that currently does not work.
             Message = Labels.Searching;
 
-            var succeeded = await ReadFiltered().ConfigureAwait(true);
+            var task = ReadFiltered();
+            await task.ConfigureAwait(true);
+            var succeeded = task.Status != TaskStatus.Faulted;
 
             Message = succeeded && ItemsCount == 0 ? Labels.NotFound : string.Empty;
         }

@@ -6,8 +6,10 @@ using RCS.PortableShop.Model;
 using RCS.PortableShop.Resources;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace RCS.PortableShop.ViewModels
@@ -23,12 +25,7 @@ namespace RCS.PortableShop.ViewModels
 
         #region Construction
         private ShoppingCartViewModel()
-        {
-            // Note this currently is the only direct binding to a repository List. See other comments.
-            Items = CartItemsRepository.List;
-
-            CartItemsRepository.List.CollectionChanged += List_CollectionChanged;
-        }
+        { }
 
         private static volatile ShoppingCartViewModel instance;
         private static object syncRoot = new object();
@@ -64,28 +61,69 @@ namespace RCS.PortableShop.ViewModels
         #endregion
 
         #region Refresh
-        protected override void Clear()
+        bool dirty = false;
+
+        public override async Task Refresh()
         {
-            ClearAggregates();
+            await Initialize().ConfigureAwait(true);
+
+            // Prevent unnecessary action when just navigating to the full view.
+            // Note that actions can already be performed and reflected in the summary.
+            if (dirty)
+            {
+                dirty = false;
+
+                // Note that the repository is leading. 
+                // Changes here are perfomed there, afterwhich it is reloaded.
+                await Clear().ConfigureAwait(true);
+                await Read().ConfigureAwait(true);
+            }
         }
 
-        protected override async Task Read()
+        protected override async Task Clear()
         {
-            await Task.Run(() =>
-            {
-                // This is not terribly useful. Alternatively the refresh button could be suppressed or disabled.
-                UpdateAggregates();
-            }
-            ).ConfigureAwait(true);
+            await base.Clear().ConfigureAwait(true);
+
+            UpdateAggregates();
         }
 
         public override string MakeTitle() { return Labels.Cart; }
         #endregion
 
         #region CRUD
-        public void CartProduct(IShoppingProduct productsOverviewObject)
+        // TODO Maybe replace async void like in:
+        // https://johnthiriet.com/mvvm-going-async-with-async-command/
+        // Necessary?
+
+        public async void CartProduct(IShoppingProduct productsOverviewObject)
         {
-            CartItemsRepository.AddProduct(productsOverviewObject);
+            var existing = Items.FirstOrDefault(item => item.ProductId == productsOverviewObject.Id);
+
+            if (existing == default)
+            {
+                await CartItemsRepository.Create(productsOverviewObject).ConfigureAwait(true);
+                dirty = true;
+                await Refresh().ConfigureAwait(true);
+            }
+            else
+            {
+                // Note this triggers CartItem_PropertyChanged.
+                existing.Quantity++;
+            }
+        }
+
+        protected override async Task Read()
+        {
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                foreach (var item in CartItemsRepository.Items)
+                {
+                    // Use a copy to maintain separation between this and the repository though they contain the same type of items.
+                    Items.Add(item.Copy());
+                }
+            });
+  
+            UpdateAggregates();
         }
 
         public static readonly BindableProperty DeleteCommandProperty =
@@ -101,13 +139,18 @@ namespace RCS.PortableShop.ViewModels
             }
         }
 
-        private void Delete(CartItem cartItem)
+        private async void Delete(CartItem cartItem)
         {
-            CartItemsRepository.DeleteProduct(cartItem);
+            await CartItemsRepository.Delete(cartItem).ConfigureAwait(true);
+            dirty = true;
+
+            await Refresh().ConfigureAwait(true);
         }
 
-        private void List_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        protected override void Items_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
+            base.Items_CollectionChanged(sender, e);
+
             switch (e.Action)
             {
                 case NotifyCollectionChangedAction.Add:
@@ -117,30 +160,44 @@ namespace RCS.PortableShop.ViewModels
                     (e.OldItems[0] as CartItem).PropertyChanged -= CartItem_PropertyChanged;
                     break;
             }
-
-            UpdateAggregates();
         }
 
         private void CartItem_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(CartItem.Quantity))
             {
-                UpdateAggregates();
+                // TODO There is some problem left here while changing the quantity, particularly on the first element of the list, probably related to the refresh of the whole list.                
+                CartItemsRepository.Update(sender as CartItem).ConfigureAwait(true);
+                dirty = true;
+
+                // TODO This is not satisfactory as the whole  list is visibly refreshed.
+                Task.Run(async () => await Refresh().ConfigureAwait(true));
             }
         }
         #endregion
 
         #region Aggregates
-        private void ClearAggregates()
-        {
-            ProductItemsCount = 0;
-            TotalValue = 0;
-        }
-
         private void UpdateAggregates()
         {
-            ProductItemsCount = CartItemsRepository.ProductsCount();
-            TotalValue = CartItemsRepository.CartValue();
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                ProductItemsCount = Count();
+                TotalValue = Value();
+            });
+        }
+
+        public int Count()
+        {
+            return Items.Count > 0
+                ? Items.Sum(item => item.Quantity)
+                : 0;
+        }
+
+        public decimal Value()
+        {
+            return Items.Count > 0
+                ? Items.Sum(item => item.Value)
+                : 0;
         }
 
         public static readonly BindableProperty ProductItemCountProperty =

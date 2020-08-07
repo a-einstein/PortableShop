@@ -32,13 +32,16 @@
             </Grid.RowDefinitions>
 
             <StackLayout Grid.Row="0">
-                <!--TODO Get these elements better aligned.-->
                 <!--Note this Orientation may be changed depending on screen orientation. Assume Vertical.-->
+                <!--Note that because of BindablePicker all elements have VerticalOptions="End"-->
                 <StackLayout x:Name="actionBlock" Orientation="Vertical" HorizontalOptions="Start">
                     <StackLayout Orientation="Horizontal">
-                        <controls:BindablePicker Title="{localization:Translate MasterFilter}" ItemsSource="{Binding MasterFilterItems, Mode=TwoWay}" SelectedItem="{Binding MasterFilterValue, Mode=TwoWay}" IsEnabled="{Binding MasterFilterItems, Converter={StaticResource HasValueTester}}" BackgroundColor="{StaticResource ProductsLevel1Colour}"/>
-                        <controls:BindablePicker Title="{localization:Translate DetailFilter}" ItemsSource="{Binding DetailFilterItems, Mode=TwoWay}" SelectedItem="{Binding DetailFilterValue, Mode=TwoWay}" IsEnabled="{Binding DetailFilterItems, Converter={StaticResource HasValueTester}}" BackgroundColor="{StaticResource ProductsLevel1Colour}"/>
-                        <controls:ClearableEntry Placeholder="{localization:Translate TextFilter}" Text="{Binding TextFilterValue, Mode=TwoWay}" BackgroundColor="{StaticResource ProductsLevel1Colour}" WidthRequest="130">
+                        <!--Note that Title of Picker: for Android is displayed as placeholder inside, for UWP as separate label above.-->
+                        <controls:BindablePicker Title="{localization:Translate MasterFilter}" ItemsSource="{Binding MasterFilterItems, Mode=TwoWay}" SelectedItem="{Binding MasterFilterValue, Mode=TwoWay}" IsEnabled="{Binding MasterFilterItems, Converter={StaticResource HasValueTester}}" BackgroundColor="{StaticResource ProductsLevel1Colour}" VerticalOptions="End"/>
+                        <controls:BindablePicker Title="{localization:Translate DetailFilter}" ItemsSource="{Binding DetailFilterItems, Mode=TwoWay}" SelectedItem="{Binding DetailFilterValue, Mode=TwoWay}" IsEnabled="{Binding DetailFilterItems, Converter={StaticResource HasValueTester}}" BackgroundColor="{StaticResource ProductsLevel1Colour}" VerticalOptions="End"/>
+
+                        <!--Note that Placeholder is just that, for both Android and UWP.-->
+                        <controls:ClearableEntry Placeholder="{localization:Translate TextFilter}" Text="{Binding TextFilterValue, Mode=TwoWay}" BackgroundColor="{StaticResource ProductsLevel1Colour}" WidthRequest="130" VerticalOptions="End">
                             <controls:ClearableEntry.EntryBehaviors>
                                 <!--TODO Currently parameter passing does not work and is hard coded. See comments elsewhere.-->
                                 <!--<Behaviors:EntryRegexValidationBehavior Expression="{Binding ValidTextFilterExpression}" InvalidBackgroundColour="{StaticResource InvalidBackgroundColour}"/>-->
@@ -50,9 +53,9 @@
                     <!--Put at Start, as changes in orientation did not work out correctly on the last Label.-->
                     <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
                         <!--IsDefault="True"-->
-                        <Button Text="{localization:Translate Filter}" Command="{Binding FilterCommand}" BackgroundColor="{StaticResource ProductsLevel1Colour}" HorizontalOptions="Start"/>
-                        <Label Text="{Binding ItemsCount}" Style="{StaticResource ValueEmphasisMediumLabelStyle}"/>
-                        <Label Text="{localization:Translate Products}" Style="{StaticResource EmphasisMediumLabelStyle}"/>
+                        <Button Text="{localization:Translate Filter}" Command="{Binding FilterCommand}" BackgroundColor="{StaticResource ProductsLevel1Colour}" HorizontalOptions="Start" VerticalOptions="End"/>
+                        <Label Text="{Binding ItemsCount}" Style="{StaticResource ValueEmphasisMediumLabelStyle}" VerticalOptions="End"/>
+                        <Label Text="{localization:Translate Products}" Style="{StaticResource EmphasisMediumLabelStyle}" VerticalOptions="End"/>
                     </StackLayout>
                 </StackLayout>
             </StackLayout>
