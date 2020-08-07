@@ -15,12 +15,12 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <Entry x:Name="entry" Grid.Column="0" Placeholder="{Binding Placeholder}" Text="{Binding Text, Mode=TwoWay}" Margin="0"/>
+            <Entry x:Name="entry" Grid.Column="0" Placeholder="{Binding Placeholder}" Text="{Binding Text, Mode=TwoWay}" Margin="0" VerticalOptions="{Binding VerticalOptions}"/>
 
             <!--Using ContentButton plus Label to create a flat style Button without border. -->
-            <controls:ContentButton Grid.Column="1" Command="{Binding ClearCommand}" VerticalOptions="Start">
+            <controls:ContentButton Grid.Column="1" Command="{Binding ClearCommand}" VerticalOptions="Center">
                 <controls:ContentButton.Content>
-                    <Label Text="{localization:Translate Remove}" Margin="0,5,10,0" FontSize="Medium" TextColor="{StaticResource LabelTextColour}"/>
+                    <Label Text="{localization:Translate Remove}" Margin="0,0,10,0" FontSize="Medium" TextColor="{StaticResource LabelTextColour}"/>
                 </controls:ContentButton.Content>
             </controls:ContentButton>
         </Grid>
