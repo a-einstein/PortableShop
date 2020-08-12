@@ -1,7 +1,7 @@
 ## PortableShop
 
 #### Description
-Working portable (Android) application for test and demo purpose based on Xamarin Forms. It simulates limited shopping capabilities based on the AdventureWorks database.
+Working portable (Android & UWP) application for test and demo purpose based on Xamarin Forms. It simulates limited shopping capabilities based on the AdventureWorks database.
 
 #### News
 * UWP has been added as a provisional client, besides Android. This currently only works as a debug build.
