@@ -67,6 +67,10 @@ namespace RCS.PortableShop.Main
 
             Startup.Init();
 
+            // Currently this crashes for exclusively the RELEASE build of x86 and x64.
+            // This might be related to https://github.com/xamarin/Xamarin.Forms/issues/11736
+            // TODO follow that issue and test for new releases.
+
             // Note this needs to be on the main thread.
             MainPage = new MainShell();
         }
