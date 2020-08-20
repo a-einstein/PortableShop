@@ -34,6 +34,8 @@ namespace RCS.PortableShop.Main
 
             if (!initialized)
             {
+                initialized = true;
+
                 SubscribeMessages(this);
 
                 var productsView = new ProductsView() { ViewModel = new ProductsViewModel() };
@@ -42,8 +44,6 @@ namespace RCS.PortableShop.Main
                 var shoppingWrapperView = new ShoppingWrapperView() { ViewModel = shoppingWrapperViewModel };
 
                 Content = shoppingWrapperView;
-
-                initialized = true;
             }
         }
 

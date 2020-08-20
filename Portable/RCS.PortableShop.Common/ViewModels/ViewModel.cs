@@ -52,12 +52,11 @@ namespace RCS.PortableShop.Common.ViewModels
         protected virtual async Task<bool> Initialize()
         {
             if (!initialized)
-                await Task.Run(() =>
-                {
-                    SetCommands();
-                    initialized = true;
-                }
-                ).ConfigureAwait(true);
+            {
+                initialized = true;
+
+                await Task.Run(() => SetCommands()).ConfigureAwait(true);
+            }
 
             return initialized;
         }
@@ -109,7 +108,7 @@ namespace RCS.PortableShop.Common.ViewModels
         {
             // Note that BeginInvokeOnMainThread is applied on various places because of UWP, not Android.
             // TODO Check whether this can be simplified.
-             
+
             MainThread.BeginInvokeOnMainThread(() =>
             {
                 // TODO This does not work for the inherited PropertyChanged.
