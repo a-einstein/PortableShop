@@ -81,11 +81,8 @@
                                                 <StackLayout Grid.Column="0" VerticalOptions="Start">
                                                     <!--TODO Get these elements better aligned.-->
                                                     <Image Source="{Binding ThumbNailPhoto, Converter={StaticResource ByteArrayToImageSourceConverter}}" VerticalOptions="Start" HorizontalOptions="End" HeightRequest="75" WidthRequest="100"/>
-                                                    
-                                                    <!--Had to revert this change because of an exception when navigating back (a second time) from a detail page. https://github.com/xamarin/Xamarin.Forms/issues/7877 -->
-                                                    <!--
-                                                    <Button ImageSource="CartPlus"                          Command="{Binding BindingContext.CartCommand, Source={x:Reference productsItemsControl}}" CommandParameter="{Binding}" Style="{StaticResource CartButtonStyle}" VerticalOptions="Start" HorizontalOptions="End"/>-->
-                                                    <Button Text="{localization:Translate IncreaseProduct}" Command="{Binding BindingContext.CartCommand, Source={x:Reference productsItemsControl}}" CommandParameter="{Binding}" Style="{StaticResource CartButtonStyle}" VerticalOptions="Start" HorizontalOptions="End"/>
+
+                                                    <Button ImageSource="CartPlus.png" Command="{Binding BindingContext.CartCommand, Source={x:Reference productsItemsControl}}" CommandParameter="{Binding}" Style="{StaticResource CartButtonStyle}" VerticalOptions="Start" HorizontalOptions="End"/>
                                                 </StackLayout>
 
                                                 <StackLayout Grid.Column="1" VerticalOptions="Start">

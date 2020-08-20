@@ -30,14 +30,16 @@
     </FlyoutItem>
 
     <!--TODO Would prefer to have hamburger visible on all pages, besides a back button. But is seems intended to only have it on the root page.-->
+    
+    <!--Note that icon sizes in UWP are automatically reduced even though a larger size was chosen by me.-->
 
-    <MenuItem Command="{Binding SettingsCommand}" Text="{localization:Translate Settings}" IconImageSource="Settings"/>
+    <MenuItem Command="{Binding SettingsCommand}" Text="{localization:Translate Settings}" IconImageSource="Settings.png"/>
 
-    <MenuItem Command="{Binding ShowProductsCommand}" Text="{localization:Translate Products}" IconImageSource="Overview"/>
+    <MenuItem Command="{Binding ShowProductsCommand}" Text="{localization:Translate Products}" IconImageSource="Overview.png"/>
 
-    <MenuItem Command="{Binding ShowCartCommand}" Text="{localization:Translate Cart}" IconImageSource="Cart"/>
+    <MenuItem Command="{Binding ShowCartCommand}" Text="{localization:Translate Cart}" IconImageSource="Cart.png"/>
 
-    <MenuItem Command="{Binding OpenSupportCommand}" Text="{localization:Translate Support}" IconImageSource="Information"/>
+    <MenuItem Command="{Binding OpenSupportCommand}" Text="{localization:Translate Support}" IconImageSource="Information.png"/>
 
-    <MenuItem Command="{Binding UpdateCommand}" Text="{localization:Translate Update}" IconImageSource="CloudDownload"/>
+    <MenuItem Command="{Binding UpdateCommand}" Text="{localization:Translate Update}" IconImageSource="CloudDownload.png"/>
 </Shell>

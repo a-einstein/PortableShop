@@ -29,8 +29,8 @@
     <GenerateTestArtifacts>True</GenerateTestArtifacts>
     <AppxBundle>Auto</AppxBundle>
     <HoursBetweenUpdateChecks>24</HoursBetweenUpdateChecks>
-    <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
-    <AppxBundlePlatforms>x86|x64</AppxBundlePlatforms>
+    <AppxSymbolPackageEnabled>True</AppxSymbolPackageEnabled>
+    <AppxBundlePlatforms>x64</AppxBundlePlatforms>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
     <DebugSymbols>true</DebugSymbols>
@@ -121,11 +121,17 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Cart.png" />
+    <Content Include="Assets\CartPlus.png" />
+    <Content Include="Assets\CloudDownload.png" />
+    <Content Include="Assets\Information.png" />
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-125.png" />
     <Content Include="Assets\LargeTile.scale-150.png" />
     <Content Include="Assets\LargeTile.scale-200.png" />
     <Content Include="Assets\LargeTile.scale-400.png" />
+    <Content Include="Assets\Overview.png" />
+    <Content Include="Assets\Settings.png" />
     <Content Include="Assets\SmallTile.scale-100.png" />
     <Content Include="Assets\SmallTile.scale-125.png" />
     <Content Include="Assets\SmallTile.scale-150.png" />

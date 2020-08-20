@@ -5,8 +5,16 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:commonStyles="clr-namespace:RCS.PortableShop.Common.Styles;assembly=RCS.PortableShop.Common"
+    xmlns:windows="clr-namespace:Xamarin.Forms.PlatformConfiguration.WindowsSpecific;assembly=Xamarin.Forms.Core"
+    windows:Application.ImageDirectory="Assets"
     >
-
+    <!-- 
+    Note the ImageDirectory is needed for UWP only, and does not influence Android.
+    Note UWP took the smallest versions of my icons for buttons. For simplicity, I have included only a single arbitrary size, suitable for PC Windows.
+    TODO Probably a lot of icons and icon sizes generated for the manifest could be removed.
+    Note Alternatively fonts could be used to supply icons. E.g. as describe here: https://docs.microsoft.com/en-gb/xamarin/xamarin-forms/user-interface/text/fonts
+    -->
+   
     <Application.Resources>
         <!--
         Move from the obsolete MergedWith to this.
