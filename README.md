@@ -6,19 +6,12 @@ Working portable (Android & UWP) application for test and demo purpose based on 
 #### News
 * UWP has been added as a provisional client, besides Android. This currently only works as a debug build.
 * Release is now to GitHub with an automatic change summary.
-* Applied dependency injection.
-* Improved use of HttpClient.
-* Improved Flyout Menu.
-* Added storage and retrieval of the overview filter between sessions.
-* Added ability to switch between the two service types and store this in settings.
-* Added usage of Web API service as alternative to WCF.
-* Makes use of own certified domain for webservice.
-* Migrated to .Net Standard.
 
 #### Known issues
-* The application may crash at startup if the data service is not available, particularly in the error details message.
+* On UWP local language setting does not work out properly.
+* On neither platform any of the toolbar icons are displayed correctly.
 * Restoring the text filter does work, but does not visibly show in the entry field.
-* The application icon is not correctly displayed on screen.
+* The application may crash at startup if the data service is not available, particularly in the error details message.
 
 #### Purpose
 * Explore various techniques based on C#, XAML and Xamarin Forms.
