@@ -5,6 +5,7 @@ using RCS.PortableShop.ViewModels;
 using RCS.PortableShop.Views;
 using System;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Page = RCS.PortableShop.Common.Pages.Page;
 
@@ -33,6 +34,8 @@ namespace RCS.PortableShop.Main
 
             if (!initialized)
             {
+                initialized = true;
+
                 SubscribeMessages(this);
 
                 var productsView = new ProductsView() { ViewModel = new ProductsViewModel() };
@@ -41,8 +44,6 @@ namespace RCS.PortableShop.Main
                 var shoppingWrapperView = new ShoppingWrapperView() { ViewModel = shoppingWrapperViewModel };
 
                 Content = shoppingWrapperView;
-
-                initialized = true;
             }
         }
 
@@ -68,15 +69,18 @@ namespace RCS.PortableShop.Main
                     serviceErrorDisplaying = true;
                     serviceErrorFirstDisplayed = DateTime.Now;
 
-                    if (string.IsNullOrWhiteSpace(details))
-                        await page.DisplayAlert(Labels.Error, Labels.ErrorService, Labels.Close).ConfigureAwait(true);
-                    else
+                    MainThread.BeginInvokeOnMainThread(async () =>
                     {
-                        var showDetails = await page.DisplayAlert(Labels.Error, Labels.ErrorService, Labels.Details, Labels.Close).ConfigureAwait(true);
+                        if (string.IsNullOrWhiteSpace(details))
+                            await page.DisplayAlert(Labels.Error, Labels.ErrorService, Labels.Close).ConfigureAwait(true);
+                        else
+                        {
+                            var showDetails = await page.DisplayAlert(Labels.Error, Labels.ErrorService, Labels.Details, Labels.Close).ConfigureAwait(true);
 
-                        if (showDetails)
-                            await page.DisplayAlert(Labels.Details, details, Labels.Close).ConfigureAwait(true);
-                    }
+                            if (showDetails)
+                                await page.DisplayAlert(Labels.Details, details, Labels.Close).ConfigureAwait(true);
+                        }
+                    });
 
                     serviceErrorDisplaying = false;
                 }
@@ -84,7 +88,10 @@ namespace RCS.PortableShop.Main
 
             MessagingCenter.Subscribe<CartItemsRepository>(this, CartItemsRepository.Message.CartError.ToString(), sender =>
             {
-                page.DisplayAlert(Labels.Error, Labels.ErrorCart, Labels.Close);
+                MainThread.BeginInvokeOnMainThread(async () =>
+                {
+                    await page.DisplayAlert(Labels.Error, Labels.ErrorCart, Labels.Close).ConfigureAwait(true);
+                });
             });
         }
 

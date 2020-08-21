@@ -32,15 +32,6 @@ namespace RCS.PortableShop.Localization
 
             var translation = resourceManager.GetString(key, CultureInfo);
 
-            // Note there is already a fallback mechanism in .net which used to be set as below (optional UltimateResourceFallbackLocation):
-            // [assembly: NeutralResourcesLanguage("en-US", UltimateResourceFallbackLocation.Satellite)]
-            // Nowadays it can also be set as NeutralLanguage in project properties.
-            // See this (old) documentation:
-            // https://docs.microsoft.com/en-us/previous-versions/visualstudio/visual-studio-2008/sb6a8618%28v%3dvs.90%29
-            // I had to move from my previous setup with an empty base resource to one with an English base as the above settings did not work out.
-
-            // So here it is more likely that the key is not assigned.
-
             if (string.IsNullOrEmpty(translation))
             {
                 var fallbackCultureInfo = DependencyService.Get<ILocalize>().GetFallbackCultureInfo(CultureInfo.Name);

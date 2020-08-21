@@ -21,14 +21,12 @@ namespace RCS.PortableShop.Common.Pages
 
         protected virtual async Task Initialize()
         {
-
             if (!initialized)
-                await Task.Run(() =>
-                {
-                    Adorn();
-                    initialized = true;
-                }
-                ).ConfigureAwait(true);
+            {
+                initialized = true;
+
+                await Task.Run(() => Adorn()).ConfigureAwait(true);
+            }
         }
 
         // Force new type here.
@@ -46,24 +44,22 @@ namespace RCS.PortableShop.Common.Pages
 
         private void Adorn()
         {
-            // TODO Since applying Shell, icons are not displayed, though the commands work.
-            // https://github.com/xamarin/Xamarin.Forms/issues/7351
-            ToolbarItems.Add(new ToolbarItem("R", "Refresh.png", () =>
-               MainThread.BeginInvokeOnMainThread(async () =>
-               {
-                   await Content.ViewModel.Refresh().ConfigureAwait(true);
-               }), priority: 10));
+            MainThread.BeginInvokeOnMainThread(async () =>
+            {
+                // TODO Since applying Shell, icons are not displayed, though the commands work.
+                // https://github.com/xamarin/Xamarin.Forms/issues/7351
+                ToolbarItems.Add(new ToolbarItem("R", "Refresh.png",
+                    async () => await Content.ViewModel.Refresh().ConfigureAwait(true),
+                    priority: 10));
+            });
         }
 
         protected async Task Refresh()
         {
             await Initialize().ConfigureAwait(true);
 
-            await Task.Run(async () =>
-            {
-                // Note Content.IfNotNull could be used here.
-                await Content.Refresh().ConfigureAwait(true);
-            }).ConfigureAwait(true);
+            // Note Content.IfNotNull could be used here.
+            await Content.Refresh().ConfigureAwait(true);
         }
     }
 }
