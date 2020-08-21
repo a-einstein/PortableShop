@@ -61,7 +61,7 @@ namespace RCS.PortableShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to About.
         /// </summary>
         public static string AboutLabel {
             get {
@@ -70,7 +70,9 @@ namespace RCS.PortableShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to {0}
+        ///By {1}
+        ///Version {2}.
         /// </summary>
         public static string AboutText {
             get {
@@ -79,7 +81,7 @@ namespace RCS.PortableShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Shopping Cart.
         /// </summary>
         public static string Cart {
             get {
@@ -88,7 +90,7 @@ namespace RCS.PortableShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Category.
         /// </summary>
         public static string Category {
             get {
@@ -97,7 +99,7 @@ namespace RCS.PortableShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Close.
         /// </summary>
         public static string Close {
             get {
@@ -106,7 +108,7 @@ namespace RCS.PortableShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Colour.
         /// </summary>
         public static string Colour {
             get {
@@ -115,7 +117,7 @@ namespace RCS.PortableShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Description.
         /// </summary>
         public static string Description {
             get {
@@ -124,7 +126,7 @@ namespace RCS.PortableShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Subcategory.
         /// </summary>
         public static string DetailFilter {
             get {
@@ -133,7 +135,7 @@ namespace RCS.PortableShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Details.
         /// </summary>
         public static string Details {
             get {
@@ -142,7 +144,7 @@ namespace RCS.PortableShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to RCS.
         /// </summary>
         public static string Developer {
             get {
@@ -151,7 +153,7 @@ namespace RCS.PortableShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Error.
         /// </summary>
         public static string Error {
             get {
@@ -160,7 +162,8 @@ namespace RCS.PortableShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to There is a technical problem with your Shopping Cart.
+        ///Please check thoroughly or restart the application (recommended)..
         /// </summary>
         public static string ErrorCart {
             get {
@@ -169,7 +172,9 @@ namespace RCS.PortableShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to There is a problem using our data service.
+        ///Please use the refresh button,
+        ///or try again later..
         /// </summary>
         public static string ErrorService {
             get {
@@ -178,7 +183,7 @@ namespace RCS.PortableShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Search.
         /// </summary>
         public static string Filter {
             get {
@@ -187,7 +192,7 @@ namespace RCS.PortableShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Id.
         /// </summary>
         public static string Id {
             get {
@@ -196,7 +201,7 @@ namespace RCS.PortableShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Shop +.
         /// </summary>
         public static string IncreaseProduct {
             get {
@@ -205,7 +210,7 @@ namespace RCS.PortableShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Initializing....
         /// </summary>
         public static string Initializing {
             get {
@@ -214,7 +219,7 @@ namespace RCS.PortableShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Items.
         /// </summary>
         public static string Items {
             get {
@@ -223,7 +228,7 @@ namespace RCS.PortableShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Category.
         /// </summary>
         public static string MasterFilter {
             get {
@@ -232,7 +237,7 @@ namespace RCS.PortableShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Model.
         /// </summary>
         public static string Model {
             get {
@@ -241,7 +246,7 @@ namespace RCS.PortableShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string Name {
             get {
@@ -250,7 +255,7 @@ namespace RCS.PortableShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to About this project.
         /// </summary>
         public static string NavigateAbout {
             get {
@@ -259,7 +264,7 @@ namespace RCS.PortableShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Go shopping.
         /// </summary>
         public static string NavigateShop {
             get {
@@ -268,7 +273,8 @@ namespace RCS.PortableShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Nothing found.
+        ///Please try a different query..
         /// </summary>
         public static string NotFound {
             get {
@@ -277,7 +283,7 @@ namespace RCS.PortableShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Price.
         /// </summary>
         public static string Price {
             get {
@@ -286,7 +292,7 @@ namespace RCS.PortableShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Products.
         /// </summary>
         public static string Products {
             get {
@@ -295,7 +301,7 @@ namespace RCS.PortableShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to X.
         /// </summary>
         public static string Remove {
             get {
@@ -304,7 +310,7 @@ namespace RCS.PortableShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Searching....
         /// </summary>
         public static string Searching {
             get {
@@ -313,7 +319,7 @@ namespace RCS.PortableShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Service Type (needs restart).
         /// </summary>
         public static string ServiceType {
             get {
@@ -322,7 +328,7 @@ namespace RCS.PortableShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Settings.
         /// </summary>
         public static string Settings {
             get {
@@ -331,7 +337,7 @@ namespace RCS.PortableShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to CyclOne.
         /// </summary>
         public static string Shop {
             get {
@@ -340,7 +346,7 @@ namespace RCS.PortableShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Size.
         /// </summary>
         public static string Size {
             get {
@@ -349,7 +355,7 @@ namespace RCS.PortableShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Support.
         /// </summary>
         public static string Support {
             get {
@@ -358,7 +364,7 @@ namespace RCS.PortableShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Name or Colour.
         /// </summary>
         public static string TextFilter {
             get {
@@ -367,7 +373,7 @@ namespace RCS.PortableShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Value.
         /// </summary>
         public static string TotalValue {
             get {
@@ -376,7 +382,7 @@ namespace RCS.PortableShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Update.
         /// </summary>
         public static string Update {
             get {
@@ -385,7 +391,7 @@ namespace RCS.PortableShop.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Weight.
         /// </summary>
         public static string Weight {
             get {
