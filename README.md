@@ -4,7 +4,7 @@
 Working portable (Android & UWP) application for test and demo purpose based on Xamarin Forms. It simulates limited shopping capabilities based on the AdventureWorks database.
 
 #### News
-* UWP has been added as a provisional client, besides Android.
+* UWP has been added as a client, besides Android.
 * Release is now to GitHub with an automatic change summary.
 
 #### Known issues
@@ -45,13 +45,16 @@ Working portable (Android & UWP) application for test and demo purpose based on 
 * Error handling.
 * Globalized resources.
 * Basic styling.
-* Splash screen (Android).
+* Splash screen.
 * Shell navigation including Fly out.
 * Rotation.
 * Custom controls.
 * Extensions.
 * Attached behaviours.
 * Application icon (Android).
+* MSIX installation.
+* Azure DevOps self hosted build pipeline.
+* Azure DevOps release pipeline to either Azure or GitHub.
 
 #### Installation
 * The application is plug & play, but use of the data service is on request. Contact the developer ahead. 
