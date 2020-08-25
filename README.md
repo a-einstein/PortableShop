@@ -4,13 +4,15 @@
 Working portable (Android & UWP) application for test and demo purpose based on Xamarin Forms. It simulates limited shopping capabilities based on the AdventureWorks database.
 
 #### News
-* UWP has been added as a provisional client, besides Android. This currently only works as a debug build.
+* UWP has been added as a provisional client, besides Android.
 * Release is now to GitHub with an automatic change summary.
 
 #### Known issues
+* Currently  for both platforms the application only works as debug build.
 * On UWP local language setting does not work out properly.
+* Refresh of the shopping cart is not satisfactory.
 * On neither platform any of the toolbar icons are displayed correctly.
-* Restoring the text filter does work, but does not visibly show in the entry field.
+* Restoring the text filter does work, but does not visibly show up in the entry field. Clean that by the button if needed.
 * The application may crash at startup if the data service is not available, particularly in the error details message.
 
 #### Purpose
