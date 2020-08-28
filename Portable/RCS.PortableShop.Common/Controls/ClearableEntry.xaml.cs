@@ -60,7 +60,7 @@ namespace RCS.PortableShop.Common.Controls
 
         private void Clear()
         {
-            Text = string.Empty;
+            Text = default;
         }
         #endregion
 

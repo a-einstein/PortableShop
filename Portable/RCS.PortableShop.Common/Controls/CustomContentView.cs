@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace RCS.PortableShop.Common.Controls
@@ -20,8 +21,11 @@ namespace RCS.PortableShop.Common.Controls
         // TODO This seems superfluous for a BindableProperty.
         protected void RaisePropertyChanged(string propertyName)
         {
-            // TODO This does not work for the inherited PropertyChanged.
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                // TODO This does not work for the inherited PropertyChanged.
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            });
         }
     }
 }
