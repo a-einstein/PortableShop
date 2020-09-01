@@ -58,13 +58,10 @@ namespace RCS.PortableShop.ViewModels
             MasterFilterItems.CollectionChanged += MasterFilterItems_CollectionChanged;
             DetailFilterItems.CollectionChanged += DetailFilterItems_CollectionChanged;
 
-            var tasks = new Task[]
-            {
-                ProductCategoriesRepository.Refresh(),
-                ProductSubcategoriesRepository.Refresh()
-            };
-
-            await Task.WhenAll(tasks).ConfigureAwait(true);
+            // Do this sequentially instead of using Task.WhenAll 
+            // as that caused threading problems in WcfClient.
+            await ProductCategoriesRepository.Refresh().ConfigureAwait(true);
+            await ProductSubcategoriesRepository.Refresh().ConfigureAwait(true);
 
             await MainThread.InvokeOnMainThreadAsync(() =>
             {

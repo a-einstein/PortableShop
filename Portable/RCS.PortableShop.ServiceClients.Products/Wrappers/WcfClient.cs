@@ -10,6 +10,11 @@ namespace RCS.PortableShop.ServiceClients.Products.Wrappers
     public class WcfClient : ServiceClient, IProductService, IDisposable
     {
         #region Interface
+        // Be aware that using FromAsync on a shared WcfClient can cause threading problems
+        // when the begin and end calls get interwoven, like when started from Task.WhenAll.
+        // This finally became clear from:
+        // https://social.msdn.microsoft.com/Forums/windows/en-US/a26d9697-25b2-4ee0-82b5-a1fe08d722ec/the-iasyncresult-object-provided-does-not-match-this-delegate
+
         public async Task<ProductCategoryList> GetCategories()
         {
             var result =
