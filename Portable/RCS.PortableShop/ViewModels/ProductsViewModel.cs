@@ -58,24 +58,21 @@ namespace RCS.PortableShop.ViewModels
             MasterFilterItems.CollectionChanged += MasterFilterItems_CollectionChanged;
             DetailFilterItems.CollectionChanged += DetailFilterItems_CollectionChanged;
 
-            var tasks = new Task[]
+            // Do this sequentially instead of using Task.WhenAll 
+            // as that caused threading problems in WcfClient.
+            await ProductCategoriesRepository.Refresh().ConfigureAwait(true);
+            await ProductSubcategoriesRepository.Refresh().ConfigureAwait(true);
+
+            await MainThread.InvokeOnMainThreadAsync(() =>
             {
-                ProductCategoriesRepository.Refresh(),
-                ProductSubcategoriesRepository.Refresh()
-            };
+                var categories = ProductCategoriesRepository.Items;
+                var masterFilterItems = new ObservableCollection<ProductCategory>();
 
-            await Task.WhenAll(tasks).ConfigureAwait(true);
+                foreach (var item in categories)
+                {
+                    masterFilterItems.Add(item);
+                }
 
-            var categories = ProductCategoriesRepository.Items;
-            var masterFilterItems = new ObservableCollection<ProductCategory>();
-
-            foreach (var item in categories)
-            {
-                masterFilterItems.Add(item);
-            }
-
-            MainThread.BeginInvokeOnMainThread(() =>
-            {
                 // Do an assignment, as there is not much use to follow up on each item. 
                 // TODO maybe follow the approach on ItemsViewModel.Items.
                 MasterFilterItems = masterFilterItems;
@@ -87,23 +84,27 @@ namespace RCS.PortableShop.ViewModels
                     DetailFilterItemsSource.Add(item);
                 }
 
+                // Retrieve both settings first, as assigning MasterFilterValue changes DetailFilterItems, DetailFilterValue and Settings.ProductSubategoryId.
                 var retrievedCategoryId = Settings.ProductCategoryId;
+                var retrievedSubcategoryId = Settings.ProductSubategoryId;
 
                 MasterFilterValue = retrievedCategoryId.HasValue
                     ? MasterFilterItems.FirstOrDefault(value => value.Id == retrievedCategoryId.Value)
                     : MasterFilterItems.FirstOrDefault(value => !value.IsEmpty);
-
-                var retrievedSubcategoryId = Settings.ProductSubategoryId;
 
                 // Note that MasterFilterValue also determines DetailFilterItems.
                 DetailFilterValue = retrievedSubcategoryId.HasValue
                 ? DetailFilterItems.FirstOrDefault(value => value.Id == retrievedSubcategoryId.Value)
                 : DetailFilterItems.FirstOrDefault(value => !value.IsEmpty);
 
-                // TODO This seems to work, but the view field is not updated.
-                // TODO Fix this, as it may even result in empty query results.
-                TextFilterValue = Settings.TextFilter;
-            });
+                // Note the settings mechanism does work, but there is a binding problem in ClearableEntry, as described here:
+                // https://forums.xamarin.com/discussion/84044/cannot-create-a-user-control-with-two-way-binding-to-view-model-property-names
+                // It does work with a simple Entry in the view instead, but that loses the functionality of ClearableEntry.
+                // To avoid confusion, don't set the value, as it is not visible but influences the query.
+                // TODO Investigate if this is a Xamarin bug.
+
+                //TextFilterValue = Settings.TextFilter;
+            }).ConfigureAwait(true);
 
             return true;
         }
@@ -167,11 +168,11 @@ namespace RCS.PortableShop.ViewModels
             var succeeded = task.Status != TaskStatus.Faulted;
 
             if (succeeded)
-                MainThread.BeginInvokeOnMainThread(() =>
-                {
-                    foreach (var item in ProductsRepository.Items)
-                        Items.Add(item);
-                });
+                await MainThread.InvokeOnMainThreadAsync(() =>
+                 {
+                     foreach (var item in ProductsRepository.Items)
+                         Items.Add(item);
+                 }).ConfigureAwait(true);
 
             return succeeded;
         }

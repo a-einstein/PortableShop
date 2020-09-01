@@ -114,15 +114,15 @@ namespace RCS.PortableShop.ViewModels
 
         protected override async Task Read()
         {
-            MainThread.BeginInvokeOnMainThread(() =>
-            {
-                foreach (var item in CartItemsRepository.Items)
-                {
-                    // Use a copy to maintain separation between this and the repository though they contain the same type of items.
-                    Items.Add(item.Copy());
-                }
-            });
-  
+            await MainThread.InvokeOnMainThreadAsync(() =>
+             {
+                 foreach (var item in CartItemsRepository.Items)
+                 {
+                     // Use a copy to maintain separation between this and the repository though they contain the same type of items.
+                     Items.Add(item.Copy());
+                 }
+             }).ConfigureAwait(true);
+
             UpdateAggregates();
         }
 

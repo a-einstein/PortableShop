@@ -58,17 +58,14 @@ namespace RCS.PortableShop.Common.ViewModels
         #region Refresh
         protected override async Task Clear()
         {
-            await Task.Run(() =>
+            await MainThread.InvokeOnMainThreadAsync(() =>
             {
-                MainThread.BeginInvokeOnMainThread(() =>
+                // Use ToArray to prevent iteration problems in the original list.
+                foreach (var item in Items.ToArray())
                 {
-                    // Use ToArray to prevent iteration problems in the original list.
-                    foreach (var item in Items.ToArray())
-                    {
-                        // Remove separately to enable Items_CollectionChanged.
-                        Items.Remove(item);
-                    }
-                });
+                    // Remove separately to enable Items_CollectionChanged.
+                    Items.Remove(item);
+                }
             }).ConfigureAwait(true);
         }
         #endregion

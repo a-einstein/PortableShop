@@ -8,11 +8,11 @@ Working portable (Android & UWP) application for test and demo purpose based on 
 * Release is now to GitHub with an automatic change summary.
 
 #### Known issues
-* Currently  for both platforms the application only works as debug build.
+* Currently  for both platforms the application only works as a debug build.
 * On UWP local language setting does not work out properly.
 * Refresh of the shopping cart is not satisfactory.
 * On neither platform any of the toolbar icons are displayed correctly.
-* Restoring the text filter does work, but does not visibly show up in the entry field. Clean that by the button if needed.
+* Restoring the filter does work, except for a possible text part.
 * The application may crash at startup if the data service is not available, particularly in the error details message.
 
 #### Purpose
