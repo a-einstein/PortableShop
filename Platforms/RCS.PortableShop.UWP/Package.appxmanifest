@@ -5,7 +5,7 @@
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
   IgnorableNamespaces="uap mp"
   >
-  <Identity Name="RCS.CyclOne.UWP.0.18"
+  <Identity Name="RCS.CyclOne.UWP"
             Publisher="CN=Robert"
             Version="0.18.0.0" />
   <mp:PhoneIdentity PhoneProductId="3d4941ce-d6c3-4e54-a48c-19f73450b5cf"
