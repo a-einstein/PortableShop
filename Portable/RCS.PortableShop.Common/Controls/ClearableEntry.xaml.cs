@@ -20,7 +20,7 @@ namespace RCS.PortableShop.Common.Controls
 
         #region Text
         public static readonly BindableProperty TextProperty =
-            BindableProperty.Create(nameof(Text), typeof(string), typeof(ClearableEntry));
+            BindableProperty.Create(nameof(Text), typeof(string), typeof(ClearableEntry), defaultBindingMode: BindingMode.TwoWay);
 
         public string Text
         {

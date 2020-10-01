@@ -183,7 +183,7 @@ namespace RCS.PortableShop.Common.ViewModels
         }
 
         public static readonly BindableProperty TextFilterValueProperty =
-            BindableProperty.Create(nameof(TextFilterValue), typeof(string), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>));
+            BindableProperty.Create(nameof(TextFilterValue), typeof(string), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>), defaultBindingMode: BindingMode.TwoWay);
 
         public virtual string TextFilterValue
         {

@@ -99,9 +99,10 @@ namespace RCS.PortableShop.ViewModels
 
                 // Note the settings mechanism does work, but there is a binding problem in ClearableEntry, as described here:
                 // https://forums.xamarin.com/discussion/84044/cannot-create-a-user-control-with-two-way-binding-to-view-model-property-names
+                // On a suggestion I have changed the bindings along this chain, but that did not help.
+
                 // It does work with a simple Entry in the view instead, but that loses the functionality of ClearableEntry.
                 // To avoid confusion, don't set the value, as it is not visible but influences the query.
-                // TODO Investigate if this is a Xamarin bug.
 
                 //TextFilterValue = Settings.TextFilter;
             }).ConfigureAwait(true);
