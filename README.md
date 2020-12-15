@@ -1,5 +1,9 @@
 ## PortableShop
 
+|![splash](Screenshots/splash.png)|![overview](Screenshots/overview.png)|![details](Screenshots/details.png)|![basket](Screenshots/basket.png)|![menu](Screenshots/menu.png)|
+|:-:|:-:|:-:|:-:|:-:|
+|Splash|Overview|Details|Basket|Menu|
+
 #### Description
 Working portable (Android & UWP) application for test and demo purpose based on Xamarin Forms. It simulates limited shopping capabilities based on the AdventureWorks database.
 
