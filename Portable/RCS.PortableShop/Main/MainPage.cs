@@ -17,13 +17,18 @@ namespace RCS.PortableShop.Main
         {
             base.OnAppearing();
 
-            // TODO Crashes in Mono when service is not entirely working, particularly during startup.
-            // Crashes are not properly caught and reported.
-            // Also see here:
-            // https://forums.xamarin.com/discussion/149309/global-exception-handling
-
-            // Make sure to do this not earlier than OnAppearing as exceptions may appear, like because of application being in background.
-            await Refresh().ConfigureAwait(true);
+            try
+            {
+                // TODO Crashes in Mono when service is not entirely working, particularly during startup.
+                // Also see here:
+                // https://forums.xamarin.com/discussion/149309/global-exception-handling
+                // Make sure to do this not earlier than OnAppearing as exceptions may appear, like because of application being in background.
+                await Refresh().ConfigureAwait(true);
+            }
+            catch (Exception exception)
+            {
+                Alert(this, Labels.Error, Labels.ErrorUnknown, exception.Message, true);
+            }
         }
 
         private bool initialized;
@@ -69,18 +74,7 @@ namespace RCS.PortableShop.Main
                     serviceErrorDisplaying = true;
                     serviceErrorFirstDisplayed = DateTime.Now;
 
-                    MainThread.BeginInvokeOnMainThread(async () =>
-                    {
-                        if (string.IsNullOrWhiteSpace(details))
-                            await page.DisplayAlert(Labels.Error, Labels.ErrorService, Labels.Close).ConfigureAwait(true);
-                        else
-                        {
-                            var showDetails = await page.DisplayAlert(Labels.Error, Labels.ErrorService, Labels.Details, Labels.Close).ConfigureAwait(true);
-
-                            if (showDetails)
-                                await page.DisplayAlert(Labels.Details, details, Labels.Close).ConfigureAwait(true);
-                        }
-                    });
+                    Alert(page, Labels.Error, Labels.ErrorService, details);
 
                     serviceErrorDisplaying = false;
                 }
@@ -88,10 +82,33 @@ namespace RCS.PortableShop.Main
 
             MessagingCenter.Subscribe<CartItemsRepository>(this, CartItemsRepository.Message.CartError.ToString(), sender =>
             {
-                MainThread.BeginInvokeOnMainThread(async () =>
+                Alert(page, Labels.Error, Labels.ErrorCart);
+            });
+        }
+
+        private static void Alert(Page page, string kind, string description, string details = null, bool quit = false)
+        {
+            MainThread.BeginInvokeOnMainThread(async () =>
+            {
+                var continuation = (quit)
+                //? Labels.Quit
+                ? Labels.Close
+                : Labels.Close;
+
+                if (string.IsNullOrWhiteSpace(details))
+                    await page.DisplayAlert(kind, description, continuation).ConfigureAwait(true);
+                else
                 {
-                    await page.DisplayAlert(Labels.Error, Labels.ErrorCart, Labels.Close).ConfigureAwait(true);
-                });
+                    var showDetails = await page.DisplayAlert(kind, description, Labels.Details, continuation).ConfigureAwait(true);
+
+                    if (showDetails)
+                        await page.DisplayAlert(Labels.Details, details, Labels.Close).ConfigureAwait(true);
+                }
+
+                if (quit)
+                    // Aparently this is not (yet) implemented.
+                    // https://github.com/xamarin/Xamarin.Forms/issues/10636
+                    Application.Current.Quit();
             });
         }
 

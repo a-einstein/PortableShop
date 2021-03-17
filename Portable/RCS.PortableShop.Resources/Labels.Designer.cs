@@ -183,6 +183,16 @@ namespace RCS.PortableShop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There is an unknown problem.
+        ///Please quit the application..
+        /// </summary>
+        public static string ErrorUnknown {
+            get {
+                return ResourceManager.GetString("ErrorUnknown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Search.
         /// </summary>
         public static string Filter {
@@ -297,6 +307,15 @@ namespace RCS.PortableShop.Resources {
         public static string Products {
             get {
                 return ResourceManager.GetString("Products", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quit.
+        /// </summary>
+        public static string Quit {
+            get {
+                return ResourceManager.GetString("Quit", resourceCulture);
             }
         }
         
