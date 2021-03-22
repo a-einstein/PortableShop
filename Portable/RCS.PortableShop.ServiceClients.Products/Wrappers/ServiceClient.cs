@@ -13,6 +13,7 @@ namespace RCS.PortableShop.ServiceClients.Products.Wrappers
     // The following issues may be related.
     // https://developercommunity.visualstudio.com/t/nugets-not-included-in-build/1278878
     // https://docs.microsoft.com/en-us/answers/questions/175752/cannot-load-systemservicemodelprimitivesdll-in-uwp.html
+    // https://github.com/xamarin/Xamarin.Forms/issues/13868
 
     public abstract class ServiceClient
     {
