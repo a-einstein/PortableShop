@@ -162,6 +162,10 @@ Controleer a.u.b. grondig of herstart de applicatie (aanbevolen).</value>
 Gebruik a.u.b. de verversknop,
 of probeer het later nog eens.</value>
   </data>
+  <data name="ErrorUnknown" xml:space="preserve">
+    <value>Er is een onbekend probleem.
+Stop a.u.b. de applicatie.</value>
+  </data>
   <data name="Filter" xml:space="preserve">
     <value>Zoek</value>
   </data>
@@ -201,6 +205,9 @@ Pas a.u.b. uw zoekopdracht aan.</value>
   </data>
   <data name="Products" xml:space="preserve">
     <value>Produkten</value>
+  </data>
+  <data name="Quit" xml:space="preserve">
+    <value>Stop</value>
   </data>
   <data name="Remove" xml:space="preserve">
     <value>X</value>

@@ -3,15 +3,17 @@
 namespace RCS.PortableShop.ServiceClients.Products.Wrappers
 {
     // Note that for UWP the following libraries had to be reduced to version 4.5.3.
-    // For unknown reasons the versions 4.6.0 and 4.7.0 resulted in an exception on System.ServiceModel.Primitives.
+    //
+    // For unknown reasons the versions 4.6.0, 4.7.0, 4.8.1 resulted in an exception on System.ServiceModel.Primitives.
+    // Explicitly adding that library or one of the dependent ones  did not help.
     // - System.ServiceModel.Duplex
     // - System.ServiceModel.Http
     // - System.ServiceModel.NetTcp
-    // - System.ServiceModel.Primitives
     //
     // The following issues may be related.
-    // https://stackoverflow.com/questions/57094843/nuget-hell-cannot-reference-nuget-package-in-uwp-application-due-to-public-key
-    // https://github.com/dotnet/wcf/issues/3743
+    // https://developercommunity.visualstudio.com/t/nugets-not-included-in-build/1278878
+    // https://docs.microsoft.com/en-us/answers/questions/175752/cannot-load-systemservicemodelprimitivesdll-in-uwp.html
+    // https://github.com/xamarin/Xamarin.Forms/issues/13868
 
     public abstract class ServiceClient
     {
