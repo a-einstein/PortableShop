@@ -14,6 +14,11 @@ namespace RCS.PortableShop.ServiceClients.Products.Wrappers
     // https://developercommunity.visualstudio.com/t/nugets-not-included-in-build/1278878
     // https://docs.microsoft.com/en-us/answers/questions/175752/cannot-load-systemservicemodelprimitivesdll-in-uwp.html
     // https://github.com/xamarin/Xamarin.Forms/issues/13868
+    //
+    // For now I have updated these Nugets anyway, but it still does not work.
+    // Explicit reference to System.ServiceModel.Primitives (by Nuget) did not help and is removed again.
+    // UWP is now considered at a loss. Note there are other problems as well.
+    // It might help if the project files are modernized.
 
     public abstract class ServiceClient
     {

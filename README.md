@@ -12,6 +12,7 @@ Working portable (Android & UWP) application for test and demo purpose based on 
 * Release is now to GitHub with an automatic change summary.
 
 #### Known issues
+* Currently UWP is not working.
 * On UWP local language setting does not work out properly.
 * Refresh of the shopping cart is not satisfactory.
 * On neither platform any of the toolbar icons are displayed correctly.
