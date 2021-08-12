@@ -1,33 +1,30 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<Authors>RCS</Authors>
+		<EnableNETAnalyzers>true</EnableNETAnalyzers>
+	</PropertyGroup>
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>RCS.PortableShop.Common</RootNamespace>
-    <Authors>RCS</Authors>
-    <EnableNETAnalyzers>true</EnableNETAnalyzers>
-  </PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Syncfusion.Xamarin.SfNumericUpDown" Version="19.2.0.55" />
+		<PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
+		<PackageReference Include="Xamarin.Forms" Version="5.0.0.2083" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Syncfusion.Xamarin.SfNumericUpDown" Version="19.2.0.55" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2083" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\RCS.AdventureWorks.Common\RCS.AdventureWorks.Common.csproj" />
+		<ProjectReference Include="..\RCS.PortableShop.Resources\RCS.PortableShop.Resources.csproj" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\RCS.AdventureWorks.Common\RCS.AdventureWorks.Common.csproj" />
-    <ProjectReference Include="..\RCS.PortableShop.Resources\RCS.PortableShop.Resources.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Controls\ClearableEntry.xaml.cs">
-      <DependentUpon>ClearableEntry.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Controls\ContentButton.xaml.cs">
-      <DependentUpon>ContentButton.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Styles\Stylesheet.xaml.cs">
-      <DependentUpon>Stylesheet.xaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
+	<ItemGroup>
+		<Compile Update="Controls\ClearableEntry.xaml.cs">
+			<DependentUpon>ClearableEntry.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Controls\ContentButton.xaml.cs">
+			<DependentUpon>ContentButton.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Styles\Stylesheet.xaml.cs">
+			<DependentUpon>Stylesheet.xaml</DependentUpon>
+		</Compile>
+	</ItemGroup>
 </Project>
