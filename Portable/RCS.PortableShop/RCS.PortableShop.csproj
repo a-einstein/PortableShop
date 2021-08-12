@@ -26,7 +26,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.2" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
-    <PackageReference Include="Syncfusion.Xamarin.SfNumericUpDown" Version="19.2.0.49" />
+    <PackageReference Include="Syncfusion.Xamarin.SfNumericUpDown" Version="19.2.0.55" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2083" />
   </ItemGroup>
