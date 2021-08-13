@@ -25,8 +25,11 @@
 		<PackageReference Include="Xamarin.Forms" Version="5.0.0.2083" />
 	</ItemGroup>
 
+	<!--TODO There currently does not seem to be a way to use these files implicitly, like in WPF.-->
+	
 	<ItemGroup>
 		<Compile Include="AssemblyInfo.cs" />
+		
 		<Compile Include="Converters\SizeFormatter.cs" />
 		<Compile Include="Converters\WeightFormatter.cs" />
 

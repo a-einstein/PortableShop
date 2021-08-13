@@ -16,6 +16,7 @@
 		</Compile>
 	</ItemGroup>
 
+	<!--TODO There currently does not seem to be a way to use these files implicitly, like in WPF.-->
 	<ItemGroup>
 		<EmbeddedResource Update="Labels.resx">
 			<LastGenOutput>Labels.Designer.cs</LastGenOutput>

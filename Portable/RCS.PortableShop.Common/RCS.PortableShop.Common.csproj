@@ -16,6 +16,7 @@
 		<ProjectReference Include="..\RCS.PortableShop.Resources\RCS.PortableShop.Resources.csproj" />
 	</ItemGroup>
 
+	<!--TODO There currently does not seem to be a way to use these files implicitly, like in WPF.-->
 	<ItemGroup>
 		<Compile Update="Controls\ClearableEntry.xaml.cs">
 			<DependentUpon>ClearableEntry.xaml</DependentUpon>
