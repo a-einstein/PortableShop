@@ -4,11 +4,9 @@ namespace RCS.PortableShop.ServiceClients.Products.Wrappers
 {
     // Note that for UWP the following libraries had to be reduced to version 4.5.3.
     //
-    // For unknown reasons the versions 4.6.0, 4.7.0, 4.8.1 resulted in an exception on System.ServiceModel.Primitives.
+    // For unknown reasons the versions 4.6.0, 4.7.0, 4.8.1 resulted in an exception on System.ServiceModel.Primitives while executing the Release version
     // Explicitly adding that library or one of the dependent ones  did not help.
-    // - System.ServiceModel.Duplex
     // - System.ServiceModel.Http
-    // - System.ServiceModel.NetTcp
     //
     // The following issues may be related.
     // https://developercommunity.visualstudio.com/t/nugets-not-included-in-build/1278878
@@ -17,6 +15,7 @@ namespace RCS.PortableShop.ServiceClients.Products.Wrappers
     //
     // For now I have updated these Nugets anyway, but it still does not work.
     // Explicit reference to System.ServiceModel.Primitives (by Nuget) did not help and is removed again.
+    //
     // UWP is now considered at a loss. Note there are other problems as well.
     // It might help if the project files are modernized.
 
