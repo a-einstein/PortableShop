@@ -1,126 +1,119 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>RCS.PortableShop</RootNamespace>
-    <AssemblyName>RCS.PortableShop</AssemblyName>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+	</PropertyGroup>
 
-  <PropertyGroup>
-    <EnableDefaultItems>false</EnableDefaultItems>
-    <Authors>RCS</Authors>
-    <Product>PortableShop</Product>
-    <NeutralLanguage>en-GB</NeutralLanguage>
-    <EnableNETAnalyzers>true</EnableNETAnalyzers>
-  </PropertyGroup>
+	<PropertyGroup>
+		<EnableDefaultItems>false</EnableDefaultItems>
+		<Authors>RCS</Authors>
+		<Product>PortableShop</Product>
+		<NeutralLanguage>en-GB</NeutralLanguage>
+		<EnableNETAnalyzers>true</EnableNETAnalyzers>
+	</PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DefineConstants>TRACE;DEBUG</DefineConstants>
-  </PropertyGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\RCS.AdventureWorks.Common\RCS.AdventureWorks.Common.csproj" />
+		<ProjectReference Include="..\RCS.PortableShop.Common\RCS.PortableShop.Common.csproj" />
+		<ProjectReference Include="..\RCS.PortableShop.ServiceClients.Products\RCS.PortableShop.ServiceClients.Products.csproj" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\RCS.AdventureWorks.Common\RCS.AdventureWorks.Common.csproj" />
-    <ProjectReference Include="..\RCS.PortableShop.Common\RCS.PortableShop.Common.csproj" />
-    <ProjectReference Include="..\RCS.PortableShop.ServiceClients.Products\RCS.PortableShop.ServiceClients.Products.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.2" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
+		<PackageReference Include="Syncfusion.Xamarin.SfNumericUpDown" Version="19.2.0.55" />
+		<PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
+		<PackageReference Include="Xamarin.Forms" Version="5.0.0.2083" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.2" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
-    <PackageReference Include="Syncfusion.Xamarin.SfNumericUpDown" Version="19.2.0.55" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2083" />
-  </ItemGroup>
+	<!--TODO There currently does not seem to be a way to use these files implicitly, like in WPF.-->
+	
+	<ItemGroup>
+		<Compile Include="AssemblyInfo.cs" />
+		
+		<Compile Include="Converters\SizeFormatter.cs" />
+		<Compile Include="Converters\WeightFormatter.cs" />
 
-  <ItemGroup>
-    <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="Converters\SizeFormatter.cs" />
-    <Compile Include="Converters\WeightFormatter.cs" />
+		<Compile Include="Interfaces\IShopper.cs" />
 
-    <Compile Include="Interfaces\IShopper.cs" />
+		<Compile Include="Localization\ILocalize.cs" />
+		<Compile Include="Localization\PlatformCulture.cs" />
+		<Compile Include="Localization\TranslateExtension.cs" />
 
-    <Compile Include="Localization\ILocalize.cs" />
-    <Compile Include="Localization\PlatformCulture.cs" />
-    <Compile Include="Localization\TranslateExtension.cs" />
+		<Compile Include="Main\MainApplication.xaml.cs" />
+		<Compile Include="Main\MainPage.cs" />
+		<Compile Include="Main\MainShell.xaml.cs" />
+		<Compile Include="Main\Startup.cs" />
 
-    <Compile Include="Main\MainApplication.xaml.cs" />
-    <Compile Include="Main\MainPage.cs" />
-    <Compile Include="Main\MainShell.xaml.cs" />
-    <Compile Include="Main\Startup.cs" />
+		<Compile Include="Model\CartItemsRepository.cs" />
+		<Compile Include="Model\ProductCategoriesRepository.cs" />
+		<Compile Include="Model\ProductsRepository.cs" />
+		<Compile Include="Model\ProductsServiceConsumer.cs" />
+		<Compile Include="Model\ProductSubcategoriesRepository.cs" />
+		<Compile Include="Model\Repository.cs" />
+		<Compile Include="Model\Settings.cs" />
 
-    <Compile Include="Model\CartItemsRepository.cs" />
-    <Compile Include="Model\ProductCategoriesRepository.cs" />
-    <Compile Include="Model\ProductsRepository.cs" />
-    <Compile Include="Model\ProductsServiceConsumer.cs" />
-    <Compile Include="Model\ProductSubcategoriesRepository.cs" />
-    <Compile Include="Model\Repository.cs" />
-    <Compile Include="Model\Settings.cs" />
+		<Compile Include="ViewModels\MainShellViewModel.cs" />
 
-    <Compile Include="ViewModels\MainShellViewModel.cs" />
+		<Compile Include="ViewModels\SettingsViewModel.cs" />
+		<Compile Include="ViewModels\ShoppingViewModel.cs" />
+		<Compile Include="ViewModels\ShoppingWrapperViewModel.cs" />
+		<Compile Include="ViewModels\ProductsViewModel.cs" />
+		<Compile Include="ViewModels\ProductViewModel.cs" />
+		<Compile Include="ViewModels\ShoppingCartViewModel.cs" />
+		<Compile Include="Views\SettingsView.xaml.cs" />
 
-    <Compile Include="ViewModels\SettingsViewModel.cs" />
-    <Compile Include="ViewModels\ShoppingViewModel.cs" />
-    <Compile Include="ViewModels\ShoppingWrapperViewModel.cs" />
-    <Compile Include="ViewModels\ProductsViewModel.cs" />
-    <Compile Include="ViewModels\ProductViewModel.cs" />
-    <Compile Include="ViewModels\ShoppingCartViewModel.cs" />
-    <Compile Include="Views\SettingsView.xaml.cs" />
+		<Compile Include="Views\ShoppingWrapperView.xaml.cs" />
+		<Compile Include="Views\ProductsView.xaml.cs" />
+		<Compile Include="Views\ProductView.xaml.cs" />
+		<Compile Include="Views\ShoppingCartSummaryView.xaml.cs" />
+		<Compile Include="Views\ShoppingCartView.xaml.cs" />
+	</ItemGroup>
 
-    <Compile Include="Views\ShoppingWrapperView.xaml.cs" />
-    <Compile Include="Views\ProductsView.xaml.cs" />
-    <Compile Include="Views\ProductView.xaml.cs" />
-    <Compile Include="Views\ShoppingCartSummaryView.xaml.cs" />
-    <Compile Include="Views\ShoppingCartView.xaml.cs" />
-  </ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Include="Main\MainApplication.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</EmbeddedResource>
+	</ItemGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Include="Main\MainApplication.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-  </ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Include="Main\MainShell.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</EmbeddedResource>
+	</ItemGroup>
 
-  <ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Include="Views\ShoppingWrapperView.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</EmbeddedResource>
+	</ItemGroup>
 
-    <EmbeddedResource Include="Main\MainShell.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-  </ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Include="Views\ProductsView.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</EmbeddedResource>
+	</ItemGroup>
 
-  <ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Include="Views\ProductView.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</EmbeddedResource>
+	</ItemGroup>
 
-    <EmbeddedResource Include="Views\ShoppingWrapperView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-  </ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Include="Views\ShoppingCartSummaryView.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</EmbeddedResource>
+	</ItemGroup>
 
-  <ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Include="Views\ShoppingCartView.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</EmbeddedResource>
+	</ItemGroup>
 
-    <EmbeddedResource Include="Views\ProductsView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-
-    <EmbeddedResource Include="Views\ProductView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="Views\ShoppingCartSummaryView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="Views\ShoppingCartView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="Views\SettingsView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-  </ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Include="Views\SettingsView.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</EmbeddedResource>
+	</ItemGroup>
 </Project>

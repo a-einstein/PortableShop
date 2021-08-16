@@ -2,23 +2,18 @@
 
 namespace RCS.PortableShop.ServiceClients.Products.Wrappers
 {
-    // Note that for UWP the following libraries had to be reduced to version 4.5.3.
-    //
-    // For unknown reasons the versions 4.6.0, 4.7.0, 4.8.1 resulted in an exception on System.ServiceModel.Primitives.
-    // Explicitly adding that library or one of the dependent ones  did not help.
-    // - System.ServiceModel.Duplex
+    // For some reason the libraries below are limited to 4.5.0, bound by UniversalWindowsPlatform.
     // - System.ServiceModel.Http
-    // - System.ServiceModel.NetTcp
     //
     // The following issues may be related.
     // https://developercommunity.visualstudio.com/t/nugets-not-included-in-build/1278878
     // https://docs.microsoft.com/en-us/answers/questions/175752/cannot-load-systemservicemodelprimitivesdll-in-uwp.html
     // https://github.com/xamarin/Xamarin.Forms/issues/13868
     //
-    // For now I have updated these Nugets anyway, but it still does not work.
-    // Explicit reference to System.ServiceModel.Primitives (by Nuget) did not help and is removed again.
-    // UWP is now considered at a loss. Note there are other problems as well.
-    // It might help if the project files are modernized.
+    // UWP currently only works for Release (with still a warning about System.Security.Principal.Windows).
+    // Debug fails on Microsoft.Graphics.Canvas.
+    //
+    // Solution may be no sooner than .net 6, maybe migrating to MAUI as well.
 
     public abstract class ServiceClient
     {
