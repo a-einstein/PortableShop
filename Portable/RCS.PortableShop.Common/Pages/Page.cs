@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 using View = RCS.PortableShop.Common.Views.View;
 
@@ -44,14 +43,11 @@ namespace RCS.PortableShop.Common.Pages
 
         private void Adorn()
         {
-            MainThread.BeginInvokeOnMainThread(async () =>
-            {
-                // TODO Since applying Shell, icons are not displayed, though the commands work.
-                // https://github.com/xamarin/Xamarin.Forms/issues/7351
-                ToolbarItems.Add(new ToolbarItem("R", "Refresh.png",
-                    async () => await Content.ViewModel.Refresh().ConfigureAwait(true),
-                    priority: 10));
-            });
+            // TODO Since applying Shell, icons are not displayed, though the commands work.
+            // https://github.com/xamarin/Xamarin.Forms/issues/7351
+            ToolbarItems.Add(new ToolbarItem("R", "Refresh.png",
+                async () => await Content.ViewModel.Refresh().ConfigureAwait(true),
+                priority: 10));
         }
 
         protected async Task Refresh()

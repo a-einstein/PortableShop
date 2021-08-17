@@ -65,7 +65,7 @@ namespace RCS.PortableShop.Main
         {
             // Use the MessagingCenter mechanism to connect ViewModels or other (non GUI) code to this Page.
 
-            MessagingCenter.Subscribe<ProductsServiceConsumer, string>(this, ProductsServiceConsumer.Message.ServiceError.ToString(), async (sender, details) =>
+            MessagingCenter.Subscribe<ProductsServiceConsumer, string>(this, ProductsServiceConsumer.Message.ServiceError.ToString(), (sender, details) =>
             {
                 // Try to prevent stacking muliple related messages, like at startup.
                 // TODO Finetune this. It can also unwantedly prevent messages, like after changing page.
@@ -88,9 +88,11 @@ namespace RCS.PortableShop.Main
 
         private static void Alert(Page page, string kind, string description, string details = null, bool quit = false)
         {
+            // Note the thread is particularly relevant for UWP.
             MainThread.BeginInvokeOnMainThread(async () =>
             {
-                var continuation = (quit)
+                // TODO Check this.
+                var continuation = (quit) 
                 //? Labels.Quit
                 ? Labels.Close
                 : Labels.Close;

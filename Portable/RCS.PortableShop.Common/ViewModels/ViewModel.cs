@@ -45,7 +45,10 @@ namespace RCS.PortableShop.Common.ViewModels
             Awaiting = false;
         }
 
-        protected virtual async Task Clear() { }
+        protected virtual async Task Clear()
+        {
+            await VoidTask();
+        }
 
         private bool initialized;
 
@@ -108,7 +111,6 @@ namespace RCS.PortableShop.Common.ViewModels
         {
             // Note that BeginInvokeOnMainThread is applied on various places because of UWP, not Android.
             // TODO Check whether this can be simplified.
-
             MainThread.BeginInvokeOnMainThread(() =>
             {
                 // TODO This does not work for the inherited PropertyChanged.
@@ -131,28 +133,30 @@ namespace RCS.PortableShop.Common.ViewModels
         // Note that a potential Color parameter cannot have a default value.
         protected static async Task PushPage(Xamarin.Forms.View view, string title = null)
         {
-            MainThread.BeginInvokeOnMainThread(async () =>
-            {
-                var page = new ContentPage() { Content = view, Title = title };
+            var page = new ContentPage() { Content = view, Title = title };
 
-                await Navigation.PushAsync(page).ConfigureAwait(true);
-            });
+            await Navigation.PushAsync(page).ConfigureAwait(true);
         }
 
         protected static async Task PushPage(View view)
         {
-            MainThread.BeginInvokeOnMainThread(async () =>
-            {
-                var page = new Page();
-                page.SetBinding(Xamarin.Forms.Page.TitleProperty, new Binding() { Path = nameof(Title), Source = view.ViewModel });
-                page.Content = view;
+            var page = new Page();
+            page.SetBinding(Xamarin.Forms.Page.TitleProperty, new Binding() { Path = nameof(Title), Source = view.ViewModel });
+            page.Content = view;
 
-                // Note this works for UWP only since Xamarin.Forms 4.8.
-                // https://github.com/xamarin/Xamarin.Forms/issues/8498
-                await Navigation.PushAsync(page).ConfigureAwait(true);
+            // Note this works for UWP only since Xamarin.Forms 4.8.
+            // https://github.com/xamarin/Xamarin.Forms/issues/8498
+            await Navigation.PushAsync(page).ConfigureAwait(true);
 
-                await view.Refresh().ConfigureAwait(true);
-            });
+            await view.Refresh().ConfigureAwait(true);
+        }
+        #endregion
+
+        #region Utility
+        private static Task VoidTask()
+        {
+            // HACK.
+            return Task.Run(() => { });
         }
         #endregion
     }

@@ -55,20 +55,39 @@ namespace RCS.PortableShop.Model
         #endregion
 
         #region CRUD
+
         public virtual async Task Create(TElement element)
         {
-            items.Add(element);
+            await Task.Run(() =>
+            {
+                items.Add(element);
+            });
         }
 
         protected virtual async Task Read(bool addEmptyElement = true)
-        { }
+        {
+            await VoidTask();
+        }
 
         public virtual async Task Update(TElement element)
-        { }
+        {
+            await VoidTask();
+        }
 
         public virtual async Task Delete(TElement element)
         {
-            items.Remove(element);
+            await Task.Run(() =>
+            {
+                items.Remove(element);
+            });
+        }
+        #endregion
+
+        #region Utility
+        private static Task VoidTask()
+        {
+            // HACK.
+            return Task.Run(() => { });
         }
         #endregion
     }

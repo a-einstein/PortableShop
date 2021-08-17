@@ -19,7 +19,8 @@ namespace RCS.PortableShop.Common.ViewModels
             get => (TItem)GetValue(ItemProperty);
             set
             {
-                MainThread.BeginInvokeOnMainThread(async () =>
+                // Note the thread is particularly relevant for UWP.
+                MainThread.BeginInvokeOnMainThread(() =>
                 {
                     SetValue(ItemProperty, value);
                     RaisePropertyChanged(nameof(Item));
