@@ -166,12 +166,8 @@ namespace RCS.PortableShop.ViewModels
         {
             if (e.PropertyName == nameof(CartItem.Quantity))
             {
-                // TODO There is some problem left here while changing the quantity, particularly on the first element of the list, probably related to the refresh of the whole list.                
                 CartItemsRepository.Update(sender as CartItem).ConfigureAwait(true);
                 dirty = true;
-
-                // TODO This is not satisfactory as the whole  list is visibly refreshed.
-                Task.Run(async () => await Refresh().ConfigureAwait(true));
             }
         }
         #endregion
