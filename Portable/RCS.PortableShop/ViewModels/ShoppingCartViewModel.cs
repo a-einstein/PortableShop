@@ -179,6 +179,7 @@ namespace RCS.PortableShop.ViewModels
         #region Aggregates
         private void UpdateAggregates()
         {
+            // Note the thread is particularly relevant for UWP.
             MainThread.BeginInvokeOnMainThread(() =>
             {
                 ProductItemsCount = Count();

@@ -21,6 +21,7 @@ namespace RCS.PortableShop.Common.Controls
         // TODO This seems superfluous for a BindableProperty.
         protected void RaisePropertyChanged(string propertyName)
         {
+            // Note the thread is particularly relevant for UWP.
             MainThread.BeginInvokeOnMainThread(() =>
             {
                 // TODO This does not work for the inherited PropertyChanged.

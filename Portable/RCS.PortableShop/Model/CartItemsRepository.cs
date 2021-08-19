@@ -27,17 +27,23 @@ namespace RCS.PortableShop.Model
         // Note that the cart is only kept in memory and is not preserved. 
         // It is anticipated that only real orders would be preserved and stored on the server.
 
-        public virtual async Task Create(CartItem proxy)
+        public override async Task Create(CartItem proxy)
         {
-            items.Add(proxy.Copy());
+            await Task.Run(() =>
+            {
+                items.Add(proxy.Copy());
+            });
         }
 
         public async Task Create(IShoppingProduct product)
         {
-            items.Add(new CartItem(product));
+            await Task.Run(() =>
+            {
+                items.Add(new CartItem(product));
+            });
         }
 
-        public async Task Update(CartItem proxy)
+        public override async Task Update(CartItem proxy)
         {
             var current = items.FirstOrDefault(item => item.ProductId == proxy.ProductId);
 
@@ -55,16 +61,19 @@ namespace RCS.PortableShop.Model
 
         public override async Task Delete(CartItem proxy)
         {
-            var current = items.FirstOrDefault(item => item.ProductId == proxy.ProductId);
+            await Task.Run(() =>
+            {
+                var current = items.FirstOrDefault(item => item.ProductId == proxy.ProductId);
 
-            if (current != default)
-            {
-                items.Remove(current);
-            }
-            else
-            {
-                MessagingCenter.Send<CartItemsRepository>(this, Message.CartError.ToString());
-            }
+                if (current != default)
+                {
+                    items.Remove(current);
+                }
+                else
+                {
+                    MessagingCenter.Send<CartItemsRepository>(this, Message.CartError.ToString());
+                }
+            });
         }
     }
     #endregion

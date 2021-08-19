@@ -6,7 +6,6 @@ using RCS.PortableShop.Main;
 using RCS.PortableShop.Model;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace RCS.PortableShop.ViewModels
@@ -32,11 +31,8 @@ namespace RCS.PortableShop.ViewModels
         {
             if (ItemId.HasValue)
             {
-                MainThread.BeginInvokeOnMainThread(async () =>
-                {
-                    var result = await ProductsRepository.Details((int)ItemId).ConfigureAwait(true);
-                    Item = result;
-                });
+                var result = await ProductsRepository.Details((int)ItemId).ConfigureAwait(true);
+                Item = result;
             }
         }
         #endregion
