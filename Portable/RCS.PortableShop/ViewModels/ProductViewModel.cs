@@ -85,7 +85,7 @@ namespace RCS.PortableShop.ViewModels
             }
         }
 
-        private void CartProduct(Product product)
+        private static void CartProduct(Product product)
         {
             // TODO Do this directly on the repository? (Might need initialisation first.)
             ShoppingCartViewModel.Instance.CartProduct(product);
