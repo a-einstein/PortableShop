@@ -172,7 +172,7 @@ namespace RCS.PortableShop.Common.ViewModels
             BindableProperty.Create(nameof(DetailFilterValue), typeof(TDetailFilterItem), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>));
 
         // Note DetailFilterValue should only have a value if MasterFilterValue has.
-        public TDetailFilterItem DetailFilterValue
+        public virtual TDetailFilterItem DetailFilterValue
         {
             get => (TDetailFilterItem)GetValue(DetailFilterValueProperty);
             set

@@ -120,7 +120,7 @@ namespace RCS.PortableShop.ViewModels
             RaisePropertyChanged(nameof(DetailFilterItems));
         }
 
-        public new ProductCategory MasterFilterValue
+        public override ProductCategory MasterFilterValue
         {
             get => base.MasterFilterValue;
             set
@@ -130,7 +130,7 @@ namespace RCS.PortableShop.ViewModels
             }
         }
 
-        public new ProductSubcategory DetailFilterValue
+        public override ProductSubcategory DetailFilterValue
         {
             get => base.DetailFilterValue;
             set
