@@ -58,7 +58,7 @@ namespace RCS.PortableShop.Common.ViewModels
             {
                 initialized = true;
 
-                await Task.Run(() => SetCommands()).ConfigureAwait(true);
+                await Task.Run(SetCommands).ConfigureAwait(true);
             }
 
             return initialized;

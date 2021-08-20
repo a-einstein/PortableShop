@@ -24,7 +24,7 @@ namespace RCS.PortableShop.Common.Pages
             {
                 initialized = true;
 
-                await Task.Run(() => Adorn()).ConfigureAwait(true);
+                await Task.Run(Adorn).ConfigureAwait(true);
             }
         }
 

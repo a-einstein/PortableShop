@@ -15,8 +15,8 @@ namespace RCS.PortableShop.ViewModels
             base.SetCommands();
 
             ShowProductsCommand = new Command(async () => await ShowProducts().ConfigureAwait(true));
-            OpenSupportCommand = new Command(() => OpenSupport());
-            UpdateCommand = new Command(() => Update());
+            OpenSupportCommand = new Command(OpenSupport);
+            UpdateCommand = new Command(Update);
             SettingsCommand = new Command(async () => await OpenSettings().ConfigureAwait(true));
         }
         #endregion
