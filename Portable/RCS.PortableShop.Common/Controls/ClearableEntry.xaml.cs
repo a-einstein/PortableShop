@@ -45,7 +45,8 @@ namespace RCS.PortableShop.Common.Controls
         #endregion
 
         #region Command
-        public static readonly BindableProperty ClearCommandProperty =
+
+        private static readonly BindableProperty ClearCommandProperty =
             BindableProperty.Create(nameof(ClearCommand), typeof(ICommand), typeof(ClearableEntry));
 
         public ICommand ClearCommand

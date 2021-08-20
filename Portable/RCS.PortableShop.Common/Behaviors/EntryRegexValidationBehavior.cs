@@ -39,7 +39,7 @@ namespace RCS.PortableShop.Common.Behaviors
         private static readonly BindablePropertyKey IsValidPropertyKey =
             BindableProperty.CreateReadOnly(nameof(IsValid), typeof(bool), typeof(EntryRegexValidationBehavior), false);
 
-        public static readonly BindableProperty IsValidProperty = IsValidPropertyKey.BindableProperty;
+        private static readonly BindableProperty IsValidProperty = IsValidPropertyKey.BindableProperty;
 
         public bool IsValid
         {

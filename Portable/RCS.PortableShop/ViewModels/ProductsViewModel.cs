@@ -37,7 +37,7 @@ namespace RCS.PortableShop.ViewModels
         #region Filtering
 
         // At least 3 characters.
-        public static readonly BindableProperty ValidTextFilterExpressionProperty =
+        private static readonly BindableProperty ValidTextFilterExpressionProperty =
             BindableProperty.Create(nameof(ValidTextFilterExpression), typeof(string), typeof(ProductsViewModel), @"\w{3}");
 
         public string ValidTextFilterExpression
@@ -200,7 +200,8 @@ namespace RCS.PortableShop.ViewModels
         #endregion
 
         #region Shopping
-        public static readonly BindableProperty CartCommandProperty =
+
+        private static readonly BindableProperty CartCommandProperty =
             BindableProperty.Create(nameof(CartCommand), typeof(ICommand), typeof(ProductsViewModel));
 
         public ICommand CartCommand

@@ -126,7 +126,7 @@ namespace RCS.PortableShop.ViewModels
             UpdateAggregates();
         }
 
-        public static readonly BindableProperty DeleteCommandProperty =
+        private static readonly BindableProperty DeleteCommandProperty =
             BindableProperty.Create(nameof(DeleteCommand), typeof(ICommand), typeof(ShoppingCartViewModel));
 
         public ICommand DeleteCommand
@@ -197,7 +197,7 @@ namespace RCS.PortableShop.ViewModels
                 : 0;
         }
 
-        public static readonly BindableProperty ProductItemCountProperty =
+        private static readonly BindableProperty ProductItemCountProperty =
             BindableProperty.Create(nameof(ProductItemsCount), typeof(int), typeof(ShoppingCartViewModel), 0);
 
         public int ProductItemsCount
@@ -210,7 +210,7 @@ namespace RCS.PortableShop.ViewModels
             }
         }
 
-        public static readonly BindableProperty TotalValueProperty =
+        private static readonly BindableProperty TotalValueProperty =
             BindableProperty.Create(nameof(TotalValue), typeof(decimal), typeof(ShoppingCartViewModel), (decimal)0);
 
         public decimal TotalValue

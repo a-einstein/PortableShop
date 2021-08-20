@@ -22,7 +22,8 @@ namespace RCS.PortableShop.ViewModels
         #endregion
 
         #region Products
-        public static readonly BindableProperty ShowProductsCommandProperty =
+
+        private static readonly BindableProperty ShowProductsCommandProperty =
             BindableProperty.Create(nameof(ShowProductsCommand), typeof(ICommand), typeof(MainShellViewModel));
 
         public ICommand ShowProductsCommand
@@ -52,7 +53,7 @@ namespace RCS.PortableShop.ViewModels
 
         #region Support
 
-        public static readonly BindableProperty OpenSupportCommandProperty =
+        private static readonly BindableProperty OpenSupportCommandProperty =
             BindableProperty.Create(nameof(OpenSupportCommand), typeof(ICommand), typeof(MainShellViewModel));
 
         public ICommand OpenSupportCommand
@@ -73,7 +74,8 @@ namespace RCS.PortableShop.ViewModels
         #endregion
 
         #region Update
-        public static readonly BindableProperty UpdateCommandProperty =
+
+        private static readonly BindableProperty UpdateCommandProperty =
              BindableProperty.Create(nameof(UpdateCommand), typeof(ICommand), typeof(MainShellViewModel));
 
         public ICommand UpdateCommand
@@ -98,7 +100,7 @@ namespace RCS.PortableShop.ViewModels
         #endregion
 
         #region Settings
-        public static readonly BindableProperty SettingsCommandProperty =
+        private static readonly BindableProperty SettingsCommandProperty =
              BindableProperty.Create(nameof(SettingsCommand), typeof(ICommand), typeof(MainShellViewModel));
 
         public ICommand SettingsCommand
