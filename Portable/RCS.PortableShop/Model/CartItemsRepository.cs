@@ -7,6 +7,9 @@ using Xamarin.Forms;
 
 namespace RCS.PortableShop.Model
 {
+    // Note this currently is a redundant layer besides the list held in the ViewModel,
+    // as this is not connected to a database.
+    // TODO Straighten this out.
     public class CartItemsRepository : Repository<List<CartItem>, CartItem>
     {
         #region Construction
@@ -45,18 +48,26 @@ namespace RCS.PortableShop.Model
 
         public override async Task Update(CartItem proxy)
         {
-            var current = items.FirstOrDefault(item => item.ProductId == proxy.ProductId);
+            // Use a simple function instead of CancellationToken .
+            var task = Task.Run(() =>
+            {
+                var foundItem = items.FirstOrDefault(item => item.ProductId == proxy.ProductId);
 
-            if (current != default)
-            {
-                // Just replace the item instead of updating it internally.
-                await Delete(current).ConfigureAwait(true);
-                await Create(proxy).ConfigureAwait(true);
-            }
-            else
-            {
+                if (foundItem != default)
+                {
+                    foundItem.Update(proxy);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            });
+
+            await task;
+
+            if (!task.Result)
                 MessagingCenter.Send<CartItemsRepository>(this, Message.CartError.ToString());
-            }
         }
 
         public override async Task Delete(CartItem proxy)

@@ -13,7 +13,6 @@ Working portable (Android & UWP) application for test and demo purpose based on 
 
 #### Known issues
 * On UWP local language setting does not work out properly.
-* Refresh of the shopping cart is not satisfactory.
 * On neither platform any of the toolbar icons are displayed correctly.
 * Restoring the filter does work, except for a possible text part.
 * The application may crash at startup if the data service is not available, particularly in the error details message.
