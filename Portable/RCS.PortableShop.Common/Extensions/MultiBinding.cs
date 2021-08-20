@@ -23,7 +23,7 @@ namespace RCS.PortableShop.Common.Extensions
 
         public IMultiValueConverter Converter { get; set; }
 
-        public object ConverterParameter { get; set; }
+        private object ConverterParameter { get; set; }
         #endregion
 
         #region IMarkupExtension

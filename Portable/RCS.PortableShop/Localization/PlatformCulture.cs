@@ -24,9 +24,13 @@ namespace RCS.PortableShop.Localization
                 LocaleCode = string.Empty;
             }
         }
-        public string PlatformString { get; private set; }
+
+        private string PlatformString { get; set; }
+
         public string LanguageCode { get; private set; }
-        public string LocaleCode { get; private set; }
+
+        private string LocaleCode { get; set; }
+
         public override string ToString()
         {
             return PlatformString;

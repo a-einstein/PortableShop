@@ -183,14 +183,14 @@ namespace RCS.PortableShop.ViewModels
             });
         }
 
-        public int Count()
+        private int Count()
         {
             return Items.Count > 0
                 ? Items.Sum(item => item.Quantity)
                 : 0;
         }
 
-        public decimal Value()
+        private decimal Value()
         {
             return Items.Count > 0
                 ? Items.Sum(item => item.Value)

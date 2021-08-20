@@ -18,7 +18,7 @@ namespace RCS.PortableShop.Common.Converters
             return result;
         }
 
-        public static bool HasValue(object[] values)
+        private static bool HasValue(object[] values)
         {
             return values.Aggregate(false, (current, item) => current || HasValueTester.HasValue(item));
         }

@@ -36,7 +36,7 @@ namespace RCS.PortableShop.ViewModels
             }
         }
 
-        protected static async Task ShowProducts()
+        private static async Task ShowProducts()
         {
             Shell.FlyoutIsPresented = false;
             await PopToRoot().ConfigureAwait(true);
@@ -66,7 +66,7 @@ namespace RCS.PortableShop.ViewModels
             }
         }
 
-        protected static void OpenSupport()
+        private static void OpenSupport()
         {
             // TODO Make this Configureable.
             OpenWeb("https://github.com/a-einstein/PortableShop/blob/master/README.md");
@@ -88,7 +88,7 @@ namespace RCS.PortableShop.ViewModels
             }
         }
 
-        protected static void Update()
+        private static void Update()
         {
             // Note this is only very rough and may fail on the still open application and other technicalities afterwards.
 
@@ -113,7 +113,7 @@ namespace RCS.PortableShop.ViewModels
             }
         }
 
-        protected static async Task OpenSettings()
+        private static async Task OpenSettings()
         {
             // TODO Open this IN flyout?
             Shell.FlyoutIsPresented = false;

@@ -19,7 +19,7 @@ namespace RCS.PortableShop.Localization
             return ProvideValue(Text);
         }
 
-        public static object ProvideValue(string key)
+        private static object ProvideValue(string key)
         {
             if (string.IsNullOrEmpty(key))
                 return string.Empty;
