@@ -40,7 +40,7 @@ namespace RCS.PortableShop.Model
         {
             var message = $"{exception?.Message}{Environment.NewLine}{detail}";
 
-            MessagingCenter.Send<ProductsServiceConsumer, string>(this, Message.ServiceError.ToString(), message);
+            MessagingCenter.Send(this, Message.ServiceError.ToString(), message);
         }
 
         #endregion
