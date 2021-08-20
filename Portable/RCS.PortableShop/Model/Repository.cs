@@ -26,7 +26,7 @@ namespace RCS.PortableShop.Model
             get { return items.AsReadOnly(); }
         }
 
-        public async Task Clear()
+        protected async Task Clear()
         {
             await Task.Run(() =>
             {
