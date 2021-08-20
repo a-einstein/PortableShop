@@ -28,7 +28,7 @@ namespace RCS.PortableShop.ViewModels
         { }
 
         private static volatile ShoppingCartViewModel instance;
-        private static object syncRoot = new object();
+        private static readonly object syncRoot = new object();
 
         // Note this class is a singleton, implemented along the way (but not entirely) of https://msdn.microsoft.com/en-us/library/ff650316.aspx
         public static ShoppingCartViewModel Instance

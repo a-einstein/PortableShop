@@ -58,7 +58,7 @@ namespace RCS.PortableShop.Main
         private DateTime serviceErrorFirstDisplayed;
 
         // This value is tested on 3 service calls at startup. There is no multiplication operator.
-        private TimeSpan serviceErrorGraceTime = ServiceClient.Timeout + ServiceClient.Timeout;
+        private readonly TimeSpan serviceErrorGraceTime = ServiceClient.Timeout + ServiceClient.Timeout;
 
         // Note this only works for pages.
         private void SubscribeMessages(Page page)

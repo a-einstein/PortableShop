@@ -18,7 +18,7 @@ namespace RCS.PortableShop.Model
         #endregion
 
         #region Refresh
-        protected TCollection items = new TCollection();
+        protected readonly TCollection items = new TCollection();
 
         // Note this is directly accesible but not amendable.
         public ReadOnlyCollection<TElement> Items
