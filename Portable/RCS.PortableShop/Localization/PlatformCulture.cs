@@ -25,11 +25,11 @@ namespace RCS.PortableShop.Localization
             }
         }
 
-        private string PlatformString { get; set; }
+        private string PlatformString { get; }
 
-        public string LanguageCode { get; private set; }
+        public string LanguageCode { get; }
 
-        private string LocaleCode { get; set; }
+        private string LocaleCode { get; }
 
         public override string ToString()
         {
