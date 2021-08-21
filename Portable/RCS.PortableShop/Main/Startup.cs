@@ -36,7 +36,7 @@ namespace RCS.PortableShop.Main
             switch (platform)
             {
                 case Platform.Android:
-                    hostBuilder = Host.CreateDefaultBuilder(); 
+                    hostBuilder = Host.CreateDefaultBuilder();
                     break;
                 case Platform.iOS:
                 case Platform.UWP:
@@ -74,13 +74,13 @@ namespace RCS.PortableShop.Main
 
             ServiceProvider = host.Services;
         }
-    }
 
-    enum Platform
-    {
-        Unknown = 0,
-        Android,
-        iOS,
-        UWP
+        enum Platform
+        {
+            Unknown = 0,
+            Android,
+            iOS,
+            UWP
+        }
     }
 }
