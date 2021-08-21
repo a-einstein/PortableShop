@@ -18,8 +18,8 @@ namespace RCS.PortableShop.UWP
         /// </summary>
         public App()
         {
-            this.InitializeComponent();
-            this.Suspending += OnSuspending;
+            InitializeComponent();
+            Suspending += OnSuspending;
         }
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace RCS.PortableShop.UWP
                 // True results in quite annoying displays in corners, useless to me.
                 // https://stackoverflow.com/questions/29364607/what-are-the-two-numbers-in-top-left-of-uap-app-using-vs2015-and-windows-10
                 // Also see the documentation.
-                this.DebugSettings.EnableFrameRateCounter = false;
+                DebugSettings.EnableFrameRateCounter = false;
             }
 #endif
 

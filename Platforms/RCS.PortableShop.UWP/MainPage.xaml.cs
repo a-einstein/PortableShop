@@ -5,7 +5,7 @@ namespace RCS.PortableShop.UWP
     {
         public MainPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
 
             LoadApplication(new MainApplication());
         }
