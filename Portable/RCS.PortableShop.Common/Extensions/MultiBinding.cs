@@ -23,7 +23,7 @@ namespace RCS.PortableShop.Common.Extensions
 
         public IMultiValueConverter Converter { get; set; }
 
-        public object ConverterParameter { get; set; }
+        private object ConverterParameter { get; set; }
         #endregion
 
         #region IMarkupExtension
@@ -48,7 +48,7 @@ namespace RCS.PortableShop.Common.Extensions
             {
                 var bindableProperty = BindableProperty.Create
                 (
-                    $"Property-{Guid.NewGuid().ToString("N")}",
+                    $"Property-{Guid.NewGuid():N}",
                     typeof(object),
                     typeof(MultiBinding),
                     default,

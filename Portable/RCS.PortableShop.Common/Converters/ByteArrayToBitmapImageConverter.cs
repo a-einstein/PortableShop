@@ -12,7 +12,7 @@ namespace RCS.PortableShop.Common.Converters
             return Convert(value);
         }
 
-        public static /*BitmapImage*/ object Convert(object value)
+        private static /*BitmapImage*/ object Convert(object value)
         {
             var byteArray = value as byte[];
 

@@ -17,7 +17,7 @@ namespace RCS.PortableShop.Model
         #endregion
 
         #region CRUD
-        protected override async Task Read(bool addEmptyElement)
+        protected override async Task Read(bool addEmptyElement = true)
         {
             ProductCategoryList categories;
 

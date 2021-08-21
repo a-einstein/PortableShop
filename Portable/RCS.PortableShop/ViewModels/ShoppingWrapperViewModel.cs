@@ -9,7 +9,7 @@ namespace RCS.PortableShop.ViewModels
     {
         #region Construction
 
-        public static readonly BindableProperty WrappedContentProperty =
+        private static readonly BindableProperty WrappedContentProperty =
             BindableProperty.Create(nameof(WrappedContent), typeof(View), typeof(ShoppingWrapperViewModel));
 
         // TODO This might better be moved to the View to better separate the two kind of objects.

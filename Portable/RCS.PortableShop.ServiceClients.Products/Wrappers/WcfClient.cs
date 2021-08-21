@@ -18,7 +18,7 @@ namespace RCS.PortableShop.ServiceClients.Products.Wrappers
         public async Task<ProductCategoryList> GetCategories()
         {
             var result =
-                await Task.Factory.FromAsync<ProductCategoryList>(
+                await Task.Factory.FromAsync(
                     ProductsServiceClient.BeginGetProductCategories,
                     ProductsServiceClient.EndGetProductCategories,
                     null).ConfigureAwait(true) ??
@@ -31,7 +31,7 @@ namespace RCS.PortableShop.ServiceClients.Products.Wrappers
         public async Task<ProductSubcategoryList> GetSubcategories()
         {
             var result =
-                await Task.Factory.FromAsync<ProductSubcategoryList>(
+                await Task.Factory.FromAsync(
                     ProductsServiceClient.BeginGetProductSubcategories,
                     ProductsServiceClient.EndGetProductSubcategories,
                     null).ConfigureAwait(true) ??
@@ -44,7 +44,7 @@ namespace RCS.PortableShop.ServiceClients.Products.Wrappers
         public async Task<ProductsOverviewList> GetProducts(ProductCategory category, ProductSubcategory subcategory, string namePart)
         {
             var result =
-               await Task.Factory.FromAsync<int?, int?, string, ProductsOverviewList>(
+               await Task.Factory.FromAsync(
                     ProductsServiceClient.BeginGetProductsOverviewBy,
                     ProductsServiceClient.EndGetProductsOverviewBy,
                     category?.Id, subcategory?.Id, namePart,
@@ -57,7 +57,7 @@ namespace RCS.PortableShop.ServiceClients.Products.Wrappers
 
         public async Task<Product> GetProduct(int productId)
         {
-            var result = await Task.Factory.FromAsync<int, Product>(
+            var result = await Task.Factory.FromAsync(
                   ProductsServiceClient.BeginGetProductDetails,
                   ProductsServiceClient.EndGetProductDetails,
                   productId,

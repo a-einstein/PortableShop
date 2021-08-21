@@ -11,7 +11,7 @@ namespace RCS.PortableShop.Common.ViewModels
         // Note that a generic property is impossible, so the DomainClass is needed, determine the property's type.
         public int? ItemId { get; set; }
 
-        public static readonly BindableProperty ItemProperty =
+        private static readonly BindableProperty ItemProperty =
             BindableProperty.Create(nameof(Item), typeof(TItem), typeof(ItemViewModel<TItem>));
 
         public TItem Item

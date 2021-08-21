@@ -18,8 +18,8 @@ namespace RCS.PortableShop.UWP
         /// </summary>
         public App()
         {
-            this.InitializeComponent();
-            this.Suspending += OnSuspending;
+            InitializeComponent();
+            Suspending += OnSuspending;
         }
 
         /// <summary>
@@ -36,11 +36,11 @@ namespace RCS.PortableShop.UWP
                 // True results in quite annoying displays in corners, useless to me.
                 // https://stackoverflow.com/questions/29364607/what-are-the-two-numbers-in-top-left-of-uap-app-using-vs2015-and-windows-10
                 // Also see the documentation.
-                this.DebugSettings.EnableFrameRateCounter = false;
+                DebugSettings.EnableFrameRateCounter = false;
             }
 #endif
 
-            Frame rootFrame = Window.Current.Content as Frame;
+            var rootFrame = Window.Current.Content as Frame;
 
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
@@ -83,7 +83,7 @@ namespace RCS.PortableShop.UWP
         /// </summary>
         /// <param name="sender">The Frame which failed navigation</param>
         /// <param name="e">Details about the navigation failure</param>
-        void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
+        private static void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
         {
             throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
         }
@@ -95,7 +95,7 @@ namespace RCS.PortableShop.UWP
         /// </summary>
         /// <param name="sender">The source of the suspend request.</param>
         /// <param name="e">Details about the suspend request.</param>
-        private void OnSuspending(object sender, SuspendingEventArgs e)
+        private static void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity

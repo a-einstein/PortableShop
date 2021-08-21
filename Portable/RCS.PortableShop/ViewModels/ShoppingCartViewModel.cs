@@ -28,7 +28,7 @@ namespace RCS.PortableShop.ViewModels
         { }
 
         private static volatile ShoppingCartViewModel instance;
-        private static object syncRoot = new object();
+        private static readonly object syncRoot = new object();
 
         // Note this class is a singleton, implemented along the way (but not entirely) of https://msdn.microsoft.com/en-us/library/ff650316.aspx
         public static ShoppingCartViewModel Instance
@@ -61,7 +61,7 @@ namespace RCS.PortableShop.ViewModels
         #endregion
 
         #region Refresh
-        bool dirty = false;
+        private bool dirty = false;
 
         public override async Task Refresh()
         {
@@ -126,7 +126,7 @@ namespace RCS.PortableShop.ViewModels
             UpdateAggregates();
         }
 
-        public static readonly BindableProperty DeleteCommandProperty =
+        private static readonly BindableProperty DeleteCommandProperty =
             BindableProperty.Create(nameof(DeleteCommand), typeof(ICommand), typeof(ShoppingCartViewModel));
 
         public ICommand DeleteCommand
@@ -183,21 +183,21 @@ namespace RCS.PortableShop.ViewModels
             });
         }
 
-        public int Count()
+        private int Count()
         {
             return Items.Count > 0
                 ? Items.Sum(item => item.Quantity)
                 : 0;
         }
 
-        public decimal Value()
+        private decimal Value()
         {
             return Items.Count > 0
                 ? Items.Sum(item => item.Value)
                 : 0;
         }
 
-        public static readonly BindableProperty ProductItemCountProperty =
+        private static readonly BindableProperty ProductItemCountProperty =
             BindableProperty.Create(nameof(ProductItemsCount), typeof(int), typeof(ShoppingCartViewModel), 0);
 
         public int ProductItemsCount
@@ -210,7 +210,7 @@ namespace RCS.PortableShop.ViewModels
             }
         }
 
-        public static readonly BindableProperty TotalValueProperty =
+        private static readonly BindableProperty TotalValueProperty =
             BindableProperty.Create(nameof(TotalValue), typeof(decimal), typeof(ShoppingCartViewModel), (decimal)0);
 
         public decimal TotalValue

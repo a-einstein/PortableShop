@@ -18,7 +18,7 @@ namespace RCS.PortableShop.Model
         #endregion
 
         #region Refresh
-        protected TCollection items = new TCollection();
+        protected readonly TCollection items = new TCollection();
 
         // Note this is directly accesible but not amendable.
         public ReadOnlyCollection<TElement> Items
@@ -26,7 +26,7 @@ namespace RCS.PortableShop.Model
             get { return items.AsReadOnly(); }
         }
 
-        public async Task Clear()
+        protected async Task Clear()
         {
             await Task.Run(() =>
             {
@@ -49,7 +49,6 @@ namespace RCS.PortableShop.Model
             catch (Exception exception)
             {
                 SendMessage(exception);
-                return;
             }
         }
         #endregion

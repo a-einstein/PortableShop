@@ -39,7 +39,7 @@ namespace RCS.PortableShop.Common.Behaviors
         private static readonly BindablePropertyKey IsValidPropertyKey =
             BindableProperty.CreateReadOnly(nameof(IsValid), typeof(bool), typeof(EntryRegexValidationBehavior), false);
 
-        public static readonly BindableProperty IsValidProperty = IsValidPropertyKey.BindableProperty;
+        private static readonly BindableProperty IsValidProperty = IsValidPropertyKey.BindableProperty;
 
         public bool IsValid
         {
@@ -97,7 +97,7 @@ namespace RCS.PortableShop.Common.Behaviors
         // An initial binding usually works without, even without being a BindableProperty.
         // TODO This seems superfluous for a BindableProperty.
         // This signal can be particularly useful if a collection is entirely replaced, as the formerly bound collection no longer can.
-        protected void RaisePropertyChanged(string propertyName)
+        private void RaisePropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

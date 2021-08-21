@@ -20,13 +20,13 @@ namespace RCS.PortableShop.Model
 
         protected void SendMessage(FaultException<ExceptionDetail> exception)
         {
-            var detail = exception?.Detail?.InnerException?.Message;
+            var detailMessage = exception?.Detail?.InnerException?.Message;
 
-            if (detail.Length > 10)
+            if (detailMessage?.Length > 10)
                 // Trim trailing details like user name.
-                detail = $"{detail.Remove(11)}...";
+                detailMessage = $"{detailMessage.Remove(11)}...";
 
-            SendMessage(exception, detail);
+            SendMessage(exception, detailMessage);
         }
 
         protected void SendMessage(Exception exception)
@@ -40,7 +40,7 @@ namespace RCS.PortableShop.Model
         {
             var message = $"{exception?.Message}{Environment.NewLine}{detail}";
 
-            MessagingCenter.Send<ProductsServiceConsumer, string>(this, Message.ServiceError.ToString(), message);
+            MessagingCenter.Send(this, Message.ServiceError.ToString(), message);
         }
 
         #endregion

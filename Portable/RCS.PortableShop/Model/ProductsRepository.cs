@@ -26,7 +26,7 @@ namespace RCS.PortableShop.Model
 
         #region CRUD
         // TODO This should get paged with an optional pagesize.
-        protected async Task Read(ProductCategory category, ProductSubcategory subcategory, string namePart)
+        private async Task Read(ProductCategory category, ProductSubcategory subcategory, string namePart)
         {
             ProductsOverviewList productsOverview;
 

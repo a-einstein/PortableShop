@@ -25,7 +25,8 @@ namespace RCS.PortableShop.Common.ViewModels
         #endregion
 
         #region Refresh
-        public static readonly BindableProperty MessageProperty =
+
+        private static readonly BindableProperty MessageProperty =
             BindableProperty.Create(nameof(Message), typeof(string), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>));
 
         public string Message
@@ -94,7 +95,7 @@ namespace RCS.PortableShop.Common.ViewModels
         #region Filtering
         protected abstract Task<bool> InitializeFilters();
 
-        public static readonly BindableProperty MasterFilterItemsProperty =
+        private static readonly BindableProperty MasterFilterItemsProperty =
             BindableProperty.Create(nameof(MasterFilterItems), typeof(ObservableCollection<TMasterFilterItem>), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>), new ObservableCollection<TMasterFilterItem>());
 
         // Note there seems to be an issue with updating bindings by ObservableCollection, or on the particular controls. See consequences elsewhere.
@@ -108,7 +109,7 @@ namespace RCS.PortableShop.Common.ViewModels
             }
         }
 
-        public static readonly BindableProperty MasterFilterValueProperty =
+        private static readonly BindableProperty MasterFilterValueProperty =
             BindableProperty.Create(nameof(MasterFilterValue), typeof(TMasterFilterItem), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>), propertyChanged: OnMasterFilterValueChanged);
 
         public virtual TMasterFilterItem MasterFilterValue
@@ -154,7 +155,7 @@ namespace RCS.PortableShop.Common.ViewModels
 
         protected Collection<TDetailFilterItem> DetailFilterItemsSource { get; } = new Collection<TDetailFilterItem>();
 
-        public static readonly BindableProperty DetailFilterItemsProperty =
+        private static readonly BindableProperty DetailFilterItemsProperty =
             BindableProperty.Create(nameof(DetailFilterItems), typeof(ObservableCollection<TDetailFilterItem>), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>), new ObservableCollection<TDetailFilterItem>());
 
         // Note there seems to be an issue with updating bindings by ObservableCollection, or on the particular controls. See consequences elsewhere.
@@ -168,11 +169,11 @@ namespace RCS.PortableShop.Common.ViewModels
             }
         }
 
-        public static readonly BindableProperty DetailFilterValueProperty =
+        private static readonly BindableProperty DetailFilterValueProperty =
             BindableProperty.Create(nameof(DetailFilterValue), typeof(TDetailFilterItem), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>));
 
         // Note DetailFilterValue should only have a value if MasterFilterValue has.
-        public TDetailFilterItem DetailFilterValue
+        public virtual TDetailFilterItem DetailFilterValue
         {
             get => (TDetailFilterItem)GetValue(DetailFilterValueProperty);
             set
@@ -182,7 +183,7 @@ namespace RCS.PortableShop.Common.ViewModels
             }
         }
 
-        public static readonly BindableProperty TextFilterValueProperty =
+        private static readonly BindableProperty TextFilterValueProperty =
             BindableProperty.Create(nameof(TextFilterValue), typeof(string), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>), defaultBindingMode: BindingMode.TwoWay);
 
         public virtual string TextFilterValue
@@ -200,7 +201,7 @@ namespace RCS.PortableShop.Common.ViewModels
 
         protected abstract Task<bool> ReadFiltered();
 
-        public static readonly BindableProperty FilterCommandProperty =
+        private static readonly BindableProperty FilterCommandProperty =
             BindableProperty.Create(nameof(FilterCommand), typeof(ICommand), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>));
 
         public ICommand FilterCommand
@@ -215,7 +216,8 @@ namespace RCS.PortableShop.Common.ViewModels
         #endregion
 
         #region Navigation
-        public static readonly BindableProperty DetailsCommandProperty =
+
+        private static readonly BindableProperty DetailsCommandProperty =
             BindableProperty.Create(nameof(DetailsCommand), typeof(ICommand), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>));
 
         public ICommand DetailsCommand

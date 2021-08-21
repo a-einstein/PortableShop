@@ -37,7 +37,7 @@ namespace RCS.PortableShop.ViewModels
         #region Filtering
 
         // At least 3 characters.
-        public static readonly BindableProperty ValidTextFilterExpressionProperty =
+        private static readonly BindableProperty ValidTextFilterExpressionProperty =
             BindableProperty.Create(nameof(ValidTextFilterExpression), typeof(string), typeof(ProductsViewModel), @"\w{3}");
 
         public string ValidTextFilterExpression
@@ -120,22 +120,22 @@ namespace RCS.PortableShop.ViewModels
             RaisePropertyChanged(nameof(DetailFilterItems));
         }
 
-        public new ProductCategory MasterFilterValue
+        public override ProductCategory MasterFilterValue
         {
             get => base.MasterFilterValue;
             set
             {
-                Settings.ProductCategoryId = value?.Id ?? null;
+                Settings.ProductCategoryId = value?.Id;
                 base.MasterFilterValue = value;
             }
         }
 
-        public new ProductSubcategory DetailFilterValue
+        public override ProductSubcategory DetailFilterValue
         {
             get => base.DetailFilterValue;
             set
             {
-                Settings.ProductSubategoryId = value?.Id ?? null;
+                Settings.ProductSubategoryId = value?.Id;
                 base.DetailFilterValue = value;
             }
         }
@@ -200,7 +200,8 @@ namespace RCS.PortableShop.ViewModels
         #endregion
 
         #region Shopping
-        public static readonly BindableProperty CartCommandProperty =
+
+        private static readonly BindableProperty CartCommandProperty =
             BindableProperty.Create(nameof(CartCommand), typeof(ICommand), typeof(ProductsViewModel));
 
         public ICommand CartCommand
@@ -213,7 +214,7 @@ namespace RCS.PortableShop.ViewModels
             }
         }
 
-        private void CartProduct(ProductsOverviewObject productsOverviewObject)
+        private static void CartProduct(ProductsOverviewObject productsOverviewObject)
         {
             // TODO Do this directly on the repository? (Might need initialisation first.)
             ShoppingCartViewModel.Instance.CartProduct(productsOverviewObject);

@@ -38,7 +38,8 @@ namespace RCS.PortableShop.ViewModels
         #endregion
 
         #region Photo
-        public static readonly BindableProperty PhotoCommandProperty =
+
+        private static readonly BindableProperty PhotoCommandProperty =
             BindableProperty.Create(nameof(PhotoCommand), typeof(ICommand), typeof(ProductViewModel));
 
         public ICommand PhotoCommand
@@ -70,7 +71,8 @@ namespace RCS.PortableShop.ViewModels
         #endregion
 
         #region Shopping
-        public static readonly BindableProperty CartCommandProperty =
+
+        private static readonly BindableProperty CartCommandProperty =
             BindableProperty.Create(nameof(CartCommand), typeof(ICommand), typeof(ProductViewModel));
 
         public ICommand CartCommand
@@ -83,7 +85,7 @@ namespace RCS.PortableShop.ViewModels
             }
         }
 
-        private void CartProduct(Product product)
+        private static void CartProduct(Product product)
         {
             // TODO Do this directly on the repository? (Might need initialisation first.)
             ShoppingCartViewModel.Instance.CartProduct(product);

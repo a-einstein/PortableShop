@@ -15,14 +15,15 @@ namespace RCS.PortableShop.ViewModels
             base.SetCommands();
 
             ShowProductsCommand = new Command(async () => await ShowProducts().ConfigureAwait(true));
-            OpenSupportCommand = new Command(() => OpenSupport());
-            UpdateCommand = new Command(() => Update());
+            OpenSupportCommand = new Command(OpenSupport);
+            UpdateCommand = new Command(Update);
             SettingsCommand = new Command(async () => await OpenSettings().ConfigureAwait(true));
         }
         #endregion
 
         #region Products
-        public static readonly BindableProperty ShowProductsCommandProperty =
+
+        private static readonly BindableProperty ShowProductsCommandProperty =
             BindableProperty.Create(nameof(ShowProductsCommand), typeof(ICommand), typeof(MainShellViewModel));
 
         public ICommand ShowProductsCommand
@@ -35,7 +36,7 @@ namespace RCS.PortableShop.ViewModels
             }
         }
 
-        protected static async Task ShowProducts()
+        private static async Task ShowProducts()
         {
             Shell.FlyoutIsPresented = false;
             await PopToRoot().ConfigureAwait(true);
@@ -52,7 +53,7 @@ namespace RCS.PortableShop.ViewModels
 
         #region Support
 
-        public static readonly BindableProperty OpenSupportCommandProperty =
+        private static readonly BindableProperty OpenSupportCommandProperty =
             BindableProperty.Create(nameof(OpenSupportCommand), typeof(ICommand), typeof(MainShellViewModel));
 
         public ICommand OpenSupportCommand
@@ -65,7 +66,7 @@ namespace RCS.PortableShop.ViewModels
             }
         }
 
-        protected static void OpenSupport()
+        private static void OpenSupport()
         {
             // TODO Make this Configureable.
             OpenWeb("https://github.com/a-einstein/PortableShop/blob/master/README.md");
@@ -73,7 +74,8 @@ namespace RCS.PortableShop.ViewModels
         #endregion
 
         #region Update
-        public static readonly BindableProperty UpdateCommandProperty =
+
+        private static readonly BindableProperty UpdateCommandProperty =
              BindableProperty.Create(nameof(UpdateCommand), typeof(ICommand), typeof(MainShellViewModel));
 
         public ICommand UpdateCommand
@@ -86,7 +88,7 @@ namespace RCS.PortableShop.ViewModels
             }
         }
 
-        protected static void Update()
+        private static void Update()
         {
             // Note this is only very rough and may fail on the still open application and other technicalities afterwards.
 
@@ -98,7 +100,7 @@ namespace RCS.PortableShop.ViewModels
         #endregion
 
         #region Settings
-        public static readonly BindableProperty SettingsCommandProperty =
+        private static readonly BindableProperty SettingsCommandProperty =
              BindableProperty.Create(nameof(SettingsCommand), typeof(ICommand), typeof(MainShellViewModel));
 
         public ICommand SettingsCommand
@@ -111,7 +113,7 @@ namespace RCS.PortableShop.ViewModels
             }
         }
 
-        protected static async Task OpenSettings()
+        private static async Task OpenSettings()
         {
             // TODO Open this IN flyout?
             Shell.FlyoutIsPresented = false;

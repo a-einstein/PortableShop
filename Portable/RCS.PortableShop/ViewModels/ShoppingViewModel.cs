@@ -19,7 +19,8 @@ namespace RCS.PortableShop.ViewModels
         #endregion
 
         #region Navigation
-        public static readonly BindableProperty ShowCartCommandProperty =
+
+        private static readonly BindableProperty ShowCartCommandProperty =
              BindableProperty.Create(nameof(ShowCartCommand), typeof(ICommand), typeof(ShoppingWrapperViewModel));
 
         public ICommand ShowCartCommand

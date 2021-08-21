@@ -15,7 +15,7 @@ namespace RCS.PortableShop.Common.ViewModels
         #endregion
 
         #region Refresh
-        public static readonly BindableProperty AwaitingProperty =
+        private static readonly BindableProperty AwaitingProperty =
             BindableProperty.Create(nameof(Awaiting), typeof(bool), typeof(ViewModel), false);
 
         public virtual bool Awaiting
@@ -58,7 +58,7 @@ namespace RCS.PortableShop.Common.ViewModels
             {
                 initialized = true;
 
-                await Task.Run(() => SetCommands()).ConfigureAwait(true);
+                await Task.Run(SetCommands).ConfigureAwait(true);
             }
 
             return initialized;
@@ -82,7 +82,7 @@ namespace RCS.PortableShop.Common.ViewModels
 
         public virtual string MakeTitle() { return TitleDefault; }
 
-        public static readonly BindableProperty TitleProperty =
+        protected static readonly BindableProperty TitleProperty =
             BindableProperty.Create(nameof(Title), typeof(string), typeof(ViewModel), propertyChanged: TitleChanged, defaultValue: TitleDefault);
 
         public string Title

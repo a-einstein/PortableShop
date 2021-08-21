@@ -67,7 +67,7 @@ namespace RCS.PortableShop.Model
             await task;
 
             if (!task.Result)
-                MessagingCenter.Send<CartItemsRepository>(this, Message.CartError.ToString());
+                MessagingCenter.Send(this, Message.CartError.ToString());
         }
 
         public override async Task Delete(CartItem proxy)
@@ -82,7 +82,7 @@ namespace RCS.PortableShop.Model
                 }
                 else
                 {
-                    MessagingCenter.Send<CartItemsRepository>(this, Message.CartError.ToString());
+                    MessagingCenter.Send(this, Message.CartError.ToString());
                 }
             });
         }
