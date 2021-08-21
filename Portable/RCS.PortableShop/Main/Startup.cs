@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Hosting;
 using RCS.PortableShop.Model;
 using RCS.PortableShop.ServiceClients.Products.Wrappers;
+using RCS.PortableShop.ViewModels;
 using System;
 using Xamarin.Essentials;
 
@@ -68,6 +69,8 @@ namespace RCS.PortableShop.Main
                 services.AddSingleton<ProductSubcategoriesRepository>();
                 services.AddSingleton<ProductsRepository>();
                 services.AddSingleton<CartItemsRepository>();
+
+                services.AddSingleton<ShoppingCartViewModel>();
             });
 
             var host = hostBuilder.Build();

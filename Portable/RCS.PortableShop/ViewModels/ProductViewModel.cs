@@ -22,8 +22,9 @@ namespace RCS.PortableShop.ViewModels
         }
         #endregion
 
-        #region Repositories
+        #region Services
         private static ProductsRepository ProductsRepository => Startup.ServiceProvider.GetRequiredService<ProductsRepository>();
+        private static ShoppingCartViewModel ShoppingCartViewModel => Startup.ServiceProvider.GetRequiredService<ShoppingCartViewModel>();
         #endregion
 
         #region Refresh
@@ -88,7 +89,7 @@ namespace RCS.PortableShop.ViewModels
         private static void CartProduct(Product product)
         {
             // TODO Do this directly on the repository? (Might need initialisation first.)
-            ShoppingCartViewModel.Instance.CartProduct(product);
+            ShoppingCartViewModel.CartProduct(product);
         }
         #endregion
     }

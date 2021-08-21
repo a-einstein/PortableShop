@@ -28,14 +28,15 @@ namespace RCS.PortableShop.ViewModels
         }
         #endregion
 
-        #region Repositories
+        #region Services
         private static ProductCategoriesRepository ProductCategoriesRepository => Startup.ServiceProvider.GetRequiredService<ProductCategoriesRepository>();
         private static ProductSubcategoriesRepository ProductSubcategoriesRepository => Startup.ServiceProvider.GetRequiredService<ProductSubcategoriesRepository>();
         private static ProductsRepository ProductsRepository => Startup.ServiceProvider.GetRequiredService<ProductsRepository>();
+       
+        private static ShoppingCartViewModel ShoppingCartViewModel => Startup.ServiceProvider.GetRequiredService<ShoppingCartViewModel>();
         #endregion
 
         #region Filtering
-
         // At least 3 characters.
         private static readonly BindableProperty ValidTextFilterExpressionProperty =
             BindableProperty.Create(nameof(ValidTextFilterExpression), typeof(string), typeof(ProductsViewModel), @"\w{3}");
@@ -200,7 +201,6 @@ namespace RCS.PortableShop.ViewModels
         #endregion
 
         #region Shopping
-
         private static readonly BindableProperty CartCommandProperty =
             BindableProperty.Create(nameof(CartCommand), typeof(ICommand), typeof(ProductsViewModel));
 
@@ -217,7 +217,7 @@ namespace RCS.PortableShop.ViewModels
         private static void CartProduct(ProductsOverviewObject productsOverviewObject)
         {
             // TODO Do this directly on the repository? (Might need initialisation first.)
-            ShoppingCartViewModel.Instance.CartProduct(productsOverviewObject);
+            ShoppingCartViewModel.CartProduct(productsOverviewObject);
         }
         #endregion
     }

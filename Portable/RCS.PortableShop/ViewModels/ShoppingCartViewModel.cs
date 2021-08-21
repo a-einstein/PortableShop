@@ -16,38 +16,7 @@ namespace RCS.PortableShop.ViewModels
 {
     public class ShoppingCartViewModel : ItemsViewModel<CartItem>
     {
-        /*
-        TODO This is a bit overdone. It is a double singleton. Only one of those is necessary because it stores in memory. 
-        Once bound to the combination of a user and a database with instant updates THAT would be the singleton data store.
-        The current sharing of List as Items is undesirable, but done to prevent the otherwise necessary synchronisation of them.
-        This relates to warning CA2227 on Items and the like.
-        */
-
         #region Construction
-        private ShoppingCartViewModel()
-        { }
-
-        private static volatile ShoppingCartViewModel instance;
-        private static readonly object syncRoot = new object();
-
-        // Note this class is a singleton, implemented along the way (but not entirely) of https://msdn.microsoft.com/en-us/library/ff650316.aspx
-        public static ShoppingCartViewModel Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    lock (syncRoot)
-                    {
-                        if (instance == null)
-                            instance = new ShoppingCartViewModel();
-                    }
-                }
-
-                return instance;
-            }
-        }
-
         protected override void SetCommands()
         {
             base.SetCommands();
@@ -118,8 +87,8 @@ namespace RCS.PortableShop.ViewModels
              {
                  foreach (var item in CartItemsRepository.Items)
                  {
-                     // Use a copy to maintain separation between this and the repository though they contain the same type of items.
-                     Items.Add(item.Copy());
+             // Use a copy to maintain separation between this and the repository though they contain the same type of items.
+             Items.Add(item.Copy());
                  }
              }).ConfigureAwait(true);
 
