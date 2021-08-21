@@ -125,7 +125,7 @@ namespace RCS.PortableShop.ViewModels
             get => base.MasterFilterValue;
             set
             {
-                Settings.ProductCategoryId = value?.Id ?? null;
+                Settings.ProductCategoryId = value?.Id;
                 base.MasterFilterValue = value;
             }
         }
@@ -135,7 +135,7 @@ namespace RCS.PortableShop.ViewModels
             get => base.DetailFilterValue;
             set
             {
-                Settings.ProductSubategoryId = value?.Id ?? null;
+                Settings.ProductSubategoryId = value?.Id;
                 base.DetailFilterValue = value;
             }
         }

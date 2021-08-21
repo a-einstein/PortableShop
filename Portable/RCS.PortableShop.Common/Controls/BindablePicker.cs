@@ -26,7 +26,7 @@ namespace RCS.PortableShop.Common.Controls
 
         public new object SelectedItem
         {
-            get => (object)GetValue(SelectedItemProperty);
+            get => GetValue(SelectedItemProperty);
             set => SetValue(SelectedItemProperty, value);
         }
 

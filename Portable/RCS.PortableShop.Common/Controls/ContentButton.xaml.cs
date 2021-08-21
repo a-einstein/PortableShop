@@ -29,7 +29,7 @@ namespace RCS.PortableShop.Common.Controls
 
         public object CommandParameter
         {
-            get => (object)GetValue(CommandParameterProperty);
+            get => GetValue(CommandParameterProperty);
             set => SetValue(CommandParameterProperty, value);
         }
 

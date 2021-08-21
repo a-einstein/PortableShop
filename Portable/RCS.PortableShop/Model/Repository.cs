@@ -49,7 +49,6 @@ namespace RCS.PortableShop.Model
             catch (Exception exception)
             {
                 SendMessage(exception);
-                return;
             }
         }
         #endregion
