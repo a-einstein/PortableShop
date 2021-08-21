@@ -83,7 +83,7 @@ namespace RCS.PortableShop.UWP
         /// </summary>
         /// <param name="sender">The Frame which failed navigation</param>
         /// <param name="e">Details about the navigation failure</param>
-        static void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
+        private static void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
         {
             throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
         }

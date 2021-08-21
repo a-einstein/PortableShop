@@ -75,7 +75,7 @@ namespace RCS.PortableShop.Main
             ServiceProvider = host.Services;
         }
 
-        enum Platform
+        private enum Platform
         {
             Unknown = 0,
             Android,

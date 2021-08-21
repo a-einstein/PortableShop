@@ -61,7 +61,7 @@ namespace RCS.PortableShop.ViewModels
         #endregion
 
         #region Refresh
-        bool dirty = false;
+        private bool dirty = false;
 
         public override async Task Refresh()
         {
