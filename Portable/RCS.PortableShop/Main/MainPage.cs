@@ -91,11 +91,15 @@ namespace RCS.PortableShop.Main
             // Note the thread is particularly relevant for UWP.
             MainThread.BeginInvokeOnMainThread(async () =>
             {
-                // TODO Check this.
-                var continuation = (quit) 
-                //? Labels.Quit
-                ? Labels.Close
+                // Note below about Quit. 
+                // TODO Activate when possible, if ever.
+                /*
+                var continuation = (quit)
+                ? Labels.Quit
                 : Labels.Close;
+                */
+                var continuation = Labels.Close;
+
 
                 if (string.IsNullOrWhiteSpace(details))
                     await page.DisplayAlert(kind, description, continuation).ConfigureAwait(true);
@@ -107,10 +111,12 @@ namespace RCS.PortableShop.Main
                         await page.DisplayAlert(Labels.Details, details, Labels.Close).ConfigureAwait(true);
                 }
 
+                /*
                 if (quit)
                     // Aparently this is not (yet) implemented.
                     // https://github.com/xamarin/Xamarin.Forms/issues/10636
                     Application.Current.Quit();
+                */
             });
         }
 
