@@ -48,7 +48,7 @@ namespace RCS.PortableShop.Common.Extensions
             {
                 var bindableProperty = BindableProperty.Create
                 (
-                    $"Property-{Guid.NewGuid().ToString("N")}",
+                    $"Property-{Guid.NewGuid():N}",
                     typeof(object),
                     typeof(MultiBinding),
                     default,
