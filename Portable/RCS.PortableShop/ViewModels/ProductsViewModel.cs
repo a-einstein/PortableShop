@@ -6,6 +6,7 @@ using RCS.PortableShop.Main;
 using RCS.PortableShop.Model;
 using RCS.PortableShop.Views;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
@@ -20,6 +21,16 @@ namespace RCS.PortableShop.ViewModels
     public class ProductsViewModel : FilterItemsViewModel<ProductsOverviewObject, ProductCategory, ProductSubcategory>, IShopper
     {
         #region Construction
+        public ProductsViewModel(
+            IRepository<List<ProductCategory>, ProductCategory> productCategoriesRepository,
+            IRepository<List<ProductSubcategory>, ProductSubcategory> productSubcategoriesRepository,
+            IFilterRepository<List<ProductsOverviewObject>, ProductsOverviewObject> productsRepository)
+        {
+            ProductCategoriesRepository = productCategoriesRepository;
+            ProductSubcategoriesRepository = productSubcategoriesRepository;
+            ProductsRepository = productsRepository;
+        }
+
         protected override void SetCommands()
         {
             base.SetCommands();
@@ -28,14 +39,16 @@ namespace RCS.PortableShop.ViewModels
         }
         #endregion
 
-        #region Repositories
-        private static ProductCategoriesRepository ProductCategoriesRepository => Startup.ServiceProvider.GetRequiredService<ProductCategoriesRepository>();
-        private static ProductSubcategoriesRepository ProductSubcategoriesRepository => Startup.ServiceProvider.GetRequiredService<ProductSubcategoriesRepository>();
-        private static ProductsRepository ProductsRepository => Startup.ServiceProvider.GetRequiredService<ProductsRepository>();
+        #region Services
+        private IRepository<List<ProductCategory>, ProductCategory> ProductCategoriesRepository { get; }
+        private IRepository<List<ProductSubcategory>, ProductSubcategory> ProductSubcategoriesRepository { get; }
+        private IFilterRepository<List<ProductsOverviewObject>, ProductsOverviewObject> ProductsRepository { get; }
+
+        private static ProductViewModel ProductViewModel => Startup.ServiceProvider.GetRequiredService<ProductViewModel>();
+        private static ShoppingCartViewModel ShoppingCartViewModel => Startup.ServiceProvider.GetRequiredService<ShoppingCartViewModel>();
         #endregion
 
         #region Filtering
-
         // At least 3 characters.
         private static readonly BindableProperty ValidTextFilterExpressionProperty =
             BindableProperty.Create(nameof(ValidTextFilterExpression), typeof(string), typeof(ProductsViewModel), @"\w{3}");
@@ -190,7 +203,8 @@ namespace RCS.PortableShop.ViewModels
         #region Navigation
         protected override async void ShowDetails(ProductsOverviewObject productsOverviewObject)
         {
-            var productView = new ProductView() { ViewModel = new ProductViewModel() { ItemId = productsOverviewObject.Id } };
+            ProductViewModel.ItemId = productsOverviewObject.Id;
+            var productView = new ProductView() { ViewModel = ProductViewModel };
 
             var wrapperViewModel = new ShoppingWrapperViewModel() { WrappedContent = productView };
             var wrapperView = new ShoppingWrapperView() { ViewModel = wrapperViewModel };
@@ -200,7 +214,6 @@ namespace RCS.PortableShop.ViewModels
         #endregion
 
         #region Shopping
-
         private static readonly BindableProperty CartCommandProperty =
             BindableProperty.Create(nameof(CartCommand), typeof(ICommand), typeof(ProductsViewModel));
 
@@ -217,7 +230,7 @@ namespace RCS.PortableShop.ViewModels
         private static void CartProduct(ProductsOverviewObject productsOverviewObject)
         {
             // TODO Do this directly on the repository? (Might need initialisation first.)
-            ShoppingCartViewModel.Instance.CartProduct(productsOverviewObject);
+            ShoppingCartViewModel.CartProduct(productsOverviewObject);
         }
         #endregion
     }

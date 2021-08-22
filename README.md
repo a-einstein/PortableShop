@@ -8,6 +8,7 @@
 Working portable (Android & UWP) application for test and demo purpose based on Xamarin Forms. It simulates limited shopping capabilities based on the AdventureWorks database.
 
 #### News
+* Dependency injection has got a major improvement.
 * UWP has been added as a client, besides Android.
 * Release is now to GitHub with an automatic change summary.
 

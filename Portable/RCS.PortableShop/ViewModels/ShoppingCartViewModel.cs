@@ -1,9 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using RCS.AdventureWorks.Common.DomainClasses;
+﻿using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.PortableShop.Common.ViewModels;
-using RCS.PortableShop.Main;
-using RCS.PortableShop.Model;
+using RCS.PortableShop.Interfaces;
 using RCS.PortableShop.Resources;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
@@ -12,40 +11,15 @@ using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
+
 namespace RCS.PortableShop.ViewModels
 {
     public class ShoppingCartViewModel : ItemsViewModel<CartItem>
     {
-        /*
-        TODO This is a bit overdone. It is a double singleton. Only one of those is necessary because it stores in memory. 
-        Once bound to the combination of a user and a database with instant updates THAT would be the singleton data store.
-        The current sharing of List as Items is undesirable, but done to prevent the otherwise necessary synchronisation of them.
-        This relates to warning CA2227 on Items and the like.
-        */
-
         #region Construction
-        private ShoppingCartViewModel()
-        { }
-
-        private static volatile ShoppingCartViewModel instance;
-        private static readonly object syncRoot = new object();
-
-        // Note this class is a singleton, implemented along the way (but not entirely) of https://msdn.microsoft.com/en-us/library/ff650316.aspx
-        public static ShoppingCartViewModel Instance
+        public ShoppingCartViewModel(IRepository<List<CartItem>, CartItem> cartItemsRepository)
         {
-            get
-            {
-                if (instance == null)
-                {
-                    lock (syncRoot)
-                    {
-                        if (instance == null)
-                            instance = new ShoppingCartViewModel();
-                    }
-                }
-
-                return instance;
-            }
+            CartItemsRepository = cartItemsRepository;
         }
 
         protected override void SetCommands()
@@ -56,8 +30,8 @@ namespace RCS.PortableShop.ViewModels
         }
         #endregion
 
-        #region Repositories
-        private static CartItemsRepository CartItemsRepository => Startup.ServiceProvider.GetRequiredService<CartItemsRepository>();
+        #region Services
+        private IRepository<List<CartItem>, CartItem> CartItemsRepository { get; }
         #endregion
 
         #region Refresh
@@ -101,7 +75,7 @@ namespace RCS.PortableShop.ViewModels
 
             if (existing == default)
             {
-                await CartItemsRepository.Create(productsOverviewObject).ConfigureAwait(true);
+                await CartItemsRepository.Create(new CartItem(productsOverviewObject)).ConfigureAwait(true);
                 dirty = true;
                 await Refresh().ConfigureAwait(true);
             }

@@ -1,8 +1,12 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using RCS.AdventureWorks.Common.DomainClasses;
+using RCS.PortableShop.Interfaces;
 using RCS.PortableShop.Model;
 using RCS.PortableShop.ServiceClients.Products.Wrappers;
+using RCS.PortableShop.ViewModels;
 using System;
+using System.Collections.Generic;
 using Xamarin.Essentials;
 
 namespace RCS.PortableShop.Main
@@ -63,11 +67,16 @@ namespace RCS.PortableShop.Main
                         break;
                 }
 
-                // Note this does not work (yet) as true injection by an interface.
-                services.AddSingleton<ProductCategoriesRepository>();
-                services.AddSingleton<ProductSubcategoriesRepository>();
-                services.AddSingleton<ProductsRepository>();
-                services.AddSingleton<CartItemsRepository>();
+                // Use interfaces for constructor injections.
+                services.AddSingleton<IRepository<List<ProductCategory>, ProductCategory>, ProductCategoriesRepository>();
+                services.AddSingleton<IRepository<List<ProductSubcategory>, ProductSubcategory>, ProductSubcategoriesRepository>();
+                services.AddSingleton<IFilterRepository<List<ProductsOverviewObject>, ProductsOverviewObject>, ProductsRepository>();
+                services.AddSingleton<IRepository<List<CartItem>, CartItem>, CartItemsRepository>();
+
+                // Use types for explicit requests, implicitly using repositories.
+                services.AddSingleton<ProductsViewModel>();
+                services.AddSingleton<ProductViewModel>();
+                services.AddSingleton<ShoppingCartViewModel>();
             });
 
             var host = hostBuilder.Build();

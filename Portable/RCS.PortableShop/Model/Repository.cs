@@ -1,4 +1,5 @@
-﻿using RCS.PortableShop.ServiceClients.Products.Wrappers;
+﻿using RCS.PortableShop.Interfaces;
+using RCS.PortableShop.ServiceClients.Products.Wrappers;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -7,7 +8,9 @@ using System.Threading.Tasks;
 namespace RCS.PortableShop.Model
 {
     // TODO Simplify this definition, remove TCollection.
-    public abstract class Repository<TCollection, TElement> : ProductsServiceConsumer
+    public abstract class Repository<TCollection, TElement> :
+        ProductsServiceConsumer,
+        IRepository<TCollection, TElement>
         where TCollection : List<TElement>, new()
     {
         #region Construction

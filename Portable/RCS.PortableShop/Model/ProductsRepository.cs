@@ -1,5 +1,6 @@
 ﻿using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.AdventureWorks.Common.Dtos;
+using RCS.PortableShop.Interfaces;
 using RCS.PortableShop.ServiceClients.Products.Wrappers;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,9 @@ using System.Threading.Tasks;
 
 namespace RCS.PortableShop.Model
 {
-    public class ProductsRepository : Repository<List<ProductsOverviewObject>, ProductsOverviewObject>
+    public class ProductsRepository :
+        Repository<List<ProductsOverviewObject>, ProductsOverviewObject>,
+        IFilterRepository<List<ProductsOverviewObject>, ProductsOverviewObject>
     {
         #region Construction
         public ProductsRepository(IProductService productService)

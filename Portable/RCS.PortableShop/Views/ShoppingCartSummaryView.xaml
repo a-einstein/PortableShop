@@ -1,13 +1,11 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
-<baseClasses:ImplicitModelView
+<baseClasses:View
     x:Class="RCS.PortableShop.Views.ShoppingCartSummaryView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:baseClasses="clr-namespace:RCS.PortableShop.Common.Views;assembly=RCS.PortableShop.Common"
     xmlns:localization="clr-namespace:RCS.PortableShop.Localization;assembly=RCS.PortableShop"
-    xmlns:viewModels="clr-namespace:RCS.PortableShop.ViewModels;assembly=RCS.PortableShop"
-    baseClasses:View.ViewModel="{x:Static viewModels:ShoppingCartViewModel.Instance}"
     >
 
     <!--
@@ -25,4 +23,4 @@
         <Label Text="{Binding TotalValue, StringFormat='{}{0:C2}'}" Style="{StaticResource ValueEmphasisMediumLabelStyle}"/>
         <Label Text="{localization:Translate TotalValue}" FontSize="Medium"/>
     </StackLayout>
-</baseClasses:ImplicitModelView>
+</baseClasses:View>
