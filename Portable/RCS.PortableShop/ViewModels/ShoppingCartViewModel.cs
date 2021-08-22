@@ -1,7 +1,8 @@
 ﻿using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.PortableShop.Common.ViewModels;
-using RCS.PortableShop.Model;
+using RCS.PortableShop.Interfaces;
 using RCS.PortableShop.Resources;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
@@ -10,12 +11,13 @@ using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
+
 namespace RCS.PortableShop.ViewModels
 {
     public class ShoppingCartViewModel : ItemsViewModel<CartItem>
     {
         #region Construction
-        public ShoppingCartViewModel(CartItemsRepository cartItemsRepository)
+        public ShoppingCartViewModel(IRepository<List<CartItem>, CartItem> cartItemsRepository)
         {
             CartItemsRepository = cartItemsRepository;
         }
@@ -29,7 +31,7 @@ namespace RCS.PortableShop.ViewModels
         #endregion
 
         #region Services
-        private CartItemsRepository CartItemsRepository { get; }
+        private IRepository<List<CartItem>, CartItem> CartItemsRepository { get; }
         #endregion
 
         #region Refresh
@@ -73,7 +75,7 @@ namespace RCS.PortableShop.ViewModels
 
             if (existing == default)
             {
-                await CartItemsRepository.Create(productsOverviewObject).ConfigureAwait(true);
+                await CartItemsRepository.Create(new CartItem(productsOverviewObject)).ConfigureAwait(true);
                 dirty = true;
                 await Refresh().ConfigureAwait(true);
             }

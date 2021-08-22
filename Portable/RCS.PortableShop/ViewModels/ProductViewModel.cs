@@ -3,7 +3,7 @@ using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.PortableShop.Common.ViewModels;
 using RCS.PortableShop.Interfaces;
 using RCS.PortableShop.Main;
-using RCS.PortableShop.Model;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -13,7 +13,7 @@ namespace RCS.PortableShop.ViewModels
     public class ProductViewModel : ItemViewModel<Product>, IShopper
     {
         #region Construction
-        public ProductViewModel(ProductsRepository productsRepository)
+        public ProductViewModel(IFilterRepository<List<ProductsOverviewObject>, ProductsOverviewObject> productsRepository)
         {
             ProductsRepository = productsRepository;
         }
@@ -28,7 +28,7 @@ namespace RCS.PortableShop.ViewModels
         #endregion
 
         #region Services
-        private ProductsRepository ProductsRepository { get; }
+        private IFilterRepository<List<ProductsOverviewObject>, ProductsOverviewObject> ProductsRepository { get; }
 
         private static ShoppingCartViewModel ShoppingCartViewModel => Startup.ServiceProvider.GetRequiredService<ShoppingCartViewModel>();
         #endregion
