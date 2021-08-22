@@ -20,6 +20,16 @@ namespace RCS.PortableShop.ViewModels
     public class ProductsViewModel : FilterItemsViewModel<ProductsOverviewObject, ProductCategory, ProductSubcategory>, IShopper
     {
         #region Construction
+        public ProductsViewModel(
+            ProductCategoriesRepository productCategoriesRepository,
+            ProductSubcategoriesRepository productSubcategoriesRepository,
+            ProductsRepository productsRepository)
+        {
+            ProductCategoriesRepository = productCategoriesRepository;
+            ProductSubcategoriesRepository = productSubcategoriesRepository;
+            ProductsRepository = productsRepository;
+        }
+
         protected override void SetCommands()
         {
             base.SetCommands();
@@ -29,10 +39,11 @@ namespace RCS.PortableShop.ViewModels
         #endregion
 
         #region Services
-        private static ProductCategoriesRepository ProductCategoriesRepository => Startup.ServiceProvider.GetRequiredService<ProductCategoriesRepository>();
-        private static ProductSubcategoriesRepository ProductSubcategoriesRepository => Startup.ServiceProvider.GetRequiredService<ProductSubcategoriesRepository>();
-        private static ProductsRepository ProductsRepository => Startup.ServiceProvider.GetRequiredService<ProductsRepository>();
-       
+        private ProductCategoriesRepository ProductCategoriesRepository { get; }
+        private ProductSubcategoriesRepository ProductSubcategoriesRepository { get; }
+        private ProductsRepository ProductsRepository { get; }
+
+        private static ProductViewModel ProductViewModel => Startup.ServiceProvider.GetRequiredService<ProductViewModel>();
         private static ShoppingCartViewModel ShoppingCartViewModel => Startup.ServiceProvider.GetRequiredService<ShoppingCartViewModel>();
         #endregion
 
@@ -191,7 +202,8 @@ namespace RCS.PortableShop.ViewModels
         #region Navigation
         protected override async void ShowDetails(ProductsOverviewObject productsOverviewObject)
         {
-            var productView = new ProductView() { ViewModel = new ProductViewModel() { ItemId = productsOverviewObject.Id } };
+            ProductViewModel.ItemId = productsOverviewObject.Id;
+            var productView = new ProductView() { ViewModel = ProductViewModel };
 
             var wrapperViewModel = new ShoppingWrapperViewModel() { WrappedContent = productView };
             var wrapperView = new ShoppingWrapperView() { ViewModel = wrapperViewModel };

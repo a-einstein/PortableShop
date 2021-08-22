@@ -1,7 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using RCS.AdventureWorks.Common.DomainClasses;
+﻿using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.PortableShop.Common.ViewModels;
-using RCS.PortableShop.Main;
 using RCS.PortableShop.Model;
 using RCS.PortableShop.Resources;
 using System.Collections.Specialized;
@@ -17,6 +15,11 @@ namespace RCS.PortableShop.ViewModels
     public class ShoppingCartViewModel : ItemsViewModel<CartItem>
     {
         #region Construction
+        public ShoppingCartViewModel(CartItemsRepository cartItemsRepository)
+        {
+            CartItemsRepository = cartItemsRepository;
+        }
+
         protected override void SetCommands()
         {
             base.SetCommands();
@@ -25,8 +28,8 @@ namespace RCS.PortableShop.ViewModels
         }
         #endregion
 
-        #region Repositories
-        private static CartItemsRepository CartItemsRepository => Startup.ServiceProvider.GetRequiredService<CartItemsRepository>();
+        #region Services
+        private CartItemsRepository CartItemsRepository { get; }
         #endregion
 
         #region Refresh
@@ -87,8 +90,8 @@ namespace RCS.PortableShop.ViewModels
              {
                  foreach (var item in CartItemsRepository.Items)
                  {
-             // Use a copy to maintain separation between this and the repository though they contain the same type of items.
-             Items.Add(item.Copy());
+                     // Use a copy to maintain separation between this and the repository though they contain the same type of items.
+                     Items.Add(item.Copy());
                  }
              }).ConfigureAwait(true);
 

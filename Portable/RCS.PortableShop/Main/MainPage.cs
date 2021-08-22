@@ -1,4 +1,5 @@
-﻿using RCS.PortableShop.Model;
+﻿using Microsoft.Extensions.DependencyInjection;
+using RCS.PortableShop.Model;
 using RCS.PortableShop.Resources;
 using RCS.PortableShop.ServiceClients.Products.Wrappers;
 using RCS.PortableShop.ViewModels;
@@ -13,6 +14,10 @@ namespace RCS.PortableShop.Main
 {
     public class MainPage : Page
     {
+        #region Services
+        private static ProductsViewModel ProductsViewModel => Startup.ServiceProvider.GetRequiredService<ProductsViewModel>();
+        #endregion
+
         protected override async void OnAppearing()
         {
             base.OnAppearing();
@@ -43,7 +48,7 @@ namespace RCS.PortableShop.Main
 
                 SubscribeMessages(this);
 
-                var productsView = new ProductsView() { ViewModel = new ProductsViewModel() };
+                var productsView = new ProductsView() { ViewModel = ProductsViewModel };
 
                 var shoppingWrapperViewModel = new ShoppingWrapperViewModel() { WrappedContent = productsView };
                 var shoppingWrapperView = new ShoppingWrapperView() { ViewModel = shoppingWrapperViewModel };

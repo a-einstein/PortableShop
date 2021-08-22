@@ -13,6 +13,11 @@ namespace RCS.PortableShop.ViewModels
     public class ProductViewModel : ItemViewModel<Product>, IShopper
     {
         #region Construction
+        public ProductViewModel(ProductsRepository productsRepository)
+        {
+            ProductsRepository = productsRepository;
+        }
+
         protected override void SetCommands()
         {
             base.SetCommands();
@@ -23,7 +28,8 @@ namespace RCS.PortableShop.ViewModels
         #endregion
 
         #region Services
-        private static ProductsRepository ProductsRepository => Startup.ServiceProvider.GetRequiredService<ProductsRepository>();
+        private ProductsRepository ProductsRepository { get; }
+
         private static ShoppingCartViewModel ShoppingCartViewModel => Startup.ServiceProvider.GetRequiredService<ShoppingCartViewModel>();
         #endregion
 

@@ -64,12 +64,13 @@ namespace RCS.PortableShop.Main
                         break;
                 }
 
-                // Note this does not work (yet) as true injection by an interface.
                 services.AddSingleton<ProductCategoriesRepository>();
                 services.AddSingleton<ProductSubcategoriesRepository>();
                 services.AddSingleton<ProductsRepository>();
                 services.AddSingleton<CartItemsRepository>();
 
+                services.AddSingleton<ProductsViewModel>();
+                services.AddSingleton<ProductViewModel>();
                 services.AddSingleton<ShoppingCartViewModel>();
             });
 
