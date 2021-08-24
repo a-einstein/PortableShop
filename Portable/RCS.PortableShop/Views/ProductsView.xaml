@@ -21,7 +21,6 @@
             <!--<converters:SizeFormatter x:Key="SizeFormatter"/>-->
             <community:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter"/>
             <converters:HasValueTester x:Key="HasValueTester"/>
-            <converters:BooleanInverter x:Key="BooleanInverter"/>
             <converters:HasValueMultiTester x:Key="HasValueMultiTester"/>
         </ResourceDictionary>
     </baseClasses:View.Resources>
