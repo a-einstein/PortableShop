@@ -4,6 +4,7 @@
     x:Class="RCS.PortableShop.Views.ProductsView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:community ="http://xamarin.com/schemas/2020/toolkit"
     xmlns:behaviors="clr-namespace:RCS.PortableShop.Common.Behaviors;assembly=RCS.PortableShop.Common"
     xmlns:controls="clr-namespace:RCS.PortableShop.Common.Controls;assembly=RCS.PortableShop.Common"
     xmlns:converters="clr-namespace:RCS.PortableShop.Common.Converters;assembly=RCS.PortableShop.Common"
@@ -15,9 +16,10 @@
 
     <baseClasses:View.Resources>
         <ResourceDictionary>
-            <!--<Converters:CategoriesFormatter x:Key="CategoriesFormatter"/>-->
-            <!--<Converters:SizeFormatter x:Key="SizeFormatter"/>-->
-            <converters:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter"/>
+            <!--TODO Apply/improve/remove? -->
+            <!--<converters:CategoriesFormatter x:Key="CategoriesFormatter"/>-->
+            <!--<converters:SizeFormatter x:Key="SizeFormatter"/>-->
+            <community:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter"/>
             <converters:HasValueTester x:Key="HasValueTester"/>
             <converters:BooleanInverter x:Key="BooleanInverter"/>
             <converters:HasValueMultiTester x:Key="HasValueMultiTester"/>
