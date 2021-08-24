@@ -5,16 +5,19 @@
     xmlns:controls="clr-namespace:RCS.PortableShop.Common.Controls;assembly=RCS.PortableShop.Common"
     xmlns:numericUpDown="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
     >
+
     <!--Note that currently no form of nested or multiple merging exist. https://forums.xamarin.com/discussion/86308/multiple-merged-dictionaries?-->
     <!--TODO split off ResourceDictionary when possible.-->
 
-    <!--Values ======================================== -->
+    <!--#region Values -->
 
     <Thickness x:Key="ViewPadding">5</Thickness>
 
     <LayoutOptions x:Key="LineVerticalOptions">Center</LayoutOptions>
 
-    <!--Colours ======================================== -->
+    <!--#endregion-->
+
+    <!--#region Colours -->
 
     <!--Note that only a limited number of Color names is supported, currently different from the documentation.-->
     <Color x:Key="MessageColour">#00008B</Color> <!--DarkBlue-->
@@ -33,21 +36,27 @@
     <Color x:Key="LabelTextColour">#2F4F4F</Color> <!--DarkSlateGray-->
     <Color x:Key="ValueTextColour">#00008B</Color> <!--DarkBlue-->
 
-    <!--ListViews ======================================== -->
+    <!--#endregion-->
+
+    <!--#region ListViews -->
 
     <Style TargetType="ListView">
         <!--Note that setting HasUnevenRows seems the only way to let rows (somewhat) adapt to contents, instead of having to set some fixed RowHeight.-->
         <Setter Property="HasUnevenRows" Value="True"/>
     </Style>
 
-    <!--Grids ======================================== -->
- 
+    <!--#endregion-->
+
+    <!--#region Grids -->
+
     <Style x:Key="ListItemStyle" TargetType="Grid">
         <Setter Property="Margin" Value="2,2,2,0"/>
         <Setter Property="Padding" Value="3"/>
     </Style>
 
-    <!--Labels ======================================== -->
+    <!--#endregion-->
+
+    <!--#region Labels -->
 
     <!--Base needed to inherit.-->
     <Style x:Key="LabelStyle" TargetType="Label">
@@ -97,13 +106,16 @@
         <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
     </Style>
 
-    <!--Entries ======================================== -->
+    <!--#endregion-->
+
+    <!--#region Entries -->
 
     <Style TargetType="Entry">
         <Setter Property="VerticalOptions" Value="{StaticResource LineVerticalOptions}"/>
     </Style>
+    <!--#endregion-->
 
-    <!--Buttons ======================================== -->
+    <!--#region Buttons -->
 
     <!--Note that HeightRequest usually fucks up the Button, while FontSize does not do anything. -->
     <!--Note that FontAttributes does not work.-->
@@ -128,13 +140,17 @@
         <Setter Property="BackgroundColor" Value="{StaticResource CartLevel1Colour}"/>
     </Style>
 
-    <!--Custom Controls ======================================== -->
-    
+    <!--#endregion-->
+
+    <!--#region Custom Controls -->
+
     <Style TargetType="controls:ContentButton">
         <Setter Property="VerticalOptions" Value="{StaticResource LineVerticalOptions}"/>
     </Style>
 
-    <!--NumericUpDowns ======================================== -->
+    <!--#endregion-->
+
+    <!--#region NumericUpDowns -->
 
     <!--
     Documentation:
@@ -157,4 +173,7 @@
         <Setter Property="Minimum" Value="0"/>
         <Setter Property="MaximumDecimalDigits" Value="0"/>
     </Style>
+
+    <!--#endregion-->
+
 </ResourceDictionary>
