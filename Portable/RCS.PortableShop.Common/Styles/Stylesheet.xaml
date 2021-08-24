@@ -113,6 +113,11 @@
     <Style TargetType="Entry">
         <Setter Property="VerticalOptions" Value="{StaticResource LineVerticalOptions}"/>
     </Style>
+
+    <Style x:Key="InvalidEntryStyle" TargetType="Entry">
+        <Setter Property="BackgroundColor" Value="{StaticResource InvalidBackgroundColour}"/>
+    </Style>
+
     <!--#endregion-->
 
     <!--#region Buttons -->

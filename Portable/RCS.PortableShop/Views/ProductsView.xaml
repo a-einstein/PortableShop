@@ -43,10 +43,13 @@
 
                         <!--Note that Placeholder is just that, for both Android and UWP.-->
                         <controls:ClearableEntry Placeholder="{localization:Translate TextFilter}" Text="{Binding TextFilterValue, Mode=TwoWay}" BackgroundColor="{StaticResource ProductsLevel1Colour}" WidthRequest="130" VerticalOptions="End">
-                            <controls:ClearableEntry.EntryBehaviors>
-                                <!--TODO Currently parameter passing does not work and is hard coded. See comments elsewhere.-->
-                                <!--<Behaviors:EntryRegexValidationBehavior Expression="{Binding ValidTextFilterExpression}" InvalidBackgroundColour="{StaticResource InvalidBackgroundColour}"/>-->
-                                <behaviors:EntryRegexValidationBehavior Expression="\w{3}" InvalidBackgroundColour="{StaticResource InvalidBackgroundColour}"/>
+                             <controls:ClearableEntry.EntryBehaviors>
+                                 <!--TODO Currently parameter passing does not work and is hard coded. See comments elsewhere.-->
+                                 <!--<behaviors:EntryRegexValidationBehavior Expression="{Binding ValidTextFilterExpression}" InvalidBackgroundColour="{StaticResource InvalidBackgroundColour}"/>-->
+                                 <behaviors:EntryRegexValidationBehavior Expression="\w{3}" InvalidBackgroundColour="{StaticResource InvalidBackgroundColour}"/>
+                                 
+                                 <!--Could not get below working, including variations.-->
+                                 <!--<community:TextValidationBehavior RegexPattern="\w{3}" InvalidStyle="{StaticResource InvalidEntryStyle}"/>-->
                             </controls:ClearableEntry.EntryBehaviors>
                         </controls:ClearableEntry>
                     </StackLayout>
