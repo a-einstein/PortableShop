@@ -7,9 +7,6 @@ using Xamarin.Forms;
 
 namespace RCS.PortableShop.Model
 {
-    // Note this currently is a redundant layer besides the list held in the ViewModel,
-    // as this is not connected to a database.
-    // TODO Straighten this out.
     public class CartItemsRepository : Repository<List<CartItem>, CartItem>
     {
         #region Construction
