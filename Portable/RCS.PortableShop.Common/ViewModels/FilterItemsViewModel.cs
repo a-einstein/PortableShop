@@ -131,9 +131,10 @@ namespace RCS.PortableShop.Common.ViewModels
             set
             {
                 SetValue(MasterFilterValueProperty, value);
-                (FilterCommand as AsyncCommand)?.RaiseCanExecuteChanged();
                 RaisePropertyChanged(nameof(MasterFilterValue));
+               
                 FilterChanged = true;
+                (FilterCommand as AsyncCommand)?.RaiseCanExecuteChanged();
             }
         }
 
@@ -193,9 +194,10 @@ namespace RCS.PortableShop.Common.ViewModels
             set
             {
                 SetValue(DetailFilterValueProperty, value);
-                (FilterCommand as AsyncCommand)?.RaiseCanExecuteChanged();
                 RaisePropertyChanged(nameof(DetailFilterValue));
+            
                 FilterChanged = true;
+                (FilterCommand as AsyncCommand)?.RaiseCanExecuteChanged();
             }
         }
 
@@ -208,9 +210,10 @@ namespace RCS.PortableShop.Common.ViewModels
             set
             {
                 SetValue(TextFilterValueProperty, value);
-                (FilterCommand as AsyncCommand)?.RaiseCanExecuteChanged();
                 RaisePropertyChanged(nameof(TextFilterValue));
+               
                 FilterChanged = true;
+                (FilterCommand as AsyncCommand)?.RaiseCanExecuteChanged();
             }
         }
 
