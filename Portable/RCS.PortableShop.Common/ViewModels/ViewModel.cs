@@ -25,8 +25,11 @@ namespace RCS.PortableShop.Common.ViewModels
             {
                 SetValue(AwaitingProperty, value);
 
-                // TODO Should this be needed?
-                RaisePropertyChanged(nameof(Awaiting));
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    // TODO Should this be needed?
+                    RaisePropertyChanged(nameof(Awaiting));
+                });
             }
         }
 
