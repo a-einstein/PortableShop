@@ -8,9 +8,9 @@ using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-
 
 namespace RCS.PortableShop.ViewModels
 {
@@ -26,7 +26,7 @@ namespace RCS.PortableShop.ViewModels
         {
             base.SetCommands();
 
-            DeleteCommand = new Command<CartItem>(Delete);
+            DeleteCommand = new AsyncCommand<CartItem>(Delete);
         }
         #endregion
 
@@ -69,7 +69,7 @@ namespace RCS.PortableShop.ViewModels
         // https://johnthiriet.com/mvvm-going-async-with-async-command/
         // Necessary?
 
-        public async void CartProduct(IShoppingProduct productsOverviewObject)
+        public async Task CartProduct(IShoppingProduct productsOverviewObject)
         {
             var existing = Items.FirstOrDefault(item => item.ProductId == productsOverviewObject.Id);
 
@@ -113,7 +113,7 @@ namespace RCS.PortableShop.ViewModels
             }
         }
 
-        private async void Delete(CartItem cartItem)
+        private async Task Delete(CartItem cartItem)
         {
             await CartItemsRepository.Delete(cartItem).ConfigureAwait(true);
             dirty = true;

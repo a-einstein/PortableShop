@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms;
 
 namespace RCS.PortableShop.Common.ViewModels
@@ -19,8 +20,8 @@ namespace RCS.PortableShop.Common.ViewModels
         {
             base.SetCommands();
 
-            FilterCommand = new Command(async () => await Refresh().ConfigureAwait(true), FilterCanExecute);
-            DetailsCommand = new Command<TItem>(ShowDetails);
+            FilterCommand = new AsyncCommand(Refresh, FilterCanExecute);
+            DetailsCommand = new AsyncCommand<TItem>(ShowDetails);
         }
         #endregion
 
@@ -87,12 +88,24 @@ namespace RCS.PortableShop.Common.ViewModels
                 base.Awaiting = value;
 
                 // Needed BeginInvokeOnMainThread to avoid Android exception about Looper threads because of ActivityIndicator.
-                Device.BeginInvokeOnMainThread(() => (FilterCommand as Command)?.ChangeCanExecute());
+                Device.BeginInvokeOnMainThread(() => (FilterCommand as AsyncCommand)?.RaiseCanExecuteChanged());
             }
         }
         #endregion
 
         #region Filtering
+
+        private bool filterChanged;
+        protected bool FilterChanged
+        {
+            get => filterChanged;
+            set
+            {
+                filterChanged = value;
+                FilterCommand.RaiseCanExecuteChanged();
+            }
+        }
+
         protected abstract Task<bool> InitializeFilters();
 
         private static readonly BindableProperty MasterFilterItemsProperty =
@@ -118,8 +131,9 @@ namespace RCS.PortableShop.Common.ViewModels
             set
             {
                 SetValue(MasterFilterValueProperty, value);
-                (FilterCommand as Command)?.ChangeCanExecute();
+                (FilterCommand as AsyncCommand)?.RaiseCanExecuteChanged();
                 RaisePropertyChanged(nameof(MasterFilterValue));
+                FilterChanged = true;
             }
         }
 
@@ -179,7 +193,9 @@ namespace RCS.PortableShop.Common.ViewModels
             set
             {
                 SetValue(DetailFilterValueProperty, value);
+                (FilterCommand as AsyncCommand)?.RaiseCanExecuteChanged();
                 RaisePropertyChanged(nameof(DetailFilterValue));
+                FilterChanged = true;
             }
         }
 
@@ -192,8 +208,9 @@ namespace RCS.PortableShop.Common.ViewModels
             set
             {
                 SetValue(TextFilterValueProperty, value);
-                (FilterCommand as Command)?.ChangeCanExecute();
+                (FilterCommand as AsyncCommand)?.RaiseCanExecuteChanged();
                 RaisePropertyChanged(nameof(TextFilterValue));
+                FilterChanged = true;
             }
         }
 
@@ -202,16 +219,23 @@ namespace RCS.PortableShop.Common.ViewModels
         protected abstract Task<bool> ReadFiltered();
 
         private static readonly BindableProperty FilterCommandProperty =
-            BindableProperty.Create(nameof(FilterCommand), typeof(ICommand), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>));
+            BindableProperty.Create(nameof(FilterCommand), typeof(AsyncCommand), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>));
 
-        public ICommand FilterCommand
+        public AsyncCommand FilterCommand
         {
-            get => (ICommand)GetValue(FilterCommandProperty);
+            get => (AsyncCommand)GetValue(FilterCommandProperty);
             private set
             {
                 SetValue(FilterCommandProperty, value);
                 RaisePropertyChanged(nameof(FilterCommand));
             }
+        }
+
+        public override async Task Refresh()
+        {
+            await base.Refresh();
+
+            FilterChanged = false;
         }
         #endregion
 
@@ -230,7 +254,7 @@ namespace RCS.PortableShop.Common.ViewModels
             }
         }
 
-        protected abstract void ShowDetails(TItem overviewObject);
+        protected abstract Task ShowDetails(TItem overviewObject);
         #endregion
     }
 }

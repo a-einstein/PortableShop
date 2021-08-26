@@ -13,6 +13,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -35,7 +36,7 @@ namespace RCS.PortableShop.ViewModels
         {
             base.SetCommands();
 
-            CartCommand = new Command<ProductsOverviewObject>(CartProduct);
+            CartCommand = new AsyncCommand<ProductsOverviewObject>(CartProduct);
         }
         #endregion
 
@@ -167,6 +168,7 @@ namespace RCS.PortableShop.ViewModels
         {
             return
                 !Awaiting &&
+                FilterChanged &&
                 (MasterFilterValue != null && !MasterFilterValue.IsEmpty ||
                 !string.IsNullOrEmpty(TextFilterValue) && Regex.IsMatch(TextFilterValue, @"\w{3}", RegexOptions.IgnoreCase));
         }
@@ -201,7 +203,7 @@ namespace RCS.PortableShop.ViewModels
         #endregion
 
         #region Navigation
-        protected override async void ShowDetails(ProductsOverviewObject productsOverviewObject)
+        protected override async Task ShowDetails(ProductsOverviewObject productsOverviewObject)
         {
             ProductViewModel.ItemId = productsOverviewObject.Id;
             var productView = new ProductView() { ViewModel = ProductViewModel };
@@ -227,10 +229,9 @@ namespace RCS.PortableShop.ViewModels
             }
         }
 
-        private static void CartProduct(ProductsOverviewObject productsOverviewObject)
+        private static Task CartProduct(ProductsOverviewObject productsOverviewObject)
         {
-            // TODO Do this directly on the repository? (Might need initialisation first.)
-            ShoppingCartViewModel.CartProduct(productsOverviewObject);
+            return ShoppingCartViewModel.CartProduct(productsOverviewObject);
         }
         #endregion
     }
