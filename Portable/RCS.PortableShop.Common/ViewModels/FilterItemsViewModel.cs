@@ -219,11 +219,11 @@ namespace RCS.PortableShop.Common.ViewModels
         protected abstract Task<bool> ReadFiltered();
 
         private static readonly BindableProperty FilterCommandProperty =
-            BindableProperty.Create(nameof(FilterCommand), typeof(AsyncCommand), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>));
+            BindableProperty.Create(nameof(FilterCommand), typeof(IAsyncCommand), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>));
 
-        public AsyncCommand FilterCommand
+        public IAsyncCommand FilterCommand
         {
-            get => (AsyncCommand)GetValue(FilterCommandProperty);
+            get => (IAsyncCommand)GetValue(FilterCommandProperty);
             private set
             {
                 SetValue(FilterCommandProperty, value);
