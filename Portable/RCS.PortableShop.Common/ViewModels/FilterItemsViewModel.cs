@@ -214,7 +214,12 @@ namespace RCS.PortableShop.Common.ViewModels
             }
         }
 
-        protected abstract bool FilterCanExecute();
+        protected virtual bool FilterCanExecute()
+        {
+            return
+                !Awaiting &&
+                FilterChanged;
+        }
 
         protected abstract Task<bool> ReadFiltered();
 
