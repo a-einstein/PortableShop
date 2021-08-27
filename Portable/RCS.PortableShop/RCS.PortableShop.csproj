@@ -40,7 +40,6 @@
 
 		<Compile Include="Localization\ILocalize.cs" />
 		<Compile Include="Localization\PlatformCulture.cs" />
-		<Compile Include="Localization\TranslateExtension.cs" />
 
 		<Compile Include="Main\MainApplication.xaml.cs" />
 		<Compile Include="Main\MainPage.cs" />

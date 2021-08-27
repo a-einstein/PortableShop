@@ -2,6 +2,7 @@
 using RCS.PortableShop.Resources;
 using System.Diagnostics;
 using System.Reflection;
+using Xamarin.CommunityToolkit.Helpers;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -35,6 +36,8 @@ namespace RCS.PortableShop.Main
 
         private static void SetCulture()
         {
+            LocalizationResourceManager.Current.Init(Labels.ResourceManager);
+
             // This lookup is NOT required for Windows platforms - the Culture will be automatically set
             switch (Device.RuntimePlatform)
             {
@@ -42,11 +45,10 @@ namespace RCS.PortableShop.Main
                 case Device.Android:
 
                     // determine the correct, supported .NET culture
+                    // TODO Is this still necessary?
                     var currentCultureInfo = DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
-                    Labels.Culture = currentCultureInfo;
 
-                    // set the Thread for locale-aware methods
-                    DependencyService.Get<ILocalize>().SetLocale(currentCultureInfo);
+                    LocalizationResourceManager.Current.CurrentCulture = currentCultureInfo;
 
                     break;
             }

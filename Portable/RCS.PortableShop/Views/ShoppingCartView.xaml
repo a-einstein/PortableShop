@@ -4,9 +4,9 @@
     x:Class="RCS.PortableShop.Views.ShoppingCartView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:community ="http://xamarin.com/schemas/2020/toolkit"
     xmlns:controls="clr-namespace:RCS.PortableShop.Common.Controls;assembly=RCS.PortableShop.Common"
     xmlns:baseClasses="clr-namespace:RCS.PortableShop.Common.Views;assembly=RCS.PortableShop.Common"
-    xmlns:localization="clr-namespace:RCS.PortableShop.Localization;assembly=RCS.PortableShop"
     xmlns:views="clr-namespace:RCS.PortableShop.Views;assembly=RCS.PortableShop"
     xmlns:numericUpDown="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
     BackgroundColor="{StaticResource CartLevel0Colour}"
@@ -57,7 +57,7 @@
                                     <!--TODO Get it better aligned with SfNumericUpDown.-->
                                     <controls:ContentButton Command="{Binding BindingContext.DeleteCommand, Source={x:Reference shoppingCartItemsListView}}" CommandParameter="{Binding}" HorizontalOptions="Start" VerticalOptions="Center">
                                         <controls:ContentButton.Content>
-                                            <Label Text="{localization:Translate Remove}" Margin="10,0" FontSize="Small" FontAttributes="Bold" TextColor="{StaticResource LabelTextColour}" VerticalOptions="Start"/>
+                                            <Label Text="{community:Translate Remove}" Margin="10,0" FontSize="Small" FontAttributes="Bold" TextColor="{StaticResource LabelTextColour}" VerticalOptions="Start"/>
                                         </controls:ContentButton.Content>
                                     </controls:ContentButton>
                                 </StackLayout>
