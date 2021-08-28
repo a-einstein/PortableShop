@@ -8,6 +8,9 @@
 Working portable (Android & UWP) application for test and demo purpose based on Xamarin Forms. It simulates limited shopping capabilities based on the AdventureWorks database.
 
 #### News
+* Language can now be set independent of device.
+* Enablement of the products overview has been improved.
+* Xamarin Community Toolkit has been applied to simplify parts of code.  
 * Dependency injection has got a major improvement.
 * UWP has been added as a client, besides Android.
 * Release is now to GitHub with an automatic change summary.
@@ -35,7 +38,9 @@ Working portable (Android & UWP) application for test and demo purpose based on 
 * Connected to automated Azure Devops build and release pipelines. Current build status for the master branch: [![Build Status](https://dev.azure.com/RcsProjects/PortableShop/_apis/build/status/Build%20APK?branchName=master)](https://dev.azure.com/RcsProjects/PortableShop/_build/latest?definitionId=13&branchName=master)
 
 #### Aspects
-* Xamarin Forms including Xamarin.Essentials.
+* Xamarin Forms.
+* Xamarin Essentials.
+* Xamarin Community Toolkit.
 * .Net Standard.
 * C# + XAML.
 * MVVM.

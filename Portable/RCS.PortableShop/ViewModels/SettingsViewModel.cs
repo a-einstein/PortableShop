@@ -7,11 +7,14 @@ namespace RCS.PortableShop.ViewModels
 {
     public class SettingsViewModel : ViewModel
     {
+        #region Refresh
         public override string MakeTitle()
         {
             return Labels.Settings;
         }
+        #endregion
 
+        #region Settings    
         public List<ServiceType> ServiceTypes => Settings.ServiceTypes;
 
         public ServiceType ServiceType
@@ -23,5 +26,18 @@ namespace RCS.PortableShop.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        public IList<Culture> Cultures => Settings.Cultures;
+
+        public Culture Culture
+        {
+            get => Settings.Culture;
+            set
+            {
+                Settings.Culture = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
     }
 }

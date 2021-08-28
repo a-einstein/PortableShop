@@ -47,11 +47,14 @@
 		<Compile Include="Main\Startup.cs" />
 
 		<Compile Include="Model\CartItemsRepository.cs" />
+
+		<Compile Include="Model\Culture.cs" />
 		<Compile Include="Model\ProductCategoriesRepository.cs" />
 		<Compile Include="Model\ProductsRepository.cs" />
 		<Compile Include="Model\ProductsServiceConsumer.cs" />
 		<Compile Include="Model\ProductSubcategoriesRepository.cs" />
 		<Compile Include="Model\Repository.cs" />
+		<Compile Include="Model\ServiceType.cs" />
 		<Compile Include="Model\Settings.cs" />
 
 		<Compile Include="ViewModels\MainShellViewModel.cs" />

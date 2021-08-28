@@ -117,6 +117,33 @@ namespace RCS.PortableShop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Language.
+        /// </summary>
+        public static string CultureCulture {
+            get {
+                return ResourceManager.GetString("CultureCulture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nederlands.
+        /// </summary>
+        public static string CultureDutch {
+            get {
+                return ResourceManager.GetString("CultureDutch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to English.
+        /// </summary>
+        public static string CultureEnglish {
+            get {
+                return ResourceManager.GetString("CultureEnglish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Description.
         /// </summary>
         public static string Description {
