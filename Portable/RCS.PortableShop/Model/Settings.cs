@@ -7,12 +7,6 @@ namespace RCS.PortableShop.Model
 {
     public static class Settings
     {
-        public enum ServiceType
-        {
-            WCF,
-            WebApi
-        }
-
         public static List<ServiceType> ServiceTypes { get; } = Enum.GetValues(typeof(ServiceType)).Cast<ServiceType>().ToList();
 
         private const string serviceTypeKey = "ServiceType";
@@ -23,7 +17,7 @@ namespace RCS.PortableShop.Model
         // and do not want to ignore an already stored value.
 
         // Note that this is non nullable.
-        public static ServiceType ServiceTypeSelected
+        public static ServiceType ServiceType
         {
             get
             {
@@ -106,5 +100,11 @@ namespace RCS.PortableShop.Model
                 Preferences.Set(textFilterKey, value);
             }
         }
+    }
+
+    public enum ServiceType
+    {
+        WCF,
+        WebApi
     }
 }

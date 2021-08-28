@@ -57,12 +57,12 @@ namespace RCS.PortableShop.Main
 
                 // Note a restart is needed to actually switch IProductService,
                 // as there does not seem to be a feasible way to do that while running.
-                switch (Settings.ServiceTypeSelected)
+                switch (Settings.ServiceType)
                 {
-                    case Settings.ServiceType.WCF:
+                    case ServiceType.WCF:
                         services.AddSingleton<IProductService, WcfClient>();
                         break;
-                    case Settings.ServiceType.WebApi:
+                    case ServiceType.WebApi:
                         services.AddSingleton<IProductService, WebApiClient>();
                         break;
                 }

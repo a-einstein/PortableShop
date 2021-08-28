@@ -12,14 +12,14 @@ namespace RCS.PortableShop.ViewModels
             return Labels.Settings;
         }
 
-        public List<Settings.ServiceType> ServiceTypes => Settings.ServiceTypes;
+        public List<ServiceType> ServiceTypes => Settings.ServiceTypes;
 
-        public Settings.ServiceType ServiceType
+        public ServiceType ServiceType
         {
-            get => Settings.ServiceTypeSelected;
+            get => Settings.ServiceType;
             set
             {
-                Settings.ServiceTypeSelected = value;
+                Settings.ServiceType = value;
                 OnPropertyChanged();
             }
         }
