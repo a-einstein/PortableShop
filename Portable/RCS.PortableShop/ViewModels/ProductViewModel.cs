@@ -6,6 +6,7 @@ using RCS.PortableShop.Main;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms;
 
 namespace RCS.PortableShop.ViewModels
@@ -22,8 +23,8 @@ namespace RCS.PortableShop.ViewModels
         {
             base.SetCommands();
 
-            PhotoCommand = new Command<ImageSource>(ShowPhoto);
-            CartCommand = new Command<Product>(CartProduct);
+            PhotoCommand = new AsyncCommand<ImageSource>(ShowPhoto);
+            CartCommand = new AsyncCommand<Product>(CartProduct);
         }
         #endregion
 
@@ -60,7 +61,7 @@ namespace RCS.PortableShop.ViewModels
         }
 
         // Use the existing ImageSource to avoid an unnecessary conversion.
-        private async void ShowPhoto(ImageSource imageSource)
+        private async Task ShowPhoto(ImageSource imageSource)
         {
             var resources = Application.Current.Resources;
 
@@ -92,10 +93,9 @@ namespace RCS.PortableShop.ViewModels
             }
         }
 
-        private static void CartProduct(Product product)
+        private static Task CartProduct(Product product)
         {
-            // TODO Do this directly on the repository? (Might need initialisation first.)
-            ShoppingCartViewModel.CartProduct(product);
+            return ShoppingCartViewModel.CartProduct(product);
         }
         #endregion
     }

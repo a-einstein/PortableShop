@@ -4,8 +4,8 @@
     x:Class="RCS.PortableShop.Views.ShoppingCartSummaryView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:community ="http://xamarin.com/schemas/2020/toolkit"
     xmlns:baseClasses="clr-namespace:RCS.PortableShop.Common.Views;assembly=RCS.PortableShop.Common"
-    xmlns:localization="clr-namespace:RCS.PortableShop.Localization;assembly=RCS.PortableShop"
     >
 
     <!--
@@ -15,12 +15,12 @@
         <Image Source="Cart.png" Margin="0,0,10,0"/>
 
         <Label Text="{Binding ItemsCount}" Style="{StaticResource ValueEmphasisMediumLabelStyle}"/>
-        <Label Text="{localization:Translate Products}" FontSize="Medium"/>
+        <Label Text="{community:Translate Products}" FontSize="Medium"/>
 
         <Label Text="{Binding ProductItemsCount}" Style="{StaticResource ValueEmphasisMediumLabelStyle}"/>
-        <Label Text="{localization:Translate Items}" FontSize="Medium"/>
+        <Label Text="{community:Translate Items}" FontSize="Medium"/>
 
         <Label Text="{Binding TotalValue, StringFormat='{}{0:C2}'}" Style="{StaticResource ValueEmphasisMediumLabelStyle}"/>
-        <Label Text="{localization:Translate TotalValue}" FontSize="Medium"/>
+        <Label Text="{community:Translate TotalValue}" FontSize="Medium"/>
     </StackLayout>
 </baseClasses:View>

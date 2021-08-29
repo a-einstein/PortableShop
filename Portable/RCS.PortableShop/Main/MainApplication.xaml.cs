@@ -1,5 +1,4 @@
-﻿using RCS.PortableShop.Localization;
-using RCS.PortableShop.Resources;
+﻿using RCS.PortableShop.Resources;
 using System.Diagnostics;
 using System.Reflection;
 using Xamarin.Forms;
@@ -33,25 +32,6 @@ namespace RCS.PortableShop.Main
                 Debug.WriteLine($"{debugPrefix} Found resource: {resource}");
         }
 
-        private static void SetCulture()
-        {
-            // This lookup is NOT required for Windows platforms - the Culture will be automatically set
-            switch (Device.RuntimePlatform)
-            {
-                case Device.iOS:
-                case Device.Android:
-
-                    // determine the correct, supported .NET culture
-                    var currentCultureInfo = DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
-                    Labels.Culture = currentCultureInfo;
-
-                    // set the Thread for locale-aware methods
-                    DependencyService.Get<ILocalize>().SetLocale(currentCultureInfo);
-
-                    break;
-            }
-        }
-
         protected override void OnStart()
         {
             base.OnStart();
@@ -63,7 +43,6 @@ namespace RCS.PortableShop.Main
 #if DEBUG
             ListResources();
 #endif
-            SetCulture();
 
             Startup.Init();
 

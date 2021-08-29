@@ -66,6 +66,8 @@ namespace RCS.PortableShop.Common.Controls
         #endregion
 
         #region Behaviors
+
+        // TODO Strangely, in Debug this does not seem to get set, though the behaviour may actually work.
         public IList<Behavior> EntryBehaviors
         {
             get => entry.Behaviors;

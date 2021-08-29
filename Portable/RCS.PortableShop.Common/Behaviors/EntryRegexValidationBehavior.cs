@@ -5,6 +5,7 @@ using Xamarin.Forms;
 
 namespace RCS.PortableShop.Common.Behaviors
 {
+    // This might get replaced by Xamarin.CommunityToolkit.TextValidationBehavior, but it is interesting to keep as an example anyway.
     public class EntryRegexValidationBehavior : Behavior<Entry>, INotifyPropertyChanged
     {
         #region Behavior

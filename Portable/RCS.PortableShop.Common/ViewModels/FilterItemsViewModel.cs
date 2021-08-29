@@ -5,6 +5,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.CommunityToolkit.ObjectModel;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace RCS.PortableShop.Common.ViewModels
@@ -19,8 +21,10 @@ namespace RCS.PortableShop.Common.ViewModels
         {
             base.SetCommands();
 
-            FilterCommand = new Command(async () => await Refresh().ConfigureAwait(true), FilterCanExecute);
-            DetailsCommand = new Command<TItem>(ShowDetails);
+            // Note that allowsMultipleExecutions replaces the former use of the Awaiting property.
+            FilterCommand = new AsyncCommand(Refresh, FilterCanExecute, allowsMultipleExecutions: false);
+
+            DetailsCommand = new AsyncCommand<TItem>(ShowDetails);
         }
         #endregion
 
@@ -78,21 +82,25 @@ namespace RCS.PortableShop.Common.ViewModels
 
             return ItemsCount != 0 && !string.IsNullOrEmpty(title) ? title : TitleDefault;
         }
-
-        public override bool Awaiting
-        {
-            get => base.Awaiting;
-            set
-            {
-                base.Awaiting = value;
-
-                // Needed BeginInvokeOnMainThread to avoid Android exception about Looper threads because of ActivityIndicator.
-                Device.BeginInvokeOnMainThread(() => (FilterCommand as Command)?.ChangeCanExecute());
-            }
-        }
         #endregion
 
         #region Filtering
+
+        private bool filterChanged;
+        protected bool FilterChanged
+        {
+            get => filterChanged;
+            set
+            {
+                filterChanged = value;
+
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    FilterCommand.RaiseCanExecuteChanged();
+                });
+            }
+        }
+
         protected abstract Task<bool> InitializeFilters();
 
         private static readonly BindableProperty MasterFilterItemsProperty =
@@ -118,8 +126,9 @@ namespace RCS.PortableShop.Common.ViewModels
             set
             {
                 SetValue(MasterFilterValueProperty, value);
-                (FilterCommand as Command)?.ChangeCanExecute();
                 RaisePropertyChanged(nameof(MasterFilterValue));
+
+                FilterChanged = true;
             }
         }
 
@@ -180,6 +189,8 @@ namespace RCS.PortableShop.Common.ViewModels
             {
                 SetValue(DetailFilterValueProperty, value);
                 RaisePropertyChanged(nameof(DetailFilterValue));
+
+                FilterChanged = true;
             }
         }
 
@@ -192,26 +203,37 @@ namespace RCS.PortableShop.Common.ViewModels
             set
             {
                 SetValue(TextFilterValueProperty, value);
-                (FilterCommand as Command)?.ChangeCanExecute();
                 RaisePropertyChanged(nameof(TextFilterValue));
+
+                FilterChanged = true;
             }
         }
 
-        protected abstract bool FilterCanExecute();
+        protected virtual bool FilterCanExecute()
+        {
+            return FilterChanged;
+        }
 
         protected abstract Task<bool> ReadFiltered();
 
         private static readonly BindableProperty FilterCommandProperty =
-            BindableProperty.Create(nameof(FilterCommand), typeof(ICommand), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>));
+            BindableProperty.Create(nameof(FilterCommand), typeof(IAsyncCommand), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>));
 
-        public ICommand FilterCommand
+        public IAsyncCommand FilterCommand
         {
-            get => (ICommand)GetValue(FilterCommandProperty);
+            get => (IAsyncCommand)GetValue(FilterCommandProperty);
             private set
             {
                 SetValue(FilterCommandProperty, value);
                 RaisePropertyChanged(nameof(FilterCommand));
             }
+        }
+
+        public override async Task Refresh()
+        {
+            await base.Refresh();
+
+            FilterChanged = false;
         }
         #endregion
 
@@ -230,7 +252,7 @@ namespace RCS.PortableShop.Common.ViewModels
             }
         }
 
-        protected abstract void ShowDetails(TItem overviewObject);
+        protected abstract Task ShowDetails(TItem overviewObject);
         #endregion
     }
 }

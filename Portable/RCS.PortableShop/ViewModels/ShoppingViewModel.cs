@@ -4,6 +4,7 @@ using RCS.PortableShop.Main;
 using RCS.PortableShop.Views;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms;
 
 namespace RCS.PortableShop.ViewModels
@@ -16,7 +17,7 @@ namespace RCS.PortableShop.ViewModels
             base.SetCommands();
 
             // Note it is not possible to set this in BindableProperty.Create().
-            ShowCartCommand = new Command(async () => await ShowCart().ConfigureAwait(true));
+            ShowCartCommand = new AsyncCommand(ShowCart);
         }
         #endregion
 

@@ -130,7 +130,7 @@ Versie {2}</value>
     <value>Winkelwagen</value>
   </data>
   <data name="Category" xml:space="preserve">
-    <value>Categorie</value>
+    <value>Kategorie</value>
   </data>
   <data name="Close" xml:space="preserve">
     <value>Sluit</value>
@@ -142,7 +142,7 @@ Versie {2}</value>
     <value>Beschrijving</value>
   </data>
   <data name="DetailFilter" xml:space="preserve">
-    <value>Subcategorie</value>
+    <value>Subkategorie</value>
   </data>
   <data name="Details" xml:space="preserve">
     <value>Details</value>
@@ -154,8 +154,8 @@ Versie {2}</value>
     <value>Probleem</value>
   </data>
   <data name="ErrorCart" xml:space="preserve">
-    <value>Er is een technisch probleem met uw Winkelwagentje.
-Controleer a.u.b. grondig of herstart de applicatie (aanbevolen).</value>
+    <value>Er is een technisch probleem met uw winkelwagentje.
+Kontroleer a.u.b. grondig of herstart de applikatie (aanbevolen).</value>
   </data>
   <data name="ErrorService" xml:space="preserve">
     <value>Er is een probleem in het gebruik van onze data service.
@@ -164,7 +164,7 @@ of probeer het later nog eens.</value>
   </data>
   <data name="ErrorUnknown" xml:space="preserve">
     <value>Er is een onbekend probleem.
-Stop a.u.b. de applicatie.</value>
+Stop a.u.b. de applikatie.</value>
   </data>
   <data name="Filter" xml:space="preserve">
     <value>Zoek</value>
@@ -179,10 +179,10 @@ Stop a.u.b. de applicatie.</value>
     <value>Voorbereiden...</value>
   </data>
   <data name="Items" xml:space="preserve">
-    <value>Objecten</value>
+    <value>Objekten</value>
   </data>
   <data name="MasterFilter" xml:space="preserve">
-    <value>Categorie</value>
+    <value>Kategorie</value>
   </data>
   <data name="Model" xml:space="preserve">
     <value>Model</value>
@@ -231,7 +231,7 @@ Pas a.u.b. uw zoekopdracht aan.</value>
     <value>Hulp</value>
   </data>
   <data name="TextFilter" xml:space="preserve">
-    <value>Naam of Kleur</value>
+    <value>Naam of kleur</value>
   </data>
   <data name="TotalValue" xml:space="preserve">
     <value>Waarde</value>
@@ -241,5 +241,14 @@ Pas a.u.b. uw zoekopdracht aan.</value>
   </data>
   <data name="Weight" xml:space="preserve">
     <value>Gewicht</value>
+  </data>
+  <data name="CultureCulture" xml:space="preserve">
+    <value>Taal</value>
+  </data>
+  <data name="CultureEnglish" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="CultureDutch" xml:space="preserve">
+    <value>Nederlands</value>
   </data>
 </root>

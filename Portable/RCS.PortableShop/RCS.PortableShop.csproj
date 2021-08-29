@@ -21,8 +21,9 @@
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.2" />
 		<PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
 		<PackageReference Include="Syncfusion.Xamarin.SfNumericUpDown" Version="19.2.0.56" />
+		<PackageReference Include="Xamarin.CommunityToolkit" Version="1.2.0" />
 		<PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
-		<PackageReference Include="Xamarin.Forms" Version="5.0.0.2083" />
+		<PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
 	</ItemGroup>
 
 	<!--TODO There currently does not seem to be a way to use these files implicitly, like in WPF.-->
@@ -39,7 +40,6 @@
 
 		<Compile Include="Localization\ILocalize.cs" />
 		<Compile Include="Localization\PlatformCulture.cs" />
-		<Compile Include="Localization\TranslateExtension.cs" />
 
 		<Compile Include="Main\MainApplication.xaml.cs" />
 		<Compile Include="Main\MainPage.cs" />
@@ -47,11 +47,14 @@
 		<Compile Include="Main\Startup.cs" />
 
 		<Compile Include="Model\CartItemsRepository.cs" />
+
+		<Compile Include="Model\Culture.cs" />
 		<Compile Include="Model\ProductCategoriesRepository.cs" />
 		<Compile Include="Model\ProductsRepository.cs" />
 		<Compile Include="Model\ProductsServiceConsumer.cs" />
 		<Compile Include="Model\ProductSubcategoriesRepository.cs" />
 		<Compile Include="Model\Repository.cs" />
+		<Compile Include="Model\ServiceType.cs" />
 		<Compile Include="Model\Settings.cs" />
 
 		<Compile Include="ViewModels\MainShellViewModel.cs" />

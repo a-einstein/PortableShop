@@ -2,6 +2,7 @@
 using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -14,10 +15,10 @@ namespace RCS.PortableShop.ViewModels
         {
             base.SetCommands();
 
-            ShowProductsCommand = new Command(async () => await ShowProducts().ConfigureAwait(true));
+            ShowProductsCommand = new AsyncCommand(ShowProducts);
             OpenSupportCommand = new Command(OpenSupport);
             UpdateCommand = new Command(Update);
-            SettingsCommand = new Command(async () => await OpenSettings().ConfigureAwait(true));
+            SettingsCommand = new AsyncCommand(OpenSettings);
         }
         #endregion
 
