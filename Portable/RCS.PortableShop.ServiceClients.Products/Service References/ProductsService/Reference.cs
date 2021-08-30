@@ -463,23 +463,6 @@ namespace RCS.PortableShop.ServiceClients.Products.ProductsService {
         }
         
         private static System.ServiceModel.Channels.Binding GetBindingForEndpoint(EndpointConfiguration endpointConfiguration) {
-            if ((endpointConfiguration == EndpointConfiguration.WSHttpBinding_IProductsService)) {
-                System.ServiceModel.Channels.CustomBinding result = new System.ServiceModel.Channels.CustomBinding();
-                System.ServiceModel.Channels.TextMessageEncodingBindingElement textBindingElement = new System.ServiceModel.Channels.TextMessageEncodingBindingElement();
-                result.Elements.Add(textBindingElement);
-                System.ServiceModel.Channels.HttpsTransportBindingElement httpsBindingElement = new System.ServiceModel.Channels.HttpsTransportBindingElement();
-                httpsBindingElement.MaxBufferSize = int.MaxValue;
-                httpsBindingElement.MaxReceivedMessageSize = int.MaxValue;
-                result.Elements.Add(httpsBindingElement);
-                return result;
-            }
-            if ((endpointConfiguration == EndpointConfiguration.BasicHttpBinding_IProductsService)) {
-                System.ServiceModel.BasicHttpBinding result = new System.ServiceModel.BasicHttpBinding();
-                result.MaxBufferSize = int.MaxValue;
-                result.MaxReceivedMessageSize = int.MaxValue;
-                result.Security.Mode = System.ServiceModel.BasicHttpSecurityMode.Transport;
-                return result;
-            }
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
         }
         
