@@ -19,7 +19,6 @@ Working portable (Android & UWP) application for test and demo purpose based on 
 * On UWP language setting does not work out properly.
 * On neither platform any of the toolbar icons are displayed correctly.
 * Restoring the filter does work, except for a possible text part.
-* The application may crash at startup if the data service is not available, particularly in the error details message.
 
 #### Purpose
 * Explore various techniques based on C#, XAML and Xamarin Forms.
