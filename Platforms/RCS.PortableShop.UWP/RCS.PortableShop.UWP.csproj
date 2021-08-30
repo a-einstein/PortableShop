@@ -8,7 +8,7 @@
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>RCS.PortableShop.UWP</RootNamespace>
-    <AssemblyName>RCS.PortableShopp.UWP</AssemblyName>
+    <AssemblyName>RCS.PortableShop.UWP</AssemblyName>
     <DefaultLanguage>en-GB</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.18362.0</TargetPlatformVersion>
