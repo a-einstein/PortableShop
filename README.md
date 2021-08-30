@@ -16,7 +16,6 @@ Working portable (Android & UWP) application for test and demo purpose based on 
 * Release is now to GitHub with an automatic change summary.
 
 #### Known issues
-* WCF may report errors with larger data sets.
 * On UWP language setting does not work out properly.
 * On neither platform any of the toolbar icons are displayed correctly.
 * Restoring the filter does work, except for a possible text part.

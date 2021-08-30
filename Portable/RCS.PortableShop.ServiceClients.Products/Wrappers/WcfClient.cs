@@ -82,7 +82,14 @@ namespace RCS.PortableShop.ServiceClients.Products.Wrappers
                     // TODO If possible get transformation on configs. 
 
                     // Note that currently wsHttpBinding is not supported, but should be as it is part of System.ServiceModel 4.0.0.0.
-                    var binding = new BasicHttpBinding(BasicHttpSecurityMode.Transport) { OpenTimeout = Timeout, SendTimeout = Timeout, ReceiveTimeout = Timeout, CloseTimeout = Timeout };
+                    var binding = new BasicHttpBinding(BasicHttpSecurityMode.Transport)
+                    {
+                        OpenTimeout = Timeout, SendTimeout = Timeout, 
+                        ReceiveTimeout = Timeout, CloseTimeout = Timeout,
+                        // Arbitrary increased value (like on WPF) to prevent exception on larger query results.
+                        // TODO Should be paged.
+                        MaxReceivedMessageSize= 655360
+                    };
 
                     // Note this points to a BasicHttpBinding variant on the server.
                     var endpointAddress = $"{serviceDomain}/ProductsServicePub/ProductsService.svc/ProductsServiceB";
