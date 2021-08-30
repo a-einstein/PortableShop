@@ -10,7 +10,6 @@ namespace RCS.PortableShop.Model
     public class CartItemsRepository : Repository<List<CartItem>, CartItem>
     {
         #region Construction
-        // Note IProductService is currently not used.
         public CartItemsRepository(IProductService productService)
             : base(productService)
         { }
