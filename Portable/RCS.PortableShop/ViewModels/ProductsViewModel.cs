@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using RCS.AdventureWorks.Common.DomainClasses;
+using RCS.PortableShop.Common.Interfaces;
 using RCS.PortableShop.Common.ViewModels;
 using RCS.PortableShop.Interfaces;
 using RCS.PortableShop.Main;

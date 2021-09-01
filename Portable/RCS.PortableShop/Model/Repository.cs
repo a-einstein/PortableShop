@@ -1,4 +1,4 @@
-﻿using RCS.PortableShop.Interfaces;
+﻿using RCS.PortableShop.Common.Interfaces;
 using RCS.PortableShop.ServiceClients.Products.Wrappers;
 using System;
 using System.Collections.Generic;

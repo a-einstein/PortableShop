@@ -1,6 +1,6 @@
 ﻿using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.AdventureWorks.Common.Dtos;
-using RCS.PortableShop.Interfaces;
+using RCS.PortableShop.Common.Interfaces;
 using RCS.PortableShop.ServiceClients.Products.Wrappers;
 using System;
 using System.Collections.Generic;

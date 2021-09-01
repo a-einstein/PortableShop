@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RCS.AdventureWorks.Common.DomainClasses;
-using RCS.PortableShop.Interfaces;
+using RCS.PortableShop.Common.Interfaces;
 using RCS.PortableShop.Model;
 using RCS.PortableShop.ServiceClients.Products.Wrappers;
 using RCS.PortableShop.ViewModels;

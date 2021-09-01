@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace RCS.PortableShop.Interfaces
+namespace RCS.PortableShop.Common.Interfaces
 {
     public interface IFilterRepository<TCollection, TElement> :
         IRepository<TCollection, TElement>

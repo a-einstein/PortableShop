@@ -33,9 +33,6 @@
 		
 		<Compile Include="Converters\SizeFormatter.cs" />
 		<Compile Include="Converters\WeightFormatter.cs" />
-		<Compile Include="Interfaces\IFilterRepository.cs" />
-		<Compile Include="Interfaces\IRepository.cs" />
-
 		<Compile Include="Interfaces\IShopper.cs" />
 
 		<Compile Include="Localization\ILocalize.cs" />

@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
-namespace RCS.PortableShop.Interfaces
+namespace RCS.PortableShop.Common.Interfaces
 {
     public interface IRepository<TCollection, TElement>
         where TCollection : List<TElement>, new()

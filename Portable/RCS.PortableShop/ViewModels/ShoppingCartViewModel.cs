@@ -1,6 +1,6 @@
 ﻿using RCS.AdventureWorks.Common.DomainClasses;
+using RCS.PortableShop.Common.Interfaces;
 using RCS.PortableShop.Common.ViewModels;
-using RCS.PortableShop.Interfaces;
 using RCS.PortableShop.Resources;
 using System.Collections.Generic;
 using System.Collections.Specialized;
