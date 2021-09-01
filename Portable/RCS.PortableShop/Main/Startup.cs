@@ -57,6 +57,8 @@ namespace RCS.PortableShop.Main
 
                 // Note a restart is needed to actually switch IProductService,
                 // as there does not seem to be a feasible way to do that while running.
+                // https://stackoverflow.com/questions/69004937/how-to-use-servicecollection-replace-in-dependency-injection
+                // TODO Apply some proxy as suggested?
                 switch (Settings.ServiceType)
                 {
                     case ServiceType.WCF:
