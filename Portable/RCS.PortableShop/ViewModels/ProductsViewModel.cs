@@ -223,11 +223,7 @@ namespace RCS.PortableShop.ViewModels
         public ICommand CartCommand
         {
             get => (ICommand)GetValue(CartCommandProperty);
-            set
-            {
-                SetValue(CartCommandProperty, value);
-                RaisePropertyChanged(nameof(CartCommand));
-            }
+            set => SetValue(CartCommandProperty, value);
         }
 
         private static Task CartProduct(ProductsOverviewObject productsOverviewObject)

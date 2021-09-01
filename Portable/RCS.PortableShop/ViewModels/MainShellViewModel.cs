@@ -30,11 +30,7 @@ namespace RCS.PortableShop.ViewModels
         public ICommand ShowProductsCommand
         {
             get => (ICommand)GetValue(ShowProductsCommandProperty);
-            private set
-            {
-                SetValue(ShowProductsCommandProperty, value);
-                RaisePropertyChanged(nameof(ShowProductsCommand));
-            }
+            private set => SetValue(ShowProductsCommandProperty, value);
         }
 
         private static async Task ShowProducts()
@@ -60,11 +56,7 @@ namespace RCS.PortableShop.ViewModels
         public ICommand OpenSupportCommand
         {
             get => (ICommand)GetValue(OpenSupportCommandProperty);
-            private set
-            {
-                SetValue(OpenSupportCommandProperty, value);
-                RaisePropertyChanged(nameof(OpenSupportCommand));
-            }
+            private set => SetValue(OpenSupportCommandProperty, value);
         }
 
         private static void OpenSupport()
@@ -82,11 +74,7 @@ namespace RCS.PortableShop.ViewModels
         public ICommand UpdateCommand
         {
             get => (ICommand)GetValue(UpdateCommandProperty);
-            set
-            {
-                SetValue(UpdateCommandProperty, value);
-                RaisePropertyChanged(nameof(UpdateCommand));
-            }
+            set => SetValue(UpdateCommandProperty, value);
         }
 
         private static void Update()
@@ -107,11 +95,7 @@ namespace RCS.PortableShop.ViewModels
         public ICommand SettingsCommand
         {
             get => (ICommand)GetValue(SettingsCommandProperty);
-            set
-            {
-                SetValue(SettingsCommandProperty, value);
-                RaisePropertyChanged(nameof(SettingsCommand));
-            }
+            set => SetValue(SettingsCommandProperty, value);
         }
 
         private static async Task OpenSettings()

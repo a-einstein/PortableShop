@@ -102,7 +102,7 @@ namespace RCS.PortableShop.Common.ViewModels
         #endregion
 
         #region Events
-        public new event PropertyChangedEventHandler PropertyChanged;
+        //public new event PropertyChangedEventHandler PropertyChanged;
 
         // This is needed  for intermediate value changes.
         // An initial binding usually works without, even without being a BindableProperty.
@@ -115,7 +115,8 @@ namespace RCS.PortableShop.Common.ViewModels
             MainThread.BeginInvokeOnMainThread(() =>
             {
                 // TODO This does not work for the inherited PropertyChanged.
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+                //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+                OnPropertyChanged(propertyName);
             });
         }
         #endregion

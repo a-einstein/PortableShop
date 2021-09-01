@@ -54,11 +54,7 @@ namespace RCS.PortableShop.ViewModels
         public ICommand PhotoCommand
         {
             get => (ICommand)GetValue(PhotoCommandProperty);
-            private set
-            {
-                SetValue(PhotoCommandProperty, value);
-                RaisePropertyChanged(nameof(PhotoCommand));
-            }
+            private set => SetValue(PhotoCommandProperty, value);
         }
 
         // Use the existing ImageSource to avoid an unnecessary conversion.
@@ -87,11 +83,7 @@ namespace RCS.PortableShop.ViewModels
         public ICommand CartCommand
         {
             get => (ICommand)GetValue(CartCommandProperty);
-            set
-            {
-                SetValue(CartCommandProperty, value);
-                RaisePropertyChanged(nameof(CartCommand));
-            }
+            set => SetValue(CartCommandProperty, value);
         }
 
         private static Task CartProduct(Product product)

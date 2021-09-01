@@ -106,11 +106,7 @@ namespace RCS.PortableShop.ViewModels
         public ICommand DeleteCommand
         {
             get => (ICommand)GetValue(DeleteCommandProperty);
-            private set
-            {
-                SetValue(DeleteCommandProperty, value);
-                RaisePropertyChanged(nameof(DeleteCommand));
-            }
+            private set => SetValue(DeleteCommandProperty, value);
         }
 
         private async Task Delete(CartItem cartItem)
@@ -177,11 +173,7 @@ namespace RCS.PortableShop.ViewModels
         public int ProductItemsCount
         {
             get => (int)GetValue(ProductItemCountProperty);
-            set
-            {
-                SetValue(ProductItemCountProperty, value);
-                RaisePropertyChanged(nameof(ProductItemsCount));
-            }
+            set => SetValue(ProductItemCountProperty, value);
         }
 
         private static readonly BindableProperty TotalValueProperty =
@@ -190,11 +182,7 @@ namespace RCS.PortableShop.ViewModels
         public decimal TotalValue
         {
             get => (decimal)GetValue(TotalValueProperty);
-            set
-            {
-                SetValue(TotalValueProperty, value);
-                RaisePropertyChanged(nameof(TotalValue));
-            }
+            set => SetValue(TotalValueProperty, value);
         }
         #endregion
     }
