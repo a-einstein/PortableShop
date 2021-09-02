@@ -23,7 +23,6 @@ namespace RCS.PortableShop.Common.ViewModels
                 MainThread.BeginInvokeOnMainThread(() =>
                 {
                     SetValue(ItemProperty, value);
-                    RaisePropertyChanged(nameof(Item));
 
                     UpdateTitle();
                 });

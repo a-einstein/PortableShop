@@ -36,11 +36,7 @@ namespace RCS.PortableShop.Common.ViewModels
         public string Message
         {
             get => (string)GetValue(MessageProperty);
-            set
-            {
-                SetValue(MessageProperty, value);
-                RaisePropertyChanged(nameof(Message));
-            }
+            set => SetValue(MessageProperty, value);
         }
 
         private bool filterInitialized;
@@ -126,7 +122,6 @@ namespace RCS.PortableShop.Common.ViewModels
             set
             {
                 SetValue(MasterFilterValueProperty, value);
-                RaisePropertyChanged(nameof(MasterFilterValue));
 
                 FilterChanged = true;
             }
@@ -188,7 +183,6 @@ namespace RCS.PortableShop.Common.ViewModels
             set
             {
                 SetValue(DetailFilterValueProperty, value);
-                RaisePropertyChanged(nameof(DetailFilterValue));
 
                 FilterChanged = true;
             }
@@ -203,7 +197,6 @@ namespace RCS.PortableShop.Common.ViewModels
             set
             {
                 SetValue(TextFilterValueProperty, value);
-                RaisePropertyChanged(nameof(TextFilterValue));
 
                 FilterChanged = true;
             }
@@ -222,11 +215,7 @@ namespace RCS.PortableShop.Common.ViewModels
         public IAsyncCommand FilterCommand
         {
             get => (IAsyncCommand)GetValue(FilterCommandProperty);
-            private set
-            {
-                SetValue(FilterCommandProperty, value);
-                RaisePropertyChanged(nameof(FilterCommand));
-            }
+            private set => SetValue(FilterCommandProperty, value);
         }
 
         public override async Task Refresh()
@@ -245,11 +234,7 @@ namespace RCS.PortableShop.Common.ViewModels
         public ICommand DetailsCommand
         {
             get => (ICommand)GetValue(DetailsCommandProperty);
-            private set
-            {
-                SetValue(DetailsCommandProperty, value);
-                RaisePropertyChanged(nameof(DetailsCommand));
-            }
+            private set => SetValue(DetailsCommandProperty, value);
         }
 
         protected abstract Task ShowDetails(TItem overviewObject);
