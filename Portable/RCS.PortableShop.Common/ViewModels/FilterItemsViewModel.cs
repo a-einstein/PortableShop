@@ -106,11 +106,7 @@ namespace RCS.PortableShop.Common.ViewModels
         public ObservableCollection<TMasterFilterItem> MasterFilterItems
         {
             get => (ObservableCollection<TMasterFilterItem>)GetValue(MasterFilterItemsProperty);
-            set
-            {
-                SetValue(MasterFilterItemsProperty, value);
-                RaisePropertyChanged(nameof(MasterFilterItems));
-            }
+            set => SetValue(MasterFilterItemsProperty, value);
         }
 
         private static readonly BindableProperty MasterFilterValueProperty =
@@ -166,11 +162,7 @@ namespace RCS.PortableShop.Common.ViewModels
         public virtual ObservableCollection<TDetailFilterItem> DetailFilterItems
         {
             get => (ObservableCollection<TDetailFilterItem>)GetValue(DetailFilterItemsProperty);
-            set
-            {
-                SetValue(DetailFilterItemsProperty, value);
-                RaisePropertyChanged(nameof(DetailFilterItems));
-            }
+            set => SetValue(DetailFilterItemsProperty, value);
         }
 
         private static readonly BindableProperty DetailFilterValueProperty =

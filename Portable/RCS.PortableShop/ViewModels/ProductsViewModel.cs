@@ -9,7 +9,6 @@ using RCS.PortableShop.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -68,11 +67,6 @@ namespace RCS.PortableShop.ViewModels
         // TODO This would better be handled inside the repository.
         protected override async Task<bool> InitializeFilters()
         {
-            // TODO To base?
-            // TODO Reconsider this approach.
-            MasterFilterItems.CollectionChanged += MasterFilterItems_CollectionChanged;
-            DetailFilterItems.CollectionChanged += DetailFilterItems_CollectionChanged;
-
             // Do this sequentially instead of using Task.WhenAll 
             // as that caused threading problems in WcfClient.
             await ProductCategoriesRepository.Refresh().ConfigureAwait(true);
@@ -123,16 +117,6 @@ namespace RCS.PortableShop.ViewModels
             }).ConfigureAwait(true);
 
             return true;
-        }
-
-        private void MasterFilterItems_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            RaisePropertyChanged(nameof(MasterFilterItems));
-        }
-
-        private void DetailFilterItems_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            RaisePropertyChanged(nameof(DetailFilterItems));
         }
 
         public override ProductCategory MasterFilterValue
