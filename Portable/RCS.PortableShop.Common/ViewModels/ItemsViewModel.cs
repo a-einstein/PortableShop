@@ -46,13 +46,17 @@ namespace RCS.PortableShop.Common.ViewModels
 
         protected virtual void Items_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            RaisePropertyChanged(nameof(ItemsCount));
+            ItemsCount = Items?.Count ?? 0;
         }
 
-        // Convenience property to signal changes.
-        // Note that just binding on Items.Count does not work.
-        public int ItemsCount => Items?.Count ?? 0;
+        private static readonly BindableProperty ItemsCountProperty =
+            BindableProperty.Create(nameof(ItemsCount), typeof(int), typeof(ItemsViewModel<TItem>));
 
+        public int ItemsCount
+        {
+            get => (int)GetValue(ItemsCountProperty);
+            set => SetValue(ItemsCountProperty, value);
+        }
         #endregion
 
         #region Refresh
