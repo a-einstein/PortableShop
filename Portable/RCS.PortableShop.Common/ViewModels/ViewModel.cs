@@ -18,19 +18,10 @@ namespace RCS.PortableShop.Common.ViewModels
         private static readonly BindableProperty AwaitingProperty =
             BindableProperty.Create(nameof(Awaiting), typeof(bool), typeof(ViewModel), false);
 
-        public virtual bool Awaiting
+        public bool Awaiting
         {
             get => (bool)GetValue(AwaitingProperty);
-            set
-            {
-                SetValue(AwaitingProperty, value);
-
-                MainThread.BeginInvokeOnMainThread(() =>
-                {
-                    // TODO Should this be needed?
-                    RaisePropertyChanged(nameof(Awaiting));
-                });
-            }
+            set => SetValue(AwaitingProperty, value);
         }
 
         // Note that actions are deliberately put here instead of in constructor to avoid problems.

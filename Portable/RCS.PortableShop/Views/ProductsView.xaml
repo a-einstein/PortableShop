@@ -118,8 +118,6 @@
             </ContentView>
         </Grid>
 
-        <!--Currently this does not appear on the actual screen, but it does on the Visual Studio Android Emulator (both API 21). This seems a bug in Xamarin.-->
-        <!--TODO Possibly use it elsewhere too, or just as one overlay on the whole application.-->
         <ActivityIndicator Color="Black" IsVisible="{Binding Awaiting}" IsRunning="{Binding Awaiting}" HorizontalOptions="Center" VerticalOptions="Center"/>
     </Grid>
 </baseClasses:View>

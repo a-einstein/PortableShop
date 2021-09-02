@@ -57,11 +57,7 @@ namespace RCS.PortableShop.ViewModels
         public string ValidTextFilterExpression
         {
             get => (string)GetValue(ValidTextFilterExpressionProperty);
-            set
-            {
-                SetValue(ValidTextFilterExpressionProperty, value);
-                RaisePropertyChanged(nameof(ValidTextFilterExpression));
-            }
+            set => SetValue(ValidTextFilterExpressionProperty, value);
         }
 
         // TODO This would better be handled inside the repository.
