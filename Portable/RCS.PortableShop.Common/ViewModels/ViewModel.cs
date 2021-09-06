@@ -1,5 +1,4 @@
 ﻿using RCS.PortableShop.Resources;
-using System.ComponentModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Page = RCS.PortableShop.Common.Pages.Page;
@@ -7,7 +6,7 @@ using View = RCS.PortableShop.Common.Views.View;
 
 namespace RCS.PortableShop.Common.ViewModels
 {
-    public abstract class ViewModel : BindableObject, INotifyPropertyChanged
+    public abstract class ViewModel : BindableObject
     {
         #region Construction
         protected virtual void SetCommands() { }
