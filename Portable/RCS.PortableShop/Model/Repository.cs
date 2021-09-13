@@ -3,10 +3,12 @@ using RCS.PortableShop.ServiceClients.Products.Wrappers;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace RCS.PortableShop.Model
 {
+    [DebuggerDisplay("Count = {Items.Count}")]
     // TODO Simplify this definition, remove TCollection.
     public abstract class Repository<TCollection, TElement> :
         ProductsServiceConsumer,

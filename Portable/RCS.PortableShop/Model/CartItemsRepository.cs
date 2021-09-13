@@ -30,7 +30,7 @@ namespace RCS.PortableShop.Model
         {
             await Task.Run(() =>
             {
-                items.Add(proxy.Copy());
+                items.Add(proxy);
             });
         }
 
