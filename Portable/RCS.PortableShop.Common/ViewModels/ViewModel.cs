@@ -7,6 +7,7 @@ using View = RCS.PortableShop.Common.Views.View;
 namespace RCS.PortableShop.Common.ViewModels
 {
     // Note that BindableObject handles PropertyChanged, but is limited to Xamarin.
+    // TODO Possibly move on to Microsoft.Toolkit.Mvvm.ComponentModel.ObservableObject.
     public abstract class ViewModel : BindableObject
     {
         #region Construction
