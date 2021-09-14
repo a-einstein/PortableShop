@@ -25,11 +25,7 @@ namespace RCS.PortableShop.Common.Controls
         public string Text
         {
             get => (string)GetValue(TextProperty);
-            set
-            {
-                SetValue(TextProperty, value);
-                RaisePropertyChanged(nameof(Text));
-            }
+            set => SetValue(TextProperty, value);
         }
         #endregion
 
@@ -45,18 +41,13 @@ namespace RCS.PortableShop.Common.Controls
         #endregion
 
         #region Command
-
         private static readonly BindableProperty ClearCommandProperty =
             BindableProperty.Create(nameof(ClearCommand), typeof(ICommand), typeof(ClearableEntry));
 
         public ICommand ClearCommand
         {
             get => (ICommand)GetValue(ClearCommandProperty);
-            set
-            {
-                SetValue(ClearCommandProperty, value);
-                RaisePropertyChanged(nameof(ClearCommand));
-            }
+            set => SetValue(ClearCommandProperty, value);
         }
 
         private void Clear()
@@ -66,7 +57,6 @@ namespace RCS.PortableShop.Common.Controls
         #endregion
 
         #region Behaviors
-
         // TODO Strangely, in Debug this does not seem to get set, though the behaviour may actually work.
         public IList<Behavior> EntryBehaviors
         {
