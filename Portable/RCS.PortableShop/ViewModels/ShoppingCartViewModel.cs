@@ -1,6 +1,8 @@
 ﻿using RCS.AdventureWorks.Common.DomainClasses;
+using RCS.AdventureWorks.Common.Interfaces;
 using RCS.PortableShop.Common.Interfaces;
 using RCS.PortableShop.Common.ViewModels;
+using RCS.PortableShop.GuiModel;
 using RCS.PortableShop.Resources;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -8,7 +10,6 @@ using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using RCS.PortableShop.GuiModel;
 using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Essentials;
 using Xamarin.Forms;

@@ -1,4 +1,5 @@
 ﻿using RCS.AdventureWorks.Common.DomainClasses;
+using RCS.AdventureWorks.Common.Interfaces;
 using RCS.PortableShop.ServiceClients.Products.Wrappers;
 using System.Collections.Generic;
 using System.Linq;
