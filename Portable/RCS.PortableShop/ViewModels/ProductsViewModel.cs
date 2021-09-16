@@ -8,7 +8,6 @@ using RCS.PortableShop.Model;
 using RCS.PortableShop.Views;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -100,14 +99,7 @@ namespace RCS.PortableShop.ViewModels
                 ? DetailFilterItems.FirstOrDefault(value => value.Id == retrievedSubcategoryId.Value)
                 : DetailFilterItems.FirstOrDefault(value => !value.IsEmpty);
 
-                // Note the settings mechanism does work, but there is a binding problem in ClearableEntry, as described here:
-                // https://forums.xamarin.com/discussion/84044/cannot-create-a-user-control-with-two-way-binding-to-view-model-property-names
-                // On a suggestion I have changed the bindings along this chain, but that did not help.
-
-                // It does work with a simple Entry in the view instead, but that loses the functionality of ClearableEntry.
-                // To avoid confusion, don't set the value, as it is not visible but influences the query.
-
-                //TextFilterValue = Settings.TextFilter;
+                TextFilterValue = Settings.TextFilter;
             }).ConfigureAwait(true);
 
             return true;
