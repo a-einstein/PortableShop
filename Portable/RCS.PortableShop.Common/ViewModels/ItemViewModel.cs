@@ -1,5 +1,4 @@
 ﻿using RCS.AdventureWorks.Common.DomainClasses;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace RCS.PortableShop.Common.ViewModels
@@ -12,21 +11,20 @@ namespace RCS.PortableShop.Common.ViewModels
         public int? ItemId { get; set; }
 
         private static readonly BindableProperty ItemProperty =
-            BindableProperty.Create(nameof(Item), typeof(TItem), typeof(ItemViewModel<TItem>));
+            BindableProperty.Create(nameof(Item), typeof(TItem), typeof(ItemViewModel<TItem>), propertyChanged: OnItemChanged);
 
         public TItem Item
         {
             get => (TItem)GetValue(ItemProperty);
-            set
-            {
-                // Note the thread is particularly relevant for UWP.
-                MainThread.BeginInvokeOnMainThread(() =>
-                {
-                    SetValue(ItemProperty, value);
+            set => SetValue(ItemProperty, value);
+        }
 
-                    UpdateTitle();
-                });
-            }
+        private static void OnItemChanged(BindableObject bindableObject, object oldValue, object newValue)
+        {
+            var viewModel = bindableObject as ItemViewModel<TItem>;
+
+            // Note that threading (no longer) is a problem here.
+            viewModel.UpdateTitle();
         }
         #endregion
 
