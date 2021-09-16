@@ -107,12 +107,7 @@ namespace RCS.PortableShop.Common.ViewModels
         public virtual TMasterFilterItem MasterFilterValue
         {
             get => (TMasterFilterItem)GetValue(MasterFilterValueProperty);
-            set
-            {
-                SetValue(MasterFilterValueProperty, value);
-
-                FilterChanged = true;
-            }
+            set => SetValue(MasterFilterValueProperty, value);
         }
 
         // Note this function does NOT filter Items, just updates DetailFilterItems and DetailFilterValue.
@@ -123,11 +118,15 @@ namespace RCS.PortableShop.Common.ViewModels
 
             viewModel?.SetDetailFilterItems();
             viewModel.DetailFilterValue = viewModel.DetailFilterItems.FirstOrDefault();
+
+            viewModel.FilterChanged = true;
         }
 
         // TODO Some sort of view would be more convenient.
         private void SetDetailFilterItems()
         {
+            DetailFilterItems.Clear();
+
             var detailFilterItemsSelection = DetailFilterItemsSource.Where(DetailFilterItemsSelector());
 
             // Note that the query is executed on the foreach.
@@ -147,32 +146,36 @@ namespace RCS.PortableShop.Common.ViewModels
         public ObservableCollection<TDetailFilterItem> DetailFilterItems { get; } = new ObservableCollection<TDetailFilterItem>();
 
         private static readonly BindableProperty DetailFilterValueProperty =
-            BindableProperty.Create(nameof(DetailFilterValue), typeof(TDetailFilterItem), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>));
+            BindableProperty.Create(nameof(DetailFilterValue), typeof(TDetailFilterItem), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>), propertyChanged: OnDetailFilterValueChanged);
 
         // Note DetailFilterValue should only have a value if MasterFilterValue has.
         public virtual TDetailFilterItem DetailFilterValue
         {
             get => (TDetailFilterItem)GetValue(DetailFilterValueProperty);
-            set
-            {
-                SetValue(DetailFilterValueProperty, value);
+            set => SetValue(DetailFilterValueProperty, value);
+        }
 
-                FilterChanged = true;
-            }
+        private static void OnDetailFilterValueChanged(BindableObject bindableObject, object oldValue, object newValue)
+        {
+            var viewModel = bindableObject as FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>;
+
+            viewModel.FilterChanged = true;
         }
 
         private static readonly BindableProperty TextFilterValueProperty =
-            BindableProperty.Create(nameof(TextFilterValue), typeof(string), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>), defaultBindingMode: BindingMode.TwoWay);
+            BindableProperty.Create(nameof(TextFilterValue), typeof(string), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>), propertyChanged: OnTextFilterValueChanged, defaultBindingMode: BindingMode.TwoWay);
 
         public virtual string TextFilterValue
         {
             get => (string)GetValue(TextFilterValueProperty);
-            set
-            {
-                SetValue(TextFilterValueProperty, value);
+            set => SetValue(TextFilterValueProperty, value);
+        }
 
-                FilterChanged = true;
-            }
+        private static void OnTextFilterValueChanged(BindableObject bindableObject, object oldValue, object newValue)
+        {
+            var viewModel = bindableObject as FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>;
+
+            viewModel.FilterChanged = true;
         }
 
         protected virtual bool FilterCanExecute()
