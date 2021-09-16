@@ -99,15 +99,7 @@ namespace RCS.PortableShop.Common.ViewModels
 
         protected abstract Task<bool> InitializeFilters();
 
-        private static readonly BindableProperty MasterFilterItemsProperty =
-            BindableProperty.Create(nameof(MasterFilterItems), typeof(ObservableCollection<TMasterFilterItem>), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>), new ObservableCollection<TMasterFilterItem>());
-
-        // Note there seems to be an issue with updating bindings by ObservableCollection, or on the particular controls. See consequences elsewhere.
-        public ObservableCollection<TMasterFilterItem> MasterFilterItems
-        {
-            get => (ObservableCollection<TMasterFilterItem>)GetValue(MasterFilterItemsProperty);
-            set => SetValue(MasterFilterItemsProperty, value);
-        }
+        public ObservableCollection<TMasterFilterItem> MasterFilterItems { get; } = new ObservableCollection<TMasterFilterItem>();
 
         private static readonly BindableProperty MasterFilterValueProperty =
             BindableProperty.Create(nameof(MasterFilterValue), typeof(TMasterFilterItem), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>), propertyChanged: OnMasterFilterValueChanged);
@@ -138,32 +130,21 @@ namespace RCS.PortableShop.Common.ViewModels
         {
             var detailFilterItemsSelection = DetailFilterItemsSource.Where(DetailFilterItemsSelector());
 
-            var detailFilterItems = new ObservableCollection<TDetailFilterItem>();
-
             // Note that the query is executed on the foreach.
             foreach (var item in detailFilterItemsSelection)
             {
-                detailFilterItems.Add(item);
+                DetailFilterItems.Add(item);
             }
 
-            // Do an assignment, as just changing the ObservableCollection plus even a PropertyChanged does not work. There seems to be no good way to handle CollectionChanged. 
-            // TODO maybe follow the approach on ItemsViewModel.Items.
-            DetailFilterItems = detailFilterItems;
+            // Extra event. For some bindings (ItemsSource) those from ObservableCollection are enough, but for others (IsEnabled) this is needed.
+            OnPropertyChanged(nameof(DetailFilterItems));
         }
 
         protected abstract Func<TDetailFilterItem, bool> DetailFilterItemsSelector(bool addEmptyElement = true);
 
         protected Collection<TDetailFilterItem> DetailFilterItemsSource { get; } = new Collection<TDetailFilterItem>();
 
-        private static readonly BindableProperty DetailFilterItemsProperty =
-            BindableProperty.Create(nameof(DetailFilterItems), typeof(ObservableCollection<TDetailFilterItem>), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>), new ObservableCollection<TDetailFilterItem>());
-
-        // Note there seems to be an issue with updating bindings by ObservableCollection, or on the particular controls. See consequences elsewhere.
-        public virtual ObservableCollection<TDetailFilterItem> DetailFilterItems
-        {
-            get => (ObservableCollection<TDetailFilterItem>)GetValue(DetailFilterItemsProperty);
-            set => SetValue(DetailFilterItemsProperty, value);
-        }
+        public ObservableCollection<TDetailFilterItem> DetailFilterItems { get; } = new ObservableCollection<TDetailFilterItem>();
 
         private static readonly BindableProperty DetailFilterValueProperty =
             BindableProperty.Create(nameof(DetailFilterValue), typeof(TDetailFilterItem), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>));

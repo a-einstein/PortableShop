@@ -71,16 +71,14 @@ namespace RCS.PortableShop.ViewModels
             await MainThread.InvokeOnMainThreadAsync(() =>
             {
                 var categories = ProductCategoriesRepository.Items;
-                var masterFilterItems = new ObservableCollection<ProductCategory>();
 
                 foreach (var item in categories)
                 {
-                    masterFilterItems.Add(item);
+                    MasterFilterItems.Add(item);
                 }
 
-                // Do an assignment, as there is not much use to follow up on each item. 
-                // TODO maybe follow the approach on ItemsViewModel.Items.
-                MasterFilterItems = masterFilterItems;
+                // Extra event. For some bindings (ItemsSource) those from ObservableCollection are enough, but for others (IsEnabled) this is needed.
+                OnPropertyChanged(nameof(MasterFilterItems));
 
                 var subcategories = ProductSubcategoriesRepository.Items;
 
