@@ -198,6 +198,10 @@
       <Project>{ccf5bf7a-5a36-4e98-a978-023bcd877008}</Project>
       <Name>RCS.PortableShop</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\RCS.AdventureWorks.Common\RCS.AdventureWorks.Common.csproj">
+      <Project>{493d8ed2-1ba9-436c-981f-3a84523fa8a0}</Project>
+      <Name>RCS.AdventureWorks.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">

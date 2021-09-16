@@ -1,14 +1,14 @@
 ﻿using RCS.PortableShop.Resources;
-using System.ComponentModel;
 using System.Threading.Tasks;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 using Page = RCS.PortableShop.Common.Pages.Page;
 using View = RCS.PortableShop.Common.Views.View;
 
 namespace RCS.PortableShop.Common.ViewModels
 {
-    public abstract class ViewModel : BindableObject, INotifyPropertyChanged
+    // Note that BindableObject handles PropertyChanged, but is limited to Xamarin.
+    // TODO Possibly move on to Microsoft.Toolkit.Mvvm.ComponentModel.ObservableObject.
+    public abstract class ViewModel : BindableObject
     {
         #region Construction
         protected virtual void SetCommands() { }
@@ -18,19 +18,10 @@ namespace RCS.PortableShop.Common.ViewModels
         private static readonly BindableProperty AwaitingProperty =
             BindableProperty.Create(nameof(Awaiting), typeof(bool), typeof(ViewModel), false);
 
-        public virtual bool Awaiting
+        public bool Awaiting
         {
             get => (bool)GetValue(AwaitingProperty);
-            set
-            {
-                SetValue(AwaitingProperty, value);
-
-                MainThread.BeginInvokeOnMainThread(() =>
-                {
-                    // TODO Should this be needed?
-                    RaisePropertyChanged(nameof(Awaiting));
-                });
-            }
+            set => SetValue(AwaitingProperty, value);
         }
 
         // Note that actions are deliberately put here instead of in constructor to avoid problems.
@@ -84,39 +75,12 @@ namespace RCS.PortableShop.Common.ViewModels
         public virtual string MakeTitle() { return TitleDefault; }
 
         protected static readonly BindableProperty TitleProperty =
-            BindableProperty.Create(nameof(Title), typeof(string), typeof(ViewModel), propertyChanged: TitleChanged, defaultValue: TitleDefault);
+            BindableProperty.Create(nameof(Title), typeof(string), typeof(ViewModel), defaultValue: TitleDefault);
 
         public string Title
         {
             get => (string)GetValue(TitleProperty);
             set => SetValue(TitleProperty, value);
-        }
-
-        // Note this is particularly needed for the chaining within the ShoppingWrapperViewModel,
-        // as the Binding does not use the Title property, but the SetValue method directly.
-        // So calling RaisePropertyChanged within the Title property does not work.
-        private static void TitleChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            (bindable as ViewModel)?.RaisePropertyChanged(nameof(Title));
-        }
-        #endregion
-
-        #region Events
-        public new event PropertyChangedEventHandler PropertyChanged;
-
-        // This is needed  for intermediate value changes.
-        // An initial binding usually works without, even without being a BindableProperty.
-        // TODO This seems superfluous for a BindableProperty.
-        // This signal can be particularly useful if a collection is entirely replaced, as the formerly bound collection no longer can.
-        protected void RaisePropertyChanged(string propertyName)
-        {
-            // Note that BeginInvokeOnMainThread is applied on various places because of UWP, not Android.
-            // TODO Check whether this can be simplified.
-            MainThread.BeginInvokeOnMainThread(() =>
-            {
-                // TODO This does not work for the inherited PropertyChanged.
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-            });
         }
         #endregion
 

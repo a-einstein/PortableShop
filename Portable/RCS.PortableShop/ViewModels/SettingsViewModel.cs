@@ -17,6 +17,7 @@ namespace RCS.PortableShop.ViewModels
         #region Settings    
         public List<ServiceType> ServiceTypes => Settings.ServiceTypes;
 
+        // Note no BindableProperty because Settings is the underlying datastructure.
         public ServiceType ServiceType
         {
             get => Settings.ServiceType;
@@ -29,6 +30,7 @@ namespace RCS.PortableShop.ViewModels
 
         public IList<Culture> Cultures => Settings.Cultures;
 
+        // Note no BindableProperty because Settings is the underlying datastructure.
         public Culture Culture
         {
             get => Settings.Culture;

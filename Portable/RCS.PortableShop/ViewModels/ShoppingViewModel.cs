@@ -33,11 +33,7 @@ namespace RCS.PortableShop.ViewModels
         public ICommand ShowCartCommand
         {
             get => (ICommand)GetValue(ShowCartCommandProperty);
-            private set
-            {
-                SetValue(ShowCartCommandProperty, value);
-                RaisePropertyChanged(nameof(ShowCartCommand));
-            }
+            private set => SetValue(ShowCartCommandProperty, value);
         }
 
         protected virtual async Task ShowCart()

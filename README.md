@@ -18,7 +18,6 @@ Working portable (Android & UWP) application for test and demo purpose based on 
 #### Known issues
 * On UWP language setting does not work out properly.
 * On neither platform any of the toolbar icons are displayed correctly.
-* Restoring the filter does work, except for a possible text part.
 
 #### Purpose
 * Explore various techniques based on C#, XAML and Xamarin Forms.

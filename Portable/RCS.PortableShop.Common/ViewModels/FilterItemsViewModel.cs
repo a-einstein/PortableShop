@@ -36,11 +36,7 @@ namespace RCS.PortableShop.Common.ViewModels
         public string Message
         {
             get => (string)GetValue(MessageProperty);
-            set
-            {
-                SetValue(MessageProperty, value);
-                RaisePropertyChanged(nameof(Message));
-            }
+            set => SetValue(MessageProperty, value);
         }
 
         private bool filterInitialized;
@@ -103,19 +99,7 @@ namespace RCS.PortableShop.Common.ViewModels
 
         protected abstract Task<bool> InitializeFilters();
 
-        private static readonly BindableProperty MasterFilterItemsProperty =
-            BindableProperty.Create(nameof(MasterFilterItems), typeof(ObservableCollection<TMasterFilterItem>), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>), new ObservableCollection<TMasterFilterItem>());
-
-        // Note there seems to be an issue with updating bindings by ObservableCollection, or on the particular controls. See consequences elsewhere.
-        public ObservableCollection<TMasterFilterItem> MasterFilterItems
-        {
-            get => (ObservableCollection<TMasterFilterItem>)GetValue(MasterFilterItemsProperty);
-            set
-            {
-                SetValue(MasterFilterItemsProperty, value);
-                RaisePropertyChanged(nameof(MasterFilterItems));
-            }
-        }
+        public ObservableCollection<TMasterFilterItem> MasterFilterItems { get; } = new ObservableCollection<TMasterFilterItem>();
 
         private static readonly BindableProperty MasterFilterValueProperty =
             BindableProperty.Create(nameof(MasterFilterValue), typeof(TMasterFilterItem), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>), propertyChanged: OnMasterFilterValueChanged);
@@ -123,13 +107,7 @@ namespace RCS.PortableShop.Common.ViewModels
         public virtual TMasterFilterItem MasterFilterValue
         {
             get => (TMasterFilterItem)GetValue(MasterFilterValueProperty);
-            set
-            {
-                SetValue(MasterFilterValueProperty, value);
-                RaisePropertyChanged(nameof(MasterFilterValue));
-
-                FilterChanged = true;
-            }
+            set => SetValue(MasterFilterValueProperty, value);
         }
 
         // Note this function does NOT filter Items, just updates DetailFilterItems and DetailFilterValue.
@@ -140,73 +118,64 @@ namespace RCS.PortableShop.Common.ViewModels
 
             viewModel?.SetDetailFilterItems();
             viewModel.DetailFilterValue = viewModel.DetailFilterItems.FirstOrDefault();
+
+            viewModel.FilterChanged = true;
         }
 
         // TODO Some sort of view would be more convenient.
         private void SetDetailFilterItems()
         {
-            var detailFilterItemsSelection = DetailFilterItemsSource.Where(DetailFilterItemsSelector());
+            DetailFilterItems.Clear();
 
-            var detailFilterItems = new ObservableCollection<TDetailFilterItem>();
+            var detailFilterItemsSelection = DetailFilterItemsSource.Where(DetailFilterItemsSelector());
 
             // Note that the query is executed on the foreach.
             foreach (var item in detailFilterItemsSelection)
             {
-                detailFilterItems.Add(item);
+                DetailFilterItems.Add(item);
             }
 
-            // Do an assignment, as just changing the ObservableCollection plus even a PropertyChanged does not work. There seems to be no good way to handle CollectionChanged. 
-            // TODO maybe follow the approach on ItemsViewModel.Items.
-            DetailFilterItems = detailFilterItems;
+            // Extra event. For some bindings (ItemsSource) those from ObservableCollection are enough, but for others (IsEnabled) this is needed.
+            OnPropertyChanged(nameof(DetailFilterItems));
         }
 
         protected abstract Func<TDetailFilterItem, bool> DetailFilterItemsSelector(bool addEmptyElement = true);
 
         protected Collection<TDetailFilterItem> DetailFilterItemsSource { get; } = new Collection<TDetailFilterItem>();
 
-        private static readonly BindableProperty DetailFilterItemsProperty =
-            BindableProperty.Create(nameof(DetailFilterItems), typeof(ObservableCollection<TDetailFilterItem>), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>), new ObservableCollection<TDetailFilterItem>());
-
-        // Note there seems to be an issue with updating bindings by ObservableCollection, or on the particular controls. See consequences elsewhere.
-        public virtual ObservableCollection<TDetailFilterItem> DetailFilterItems
-        {
-            get => (ObservableCollection<TDetailFilterItem>)GetValue(DetailFilterItemsProperty);
-            set
-            {
-                SetValue(DetailFilterItemsProperty, value);
-                RaisePropertyChanged(nameof(DetailFilterItems));
-            }
-        }
+        public ObservableCollection<TDetailFilterItem> DetailFilterItems { get; } = new ObservableCollection<TDetailFilterItem>();
 
         private static readonly BindableProperty DetailFilterValueProperty =
-            BindableProperty.Create(nameof(DetailFilterValue), typeof(TDetailFilterItem), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>));
+            BindableProperty.Create(nameof(DetailFilterValue), typeof(TDetailFilterItem), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>), propertyChanged: OnDetailFilterValueChanged);
 
         // Note DetailFilterValue should only have a value if MasterFilterValue has.
         public virtual TDetailFilterItem DetailFilterValue
         {
             get => (TDetailFilterItem)GetValue(DetailFilterValueProperty);
-            set
-            {
-                SetValue(DetailFilterValueProperty, value);
-                RaisePropertyChanged(nameof(DetailFilterValue));
+            set => SetValue(DetailFilterValueProperty, value);
+        }
 
-                FilterChanged = true;
-            }
+        private static void OnDetailFilterValueChanged(BindableObject bindableObject, object oldValue, object newValue)
+        {
+            var viewModel = bindableObject as FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>;
+
+            viewModel.FilterChanged = true;
         }
 
         private static readonly BindableProperty TextFilterValueProperty =
-            BindableProperty.Create(nameof(TextFilterValue), typeof(string), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>), defaultBindingMode: BindingMode.TwoWay);
+            BindableProperty.Create(nameof(TextFilterValue), typeof(string), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>), propertyChanged: OnTextFilterValueChanged, defaultBindingMode: BindingMode.TwoWay);
 
         public virtual string TextFilterValue
         {
             get => (string)GetValue(TextFilterValueProperty);
-            set
-            {
-                SetValue(TextFilterValueProperty, value);
-                RaisePropertyChanged(nameof(TextFilterValue));
+            set => SetValue(TextFilterValueProperty, value);
+        }
 
-                FilterChanged = true;
-            }
+        private static void OnTextFilterValueChanged(BindableObject bindableObject, object oldValue, object newValue)
+        {
+            var viewModel = bindableObject as FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>;
+
+            viewModel.FilterChanged = true;
         }
 
         protected virtual bool FilterCanExecute()
@@ -222,11 +191,7 @@ namespace RCS.PortableShop.Common.ViewModels
         public IAsyncCommand FilterCommand
         {
             get => (IAsyncCommand)GetValue(FilterCommandProperty);
-            private set
-            {
-                SetValue(FilterCommandProperty, value);
-                RaisePropertyChanged(nameof(FilterCommand));
-            }
+            private set => SetValue(FilterCommandProperty, value);
         }
 
         public override async Task Refresh()
@@ -245,11 +210,7 @@ namespace RCS.PortableShop.Common.ViewModels
         public ICommand DetailsCommand
         {
             get => (ICommand)GetValue(DetailsCommandProperty);
-            private set
-            {
-                SetValue(DetailsCommandProperty, value);
-                RaisePropertyChanged(nameof(DetailsCommand));
-            }
+            private set => SetValue(DetailsCommandProperty, value);
         }
 
         protected abstract Task ShowDetails(TItem overviewObject);

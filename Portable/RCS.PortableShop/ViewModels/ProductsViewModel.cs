@@ -8,8 +8,6 @@ using RCS.PortableShop.Model;
 using RCS.PortableShop.Views;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -58,21 +56,12 @@ namespace RCS.PortableShop.ViewModels
         public string ValidTextFilterExpression
         {
             get => (string)GetValue(ValidTextFilterExpressionProperty);
-            set
-            {
-                SetValue(ValidTextFilterExpressionProperty, value);
-                RaisePropertyChanged(nameof(ValidTextFilterExpression));
-            }
+            set => SetValue(ValidTextFilterExpressionProperty, value);
         }
 
         // TODO This would better be handled inside the repository.
         protected override async Task<bool> InitializeFilters()
         {
-            // TODO To base?
-            // TODO Reconsider this approach.
-            MasterFilterItems.CollectionChanged += MasterFilterItems_CollectionChanged;
-            DetailFilterItems.CollectionChanged += DetailFilterItems_CollectionChanged;
-
             // Do this sequentially instead of using Task.WhenAll 
             // as that caused threading problems in WcfClient.
             await ProductCategoriesRepository.Refresh().ConfigureAwait(true);
@@ -81,16 +70,14 @@ namespace RCS.PortableShop.ViewModels
             await MainThread.InvokeOnMainThreadAsync(() =>
             {
                 var categories = ProductCategoriesRepository.Items;
-                var masterFilterItems = new ObservableCollection<ProductCategory>();
 
                 foreach (var item in categories)
                 {
-                    masterFilterItems.Add(item);
+                    MasterFilterItems.Add(item);
                 }
 
-                // Do an assignment, as there is not much use to follow up on each item. 
-                // TODO maybe follow the approach on ItemsViewModel.Items.
-                MasterFilterItems = masterFilterItems;
+                // Extra event. For some bindings (ItemsSource) those from ObservableCollection are enough, but for others (IsEnabled) this is needed.
+                OnPropertyChanged(nameof(MasterFilterItems));
 
                 var subcategories = ProductSubcategoriesRepository.Items;
 
@@ -112,27 +99,10 @@ namespace RCS.PortableShop.ViewModels
                 ? DetailFilterItems.FirstOrDefault(value => value.Id == retrievedSubcategoryId.Value)
                 : DetailFilterItems.FirstOrDefault(value => !value.IsEmpty);
 
-                // Note the settings mechanism does work, but there is a binding problem in ClearableEntry, as described here:
-                // https://forums.xamarin.com/discussion/84044/cannot-create-a-user-control-with-two-way-binding-to-view-model-property-names
-                // On a suggestion I have changed the bindings along this chain, but that did not help.
-
-                // It does work with a simple Entry in the view instead, but that loses the functionality of ClearableEntry.
-                // To avoid confusion, don't set the value, as it is not visible but influences the query.
-
-                //TextFilterValue = Settings.TextFilter;
+                TextFilterValue = Settings.TextFilter;
             }).ConfigureAwait(true);
 
             return true;
-        }
-
-        private void MasterFilterItems_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            RaisePropertyChanged(nameof(MasterFilterItems));
-        }
-
-        private void DetailFilterItems_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            RaisePropertyChanged(nameof(DetailFilterItems));
         }
 
         public override ProductCategory MasterFilterValue
@@ -223,11 +193,7 @@ namespace RCS.PortableShop.ViewModels
         public ICommand CartCommand
         {
             get => (ICommand)GetValue(CartCommandProperty);
-            set
-            {
-                SetValue(CartCommandProperty, value);
-                RaisePropertyChanged(nameof(CartCommand));
-            }
+            set => SetValue(CartCommandProperty, value);
         }
 
         private static Task CartProduct(ProductsOverviewObject productsOverviewObject)
