@@ -4,11 +4,11 @@ using System.Threading.Tasks;
 
 namespace RCS.PortableShop.Common.Interfaces
 {
-    public interface IFilterRepository<TCollection, TElement> :
+    public interface IFilterRepository<TCollection, TElement, TCategory, TSubcategory, TId> :
         IRepository<TCollection, TElement>
         where TCollection : List<TElement>, new()
     {
-        Task Refresh(ProductCategory category, ProductSubcategory subcategory, string namePart);
-        Task<Product> Details(int productId);
+        Task Refresh(TCategory category, TSubcategory subcategory, string searchString);
+        Task<Product> Details(TId elementId);
     }
 }

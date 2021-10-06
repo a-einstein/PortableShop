@@ -11,7 +11,7 @@ namespace RCS.PortableShop.Model
 {
     public class ProductsRepository :
         Repository<List<ProductsOverviewObject>, ProductsOverviewObject>,
-        IFilterRepository<List<ProductsOverviewObject>, ProductsOverviewObject>
+        IFilterRepository<List<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int>
     {
         #region Construction
         public ProductsRepository(IProductService productService)
