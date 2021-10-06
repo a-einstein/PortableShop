@@ -72,7 +72,7 @@ namespace RCS.PortableShop.Main
                 // Use interfaces for constructor injections.
                 services.AddSingleton<IRepository<List<ProductCategory>, ProductCategory>, ProductCategoriesRepository>();
                 services.AddSingleton<IRepository<List<ProductSubcategory>, ProductSubcategory>, ProductSubcategoriesRepository>();
-                services.AddSingleton<IFilterRepository<List<ProductsOverviewObject>, ProductsOverviewObject>, ProductsRepository>();
+                services.AddSingleton<IFilterRepository<List<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int>, ProductsRepository>();
                 services.AddSingleton<IRepository<List<CartItem>, CartItem>, CartItemsRepository>();
 
                 // Use types for explicit requests, implicitly using repositories.

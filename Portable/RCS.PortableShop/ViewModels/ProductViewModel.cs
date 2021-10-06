@@ -15,7 +15,7 @@ namespace RCS.PortableShop.ViewModels
     public class ProductViewModel : ItemViewModel<Product>, IShopper
     {
         #region Construction
-        public ProductViewModel(IFilterRepository<List<ProductsOverviewObject>, ProductsOverviewObject> productsRepository)
+        public ProductViewModel(IFilterRepository<List<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int> productsRepository)
         {
             ProductsRepository = productsRepository;
         }
@@ -30,7 +30,7 @@ namespace RCS.PortableShop.ViewModels
         #endregion
 
         #region Services
-        private IFilterRepository<List<ProductsOverviewObject>, ProductsOverviewObject> ProductsRepository { get; }
+        private IFilterRepository<List<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int> ProductsRepository { get; }
 
         private static ShoppingCartViewModel ShoppingCartViewModel => Startup.ServiceProvider.GetRequiredService<ShoppingCartViewModel>();
         #endregion

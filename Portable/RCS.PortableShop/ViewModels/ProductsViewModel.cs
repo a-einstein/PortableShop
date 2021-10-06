@@ -24,7 +24,7 @@ namespace RCS.PortableShop.ViewModels
         public ProductsViewModel(
             IRepository<List<ProductCategory>, ProductCategory> productCategoriesRepository,
             IRepository<List<ProductSubcategory>, ProductSubcategory> productSubcategoriesRepository,
-            IFilterRepository<List<ProductsOverviewObject>, ProductsOverviewObject> productsRepository)
+            IFilterRepository<List<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int> productsRepository)
         {
             ProductCategoriesRepository = productCategoriesRepository;
             ProductSubcategoriesRepository = productSubcategoriesRepository;
@@ -42,7 +42,7 @@ namespace RCS.PortableShop.ViewModels
         #region Services
         private IRepository<List<ProductCategory>, ProductCategory> ProductCategoriesRepository { get; }
         private IRepository<List<ProductSubcategory>, ProductSubcategory> ProductSubcategoriesRepository { get; }
-        private IFilterRepository<List<ProductsOverviewObject>, ProductsOverviewObject> ProductsRepository { get; }
+        private IFilterRepository<List<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int> ProductsRepository { get; }
 
         private static ProductViewModel ProductViewModel => Startup.ServiceProvider.GetRequiredService<ProductViewModel>();
         private static ShoppingCartViewModel ShoppingCartViewModel => Startup.ServiceProvider.GetRequiredService<ShoppingCartViewModel>();
