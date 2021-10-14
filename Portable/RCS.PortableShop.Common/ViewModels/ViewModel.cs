@@ -118,7 +118,7 @@ namespace RCS.PortableShop.Common.ViewModels
         #endregion
 
         #region Utility
-        private static Task VoidTask()
+        protected static Task VoidTask()
         {
             // HACK.
             return Task.Run(() => { });
