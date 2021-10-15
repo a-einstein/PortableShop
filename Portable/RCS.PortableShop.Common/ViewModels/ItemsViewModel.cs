@@ -1,6 +1,5 @@
 ﻿using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.CommunityToolkit.ObjectModel;
@@ -39,15 +38,9 @@ namespace RCS.PortableShop.Common.ViewModels
         #region Refresh
         protected override async Task Clear()
         {
-            await MainThread.InvokeOnMainThreadAsync(() =>
-            {
-                // Use ToArray to prevent iteration problems in the original list.
-                foreach (var item in Items.ToArray())
-                {
-                    // Remove separately to enable Items_CollectionChanged.
-                    Items.Remove(item);
-                }
-            }).ConfigureAwait(true);
+            await base.Clear().ConfigureAwait(true);
+
+            await MainThread.InvokeOnMainThreadAsync(() => Items?.Clear()).ConfigureAwait(true);
         }
 
         protected override void SetCommands()
