@@ -26,10 +26,7 @@ namespace RCS.PortableShop.Model
         protected readonly TCollection items = new TCollection();
 
         // Note this is directly accesible but not amendable.
-        public ReadOnlyCollection<TElement> Items
-        {
-            get { return items.AsReadOnly(); }
-        }
+        public ReadOnlyCollection<TElement> Items => items.AsReadOnly();
 
         protected async Task Clear()
         {

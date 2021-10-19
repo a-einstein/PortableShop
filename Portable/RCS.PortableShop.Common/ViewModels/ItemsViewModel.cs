@@ -49,7 +49,7 @@ namespace RCS.PortableShop.Common.ViewModels
 
             await MainThread.InvokeOnMainThreadAsync(() => Items?.Clear()).ConfigureAwait(true);
         }
-         #endregion
+        #endregion
 
         #region Navigation
         private static readonly BindableProperty DetailsCommandProperty =

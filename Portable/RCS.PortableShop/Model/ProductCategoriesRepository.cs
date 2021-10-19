@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace RCS.PortableShop.Model
 {
-    public class ProductCategoriesRepository : Repository<List<ProductCategory>, ProductCategory>
+    public class ProductCategoriesRepository :
+        Repository<List<ProductCategory>, ProductCategory>
     {
         #region Construction
         public ProductCategoriesRepository(IProductService productService)
