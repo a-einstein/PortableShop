@@ -18,7 +18,8 @@ using Xamarin.Forms;
 
 namespace RCS.PortableShop.ViewModels
 {
-    public class ProductsViewModel : FilterItemsViewModel<ProductsOverviewObject, ProductCategory, ProductSubcategory>, IShopper
+    public class ProductsViewModel : 
+        FilterItemsViewModel<ProductsOverviewObject, ProductCategory, ProductSubcategory>, IShopper
     {
         #region Construction
         public ProductsViewModel(

@@ -16,7 +16,8 @@ using Xamarin.Forms;
 
 namespace RCS.PortableShop.ViewModels
 {
-    public class ShoppingCartViewModel : ItemsViewModel<GuiCartItem>
+    public class ShoppingCartViewModel : 
+        ItemsViewModel<GuiCartItem>
     {
         #region Construction
         public ShoppingCartViewModel(IRepository<List<CartItem>, CartItem> cartItemsRepository)

@@ -27,7 +27,6 @@ namespace RCS.PortableShop.Common.ViewModels
         #endregion
 
         #region Refresh
-
         private static readonly BindableProperty MessageProperty =
             BindableProperty.Create(nameof(Message), typeof(string), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>));
 

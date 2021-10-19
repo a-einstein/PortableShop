@@ -15,6 +15,13 @@ namespace RCS.PortableShop.Common.ViewModels
         {
             Items.CollectionChanged += Items_CollectionChanged;
         }
+
+        protected override void SetCommands()
+        {
+            base.SetCommands();
+
+            DetailsCommand = new AsyncCommand<TItem>(ShowDetails);
+        }
         #endregion
 
         #region Items
@@ -42,14 +49,7 @@ namespace RCS.PortableShop.Common.ViewModels
 
             await MainThread.InvokeOnMainThreadAsync(() => Items?.Clear()).ConfigureAwait(true);
         }
-
-        protected override void SetCommands()
-        {
-            base.SetCommands();
-
-            DetailsCommand = new AsyncCommand<TItem>(ShowDetails);
-        }
-        #endregion
+         #endregion
 
         #region Navigation
         private static readonly BindableProperty DetailsCommandProperty =
