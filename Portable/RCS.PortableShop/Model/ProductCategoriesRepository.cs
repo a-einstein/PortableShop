@@ -18,7 +18,7 @@ namespace RCS.PortableShop.Model
         #endregion
 
         #region CRUD
-        protected override async Task Read(bool addEmptyElement = true)
+        protected override async Task<bool> Read(bool addEmptyElement = true)
         {
             ProductCategoryList categories;
 
@@ -29,12 +29,12 @@ namespace RCS.PortableShop.Model
             catch (FaultException<ExceptionDetail> exception)
             {
                 SendMessage(exception);
-                return;
+                return false;
             }
             catch (Exception exception)
             {
                 SendMessage(exception);
-                return;
+                return false;
             }
 
             if (addEmptyElement)
@@ -48,6 +48,8 @@ namespace RCS.PortableShop.Model
             {
                 items.Add(category);
             }
+
+            return true;
         }
         #endregion
     }

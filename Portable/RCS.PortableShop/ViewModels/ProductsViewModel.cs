@@ -18,7 +18,7 @@ using Xamarin.Forms;
 
 namespace RCS.PortableShop.ViewModels
 {
-    public class ProductsViewModel : 
+    public class ProductsViewModel :
         FilterItemsViewModel<ProductsOverviewObject, ProductCategory, ProductSubcategory>, IShopper
     {
         #region Construction
@@ -65,10 +65,10 @@ namespace RCS.PortableShop.ViewModels
         {
             // Do this sequentially instead of using Task.WhenAll 
             // as that caused threading problems in WcfClient.
-            await ProductCategoriesRepository.Refresh().ConfigureAwait(true);
-            await ProductSubcategoriesRepository.Refresh().ConfigureAwait(true);
+            var succeeded = await ProductCategoriesRepository.Refresh().ConfigureAwait(true);
+            succeeded &= await ProductSubcategoriesRepository.Refresh().ConfigureAwait(true);
 
-            await MainThread.InvokeOnMainThreadAsync(() =>
+            if (succeeded) await MainThread.InvokeOnMainThreadAsync(() =>
             {
                 var categories = ProductCategoriesRepository.Items;
 
@@ -103,7 +103,7 @@ namespace RCS.PortableShop.ViewModels
                 TextFilterValue = Settings.TextFilter;
             }).ConfigureAwait(true);
 
-            return true;
+            return succeeded;
         }
 
         public override ProductCategory MasterFilterValue
