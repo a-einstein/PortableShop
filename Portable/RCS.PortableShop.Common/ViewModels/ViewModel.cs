@@ -29,7 +29,7 @@ namespace RCS.PortableShop.Common.ViewModels
         {
             Awaiting = true;
 
-            await Clear().ConfigureAwait(true);
+            await ClearView().ConfigureAwait(true);
             UpdateTitle();
 
             await Initialize().ConfigureAwait(true);
@@ -39,7 +39,7 @@ namespace RCS.PortableShop.Common.ViewModels
             Awaiting = false;
         }
 
-        protected virtual async Task Clear()
+        protected virtual async Task ClearView()
         {
             await VoidTask();
         }

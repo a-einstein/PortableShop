@@ -43,9 +43,9 @@ namespace RCS.PortableShop.Common.ViewModels
         #endregion
 
         #region Refresh
-        protected override async Task Clear()
+        protected override async Task ClearView()
         {
-            await base.Clear().ConfigureAwait(true);
+            await base.ClearView().ConfigureAwait(true);
 
             await MainThread.InvokeOnMainThreadAsync(() => Items?.Clear()).ConfigureAwait(true);
         }
