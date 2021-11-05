@@ -4,14 +4,14 @@ using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows.Input;
 using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace RCS.PortableShop.Common.ViewModels
 {
-    public abstract class FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem> : ItemsViewModel<TItem>
+    public abstract class FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem> : 
+        ItemsViewModel<TItem>
         where TItem : DomainClass
         where TMasterFilterItem : DomainClass
         where TDetailFilterItem : DomainClass
@@ -23,13 +23,10 @@ namespace RCS.PortableShop.Common.ViewModels
 
             // Note that allowsMultipleExecutions replaces the former use of the Awaiting property.
             FilterCommand = new AsyncCommand(Refresh, FilterCanExecute, allowsMultipleExecutions: false);
-
-            DetailsCommand = new AsyncCommand<TItem>(ShowDetails);
         }
         #endregion
 
         #region Refresh
-
         private static readonly BindableProperty MessageProperty =
             BindableProperty.Create(nameof(Message), typeof(string), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>));
 
@@ -200,20 +197,6 @@ namespace RCS.PortableShop.Common.ViewModels
 
             FilterChanged = false;
         }
-        #endregion
-
-        #region Navigation
-
-        private static readonly BindableProperty DetailsCommandProperty =
-            BindableProperty.Create(nameof(DetailsCommand), typeof(ICommand), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>));
-
-        public ICommand DetailsCommand
-        {
-            get => (ICommand)GetValue(DetailsCommandProperty);
-            private set => SetValue(DetailsCommandProperty, value);
-        }
-
-        protected abstract Task ShowDetails(TItem overviewObject);
         #endregion
     }
 }

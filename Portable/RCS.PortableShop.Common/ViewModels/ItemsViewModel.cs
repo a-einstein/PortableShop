@@ -1,7 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -13,6 +14,13 @@ namespace RCS.PortableShop.Common.ViewModels
         protected ItemsViewModel()
         {
             Items.CollectionChanged += Items_CollectionChanged;
+        }
+
+        protected override void SetCommands()
+        {
+            base.SetCommands();
+
+            DetailsCommand = new AsyncCommand<TItem>(ShowDetails);
         }
         #endregion
 
@@ -35,17 +43,27 @@ namespace RCS.PortableShop.Common.ViewModels
         #endregion
 
         #region Refresh
-        protected override async Task Clear()
+        protected override async Task ClearView()
         {
-            await MainThread.InvokeOnMainThreadAsync(() =>
-            {
-                // Use ToArray to prevent iteration problems in the original list.
-                foreach (var item in Items.ToArray())
-                {
-                    // Remove separately to enable Items_CollectionChanged.
-                    Items.Remove(item);
-                }
-            }).ConfigureAwait(true);
+            await base.ClearView().ConfigureAwait(true);
+
+            await MainThread.InvokeOnMainThreadAsync(() => Items?.Clear()).ConfigureAwait(true);
+        }
+        #endregion
+
+        #region Navigation
+        private static readonly BindableProperty DetailsCommandProperty =
+            BindableProperty.Create(nameof(DetailsCommand), typeof(ICommand), typeof(ItemsViewModel<TItem>));
+
+        public ICommand DetailsCommand
+        {
+            get => (ICommand)GetValue(DetailsCommandProperty);
+            private set => SetValue(DetailsCommandProperty, value);
+        }
+
+        protected virtual async Task ShowDetails(TItem overviewObject)
+        {
+            await VoidTask();
         }
         #endregion
     }

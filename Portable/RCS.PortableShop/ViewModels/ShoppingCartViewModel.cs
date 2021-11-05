@@ -16,7 +16,8 @@ using Xamarin.Forms;
 
 namespace RCS.PortableShop.ViewModels
 {
-    public class ShoppingCartViewModel : ItemsViewModel<GuiCartItem>
+    public class ShoppingCartViewModel :
+        ItemsViewModel<GuiCartItem>
     {
         #region Construction
         public ShoppingCartViewModel(IRepository<List<CartItem>, CartItem> cartItemsRepository)
@@ -37,7 +38,7 @@ namespace RCS.PortableShop.ViewModels
         #endregion
 
         #region Refresh
-        private bool listChanged;
+        private bool collectionChanged;
 
         public override async Task Refresh()
         {
@@ -45,20 +46,20 @@ namespace RCS.PortableShop.ViewModels
 
             // Prevent unnecessary action when just navigating to the full view.
             // Note that actions can already be performed and reflected in the summary.
-            if (listChanged)
+            if (collectionChanged)
             {
                 // Note that the repository is leading. 
                 // Changes here are perfomed there, afterwhich it is reloaded.
-                await Clear().ConfigureAwait(true);
+                await ClearView().ConfigureAwait(true);
                 await Read().ConfigureAwait(true);
 
-                listChanged = false;
+                collectionChanged = false;
             }
         }
 
-        protected override async Task Clear()
+        protected override async Task ClearView()
         {
-            await base.Clear().ConfigureAwait(true);
+            await base.ClearView().ConfigureAwait(true);
 
             UpdateAggregates();
         }
@@ -78,7 +79,7 @@ namespace RCS.PortableShop.ViewModels
             if (existing == default)
             {
                 await CartItemsRepository.Create(new CartItem(productsOverviewObject)).ConfigureAwait(true);
-                listChanged = true;
+                collectionChanged = true;
 
                 await Refresh().ConfigureAwait(true);
             }
@@ -114,7 +115,7 @@ namespace RCS.PortableShop.ViewModels
         private async Task Delete(GuiCartItem cartItem)
         {
             await CartItemsRepository.Delete(cartItem.CartItem).ConfigureAwait(true);
-            listChanged = true;
+            collectionChanged = true;
 
             await Refresh().ConfigureAwait(true);
         }
@@ -139,9 +140,8 @@ namespace RCS.PortableShop.ViewModels
             if (e.PropertyName == nameof(GuiCartItem.Quantity))
             {
                 CartItemsRepository.Update((sender as GuiCartItem).CartItem).ConfigureAwait(true);
+                UpdateAggregates();
             }
-
-            UpdateAggregates();
         }
         #endregion
 
@@ -151,19 +151,19 @@ namespace RCS.PortableShop.ViewModels
             // Note the thread is particularly relevant for UWP.
             MainThread.BeginInvokeOnMainThread(() =>
             {
-                ProductItemsCount = Count();
-                TotalValue = Value();
+                ProductItemsCount = SumQuantities();
+                TotalValue = SumValues();
             });
         }
 
-        private int Count()
+        private int SumQuantities()
         {
             return Items.Count > 0
                 ? Items.Sum(item => item.Quantity)
                 : 0;
         }
 
-        private decimal Value()
+        private decimal SumValues()
         {
             return Items.Count > 0
                 ? Items.Sum(item => item.Value)

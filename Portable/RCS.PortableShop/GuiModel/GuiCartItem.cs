@@ -13,9 +13,10 @@ namespace RCS.PortableShop.GuiModel
         #region Construction
         public GuiCartItem(CartItem cartItem)
         {
-            this.CartItem = cartItem;
+            CartItem = cartItem;
 
-            SetValue();
+            // Update binding.
+            Quantity = CartItem.Quantity;
         }
 
         /// <summary>
@@ -23,7 +24,7 @@ namespace RCS.PortableShop.GuiModel
         /// </summary>
         public CartItem CartItem { get; }
 
-        private void SetValue()
+        private void UpdateValue()
         {
             Value = ProductListPrice * Quantity;
         }
@@ -47,10 +48,11 @@ namespace RCS.PortableShop.GuiModel
             {
                 CartItem.Quantity = value;
 
+                // Do this before the PropertyChanged, to be available too.
+                UpdateValue();
+
                 // Need this because this is no BindableProperty, as I also want to use CartItem.Quantity instead of duplicating it.
                 OnPropertyChanged(nameof(Quantity));
-
-                SetValue();
             }
         }
 
@@ -60,7 +62,7 @@ namespace RCS.PortableShop.GuiModel
         public decimal Value
         {
             get => (decimal)GetValue(ValueProperty);
-            set => SetValue(ValueProperty, value);
+            private set => SetValue(ValueProperty, value);
         }
         #endregion
     }

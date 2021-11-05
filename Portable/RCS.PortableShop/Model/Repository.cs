@@ -26,40 +26,35 @@ namespace RCS.PortableShop.Model
         protected readonly TCollection items = new TCollection();
 
         // Note this is directly accesible but not amendable.
-        public ReadOnlyCollection<TElement> Items
-        {
-            get { return items.AsReadOnly(); }
-        }
+        public ReadOnlyCollection<TElement> Items => items.AsReadOnly();
 
-        protected async Task Clear()
+        // Async for future use, though currently not .
+        public async Task Clear()
         {
             await Task.Run(() =>
             {
-                // Use ToArray to prevent iteration problems in the original list.
-                foreach (var item in items.ToArray())
-                {
-                    // Remove separately to enable Items_CollectionChanged.
-                    items.Remove(item);
-                }
+                items.Clear();
             }).ConfigureAwait(true);
         }
 
-        public async Task Refresh(bool addEmptyElement = true)
+        public async Task<bool> Refresh(bool addEmptyElement = true)
         {
             try
             {
                 await Clear().ConfigureAwait(true);
                 await Read(addEmptyElement).ConfigureAwait(true);
+
+                return true;
             }
             catch (Exception exception)
             {
                 SendMessage(exception);
+                return false;
             }
         }
         #endregion
 
         #region CRUD
-
         public virtual async Task Create(TElement element)
         {
             await Task.Run(() =>
@@ -68,9 +63,10 @@ namespace RCS.PortableShop.Model
             });
         }
 
-        protected virtual async Task Read(bool addEmptyElement = true)
+        protected virtual async Task<bool> Read(bool addEmptyElement = true)
         {
             await VoidTask();
+            return true;
         }
 
         public virtual async Task Update(TElement element)
