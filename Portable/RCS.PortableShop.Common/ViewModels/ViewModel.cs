@@ -25,7 +25,7 @@ namespace RCS.PortableShop.Common.ViewModels
         }
 
         // Note that actions are deliberately put here instead of in constructor to avoid problems.
-        public virtual async Task Refresh()
+        public virtual async Task RefreshView()
         {
             Awaiting = true;
 

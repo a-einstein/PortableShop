@@ -28,10 +28,10 @@ namespace RCS.PortableShop.ViewModels
         #endregion
 
         #region Refresh
-        public override async Task Refresh()
+        public override async Task RefreshView()
         {
             if (await Initialize().ConfigureAwait(true))
-                await WrappedContent.ViewModel.Refresh().ConfigureAwait(true);
+                await WrappedContent.ViewModel.RefreshView().ConfigureAwait(true);
         }
 
         public override string MakeTitle() { return WrappedContent?.ViewModel.MakeTitle(); }

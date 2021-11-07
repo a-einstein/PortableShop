@@ -28,7 +28,7 @@ namespace RCS.PortableShop.Main
 
             Task.Run(async () =>
             {
-                await (viewModel.Refresh()).ConfigureAwait(true);
+                await (viewModel.RefreshView()).ConfigureAwait(true);
             }).ConfigureAwait(true);
 
             // TODO There intermittently is a NullReferenceException here.

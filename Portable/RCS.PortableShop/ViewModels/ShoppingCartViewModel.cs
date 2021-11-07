@@ -40,7 +40,7 @@ namespace RCS.PortableShop.ViewModels
         #region Refresh
         private bool collectionChanged;
 
-        public override async Task Refresh()
+        public override async Task RefreshView()
         {
             await Initialize().ConfigureAwait(true);
 
@@ -72,16 +72,16 @@ namespace RCS.PortableShop.ViewModels
         // https://johnthiriet.com/mvvm-going-async-with-async-command/
         // Necessary?
 
-        public async Task CartProduct(IShoppingProduct productsOverviewObject)
+        public async Task CartProduct(IShoppingProduct shoppingProduct)
         {
-            var existing = Items.FirstOrDefault(item => item.ProductId == productsOverviewObject.Id);
+            var existing = Items.FirstOrDefault(item => item.ProductId == shoppingProduct.Id);
 
             if (existing == default)
             {
-                await CartItemsRepository.Create(new CartItem(productsOverviewObject)).ConfigureAwait(true);
+                await CartItemsRepository.Create(new CartItem(shoppingProduct)).ConfigureAwait(true);
                 collectionChanged = true;
 
-                await Refresh().ConfigureAwait(true);
+                await RefreshView().ConfigureAwait(true);
             }
             else
             {
@@ -117,7 +117,7 @@ namespace RCS.PortableShop.ViewModels
             await CartItemsRepository.Delete(cartItem.CartItem).ConfigureAwait(true);
             collectionChanged = true;
 
-            await Refresh().ConfigureAwait(true);
+            await RefreshView().ConfigureAwait(true);
         }
 
         protected override void Items_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
