@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <baseClasses:View
-    x:Class="RCS.PortableShop.Views.ShoppingCartView"
+    x:Class="RCS.PortableShop.Views.CartView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:community ="http://xamarin.com/schemas/2020/toolkit"
@@ -20,7 +20,7 @@
     </baseClasses:View.Resources>
 
     <StackLayout>
-        <views:ShoppingCartSummaryView/>
+        <views:CartSummaryView/>
 
         <!--VerticalOptions is needed to fill the screen with no or just a few items.-->
         <!--Note that ListView has got its own scrolling.-->

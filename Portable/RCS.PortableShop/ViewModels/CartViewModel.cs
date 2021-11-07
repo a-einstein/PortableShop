@@ -18,11 +18,11 @@ namespace RCS.PortableShop.ViewModels
     /// <summary>
     /// Collection level Viewmodel on CartItems.
     /// </summary>
-    public class ShoppingCartViewModel :
+    public class CartViewModel :
         ItemsViewModel<CartItemViewModel>
     {
         #region Construction
-        public ShoppingCartViewModel(IRepository<List<CartItem>, CartItem> cartItemsRepository)
+        public CartViewModel(IRepository<List<CartItem>, CartItem> cartItemsRepository)
         {
             CartItemsRepository = cartItemsRepository;
         }
@@ -100,7 +100,7 @@ namespace RCS.PortableShop.ViewModels
         }
 
         private static readonly BindableProperty DeleteCommandProperty =
-            BindableProperty.Create(nameof(DeleteCommand), typeof(ICommand), typeof(ShoppingCartViewModel));
+            BindableProperty.Create(nameof(DeleteCommand), typeof(ICommand), typeof(CartViewModel));
 
         public ICommand DeleteCommand
         {
@@ -166,7 +166,7 @@ namespace RCS.PortableShop.ViewModels
         }
 
         private static readonly BindableProperty ProductItemCountProperty =
-            BindableProperty.Create(nameof(ProductItemsCount), typeof(int), typeof(ShoppingCartViewModel), 0);
+            BindableProperty.Create(nameof(ProductItemsCount), typeof(int), typeof(CartViewModel), 0);
 
         public int ProductItemsCount
         {
@@ -175,7 +175,7 @@ namespace RCS.PortableShop.ViewModels
         }
 
         private static readonly BindableProperty TotalValueProperty =
-            BindableProperty.Create(nameof(TotalValue), typeof(decimal), typeof(ShoppingCartViewModel), (decimal)0);
+            BindableProperty.Create(nameof(TotalValue), typeof(decimal), typeof(CartViewModel), (decimal)0);
 
         public decimal TotalValue
         {

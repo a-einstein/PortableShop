@@ -78,7 +78,7 @@ namespace RCS.PortableShop.Main
                 // Use types for explicit requests, implicitly using repositories.
                 services.AddSingleton<ProductsViewModel>();
                 services.AddSingleton<ProductViewModel>();
-                services.AddSingleton<ShoppingCartViewModel>();
+                services.AddSingleton<CartViewModel>();
             });
 
             var host = hostBuilder.Build();

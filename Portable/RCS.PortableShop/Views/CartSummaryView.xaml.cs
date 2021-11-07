@@ -5,9 +5,9 @@ using RCS.PortableShop.ViewModels;
 
 namespace RCS.PortableShop.Views
 {
-    public partial class ShoppingCartSummaryView : View
+    public partial class CartSummaryView : View
     {
-        public ShoppingCartSummaryView()
+        public CartSummaryView()
         {
             InitializeComponent();
 
@@ -15,7 +15,7 @@ namespace RCS.PortableShop.Views
         }
 
         #region Services
-        private static ShoppingCartViewModel ShoppingCartViewModel => Startup.ServiceProvider.GetRequiredService<ShoppingCartViewModel>();
+        private static CartViewModel ShoppingCartViewModel => Startup.ServiceProvider.GetRequiredService<CartViewModel>();
         #endregion
     }
 }

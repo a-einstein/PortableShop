@@ -12,7 +12,7 @@ using Xamarin.Forms;
 
 namespace RCS.PortableShop.ViewModels
 {
-    public class ProductViewModel : 
+    public class ProductViewModel :
         ItemViewModel<Product>, IShopper
     {
         #region Construction
@@ -33,7 +33,7 @@ namespace RCS.PortableShop.ViewModels
         #region Services
         private IFilterRepository<List<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int> ProductsRepository { get; }
 
-        private static ShoppingCartViewModel ShoppingCartViewModel => Startup.ServiceProvider.GetRequiredService<ShoppingCartViewModel>();
+        private static CartViewModel ShoppingCartViewModel => Startup.ServiceProvider.GetRequiredService<CartViewModel>();
         #endregion
 
         #region Refresh
