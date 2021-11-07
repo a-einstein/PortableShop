@@ -22,7 +22,7 @@ namespace RCS.PortableShop.ViewModels
         #endregion
 
         #region Services
-        private static CartViewModel ShoppingCartViewModel => Startup.ServiceProvider.GetRequiredService<CartViewModel>();
+        private static CartViewModel CartViewModel => Startup.ServiceProvider.GetRequiredService<CartViewModel>();
         #endregion
 
         #region Navigation
@@ -38,9 +38,9 @@ namespace RCS.PortableShop.ViewModels
 
         protected virtual async Task ShowCart()
         {
-            var shoppingCartView = new CartView() { ViewModel = ShoppingCartViewModel };
+            var cartView = new CartView() { ViewModel = CartViewModel };
 
-            await PushPage(shoppingCartView).ConfigureAwait(true);
+            await PushPage(cartView).ConfigureAwait(true);
         }
         #endregion
     }

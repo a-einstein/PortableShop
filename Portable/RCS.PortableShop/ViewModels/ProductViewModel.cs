@@ -33,7 +33,7 @@ namespace RCS.PortableShop.ViewModels
         #region Services
         private IFilterRepository<List<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int> ProductsRepository { get; }
 
-        private static CartViewModel ShoppingCartViewModel => Startup.ServiceProvider.GetRequiredService<CartViewModel>();
+        private static CartViewModel CartViewModel => Startup.ServiceProvider.GetRequiredService<CartViewModel>();
         #endregion
 
         #region Refresh
@@ -89,7 +89,7 @@ namespace RCS.PortableShop.ViewModels
 
         private static Task CartProduct(Product product)
         {
-            return ShoppingCartViewModel.CartProduct(product);
+            return CartViewModel.CartProduct(product);
         }
         #endregion
     }

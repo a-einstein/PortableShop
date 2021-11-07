@@ -11,11 +11,11 @@ namespace RCS.PortableShop.Views
         {
             InitializeComponent();
 
-            ViewModel = ShoppingCartViewModel;
+            ViewModel = CartViewModel;
         }
 
         #region Services
-        private static CartViewModel ShoppingCartViewModel => Startup.ServiceProvider.GetRequiredService<CartViewModel>();
+        private static CartViewModel CartViewModel => Startup.ServiceProvider.GetRequiredService<CartViewModel>();
         #endregion
     }
 }

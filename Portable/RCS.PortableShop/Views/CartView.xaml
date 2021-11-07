@@ -24,7 +24,7 @@
 
         <!--VerticalOptions is needed to fill the screen with no or just a few items.-->
         <!--Note that ListView has got its own scrolling.-->
-        <ListView x:Name="shoppingCartItemsListView" ItemsSource="{Binding Items}" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource ResultsBackgroundColour}">
+        <ListView x:Name="cartItemsListView" ItemsSource="{Binding Items}" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource ResultsBackgroundColour}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -55,7 +55,7 @@
 
                                     <!--Using ContentButton plus Label to create a flat style Button without border. -->
                                     <!--TODO Get it better aligned with SfNumericUpDown.-->
-                                    <controls:ContentButton Command="{Binding BindingContext.DeleteCommand, Source={x:Reference shoppingCartItemsListView}}" CommandParameter="{Binding}" HorizontalOptions="Start" VerticalOptions="Center">
+                                    <controls:ContentButton Command="{Binding BindingContext.DeleteCommand, Source={x:Reference cartItemsListView}}" CommandParameter="{Binding}" HorizontalOptions="Start" VerticalOptions="Center">
                                         <controls:ContentButton.Content>
                                             <Label Text="{community:Translate Remove}" Margin="10,0" FontSize="Small" FontAttributes="Bold" TextColor="{StaticResource LabelTextColour}" VerticalOptions="Start"/>
                                         </controls:ContentButton.Content>
