@@ -15,6 +15,9 @@ using Xamarin.Forms;
 
 namespace RCS.PortableShop.ViewModels
 {
+    /// <summary>
+    /// Collection level Viewmodel on CartItems.
+    /// </summary>
     public class ShoppingCartViewModel :
         ItemsViewModel<CartItemViewModel>
     {
@@ -37,23 +40,17 @@ namespace RCS.PortableShop.ViewModels
         #endregion
 
         #region Refresh
-        private bool collectionChanged;
-
         public override async Task RefreshView()
         {
             await Initialize().ConfigureAwait(true);
 
-            // Prevent unnecessary action when just navigating to the full view.
-            // Note that actions can already be performed and reflected in the summary.
-            if (collectionChanged)
-            {
-                // Note that the repository is leading. 
-                // Changes here are perfomed there, afterwhich it is reloaded.
-                await ClearView().ConfigureAwait(true);
-                await Read().ConfigureAwait(true);
+            // Note that the repository is leading. Changes to the collection are performed there.
+            // After which a new view is created by reloading.
 
-                collectionChanged = false;
-            }
+            await ClearView().ConfigureAwait(true);
+            await Read().ConfigureAwait(true);
+
+            UpdateAggregates();
         }
 
         protected override async Task ClearView()
@@ -78,13 +75,13 @@ namespace RCS.PortableShop.ViewModels
             if (existing == default)
             {
                 await CartItemsRepository.Create(new CartItem(shoppingProduct)).ConfigureAwait(true);
-                collectionChanged = true;
 
                 await RefreshView().ConfigureAwait(true);
             }
             else
             {
                 existing.Quantity++;
+
                 await CartItemsRepository.Update(existing.CartItem);
             }
         }
@@ -114,7 +111,6 @@ namespace RCS.PortableShop.ViewModels
         private async Task Delete(CartItemViewModel cartItem)
         {
             await CartItemsRepository.Delete(cartItem.CartItem).ConfigureAwait(true);
-            collectionChanged = true;
 
             await RefreshView().ConfigureAwait(true);
         }
@@ -138,7 +134,7 @@ namespace RCS.PortableShop.ViewModels
         {
             if (e.PropertyName == nameof(CartItemViewModel.Quantity))
             {
-                CartItemsRepository.Update((sender as CartItemViewModel).CartItem).ConfigureAwait(true);
+                // Aggregate from the single to the collection level.
                 UpdateAggregates();
             }
         }

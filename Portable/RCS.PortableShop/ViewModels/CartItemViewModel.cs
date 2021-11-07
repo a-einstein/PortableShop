@@ -6,7 +6,7 @@ using Xamarin.Forms;
 namespace RCS.PortableShop.ViewModels
 {
     /// <summary>
-    /// Wrapper around CartItem.
+    /// Single level Viewmodel on CartItem.
     /// </summary>
     [DebuggerDisplay("{Name} : {ProductListPrice} x {Quantity} = {Value}")]
     public class CartItemViewModel : ViewModel
@@ -21,7 +21,8 @@ namespace RCS.PortableShop.ViewModels
         }
 
         /// <summary>
-        /// Local copy, as a reference into the repository is not possible. 
+        /// Reference into the repository. 
+        /// The model for this object.
         /// </summary>
         public CartItem CartItem { get; }
 
@@ -52,7 +53,7 @@ namespace RCS.PortableShop.ViewModels
                 // Do this before the PropertyChanged, to be available too.
                 UpdateValue();
 
-                // Need this because this is no BindableProperty, as I also want to use CartItem.Quantity instead of duplicating it.
+                // Need this because this is no BindableProperty, for I also want to use CartItem.Quantity instead of duplicating it.
                 OnPropertyChanged(nameof(Quantity));
             }
         }
