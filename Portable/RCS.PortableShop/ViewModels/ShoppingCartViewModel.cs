@@ -47,15 +47,15 @@ namespace RCS.PortableShop.ViewModels
             // Note that the repository is leading. Changes to the collection are performed there.
             // After which a new view is created by reloading.
 
-            await ClearView().ConfigureAwait(true);
+            ClearView();
             await Read().ConfigureAwait(true);
 
             UpdateAggregates();
         }
 
-        protected override async Task ClearView()
+        protected override void ClearView()
         {
-            await base.ClearView().ConfigureAwait(true);
+            base.ClearView();
 
             UpdateAggregates();
         }
