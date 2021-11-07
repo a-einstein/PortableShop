@@ -1,17 +1,18 @@
 ﻿using RCS.AdventureWorks.Common.DomainClasses;
+using RCS.PortableShop.Common.ViewModels;
 using System.Diagnostics;
 using Xamarin.Forms;
 
-namespace RCS.PortableShop.GuiModel
+namespace RCS.PortableShop.ViewModels
 {
     /// <summary>
     /// Wrapper around CartItem.
     /// </summary>
     [DebuggerDisplay("{Name} : {ProductListPrice} x {Quantity} = {Value}")]
-    public class GuiCartItem : BindableObject
+    public class CartItemViewModel : ViewModel
     {
         #region Construction
-        public GuiCartItem(CartItem cartItem)
+        public CartItemViewModel(CartItem cartItem)
         {
             CartItem = cartItem;
 
@@ -57,7 +58,7 @@ namespace RCS.PortableShop.GuiModel
         }
 
         private static readonly BindableProperty ValueProperty =
-            BindableProperty.Create(nameof(Value), typeof(decimal), typeof(GuiCartItem));
+            BindableProperty.Create(nameof(Value), typeof(decimal), typeof(CartItemViewModel));
 
         public decimal Value
         {

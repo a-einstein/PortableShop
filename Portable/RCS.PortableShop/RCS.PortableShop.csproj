@@ -37,7 +37,7 @@
 		<Compile Include="Main\MainPage.cs" />
 		<Compile Include="Main\MainShell.xaml.cs" />
 		<Compile Include="Main\Startup.cs" />
-		<Compile Include="GuiModel\GuiCartItem.cs" />
+		<Compile Include="ViewModels\CartItemViewModel.cs" />
 
 		<Compile Include="Model\CartItemsRepository.cs" />
 
