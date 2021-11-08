@@ -2,7 +2,6 @@
 using RCS.AdventureWorks.Common.Interfaces;
 using RCS.PortableShop.Common.Interfaces;
 using RCS.PortableShop.Common.ViewModels;
-using RCS.PortableShop.GuiModel;
 using RCS.PortableShop.Resources;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -16,11 +15,14 @@ using Xamarin.Forms;
 
 namespace RCS.PortableShop.ViewModels
 {
-    public class ShoppingCartViewModel :
-        ItemsViewModel<GuiCartItem>
+    /// <summary>
+    /// Collection level Viewmodel on CartItems.
+    /// </summary>
+    public class CartViewModel :
+        ItemsViewModel<CartItemViewModel>
     {
         #region Construction
-        public ShoppingCartViewModel(IRepository<List<CartItem>, CartItem> cartItemsRepository)
+        public CartViewModel(IRepository<List<CartItem>, CartItem> cartItemsRepository)
         {
             CartItemsRepository = cartItemsRepository;
         }
@@ -29,7 +31,7 @@ namespace RCS.PortableShop.ViewModels
         {
             base.SetCommands();
 
-            DeleteCommand = new AsyncCommand<GuiCartItem>(Delete);
+            DeleteCommand = new AsyncCommand<CartItemViewModel>(Delete);
         }
         #endregion
 
@@ -38,28 +40,22 @@ namespace RCS.PortableShop.ViewModels
         #endregion
 
         #region Refresh
-        private bool collectionChanged;
-
-        public override async Task Refresh()
+        public override async Task RefreshView()
         {
             await Initialize().ConfigureAwait(true);
 
-            // Prevent unnecessary action when just navigating to the full view.
-            // Note that actions can already be performed and reflected in the summary.
-            if (collectionChanged)
-            {
-                // Note that the repository is leading. 
-                // Changes here are perfomed there, afterwhich it is reloaded.
-                await ClearView().ConfigureAwait(true);
-                await Read().ConfigureAwait(true);
+            // Note that the repository is leading. Changes to the collection are performed there.
+            // After which a new view is created by reloading.
 
-                collectionChanged = false;
-            }
+            ClearView();
+            await Read().ConfigureAwait(true);
+
+            UpdateAggregates();
         }
 
-        protected override async Task ClearView()
+        protected override void ClearView()
         {
-            await base.ClearView().ConfigureAwait(true);
+            base.ClearView();
 
             UpdateAggregates();
         }
@@ -72,20 +68,20 @@ namespace RCS.PortableShop.ViewModels
         // https://johnthiriet.com/mvvm-going-async-with-async-command/
         // Necessary?
 
-        public async Task CartProduct(IShoppingProduct productsOverviewObject)
+        public async Task CartProduct(IShoppingProduct shoppingProduct)
         {
-            var existing = Items.FirstOrDefault(item => item.ProductId == productsOverviewObject.Id);
+            var existing = Items.FirstOrDefault(item => item.ProductId == shoppingProduct.Id);
 
             if (existing == default)
             {
-                await CartItemsRepository.Create(new CartItem(productsOverviewObject)).ConfigureAwait(true);
-                collectionChanged = true;
+                await CartItemsRepository.Create(new CartItem(shoppingProduct)).ConfigureAwait(true);
 
-                await Refresh().ConfigureAwait(true);
+                await RefreshView().ConfigureAwait(true);
             }
             else
             {
                 existing.Quantity++;
+
                 await CartItemsRepository.Update(existing.CartItem);
             }
         }
@@ -96,7 +92,7 @@ namespace RCS.PortableShop.ViewModels
              {
                  foreach (var item in CartItemsRepository.Items)
                  {
-                     Items.Add(new GuiCartItem(item));
+                     Items.Add(new CartItemViewModel(item));
                  }
              }).ConfigureAwait(true);
 
@@ -104,7 +100,7 @@ namespace RCS.PortableShop.ViewModels
         }
 
         private static readonly BindableProperty DeleteCommandProperty =
-            BindableProperty.Create(nameof(DeleteCommand), typeof(ICommand), typeof(ShoppingCartViewModel));
+            BindableProperty.Create(nameof(DeleteCommand), typeof(ICommand), typeof(CartViewModel));
 
         public ICommand DeleteCommand
         {
@@ -112,12 +108,11 @@ namespace RCS.PortableShop.ViewModels
             private set => SetValue(DeleteCommandProperty, value);
         }
 
-        private async Task Delete(GuiCartItem cartItem)
+        private async Task Delete(CartItemViewModel cartItem)
         {
             await CartItemsRepository.Delete(cartItem.CartItem).ConfigureAwait(true);
-            collectionChanged = true;
 
-            await Refresh().ConfigureAwait(true);
+            await RefreshView().ConfigureAwait(true);
         }
 
         protected override void Items_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -127,19 +122,19 @@ namespace RCS.PortableShop.ViewModels
             switch (e.Action)
             {
                 case NotifyCollectionChangedAction.Add:
-                    (e.NewItems[0] as GuiCartItem).PropertyChanged += CartItem_PropertyChanged;
+                    (e.NewItems[0] as CartItemViewModel).PropertyChanged += CartItem_PropertyChanged;
                     break;
                 case NotifyCollectionChangedAction.Remove:
-                    (e.OldItems[0] as GuiCartItem).PropertyChanged -= CartItem_PropertyChanged;
+                    (e.OldItems[0] as CartItemViewModel).PropertyChanged -= CartItem_PropertyChanged;
                     break;
             }
         }
 
         private void CartItem_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(GuiCartItem.Quantity))
+            if (e.PropertyName == nameof(CartItemViewModel.Quantity))
             {
-                CartItemsRepository.Update((sender as GuiCartItem).CartItem).ConfigureAwait(true);
+                // Aggregate from the single to the collection level.
                 UpdateAggregates();
             }
         }
@@ -171,7 +166,7 @@ namespace RCS.PortableShop.ViewModels
         }
 
         private static readonly BindableProperty ProductItemCountProperty =
-            BindableProperty.Create(nameof(ProductItemsCount), typeof(int), typeof(ShoppingCartViewModel), 0);
+            BindableProperty.Create(nameof(ProductItemsCount), typeof(int), typeof(CartViewModel), 0);
 
         public int ProductItemsCount
         {
@@ -180,7 +175,7 @@ namespace RCS.PortableShop.ViewModels
         }
 
         private static readonly BindableProperty TotalValueProperty =
-            BindableProperty.Create(nameof(TotalValue), typeof(decimal), typeof(ShoppingCartViewModel), (decimal)0);
+            BindableProperty.Create(nameof(TotalValue), typeof(decimal), typeof(CartViewModel), (decimal)0);
 
         public decimal TotalValue
         {

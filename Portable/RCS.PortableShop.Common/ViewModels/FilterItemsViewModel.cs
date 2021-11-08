@@ -22,7 +22,7 @@ namespace RCS.PortableShop.Common.ViewModels
             base.SetCommands();
 
             // Note that allowsMultipleExecutions replaces the former use of the Awaiting property.
-            FilterCommand = new AsyncCommand(Refresh, FilterCanExecute, allowsMultipleExecutions: false);
+            FilterCommand = new AsyncCommand(RefreshView, FilterCanExecute, allowsMultipleExecutions: false);
         }
         #endregion
 
@@ -191,9 +191,9 @@ namespace RCS.PortableShop.Common.ViewModels
             private set => SetValue(FilterCommandProperty, value);
         }
 
-        public override async Task Refresh()
+        public override async Task RefreshView()
         {
-            await base.Refresh();
+            await base.RefreshView();
 
             FilterChanged = false;
         }

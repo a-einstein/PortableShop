@@ -25,11 +25,11 @@ namespace RCS.PortableShop.Common.ViewModels
         }
 
         // Note that actions are deliberately put here instead of in constructor to avoid problems.
-        public virtual async Task Refresh()
+        public virtual async Task RefreshView()
         {
             Awaiting = true;
 
-            await ClearView().ConfigureAwait(true);
+            ClearView();
             UpdateTitle();
 
             await Initialize().ConfigureAwait(true);
@@ -39,10 +39,7 @@ namespace RCS.PortableShop.Common.ViewModels
             Awaiting = false;
         }
 
-        protected virtual async Task ClearView()
-        {
-            await VoidTask();
-        }
+        protected virtual void ClearView() { }
 
         private bool initialized;
 

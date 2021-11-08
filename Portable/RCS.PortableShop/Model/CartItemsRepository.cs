@@ -27,14 +27,6 @@ namespace RCS.PortableShop.Model
         // Note that the cart is only kept in memory and is not preserved. 
         // It is anticipated that only real orders would be preserved and stored on the server.
 
-        public override async Task Create(CartItem proxy)
-        {
-            await Task.Run(() =>
-            {
-                items.Add(proxy);
-            });
-        }
-
         public async Task Create(IShoppingProduct product)
         {
             await Task.Run(() =>
@@ -48,6 +40,7 @@ namespace RCS.PortableShop.Model
             // Use a simple function instead of CancellationToken .
             var task = Task.Run(() =>
             {
+                // TODO This could be generalized by applying something like IEqualityComparer on ProductId or even Id.
                 var foundItem = items.FirstOrDefault(item => item.ProductId == proxy.ProductId);
 
                 if (foundItem != default)
@@ -71,6 +64,7 @@ namespace RCS.PortableShop.Model
         {
             await Task.Run(() =>
             {
+                // TODO This could be generalized by applying something like IEqualityComparer on ProductId or even Id.
                 var current = items.FirstOrDefault(item => item.ProductId == proxy.ProductId);
 
                 if (current != default)

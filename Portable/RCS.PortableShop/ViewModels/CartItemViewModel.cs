@@ -1,17 +1,18 @@
 ﻿using RCS.AdventureWorks.Common.DomainClasses;
+using RCS.PortableShop.Common.ViewModels;
 using System.Diagnostics;
 using Xamarin.Forms;
 
-namespace RCS.PortableShop.GuiModel
+namespace RCS.PortableShop.ViewModels
 {
     /// <summary>
-    /// Wrapper around CartItem.
+    /// Single level Viewmodel on CartItem.
     /// </summary>
     [DebuggerDisplay("{Name} : {ProductListPrice} x {Quantity} = {Value}")]
-    public class GuiCartItem : BindableObject
+    public class CartItemViewModel : ViewModel
     {
         #region Construction
-        public GuiCartItem(CartItem cartItem)
+        public CartItemViewModel(CartItem cartItem)
         {
             CartItem = cartItem;
 
@@ -20,7 +21,8 @@ namespace RCS.PortableShop.GuiModel
         }
 
         /// <summary>
-        /// Local copy, as a reference into the repository is not possible. 
+        /// Reference into the repository. 
+        /// The model for this object.
         /// </summary>
         public CartItem CartItem { get; }
 
@@ -51,13 +53,13 @@ namespace RCS.PortableShop.GuiModel
                 // Do this before the PropertyChanged, to be available too.
                 UpdateValue();
 
-                // Need this because this is no BindableProperty, as I also want to use CartItem.Quantity instead of duplicating it.
+                // Need this because this is no BindableProperty, for I also want to use CartItem.Quantity instead of duplicating it.
                 OnPropertyChanged(nameof(Quantity));
             }
         }
 
         private static readonly BindableProperty ValueProperty =
-            BindableProperty.Create(nameof(Value), typeof(decimal), typeof(GuiCartItem));
+            BindableProperty.Create(nameof(Value), typeof(decimal), typeof(CartItemViewModel));
 
         public decimal Value
         {

@@ -37,7 +37,7 @@
 		<Compile Include="Main\MainPage.cs" />
 		<Compile Include="Main\MainShell.xaml.cs" />
 		<Compile Include="Main\Startup.cs" />
-		<Compile Include="GuiModel\GuiCartItem.cs" />
+		<Compile Include="ViewModels\CartItemViewModel.cs" />
 
 		<Compile Include="Model\CartItemsRepository.cs" />
 
@@ -57,14 +57,14 @@
 		<Compile Include="ViewModels\ShoppingWrapperViewModel.cs" />
 		<Compile Include="ViewModels\ProductsViewModel.cs" />
 		<Compile Include="ViewModels\ProductViewModel.cs" />
-		<Compile Include="ViewModels\ShoppingCartViewModel.cs" />
+		<Compile Include="ViewModels\CartViewModel.cs" />
 		<Compile Include="Views\SettingsView.xaml.cs" />
 
 		<Compile Include="Views\ShoppingWrapperView.xaml.cs" />
 		<Compile Include="Views\ProductsView.xaml.cs" />
 		<Compile Include="Views\ProductView.xaml.cs" />
-		<Compile Include="Views\ShoppingCartSummaryView.xaml.cs" />
-		<Compile Include="Views\ShoppingCartView.xaml.cs" />
+		<Compile Include="Views\CartSummaryView.xaml.cs" />
+		<Compile Include="Views\CartView.xaml.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -98,13 +98,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<EmbeddedResource Include="Views\ShoppingCartSummaryView.xaml">
+		<EmbeddedResource Include="Views\CartSummaryView.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</EmbeddedResource>
 	</ItemGroup>
 
 	<ItemGroup>
-		<EmbeddedResource Include="Views\ShoppingCartView.xaml">
+		<EmbeddedResource Include="Views\CartView.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</EmbeddedResource>
 	</ItemGroup>

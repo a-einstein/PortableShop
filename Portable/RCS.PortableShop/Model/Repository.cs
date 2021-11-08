@@ -55,7 +55,7 @@ namespace RCS.PortableShop.Model
         #endregion
 
         #region CRUD
-        public virtual async Task Create(TElement element)
+        public async Task Create(TElement element)
         {
             await Task.Run(() =>
             {
