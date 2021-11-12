@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using RCS.AdventureWorks.Common.DomainClasses;
+using RCS.AdventureWorks.Common.Interfaces;
 using RCS.PortableShop.Common.Interfaces;
 using RCS.PortableShop.Common.ViewModels;
 using RCS.PortableShop.Interfaces;
@@ -36,7 +37,7 @@ namespace RCS.PortableShop.ViewModels
         {
             base.SetCommands();
 
-            CartCommand = new AsyncCommand<ProductsOverviewObject>(CartProduct);
+            CartCommand = new AsyncCommand<IShoppingProduct>(CartProduct);
         }
         #endregion
 
@@ -197,9 +198,9 @@ namespace RCS.PortableShop.ViewModels
             set => SetValue(CartCommandProperty, value);
         }
 
-        private static Task CartProduct(ProductsOverviewObject productsOverviewObject)
+        private static Task CartProduct(IShoppingProduct product)
         {
-            return CartViewModel.CartProduct(productsOverviewObject);
+            return CartViewModel.CartProduct(product);
         }
         #endregion
     }
