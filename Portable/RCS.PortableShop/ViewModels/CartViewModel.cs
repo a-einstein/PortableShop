@@ -40,24 +40,11 @@ namespace RCS.PortableShop.ViewModels
         #endregion
 
         #region Refresh
-        public override async Task RefreshView()
-        {
-            await Initialize().ConfigureAwait(true);
-
-            // Note that the repository is leading. Changes to the collection are performed there.
-            // After which a new view is created by reloading.
-
-            ClearView();
-            await Read().ConfigureAwait(true);
-
-            UpdateAggregates();
-        }
-
         protected override void ClearView()
         {
-            base.ClearView();
-
             UpdateAggregates();
+
+            base.ClearView();
         }
 
         public override string MakeTitle() { return Labels.Cart; }
@@ -89,14 +76,16 @@ namespace RCS.PortableShop.ViewModels
         protected override async Task Read()
         {
             await MainThread.InvokeOnMainThreadAsync(() =>
-             {
-                 foreach (var item in CartItemsRepository.Items)
-                 {
-                     Items.Add(new CartItemViewModel(item));
-                 }
-             }).ConfigureAwait(true);
+            {
+                foreach (var item in CartItemsRepository.Items)
+                {
+                    Items.Add(new CartItemViewModel(item));
+                }
+            });
 
             UpdateAggregates();
+
+            await base.Read();
         }
 
         private static readonly BindableProperty DeleteCommandProperty =

@@ -45,6 +45,8 @@ namespace RCS.PortableShop.ViewModels
                 var result = await ProductsRepository.Details((int)ItemId).ConfigureAwait(true);
                 Item = result;
             }
+
+            await base.Read();
         }
         #endregion
 

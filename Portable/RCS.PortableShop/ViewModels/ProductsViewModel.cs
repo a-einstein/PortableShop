@@ -161,7 +161,7 @@ namespace RCS.PortableShop.ViewModels
                  {
                      foreach (var item in ProductsRepository.Items)
                          Items.Add(item);
-                 }).ConfigureAwait(true);
+                 });
 
             return succeeded;
         }

@@ -45,9 +45,12 @@ namespace RCS.PortableShop.Common.ViewModels
         #region Refresh
         protected override void ClearView()
         {
-            base.ClearView();
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                Items?.Clear();
+            });
 
-            MainThread.BeginInvokeOnMainThread(() => Items?.Clear());
+            base.ClearView();
         }
         #endregion
 

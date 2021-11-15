@@ -1,5 +1,6 @@
 ﻿using RCS.PortableShop.Resources;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Page = RCS.PortableShop.Common.Pages.Page;
 using View = RCS.PortableShop.Common.Views.View;
@@ -29,17 +30,20 @@ namespace RCS.PortableShop.Common.ViewModels
         {
             Awaiting = true;
 
-            ClearView();
-            UpdateTitle();
+            if (await Initialize().ConfigureAwait(true))
+            {
+                ClearView();
 
-            await Initialize().ConfigureAwait(true);
-            await Read().ConfigureAwait(true);
-            UpdateTitle();
+                await Read().ConfigureAwait(true);
+            }
 
             Awaiting = false;
         }
 
-        protected virtual void ClearView() { }
+        protected virtual void ClearView()
+        {
+            UpdateTitle();
+        }
 
         private bool initialized;
 
@@ -58,13 +62,15 @@ namespace RCS.PortableShop.Common.ViewModels
         // Keep virtual as not all derivatives can have a sensible action.
         protected virtual async Task Read()
         {
-            // Non action.
-            await Task.Delay(0).ConfigureAwait(true);
+            UpdateTitle();
         }
 
         protected void UpdateTitle()
         {
-            Title = MakeTitle();
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                Title = MakeTitle();
+            });
         }
 
         protected static readonly string TitleDefault = Labels.Shop;
