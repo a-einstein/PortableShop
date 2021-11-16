@@ -29,7 +29,7 @@ namespace RCS.PortableShop.Model
         public ReadOnlyCollection<TElement> Items => items.AsReadOnly();
 
         // Async for future use, though currently not .
-        public async Task Clear()
+        protected async Task Clear()
         {
             await Task.Run(() =>
             {
