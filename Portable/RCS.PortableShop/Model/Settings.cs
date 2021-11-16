@@ -167,10 +167,7 @@ namespace RCS.PortableShop.Model
         {
             get
             {
-                if (textFilter == default)
-                    textFilter = Preferences.Get(textFilterKey, default(string));
-
-                return textFilter;
+                return textFilter ?? (textFilter = Preferences.Get(textFilterKey, default(string))); 
             }
             set
             {

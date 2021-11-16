@@ -80,7 +80,8 @@ namespace RCS.PortableShop.Common.ViewModels
         #region Filtering
 
         private bool filterChanged;
-        protected bool FilterChanged
+
+        private bool FilterChanged
         {
             get => filterChanged;
             set
