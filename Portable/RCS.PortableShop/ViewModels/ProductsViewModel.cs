@@ -53,7 +53,7 @@ namespace RCS.PortableShop.ViewModels
         #region Filtering
         // At least 3 characters.
         private static readonly BindableProperty ValidTextFilterExpressionProperty =
-            BindableProperty.Create(nameof(ValidTextFilterExpression), typeof(string), typeof(ProductsViewModel), @"\w{3}");
+            BindableProperty.Create(nameof(ValidTextFilterExpression), typeof(string), typeof(ProductsViewModel), @".{3}");
 
         public string ValidTextFilterExpression
         {
@@ -143,7 +143,7 @@ namespace RCS.PortableShop.ViewModels
                 base.FilterCanExecute() &&
 
                 (MasterFilterValue != null && !MasterFilterValue.IsEmpty ||
-                !string.IsNullOrEmpty(TextFilterValue) && Regex.IsMatch(TextFilterValue, @"\w{3}", RegexOptions.IgnoreCase));
+                !string.IsNullOrEmpty(TextFilterValue) && Regex.IsMatch(TextFilterValue, @".{3}", RegexOptions.IgnoreCase));
         }
 
         protected override async Task<bool> ReadFiltered()
