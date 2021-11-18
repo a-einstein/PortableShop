@@ -19,6 +19,7 @@ Besides hoping for progress in Mono, or keep working manually on the old WCF cli
 Meanwhile I have created that alternative, which currently can be used besides the WCF one by means of dependency injection.
 
 > Currently I could not update System.ServiceModel.Http higher than Version=4.5.3 (instead of 4.9.0).
-Otherwise on UWP exceptions arise about System.ServiceModel.Primitives.
+Otherwise on UWP, specifically using WCF, exceptions arise about System.ServiceModel.Primitives.
 It still seems related to https://github.com/dotnet/wcf/issues/3088#issuecomment-411603736
 I have tried some workarounds in https://devblogs.microsoft.com/oldnewthing/20200615-00/?p=103868
+Removal of FaultException seemed a solution, but turned out a mistake. https://stackoverflow.com/questions/52498144/system-io-fileloadexception-on-system-servicemodel-primitives/70024433
