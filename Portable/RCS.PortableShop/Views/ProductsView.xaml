@@ -3,12 +3,17 @@
 <baseClasses:View
     x:Class="RCS.PortableShop.Views.ProductsView"
     xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:community ="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:community="http://xamarin.com/schemas/2020/toolkit"
     xmlns:behaviors="clr-namespace:RCS.PortableShop.Common.Behaviors;assembly=RCS.PortableShop.Common"
     xmlns:controls="clr-namespace:RCS.PortableShop.Common.Controls;assembly=RCS.PortableShop.Common"
     xmlns:converters="clr-namespace:RCS.PortableShop.Common.Converters;assembly=RCS.PortableShop.Common"
     xmlns:baseClasses="clr-namespace:RCS.PortableShop.Common.Views;assembly=RCS.PortableShop.Common"
+    xmlns:viewModels="clr-namespace:RCS.PortableShop.ViewModels"
+    d:BindingContext="{d:DesignInstance Type=viewModels:ProductsViewModel}"
+    mc:Ignorable="d"
     BackgroundColor="{StaticResource ProductsLevel0Colour}"
     Padding="{StaticResource ViewPadding}"
     >
