@@ -91,17 +91,26 @@ namespace RCS.PortableShop.ViewModels
                 // Retrieve both settings first, as assigning MasterFilterValue changes DetailFilterItems, DetailFilterValue and Settings.ProductSubategoryId.
                 var retrievedCategoryId = Settings.ProductCategoryId;
                 var retrievedSubcategoryId = Settings.ProductSubategoryId;
+                var retrievedTextFilter = Settings.TextFilter;
 
-                MasterFilterValue = retrievedCategoryId.HasValue
-                    ? MasterFilterItems.FirstOrDefault(value => value.Id == retrievedCategoryId.Value)
-                    : MasterFilterItems.FirstOrDefault(value => !value.IsEmpty);
+                var retrievedFilterEmpty = !retrievedCategoryId.HasValue &&
+                                           !retrievedSubcategoryId.HasValue &&
+                                           retrievedTextFilter == default;
 
                 // Note that MasterFilterValue also determines DetailFilterItems.
-                DetailFilterValue = retrievedSubcategoryId.HasValue
-                ? DetailFilterItems.FirstOrDefault(value => value.Id == retrievedSubcategoryId.Value)
-                : DetailFilterItems.FirstOrDefault(value => !value.IsEmpty);
+                // Note that it currently is allowed to only have a TextFilter.
+                if (!retrievedFilterEmpty)
+                {
+                    MasterFilterValue = MasterFilterItems.FirstOrDefault(value => value.Id == retrievedCategoryId);
+                    DetailFilterValue = DetailFilterItems.FirstOrDefault(value => value.Id == retrievedSubcategoryId);
+                }
+                else
+                {
+                    MasterFilterValue = MasterFilterItems.FirstOrDefault(value => !value.IsEmpty);
+                    DetailFilterValue = DetailFilterItems.FirstOrDefault(value => !value.IsEmpty);
+                }
 
-                TextFilterValue = Settings.TextFilter;
+                TextFilterValue = retrievedTextFilter;
             }).ConfigureAwait(true);
 
             return succeeded;
