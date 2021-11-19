@@ -127,6 +127,7 @@ namespace RCS.PortableShop.ViewModels
 
         protected override async Task<bool> ReadFiltered()
         {
+            // Copy filter values as duration of refresh is unknown.
             var masterFilterValue = MasterFilterValue;
             var detailFilterValue = DetailFilterValue;
             var textFilterValue = TextFilterValue;
