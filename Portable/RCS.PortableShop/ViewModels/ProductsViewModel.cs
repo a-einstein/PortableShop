@@ -116,36 +116,6 @@ namespace RCS.PortableShop.ViewModels
             return succeeded;
         }
 
-        public override ProductCategory MasterFilterValue
-        {
-            get => base.MasterFilterValue;
-            set
-            {
-                Settings.ProductCategoryId = value?.Id;
-                base.MasterFilterValue = value;
-            }
-        }
-
-        public override ProductSubcategory DetailFilterValue
-        {
-            get => base.DetailFilterValue;
-            set
-            {
-                Settings.ProductSubategoryId = value?.Id;
-                base.DetailFilterValue = value;
-            }
-        }
-
-        public override string TextFilterValue
-        {
-            get => base.TextFilterValue;
-            set
-            {
-                Settings.TextFilter = value;
-                base.TextFilterValue = value;
-            }
-        }
-
         protected override bool FilterCanExecute()
         {
             return
@@ -166,11 +136,20 @@ namespace RCS.PortableShop.ViewModels
             var succeeded = task.Status != TaskStatus.Faulted;
 
             if (succeeded)
+            {
+                // Store filter only when executed and succeeded.
+                // TODO This could already be part of the base class, if no longer bound to explicit properties in Settings.
+                Settings.ProductCategoryId = masterFilterValue?.Id;
+                Settings.ProductSubategoryId = detailFilterValue?.Id;
+                Settings.TextFilter = textFilterValue;
+
+                // Copy items.
                 await MainThread.InvokeOnMainThreadAsync(() =>
-                 {
-                     foreach (var item in ProductsRepository.Items)
-                         Items.Add(item);
-                 });
+                {
+                    foreach (var item in ProductsRepository.Items)
+                        Items.Add(item);
+                });
+            }
 
             return succeeded;
         }
