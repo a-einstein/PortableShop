@@ -91,50 +91,29 @@ namespace RCS.PortableShop.ViewModels
                 // Retrieve both settings first, as assigning MasterFilterValue changes DetailFilterItems, DetailFilterValue and Settings.ProductSubategoryId.
                 var retrievedCategoryId = Settings.ProductCategoryId;
                 var retrievedSubcategoryId = Settings.ProductSubategoryId;
+                var retrievedTextFilter = Settings.TextFilter;
 
-                MasterFilterValue = retrievedCategoryId.HasValue
-                    ? MasterFilterItems.FirstOrDefault(value => value.Id == retrievedCategoryId.Value)
-                    : MasterFilterItems.FirstOrDefault(value => !value.IsEmpty);
+                var retrievedFilterEmpty = !retrievedCategoryId.HasValue &&
+                                           !retrievedSubcategoryId.HasValue &&
+                                           retrievedTextFilter == default;
 
                 // Note that MasterFilterValue also determines DetailFilterItems.
-                DetailFilterValue = retrievedSubcategoryId.HasValue
-                ? DetailFilterItems.FirstOrDefault(value => value.Id == retrievedSubcategoryId.Value)
-                : DetailFilterItems.FirstOrDefault(value => !value.IsEmpty);
+                // Note that it currently is allowed to only have a TextFilter.
+                if (!retrievedFilterEmpty)
+                {
+                    MasterFilterValue = MasterFilterItems.FirstOrDefault(value => value.Id == retrievedCategoryId);
+                    DetailFilterValue = DetailFilterItems.FirstOrDefault(value => value.Id == retrievedSubcategoryId);
+                }
+                else
+                {
+                    MasterFilterValue = MasterFilterItems.FirstOrDefault(value => !value.IsEmpty);
+                    DetailFilterValue = DetailFilterItems.FirstOrDefault(value => !value.IsEmpty);
+                }
 
-                TextFilterValue = Settings.TextFilter;
+                TextFilterValue = retrievedTextFilter;
             }).ConfigureAwait(true);
 
             return succeeded;
-        }
-
-        public override ProductCategory MasterFilterValue
-        {
-            get => base.MasterFilterValue;
-            set
-            {
-                Settings.ProductCategoryId = value?.Id;
-                base.MasterFilterValue = value;
-            }
-        }
-
-        public override ProductSubcategory DetailFilterValue
-        {
-            get => base.DetailFilterValue;
-            set
-            {
-                Settings.ProductSubategoryId = value?.Id;
-                base.DetailFilterValue = value;
-            }
-        }
-
-        public override string TextFilterValue
-        {
-            get => base.TextFilterValue;
-            set
-            {
-                Settings.TextFilter = value;
-                base.TextFilterValue = value;
-            }
         }
 
         protected override bool FilterCanExecute()
@@ -148,6 +127,7 @@ namespace RCS.PortableShop.ViewModels
 
         protected override async Task<bool> ReadFiltered()
         {
+            // Copy filter values as duration of refresh is unknown.
             var masterFilterValue = MasterFilterValue;
             var detailFilterValue = DetailFilterValue;
             var textFilterValue = TextFilterValue;
@@ -157,11 +137,20 @@ namespace RCS.PortableShop.ViewModels
             var succeeded = task.Status != TaskStatus.Faulted;
 
             if (succeeded)
+            {
+                // Store filter only when executed and succeeded.
+                // TODO This could already be part of the base class, if no longer bound to explicit properties in Settings.
+                Settings.ProductCategoryId = masterFilterValue?.Id;
+                Settings.ProductSubategoryId = detailFilterValue?.Id;
+                Settings.TextFilter = textFilterValue;
+
+                // Copy items.
                 await MainThread.InvokeOnMainThreadAsync(() =>
-                 {
-                     foreach (var item in ProductsRepository.Items)
-                         Items.Add(item);
-                 });
+                {
+                    foreach (var item in ProductsRepository.Items)
+                        Items.Add(item);
+                });
+            }
 
             return succeeded;
         }
