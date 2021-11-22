@@ -28,7 +28,11 @@
 
     <!--Have an outermost ScrollView to keep all controls accessible.-->
     <ScrollView>
-        <!--Note this Orientation may be changed depending on screen orientation. Assume Vertical.-->
+        <!--
+        Note this Orientation may be changed depending on screen orientation. 
+        Therefor this is bound to stacks instead of a grid.
+        Assume Vertical for Android, Horizontal for UWP.
+        -->
         <StackLayout x:Name="productControl" Orientation="Vertical">
             <StackLayout VerticalOptions="Start" HorizontalOptions="Start">
                 <!--TODO Get these elements better aligned.-->

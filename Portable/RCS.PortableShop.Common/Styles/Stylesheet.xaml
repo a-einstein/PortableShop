@@ -127,8 +127,11 @@
     <Style TargetType="Button">
         <Setter Property="VerticalOptions" Value="{StaticResource LineVerticalOptions}"/>
         <Setter Property="Margin" Value="0"/>
+
+        <!-- Note on UWP the border is not visible when disabled.-->
         <Setter Property="BorderWidth" Value="1"/>
         <Setter Property="BorderColor" Value="Black"/>
+
         <Setter Property="TextColor" Value="{StaticResource LabelTextColour}"/>
     </Style>
 
