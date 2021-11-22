@@ -75,9 +75,14 @@ namespace RCS.PortableShop.ViewModels
 
         protected override async Task Read()
         {
+            // TODO Perhaps hide Repository.Items.
+            // Use an asynchronous Read.
+
+            var sortedItems = new List<CartItem>(CartItemsRepository.Items).OrderBy(item => item.Name);
+
             await MainThread.InvokeOnMainThreadAsync(() =>
             {
-                foreach (var item in CartItemsRepository.Items)
+                foreach (var item in sortedItems)
                 {
                     Items.Add(new CartItemViewModel(item));
                 }
