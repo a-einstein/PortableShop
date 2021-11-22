@@ -62,7 +62,9 @@
                     <!--Put at Start, as changes in orientation did not work out correctly on the last Label.-->
                     <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
                         <!--IsDefault="True"-->
+                        <!--TODO Strangely, only on UWP this button does not pick up the standard border from the styles.-->
                         <Button Text="{community:Translate Filter}" Command="{Binding FilterCommand}" BackgroundColor="{StaticResource ProductsLevel1Colour}" HorizontalOptions="Start" VerticalOptions="End"/>
+                        
                         <Label Text="{Binding ItemsCount}" Style="{StaticResource ValueEmphasisMediumLabelStyle}" VerticalOptions="End"/>
                         <Label Text="{community:Translate Products}" Style="{StaticResource EmphasisMediumLabelStyle}" VerticalOptions="End"/>
                     </StackLayout>
@@ -88,10 +90,10 @@
                                                 </Grid.ColumnDefinitions>
 
                                                 <StackLayout Grid.Column="0" VerticalOptions="Start">
-                                                    <!--TODO Get these elements better aligned.-->
+                                                    <!--TODO Get these elements better right aligned. Just putting them in a column did not help.-->
                                                     <Image Source="{Binding ThumbNailPhoto, Converter={StaticResource ByteArrayToImageSourceConverter}}" VerticalOptions="Start" HorizontalOptions="End" HeightRequest="75" WidthRequest="100"/>
 
-                                                    <Button ImageSource="CartPlus.png" Command="{Binding BindingContext.CartCommand, Source={x:Reference productsItemsControl}}" CommandParameter="{Binding}" Style="{StaticResource CartButtonStyle}" VerticalOptions="Start" HorizontalOptions="End"/>
+                                                    <Button ImageSource="CartPlus.png" Command="{Binding BindingContext.CartCommand, Source={x:Reference productsItemsControl}}" CommandParameter="{Binding}" Style="{StaticResource CartPlusButtonStyle}" VerticalOptions="End" HorizontalOptions="End"/>
                                                 </StackLayout>
 
                                                 <StackLayout Grid.Column="1" VerticalOptions="Start">

@@ -6,8 +6,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:community="http://xamarin.com/schemas/2020/toolkit"
-    xmlns:controls="clr-namespace:RCS.PortableShop.Common.Controls;assembly=RCS.PortableShop.Common"
     xmlns:baseClasses="clr-namespace:RCS.PortableShop.Common.Views;assembly=RCS.PortableShop.Common"
     xmlns:views="clr-namespace:RCS.PortableShop.Views;assembly=RCS.PortableShop"
     xmlns:numericUpDown="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
@@ -51,20 +49,11 @@
                                     Note currently a big license message is displayed.
                                     https://help.syncfusion.com/common/essential-studio/licensing/license-key
                                      
-                                    Note beta version 17.3.0.9-beta was necessary to solve a crash on opening the cart.
-                                    https://www.syncfusion.com/forums/147484/uwp-crash-with-v17-2-0-51
-                                    
                                     Note the defined style with comments.
                                     -->
                                     <numericUpDown:SfNumericUpDown Value="{Binding Quantity, Mode=TwoWay}"/>
 
-                                    <!--Using ContentButton plus Label to create a flat style Button without border. -->
-                                    <!--TODO Get it better aligned with SfNumericUpDown.-->
-                                    <controls:ContentButton Command="{Binding BindingContext.DeleteCommand, Source={x:Reference cartItemsListView}}" CommandParameter="{Binding}" HorizontalOptions="Start" VerticalOptions="Center">
-                                        <controls:ContentButton.Content>
-                                            <Label Text="{community:Translate Remove}" Margin="10,0" FontSize="Small" FontAttributes="Bold" TextColor="{StaticResource LabelTextColour}" VerticalOptions="Start"/>
-                                        </controls:ContentButton.Content>
-                                    </controls:ContentButton>
+                                    <Button ImageSource="Trash.png" Command="{Binding BindingContext.DeleteCommand, Source={x:Reference cartItemsListView}}" CommandParameter="{Binding}" Style="{StaticResource CartMinButtonStyle}" VerticalOptions="Start" HorizontalOptions="Start"/>
                                 </StackLayout>
                             </StackLayout>
                         </Grid>

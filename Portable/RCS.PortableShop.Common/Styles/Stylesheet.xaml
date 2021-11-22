@@ -122,11 +122,13 @@
 
     <!--#region Buttons -->
 
-    <!--Note that HeightRequest usually fucks up the Button, while FontSize does not do anything. -->
-    <!--Note that FontAttributes does not work.-->
+    <!--Note FontSize does not do anything. -->
+    <!--Note FontAttributes does not work.-->
     <Style TargetType="Button">
         <Setter Property="VerticalOptions" Value="{StaticResource LineVerticalOptions}"/>
         <Setter Property="Margin" Value="0"/>
+        <Setter Property="BorderWidth" Value="1"/>
+        <Setter Property="BorderColor" Value="Black"/>
         <Setter Property="TextColor" Value="{StaticResource LabelTextColour}"/>
     </Style>
 
@@ -140,9 +142,18 @@
         <Setter Property="WidthRequest" Value="30"/>
     </Style>
 
-    <!--TODO This part would be candidate to split of a specific dictionary.-->
-    <Style x:Key="CartButtonStyle" TargetType="Button">
+    <Style x:Key="CartButtonStyle" TargetType="Button" >
+        <!--Reduce size, particularly for Android.-->
+        <Setter Property="Scale" Value="0.75"/>
+    </Style>
+
+<!--TODO This part would be candidate to split of a specific dictionary.-->
+    <Style x:Key="CartPlusButtonStyle" TargetType="Button" BasedOn="{StaticResource CartButtonStyle}">
         <Setter Property="BackgroundColor" Value="{StaticResource CartLevel1Colour}"/>
+    </Style>
+
+    <Style x:Key="CartMinButtonStyle" TargetType="Button" BasedOn="{StaticResource CartButtonStyle}">
+        <Setter Property="BackgroundColor" Value="{StaticResource WarningColour}"/>
     </Style>
 
     <!--#endregion-->

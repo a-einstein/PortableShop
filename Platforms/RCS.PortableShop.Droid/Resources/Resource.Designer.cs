@@ -22398,7 +22398,10 @@ namespace RCS.PortableShop.Droid
 			public const int tooltip_frame_light = 2131165372;
 			
 			// aapt resource value: 0x7F0700BD
-			public const int UpButton = 2131165373;
+			public const int Trash = 2131165373;
+			
+			// aapt resource value: 0x7F0700BE
+			public const int UpButton = 2131165374;
 			
 			static Drawable()
 			{
