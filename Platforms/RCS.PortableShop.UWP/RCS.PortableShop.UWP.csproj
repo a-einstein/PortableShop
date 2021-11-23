@@ -130,6 +130,7 @@
     <Content Include="Assets\LargeTile.scale-200.png" />
     <Content Include="Assets\LargeTile.scale-400.png" />
     <Content Include="Assets\Overview.png" />
+    <Content Include="Assets\Refresh.png" />
     <Content Include="Assets\Settings.png" />
     <Content Include="Assets\SmallTile.scale-100.png" />
     <Content Include="Assets\SmallTile.scale-125.png" />

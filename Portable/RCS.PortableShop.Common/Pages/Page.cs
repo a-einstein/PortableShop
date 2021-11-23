@@ -43,11 +43,12 @@ namespace RCS.PortableShop.Common.Pages
 
         private void Adorn()
         {
-            // TODO Since applying Shell, icons are not displayed, though the commands work.
-            // https://github.com/xamarin/Xamarin.Forms/issues/7351
-            ToolbarItems.Add(new ToolbarItem("R", "Refresh.png",
-                async () => await Content.ViewModel.RefreshView().ConfigureAwait(true),
-                priority: 10));
+            // Note chose white icon, because colours were not inverted on UWP, as on Android.
+            ToolbarItems.Add(new ToolbarItem(
+                null, 
+                "Refresh.png",
+                async () => await Refresh())
+            );
         }
 
         protected async Task Refresh()
