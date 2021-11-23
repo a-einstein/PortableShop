@@ -17,7 +17,7 @@ Working portable (Android & UWP) application for test and demo purpose based on 
 * Release is now to GitHub with an automatic change summary.
 
 #### Known issues
-* On UWP language setting does not work out properly.
+* None.
 
 #### Purpose
 * Explore various techniques based on C#, XAML and Xamarin Forms.
