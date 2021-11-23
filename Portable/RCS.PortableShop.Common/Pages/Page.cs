@@ -43,7 +43,9 @@ namespace RCS.PortableShop.Common.Pages
 
         private void Adorn()
         {
+            // This is particularly added to recover from a service problem.
             // Note chose white icon, because colours were not inverted on UWP, as on Android.
+            // TODO Recovering does not succeed, check return statuses along the chain.
             ToolbarItems.Add(new ToolbarItem(
                 null, 
                 "Refresh.png",
