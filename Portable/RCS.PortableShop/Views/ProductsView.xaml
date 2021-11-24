@@ -63,6 +63,7 @@
                     <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
                         <!--IsDefault="True"-->
                         <Button Text="{community:Translate Filter}" Command="{Binding FilterCommand}" BackgroundColor="{StaticResource ProductsLevel1Colour}" HorizontalOptions="Start" VerticalOptions="End"/>
+                        
                         <Label Text="{Binding ItemsCount}" Style="{StaticResource ValueEmphasisMediumLabelStyle}" VerticalOptions="End"/>
                         <Label Text="{community:Translate Products}" Style="{StaticResource EmphasisMediumLabelStyle}" VerticalOptions="End"/>
                     </StackLayout>
@@ -86,15 +87,19 @@
                                                     <ColumnDefinition Width="Auto"/>
                                                     <ColumnDefinition Width="*"/>
                                                 </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                </Grid.RowDefinitions>
 
-                                                <StackLayout Grid.Column="0" VerticalOptions="Start">
-                                                    <!--TODO Get these elements better aligned.-->
-                                                    <Image Source="{Binding ThumbNailPhoto, Converter={StaticResource ByteArrayToImageSourceConverter}}" VerticalOptions="Start" HorizontalOptions="End" HeightRequest="75" WidthRequest="100"/>
+                                                <!--Note putting these elements in separate cells helped to better align them vertically.-->
+                                                <!--TODO Get them better right aligned.-->
 
-                                                    <Button ImageSource="CartPlus.png" Command="{Binding BindingContext.CartCommand, Source={x:Reference productsItemsControl}}" CommandParameter="{Binding}" Style="{StaticResource CartButtonStyle}" VerticalOptions="Start" HorizontalOptions="End"/>
-                                                </StackLayout>
+                                                <Image Grid.Column="0" Grid.Row="0" Source="{Binding ThumbNailPhoto, Converter={StaticResource ByteArrayToImageSourceConverter}}" VerticalOptions="Start" HorizontalOptions="End" HeightRequest="75" WidthRequest="100"/>
 
-                                                <StackLayout Grid.Column="1" VerticalOptions="Start">
+                                                <Button Grid.Column="0" Grid.Row="1" ImageSource="CartPlus.png" Command="{Binding BindingContext.CartCommand, Source={x:Reference productsItemsControl}}" CommandParameter="{Binding}" Style="{StaticResource CartPlusButtonStyle}" VerticalOptions="End" HorizontalOptions="End"/>
+
+                                                <StackLayout Grid.Column="1" Grid.Row="0" Grid.RowSpan="2"  VerticalOptions="Start">
                                                     <StackLayout Orientation="Horizontal">
                                                         <Label Text="{Binding ProductCategory}" Style="{StaticResource ValueLabelStyle}"/>
                                                         <Label Text="/" Style="{StaticResource ValueLabelStyle}"/>
