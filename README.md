@@ -8,13 +8,12 @@
 Working portable (Android & UWP) application for test and demo purpose based on Xamarin Forms. It simulates limited shopping capabilities based on the AdventureWorks database.
 
 #### News
+* Refresh Icon has been replaced.
+* Cart deletion buttons now have icons.
+* Cart became alphabetically sorted.
 * Storage of filter has been corrected.
 * Enablement of the products overview has been improved.
 * Language can now be set independently of device.
-* Xamarin Community Toolkit has been applied to simplify parts of code.  
-* Dependency injection has got a major improvement.
-* UWP has been added as a client, besides Android.
-* Release is now to GitHub with an automatic change summary.
 
 #### Known issues
 * Recovering from a service problem does not succeed.
