@@ -12,6 +12,7 @@
     xmlns:converters="clr-namespace:RCS.PortableShop.Common.Converters;assembly=RCS.PortableShop.Common"
     xmlns:baseClasses="clr-namespace:RCS.PortableShop.Common.Views;assembly=RCS.PortableShop.Common"
     xmlns:viewModels="clr-namespace:RCS.PortableShop.ViewModels"
+    xmlns:views="clr-namespace:RCS.PortableShop.Views"
     d:BindingContext="{d:DesignInstance Type=viewModels:ProductsViewModel}"
     mc:Ignorable="d"
     BackgroundColor="{StaticResource ProductsLevel0Colour}"
@@ -76,11 +77,18 @@
 
                     <!--TODO It might be interesting to make all this Horizontal.-->
                     <!--Note that ListView has got its own scrolling.-->
-                    <ListView IsVisible="{Binding ItemsCount, Converter={StaticResource HasValueTester}}" x:Name="productsItemsControl" ItemsSource="{Binding Items}">
+                    <ListView IsVisible="{Binding ItemsCount, Converter={StaticResource HasValueTester}}" ItemsSource="{Binding Items}">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
-                                    <controls:ContentButton Command="{Binding BindingContext.DetailsCommand, Source={x:Reference productsItemsControl}}" CommandParameter="{Binding}">
+                                    <!--
+                                    Notes:
+                                    ContentButton is needed because currently there is no Button.Content.
+                                    For every Command, maybe because of the ContentButton:
+                                    - DesignInstance does not work.
+                                    - RelativeSource Mode=FindAncestorBindingContext does not work. Therefor still BindingContext.
+                                    -->
+                                    <controls:ContentButton Command="{Binding BindingContext.DetailsCommand, Source={RelativeSource AncestorType={x:Type views:ProductsView}}}" CommandParameter="{Binding}">
                                         <controls:ContentButton.Content>
                                             <Grid Style="{StaticResource ListItemStyle}" BackgroundColor="{StaticResource ProductsLevel1Colour}">
                                                 <Grid.ColumnDefinitions>
@@ -97,7 +105,7 @@
 
                                                 <Image Grid.Column="0" Grid.Row="0" Source="{Binding ThumbNailPhoto, Converter={StaticResource ByteArrayToImageSourceConverter}}" VerticalOptions="Start" HorizontalOptions="End" HeightRequest="75" WidthRequest="100"/>
 
-                                                <Button Grid.Column="0" Grid.Row="1" ImageSource="CartPlus.png" Command="{Binding BindingContext.CartCommand, Source={x:Reference productsItemsControl}}" CommandParameter="{Binding}" Style="{StaticResource CartPlusButtonStyle}" VerticalOptions="End" HorizontalOptions="End"/>
+                                                <Button Grid.Column="0" Grid.Row="1" ImageSource="CartPlus.png" Command="{Binding BindingContext.CartCommand, Source={RelativeSource AncestorType={x:Type views:ProductsView}}}" CommandParameter="{Binding}" Style="{StaticResource CartPlusButtonStyle}" VerticalOptions="End" HorizontalOptions="End"/>
 
                                                 <StackLayout Grid.Column="1" Grid.Row="0" Grid.RowSpan="2"  VerticalOptions="Start">
                                                     <StackLayout Orientation="Horizontal">
