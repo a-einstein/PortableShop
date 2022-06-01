@@ -222,7 +222,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.AndroidX.Activity">
-      <Version>1.4.0.2</Version>
+      <Version>1.4.0.3</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.AndroidX.Core">
       <Version>1.7.0.2</Version>
