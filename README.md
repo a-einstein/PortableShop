@@ -1,7 +1,7 @@
 ## PortableShop
 
-|![splash](Screenshots/splash.png)|![overview](Screenshots/overview.png)|![details](Screenshots/details.png)|![details](Screenshots/picture.png)|![basket](Screenshots/basket.png)|![menu](Screenshots/menu.png)|
-|:-:|:-:|:-:|:-:|:-:|:-:|
+|![](Screenshots/splash.png)|![](Screenshots/overview.png)|![](Screenshots/details.png)|![](Screenshots/picture.png)|![](Screenshots/basket.png)|![](Screenshots/menu.png)|
+|:---:|:---:|:---:|:---:|:---:|:---:|
 |Splash|Overview|Details|Picture|Basket|Menu|
 
 #### Description
