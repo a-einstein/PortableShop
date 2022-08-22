@@ -18,7 +18,7 @@ Afterwards more changes have been made directly in the code.
 Besides hoping for progress in Mono, or keep working manually on the old WCF client, an alternative way is to use Web API.
 Meanwhile I have created that alternative, which currently can be used besides the WCF one by means of dependency injection.
 
-> TODO Currently (1-6-2022) I could still not update System.ServiceModel.Http higher than Version=4.5.3 (instead of 4.9.0).
+> TODO Currently (22-08-2022) I could still not update System.ServiceModel.Http higher than Version=4.5.3 (instead of 4.10.0).
 Note there are build warnings.
 Otherwise on UWP, specifically using WCF, exceptions arise about System.ServiceModel.Primitives.
 It still seems related to https://github.com/dotnet/wcf/issues/3088#issuecomment-411603736
