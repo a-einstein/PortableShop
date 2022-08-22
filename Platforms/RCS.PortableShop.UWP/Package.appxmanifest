@@ -7,7 +7,7 @@
   >
   <Identity Name="RCS.CyclOne.UWP"
             Publisher="CN=Robert"
-            Version="0.22.0.0" />
+            Version="0.23.0.0" />
   <mp:PhoneIdentity PhoneProductId="3d4941ce-d6c3-4e54-a48c-19f73450b5cf"
                     PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
