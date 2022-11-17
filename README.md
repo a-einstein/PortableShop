@@ -29,8 +29,8 @@ Working portable (Android & UWP) application for test and demo purpose based on 
 
 #### Notes
 * This is a near equivalent of my **[WpfShop](https://github.com/a-einstein/WpfShop)**.
-* Currently Android is mainly tested on API 29.
-* Currently UWP is only tested on Windows 10 version 2004 (and beyond).
+* Currently Android is mainly tested on API 30.
+* Currently UWP is only tested on Windows 10 version 22H2.
 * Submitted to code analysis by [Better Code Hub](https://bettercodehub.com). Current score: [![BCH compliance](https://bettercodehub.com/edge/badge/a-einstein/PortableShop)](https://bettercodehub.com)
 * Connected to automated Azure Devops build and release pipelines. Current build status for the master branch: [![Build Status](https://dev.azure.com/RcsProjects/PortableShop/_apis/build/status/Build%20APK?branchName=master)](https://dev.azure.com/RcsProjects/PortableShop/_build/latest?definitionId=13&branchName=master)
 
