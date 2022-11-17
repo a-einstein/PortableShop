@@ -4,6 +4,11 @@
 		<Authors>RCS</Authors>
 		<EnableNETAnalyzers>true</EnableNETAnalyzers>
 	</PropertyGroup>
+	<ItemGroup>
+	  <Compile Remove="Backup\**" />
+	  <EmbeddedResource Remove="Backup\**" />
+	  <None Remove="Backup\**" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Syncfusion.Xamarin.SfNumericUpDown" Version="20.2.0.44" />
