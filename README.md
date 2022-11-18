@@ -8,6 +8,7 @@
 Working portable (Android & UWP) application for test and demo purpose based on Xamarin Forms. It simulates limited shopping capabilities based on the AdventureWorks database.
 
 #### News
+* Version 1.0 is assumed to be a milestone as the last one on Xamarin Forms, before moving on to MAUI which would be 2.0.
 * Refresh Icon has been replaced.
 * Cart deletion buttons now have icons.
 * Cart became alphabetically sorted.
