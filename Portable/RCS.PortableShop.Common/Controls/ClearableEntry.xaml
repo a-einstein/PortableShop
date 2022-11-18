@@ -2,9 +2,9 @@
 
 <controls:CustomContentView
     x:Class="RCS.PortableShop.Common.Controls.ClearableEntry"
-    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:community ="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:community ="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:controls="clr-namespace:RCS.PortableShop.Common.Controls;assembly=RCS.PortableShop.Common"
     >
 

@@ -3,8 +3,8 @@ using System.Collections.Specialized;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.CommunityToolkit.ObjectModel;
-using Xamarin.Essentials;
-using Xamarin.Forms;
+using Microsoft.Maui;
+using Microsoft.Maui.Controls;
 
 namespace RCS.PortableShop.Common.ViewModels
 {

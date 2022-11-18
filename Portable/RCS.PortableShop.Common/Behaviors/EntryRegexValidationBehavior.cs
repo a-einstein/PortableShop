@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
-using Xamarin.Forms;
+using Microsoft.Maui;
+using Microsoft.Maui.Controls;
 
 namespace RCS.PortableShop.Common.Behaviors
 {

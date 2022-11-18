@@ -9,6 +9,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Backup\**" />
+    <Compile Include="MauiProgram.cs" />
     <EmbeddedResource Remove="Backup\**" />
     <None Remove="Backup\**" />
   </ItemGroup>

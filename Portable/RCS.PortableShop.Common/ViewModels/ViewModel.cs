@@ -1,9 +1,9 @@
 ﻿using RCS.PortableShop.Resources;
 using System.Threading.Tasks;
-using Xamarin.Essentials;
-using Xamarin.Forms;
 using Page = RCS.PortableShop.Common.Pages.Page;
 using View = RCS.PortableShop.Common.Views.View;
+using Microsoft.Maui;
+using Microsoft.Maui.Controls;
 
 namespace RCS.PortableShop.Common.ViewModels
 {
@@ -99,7 +99,7 @@ namespace RCS.PortableShop.Common.ViewModels
         }
 
         // Note that a potential Color parameter cannot have a default value.
-        protected static async Task PushPage(Xamarin.Forms.View view, string title = null)
+        protected static async Task PushPage(View view, string title = null)
         {
             var page = new ContentPage() { Content = view, Title = title };
 

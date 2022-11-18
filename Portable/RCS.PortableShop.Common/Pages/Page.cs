@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
-using Xamarin.Forms;
 using View = RCS.PortableShop.Common.Views.View;
+using Microsoft.Maui;
+using Microsoft.Maui.Controls;
 
 namespace RCS.PortableShop.Common.Pages
 {
