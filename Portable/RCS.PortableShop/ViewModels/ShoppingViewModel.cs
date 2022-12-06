@@ -1,11 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using CommunityToolkit.Mvvm.Input;
 using RCS.PortableShop.Common.ViewModels;
 using RCS.PortableShop.Main;
 using RCS.PortableShop.Views;
-using System.Threading.Tasks;
 using System.Windows.Input;
-using Xamarin.CommunityToolkit.ObjectModel;
-using Xamarin.Forms;
 
 namespace RCS.PortableShop.ViewModels
 {
@@ -17,7 +14,8 @@ namespace RCS.PortableShop.ViewModels
             base.SetCommands();
 
             // Note it is not possible to set this in BindableProperty.Create().
-            ShowCartCommand = new AsyncCommand(ShowCart);
+            // TODO MAUI Check out RelayCommand attribute, including CanExecute attribute.
+            ShowCartCommand = new AsyncRelayCommand(ShowCart);
         }
         #endregion
 

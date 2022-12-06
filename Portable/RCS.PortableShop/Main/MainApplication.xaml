@@ -1,13 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
 <Application
-    x:Class="RCS.PortableShop.Main.MainApplication"
-    xmlns="http://xamarin.com/schemas/2014/forms"
+    x:Class="RCS.PortableShop.Main.App"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:commonStyles="clr-namespace:RCS.PortableShop.Common.Styles;assembly=RCS.PortableShop.Common"
-    xmlns:windows="clr-namespace:Xamarin.Forms.PlatformConfiguration.WindowsSpecific;assembly=Xamarin.Forms.Core"
-    windows:Application.ImageDirectory="Assets"
-    >
+     >
+    <!--xmlns:commonStyles="clr-namespace:RCS.PortableShop.Common.Styles;assembly=RCS.PortableShop.Common"-->
+
+    <!--xmlns:windows="clr-namespace:Xamarin.Forms.PlatformConfiguration.WindowsSpecific;assembly=Xamarin.Forms.Core"
+    windows:Application.ImageDirectory="Assets"-->
+
     <!-- 
     Note the ImageDirectory is needed for UWP only, and does not influence Android.
     Note UWP took the smallest versions of my icons for buttons. For simplicity, I have included only a single arbitrary size, suitable for PC Windows.
@@ -22,10 +24,18 @@
         https://docs.microsoft.com/en-us/xamarin/xamarin-forms/xaml/resource-dictionaries
         TODO Follow up.
         -->
+        <!--
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <commonStyles:Stylesheet />
+        -->
+        <!--TODO https://github.com/dotnet/maui/issues/4398-->
+                <!--<commonStyles:Stylesheet />-->
+                <!--<ResourceDictionary Source="Styles/Stylesheet.xaml;assembly=RCS.PortableShop.Common"/>-->
+                <!--<ResourceDictionary Source="../../RCS.PortableShop.Common/Styles/Stylesheet.xaml"/>-->
+        <!--
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
+        -->
     </Application.Resources>
 </Application>
+    

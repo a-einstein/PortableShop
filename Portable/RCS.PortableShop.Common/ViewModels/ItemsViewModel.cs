@@ -1,10 +1,7 @@
-﻿using System.Collections.ObjectModel;
+﻿using CommunityToolkit.Mvvm.Input;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using System.Threading.Tasks;
 using System.Windows.Input;
-using Xamarin.CommunityToolkit.ObjectModel;
-using Microsoft.Maui;
-using Microsoft.Maui.Controls;
 
 namespace RCS.PortableShop.Common.ViewModels
 {
@@ -20,7 +17,8 @@ namespace RCS.PortableShop.Common.ViewModels
         {
             base.SetCommands();
 
-            DetailsCommand = new AsyncCommand<TItem>(ShowDetails);
+            // TODO MAUI Check out RelayCommand attribute, including CanExecute attribute.
+            DetailsCommand = new AsyncRelayCommand<TItem>(ShowDetails);
         }
         #endregion
 

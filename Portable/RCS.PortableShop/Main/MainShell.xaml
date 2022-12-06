@@ -2,16 +2,16 @@
 
 <Shell 
     x:Class="RCS.PortableShop.Main.MainShell"
-    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:community="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:community="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:main="clr-namespace:RCS.PortableShop.Main"
     xmlns:viewModels="clr-namespace:RCS.PortableShop.ViewModels"
-    d:BindingContext ="{d:DesignInstance Type=viewModels:MainShellViewModel}"
     mc:Ignorable="d"
     >
+    <!--d:BindingContext ="{d:DesignInstance Type=viewModels:MainShellViewModel}"-->
 
     <!--
     Note not totally understood behaviour of DesignInstance,
@@ -30,6 +30,7 @@
     </Shell.FlyoutHeader>
 
     <!--TODO Reinstalled this to prevent navigation crash, see elsewhere too. Want to do without, or make a logical layout.-->
+    
     <FlyoutItem>
         <Tab>
             <ShellContent>
@@ -37,18 +38,27 @@
             </ShellContent>
         </Tab>
     </FlyoutItem>
+    
+    <!-- TODO Also works. Preferable?
+    <ShellContent ContentTemplate="{DataTemplate main:MainPage}" Route="MainPage"/>
+    -->
 
     <!--TODO Would prefer to have hamburger visible on all pages, besides a back button. But is seems intended to only have it on the root page.-->
-    
+
     <!--Note that icon sizes in UWP are automatically reduced even though a larger size was chosen by me.-->
 
-    <MenuItem Command="{Binding SettingsCommand}" Text="{community:Translate Settings}" IconImageSource="Settings.png"/>
+    <!--<MenuItem Command="{Binding SettingsCommand}" Text="{community:Translate Settings}" IconImageSource="Settings.png"/>-->
+    <MenuItem Command="{Binding SettingsCommand}" Text="Settings" IconImageSource="Settings.png"/>
 
-    <MenuItem Command="{Binding ShowProductsCommand}" Text="{community:Translate Products}" IconImageSource="Overview.png"/>
+    <!--<MenuItem Command="{Binding ShowProductsCommand}" Text="{community:Translate Products}" IconImageSource="Overview.png"/>-->
+    <MenuItem Command="{Binding ShowProductsCommand}" Text="Products" IconImageSource="Overview.png"/>
 
-    <MenuItem Command="{Binding ShowCartCommand}" Text="{community:Translate Cart}" IconImageSource="Cart.png"/>
+    <!--<MenuItem Command="{Binding ShowCartCommand}" Text="{community:Translate Cart}" IconImageSource="Cart.png"/>-->
+    <MenuItem Command="{Binding ShowCartCommand}" Text="Cart" IconImageSource="Cart.png"/>
 
-    <MenuItem Command="{Binding OpenSupportCommand}" Text="{community:Translate Support}" IconImageSource="Information.png"/>
+    <!--<MenuItem Command="{Binding OpenSupportCommand}" Text="{community:Translate Support}" IconImageSource="Information.png"/>-->
+    <MenuItem Command="{Binding OpenSupportCommand}" Text="Support" IconImageSource="Information.png"/>
 
-    <MenuItem Command="{Binding UpdateCommand}" Text="{community:Translate Update}" IconImageSource="CloudDownload.png"/>
+    <!--<MenuItem Command="{Binding UpdateCommand}" Text="{community:Translate Update}" IconImageSource="CloudDownload.png"/>-->
+    <MenuItem Command="{Binding UpdateCommand}" Text="Update" IconImageSource="CloudDownload.png"/>
 </Shell>

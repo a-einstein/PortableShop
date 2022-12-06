@@ -20,7 +20,8 @@
             <!--Using ContentButton plus Label to create a flat style Button without border. -->
             <controls:ContentButton Grid.Column="1" Command="{Binding ClearCommand}" VerticalOptions="Center">
                 <controls:ContentButton.Content>
-                    <Label Text="{community:Translate Remove}" Margin="0,0,10,0" FontSize="Medium" TextColor="{StaticResource LabelTextColour}"/>
+                    <!--<Label Text="{community:Translate Remove}" Margin="0,0,10,0" FontSize="Medium" TextColor="{StaticResource LabelTextColour}"/>-->
+                    <Label Text="Remove" Margin="0,0,10,0" FontSize="Medium"/>
                 </controls:ContentButton.Content>
             </controls:ContentButton>
         </Grid>

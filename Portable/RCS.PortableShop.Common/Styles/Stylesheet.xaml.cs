@@ -1,14 +1,11 @@
-﻿using Microsoft.Maui;
-using Microsoft.Maui.Controls;
-
-namespace RCS.PortableShop.Common.Styles
+﻿namespace RCS.PortableShop.Common.Styles
 {
     public partial class Stylesheet : ResourceDictionary
     {
         public Stylesheet()
         {
             // HACK Still needed this file and constructor to enable merging using ResourceDictionary.MergedDictionaries.
-            InitializeComponent();
+            //InitializeComponent();
         }
     }
 }

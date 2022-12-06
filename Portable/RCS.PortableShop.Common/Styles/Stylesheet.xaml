@@ -3,8 +3,8 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:RCS.PortableShop.Common.Controls;assembly=RCS.PortableShop.Common"
-    xmlns:numericUpDown="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
     >
+    <!--xmlns:numericUpDown="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"-->
 
     <!--Note that currently no form of nested or multiple merging exist. https://forums.xamarin.com/discussion/86308/multiple-merged-dictionaries?-->
     <!--TODO split off ResourceDictionary when possible.-->
@@ -182,6 +182,7 @@
     Related:
     https://www.syncfusion.com/forums/128080/can-the-size-of-the-numericupdown-component-be-made-smaller
     -->
+    <!--
     <Style TargetType="numericUpDown:SfNumericUpDown">
         <Setter Property="VerticalOptions" Value="{StaticResource LineVerticalOptions}"/>
         <Setter Property="HorizontalOptions" Value="Start"/>
@@ -192,6 +193,7 @@
         <Setter Property="Minimum" Value="0"/>
         <Setter Property="MaximumDecimalDigits" Value="0"/>
     </Style>
+    -->
 
     <!--#endregion-->
 

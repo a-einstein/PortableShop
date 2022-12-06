@@ -1,12 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Windows.Input;
-using Microsoft.Maui;
-using Microsoft.Maui.Controls;
+﻿using System.Windows.Input;
 
 namespace RCS.PortableShop.Common.Controls
 {
     // HACK Prevents compilation error for unknown reason.
-    [XamlCompilation(XamlCompilationOptions.Skip)]
+    //[XamlCompilation(XamlCompilationOptions.Skip)]
     public partial class ClearableEntry : CustomContentView
     {
         #region Construction
@@ -14,6 +11,7 @@ namespace RCS.PortableShop.Common.Controls
         {
             InitializeComponent();
 
+            // TODO MAUI Check out RelayCommand attribute, including CanExecute attribute.
             ClearCommand = new Command(Clear);
         }
         #endregion

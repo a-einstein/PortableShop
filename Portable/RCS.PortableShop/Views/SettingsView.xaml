@@ -2,16 +2,16 @@
 
 <baseClasses:View
     x:Class="RCS.PortableShop.Views.SettingsView"
-    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:community ="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:community ="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:baseClasses="clr-namespace:RCS.PortableShop.Common.Views;assembly=RCS.PortableShop.Common"
     xmlns:viewModels="clr-namespace:RCS.PortableShop.ViewModels"
-    d:BindingContext ="{d:DesignInstance Type=viewModels:SettingsViewModel}"
     mc:Ignorable="d"
     >
+    <!--d:BindingContext ="{d:DesignInstance Type=viewModels:SettingsViewModel}"-->
 
     <Grid VerticalOptions="Start" HorizontalOptions="Start" Margin="10">
         <Grid.RowDefinitions>
@@ -26,11 +26,13 @@
 
         <!--Note that Title of Picker: for Android is displayed as placeholder inside, for UWP as separate label above. Therefor no separate label and the VerticalOptions.-->
 
-        <Picker Grid.Row="0" Grid.Column="1" Title="{community:Translate ServiceType}" 
+        <!--<Picker Grid.Row="0" Grid.Column="1" Title="{community:Translate ServiceType}"--> 
+        <Picker Grid.Row="0" Grid.Column="1" Title="ServiceType" 
                 ItemsSource="{Binding ServiceTypes, Mode=OneTime}" 
                 SelectedItem="{Binding ServiceType, Mode=TwoWay}"/>
 
-        <Picker Grid.Row="1" Grid.Column="1" Title="{community:Translate CultureCulture}" 
+        <!--<Picker Grid.Row="1" Grid.Column="1" Title="{community:Translate CultureCulture}"--> 
+        <Picker Grid.Row="1" Grid.Column="1" Title="CultureCulture" 
                 ItemsSource="{Binding Cultures, Mode=OneTime}" 
                 SelectedItem="{Binding Culture, Mode=TwoWay}" 
                 ItemDisplayBinding="{Binding DisplayName}"/>

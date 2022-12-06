@@ -1,16 +1,11 @@
-﻿using RCS.AdventureWorks.Common.DomainClasses;
+﻿using CommunityToolkit.Mvvm.Input;
+using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.PortableShop.Resources;
-using System;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
-using Xamarin.CommunityToolkit.ObjectModel;
-using Microsoft.Maui;
-using Microsoft.Maui.Controls;
 
 namespace RCS.PortableShop.Common.ViewModels
 {
-    public abstract class FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem> : 
+    public abstract class FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem> :
         ItemsViewModel<TItem>
         where TItem : DomainClass
         where TMasterFilterItem : DomainClass
@@ -22,7 +17,8 @@ namespace RCS.PortableShop.Common.ViewModels
             base.SetCommands();
 
             // Note that allowsMultipleExecutions replaces the former use of the Awaiting property.
-            FilterCommand = new AsyncCommand(RefreshView, FilterCanExecute, allowsMultipleExecutions: false);
+            // TODO MAUI Check out RelayCommand attribute, including CanExecute attribute.
+            FilterCommand = new AsyncRelayCommand(RefreshView/*, FilterCanExecute, allowsMultipleExecutions: false*/);
         }
         #endregion
 
@@ -90,7 +86,7 @@ namespace RCS.PortableShop.Common.ViewModels
 
                 MainThread.BeginInvokeOnMainThread(() =>
                 {
-                    FilterCommand.RaiseCanExecuteChanged();
+                    FilterCommand.NotifyCanExecuteChanged();
                 });
             }
         }
@@ -184,11 +180,11 @@ namespace RCS.PortableShop.Common.ViewModels
         protected abstract Task<bool> ReadFiltered();
 
         private static readonly BindableProperty FilterCommandProperty =
-            BindableProperty.Create(nameof(FilterCommand), typeof(IAsyncCommand), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>));
+            BindableProperty.Create(nameof(FilterCommand), typeof(IAsyncRelayCommand), typeof(FilterItemsViewModel<TItem, TMasterFilterItem, TDetailFilterItem>));
 
-        public IAsyncCommand FilterCommand
+        public IAsyncRelayCommand FilterCommand
         {
-            get => (IAsyncCommand)GetValue(FilterCommandProperty);
+            get => (IAsyncRelayCommand)GetValue(FilterCommandProperty);
             private set => SetValue(FilterCommandProperty, value);
         }
 

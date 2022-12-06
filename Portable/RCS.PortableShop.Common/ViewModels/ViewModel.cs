@@ -1,9 +1,6 @@
 ﻿using RCS.PortableShop.Resources;
-using System.Threading.Tasks;
 using Page = RCS.PortableShop.Common.Pages.Page;
 using View = RCS.PortableShop.Common.Views.View;
-using Microsoft.Maui;
-using Microsoft.Maui.Controls;
 
 namespace RCS.PortableShop.Common.ViewModels
 {
@@ -109,7 +106,7 @@ namespace RCS.PortableShop.Common.ViewModels
         protected static async Task PushPage(View view)
         {
             var page = new Page();
-            page.SetBinding(Xamarin.Forms.Page.TitleProperty, new Binding() { Path = nameof(Title), Source = view.ViewModel });
+            page.SetBinding(Microsoft.Maui.Controls.Page.TitleProperty, new Binding() { Path = nameof(Title), Source = view.ViewModel });
             page.Content = view;
 
             // Note this works for UWP only since Xamarin.Forms 4.8.

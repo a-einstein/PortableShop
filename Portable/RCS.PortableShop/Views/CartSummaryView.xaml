@@ -2,16 +2,16 @@
 
 <baseClasses:View
     x:Class="RCS.PortableShop.Views.CartSummaryView"
-    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:community="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:community="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:baseClasses="clr-namespace:RCS.PortableShop.Common.Views;assembly=RCS.PortableShop.Common"
     xmlns:viewModels="clr-namespace:RCS.PortableShop.ViewModels"
-    d:BindingContext="{d:DesignInstance Type=viewModels:CartViewModel}"
     mc:Ignorable="d"
     >
+    <!--d:BindingContext="{d:DesignInstance Type=viewModels:CartViewModel}"-->
 
     <!--
     Note TapGestureRecognizer of ContentButton does not work if BackgroundColor is set here! https://bugzilla.xamarin.com/show_bug.cgi?id=25943
@@ -20,12 +20,15 @@
         <Image Source="Cart.png" Margin="0,0,10,0"/>
 
         <Label Text="{Binding ItemsCount}" Style="{StaticResource ValueEmphasisMediumLabelStyle}"/>
-        <Label Text="{community:Translate Products}" FontSize="Medium"/>
+        <!--<Label Text="{community:Translate Products}" FontSize="Medium"/>-->
+        <Label Text="Products" FontSize="Medium"/>
 
         <Label Text="{Binding ProductItemsCount}" Style="{StaticResource ValueEmphasisMediumLabelStyle}"/>
-        <Label Text="{community:Translate Items}" FontSize="Medium"/>
+        <!--<Label Text="{community:Translate Items}" FontSize="Medium"/>-->
+        <Label Text="Items" FontSize="Medium"/>
 
         <Label Text="{Binding TotalValue, StringFormat='{}{0:C2}'}" Style="{StaticResource ValueEmphasisMediumLabelStyle}"/>
-        <Label Text="{community:Translate TotalValue}" FontSize="Medium"/>
+        <!--<Label Text="{community:Translate TotalValue}" FontSize="Medium"/>-->
+        <Label Text="TotalValue" FontSize="Medium"/>
     </StackLayout>
 </baseClasses:View>

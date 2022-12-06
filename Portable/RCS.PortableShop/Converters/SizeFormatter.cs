@@ -1,10 +1,10 @@
-﻿using RCS.PortableShop.Common.Extensions;
-using System;
-using System.Globalization;
+﻿using System.Globalization;
+// TODO May use another.
+using IMultiValueConverter = RCS.PortableShop.Common.Extensions.IMultiValueConverter;
 
 namespace RCS.PortableShop.Converters
 {
-    public class SizeFormatter : IMultiValueConverter 
+    public class SizeFormatter : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {

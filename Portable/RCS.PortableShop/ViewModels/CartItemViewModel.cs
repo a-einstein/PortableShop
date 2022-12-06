@@ -1,7 +1,6 @@
 ﻿using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.PortableShop.Common.ViewModels;
 using System.Diagnostics;
-using Xamarin.Forms;
 
 namespace RCS.PortableShop.ViewModels
 {

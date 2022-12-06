@@ -1,7 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using RCS.PortableShop.Common.Views;
-using RCS.PortableShop.Main;
+﻿using RCS.PortableShop.Main;
 using RCS.PortableShop.ViewModels;
+using View = RCS.PortableShop.Common.Views.View;
 
 namespace RCS.PortableShop.Views
 {

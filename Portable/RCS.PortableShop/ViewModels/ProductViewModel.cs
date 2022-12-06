@@ -1,15 +1,12 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using CommunityToolkit.Mvvm.Input;
 using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.AdventureWorks.Common.Interfaces;
 using RCS.PortableShop.Common.Interfaces;
 using RCS.PortableShop.Common.ViewModels;
 using RCS.PortableShop.Interfaces;
 using RCS.PortableShop.Main;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using System.Windows.Input;
-using Xamarin.CommunityToolkit.ObjectModel;
-using Xamarin.Forms;
+using View = RCS.PortableShop.Common.Views.View;
 
 namespace RCS.PortableShop.ViewModels
 {
@@ -26,8 +23,9 @@ namespace RCS.PortableShop.ViewModels
         {
             base.SetCommands();
 
-            PhotoCommand = new AsyncCommand<ImageSource>(ShowPhoto);
-            CartCommand = new AsyncCommand<IShoppingProduct>(CartProduct);
+            // TODO MAUI Check out RelayCommand attribute, including CanExecute attribute.
+            PhotoCommand = new AsyncRelayCommand<ImageSource>(ShowPhoto);
+            CartCommand = new AsyncRelayCommand<IShoppingProduct>(CartProduct);
         }
         #endregion
 
@@ -66,11 +64,11 @@ namespace RCS.PortableShop.ViewModels
         {
             var resources = Application.Current.Resources;
 
-            var contentView = new ContentView()
+            var contentView = new View()
             {
                 // TODO Since Xamarin.Forms 2.3.4.224 the resource is no longer found here.
                 // HACK The white, though it combines nicely with the white backgrounds of the current pictures.
-                BackgroundColor = resources.ContainsKey("ProductsLevel1Colour") ? (Color)resources["ProductsLevel1Colour"] : Color.White,
+                BackgroundColor = resources.ContainsKey("ProductsLevel1Colour") ? (Color)resources["ProductsLevel1Colour"] : Colors.White,
 
                 Content = new Image() { Source = imageSource }
             };

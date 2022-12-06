@@ -1,117 +1,90 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-	<PropertyGroup>
-		<TargetFramework>netstandard2.0</TargetFramework>
-	</PropertyGroup>
 
 	<PropertyGroup>
-		<EnableDefaultItems>false</EnableDefaultItems>
-		<Authors>RCS</Authors>
-		<Product>PortableShop</Product>
-		<NeutralLanguage>en-GB</NeutralLanguage>
-		<EnableNETAnalyzers>true</EnableNETAnalyzers>
+		<TargetFrameworks>net7.0-android</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
+		<OutputType>Exe</OutputType>
+		<RootNamespace>RCS.PortableShop</RootNamespace>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+
+		<!-- Display name -->
+		<ApplicationTitle>RCS.PortableShop</ApplicationTitle>
+
+		<!-- App Identifier -->
+		<ApplicationId>com.companyname.rcs.portableshop2</ApplicationId>
+		<ApplicationIdGuid>8fef438a-c27c-4658-bd2b-498c7ac9b6f7</ApplicationIdGuid>
+
+		<!-- Versions -->
+		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+		<ApplicationVersion>1</ApplicationVersion>
+
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-android|AnyCPU'">
+	  <PublishTrimmed>False</PublishTrimmed>
+	  <RunAOTCompilation>False</RunAOTCompilation>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\RCS.AdventureWorks.Common\RCS.AdventureWorks.Common.csproj" />
-		<ProjectReference Include="..\RCS.PortableShop.Common\RCS.PortableShop.Common.csproj" />
-		<ProjectReference Include="..\RCS.PortableShop.ServiceClients.Products\RCS.PortableShop.ServiceClients.Products.csproj" />
+		<!-- App Icon -->
+
+		<!-- Splash Screen -->
+    <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+
+    <!-- Images -->
+		<MauiImage Include="Resources\Images\*" />
+
+		<!-- Custom Fonts -->
+		<MauiFont Include="Resources\Fonts\*" />
+
+		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
-	</ItemGroup>
-
-	<!--TODO There currently does not seem to be a way to use these files implicitly, like in WPF.-->
-	
-	<ItemGroup>
-		<Compile Include="AssemblyInfo.cs" />
-		
-		<Compile Include="Converters\SizeFormatter.cs" />
-		<Compile Include="Converters\WeightFormatter.cs" />
-		<Compile Include="Interfaces\IShopper.cs" />
-
-		<Compile Include="Localization\ILocalize.cs" />
-		<Compile Include="Localization\PlatformCulture.cs" />
-
-		<Compile Include="Main\MainApplication.xaml.cs" />
-		<Compile Include="Main\MainPage.cs" />
-		<Compile Include="Main\MainShell.xaml.cs" />
-		<Compile Include="Main\Startup.cs" />
-		<Compile Include="ViewModels\CartItemViewModel.cs" />
-
-		<Compile Include="Model\CartItemsRepository.cs" />
-
-		<Compile Include="Model\Culture.cs" />
-		<Compile Include="Model\ProductCategoriesRepository.cs" />
-		<Compile Include="Model\ProductsRepository.cs" />
-		<Compile Include="Model\ProductsServiceConsumer.cs" />
-		<Compile Include="Model\ProductSubcategoriesRepository.cs" />
-		<Compile Include="Model\Repository.cs" />
-		<Compile Include="Model\ServiceType.cs" />
-		<Compile Include="Model\Settings.cs" />
-
-		<Compile Include="ViewModels\MainShellViewModel.cs" />
-
-		<Compile Include="ViewModels\SettingsViewModel.cs" />
-		<Compile Include="ViewModels\ShoppingViewModel.cs" />
-		<Compile Include="ViewModels\ShoppingWrapperViewModel.cs" />
-		<Compile Include="ViewModels\ProductsViewModel.cs" />
-		<Compile Include="ViewModels\ProductViewModel.cs" />
-		<Compile Include="ViewModels\CartViewModel.cs" />
-		<Compile Include="Views\SettingsView.xaml.cs" />
-
-		<Compile Include="Views\ShoppingWrapperView.xaml.cs" />
-		<Compile Include="Views\ProductsView.xaml.cs" />
-		<Compile Include="Views\ProductView.xaml.cs" />
-		<Compile Include="Views\CartSummaryView.xaml.cs" />
-		<Compile Include="Views\CartView.xaml.cs" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="3.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="7.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<EmbeddedResource Include="Main\MainApplication.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</EmbeddedResource>
+	  <ProjectReference Include="..\..\RCS.AdventureWorks.Common\RCS.AdventureWorks.Common.csproj" />
+	  <ProjectReference Include="..\RCS.PortableShop.Common\RCS.PortableShop.Common.csproj" />
+	  <ProjectReference Include="..\RCS.PortableShop.Resources\RCS.PortableShop.Resources.csproj" />
+	  <ProjectReference Include="..\RCS.PortableShop.ServiceClients.Products\RCS.PortableShop.ServiceClients.Products.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<EmbeddedResource Include="Main\MainShell.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</EmbeddedResource>
+	  <MauiXaml Update="Main\MainApplication.xaml">
+	  </MauiXaml>
+	  <MauiXaml Update="Main\MainShell.xaml">
+	  </MauiXaml>
+	  <MauiXaml Update="Platforms\Windows\App.xaml">
+	  </MauiXaml>
+	  <MauiXaml Update="Views\CartSummaryView.xaml">
+	  </MauiXaml>
+	  <MauiXaml Update="Views\CartView.xaml">
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ProductsView.xaml">
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ProductView.xaml">
+	  </MauiXaml>
+	  <MauiXaml Update="Views\SettingsView.xaml">
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ShoppingWrapperView.xaml">
+	  </MauiXaml>
 	</ItemGroup>
 
 	<ItemGroup>
-		<EmbeddedResource Include="Views\ShoppingWrapperView.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</EmbeddedResource>
+	  <Folder Include="Resources\AppIcon\" />
+	  <Folder Include="Resources\Fonts\" />
+	  <Folder Include="Resources\Images\" />
+	  <Folder Include="Resources\Styles\" />
 	</ItemGroup>
 
-	<ItemGroup>
-		<EmbeddedResource Include="Views\ProductsView.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</EmbeddedResource>
-	</ItemGroup>
-
-	<ItemGroup>
-		<EmbeddedResource Include="Views\ProductView.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</EmbeddedResource>
-	</ItemGroup>
-
-	<ItemGroup>
-		<EmbeddedResource Include="Views\CartSummaryView.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</EmbeddedResource>
-	</ItemGroup>
-
-	<ItemGroup>
-		<EmbeddedResource Include="Views\CartView.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</EmbeddedResource>
-	</ItemGroup>
-
-	<ItemGroup>
-		<EmbeddedResource Include="Views\SettingsView.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</EmbeddedResource>
-	</ItemGroup>
 </Project>

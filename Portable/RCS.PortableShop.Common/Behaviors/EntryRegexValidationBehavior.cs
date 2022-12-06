@@ -1,7 +1,4 @@
-﻿using System;
-using System.Text.RegularExpressions;
-using Microsoft.Maui;
-using Microsoft.Maui.Controls;
+﻿using System.Text.RegularExpressions;
 
 namespace RCS.PortableShop.Common.Behaviors
 {
@@ -31,7 +28,7 @@ namespace RCS.PortableShop.Common.Behaviors
             // This could be replaced by an entire style.
             // Do not mark an empty string.
             (sender as Entry).BackgroundColor = string.IsNullOrEmpty(e.NewTextValue) || IsValid
-                ? Color.Default
+                ?/* Color.Default*/ Colors.White // HACK.
                 : InvalidBackgroundColour;
         }
         #endregion

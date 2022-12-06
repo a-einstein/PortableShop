@@ -2,7 +2,7 @@
 
 <baseClasses:View
     x:Class="RCS.PortableShop.Views.ShoppingWrapperView"
-    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -10,9 +10,9 @@
     xmlns:baseClasses="clr-namespace:RCS.PortableShop.Common.Views;assembly=RCS.PortableShop.Common"
     xmlns:views="clr-namespace:RCS.PortableShop.Views;assembly=RCS.PortableShop"
     xmlns:viewModels="clr-namespace:RCS.PortableShop.ViewModels"
-    d:BindingContext ="{d:DesignInstance Type=viewModels:ShoppingWrapperViewModel}"
     mc:Ignorable="d" 
     >
+    <!--d:BindingContext ="{d:DesignInstance Type=viewModels:ShoppingWrapperViewModel}"-->
 
     <Grid>
         <Grid.RowDefinitions>

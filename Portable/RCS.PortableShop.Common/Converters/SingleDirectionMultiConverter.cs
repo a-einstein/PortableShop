@@ -1,6 +1,6 @@
-﻿using RCS.PortableShop.Common.Extensions;
-using System;
-using System.Globalization;
+﻿using System.Globalization;
+// TODO May use another.
+using IMultiValueConverter = RCS.PortableShop.Common.Extensions.IMultiValueConverter;
 
 namespace RCS.PortableShop.Common.Converters
 {

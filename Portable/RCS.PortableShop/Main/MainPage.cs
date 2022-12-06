@@ -1,13 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using RCS.PortableShop.Common.Views;
 using RCS.PortableShop.Model;
 using RCS.PortableShop.Resources;
 using RCS.PortableShop.ServiceClients.Products.Wrappers;
 using RCS.PortableShop.ViewModels;
-using RCS.PortableShop.Views;
-using System;
-using System.Threading.Tasks;
-using Xamarin.Essentials;
-using Xamarin.Forms;
 using Page = RCS.PortableShop.Common.Pages.Page;
 
 namespace RCS.PortableShop.Main
@@ -48,12 +43,17 @@ namespace RCS.PortableShop.Main
 
                 SubscribeMessages(this);
 
+                /*
                 var productsView = new ProductsView() { ViewModel = ProductsViewModel };
 
                 var shoppingWrapperViewModel = new ShoppingWrapperViewModel() { WrappedContent = productsView };
                 var shoppingWrapperView = new ShoppingWrapperView() { ViewModel = shoppingWrapperViewModel };
 
                 Content = shoppingWrapperView;
+                */
+
+                // HACK.
+                Content = new VoidView();
             }
         }
 

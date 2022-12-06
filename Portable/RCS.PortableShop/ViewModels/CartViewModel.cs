@@ -1,17 +1,12 @@
-﻿using RCS.AdventureWorks.Common.DomainClasses;
+﻿using CommunityToolkit.Mvvm.Input;
+using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.AdventureWorks.Common.Interfaces;
 using RCS.PortableShop.Common.Interfaces;
 using RCS.PortableShop.Common.ViewModels;
 using RCS.PortableShop.Resources;
-using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Input;
-using Xamarin.CommunityToolkit.ObjectModel;
-using Xamarin.Essentials;
-using Xamarin.Forms;
 
 namespace RCS.PortableShop.ViewModels
 {
@@ -31,7 +26,8 @@ namespace RCS.PortableShop.ViewModels
         {
             base.SetCommands();
 
-            DeleteCommand = new AsyncCommand<CartItemViewModel>(Delete);
+            // TODO MAUI Check out RelayCommand attribute, including CanExecute attribute.
+            DeleteCommand = new AsyncRelayCommand<CartItemViewModel>(Delete);
         }
         #endregion
 
