@@ -87,4 +87,6 @@
 	  <Folder Include="Resources\Styles\" />
 	</ItemGroup>
 
+	<ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadDebuggerTimeoutExceptionRCSPortableShopHideInfoBar="True" /></VisualStudio></ProjectExtensions>
+
 </Project>

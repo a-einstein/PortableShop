@@ -3,6 +3,7 @@ using RCS.PortableShop.Model;
 using RCS.PortableShop.Resources;
 using RCS.PortableShop.ServiceClients.Products.Wrappers;
 using RCS.PortableShop.ViewModels;
+using RCS.PortableShop.Views;
 using Page = RCS.PortableShop.Common.Pages.Page;
 
 namespace RCS.PortableShop.Main
@@ -43,17 +44,25 @@ namespace RCS.PortableShop.Main
 
                 SubscribeMessages(this);
 
-                /*
-                var productsView = new ProductsView() { ViewModel = ProductsViewModel };
+                // TODO Exception in viewmodel.
+                //var productsView = new ProductsView() { ViewModel = ProductsViewModel };
 
-                var shoppingWrapperViewModel = new ShoppingWrapperViewModel() { WrappedContent = productsView };
-                var shoppingWrapperView = new ShoppingWrapperView() { ViewModel = shoppingWrapperViewModel };
+                //var shoppingWrapperViewModel = new ShoppingWrapperViewModel() { WrappedContent = productsView };
+                //var shoppingWrapperView = new ShoppingWrapperView() { ViewModel = shoppingWrapperViewModel };
 
-                Content = shoppingWrapperView;
-                */
+                //Content = shoppingWrapperView;
 
-                // HACK.
-                Content = new VoidView();
+
+                // HACK Simple tests
+
+                //Content = new VoidView();
+
+                //Content = new CartSummaryView();
+                //Content = new CartView(); // TODO Empty.
+                //Content = new ShoppingWrapperView(); // TODO Empty.
+
+                //Content = new ProductsView();
+                Content = new ProductView();
             }
         }
 

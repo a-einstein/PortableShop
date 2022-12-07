@@ -4,8 +4,8 @@
     x:Class="RCS.PortableShop.Main.App"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-     >
-    <!--xmlns:commonStyles="clr-namespace:RCS.PortableShop.Common.Styles;assembly=RCS.PortableShop.Common"-->
+    xmlns:commonStyles="clr-namespace:RCS.PortableShop.Common.Styles;assembly=RCS.PortableShop.Common"
+    >
 
     <!--xmlns:windows="clr-namespace:Xamarin.Forms.PlatformConfiguration.WindowsSpecific;assembly=Xamarin.Forms.Core"
     windows:Application.ImageDirectory="Assets"-->
@@ -24,18 +24,11 @@
         https://docs.microsoft.com/en-us/xamarin/xamarin-forms/xaml/resource-dictionaries
         TODO Follow up.
         -->
-        <!--
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-        -->
-        <!--TODO https://github.com/dotnet/maui/issues/4398-->
-                <!--<commonStyles:Stylesheet />-->
-                <!--<ResourceDictionary Source="Styles/Stylesheet.xaml;assembly=RCS.PortableShop.Common"/>-->
-                <!--<ResourceDictionary Source="../../RCS.PortableShop.Common/Styles/Stylesheet.xaml"/>-->
-        <!--
+                <commonStyles:Stylesheet />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-        -->
     </Application.Resources>
 </Application>
     

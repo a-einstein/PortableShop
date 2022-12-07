@@ -20,7 +20,8 @@ namespace RCS.PortableShop.Common.Views
         {
             await Task.Run(async () =>
             {
-                await ViewModel.RefreshView().ConfigureAwait(true);
+                if (ViewModel is not null)
+                    await ViewModel.RefreshView().ConfigureAwait(true);
             }).ConfigureAwait(true);
         }
 
