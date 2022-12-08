@@ -7,6 +7,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:community="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:resx="clr-namespace:RCS.PortableShop.Resources;assembly=RCS.PortableShop.Resources"
     xmlns:main="clr-namespace:RCS.PortableShop.Main"
     xmlns:viewModels="clr-namespace:RCS.PortableShop.ViewModels"
     mc:Ignorable="d"
@@ -47,18 +48,13 @@
 
     <!--Note that icon sizes in UWP are automatically reduced even though a larger size was chosen by me.-->
 
-    <!--<MenuItem Command="{Binding SettingsCommand}" Text="{community:Translate Settings}" IconImageSource="Settings.png"/>-->
-    <MenuItem Command="{Binding SettingsCommand}" Text="Settings" IconImageSource="Settings.png"/>
+    <MenuItem Command="{Binding SettingsCommand}" Text="{x:Static resx:Labels.Settings}" IconImageSource="Settings.png"/>
 
-    <!--<MenuItem Command="{Binding ShowProductsCommand}" Text="{community:Translate Products}" IconImageSource="Overview.png"/>-->
-    <MenuItem Command="{Binding ShowProductsCommand}" Text="Products" IconImageSource="Overview.png"/>
+    <MenuItem Command="{Binding ShowProductsCommand}" Text="{x:Static resx:Labels.Products}" IconImageSource="Overview.png"/>
 
-    <!--<MenuItem Command="{Binding ShowCartCommand}" Text="{community:Translate Cart}" IconImageSource="Cart.png"/>-->
-    <MenuItem Command="{Binding ShowCartCommand}" Text="Cart" IconImageSource="Cart.png"/>
+    <MenuItem Command="{Binding ShowCartCommand}" Text="{x:Static resx:Labels.Cart}" IconImageSource="Cart.png"/>
 
-    <!--<MenuItem Command="{Binding OpenSupportCommand}" Text="{community:Translate Support}" IconImageSource="Information.png"/>-->
-    <MenuItem Command="{Binding OpenSupportCommand}" Text="Support" IconImageSource="Information.png"/>
+    <MenuItem Command="{Binding OpenSupportCommand}" Text="{x:Static resx:Labels.Support}" IconImageSource="Information.png"/>
 
-    <!--<MenuItem Command="{Binding UpdateCommand}" Text="{community:Translate Update}" IconImageSource="CloudDownload.png"/>-->
-    <MenuItem Command="{Binding UpdateCommand}" Text="Update" IconImageSource="CloudDownload.png"/>
+    <MenuItem Command="{Binding UpdateCommand}" Text="{x:Static resx:Labels.Update}" IconImageSource="CloudDownload.png"/>
 </Shell>
