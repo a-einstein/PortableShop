@@ -63,7 +63,7 @@ namespace RCS.PortableShop.ViewModels
             var succeeded = await ProductCategoriesRepository.Refresh().ConfigureAwait(true);
             succeeded &= await ProductSubcategoriesRepository.Refresh().ConfigureAwait(true);
 
-            if (succeeded) await MainThread.InvokeOnMainThreadAsync(() =>
+            if (succeeded) await Application.Current.Dispatcher.DispatchAsync(() =>
             {
                 var categories = ProductCategoriesRepository.Items;
 
@@ -139,7 +139,7 @@ namespace RCS.PortableShop.ViewModels
                 Settings.TextFilter = textFilterValue;
 
                 // Copy items.
-                await MainThread.InvokeOnMainThreadAsync(() =>
+                await Application.Current.Dispatcher.DispatchAsync(() =>
                 {
                     foreach (var item in ProductsRepository.Items)
                         Items.Add(item);

@@ -101,6 +101,7 @@ namespace RCS.PortableShop.Main
                     services.AddSingleton<IProductService, WcfClient>();
                     break;
                 case ServiceType.WebApi:
+                default:
                     services.AddSingleton<IProductService, WebApiClient>();
                     break;
             }
@@ -115,6 +116,8 @@ namespace RCS.PortableShop.Main
             services.AddSingleton<ProductsViewModel>();
             services.AddSingleton<ProductViewModel>();
             services.AddSingleton<CartViewModel>();
+
+            ServiceProvider = services.BuildServiceProvider();
 
             return mauiAppBuilder;
         }

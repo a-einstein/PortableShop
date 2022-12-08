@@ -44,25 +44,12 @@ namespace RCS.PortableShop.Main
 
                 SubscribeMessages(this);
 
-                // TODO Exception in viewmodel.
-                //var productsView = new ProductsView() { ViewModel = ProductsViewModel };
+                var productsView = new ProductsView() { ViewModel = ProductsViewModel };
 
-                //var shoppingWrapperViewModel = new ShoppingWrapperViewModel() { WrappedContent = productsView };
-                //var shoppingWrapperView = new ShoppingWrapperView() { ViewModel = shoppingWrapperViewModel };
+                var shoppingWrapperViewModel = new ShoppingWrapperViewModel() { WrappedContent = productsView };
+                var shoppingWrapperView = new ShoppingWrapperView() { ViewModel = shoppingWrapperViewModel };
 
-                //Content = shoppingWrapperView;
-
-
-                // HACK Simple tests
-
-                //Content = new VoidView();
-
-                //Content = new CartSummaryView();
-                //Content = new CartView(); // TODO Empty.
-                //Content = new ShoppingWrapperView(); // TODO Empty.
-
-                //Content = new ProductsView();
-                Content = new ProductView();
+                Content = shoppingWrapperView;
             }
         }
 

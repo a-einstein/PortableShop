@@ -76,7 +76,7 @@ namespace RCS.PortableShop.ViewModels
 
             var sortedItems = new List<CartItem>(CartItemsRepository.Items).OrderBy(item => item.Name);
 
-            await MainThread.InvokeOnMainThreadAsync(() =>
+            await Application.Current.Dispatcher.DispatchAsync(() =>
             {
                 foreach (var item in sortedItems)
                 {
