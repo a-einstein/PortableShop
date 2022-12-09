@@ -84,62 +84,63 @@
 
                     <!--TODO It might be interesting to make all this Horizontal.-->
                     <!--Note that ListView has got its own scrolling.-->
-                    <ListView IsVisible="{Binding ItemsCount, Converter={StaticResource HasValueTester}}" ItemsSource="{Binding Items}">
-                        <ListView.ItemTemplate>
+                    
+                    <!--Note MAUI Moved on to CollectionView because the ItemTemplate did not render on Windows, while it did on Android! Problem was not in my ContentButton.-->
+                    <!--TODO MAUI Check other differences.--> 
+                    <CollectionView IsVisible="{Binding ItemsCount, Converter={StaticResource HasValueTester}}" ItemsSource="{Binding Items}">
+                        <CollectionView.ItemTemplate>
                             <DataTemplate>
-                                <ViewCell>
-                                    <!--
-                                    Notes:
-                                    ContentButton is needed because currently there is no Button.Content.
-                                    For every Command, maybe because of the ContentButton:
-                                    - DesignInstance does not work.
-                                    - RelativeSource Mode=FindAncestorBindingContext does not work. Therefor still BindingContext.
-                                    -->
-                                    <controls:ContentButton Command="{Binding BindingContext.DetailsCommand, Source={RelativeSource AncestorType={x:Type views:ProductsView}}}" CommandParameter="{Binding}">
-                                        <controls:ContentButton.Content>
-                                            <Grid Style="{StaticResource ListItemStyle}" BackgroundColor="{StaticResource ProductsLevel1Colour}">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="Auto"/>
-                                                    <ColumnDefinition Width="*"/>
-                                                </Grid.ColumnDefinitions>
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition Height="Auto"/>
-                                                    <RowDefinition Height="Auto"/>
-                                                </Grid.RowDefinitions>
+                                <!--
+                                Notes:
+                                ContentButton is needed because currently there is no Button.Content.
+                                For every Command, maybe because of the ContentButton:
+                                - DesignInstance does not work.
+                                - RelativeSource Mode=FindAncestorBindingContext does not work. Therefor still BindingContext.
+                                -->
+                                <controls:ContentButton Command="{Binding BindingContext.DetailsCommand, Source={RelativeSource AncestorType={x:Type views:ProductsView}}}" CommandParameter="{Binding}">
+                                    <controls:ContentButton.Content>
+                                        <Grid Style="{StaticResource ListItemStyle}" BackgroundColor="{StaticResource ProductsLevel1Colour}">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
 
-                                                <!--Note putting these elements in separate cells helped to better align them vertically.-->
-                                                <!--TODO Get them better right aligned.-->
+                                            <!--Note putting these elements in separate cells helped to better align them vertically.-->
+                                            <!--TODO Get them better right aligned.-->
 
-                                                <Image Grid.Column="0" Grid.Row="0" Source="{Binding ThumbNailPhoto, Converter={StaticResource ByteArrayToImageSourceConverter}}" VerticalOptions="Start" HorizontalOptions="End" HeightRequest="75" WidthRequest="100"/>
+                                            <Image Grid.Column="0" Grid.Row="0" Source="{Binding ThumbNailPhoto, Converter={StaticResource ByteArrayToImageSourceConverter}}" VerticalOptions="Start" HorizontalOptions="End" HeightRequest="75" WidthRequest="100"/>
 
-                                                <Button Grid.Column="0" Grid.Row="1" ImageSource="CartPlus.png" Command="{Binding BindingContext.CartCommand, Source={RelativeSource AncestorType={x:Type views:ProductsView}}}" CommandParameter="{Binding}" Style="{StaticResource CartPlusButtonStyle}" VerticalOptions="End" HorizontalOptions="End"/>
+                                            <Button Grid.Column="0" Grid.Row="1" ImageSource="CartPlus.png" Command="{Binding BindingContext.CartCommand, Source={RelativeSource AncestorType={x:Type views:ProductsView}}}" CommandParameter="{Binding}" Style="{StaticResource CartPlusButtonStyle}" VerticalOptions="End" HorizontalOptions="End"/>
 
-                                                <StackLayout Grid.Column="1" Grid.Row="0" Grid.RowSpan="2"  VerticalOptions="Start">
-                                                    <StackLayout Orientation="Horizontal">
-                                                        <Label Text="{Binding ProductCategory}" Style="{StaticResource ValueLabelStyle}"/>
-                                                        <Label Text="/" Style="{StaticResource ValueLabelStyle}"/>
-                                                        <Label Text="{Binding ProductSubcategory}" Style="{StaticResource ValueLabelStyle}"/>
-                                                    </StackLayout>
-
-                                                    <Label Text="{Binding Name}" Style="{StaticResource ValueEmphasisMediumLabelStyle}"/>
-
-                                                    <!--HACK All similar occurrences of StringFormat are (temporarily) in this format because of this bug https://github.com/xamarin/Xamarin.Forms/issues/5282 -->
-                                                    <Label Text="{Binding ListPrice, StringFormat='{}{0:C2}'}" Style="{StaticResource ValueEmphasisLabelStyle}"/>
-
-                                                    <StackLayout Orientation="Horizontal">
-                                                        <Label Text="{Binding Size}" Style="{StaticResource ValueLabelStyle}"/>
-                                                        <Label Text="{Binding SizeUnitMeasureCode}" Style="{StaticResource ValueLabelStyle}"/>
-                                                    </StackLayout>
-
-                                                    <Label Text="{Binding Color}" Style="{StaticResource ValueLabelStyle}"/>
+                                            <StackLayout Grid.Column="1" Grid.Row="0" Grid.RowSpan="2"  VerticalOptions="Start">
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="{Binding ProductCategory}" Style="{StaticResource ValueLabelStyle}"/>
+                                                    <Label Text="/" Style="{StaticResource ValueLabelStyle}"/>
+                                                    <Label Text="{Binding ProductSubcategory}" Style="{StaticResource ValueLabelStyle}"/>
                                                 </StackLayout>
-                                            </Grid>
-                                        </controls:ContentButton.Content>
-                                    </controls:ContentButton>
-                                </ViewCell>
+
+                                                <Label Text="{Binding Name}" Style="{StaticResource ValueEmphasisMediumLabelStyle}"/>
+
+                                                <!--HACK All similar occurrences of StringFormat are (temporarily) in this format because of this bug https://github.com/xamarin/Xamarin.Forms/issues/5282 -->
+                                                <Label Text="{Binding ListPrice, StringFormat='{}{0:C2}'}" Style="{StaticResource ValueEmphasisLabelStyle}"/>
+
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="{Binding Size}" Style="{StaticResource ValueLabelStyle}"/>
+                                                    <Label Text="{Binding SizeUnitMeasureCode}" Style="{StaticResource ValueLabelStyle}"/>
+                                                </StackLayout>
+
+                                                <Label Text="{Binding Color}" Style="{StaticResource ValueLabelStyle}"/>
+                                            </StackLayout>
+                                        </Grid>
+                                    </controls:ContentButton.Content>
+                                </controls:ContentButton>
                             </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
                 </Grid>
             </ContentView>
         </Grid>
