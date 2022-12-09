@@ -41,13 +41,6 @@ namespace RCS.PortableShop.Common.Pages
 
         private void Adorn()
         {
-            // Needed for Windows.
-
-            // TODO https://github.com/dotnet/maui/issues/2451
-            //MainThread.BeginInvokeOnMainThread(() =>
-            //Application.Current.Dispatcher.Dispatch(() =>
-            //{
-
             // This is particularly added to recover from a service problem.
             // Note chose white icon, because colours were not inverted on UWP, as on Android.
             // TODO Recovering does not succeed, check return statuses along the chain.
@@ -56,8 +49,6 @@ namespace RCS.PortableShop.Common.Pages
             "Refresh.png",
             async () => await Refresh())
             );
-
-            //});
         }
 
         protected async Task Refresh()
