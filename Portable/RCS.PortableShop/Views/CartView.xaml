@@ -14,7 +14,6 @@
     Padding="{StaticResource ViewPadding}"
     >
     <!--
-    xmlns:numericUpDown="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
     d:BindingContext="{d:DesignInstance Type=viewModels:CartViewModel}"
     -->
 
@@ -31,7 +30,7 @@
         <!--VerticalOptions is needed to fill the screen with no or just a few items.-->
         <!--Note that CollectionView has got its own scrolling (either scrollbar or swiping).-->
         <!--Note MAUI Moved on from ListView to CollectionView because the ItemTemplate did not render on Windows, while it did on Android! Problem was not in my ContentButton.-->
-        <CollectionView x:Name="cartItemsListView" ItemsSource="{Binding Items}" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource ResultsBackgroundColour}">
+        <CollectionView x:Name="cartItemsListView" ItemsSource="{Binding Items}" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource ResultsBackgroundColour}" CanMixGroups="True">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Grid Style="{StaticResource ListItemStyle}" BackgroundColor="{StaticResource CartLevel1Colour}">
@@ -47,15 +46,12 @@
                                 <Label Text="{Binding Value, StringFormat='{}{0:C2}'}" Style="{StaticResource ValueEmphasisLabelStyle}"/>
                             </StackLayout>
 
+                            <!--TODO MAUI This part is not well displayed, only on Windows!-->
                             <StackLayout Orientation="Horizontal">
-                                <!--
-                                Note currently a big license message is displayed.
-                                https://help.syncfusion.com/common/essential-studio/licensing/license-key
-                                     
-                                Note the defined style with comments.
-                                -->
-                                <!--<numericUpDown:SfNumericUpDown Value="{Binding Quantity, Mode=TwoWay}"/>-->
-
+                                <!--Note MAUI Moved from SfNumericUpDown to combination with Stepper.-->
+                                <!--TODO May become a separate control with style.-->
+                                <Entry Text="{Binding Quantity, Mode=TwoWay}" Style="{StaticResource ValueEmphasisEntryStyle}"/>
+                                <Stepper Value="{Binding Quantity, Mode=TwoWay}" Minimum="0" Maximum="10" Increment="1" BackgroundColor="White"/>
                                 <Button ImageSource="Trash.png" Command="{Binding BindingContext.DeleteCommand, Source={x:Reference cartItemsListView}}" CommandParameter="{Binding}" Style="{StaticResource CartMinButtonStyle}" VerticalOptions="Start" HorizontalOptions="Start"/>
                             </StackLayout>
                         </StackLayout>
