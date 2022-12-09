@@ -1,92 +1,102 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<TargetFrameworks>net7.0-android</TargetFrameworks>
-		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
-		<OutputType>Exe</OutputType>
-		<RootNamespace>RCS.PortableShop</RootNamespace>
-		<UseMaui>true</UseMaui>
-		<SingleProject>true</SingleProject>
-		<ImplicitUsings>enable</ImplicitUsings>
+  <PropertyGroup>
+    <TargetFrameworks>net7.0-android</TargetFrameworks>
+    <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>RCS.PortableShop</RootNamespace>
+    <UseMaui>true</UseMaui>
+    <SingleProject>true</SingleProject>
+    <ImplicitUsings>enable</ImplicitUsings>
 
-		<!-- Display name -->
-		<ApplicationTitle>RCS.PortableShop</ApplicationTitle>
+    <!-- Display name -->
+    <ApplicationTitle>CyclOne.MAUI</ApplicationTitle>
 
-		<!-- App Identifier -->
-		<ApplicationId>com.companyname.rcs.portableshop2</ApplicationId>
-		<ApplicationIdGuid>8fef438a-c27c-4658-bd2b-498c7ac9b6f7</ApplicationIdGuid>
+    <!-- App Identifier -->
+    <ApplicationId>com.companyname.rcs.portableshop2</ApplicationId>
+    <ApplicationIdGuid>8fef438a-c27c-4658-bd2b-498c7ac9b6f7</ApplicationIdGuid>
 
-		<!-- Versions -->
-		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
-		<ApplicationVersion>1</ApplicationVersion>
+    <!-- Versions -->
+    <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+    <ApplicationVersion>1</ApplicationVersion>
 
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
-		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
-	</PropertyGroup>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+    <TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+  </PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-android|AnyCPU'">
-	  <PublishTrimmed>False</PublishTrimmed>
-	  <RunAOTCompilation>False</RunAOTCompilation>
-	</PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-android|AnyCPU'">
+    <PublishTrimmed>False</PublishTrimmed>
+    <RunAOTCompilation>False</RunAOTCompilation>
+  </PropertyGroup>
 
-	<ItemGroup>
-		<!-- App Icon -->
-
-		<!-- Splash Screen -->
-    <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+  <ItemGroup>
+    <!-- App Icon -->
+    <!--TODO MAUI This is not used on Android.-->
+    <MauiIcon Include="Resources\AppIcon\appicon.png" BaseSize="128,128"/>
+    
+    <!-- Splash Screen -->
+    <!--TODO MAUI Maybe add a cyclone background-->
+    <!--TODO MAUI This is not used on Windows. Maybe needs its own stuff as on UWP.-->
+    <!--TODO MAUI This colour is inadequately displayed (on Android).-->
+    <!--Note MAUI Size for reduction on Android.-->
+    <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#58ACFA" BaseSize="350,350"/>
 
     <!-- Images -->
-		<MauiImage Include="Resources\Images\*" />
+    <MauiImage Include="Resources\Images\*" />
 
-		<!-- Custom Fonts -->
-		<MauiFont Include="Resources\Fonts\*" />
+    <!-- Custom Fonts -->
+    <MauiFont Include="Resources\Fonts\*" />
 
-		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
-		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
-	</ItemGroup>
+    <!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+    <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+  </ItemGroup>
 
-	<ItemGroup>
-		<PackageReference Include="CommunityToolkit.Maui" Version="3.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="7.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
-	</ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Maui" Version="3.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+  </ItemGroup>
 
-	<ItemGroup>
-	  <ProjectReference Include="..\..\RCS.AdventureWorks.Common\RCS.AdventureWorks.Common.csproj" />
-	  <ProjectReference Include="..\RCS.PortableShop.Common\RCS.PortableShop.Common.csproj" />
-	  <ProjectReference Include="..\RCS.PortableShop.Resources\RCS.PortableShop.Resources.csproj" />
-	  <ProjectReference Include="..\RCS.PortableShop.ServiceClients.Products\RCS.PortableShop.ServiceClients.Products.csproj" />
-	</ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\RCS.AdventureWorks.Common\RCS.AdventureWorks.Common.csproj" />
+    <ProjectReference Include="..\RCS.PortableShop.Common\RCS.PortableShop.Common.csproj" />
+    <ProjectReference Include="..\RCS.PortableShop.Resources\RCS.PortableShop.Resources.csproj" />
+    <ProjectReference Include="..\RCS.PortableShop.ServiceClients.Products\RCS.PortableShop.ServiceClients.Products.csproj" />
+  </ItemGroup>
 
-	<ItemGroup>
-	  <MauiXaml Update="Main\MainApplication.xaml">
-	  </MauiXaml>
-	  <MauiXaml Update="Main\MainShell.xaml">
-	  </MauiXaml>
-	  <MauiXaml Update="Platforms\Windows\App.xaml">
-	  </MauiXaml>
-	  <MauiXaml Update="Views\CartSummaryView.xaml">
-	  </MauiXaml>
-	  <MauiXaml Update="Views\CartView.xaml">
-	  </MauiXaml>
-	  <MauiXaml Update="Views\ProductsView.xaml">
-	  </MauiXaml>
-	  <MauiXaml Update="Views\ProductView.xaml">
-	  </MauiXaml>
-	  <MauiXaml Update="Views\SettingsView.xaml">
-	  </MauiXaml>
-	  <MauiXaml Update="Views\ShoppingWrapperView.xaml">
-	  </MauiXaml>
-	</ItemGroup>
+  <ItemGroup>
+    <MauiXaml Update="Main\MainApplication.xaml">
+    </MauiXaml>
+    <MauiXaml Update="Main\MainShell.xaml">
+    </MauiXaml>
+    <MauiXaml Update="Platforms\Windows\App.xaml">
+    </MauiXaml>
+    <MauiXaml Update="Views\CartSummaryView.xaml">
+    </MauiXaml>
+    <MauiXaml Update="Views\CartView.xaml">
+    </MauiXaml>
+    <MauiXaml Update="Views\ProductsView.xaml">
+    </MauiXaml>
+    <MauiXaml Update="Views\ProductView.xaml">
+    </MauiXaml>
+    <MauiXaml Update="Views\SettingsView.xaml">
+    </MauiXaml>
+    <MauiXaml Update="Views\ShoppingWrapperView.xaml">
+    </MauiXaml>
+  </ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Resources\AppIcon\" />
-	  <Folder Include="Resources\Fonts\" />
-	  <Folder Include="Resources\Images\" />
-	  <Folder Include="Resources\Styles\" />
-	</ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\AppIcon\" />
+    <Folder Include="Resources\Fonts\" />
+    <Folder Include="Resources\Images\" />
+    <Folder Include="Resources\Styles\" />
+  </ItemGroup>
 
-	<ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadDebuggerTimeoutExceptionRCSPortableShopHideInfoBar="True" /></VisualStudio></ProjectExtensions>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties XamarinHotReloadDebuggerTimeoutExceptionRCSPortableShopHideInfoBar="True" />
+    </VisualStudio>
+  </ProjectExtensions>
 
 </Project>
