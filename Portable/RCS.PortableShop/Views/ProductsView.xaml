@@ -83,9 +83,9 @@
                     <Label IsVisible="{Binding ItemsCount, Converter={StaticResource HasValueTester}, ConverterParameter='invert'}" Text="{Binding Message}" Style="{StaticResource MessageLabelStyle}" Margin="7"/>
 
                     <!--TODO It might be interesting to make all this Horizontal.-->
-                    <!--Note that ListView has got its own scrolling.-->
-                    
-                    <!--Note MAUI Moved on to CollectionView because the ItemTemplate did not render on Windows, while it did on Android! Problem was not in my ContentButton.-->
+                    <!--Note that CollectionView has got its own scrolling (either scrollbar or swiping).-->
+
+                    <!--Note MAUI Moved on from ListView to CollectionView because the ItemTemplate did not render on Windows, while it did on Android! Problem was not in my ContentButton.-->
                     <!--TODO MAUI Check other differences.--> 
                     <CollectionView IsVisible="{Binding ItemsCount, Converter={StaticResource HasValueTester}}" ItemsSource="{Binding Items}">
                         <CollectionView.ItemTemplate>
