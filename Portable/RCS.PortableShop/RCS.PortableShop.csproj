@@ -37,6 +37,7 @@
     <PackageProjectUrl>https://github.com/a-einstein/PortableShop/blob/master/README.md</PackageProjectUrl>
     <RepositoryUrl>https://github.com/a-einstein/PortableShop</RepositoryUrl>
     <NeutralLanguage>en-GB</NeutralLanguage>
+    <PackageIcon>appicon.png</PackageIcon>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-android|AnyCPU'">
@@ -100,10 +101,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Resources\AppIcon\" />
     <Folder Include="Resources\Fonts\" />
     <Folder Include="Resources\Images\" />
     <Folder Include="Resources\Styles\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Resources\AppIcon\appicon.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
   <ProjectExtensions>
