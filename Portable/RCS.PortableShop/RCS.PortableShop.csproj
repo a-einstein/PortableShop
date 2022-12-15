@@ -23,6 +23,20 @@
     <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
     <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
     <TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+    <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
+    <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
+    <PackageCertificateThumbprint>F45330DA9727236F1A460AFB8A9DBF07D5D1AE76</PackageCertificateThumbprint>
+    <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
+    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
+    <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
+    <GenerateTestArtifacts>True</GenerateTestArtifacts>
+    <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
+    <Title>CyclOne.MAUI</Title>
+    <Authors>a-einstein</Authors>
+    <Company>RCS</Company>
+    <PackageProjectUrl>https://github.com/a-einstein/PortableShop/blob/master/README.md</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/a-einstein/PortableShop</RepositoryUrl>
+    <NeutralLanguage>en-GB</NeutralLanguage>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-android|AnyCPU'">
@@ -33,14 +47,14 @@
   <ItemGroup>
     <!-- App Icon -->
     <!--TODO MAUI This is not used on Android.-->
-    <MauiIcon Include="Resources\AppIcon\appicon.png" BaseSize="128,128"/>
+    <MauiIcon Include="Resources\AppIcon\appicon.png" BaseSize="128,128" />
     
     <!-- Splash Screen -->
     <!--TODO MAUI Maybe add a cyclone background-->
     <!--TODO MAUI This is not used on Windows. Maybe needs its own stuff as on UWP.-->
     <!--TODO MAUI This colour is inadequately displayed (on Android).-->
     <!--Note MAUI Size for reduction on Android.-->
-    <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#58ACFA" BaseSize="350,350"/>
+    <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#58ACFA" BaseSize="350,350" />
 
     <!-- Images -->
     <MauiImage Include="Resources\Images\*" />
@@ -53,7 +67,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="CommunityToolkit.Maui" Version="3.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
   </ItemGroup>
