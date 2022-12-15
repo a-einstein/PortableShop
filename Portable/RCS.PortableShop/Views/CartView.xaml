@@ -29,7 +29,10 @@
 
         <!--VerticalOptions is needed to fill the screen with no or just a few items.-->
         <!--Note that CollectionView has got its own scrolling (either scrollbar or swiping).-->
+        
         <!--Note MAUI Moved on from ListView to CollectionView because the ItemTemplate did not render on Windows, while it did on Android! Problem was not in my ContentButton.-->
+        <!--Note on Windows the items currently overlay each other partially, until the window is resized. https://github.com/dotnet/maui/issues/12118-->
+        
         <CollectionView x:Name="cartItemsListView" ItemsSource="{Binding Items}" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource ResultsBackgroundColour}" CanMixGroups="True">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
