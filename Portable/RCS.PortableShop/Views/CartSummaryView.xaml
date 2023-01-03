@@ -18,7 +18,7 @@
     Note TapGestureRecognizer of ContentButton does not work if BackgroundColor is set here! https://bugzilla.xamarin.com/show_bug.cgi?id=25943
     -->
     <StackLayout Orientation="Horizontal">
-        <Image Source="Cart.png" Margin="0,0,10,0"/>
+        <Image Source="cart.png" Margin="0,0,10,0"/>
 
         <Label Text="{Binding ItemsCount}" Style="{StaticResource ValueEmphasisMediumLabelStyle}"/>
         <Label Text="{x:Static resx:Labels.Products}" FontSize="Medium"/>

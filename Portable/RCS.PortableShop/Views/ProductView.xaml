@@ -43,7 +43,7 @@
                     </controls:ContentButton.Content>
                 </controls:ContentButton>
 
-                <Button ImageSource="CartPlus.png" Command="{Binding CartCommand}" CommandParameter="{Binding Item}" Style="{StaticResource CartPlusButtonStyle}" VerticalOptions="End" HorizontalOptions="End"/>
+                <Button ImageSource="cartplus.png" Command="{Binding CartCommand}" CommandParameter="{Binding Item}" Style="{StaticResource CartPlusButtonStyle}" VerticalOptions="End" HorizontalOptions="End"/>
             </StackLayout>
 
             <Grid>

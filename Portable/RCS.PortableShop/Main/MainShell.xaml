@@ -24,7 +24,7 @@
         <ContentView Padding="10" BackgroundColor="White">
             <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                 <!--TODO Fill available width. Maybe have a bigger icon too. Check necessity of options.-->
-                <Image Source="Application.png" Opacity="0.3" Scale="4" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFit"/>
+                <Image Source="application.png" Opacity="0.3" Scale="4" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFit"/>
                 <Label x:Name="aboutLabel" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="Center"/>
             </Grid>
         </ContentView>
@@ -47,14 +47,16 @@
     <!--TODO Would prefer to have hamburger visible on all pages, besides a back button. But is seems intended to only have it on the root page.-->
 
     <!--Note that icon sizes in UWP are automatically reduced even though a larger size was chosen by me.-->
+    
+    <!--TODO MAUI Icons are not visible on Android with dark theme.-->
 
-    <MenuItem Command="{Binding SettingsCommand}" Text="{x:Static resx:Labels.Settings}" IconImageSource="Settings.png"/>
+    <MenuItem Command="{Binding SettingsCommand}" Text="{x:Static resx:Labels.Settings}" IconImageSource="settings.png"/>
 
-    <MenuItem Command="{Binding ShowProductsCommand}" Text="{x:Static resx:Labels.Products}" IconImageSource="Overview.png"/>
+    <MenuItem Command="{Binding ShowProductsCommand}" Text="{x:Static resx:Labels.Products}" IconImageSource="overview.png"/>
 
-    <MenuItem Command="{Binding ShowCartCommand}" Text="{x:Static resx:Labels.Cart}" IconImageSource="Cart.png"/>
+    <MenuItem Command="{Binding ShowCartCommand}" Text="{x:Static resx:Labels.Cart}" IconImageSource="cart.png"/>
 
-    <MenuItem Command="{Binding OpenSupportCommand}" Text="{x:Static resx:Labels.Support}" IconImageSource="Information.png"/>
+    <MenuItem Command="{Binding OpenSupportCommand}" Text="{x:Static resx:Labels.Support}" IconImageSource="information.png"/>
 
-    <MenuItem Command="{Binding UpdateCommand}" Text="{x:Static resx:Labels.Update}" IconImageSource="CloudDownload.png"/>
+    <MenuItem Command="{Binding UpdateCommand}" Text="{x:Static resx:Labels.Update}" IconImageSource="clouddownload.png"/>
 </Shell>

@@ -69,6 +69,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <MauiImage Include="Resources\Images\cart.png" BaseSize="32,32" />
+    <MauiImage Include="Resources\Images\cartplus.png" BaseSize="32,32" />
+    <MauiImage Include="Resources\Images\clouddownload.png" BaseSize="32,32" />
+    <MauiImage Include="Resources\Images\information.png" BaseSize="32,32" />
+    <MauiImage Include="Resources\Images\overview.png" BaseSize="32,32" />
+    <MauiImage Include="Resources\Images\refresh.png" BaseSize="32,32" />
+    <MauiImage Include="Resources\Images\settings.png" BaseSize="32,32" />
+    <MauiImage Include="Resources\Images\trash.png" BaseSize="32,32" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="Platforms\Windows\Assets\SplashScreen.scale-100.png" />
     <Content Include="Platforms\Windows\Assets\SplashScreen.scale-125.png" />
     <Content Include="Platforms\Windows\Assets\SplashScreen.scale-150.png" />
@@ -111,7 +122,6 @@
 
   <ItemGroup>
     <Folder Include="Resources\Fonts\" />
-    <Folder Include="Resources\Images\" />
     <Folder Include="Resources\Styles\" />
   </ItemGroup>
 
