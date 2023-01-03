@@ -26,15 +26,20 @@
   </Resources>
 
   <Applications>
+    <!--Starts, but without SplashScreen.-->
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="$targetentrypoint$">
-      <uap:VisualElements
+      
+    <!-- Shows SplashScreen, but crashes. See: https://github.com/dotnet/maui/issues/12395
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="RCS.PortableShop.WinUI.App">
+    -->
+        <uap:VisualElements
         DisplayName="$placeholder$"
         Description="$placeholder$"
         Square150x150Logo="$placeholder$.png"
         Square44x44Logo="$placeholder$.png"
         BackgroundColor="transparent">
         <uap:DefaultTile Square71x71Logo="$placeholder$.png" Wide310x150Logo="$placeholder$.png" Square310x310Logo="$placeholder$.png" />
-        <uap:SplashScreen Image="$placeholder$.png" />
+        <uap:SplashScreen Image="Platforms\Windows\Assets\SplashScreen.png" />
       </uap:VisualElements>
     </Application>
   </Applications>
