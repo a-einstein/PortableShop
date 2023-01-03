@@ -13,7 +13,7 @@
     <ApplicationTitle>CyclOne.MAUI</ApplicationTitle>
 
     <!-- App Identifier -->
-    <ApplicationId>com.companyname.rcs.portableshop2</ApplicationId>
+    <ApplicationId>com.companyname.rcs.portableshop</ApplicationId>
     <ApplicationIdGuid>8fef438a-c27c-4658-bd2b-498c7ac9b6f7</ApplicationIdGuid>
 
     <!-- Versions -->
