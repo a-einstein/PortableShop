@@ -25,9 +25,3 @@ Otherwise on UWP, specifically using WCF, exceptions arise about System.ServiceM
 It still seems related to https://github.com/dotnet/wcf/issues/3088 and https://github.com/dotnet/wcf/issues/4762
 I have tried some workarounds in https://devblogs.microsoft.com/oldnewthing/20200615-00/?p=103868
 Removal of FaultException seemed a solution, but turned out a mistake. https://stackoverflow.com/questions/52498144/system-io-fileloadexception-on-system-servicemodel-primitives/70024433 
-
-> TODO 
-Currently (17-11-2022) the following libraries cannot be updated to version 7.0.0.
-That resulted in "An error occurred while writing to logger(s). (Operation is not supported on this platform.)"
-- Microsoft.Extensions.Hosting
-- Microsoft.Extensions.Http
