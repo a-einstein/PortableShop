@@ -38,6 +38,7 @@
     <RepositoryUrl>https://github.com/a-einstein/PortableShop</RepositoryUrl>
     <NeutralLanguage>en-GB</NeutralLanguage>
     <PackageIcon>appicon.png</PackageIcon>
+    <DefaultLanguage>en-GB</DefaultLanguage>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-android|AnyCPU'">
