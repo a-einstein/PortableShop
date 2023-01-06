@@ -43,6 +43,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "XamarinForms", "XamarinForm
 		docs\XamarinForms\README.md = docs\XamarinForms\README.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Screenshots", "Screenshots", "{BDFAA699-C339-45B7-AB02-BD747B603E79}"
+	ProjectSection(SolutionItems) = preProject
+		docs\XamarinForms\Screenshots\basket.png = docs\XamarinForms\Screenshots\basket.png
+		docs\XamarinForms\Screenshots\details.png = docs\XamarinForms\Screenshots\details.png
+		docs\XamarinForms\Screenshots\menu.png = docs\XamarinForms\Screenshots\menu.png
+		docs\XamarinForms\Screenshots\overview.png = docs\XamarinForms\Screenshots\overview.png
+		docs\XamarinForms\Screenshots\picture.png = docs\XamarinForms\Screenshots\picture.png
+		docs\XamarinForms\Screenshots\splash.png = docs\XamarinForms\Screenshots\splash.png
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Ad-Hoc|Any CPU = Ad-Hoc|Any CPU
@@ -490,6 +500,7 @@ Global
 		{BB290803-68D3-459C-8D93-5D8DC9EA29B4} = {B90E6AA0-E5D0-49FE-A88C-FD0219EFCAC5}
 		{D38BFDFC-AFDC-4688-B09B-821593E26AB6} = {B90E6AA0-E5D0-49FE-A88C-FD0219EFCAC5}
 		{2C483D9C-5A51-4ABC-AEAA-C3CE8999C3F0} = {5B91D6AC-FFB9-45ED-A093-67CB06FFB132}
+		{BDFAA699-C339-45B7-AB02-BD747B603E79} = {2C483D9C-5A51-4ABC-AEAA-C3CE8999C3F0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4AE3F23E-9C64-4F26-A0B7-32D62997DD5B}
