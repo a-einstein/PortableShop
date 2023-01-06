@@ -9,8 +9,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		NuGet.Config = NuGet.Config
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Platforms", "Platforms", "{BF5A32B0-CF2E-43E0-BC2B-9CDF5C86730B}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Portable", "Portable", "{B90E6AA0-E5D0-49FE-A88C-FD0219EFCAC5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RCS.PortableShop.Resources", "Portable\RCS.PortableShop.Resources\RCS.PortableShop.Resources.csproj", "{580F96C6-28DC-464D-8B08-48BD802B151D}"
@@ -20,16 +18,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{444E2CF3-351A-495D-BCDD-9A113AD595E1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RCS.AdventureWorks.Common", "RCS.AdventureWorks.Common\RCS.AdventureWorks.Common.csproj", "{493D8ED2-1BA9-436C-981F-3A84523FA8A0}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Screenshots", "Screenshots", "{FE1EF84C-613E-4CD6-AE65-0094C4296095}"
-	ProjectSection(SolutionItems) = preProject
-		Screenshots\basket.png = Screenshots\basket.png
-		Screenshots\details.png = Screenshots\details.png
-		Screenshots\menu.png = Screenshots\menu.png
-		Screenshots\overview.png = Screenshots\overview.png
-		Screenshots\picture.png = Screenshots\picture.png
-		Screenshots\splash.png = Screenshots\splash.png
-	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RCS.PortableShop", "Portable\RCS.PortableShop\RCS.PortableShop.csproj", "{BB290803-68D3-459C-8D93-5D8DC9EA29B4}"
 EndProject
