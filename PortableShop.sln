@@ -7,7 +7,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		.bettercodehub.yml = .bettercodehub.yml
 		NuGet.Config = NuGet.Config
-		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Platforms", "Platforms", "{BF5A32B0-CF2E-43E0-BC2B-9CDF5C86730B}"
@@ -37,6 +36,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RCS.PortableShop.Common", "Portable\RCS.PortableShop.Common\RCS.PortableShop.Common.csproj", "{D38BFDFC-AFDC-4688-B09B-821593E26AB6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{5B91D6AC-FFB9-45ED-A093-67CB06FFB132}"
+	ProjectSection(SolutionItems) = preProject
+		docs\README.md = docs\README.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "XamarinForms", "XamarinForms", "{2C483D9C-5A51-4ABC-AEAA-C3CE8999C3F0}"
 	ProjectSection(SolutionItems) = preProject
@@ -51,6 +53,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Screenshots", "Screenshots"
 		docs\XamarinForms\Screenshots\overview.png = docs\XamarinForms\Screenshots\overview.png
 		docs\XamarinForms\Screenshots\picture.png = docs\XamarinForms\Screenshots\picture.png
 		docs\XamarinForms\Screenshots\splash.png = docs\XamarinForms\Screenshots\splash.png
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MAUI", "MAUI", "{408DB8CB-F58B-490D-A337-60AC4C4AF29D}"
+	ProjectSection(SolutionItems) = preProject
+		docs\MAUI\README.md = docs\MAUI\README.md
 	EndProjectSection
 EndProject
 Global
@@ -501,6 +508,7 @@ Global
 		{D38BFDFC-AFDC-4688-B09B-821593E26AB6} = {B90E6AA0-E5D0-49FE-A88C-FD0219EFCAC5}
 		{2C483D9C-5A51-4ABC-AEAA-C3CE8999C3F0} = {5B91D6AC-FFB9-45ED-A093-67CB06FFB132}
 		{BDFAA699-C339-45B7-AB02-BD747B603E79} = {2C483D9C-5A51-4ABC-AEAA-C3CE8999C3F0}
+		{408DB8CB-F58B-490D-A337-60AC4C4AF29D} = {5B91D6AC-FFB9-45ED-A093-67CB06FFB132}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4AE3F23E-9C64-4F26-A0B7-32D62997DD5B}
