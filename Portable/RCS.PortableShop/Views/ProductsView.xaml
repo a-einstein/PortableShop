@@ -2,22 +2,25 @@
 
 <baseClasses:View
     x:Class="RCS.PortableShop.Views.ProductsView"
-    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:community="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:community="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:resx="clr-namespace:RCS.PortableShop.Resources;assembly=RCS.PortableShop.Resources"
     xmlns:behaviors="clr-namespace:RCS.PortableShop.Common.Behaviors;assembly=RCS.PortableShop.Common"
     xmlns:controls="clr-namespace:RCS.PortableShop.Common.Controls;assembly=RCS.PortableShop.Common"
     xmlns:converters="clr-namespace:RCS.PortableShop.Common.Converters;assembly=RCS.PortableShop.Common"
     xmlns:baseClasses="clr-namespace:RCS.PortableShop.Common.Views;assembly=RCS.PortableShop.Common"
     xmlns:viewModels="clr-namespace:RCS.PortableShop.ViewModels"
     xmlns:views="clr-namespace:RCS.PortableShop.Views"
-    d:BindingContext="{d:DesignInstance Type=viewModels:ProductsViewModel}"
     mc:Ignorable="d"
     BackgroundColor="{StaticResource ProductsLevel0Colour}"
     Padding="{StaticResource ViewPadding}"
     >
+    <!--
+     d:BindingContext="{d:DesignInstance Type=viewModels:ProductsViewModel}"
+    -->
 
     <baseClasses:View.Resources>
         <ResourceDictionary>
@@ -43,18 +46,28 @@
                 <StackLayout x:Name="actionBlock" Orientation="Vertical" HorizontalOptions="Start">
                     <StackLayout Orientation="Horizontal">
                         <!--Note that Title of Picker: for Android is displayed as placeholder inside, for UWP as separate label above. Therefor no separate label and the VerticalOptions.-->
-                        <Picker Title="{community:Translate MasterFilter}" ItemsSource="{Binding MasterFilterItems, Mode=TwoWay}" SelectedItem="{Binding MasterFilterValue, Mode=TwoWay}" IsEnabled="{Binding MasterFilterItems, Converter={StaticResource HasValueTester}}" BackgroundColor="{StaticResource ProductsLevel1Colour}" VerticalOptions="End"/>
-                        <Picker Title="{community:Translate DetailFilter}" ItemsSource="{Binding DetailFilterItems, Mode=TwoWay}" SelectedItem="{Binding DetailFilterValue, Mode=TwoWay}" IsEnabled="{Binding DetailFilterItems, Converter={StaticResource HasValueTester}}" BackgroundColor="{StaticResource ProductsLevel1Colour}" VerticalOptions="End"/>
+
+                        <!--
+                        TODO MAUI Replace the Translate/Static everywhere. The static is just a way to get a text, but is not localizing. 
+                        Update, this currently only applies to Windows, not Android.
+                        Maybe use Microsoft.Extensions.Localization. Perhaps in conjunction with already present code.
+                        TODO MAUI This needs to be sorted out / cleaned up / updated anyway.
+                        -->
+                        
+                        <!--<Picker Title="{community:Translate MasterFilter}" ItemsSource="{Binding MasterFilterItems, Mode=TwoWay}" SelectedItem="{Binding MasterFilterValue, Mode=TwoWay}" IsEnabled="{Binding MasterFilterItems, Converter={StaticResource HasValueTester}}" BackgroundColor="{StaticResource ProductsLevel1Colour}" VerticalOptions="End"/>-->
+                        <Picker Title="{x:Static resx:Labels.MasterFilter}" ItemsSource="{Binding MasterFilterItems, Mode=TwoWay}" SelectedItem="{Binding MasterFilterValue, Mode=TwoWay}" IsEnabled="{Binding MasterFilterItems, Converter={StaticResource HasValueTester}}" BackgroundColor="{StaticResource ProductsLevel1Colour}" VerticalOptions="End"/>
+
+                        <Picker Title="{x:Static resx:Labels.DetailFilter}" ItemsSource="{Binding DetailFilterItems, Mode=TwoWay}" SelectedItem="{Binding DetailFilterValue, Mode=TwoWay}" IsEnabled="{Binding DetailFilterItems, Converter={StaticResource HasValueTester}}" BackgroundColor="{StaticResource ProductsLevel1Colour}" VerticalOptions="End"/>
 
                         <!--Note apparently UpdateSourceTrigger=PropertyChanged through this chain, which is good for immediate response for validation and enablement.-->
                         <!--Note that Placeholder is just that, for both Android and UWP.-->
-                        <controls:ClearableEntry Placeholder="{community:Translate TextFilter}" Text="{Binding TextFilterValue, Mode=TwoWay}" BackgroundColor="{StaticResource ProductsLevel1Colour}" WidthRequest="130" VerticalOptions="End">
+                        <controls:ClearableEntry Placeholder="{x:Static resx:Labels.TextFilter}" Text="{Binding TextFilterValue, Mode=TwoWay}" BackgroundColor="{StaticResource ProductsLevel1Colour}" WidthRequest="130" VerticalOptions="End">
                              <controls:ClearableEntry.EntryBehaviors>
                                  <!--TODO Currently parameter passing does not work and is hard coded. See comments elsewhere.-->
                                  <!--<behaviors:EntryRegexValidationBehavior Expression="{Binding ValidTextFilterExpression}" InvalidBackgroundColour="{StaticResource InvalidBackgroundColour}"/>-->
-                                 <behaviors:EntryRegexValidationBehavior Expression=".{3}" InvalidBackgroundColour="{StaticResource InvalidBackgroundColour}"/>
-                                 
-                                 <!--Could not get below working, including variations.-->
+                                <behaviors:EntryRegexValidationBehavior Expression=".{3}" InvalidBackgroundColour="{StaticResource InvalidBackgroundColour}"/>
+
+                                <!--Could not get below working, including variations.-->
                                  <!--<community:TextValidationBehavior RegexPattern=".{3}" InvalidStyle="{StaticResource InvalidEntryStyle}"/>-->
                             </controls:ClearableEntry.EntryBehaviors>
                         </controls:ClearableEntry>
@@ -63,10 +76,10 @@
                     <!--Put at Start, as changes in orientation did not work out correctly on the last Label.-->
                     <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
                         <!--IsDefault="True"-->
-                        <Button Text="{community:Translate Filter}" Command="{Binding FilterCommand}" BackgroundColor="{StaticResource ProductsLevel1Colour}" HorizontalOptions="Start" VerticalOptions="End"/>
-                        
+                        <Button Text="{x:Static resx:Labels.Filter}" Command="{Binding FilterCommand}" BackgroundColor="{StaticResource ProductsLevel1Colour}" HorizontalOptions="Start" VerticalOptions="End"/>
+
                         <Label Text="{Binding ItemsCount}" Style="{StaticResource ValueEmphasisMediumLabelStyle}" VerticalOptions="End"/>
-                        <Label Text="{community:Translate Products}" Style="{StaticResource EmphasisMediumLabelStyle}" VerticalOptions="End"/>
+                        <Label Text="{x:Static resx:Labels.Products}" Style="{StaticResource EmphasisMediumLabelStyle}" VerticalOptions="End"/>
                     </StackLayout>
                 </StackLayout>
             </StackLayout>
@@ -76,63 +89,64 @@
                     <Label IsVisible="{Binding ItemsCount, Converter={StaticResource HasValueTester}, ConverterParameter='invert'}" Text="{Binding Message}" Style="{StaticResource MessageLabelStyle}" Margin="7"/>
 
                     <!--TODO It might be interesting to make all this Horizontal.-->
-                    <!--Note that ListView has got its own scrolling.-->
-                    <ListView IsVisible="{Binding ItemsCount, Converter={StaticResource HasValueTester}}" ItemsSource="{Binding Items}">
-                        <ListView.ItemTemplate>
+                    <!--Note that CollectionView has got its own scrolling (either scrollbar or swiping).-->
+
+                    <!--Note MAUI Moved on from ListView to CollectionView because the ItemTemplate did not render on Windows, while it did on Android! Problem was not in my ContentButton.-->
+                    <!--TODO MAUI Check other differences.--> 
+                    <CollectionView IsVisible="{Binding ItemsCount, Converter={StaticResource HasValueTester}}" ItemsSource="{Binding Items}">
+                        <CollectionView.ItemTemplate>
                             <DataTemplate>
-                                <ViewCell>
-                                    <!--
-                                    Notes:
-                                    ContentButton is needed because currently there is no Button.Content.
-                                    For every Command, maybe because of the ContentButton:
-                                    - DesignInstance does not work.
-                                    - RelativeSource Mode=FindAncestorBindingContext does not work. Therefor still BindingContext.
-                                    -->
-                                    <controls:ContentButton Command="{Binding BindingContext.DetailsCommand, Source={RelativeSource AncestorType={x:Type views:ProductsView}}}" CommandParameter="{Binding}">
-                                        <controls:ContentButton.Content>
-                                            <Grid Style="{StaticResource ListItemStyle}" BackgroundColor="{StaticResource ProductsLevel1Colour}">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="Auto"/>
-                                                    <ColumnDefinition Width="*"/>
-                                                </Grid.ColumnDefinitions>
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition Height="Auto"/>
-                                                    <RowDefinition Height="Auto"/>
-                                                </Grid.RowDefinitions>
+                                <!--
+                                Notes:
+                                ContentButton is needed because currently there is no Button.Content.
+                                For every Command, maybe because of the ContentButton:
+                                - DesignInstance does not work.
+                                - RelativeSource Mode=FindAncestorBindingContext does not work. Therefor still BindingContext.
+                                -->
+                                <controls:ContentButton Command="{Binding BindingContext.DetailsCommand, Source={RelativeSource AncestorType={x:Type views:ProductsView}}}" CommandParameter="{Binding}">
+                                    <controls:ContentButton.Content>
+                                        <Grid Style="{StaticResource ListItemStyle}" BackgroundColor="{StaticResource ProductsLevel1Colour}">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
 
-                                                <!--Note putting these elements in separate cells helped to better align them vertically.-->
-                                                <!--TODO Get them better right aligned.-->
+                                            <!--Note putting these elements in separate cells helped to better align them vertically.-->
+                                            <!--TODO Get them better right aligned.-->
 
-                                                <Image Grid.Column="0" Grid.Row="0" Source="{Binding ThumbNailPhoto, Converter={StaticResource ByteArrayToImageSourceConverter}}" VerticalOptions="Start" HorizontalOptions="End" HeightRequest="75" WidthRequest="100"/>
+                                            <Image Grid.Column="0" Grid.Row="0" Source="{Binding ThumbNailPhoto, Converter={StaticResource ByteArrayToImageSourceConverter}}" VerticalOptions="Start" HorizontalOptions="End" HeightRequest="75" WidthRequest="100"/>
 
-                                                <Button Grid.Column="0" Grid.Row="1" ImageSource="CartPlus.png" Command="{Binding BindingContext.CartCommand, Source={RelativeSource AncestorType={x:Type views:ProductsView}}}" CommandParameter="{Binding}" Style="{StaticResource CartPlusButtonStyle}" VerticalOptions="End" HorizontalOptions="End"/>
+                                            <Button Grid.Column="0" Grid.Row="1" ImageSource="cartplus.png" Command="{Binding BindingContext.CartCommand, Source={RelativeSource AncestorType={x:Type views:ProductsView}}}" CommandParameter="{Binding}" Style="{StaticResource CartPlusButtonStyle}" VerticalOptions="End" HorizontalOptions="End"/>
 
-                                                <StackLayout Grid.Column="1" Grid.Row="0" Grid.RowSpan="2"  VerticalOptions="Start">
-                                                    <StackLayout Orientation="Horizontal">
-                                                        <Label Text="{Binding ProductCategory}" Style="{StaticResource ValueLabelStyle}"/>
-                                                        <Label Text="/" Style="{StaticResource ValueLabelStyle}"/>
-                                                        <Label Text="{Binding ProductSubcategory}" Style="{StaticResource ValueLabelStyle}"/>
-                                                    </StackLayout>
-
-                                                    <Label Text="{Binding Name}" Style="{StaticResource ValueEmphasisMediumLabelStyle}"/>
-
-                                                    <!--HACK All similar occurrences of StringFormat are (temporarily) in this format because of this bug https://github.com/xamarin/Xamarin.Forms/issues/5282 -->
-                                                    <Label Text="{Binding ListPrice, StringFormat='{}{0:C2}'}" Style="{StaticResource ValueEmphasisLabelStyle}"/>
-
-                                                    <StackLayout Orientation="Horizontal">
-                                                        <Label Text="{Binding Size}" Style="{StaticResource ValueLabelStyle}"/>
-                                                        <Label Text="{Binding SizeUnitMeasureCode}" Style="{StaticResource ValueLabelStyle}"/>
-                                                    </StackLayout>
-
-                                                    <Label Text="{Binding Color}" Style="{StaticResource ValueLabelStyle}"/>
+                                            <StackLayout Grid.Column="1" Grid.Row="0" Grid.RowSpan="2"  VerticalOptions="Start">
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="{Binding ProductCategory}" Style="{StaticResource ValueLabelStyle}"/>
+                                                    <Label Text="/" Style="{StaticResource ValueLabelStyle}"/>
+                                                    <Label Text="{Binding ProductSubcategory}" Style="{StaticResource ValueLabelStyle}"/>
                                                 </StackLayout>
-                                            </Grid>
-                                        </controls:ContentButton.Content>
-                                    </controls:ContentButton>
-                                </ViewCell>
+
+                                                <Label Text="{Binding Name}" Style="{StaticResource ValueEmphasisMediumLabelStyle}"/>
+
+                                                <!--HACK All similar occurrences of StringFormat are (temporarily) in this format because of this bug https://github.com/xamarin/Xamarin.Forms/issues/5282 -->
+                                                <Label Text="{Binding ListPrice, StringFormat='{}{0:C2}'}" Style="{StaticResource ValueEmphasisLabelStyle}"/>
+
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="{Binding Size}" Style="{StaticResource ValueLabelStyle}"/>
+                                                    <Label Text="{Binding SizeUnitMeasureCode}" Style="{StaticResource ValueLabelStyle}"/>
+                                                </StackLayout>
+
+                                                <Label Text="{Binding Color}" Style="{StaticResource ValueLabelStyle}"/>
+                                            </StackLayout>
+                                        </Grid>
+                                    </controls:ContentButton.Content>
+                                </controls:ContentButton>
                             </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
                 </Grid>
             </ContentView>
         </Grid>

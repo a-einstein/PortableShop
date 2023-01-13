@@ -1,10 +1,7 @@
-﻿using RCS.PortableShop.Views;
-using System;
-using System.Threading.Tasks;
+﻿using CommunityToolkit.Mvvm.Input;
+using RCS.PortableShop.Views;
 using System.Windows.Input;
-using Xamarin.CommunityToolkit.ObjectModel;
-using Xamarin.Essentials;
-using Xamarin.Forms;
+using Command = Microsoft.Maui.Controls.Command;
 
 namespace RCS.PortableShop.ViewModels
 {
@@ -15,10 +12,11 @@ namespace RCS.PortableShop.ViewModels
         {
             base.SetCommands();
 
-            ShowProductsCommand = new AsyncCommand(ShowProducts);
+            // TODO MAUI Check out RelayCommand attribute, including CanExecute attribute.
+            ShowProductsCommand = new AsyncRelayCommand(ShowProducts);
             OpenSupportCommand = new Command(OpenSupport);
             UpdateCommand = new Command(Update);
-            SettingsCommand = new AsyncCommand(OpenSettings);
+            SettingsCommand = new AsyncRelayCommand(OpenSettings);
         }
         #endregion
 
@@ -61,8 +59,8 @@ namespace RCS.PortableShop.ViewModels
 
         private static void OpenSupport()
         {
-            // TODO Make this Configureable.
-            OpenWeb("https://github.com/a-einstein/PortableShop/blob/master/README.md");
+            // TODO MAUI Use Pages?
+            OpenWeb("https://github.com/a-einstein/PortableShop/blob/master/docs/MAUI/README.md");
         }
         #endregion
 

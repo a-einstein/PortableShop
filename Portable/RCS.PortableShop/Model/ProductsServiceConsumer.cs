@@ -1,7 +1,4 @@
 ﻿using RCS.PortableShop.ServiceClients.Products.Wrappers;
-using System;
-using System.ServiceModel;
-using Xamarin.Forms;
 
 namespace RCS.PortableShop.Model
 {
@@ -18,16 +15,16 @@ namespace RCS.PortableShop.Model
             ServiceError
         }
 
-        protected void SendMessage(FaultException<ExceptionDetail> exception)
-        {
-            var detailMessage = exception?.Detail?.InnerException?.Message;
+        //protected void SendMessage(FaultException<ExceptionDetail> exception)
+        //{
+        //    var detailMessage = exception?.Detail?.InnerException?.Message;
 
-            if (detailMessage?.Length > 10)
-                // Trim trailing details like user name.
-                detailMessage = $"{detailMessage.Remove(11)}...";
+        //    if (detailMessage?.Length > 10)
+        //        // Trim trailing details like user name.
+        //        detailMessage = $"{detailMessage.Remove(11)}...";
 
-            SendMessage(exception, detailMessage);
-        }
+        //    SendMessage(exception, detailMessage);
+        //}
 
         protected void SendMessage(Exception exception)
         {

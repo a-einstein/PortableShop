@@ -1,12 +1,4 @@
-﻿using RCS.PortableShop.Localization;
-using RCS.PortableShop.Resources;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using Xamarin.CommunityToolkit.Helpers;
-using Xamarin.Essentials;
-using Xamarin.Forms;
+﻿using RCS.PortableShop.Resources;
 
 namespace RCS.PortableShop.Model
 {
@@ -20,6 +12,8 @@ namespace RCS.PortableShop.Model
 
         private static void SetCulture()
         {
+            // TODO Sort out for MAUI.
+            /*
             LocalizationResourceManager.Current.Init(Labels.ResourceManager);
 
             // This lookup is NOT required for Windows platforms - the Culture will be automatically set
@@ -36,6 +30,7 @@ namespace RCS.PortableShop.Model
 
                     break;
             }
+            */
 
             // Check if it is overwritten.
             if (Preferences.ContainsKey(cultureKey))
@@ -97,8 +92,10 @@ namespace RCS.PortableShop.Model
                 // Store value.
                 Preferences.Set(cultureKey, value.Name);
 
+                /*
                 // Switch culture.
                 LocalizationResourceManager.Current.CurrentCulture = new CultureInfo(Culture.Name);
+                */
             }
         }
         #endregion

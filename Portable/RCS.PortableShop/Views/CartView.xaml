@@ -2,19 +2,21 @@
 
 <baseClasses:View
     x:Class="RCS.PortableShop.Views.CartView"
-    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:baseClasses="clr-namespace:RCS.PortableShop.Common.Views;assembly=RCS.PortableShop.Common"
     xmlns:views="clr-namespace:RCS.PortableShop.Views;assembly=RCS.PortableShop"
-    xmlns:numericUpDown="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
     xmlns:viewModels="clr-namespace:RCS.PortableShop.ViewModels"
-    d:BindingContext="{d:DesignInstance Type=viewModels:CartViewModel}"
     mc:Ignorable="d"
     BackgroundColor="{StaticResource CartLevel0Colour}"
     Padding="{StaticResource ViewPadding}"
     >
+    <!--
+    d:BindingContext="{d:DesignInstance Type=viewModels:CartViewModel}"
+    -->
+
 
     <baseClasses:View.Resources>
         <ResourceDictionary>
@@ -26,40 +28,39 @@
         <views:CartSummaryView/>
 
         <!--VerticalOptions is needed to fill the screen with no or just a few items.-->
-        <!--Note that ListView has got its own scrolling.-->
-        <ListView x:Name="cartItemsListView" ItemsSource="{Binding Items}" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource ResultsBackgroundColour}">
-            <ListView.ItemTemplate>
+        <!--Note that CollectionView has got its own scrolling (either scrollbar or swiping).-->
+        
+        <!--Note MAUI Moved on from ListView to CollectionView because the ItemTemplate did not render on Windows, while it did on Android! Problem was not in my ContentButton.-->
+        <!--Note on Windows the items currently overlay each other partially, until the window is resized. https://github.com/dotnet/maui/issues/12118-->
+        
+        <CollectionView x:Name="cartItemsListView" ItemsSource="{Binding Items}" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource ResultsBackgroundColour}" CanMixGroups="True">
+            <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <ViewCell>
-                        <Grid Style="{StaticResource ListItemStyle}" BackgroundColor="{StaticResource CartLevel1Colour}">
-                            <!--Note this layout currently is aimed towards portrait orientation.-->
-                            <StackLayout Orientation="Vertical">
-                                <Label Text="{Binding Name}" Style="{StaticResource ValueEmphasisMediumLabelStyle}"/>
+                    <Grid Style="{StaticResource ListItemStyle}" BackgroundColor="{StaticResource CartLevel1Colour}">
+                        <!--Note this layout currently is aimed towards portrait orientation.-->
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="{Binding Name}" Style="{StaticResource ValueEmphasisMediumLabelStyle}"/>
 
-                                <StackLayout Orientation="Horizontal">
-                                    <Label Text="{Binding ProductSize}" Style="{StaticResource ValueLabelStyle}"/>
-                                    <Label Text="{Binding ProductSizeUnitMeasureCode}" Style="{StaticResource ValueLabelStyle}"/>
-                                    <Label Text="{Binding ProductColor}" Style="{StaticResource ValueLabelStyle}"/>
-                                    <Label Text="{Binding ProductListPrice, StringFormat='{}{0:C2}'}" Style="{StaticResource ValueLabelStyle}"/>
-                                    <Label Text="{Binding Value, StringFormat='{}{0:C2}'}" Style="{StaticResource ValueEmphasisLabelStyle}"/>
-                                </StackLayout>
-
-                                <StackLayout Orientation="Horizontal">
-                                    <!--
-                                    Note currently a big license message is displayed.
-                                    https://help.syncfusion.com/common/essential-studio/licensing/license-key
-                                     
-                                    Note the defined style with comments.
-                                    -->
-                                    <numericUpDown:SfNumericUpDown Value="{Binding Quantity, Mode=TwoWay}"/>
-
-                                    <Button ImageSource="Trash.png" Command="{Binding BindingContext.DeleteCommand, Source={x:Reference cartItemsListView}}" CommandParameter="{Binding}" Style="{StaticResource CartMinButtonStyle}" VerticalOptions="Start" HorizontalOptions="Start"/>
-                                </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding ProductSize}" Style="{StaticResource ValueLabelStyle}"/>
+                                <Label Text="{Binding ProductSizeUnitMeasureCode}" Style="{StaticResource ValueLabelStyle}"/>
+                                <Label Text="{Binding ProductColor}" Style="{StaticResource ValueLabelStyle}"/>
+                                <Label Text="{Binding ProductListPrice, StringFormat='{}{0:C2}'}" Style="{StaticResource ValueLabelStyle}"/>
+                                <Label Text="{Binding Value, StringFormat='{}{0:C2}'}" Style="{StaticResource ValueEmphasisLabelStyle}"/>
                             </StackLayout>
-                        </Grid>
-                    </ViewCell>
+
+                            <!--TODO MAUI This part is not well displayed, only on Windows!-->
+                            <StackLayout Orientation="Horizontal">
+                                <!--Note MAUI Moved from SfNumericUpDown to combination with Stepper.-->
+                                <!--TODO May become a separate control with style.-->
+                                <Entry Text="{Binding Quantity, Mode=TwoWay}" Style="{StaticResource ValueEmphasisEntryStyle}"/>
+                                <Stepper Value="{Binding Quantity, Mode=TwoWay}" Minimum="0" Maximum="10" Increment="1" BackgroundColor="White"/>
+                                <Button ImageSource="trash.png" Command="{Binding BindingContext.DeleteCommand, Source={x:Reference cartItemsListView}}" CommandParameter="{Binding}" Style="{StaticResource CartMinButtonStyle}" VerticalOptions="Start" HorizontalOptions="Start"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </Grid>
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </StackLayout>
 </baseClasses:View>

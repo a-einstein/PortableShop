@@ -1,13 +1,9 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+﻿using Microsoft.Extensions.Hosting;
 using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.PortableShop.Common.Interfaces;
 using RCS.PortableShop.Model;
 using RCS.PortableShop.ServiceClients.Products.Wrappers;
 using RCS.PortableShop.ViewModels;
-using System;
-using System.Collections.Generic;
-using Xamarin.Essentials;
 
 namespace RCS.PortableShop.Main
 {
@@ -37,6 +33,7 @@ namespace RCS.PortableShop.Main
             // https://github.com/dotnet/extensions/issues/2182
             // https://github.com/xamarin/MobileBlazorBindings/issues/41
 
+            /*
             switch (platform)
             {
                 case Platform.Android:
@@ -84,6 +81,45 @@ namespace RCS.PortableShop.Main
             var host = hostBuilder.Build();
 
             ServiceProvider = host.Services;
+            */
+        }
+
+        // TODO Replaces Init for MAUI. Sort out better.
+        public static MauiAppBuilder RegisterAppServices(this MauiAppBuilder mauiAppBuilder)
+        {
+            var services = mauiAppBuilder.Services;
+
+            services.AddHttpClient();
+
+            // Note a restart is needed to actually switch IProductService,
+            // as there does not seem to be a feasible way to do that while running.
+            // https://stackoverflow.com/questions/69004937/how-to-use-servicecollection-replace-in-dependency-injection
+            // TODO Apply some proxy as suggested?
+            switch (Settings.ServiceType)
+            {
+                case ServiceType.WCF:
+                    services.AddSingleton<IProductService, WcfClient>();
+                    break;
+                case ServiceType.WebApi:
+                default:
+                    services.AddSingleton<IProductService, WebApiClient>();
+                    break;
+            }
+
+            // Use interfaces for constructor injections.
+            services.AddSingleton<IRepository<List<ProductCategory>, ProductCategory>, ProductCategoriesRepository>();
+            services.AddSingleton<IRepository<List<ProductSubcategory>, ProductSubcategory>, ProductSubcategoriesRepository>();
+            services.AddSingleton<IFilterRepository<List<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int>, ProductsRepository>();
+            services.AddSingleton<IRepository<List<CartItem>, CartItem>, CartItemsRepository>();
+
+            // Use types for explicit requests, implicitly using repositories.
+            services.AddSingleton<ProductsViewModel>();
+            services.AddSingleton<ProductViewModel>();
+            services.AddSingleton<CartViewModel>();
+
+            ServiceProvider = services.BuildServiceProvider();
+
+            return mauiAppBuilder;
         }
 
         private enum Platform

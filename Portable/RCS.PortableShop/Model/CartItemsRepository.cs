@@ -1,10 +1,6 @@
 ﻿using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.AdventureWorks.Common.Interfaces;
 using RCS.PortableShop.ServiceClients.Products.Wrappers;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Xamarin.Forms;
 
 namespace RCS.PortableShop.Model
 {

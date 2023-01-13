@@ -1,6 +1,4 @@
-﻿using Xamarin.Forms;
-
-namespace RCS.PortableShop.Common.Styles
+﻿namespace RCS.PortableShop.Common.Styles
 {
     public partial class Stylesheet : ResourceDictionary
     {

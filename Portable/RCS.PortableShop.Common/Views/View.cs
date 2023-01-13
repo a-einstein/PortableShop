@@ -1,12 +1,8 @@
 ﻿using RCS.PortableShop.Common.ViewModels;
-using System;
-using System.Threading.Tasks;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 // Arbitrarily put here for the assembly.
 // Also check comments on XamlCompilation elsewhere.
-[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
+//[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 
 namespace RCS.PortableShop.Common.Views
 {
@@ -20,11 +16,12 @@ namespace RCS.PortableShop.Common.Views
             set => BindingContext = value;
         }
 
-        public async Task Refresh()
+        public virtual async Task Refresh()
         {
             await Task.Run(async () =>
             {
-                await ViewModel.RefreshView().ConfigureAwait(true);
+                if (ViewModel is not null)
+                    await ViewModel.RefreshView().ConfigureAwait(true);
             }).ConfigureAwait(true);
         }
 

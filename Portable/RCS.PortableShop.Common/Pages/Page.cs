@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-using Xamarin.Forms;
-using View = RCS.PortableShop.Common.Views.View;
+﻿using View = RCS.PortableShop.Common.Views.View;
 
 namespace RCS.PortableShop.Common.Pages
 {
@@ -46,10 +44,11 @@ namespace RCS.PortableShop.Common.Pages
             // This is particularly added to recover from a service problem.
             // Note chose white icon, because colours were not inverted on UWP, as on Android.
             // TODO Recovering does not succeed, check return statuses along the chain.
+            // TODO MAUI Currently invisible on Windows only.
             ToolbarItems.Add(new ToolbarItem(
-                null, 
-                "Refresh.png",
-                async () => await Refresh())
+            null,
+            "refresh.png",
+            async () => await Refresh())
             );
         }
 

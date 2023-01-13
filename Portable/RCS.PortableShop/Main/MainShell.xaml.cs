@@ -1,8 +1,5 @@
 ﻿using RCS.PortableShop.Resources;
 using RCS.PortableShop.ViewModels;
-using System.Threading.Tasks;
-using Xamarin.Essentials;
-using Xamarin.Forms;
 
 namespace RCS.PortableShop.Main
 {

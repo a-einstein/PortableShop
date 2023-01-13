@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using CommunityToolkit.Mvvm.Input;
 using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.AdventureWorks.Common.Interfaces;
 using RCS.PortableShop.Common.Interfaces;
@@ -7,15 +7,8 @@ using RCS.PortableShop.Interfaces;
 using RCS.PortableShop.Main;
 using RCS.PortableShop.Model;
 using RCS.PortableShop.Views;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Input;
-using Xamarin.CommunityToolkit.ObjectModel;
-using Xamarin.Essentials;
-using Xamarin.Forms;
 
 namespace RCS.PortableShop.ViewModels
 {
@@ -37,7 +30,8 @@ namespace RCS.PortableShop.ViewModels
         {
             base.SetCommands();
 
-            CartCommand = new AsyncCommand<IShoppingProduct>(CartProduct);
+            // TODO MAUI Check out RelayCommand attribute, including CanExecute attribute.
+            CartCommand = new AsyncRelayCommand<IShoppingProduct>(CartProduct);
         }
         #endregion
 
@@ -69,7 +63,7 @@ namespace RCS.PortableShop.ViewModels
             var succeeded = await ProductCategoriesRepository.Refresh().ConfigureAwait(true);
             succeeded &= await ProductSubcategoriesRepository.Refresh().ConfigureAwait(true);
 
-            if (succeeded) await MainThread.InvokeOnMainThreadAsync(() =>
+            if (succeeded) await Application.Current.Dispatcher.DispatchAsync(() =>
             {
                 var categories = ProductCategoriesRepository.Items;
 
@@ -145,7 +139,7 @@ namespace RCS.PortableShop.ViewModels
                 Settings.TextFilter = textFilterValue;
 
                 // Copy items.
-                await MainThread.InvokeOnMainThreadAsync(() =>
+                await Application.Current.Dispatcher.DispatchAsync(() =>
                 {
                     foreach (var item in ProductsRepository.Items)
                         Items.Add(item);

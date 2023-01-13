@@ -1,4 +1,4 @@
-﻿using RCS.PortableShop.Common.Views;
+﻿using View = RCS.PortableShop.Common.Views.View;
 
 namespace RCS.PortableShop.Views
 {

@@ -1,7 +1,4 @@
 ﻿using RCS.PortableShop.Resources;
-using System.Threading.Tasks;
-using Xamarin.Essentials;
-using Xamarin.Forms;
 using Page = RCS.PortableShop.Common.Pages.Page;
 using View = RCS.PortableShop.Common.Views.View;
 
@@ -9,6 +6,7 @@ namespace RCS.PortableShop.Common.ViewModels
 {
     // Note that BindableObject handles PropertyChanged, but is limited to Xamarin.
     // TODO Possibly move on to Microsoft.Toolkit.Mvvm.ComponentModel.ObservableObject.
+    // TODO MAUI The previous seems to imply a lot of simplifications.
     public abstract class ViewModel : BindableObject
     {
         #region Construction
@@ -99,7 +97,7 @@ namespace RCS.PortableShop.Common.ViewModels
         }
 
         // Note that a potential Color parameter cannot have a default value.
-        protected static async Task PushPage(Xamarin.Forms.View view, string title = null)
+        protected static async Task PushPage(View view, string title = null)
         {
             var page = new ContentPage() { Content = view, Title = title };
 
@@ -109,7 +107,7 @@ namespace RCS.PortableShop.Common.ViewModels
         protected static async Task PushPage(View view)
         {
             var page = new Page();
-            page.SetBinding(Xamarin.Forms.Page.TitleProperty, new Binding() { Path = nameof(Title), Source = view.ViewModel });
+            page.SetBinding(Microsoft.Maui.Controls.Page.TitleProperty, new Binding() { Path = nameof(Title), Source = view.ViewModel });
             page.Content = view;
 
             // Note this works for UWP only since Xamarin.Forms 4.8.

@@ -1,13 +1,9 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using RCS.PortableShop.Common.Views;
 using RCS.PortableShop.Model;
 using RCS.PortableShop.Resources;
 using RCS.PortableShop.ServiceClients.Products.Wrappers;
 using RCS.PortableShop.ViewModels;
 using RCS.PortableShop.Views;
-using System;
-using System.Threading.Tasks;
-using Xamarin.Essentials;
-using Xamarin.Forms;
 using Page = RCS.PortableShop.Common.Pages.Page;
 
 namespace RCS.PortableShop.Main

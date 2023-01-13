@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+  <!--
+  TODO MAUI Improve colours for several basic Android parts.
+  Several names as can be found via the URL did not have any effect when experimenting.
+  https://material.io/blog/android-material-theme-color
+  I left the one below for reference.
+  -->
+
+  <!--Icon frame when on background.-->
+  <color name="colorPrimary">#58ACFA</color>
+</resources>
