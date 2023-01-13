@@ -59,8 +59,8 @@ namespace RCS.PortableShop.ViewModels
 
         private static void OpenSupport()
         {
-            // TODO Make this Configureable.
-            OpenWeb("https://github.com/a-einstein/PortableShop/blob/master/README.md");
+            // TODO MAUI Use Pages?
+            OpenWeb("https://github.com/a-einstein/PortableShop/blob/master/docs/MAUI/README.md");
         }
         #endregion
 
