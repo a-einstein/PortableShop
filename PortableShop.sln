@@ -46,6 +46,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MAUI", "MAUI", "{408DB8CB-F58B-490D-A337-60AC4C4AF29D}"
 	ProjectSection(SolutionItems) = preProject
 		docs\MAUI\README.md = docs\MAUI\README.md
+		docs\MAUI\ReleaseNotes.md = docs\MAUI\ReleaseNotes.md
 	EndProjectSection
 EndProject
 Global
