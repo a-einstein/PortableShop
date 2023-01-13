@@ -7,6 +7,7 @@ This is the first working release on MAUI. But limited to Android, and still hav
 * Converted to MAUI.
 * Using .Net 7.
 * Supplying the docs structure.
+* Added formal release notes.
 
 #### Known issues
 * Not yet released for Windows.

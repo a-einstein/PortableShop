@@ -8,7 +8,7 @@ Working portable application for test and demo purpose. It simulates limited sho
 * Manage the code and releases by Git and GitHub.
 * Explore continuous integration by using combinations of Git, GitHub, Azure DevOps.
 
-#### Notes
+#### Description
 * This is the MAUI-conversion of my **[PortableShop Xamarin Forms](../XamarinForms/README.md)**
 * This is a near equivalent of my **[WpfShop](https://github.com/a-einstein/WpfShop)**.
 * Currently the Android application is only tested on API 30.
@@ -16,9 +16,6 @@ Working portable application for test and demo purpose. It simulates limited sho
 * Submitted to code analysis by [Better Code Hub](https://bettercodehub.com). Current score: [![BCH compliance](https://bettercodehub.com/edge/badge/a-einstein/PortableShop)](https://bettercodehub.com)
 * Connected to automated Azure Devops build and release pipelines. Current build status for the master branch: [![Build Status](https://dev.azure.com/RcsProjects/PortableShop/_apis/build/status/Build%20APK?branchName=master)](https://dev.azure.com/RcsProjects/PortableShop/_build/latest?definitionId=13&branchName=master)
 * See **[Release Notes](ReleaseNotes.md)** for the latest developments.
-
-#### Prerequisites
-* The application must be configured for a running instance of my **[AdventureWorks services](https://github.com/a-einstein/AdventureWorks/blob/master/README.md)**.
 
 #### Aspects
 * MAUI + MAUI Community Toolkit.
@@ -42,6 +39,9 @@ Working portable application for test and demo purpose. It simulates limited sho
 * Application icon (Android).
 * MSIX installation.
 * Azure DevOps self hosted build pipeline + release pipeline to GitHub.
+
+#### Prerequisites
+* The application must be configured for a running instance of my **[AdventureWorks services](https://github.com/a-einstein/AdventureWorks/blob/master/README.md)**.
 
 #### Installation
 * The application is plug & play, but use of the data service is on request. Contact the developer ahead. 

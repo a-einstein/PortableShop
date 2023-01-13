@@ -48,22 +48,22 @@
     <PublishTrimmed>False</PublishTrimmed>
     <RunAOTCompilation>False</RunAOTCompilation>
     <ApplicationId>nl.rcsworks.cyclone.maui</ApplicationId>
-    <ApplicationDisplayVersion>1.0.0</ApplicationDisplayVersion>
+    <ApplicationDisplayVersion>2.0.0</ApplicationDisplayVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-android|AnyCPU'">
     <ApplicationId>nl.rcsworks.cyclone.maui</ApplicationId>
-    <ApplicationDisplayVersion>1.0.0</ApplicationDisplayVersion>
+    <ApplicationDisplayVersion>2.0.0</ApplicationDisplayVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-windows10.0.19041.0|AnyCPU'">
     <ApplicationId>nl.rcsworks.cyclone.maui</ApplicationId>
-    <ApplicationDisplayVersion>1.0.0</ApplicationDisplayVersion>
+    <ApplicationDisplayVersion>2.0.0</ApplicationDisplayVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-windows10.0.19041.0|AnyCPU'">
     <ApplicationId>nl.rcsworks.cyclone.maui</ApplicationId>
-    <ApplicationDisplayVersion>1.0.0</ApplicationDisplayVersion>
+    <ApplicationDisplayVersion>2.0.0</ApplicationDisplayVersion>
   </PropertyGroup>
 
   <ItemGroup>
