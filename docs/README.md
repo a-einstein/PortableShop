@@ -6,3 +6,7 @@ Working portable application for test and demo purpose. It simulates limited sho
 This has 2 faces, as it has been converted from Xamarin Forms to MAUI. For details look at the dedicated documentation.
 * Current: **[MAUI](MAUI/README.md)**.
 * Legacy: **[Xamarin Forms](XamarinForms/README.md)**.
+
+#### Top level URLs
+* **[Separate documentation](https://a-einstein.github.io/PortableShop/)**.
+* **[Code repository](https://github.com/a-einstein/PortableShop)**.
