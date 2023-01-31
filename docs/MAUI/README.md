@@ -1,10 +1,10 @@
-## PortableShop MAUI
+## PortableShop - MAUI
 
 #### Summary
 Working portable application for test and demo purpose. It simulates limited shopping capabilities based on the Microsoft AdventureWorks database.
 
 #### Purpose
-* Explore various techniques based on C#, XAML and MAUI.
+* Explore various techniques based on MAUI, XAML and C#.
 * Manage the code and releases by Git and GitHub.
 * Explore continuous integration by using combinations of Git, GitHub, Azure DevOps.
 
@@ -19,7 +19,7 @@ Working portable application for test and demo purpose. It simulates limited sho
 #### Aspects
 * MAUI + MAUI Community Toolkit.
 * .Net 7 + .Net Standard 2.0.
-* C# + XAML.
+* XAML + C#.
 * MVVM.
 * Dependency injection.
 * Client-server + SSL.
