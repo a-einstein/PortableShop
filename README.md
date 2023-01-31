@@ -1,14 +1,14 @@
-## PortableShop
+## PortableShop - Xamarin Forms
 
 |![](Screenshots/splash.png)|![](Screenshots/overview.png)|![](Screenshots/details.png)|![](Screenshots/picture.png)|![](Screenshots/basket.png)|![](Screenshots/menu.png)|
 |:---:|:---:|:---:|:---:|:---:|:---:|
 |Splash|Overview|Details|Picture|Basket|Menu|
 
-#### Description
-Working portable (Android & UWP) application for test and demo purpose based on Xamarin Forms. It simulates limited shopping capabilities based on the AdventureWorks database.
+#### Summary
+Working portable application for test and demo purpose. It simulates limited shopping capabilities based on the Microsoft AdventureWorks database.
 
 #### News
-* Version 1.0 is assumed to be a milestone as the last one on Xamarin Forms, before moving on to MAUI which would be 2.0.
+* Version 1.0 is assumed to be a milestone as the last one on Xamarin Forms, before moving on to MAUI which is 2.0.
 * Refresh Icon has been replaced.
 * Cart deletion buttons now have icons.
 * Cart became alphabetically sorted.
@@ -20,33 +20,28 @@ Working portable (Android & UWP) application for test and demo purpose based on 
 * Recovering from a service problem does not succeed.
 
 #### Purpose
-* Explore various techniques based on C#, XAML and Xamarin Forms.
+* Explore various techniques based on Xamarin Forms, XAML and C#.
 * Manage the code and releases by Git and GitHub.
 * Explore continuous integration by using combinations of Git, GitHub, Azure DevOps and TeamCity.
 * Explore Scrum process management by integration with Jira and Azure DevOps.
 
-#### Prerequisites
-* The application must be configured for a running instance of my **[AdventureWorks services](https://github.com/a-einstein/AdventureWorks/blob/master/README.md)**.
-
-#### Notes
+#### Description
 * This is a near equivalent of my **[WpfShop](https://github.com/a-einstein/WpfShop)**.
-* Currently Android is mainly tested on API 30.
-* Currently UWP is only tested on Windows 10 version 22H2.
-* Submitted to code analysis by [Better Code Hub](https://bettercodehub.com). Current score: [![BCH compliance](https://bettercodehub.com/edge/badge/a-einstein/PortableShop)](https://bettercodehub.com)
-* Connected to automated Azure Devops build and release pipelines. Current build status for the master branch: [![Build Status](https://dev.azure.com/RcsProjects/PortableShop/_apis/build/status/Build%20APK?branchName=master)](https://dev.azure.com/RcsProjects/PortableShop/_build/latest?definitionId=13&branchName=master)
+* Currently the Android application is only tested on API 30.
+* Currently the UWP application is only tested on Windows 10 version 22H2.
+* Connected to automated Azure Devops build and release pipelines. Current build status for its dedicated branch: [![Build Status](https://dev.azure.com/RcsProjects/PortableShop/_apis/build/status/Build%20APK?branchName=master)](https://dev.azure.com/RcsProjects/PortableShop/_build/latest?definitionId=13&branchName=XamarinForms)
 
 #### Aspects
 * Xamarin Forms.
 * Xamarin Essentials.
 * Xamarin Community Toolkit.
 * .Net Standard.
-* C# + XAML.
+* XAML + C#.
 * MVVM.
 * Dependency injection.
 * Client-server + SSL.
 * Asynchronisity.
-* WCF.
-* Web API.
+* WCF or Web API.
 * Has made use of an Azure service.
 * Error handling.
 * Globalized resources.
@@ -59,8 +54,10 @@ Working portable (Android & UWP) application for test and demo purpose based on 
 * Attached behaviours.
 * Application icon (Android).
 * MSIX installation.
-* Azure DevOps self hosted build pipeline.
-* Azure DevOps release pipeline to either Azure or GitHub.
+* Azure DevOps self hosted build pipeline + release pipeline to either Azure or GitHub.
+
+#### Prerequisites
+* The application must be configured for a running instance of my **[AdventureWorks services](https://github.com/a-einstein/AdventureWorks/blob/master/README.md)**.
 
 #### Installation
 * The application is plug & play, but use of the data service is on request. Contact the developer ahead. 
