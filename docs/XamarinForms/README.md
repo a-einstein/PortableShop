@@ -29,7 +29,7 @@ Working portable application for test and demo purpose. It simulates limited sho
 * This is a near equivalent of my **[WpfShop](https://github.com/a-einstein/WpfShop)**.
 * Currently the Android application is only tested on API 30.
 * Currently the UWP application is only tested on Windows 10 version 22H2.
-* Connected to automated Azure Devops build and release pipelines. Current build status for its dedicated branch: [![Build Status](https://dev.azure.com/RcsProjects/PortableShop/_apis/build/status/Build%20APK?branchName=master)](https://dev.azure.com/RcsProjects/PortableShop/_build/latest?definitionId=13&branchName=XamarinForms)
+* Connected to automated Azure Devops build and release pipelines. Current build status for its dedicated branch: ![](https://dev.azure.com/RcsProjects/PortableShop/_apis/build/status/Build%20XamarinForms?branchName=XamarinForms)
 
 #### Aspects
 * Xamarin Forms.
