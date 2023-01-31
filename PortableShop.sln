@@ -7,7 +7,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		.bettercodehub.yml = .bettercodehub.yml
 		NuGet.Config = NuGet.Config
-		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Platforms", "Platforms", "{BF5A32B0-CF2E-43E0-BC2B-9CDF5C86730B}"
@@ -30,7 +29,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RCS.AdventureWorks.Common",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCS.PortableShop.UWP", "Platforms\RCS.PortableShop.UWP\RCS.PortableShop.UWP.csproj", "{243D673B-797F-4B02-A594-37A7A09162FA}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Screenshots", "Screenshots", "{FE1EF84C-613E-4CD6-AE65-0094C4296095}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Screenshots", "Screenshots", "{BDFAA699-C339-45B7-AB02-BD747B603E79}"
 	ProjectSection(SolutionItems) = preProject
 		Screenshots\basket.png = Screenshots\basket.png
 		Screenshots\details.png = Screenshots\details.png
@@ -38,6 +37,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Screenshots", "Screenshots"
 		Screenshots\overview.png = Screenshots\overview.png
 		Screenshots\picture.png = Screenshots\picture.png
 		Screenshots\splash.png = Screenshots\splash.png
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{5B91D6AC-FFB9-45ED-A093-67CB06FFB132}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "XamarinForms", "XamarinForms", "{2C483D9C-5A51-4ABC-AEAA-C3CE8999C3F0}"
+	ProjectSection(SolutionItems) = preProject
+		docs\XamarinForms\README.md = docs\XamarinForms\README.md
 	EndProjectSection
 EndProject
 Global
@@ -660,6 +666,8 @@ Global
 		{F174A2EA-DC09-4CD0-BE38-7E608032434F} = {B90E6AA0-E5D0-49FE-A88C-FD0219EFCAC5}
 		{493D8ED2-1BA9-436C-981F-3A84523FA8A0} = {444E2CF3-351A-495D-BCDD-9A113AD595E1}
 		{243D673B-797F-4B02-A594-37A7A09162FA} = {BF5A32B0-CF2E-43E0-BC2B-9CDF5C86730B}
+		{2C483D9C-5A51-4ABC-AEAA-C3CE8999C3F0} = {5B91D6AC-FFB9-45ED-A093-67CB06FFB132}
+		{BDFAA699-C339-45B7-AB02-BD747B603E79} = {2C483D9C-5A51-4ABC-AEAA-C3CE8999C3F0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4AE3F23E-9C64-4F26-A0B7-32D62997DD5B}
