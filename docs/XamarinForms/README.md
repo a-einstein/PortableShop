@@ -8,7 +8,7 @@
 Working portable (Android & UWP) application for test and demo purpose based on Xamarin Forms. It simulates limited shopping capabilities based on the AdventureWorks database.
 
 #### News
-* Version 1.0 is assumed to be a milestone as the last one on Xamarin Forms, before moving on to MAUI which would be 2.0.
+* Version 1.0 is assumed to be a milestone as the last one on Xamarin Forms, before moving on to MAUI which is 2.0.
 * Refresh Icon has been replaced.
 * Cart deletion buttons now have icons.
 * Cart became alphabetically sorted.
@@ -32,8 +32,7 @@ Working portable (Android & UWP) application for test and demo purpose based on 
 * This is a near equivalent of my **[WpfShop](https://github.com/a-einstein/WpfShop)**.
 * Currently Android is mainly tested on API 30.
 * Currently UWP is only tested on Windows 10 version 22H2.
-* Submitted to code analysis by [Better Code Hub](https://bettercodehub.com). Current score: [![BCH compliance](https://bettercodehub.com/edge/badge/a-einstein/PortableShop)](https://bettercodehub.com)
-* Connected to automated Azure Devops build and release pipelines. Current build status for the master branch: [![Build Status](https://dev.azure.com/RcsProjects/PortableShop/_apis/build/status/Build%20APK?branchName=master)](https://dev.azure.com/RcsProjects/PortableShop/_build/latest?definitionId=13&branchName=master)
+* Connected to automated Azure Devops build and release pipelines. Current build status for its dedicated branch: [![Build Status](https://dev.azure.com/RcsProjects/PortableShop/_apis/build/status/Build%20APK?branchName=master)](https://dev.azure.com/RcsProjects/PortableShop/_build/latest?definitionId=13)
 
 #### Aspects
 * Xamarin Forms.
