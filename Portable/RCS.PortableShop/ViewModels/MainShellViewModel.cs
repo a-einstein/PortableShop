@@ -59,8 +59,8 @@ namespace RCS.PortableShop.ViewModels
 
         private static void OpenSupport()
         {
-            // TODO MAUI Use Pages?
-            OpenWeb("https://github.com/a-einstein/PortableShop/blob/master/docs/MAUI/README.md");
+            // TODO Make this Configurable.
+            OpenWeb("https://a-einstein.github.io/PortableShop/");
         }
         #endregion
 
@@ -81,7 +81,7 @@ namespace RCS.PortableShop.ViewModels
 
             // TODO Check versions first. Proceed with either reporting no update needed, or consent to close the application. Even better: check automatically at startup.
 
-            // TODO Make this Configureable.
+            // TODO Make this Configurable.
             OpenWeb("https://github.com/a-einstein/PortableShop/releases");
         }
         #endregion
