@@ -19,15 +19,15 @@ Besides hoping for progress in Mono, or keep working manually on the old WCF cli
 Meanwhile I have created that alternative, which currently can be used besides the WCF one by means of dependency injection.
 
 > TODO 
-Currently (17-11-2022) I could still not update System.ServiceModel.Http higher than Version=4.5.3 (instead of 4.10.0).
+Currently (01-02-2023) I could still not update System.ServiceModel.Http higher than Version=4.5.3 (instead of 4.10.0).
 Note there are build warnings.
-Otherwise on UWP, specifically using WCF, exceptions arise about System.ServiceModel.Primitives.
+Otherwise on UWP with both service types exceptions arose about System.ServiceModel.Primitives.
 It still seems related to https://github.com/dotnet/wcf/issues/3088 and https://github.com/dotnet/wcf/issues/4762
 I have tried some workarounds in https://devblogs.microsoft.com/oldnewthing/20200615-00/?p=103868
 Removal of FaultException seemed a solution, but turned out a mistake. https://stackoverflow.com/questions/52498144/system-io-fileloadexception-on-system-servicemodel-primitives/70024433 
 
 > TODO 
-Currently (17-11-2022) the following libraries cannot be updated to version 7.0.0.
-That resulted in "An error occurred while writing to logger(s). (Operation is not supported on this platform.)"
+Currently (01-02-2023) the following libraries cannot be updated to version 7.0.0.
+On Android with Web API that resulted in "An error occurred while writing to logger(s). (Operation is not supported on this platform.)"
 - Microsoft.Extensions.Hosting
 - Microsoft.Extensions.Http
