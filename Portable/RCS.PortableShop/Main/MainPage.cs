@@ -1,5 +1,4 @@
-﻿using RCS.PortableShop.Common.Views;
-using RCS.PortableShop.Model;
+﻿using RCS.PortableShop.Model;
 using RCS.PortableShop.Resources;
 using RCS.PortableShop.ServiceClients.Products.Wrappers;
 using RCS.PortableShop.ViewModels;
@@ -8,6 +7,10 @@ using Page = RCS.PortableShop.Common.Pages.Page;
 
 namespace RCS.PortableShop.Main
 {
+    // TODO MAUI Set window size (for Windows).
+    // See https://github.com/dotnet/maui/pull/4942
+    // Possibly other coding hacks.
+
     public class MainPage : Page
     {
         #region Services

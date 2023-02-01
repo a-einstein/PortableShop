@@ -42,7 +42,7 @@
 
             <StackLayout Grid.Row="0">
                 <!--Note this Orientation may be changed depending on screen orientation. Assume Vertical.-->
-                <!--Note that because of the Title of Picker on UWP all elements have VerticalOptions="End"-->
+                <!--Note that because of the Title of Picker on Windows all elements have VerticalOptions="End"-->
                 <StackLayout x:Name="actionBlock" Orientation="Vertical" HorizontalOptions="Start">
                     <StackLayout Orientation="Horizontal">
                         <!--Note that Title of Picker: for Android is displayed as placeholder inside, for UWP as separate label above. Therefor no separate label and the VerticalOptions.-->
@@ -79,12 +79,12 @@
                         <Button Text="{x:Static resx:Labels.Filter}" Command="{Binding FilterCommand}" BackgroundColor="{StaticResource ProductsLevel1Colour}" HorizontalOptions="Start" VerticalOptions="End"/>
 
                         <Label Text="{Binding ItemsCount}" Style="{StaticResource ValueEmphasisMediumLabelStyle}" VerticalOptions="End"/>
-                        <Label Text="{x:Static resx:Labels.Products}" Style="{StaticResource EmphasisMediumLabelStyle}" VerticalOptions="End"/>
+                        <Label Text="{x:Static resx:Labels.Products}" Style="{StaticResource EmphasisMediumLabelStyle}" Margin="{StaticResource ControlLeftMargin}" VerticalOptions="End"/>
                     </StackLayout>
                 </StackLayout>
             </StackLayout>
 
-            <ContentView Grid.Row="1" BackgroundColor="{StaticResource ResultsBackgroundColour}">
+            <ContentView Grid.Row="1" BackgroundColor="{StaticResource ResultsBackgroundColour}" Margin="0,5,0,0">
                 <Grid>
                     <Label IsVisible="{Binding ItemsCount, Converter={StaticResource HasValueTester}, ConverterParameter='invert'}" Text="{Binding Message}" Style="{StaticResource MessageLabelStyle}" Margin="7"/>
 
@@ -99,6 +99,8 @@
                                 <!--
                                 Notes:
                                 ContentButton is needed because currently there is no Button.Content.
+                                TODO MAUI Is this still true?
+                                
                                 For every Command, maybe because of the ContentButton:
                                 - DesignInstance does not work.
                                 - RelativeSource Mode=FindAncestorBindingContext does not work. Therefor still BindingContext.
@@ -120,7 +122,8 @@
 
                                             <Image Grid.Column="0" Grid.Row="0" Source="{Binding ThumbNailPhoto, Converter={StaticResource ByteArrayToImageSourceConverter}}" VerticalOptions="Start" HorizontalOptions="End" HeightRequest="75" WidthRequest="100"/>
 
-                                            <Button Grid.Column="0" Grid.Row="1" ImageSource="cartplus.png" Command="{Binding BindingContext.CartCommand, Source={RelativeSource AncestorType={x:Type views:ProductsView}}}" CommandParameter="{Binding}" Style="{StaticResource CartPlusButtonStyle}" VerticalOptions="End" HorizontalOptions="End"/>
+                                            <!--TODO This does not align right as desired.-->
+                                            <Button Grid.Column="0" Grid.Row="1" ImageSource="cartplus.png" Command="{Binding BindingContext.CartCommand, Source={RelativeSource AncestorType={x:Type views:ProductsView}}}" CommandParameter="{Binding}" Style="{StaticResource CartPlusButtonStyle}" Margin="0" VerticalOptions="End" HorizontalOptions="End"/>
 
                                             <StackLayout Grid.Column="1" Grid.Row="0" Grid.RowSpan="2"  VerticalOptions="Start">
                                                 <StackLayout Orientation="Horizontal">

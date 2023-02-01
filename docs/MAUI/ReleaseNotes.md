@@ -1,13 +1,10 @@
-## PortableShop MAUI: ReleaseNotes 2.0.0
+## PortableShop MAUI: ReleaseNotes 2.x
 
 #### Summary
-This is the first working release on MAUI. But limited to Android, and still having cosmetic issues.
+Working release on MAUI. Still limited to Android.
 
 #### What's new
-* Converted to MAUI.
-* Using .Net 7.
-* Supplying the docs structure.
-* Added formal release notes.
+* Layout improvements.
 
 #### Known issues
 * Not yet released for Windows.
@@ -16,5 +13,4 @@ This is the first working release on MAUI. But limited to Android, and still hav
 * Display shopping cart incorrect on Windows, until resizing.
 * Validation of text filter not properly working.
 * Refresh button invisible on Windows.
-* General layout incorrect.
 * Various icons and titles not working, depending on platform and theme setting.
