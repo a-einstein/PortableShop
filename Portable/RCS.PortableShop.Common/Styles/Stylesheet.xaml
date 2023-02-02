@@ -11,6 +11,9 @@
     <!--#region Values -->
 
     <Thickness x:Key="ViewPadding">5</Thickness>
+    <Thickness x:Key="ControlLeftMargin">5,0,0,0</Thickness>
+    <Thickness x:Key="ControlRightMargin">0,0,5,0</Thickness>
+    <Thickness x:Key="InfoLeftMargin">10,0,0,0</Thickness>
 
     <LayoutOptions x:Key="LineVerticalOptions">Center</LayoutOptions>
 
@@ -72,6 +75,7 @@
     </Style>
 
     <Style x:Key="ValueLabelStyle" TargetType="Label" BasedOn="{StaticResource LabelStyle}">
+        <Setter Property="Margin" Value="{StaticResource InfoLeftMargin}"/>
         <Setter Property="TextColor" Value="{StaticResource ValueTextColour}"/>
     </Style>
 
@@ -79,24 +83,24 @@
         <Setter Property="FontAttributes" Value="Bold"/>
     </Style>
 
-    <Style x:Key="ValueEmphasisLabelStyle" TargetType="Label" BasedOn="{StaticResource EmphasisLabelStyle}">
-        <Setter Property="TextColor" Value="{StaticResource ValueTextColour}"/>
+    <Style x:Key="ValueEmphasisLabelStyle" TargetType="Label" BasedOn="{StaticResource ValueLabelStyle}">
+        <Setter Property="FontAttributes" Value="Bold"/>
     </Style>
 
     <Style x:Key="EmphasisMediumLabelStyle" TargetType="Label" BasedOn="{StaticResource EmphasisLabelStyle}">
         <Setter Property="FontSize" Value="Medium"/>
     </Style>
 
-    <Style x:Key="ValueEmphasisMediumLabelStyle" TargetType="Label" BasedOn="{StaticResource EmphasisMediumLabelStyle}">
-        <Setter Property="TextColor" Value="{StaticResource ValueTextColour}"/>
+    <Style x:Key="ValueEmphasisMediumLabelStyle" TargetType="Label" BasedOn="{StaticResource ValueEmphasisLabelStyle}">
+        <Setter Property="FontSize" Value="Medium"/>
     </Style>
 
     <Style x:Key="EmphasisLargeLabelStyle" TargetType="Label" BasedOn="{StaticResource EmphasisLabelStyle}">
         <Setter Property="FontSize" Value="Large"/>
     </Style>
 
-    <Style x:Key="ValueEmphasisLargeLabelStyle" TargetType="Label" BasedOn="{StaticResource EmphasisLargeLabelStyle}">
-        <Setter Property="TextColor" Value="{StaticResource ValueTextColour}"/>
+    <Style x:Key="ValueEmphasisLargeLabelStyle" TargetType="Label" BasedOn="{StaticResource ValueEmphasisLabelStyle}">
+        <Setter Property="FontSize" Value="Large"/>
     </Style>
 
     <Style x:Key="MessageLabelStyle" TargetType="Label" BasedOn="{StaticResource EmphasisMediumLabelStyle}">
@@ -124,13 +128,22 @@
 
     <!--#endregion-->
 
+    <!--#region Pickers -->
+
+    <Style TargetType="Picker">
+        <Setter Property="VerticalOptions" Value="{StaticResource LineVerticalOptions}"/>
+        <Setter Property="Margin" Value="{StaticResource ControlRightMargin}"/>
+    </Style>
+    
+    <!--#endregion-->
+
     <!--#region Buttons -->
 
     <!--Note FontSize does not do anything. -->
     <!--Note FontAttributes does not work.-->
     <Style TargetType="Button">
         <Setter Property="VerticalOptions" Value="{StaticResource LineVerticalOptions}"/>
-        <Setter Property="Margin" Value="0"/>
+        <Setter Property="Margin" Value="{StaticResource ControlRightMargin}"/>
 
         <!-- Note on UWP the border is not visible when disabled.-->
         <Setter Property="BorderWidth" Value="1"/>
@@ -152,20 +165,27 @@
     <Style x:Key="CartButtonStyle" TargetType="Button" >
         <!--Reduce size, particularly for Android.-->
         <Setter Property="Scale" Value="0.75"/>
+        <!--For unclear reasons 2 settings below were needed to solve asymmmetric buttons.-->
+        <Setter Property="ContentLayout" Value="Right,0"/>
+        <Setter Property="Padding" Value="5"/>
     </Style>
 
-<!--TODO This part would be candidate to split of a specific dictionary.-->
+<!--TODO This part would be candidate to split off to a specific dictionary.-->
     <Style x:Key="CartPlusButtonStyle" TargetType="Button" BasedOn="{StaticResource CartButtonStyle}">
         <Setter Property="BackgroundColor" Value="{StaticResource CartLevel1Colour}"/>
     </Style>
 
-    <Style x:Key="CartMinButtonStyle" TargetType="Button" BasedOn="{StaticResource CartButtonStyle}">
+    <Style x:Key="CartTrashButtonStyle" TargetType="Button" BasedOn="{StaticResource CartButtonStyle}">
         <Setter Property="BackgroundColor" Value="{StaticResource WarningColour}"/>
     </Style>
 
     <!--#endregion-->
 
     <!--#region Custom Controls -->
+
+    <Style TargetType="controls:ClearableEntry">
+        <Setter Property="Margin" Value="{StaticResource ControlRightMargin}"/>
+    </Style>
 
     <Style TargetType="controls:ContentButton">
         <Setter Property="VerticalOptions" Value="{StaticResource LineVerticalOptions}"/>

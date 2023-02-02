@@ -34,7 +34,33 @@ namespace RCS.PortableShop.Main
                 Debug.WriteLine($"{debugPrefix} Found resource: {resource}");
         }
 
-        // TODO Obsolete?
+        protected override Window CreateWindow(IActivationState activationState)
+        {
+            var window = base.CreateWindow(activationState);
+
+            HandleDimensions(window);
+
+            return window;
+        }
+
+        // Note this is executed on both Android and Windows, but only relevant to the latter.
+        private static void HandleDimensions(Window window)
+        {
+            // Note dimensions are Double.
+            window.Width = Preferences.Get("windowWidth", 750.0);
+            window.Height = Preferences.Get("windowHeight", 750.0);
+
+            window.SizeChanged += (sender, e) =>
+            {
+                var window = sender as Window;
+
+                // TODO MAUI Replace current Settings mechanism elsewhere, or incorporate these?
+                Preferences.Set("windowWidth", window.Width);
+                Preferences.Set("windowHeight", window.Height);
+            };
+        }
+
+        // TODO MAUI Obsolete?
         protected override void OnStart()
         {
             base.OnStart();

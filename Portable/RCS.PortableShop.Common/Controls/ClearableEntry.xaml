@@ -7,6 +7,7 @@
     xmlns:community ="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:resx="clr-namespace:RCS.PortableShop.Resources;assembly=RCS.PortableShop.Resources"
     xmlns:controls="clr-namespace:RCS.PortableShop.Common.Controls;assembly=RCS.PortableShop.Common"
+    VerticalOptions="{Binding VerticalOptions}"
     >
 
     <ContentView.Content>
@@ -16,12 +17,12 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <Entry x:Name="entry" Grid.Column="0" Placeholder="{Binding Placeholder}" Text="{Binding Text, Mode=TwoWay}" Margin="0" VerticalOptions="{Binding VerticalOptions}"/>
+            <Entry x:Name="entry" Grid.Column="0" Placeholder="{Binding Placeholder}" Text="{Binding Text, Mode=TwoWay}" Margin="0"/>
 
             <!--Using ContentButton plus Label to create a flat style Button without border. -->
             <controls:ContentButton Grid.Column="1" Command="{Binding ClearCommand}" VerticalOptions="Center">
                 <controls:ContentButton.Content>
-                    <Label Text="{x:Static resx:Labels.Remove}" Margin="0,0,10,0" FontSize="Medium" TextColor="{StaticResource LabelTextColour}"/>
+                    <Label Text="{x:Static resx:Labels.Remove}" Margin="3,0" FontSize="Medium" TextColor="{StaticResource LabelTextColour}"/>
                 </controls:ContentButton.Content>
             </controls:ContentButton>
         </Grid>

@@ -32,7 +32,7 @@
         <!--
         Note this Orientation may be changed depending on screen orientation. 
         Therefor this is bound to stacks instead of a grid.
-        Assume Vertical for Android, Horizontal for UWP.
+        Assume Vertical for Android, Horizontal for Windows.
         -->
         <StackLayout x:Name="productControl" Orientation="Vertical">
             <StackLayout VerticalOptions="Start" HorizontalOptions="Start">
@@ -43,10 +43,11 @@
                     </controls:ContentButton.Content>
                 </controls:ContentButton>
 
-                <Button ImageSource="cartplus.png" Command="{Binding CartCommand}" CommandParameter="{Binding Item}" Style="{StaticResource CartPlusButtonStyle}" VerticalOptions="End" HorizontalOptions="End"/>
+                <!--TODO This does not align right as desired.-->
+                <Button ImageSource="cartplus.png" Command="{Binding CartCommand}" CommandParameter="{Binding Item}" Style="{StaticResource CartPlusButtonStyle}" Margin="0" VerticalOptions="End" HorizontalOptions="End"/>
             </StackLayout>
 
-            <Grid>
+            <Grid Margin="{StaticResource InfoLeftMargin}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
