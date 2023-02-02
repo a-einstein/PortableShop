@@ -1,10 +1,11 @@
 ## PortableShop MAUI: ReleaseNotes 2.x
 
 #### Summary
-Working release on MAUI. Still limited to Android.
+Working MAUI application. Still limited to Android release.
 
 #### What's new
 * Layout improvements.
+* Set & restore window dimensions on Windows.
 
 #### Known issues
 * Not yet released for Windows.
