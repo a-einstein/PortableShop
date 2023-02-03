@@ -1,6 +1,7 @@
 ﻿using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.AdventureWorks.Common.Dtos;
 using RCS.PortableShop.ServiceClients.Products.Wrappers;
+using System.ServiceModel;
 
 namespace RCS.PortableShop.Model
 {
@@ -22,11 +23,11 @@ namespace RCS.PortableShop.Model
             {
                 categories = await ServiceClient.GetCategories().ConfigureAwait(true);
             }
-            //catch (FaultException<ExceptionDetail> exception)
-            //{
-            //    SendMessage(exception);
-            //    return false;
-            //}
+            catch (FaultException<ExceptionDetail> exception)
+            {
+                SendMessage(exception);
+                return false;
+            }
             catch (Exception exception)
             {
                 SendMessage(exception);

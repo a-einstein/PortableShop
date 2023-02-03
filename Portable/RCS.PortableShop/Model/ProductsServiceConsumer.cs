@@ -1,8 +1,10 @@
-﻿using RCS.PortableShop.ServiceClients.Products.Wrappers;
+﻿using CommunityToolkit.Mvvm.Messaging;
+using RCS.PortableShop.ServiceClients.Products.Wrappers;
+using System.ServiceModel;
 
 namespace RCS.PortableShop.Model
 {
-    public abstract class ProductsServiceConsumer 
+    public abstract class ProductsServiceConsumer
     {
         protected ProductsServiceConsumer(IProductService productService)
         {
@@ -10,36 +12,52 @@ namespace RCS.PortableShop.Model
         }
 
         #region Messaging
-        public enum Message
+        private enum MessageType
         {
             ServiceError
         }
 
-        //protected void SendMessage(FaultException<ExceptionDetail> exception)
-        //{
-        //    var detailMessage = exception?.Detail?.InnerException?.Message;
+        public class ServiceMessage
+        {
+            public ServiceMessage(string messageType)
+            {
+                MessageType = messageType;
+            }
 
-        //    if (detailMessage?.Length > 10)
-        //        // Trim trailing details like user name.
-        //        detailMessage = $"{detailMessage.Remove(11)}...";
+            public ServiceMessage(string messageType, string details)
+                : this(messageType)
+            {
+                Details = details;
+            }
 
-        //    SendMessage(exception, detailMessage);
-        //}
+            public string MessageType { get; private set; }
+            public string Details { get; private set; }
+        }
+
+        protected void SendMessage(FaultException<ExceptionDetail> exception)
+        {
+            var innerMessage = exception?.Detail?.InnerException?.Message;
+
+            if (innerMessage?.Length > 10)
+                // Trim trailing details like user name.
+                innerMessage = $"{innerMessage.Remove(11)}...";
+
+            SendMessage(exception, innerMessage);
+        }
 
         protected void SendMessage(Exception exception)
         {
-            var detail = exception?.InnerException?.Message;
+            var innerMessage = exception?.InnerException?.Message;
 
-            SendMessage(exception, detail);
+            SendMessage(exception, innerMessage);
         }
 
-        private void SendMessage(Exception exception, string detail)
+        private void SendMessage(Exception exception, string innerMessage)
         {
-            var message = $"{exception?.Message}{Environment.NewLine}{detail}";
+            var details = $"{exception?.Message}{Environment.NewLine}{innerMessage}";
 
-            MessagingCenter.Send(this, Message.ServiceError.ToString(), message);
+            WeakReferenceMessenger.Default.Send(new ServiceMessage(MessageType.ServiceError.ToString(), details));
         }
-
         #endregion
 
         #region ServiceClient
