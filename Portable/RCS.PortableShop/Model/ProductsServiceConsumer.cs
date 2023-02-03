@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.Messaging;
 using RCS.PortableShop.ServiceClients.Products.Wrappers;
+using System.ServiceModel;
 
 namespace RCS.PortableShop.Model
 {
@@ -33,16 +34,16 @@ namespace RCS.PortableShop.Model
             public string Details { get; private set; }
         }
 
-        //protected void SendMessage(FaultException<ExceptionDetail> exception)
-        //{
-        //    var detailMessage = exception?.Detail?.InnerException?.Message;
+        protected void SendMessage(FaultException<ExceptionDetail> exception)
+        {
+            var innerMessage = exception?.Detail?.InnerException?.Message;
 
-        //    if (detailMessage?.Length > 10)
-        //        // Trim trailing details like user name.
-        //        detailMessage = $"{detailMessage.Remove(11)}...";
+            if (innerMessage?.Length > 10)
+                // Trim trailing details like user name.
+                innerMessage = $"{innerMessage.Remove(11)}...";
 
-        //    SendMessage(exception, detailMessage);
-        //}
+            SendMessage(exception, innerMessage);
+        }
 
         protected void SendMessage(Exception exception)
         {

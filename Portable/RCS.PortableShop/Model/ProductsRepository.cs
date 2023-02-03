@@ -2,6 +2,7 @@
 using RCS.AdventureWorks.Common.Dtos;
 using RCS.PortableShop.Common.Interfaces;
 using RCS.PortableShop.ServiceClients.Products.Wrappers;
+using System.ServiceModel;
 
 namespace RCS.PortableShop.Model
 {
@@ -33,11 +34,11 @@ namespace RCS.PortableShop.Model
             {
                 productsOverview = await ServiceClient.GetProducts(category, subcategory, namePart).ConfigureAwait(true);
             }
-            //catch (FaultException<ExceptionDetail> exception)
-            //{
-            //    SendMessage(exception);
-            //    return;
-            //}
+            catch (FaultException<ExceptionDetail> exception)
+            {
+                SendMessage(exception);
+                return;
+            }
             catch (Exception exception)
             {
                 SendMessage(exception);
@@ -59,10 +60,10 @@ namespace RCS.PortableShop.Model
             {
                 product = await ServiceClient.GetProduct(productId).ConfigureAwait(true);
             }
-            //catch (FaultException<ExceptionDetail> exception)
-            //{
-            //    SendMessage(exception);
-            //}
+            catch (FaultException<ExceptionDetail> exception)
+            {
+                SendMessage(exception);
+            }
             catch (Exception exception)
             {
                 SendMessage(exception);
