@@ -1,10 +1,7 @@
 ﻿using RCS.PortableShop.Common.Interfaces;
 using RCS.PortableShop.ServiceClients.Products.Wrappers;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Threading.Tasks;
 
 namespace RCS.PortableShop.Model
 {

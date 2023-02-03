@@ -1,4 +1,5 @@
-﻿using RCS.PortableShop.Model;
+﻿using CommunityToolkit.Mvvm.Messaging;
+using RCS.PortableShop.Model;
 using RCS.PortableShop.Resources;
 using RCS.PortableShop.ServiceClients.Products.Wrappers;
 using RCS.PortableShop.ViewModels;
@@ -63,9 +64,9 @@ namespace RCS.PortableShop.Main
         // Note this only works for pages.
         private void SubscribeMessages(Page page)
         {
-            // Use the MessagingCenter mechanism to connect ViewModels or other (non GUI) code to this Page.
+            // Use the Messenger mechanism to connect ViewModels or other (non GUI) code to this Page.
 
-            MessagingCenter.Subscribe<ProductsServiceConsumer, string>(this, ProductsServiceConsumer.Message.ServiceError.ToString(), (sender, details) =>
+            WeakReferenceMessenger.Default.Register<ProductsServiceConsumer.ServiceMessage>(this, (recipient, message) =>
             {
                 // Try to prevent stacking muliple related messages, like at startup.
                 // TODO Finetune this. It can also unwantedly prevent messages, like after changing page.
@@ -74,13 +75,13 @@ namespace RCS.PortableShop.Main
                     serviceErrorDisplaying = true;
                     serviceErrorFirstDisplayed = DateTime.Now;
 
-                    Alert(page, Labels.Error, Labels.ErrorService, details);
+                    Alert(page, Labels.Error, Labels.ErrorService, message.Details);
 
                     serviceErrorDisplaying = false;
                 }
             });
 
-            MessagingCenter.Subscribe<CartItemsRepository>(this, CartItemsRepository.Message.CartError.ToString(), sender =>
+            WeakReferenceMessenger.Default.Register<CartItemsRepository.CartMessage>(this, (recipient, message) =>
             {
                 Alert(page, Labels.Error, Labels.ErrorCart);
             });

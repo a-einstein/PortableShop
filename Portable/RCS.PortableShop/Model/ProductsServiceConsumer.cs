@@ -1,8 +1,9 @@
-﻿using RCS.PortableShop.ServiceClients.Products.Wrappers;
+﻿using CommunityToolkit.Mvvm.Messaging;
+using RCS.PortableShop.ServiceClients.Products.Wrappers;
 
 namespace RCS.PortableShop.Model
 {
-    public abstract class ProductsServiceConsumer 
+    public abstract class ProductsServiceConsumer
     {
         protected ProductsServiceConsumer(IProductService productService)
         {
@@ -10,9 +11,26 @@ namespace RCS.PortableShop.Model
         }
 
         #region Messaging
-        public enum Message
+        private enum MessageType
         {
             ServiceError
+        }
+
+        public class ServiceMessage
+        {
+            public ServiceMessage(string messageType)
+            {
+                MessageType = messageType;
+            }
+
+            public ServiceMessage(string messageType, string details)
+                : this(messageType)
+            {
+                Details = details;
+            }
+
+            public string MessageType { get; private set; }
+            public string Details { get; private set; }
         }
 
         //protected void SendMessage(FaultException<ExceptionDetail> exception)
@@ -28,18 +46,17 @@ namespace RCS.PortableShop.Model
 
         protected void SendMessage(Exception exception)
         {
-            var detail = exception?.InnerException?.Message;
+            var innerMessage = exception?.InnerException?.Message;
 
-            SendMessage(exception, detail);
+            SendMessage(exception, innerMessage);
         }
 
-        private void SendMessage(Exception exception, string detail)
+        private void SendMessage(Exception exception, string innerMessage)
         {
-            var message = $"{exception?.Message}{Environment.NewLine}{detail}";
+            var details = $"{exception?.Message}{Environment.NewLine}{innerMessage}";
 
-            MessagingCenter.Send(this, Message.ServiceError.ToString(), message);
+            WeakReferenceMessenger.Default.Send(new ServiceMessage(MessageType.ServiceError.ToString(), details));
         }
-
         #endregion
 
         #region ServiceClient

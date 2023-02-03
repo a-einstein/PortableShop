@@ -1,4 +1,5 @@
-﻿using RCS.AdventureWorks.Common.DomainClasses;
+﻿using CommunityToolkit.Mvvm.Messaging;
+using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.AdventureWorks.Common.Interfaces;
 using RCS.PortableShop.ServiceClients.Products.Wrappers;
 
@@ -12,10 +13,17 @@ namespace RCS.PortableShop.Model
         { }
         #endregion
 
-        #region Constants
-        public new enum Message
+        #region Messaging
+        private enum MessageType
         {
             CartError
+        }
+
+        public class CartMessage : ServiceMessage
+        {
+            public CartMessage(string messageType) 
+                : base(messageType)
+            { }
         }
         #endregion
 
@@ -53,7 +61,7 @@ namespace RCS.PortableShop.Model
             await task;
 
             if (!task.Result)
-                MessagingCenter.Send(this, Message.CartError.ToString());
+                WeakReferenceMessenger.Default.Send(new CartMessage(MessageType.CartError.ToString()));
         }
 
         public override async Task Delete(CartItem proxy)
@@ -69,7 +77,7 @@ namespace RCS.PortableShop.Model
                 }
                 else
                 {
-                    MessagingCenter.Send(this, Message.CartError.ToString());
+                    WeakReferenceMessenger.Default.Send(new CartMessage(MessageType.CartError.ToString()));
                 }
             });
         }
