@@ -10,7 +10,7 @@ using System.Reflection;
 
 namespace RCS.PortableShop.Main
 {
-    // TODO Make naming consistent. Take platforms into account. 
+    // TODO MAUI Make naming consistent. Take platforms into account. 
     public partial class App : Application
     {
         private const string debugPrefix = ">>>> Debug:";
@@ -19,8 +19,9 @@ namespace RCS.PortableShop.Main
         {
             InitializeComponent();
 
-            //OnStart();
-            StartActions();
+            // Note needs to be on the main thread.
+            // Note needs to be before CreateWindow.
+            MainPage = new MainShell();
         }
 
         private static void ListResources()
@@ -60,11 +61,11 @@ namespace RCS.PortableShop.Main
             };
         }
 
-        // TODO MAUI Obsolete?
+        // Occurs after CreateWindow.
         protected override void OnStart()
         {
             base.OnStart();
-            //StartActions();
+            StartActions();
         }
 
         private void StartActions()
@@ -72,15 +73,6 @@ namespace RCS.PortableShop.Main
 #if DEBUG
             ListResources();
 #endif
-
-            //Startup.Init();
-
-            // Currently this crashes for exclusively the RELEASE build of x86 and x64.
-            // This might be related to https://github.com/xamarin/Xamarin.Forms/issues/11736
-            // TODO follow that issue and test for new releases.
-
-            // Note this needs to be on the main thread.
-            MainPage = new MainShell();
         }
     }
 }
