@@ -117,6 +117,11 @@ namespace RCS.PortableShop.Main
             services.AddSingleton<ProductViewModel>();
             services.AddSingleton<CartViewModel>();
 
+            // Notes
+            // - Apparently no ResourcesPath needed.
+            // - Apparently no MarkupExtension needed for XAML.
+            services.AddLocalization();
+
             ServiceProvider = services.BuildServiceProvider();
 
             return mauiAppBuilder;

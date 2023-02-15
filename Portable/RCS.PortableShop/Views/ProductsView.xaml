@@ -45,16 +45,8 @@
                 <!--Note that because of the Title of Picker on Windows all elements have VerticalOptions="End"-->
                 <StackLayout x:Name="actionBlock" Orientation="Vertical" HorizontalOptions="Start">
                     <StackLayout Orientation="Horizontal">
-                        <!--Note that Title of Picker: for Android is displayed as placeholder inside, for UWP as separate label above. Therefor no separate label and the VerticalOptions.-->
+                        <!--Note Title of Picker: for Android displayed as placeholder inside, for UWP as separate label above. Therefor no separate label and the VerticalOptions.-->
 
-                        <!--
-                        TODO MAUI Replace the Translate/Static everywhere. The static is just a way to get a text, but is not localizing. 
-                        Update, this currently only applies to Windows, not Android.
-                        Maybe use Microsoft.Extensions.Localization. Perhaps in conjunction with already present code.
-                        TODO MAUI This needs to be sorted out / cleaned up / updated anyway.
-                        -->
-                        
-                        <!--<Picker Title="{community:Translate MasterFilter}" ItemsSource="{Binding MasterFilterItems, Mode=TwoWay}" SelectedItem="{Binding MasterFilterValue, Mode=TwoWay}" IsEnabled="{Binding MasterFilterItems, Converter={StaticResource HasValueTester}}" BackgroundColor="{StaticResource ProductsLevel1Colour}" VerticalOptions="End"/>-->
                         <Picker Title="{x:Static resx:Labels.MasterFilter}" ItemsSource="{Binding MasterFilterItems, Mode=TwoWay}" SelectedItem="{Binding MasterFilterValue, Mode=TwoWay}" IsEnabled="{Binding MasterFilterItems, Converter={StaticResource HasValueTester}}" BackgroundColor="{StaticResource ProductsLevel1Colour}" VerticalOptions="End"/>
 
                         <Picker Title="{x:Static resx:Labels.DetailFilter}" ItemsSource="{Binding DetailFilterItems, Mode=TwoWay}" SelectedItem="{Binding DetailFilterValue, Mode=TwoWay}" IsEnabled="{Binding DetailFilterItems, Converter={StaticResource HasValueTester}}" BackgroundColor="{StaticResource ProductsLevel1Colour}" VerticalOptions="End"/>

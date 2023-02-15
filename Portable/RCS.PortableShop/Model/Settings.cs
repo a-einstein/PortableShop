@@ -1,4 +1,5 @@
 ﻿using RCS.PortableShop.Resources;
+using System.Globalization;
 
 namespace RCS.PortableShop.Model
 {
@@ -12,33 +13,12 @@ namespace RCS.PortableShop.Model
 
         private static void SetCulture()
         {
-            // TODO Sort out for MAUI.
-            /*
-            LocalizationResourceManager.Current.Init(Labels.ResourceManager);
-
-            // This lookup is NOT required for Windows platforms - the Culture will be automatically set
-            switch (Device.RuntimePlatform)
-            {
-                case Device.iOS:
-                case Device.Android:
-
-                    // Determine the correct, supported .NET culture
-                    // TODO Is this still necessary?
-                    var currentCultureInfo = DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
-
-                    LocalizationResourceManager.Current.CurrentCulture = currentCultureInfo;
-
-                    break;
-            }
-            */
-
-            // Check if it is overwritten.
             if (Preferences.ContainsKey(cultureKey))
             {
+                // TODO Make more transparent.
                 Culture = Culture;
             }
-
-        }
+         }
         #endregion
 
         #region ServiceType
@@ -92,10 +72,11 @@ namespace RCS.PortableShop.Model
                 // Store value.
                 Preferences.Set(cultureKey, value.Name);
 
-                /*
                 // Switch culture.
-                LocalizationResourceManager.Current.CurrentCulture = new CultureInfo(Culture.Name);
-                */
+                // TODO Change on the fly.
+                CultureInfo.CurrentCulture = 
+                    CultureInfo.DefaultThreadCurrentCulture = 
+                    CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo(Culture.Name);
             }
         }
         #endregion
@@ -164,7 +145,7 @@ namespace RCS.PortableShop.Model
         {
             get
             {
-                return textFilter ?? (textFilter = Preferences.Get(textFilterKey, default(string))); 
+                return textFilter ?? (textFilter = Preferences.Get(textFilterKey, default(string)));
             }
             set
             {

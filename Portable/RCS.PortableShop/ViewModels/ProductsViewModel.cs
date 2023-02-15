@@ -93,6 +93,7 @@ namespace RCS.PortableShop.ViewModels
 
                 // Note that MasterFilterValue also determines DetailFilterItems.
                 // Note that it currently is allowed to only have a TextFilter.
+                // TODO MAUI Only on Windows pickers don't display set values.
                 if (!retrievedFilterEmpty)
                 {
                     MasterFilterValue = MasterFilterItems.FirstOrDefault(value => value.Id == retrievedCategoryId);
