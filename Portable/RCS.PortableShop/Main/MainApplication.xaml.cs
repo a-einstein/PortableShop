@@ -10,12 +10,12 @@ using System.Reflection;
 
 namespace RCS.PortableShop.Main
 {
-    // TODO MAUI Make naming consistent. Take platforms into account. 
-    public partial class App : Application
+    // Note MainApplication conflicts with class on the Android platform. Kept names for version control. See usage.
+    public partial class MainApplication : Application
     {
         private const string debugPrefix = ">>>> Debug:";
 
-        public App()
+        public MainApplication()
         {
             InitializeComponent();
 
