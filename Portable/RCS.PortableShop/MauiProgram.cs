@@ -10,7 +10,8 @@ namespace RCS.PortableShop
             var builder = MauiApp.CreateBuilder();
 
             builder
-                .UseMauiApp<App>()
+                 // Needed this explicit reference instead of using, or even using =, because of nameconflict on the Android platform.
+                .UseMauiApp<RCS.PortableShop.Main.MainApplication>()
                 .UseMauiCommunityToolkit();
 
             Startup.RegisterAppServices(builder);

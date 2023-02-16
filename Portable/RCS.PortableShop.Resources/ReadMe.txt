@@ -24,7 +24,7 @@ Current status (restart application after language switch)
 	- Dutch -> Dutch. 
 	- English -> Dutch. (TODO)
 
-I keep getting warning:
+TODO I keep getting warning:
 	GENERATEPROJECTPRIFILE : warning : PRI257: 0xdef00522 - Resources found for language(s) 'en-gb,en-us,nl-nl' but no resources found for default language(s): 'en-us'. 
 	Change the default language or qualify resources with the default language. http://go.microsoft.com/fwlink/?LinkId=231899
 This does not make sense, after setting both NeutralLanguage and DefaultLanguage to en-GB on all projects, where possible. Also checking manifest files.
