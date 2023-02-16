@@ -1,4 +1,4 @@
-## PortableShop - MAUI: ReleaseNotes 2.x
+## PortableShop - MAUI: ReleaseNotes 2.1.0
 
 #### Summary
 Working MAUI application. Still limited to Android release.

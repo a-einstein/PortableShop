@@ -10,7 +10,7 @@ namespace RCS.PortableShop.Main
             InitializeComponent();
 
             // TODO This could move to MainShellViewModel.
-            // Note the 'Version name' in the AndroidManifest should be increased with each merge as a policy. 
+            // Note the 'Version name' in the AndroidManifest should be increased with each release as a policy. 
             aboutLabel.Text = string.Format(Labels.AboutText, Labels.Shop, Labels.Developer, AppInfo.Version);
         }
 
