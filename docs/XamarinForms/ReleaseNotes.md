@@ -1,4 +1,4 @@
-## PortableShop - Xamarin Forms: ReleaseNotes 1.x
+## PortableShop - Xamarin Forms: ReleaseNotes 1.1.0
 
 #### Summary
 Minor maintenance release.

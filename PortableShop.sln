@@ -44,7 +44,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "XamarinForms", "XamarinForms", "{2C483D9C-5A51-4ABC-AEAA-C3CE8999C3F0}"
 	ProjectSection(SolutionItems) = preProject
 		docs\XamarinForms\README.md = docs\XamarinForms\README.md
-		ReleaseNotes.md = ReleaseNotes.md
+		docs\XamarinForms\ReleaseNotes.md = docs\XamarinForms\ReleaseNotes.md
 	EndProjectSection
 EndProject
 Global
