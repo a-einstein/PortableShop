@@ -5,19 +5,7 @@
 |Splash|Overview|Details|Picture|Basket|Menu|
 
 #### Summary
-Working portable application for test and demo purpose. It simulates limited shopping capabilities based on the Microsoft AdventureWorks database.
-
-#### News
-* Version 1.0 is assumed to be a milestone as the last one on Xamarin Forms, before moving on to MAUI which is 2.0.
-* Refresh Icon has been replaced.
-* Cart deletion buttons now have icons.
-* Cart became alphabetically sorted.
-* Storage of filter has been corrected.
-* Enablement of the products overview has been improved.
-* Language can now be set independently of device.
-
-#### Known issues
-* Recovering from a service problem does not succeed.
+Working portable application for test and demo purpose. It simulates limited shopping capabilities based on the Microsoft AdventureWorks database. This project is in a semi dormant state, while continuing on MAUI. Its version will stay within the 1 range.
 
 #### Purpose
 * Explore various techniques based on Xamarin Forms, XAML and C#.
@@ -26,6 +14,7 @@ Working portable application for test and demo purpose. It simulates limited sho
 * Explore Scrum process management by integration with Jira and Azure DevOps.
 
 #### Description
+* This is the precursor of my **[PortableShop - MAUI](../MAUI/README.md)**
 * This is a near equivalent of my **[WpfShop](https://github.com/a-einstein/WpfShop)**.
 * Currently the Android application is only tested on API 30.
 * Currently the UWP application is only tested on Windows 10 version 22H2.
@@ -62,6 +51,7 @@ Working portable application for test and demo purpose. It simulates limited sho
 #### Installation
 * The application is plug & play, but use of the data service is on request. Contact the developer ahead. 
 * Installables are to be obtained from Assets of the latest available release in **[Releases](https://github.com/a-einstein/PortableShop/releases)**.
+* Also note the accompanying or **[latest release notes](ReleaseNotes.md)**.
 
 ##### Android
 * Download the latest APK file to your Android phone. 
