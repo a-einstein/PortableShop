@@ -1,7 +1,7 @@
 ## PortableShop - MAUI
 
 #### Summary
-Working portable application for test and demo purpose. It simulates limited shopping capabilities based on the Microsoft AdventureWorks database.
+Working portable application for test and demo purpose. It simulates limited shopping capabilities based on the Microsoft AdventureWorks database. This project is the active continuation from Xamarin Forms. Its version will continue from 2.0.
 
 #### Purpose
 * Explore various techniques based on MAUI, XAML and C#.
@@ -9,7 +9,7 @@ Working portable application for test and demo purpose. It simulates limited sho
 * Explore continuous integration by using combinations of Git, GitHub, Azure DevOps.
 
 #### Description
-* This is the MAUI-conversion of my **[PortableShop Xamarin Forms](../XamarinForms/README.md)**
+* This is the MAUI-conversion of my **[PortableShop - Xamarin Forms](../XamarinForms/README.md)**
 * This is a near equivalent of my **[WpfShop](https://github.com/a-einstein/WpfShop)**.
 * Currently the Android application is only tested on API 30.
 * Currently the Windows application is only tested on Windows 10 version 22H2.
@@ -45,6 +45,7 @@ Working portable application for test and demo purpose. It simulates limited sho
 #### Installation
 * The application is plug & play, but use of the data service is on request. Contact the developer ahead. 
 * Installables are to be obtained from Assets of the latest available release in **[Releases](https://github.com/a-einstein/PortableShop/releases)**.
+* Also note the accompanying or **[latest release notes](ReleaseNotes.md)**.
 
 ##### Android
 * Download the latest APK file to your Android phone. 
