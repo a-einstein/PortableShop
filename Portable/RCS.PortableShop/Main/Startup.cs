@@ -26,6 +26,9 @@ namespace RCS.PortableShop.Main
                 case ServiceType.WCF:
                     services.AddSingleton<IProductService, WcfClient>();
                     break;
+                case ServiceType.CoreWcf:
+                    services.AddSingleton<IProductService, CoreWcfClient>();
+                    break;
                 case ServiceType.WebApi:
                 default:
                     services.AddSingleton<IProductService, WebApiClient>();

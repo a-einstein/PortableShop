@@ -9,46 +9,26 @@
 
 namespace ProductsCoreWcf
 {
-    using System.Runtime.Serialization;
-    
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
-    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ProductsOverviewList", Namespace="http://schemas.datacontract.org/2004/07/RCS.AdventureWorks.Common.Dtos", ItemName="ProductsOverviewObject")]
-    internal class ProductsOverviewList : System.Collections.Generic.List<RCS.AdventureWorks.Common.DomainClasses.ProductsOverviewObject>
-    {
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
-    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ProductCategoryList", Namespace="http://schemas.datacontract.org/2004/07/RCS.AdventureWorks.Common.Dtos", ItemName="ProductCategory")]
-    internal class ProductCategoryList : System.Collections.Generic.List<RCS.AdventureWorks.Common.DomainClasses.ProductCategory>
-    {
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
-    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ProductSubcategoryList", Namespace="http://schemas.datacontract.org/2004/07/RCS.AdventureWorks.Common.Dtos", ItemName="ProductSubcategory")]
-    internal class ProductSubcategoryList : System.Collections.Generic.List<RCS.AdventureWorks.Common.DomainClasses.ProductSubcategory>
-    {
-    }
-    
+    // HACK Reusing the DTOs in generation did not succeed.
+    using RCS.AdventureWorks.Common.DomainClasses;
+    using RCS.AdventureWorks.Common.Dtos;
+
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ProductsCoreWcf.IProductsService")]
     internal interface IProductsService
     {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetProductsOverviewBy", ReplyAction="http://tempuri.org/IProductsService/GetProductsOverviewByResponse")]
-        System.Threading.Tasks.Task<ProductsCoreWcf.ProductsOverviewList> GetProductsOverviewByAsync(System.Nullable<int> productCategoryId, System.Nullable<int> productSubcategoryId, string productNameString);
+        System.Threading.Tasks.Task<ProductsOverviewList> GetProductsOverviewByAsync(System.Nullable<int> productCategoryId, System.Nullable<int> productSubcategoryId, string productNameString);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetProductDetails", ReplyAction="http://tempuri.org/IProductsService/GetProductDetailsResponse")]
-        System.Threading.Tasks.Task<RCS.AdventureWorks.Common.DomainClasses.Product> GetProductDetailsAsync(int productId);
+        System.Threading.Tasks.Task<Product> GetProductDetailsAsync(int productId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetProductCategories", ReplyAction="http://tempuri.org/IProductsService/GetProductCategoriesResponse")]
-        System.Threading.Tasks.Task<ProductsCoreWcf.ProductCategoryList> GetProductCategoriesAsync();
+        System.Threading.Tasks.Task<ProductCategoryList> GetProductCategoriesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetProductSubcategories", ReplyAction="http://tempuri.org/IProductsService/GetProductSubcategoriesResponse")]
-        System.Threading.Tasks.Task<ProductsCoreWcf.ProductSubcategoryList> GetProductSubcategoriesAsync();
+        System.Threading.Tasks.Task<ProductSubcategoryList> GetProductSubcategoriesAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
@@ -101,22 +81,22 @@ namespace ProductsCoreWcf
         {
         }
         
-        public System.Threading.Tasks.Task<ProductsCoreWcf.ProductsOverviewList> GetProductsOverviewByAsync(System.Nullable<int> productCategoryId, System.Nullable<int> productSubcategoryId, string productNameString)
+        public System.Threading.Tasks.Task<ProductsOverviewList> GetProductsOverviewByAsync(System.Nullable<int> productCategoryId, System.Nullable<int> productSubcategoryId, string productNameString)
         {
             return base.Channel.GetProductsOverviewByAsync(productCategoryId, productSubcategoryId, productNameString);
         }
         
-        public System.Threading.Tasks.Task<RCS.AdventureWorks.Common.DomainClasses.Product> GetProductDetailsAsync(int productId)
+        public System.Threading.Tasks.Task<Product> GetProductDetailsAsync(int productId)
         {
             return base.Channel.GetProductDetailsAsync(productId);
         }
         
-        public System.Threading.Tasks.Task<ProductsCoreWcf.ProductCategoryList> GetProductCategoriesAsync()
+        public System.Threading.Tasks.Task<ProductCategoryList> GetProductCategoriesAsync()
         {
             return base.Channel.GetProductCategoriesAsync();
         }
         
-        public System.Threading.Tasks.Task<ProductsCoreWcf.ProductSubcategoryList> GetProductSubcategoriesAsync()
+        public System.Threading.Tasks.Task<ProductSubcategoryList> GetProductSubcategoriesAsync()
         {
             return base.Channel.GetProductSubcategoriesAsync();
         }
