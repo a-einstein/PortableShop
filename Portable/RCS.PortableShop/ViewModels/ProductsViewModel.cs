@@ -153,9 +153,8 @@ namespace RCS.PortableShop.ViewModels
         protected override Func<ProductSubcategory, bool> DetailFilterItemsSelector(bool preserveEmptyElement = true)
         {
             return subcategory =>
-                MasterFilterValue != null &&
-                !MasterFilterValue.IsEmpty &&
-                (preserveEmptyElement && subcategory.IsEmpty || subcategory.ProductCategoryId == MasterFilterValue.Id);
+                preserveEmptyElement && subcategory.IsEmpty ||
+                (MasterFilterValue != null && !MasterFilterValue.IsEmpty && subcategory.ProductCategoryId == MasterFilterValue.Id);
         }
         #endregion
 
