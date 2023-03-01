@@ -6,6 +6,9 @@ Working MAUI application. Still limited to Android release.
 #### What's new
 * Added optional client of the CoreWcf service.
 
+#### Fixed
+* Faulty filter initialisation.
+
 #### Known issues
 * Not yet released for Windows.
 * No splash screen on Windows.
