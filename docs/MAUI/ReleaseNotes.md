@@ -1,12 +1,10 @@
-## PortableShop - MAUI: ReleaseNotes 2.1.0
+## PortableShop - MAUI: ReleaseNotes 2.x.y
 
 #### Summary
 Working MAUI application. Still limited to Android release.
 
 #### What's new
-* Layout improvements.
-* Set & restore window dimensions on Windows.
-* Localization now working on both platforms.
+* Added optional client of the CoreWcf service.
 
 #### Known issues
 * Not yet released for Windows.
