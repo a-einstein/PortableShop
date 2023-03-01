@@ -4,19 +4,19 @@
 Working portable application for test and demo purpose. It simulates limited shopping capabilities based on the Microsoft AdventureWorks database. This project is the active continuation from Xamarin Forms. Its version will continue from 2.0.
 
 #### Purpose
-* Explore various techniques based on MAUI, XAML and C#.
-* Manage the code and releases by Git and GitHub.
-* Explore continuous integration by using combinations of Git, GitHub, Azure DevOps.
+* Explore coding techniques based on MAUI, XAML and C#.
+* Explore continuous integration by using combination of Git, GitHub, and Azure DevOps.
 
-#### Description
+#### Context
 * This is the MAUI-conversion of my **[PortableShop - Xamarin Forms](../XamarinForms/README.md)**
 * This is a near equivalent of my **[WpfShop](https://github.com/a-einstein/WpfShop)**.
 * Currently the Android application is only tested on API 30.
 * Currently the Windows application is only tested on Windows 10 version 22H2.
-* Connected to automated Azure Devops build and release pipelines. Current build status for the master branch: ![](https://dev.azure.com/RcsProjects/PortableShop/_apis/build/status/Build%20MAUI?branchName=master)
+* Connected to Azure Devops self hosted build pipeline. Current build status for master branch: ![](https://dev.azure.com/RcsProjects/PortableShop/_apis/build/status/Build%20MAUI?branchName=master)
+* Azure DevOps release pipeline to GitHub.
 * See **[Release Notes](ReleaseNotes.md)** for the latest developments.
 
-#### Aspects
+#### Project aspects
 * MAUI + MAUI Community Toolkit.
 * .Net 7 + .Net Standard 2.0.
 * XAML + C#.
@@ -37,7 +37,6 @@ Working portable application for test and demo purpose. It simulates limited sho
 * Attached behaviours.
 * Application icon (Android).
 * MSIX installation.
-* Azure DevOps self hosted build pipeline + release pipeline to GitHub.
 
 #### Prerequisites
 * The application must be configured for a running instance of my **[AdventureWorks services](https://github.com/a-einstein/AdventureWorks/blob/master/README.md)**.
