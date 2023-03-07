@@ -25,7 +25,6 @@ Working portable application for test and demo purpose. It simulates limited sho
 * Client-server + SSL.
 * Asynchronicity.
 * WCF or Web API.
-* Has made use of an Azure service.
 * Error handling.
 * Globalized resources.
 * Basic styling.
@@ -39,7 +38,7 @@ Working portable application for test and demo purpose. It simulates limited sho
 * MSIX installation.
 
 #### Prerequisites
-* The application must be configured for a running instance of my **[AdventureWorks services](https://github.com/a-einstein/AdventureWorks/blob/master/README.md)**.
+* The application must be configured for a running instance of my **[AdventureWorks services](https://github.com/a-einstein/AdventureWorks)**.
 
 #### Installation
 * The application is plug & play, but use of the data service is on request. Contact the developer ahead. 
