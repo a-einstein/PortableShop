@@ -10,6 +10,7 @@ Working MAUI application. Still limited to Android release.
 * Faulty filter initialisation.
 
 #### Known issues
+* Exception exclusively for WCF on Android: "Error in deserializing", for the locally built service.
 * Not yet released for Windows.
 * No splash screen on Windows.
 * Display shopping cart incorrect on Windows, until resizing.
