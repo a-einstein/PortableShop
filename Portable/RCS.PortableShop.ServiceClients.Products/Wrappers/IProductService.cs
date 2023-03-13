@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 
 namespace RCS.PortableShop.ServiceClients.Products.Wrappers
 {
+    // TODO Make plural, consistent with service.
     public interface IProductService
     {
         Task<ProductCategoryList> GetCategories();
