@@ -10,7 +10,7 @@ Working MAUI application. Still limited to Android release.
 * Faulty filter initialisation.
 
 #### Known issues
-* Exception exclusively for WCF on Android: "Error in deserializing", for the locally built service.
+* Exception exclusively for WCF on Android: "Error in deserializing". This will probably be solved by [xamarin-android issue 7785](https://github.com/xamarin/xamarin-android/pull/7785)
 * Not yet released for Windows.
 * No splash screen on Windows.
 * Display shopping cart incorrect on Windows, until resizing.
