@@ -53,32 +53,36 @@ namespace RCS.PortableShop.Main
 
             hostBuilder.ConfigureServices((context, services) =>
             {
-                services.AddHttpClient();
+            services.AddHttpClient();
 
-                // Note a restart is needed to actually switch IProductService,
-                // as there does not seem to be a feasible way to do that while running.
-                // https://stackoverflow.com/questions/69004937/how-to-use-servicecollection-replace-in-dependency-injection
-                // TODO Apply some proxy as suggested?
-                switch (Settings.ServiceType)
-                {
-                    case ServiceType.WCF:
-                        services.AddSingleton<IProductService, WcfClient>();
-                        break;
-                    case ServiceType.WebApi:
-                        services.AddSingleton<IProductService, WebApiClient>();
-                        break;
-                }
+            // Note a restart is needed to actually switch IProductService,
+            // as there does not seem to be a feasible way to do that while running.
+            // https://stackoverflow.com/questions/69004937/how-to-use-servicecollection-replace-in-dependency-injection
+            // TODO Apply some proxy as suggested?
+            switch (Settings.ServiceType)
+            {
+                case ServiceType.WCF:
+                    services.AddSingleton<IProductService, WcfClient>();
+                    break;
+                case ServiceType.CoreWcf:
+                    services.AddSingleton<IProductService, CoreWcfClient>();
+                    break;
+                case ServiceType.WebApi:
+                default:
+                    services.AddSingleton<IProductService, WebApiClient>();
+                    break;
+            }
 
-                // Use interfaces for constructor injections.
-                services.AddSingleton<IRepository<List<ProductCategory>, ProductCategory>, ProductCategoriesRepository>();
-                services.AddSingleton<IRepository<List<ProductSubcategory>, ProductSubcategory>, ProductSubcategoriesRepository>();
-                services.AddSingleton<IFilterRepository<List<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int>, ProductsRepository>();
-                services.AddSingleton<IRepository<List<CartItem>, CartItem>, CartItemsRepository>();
+            // Use interfaces for constructor injections.
+            services.AddSingleton<IRepository<List<ProductCategory>, ProductCategory>, ProductCategoriesRepository>();
+            services.AddSingleton<IRepository<List<ProductSubcategory>, ProductSubcategory>, ProductSubcategoriesRepository>();
+            services.AddSingleton<IFilterRepository<List<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int>, ProductsRepository>();
+            services.AddSingleton<IRepository<List<CartItem>, CartItem>, CartItemsRepository>();
 
-                // Use types for explicit requests, implicitly using repositories.
-                services.AddSingleton<ProductsViewModel>();
-                services.AddSingleton<ProductViewModel>();
-                services.AddSingleton<CartViewModel>();
+            // Use types for explicit requests, implicitly using repositories.
+            services.AddSingleton<ProductsViewModel>();
+            services.AddSingleton<ProductViewModel>();
+            services.AddSingleton<CartViewModel>();
             });
 
             var host = hostBuilder.Build();

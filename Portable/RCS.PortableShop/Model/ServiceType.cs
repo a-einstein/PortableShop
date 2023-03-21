@@ -3,6 +3,7 @@
     public enum ServiceType
     {
         WCF,
-        WebApi
+        WebApi,
+        CoreWcf
     }
 }
