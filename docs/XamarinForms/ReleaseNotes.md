@@ -1,12 +1,10 @@
-## PortableShop - Xamarin Forms: ReleaseNotes 1.1.0
+## PortableShop - Xamarin Forms: ReleaseNotes 1.x
 
 #### Summary
-Minor maintenance release.
+Enable global update of shopping projects by CoreWcf.
 
 #### What's new
-* Added formal release notes.
-* Link to documentation from application has been updated.
-* Update of external libraries.
+* Added optional client of the CoreWcf service.
 
 #### Known issues
 * Recovering from a service problem does not succeed.
