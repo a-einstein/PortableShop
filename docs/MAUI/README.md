@@ -24,7 +24,7 @@ Working portable application for test and demo purpose. It simulates limited sho
 * Dependency injection.
 * Client-server + SSL.
 * Asynchronicity.
-* WCF or Web API.
+* Dataservice by Web API, CoreWcf, or WCF.
 * Error handling.
 * Globalized resources.
 * Basic styling.
