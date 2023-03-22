@@ -10,5 +10,5 @@ Enable global update of shopping projects by CoreWcf.
 * Faulty filter initialisation.
 
 #### Known issues
-* Exception exclusively for CoreWcf on Android: "Error in deserializing". This will probably be solved by [xamarin-android issue 7785](https://github.com/xamarin/xamarin-android/pull/7785)
+* Exception exclusively for CoreWcf on Android: "Error in deserializing". This is related to [WCF issue 2463](https://github.com/dotnet/wcf/issues/2463)
 * Recovering from a service problem does not succeed.

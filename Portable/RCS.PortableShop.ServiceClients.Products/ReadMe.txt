@@ -18,6 +18,9 @@ Afterwards more changes have been made directly in the code.
 Besides hoping for progress in Mono, or keep working manually on the old WCF client, an alternative way is to use Web API.
 Meanwhile I have created that alternative, which currently can be used besides the WCF one by means of dependency injection.
 
+> This problem also applies to CoreWcf, while no longer present on MAUI, independent of Mono.
+For that reason the cherry picked client from MAUI does not work.
+
 > TODO 
 Currently (01-02-2023) I could still not update System.ServiceModel.Http higher than Version=4.5.3 (instead of 4.10.0).
 Note there are build warnings.
