@@ -20,7 +20,7 @@ namespace RCS.PortableShop.ServiceClients.Products.Wrappers
         }
         #endregion
 
-        #region Interface
+        #region IProductService
         public async Task<ProductCategoryList> GetCategories()
         {
             const string entityName = "ProductCategories";
