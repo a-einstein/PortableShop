@@ -42,7 +42,7 @@ namespace RCS.PortableShop.ServiceClients.Products.ProductsService {
     public interface IProductsServiceChannel : RCS.PortableShop.ServiceClients.Products.ProductsService.IProductsService, System.ServiceModel.IClientChannel {
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    //[System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class GetProductsOverviewByCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
@@ -61,7 +61,7 @@ namespace RCS.PortableShop.ServiceClients.Products.ProductsService {
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    //[System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class GetProductDetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
@@ -80,7 +80,7 @@ namespace RCS.PortableShop.ServiceClients.Products.ProductsService {
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    //[System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class GetProductCategoriesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
@@ -99,7 +99,7 @@ namespace RCS.PortableShop.ServiceClients.Products.ProductsService {
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    //[System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class GetProductSubcategoriesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
@@ -118,7 +118,7 @@ namespace RCS.PortableShop.ServiceClients.Products.ProductsService {
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    //[System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class ProductsServiceClient : System.ServiceModel.ClientBase<RCS.PortableShop.ServiceClients.Products.ProductsService.IProductsService>, RCS.PortableShop.ServiceClients.Products.ProductsService.IProductsService {
         

@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.PortableShop.Common.Interfaces;
@@ -7,6 +8,8 @@ using RCS.PortableShop.ServiceClients.Products.Wrappers;
 using RCS.PortableShop.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 using Xamarin.Essentials;
 
 namespace RCS.PortableShop.Main
@@ -26,6 +29,15 @@ namespace RCS.PortableShop.Main
              *   https://stackoverflow.com/questions/42020845/error-dep0700-registration-of-the-app-failed-on-windows-10-on-a-macbook-dual
              * TODO Create one environment for both.
              * */
+
+
+            // Based on https://startdebugging.net/2020/11/how-to-use-appsettings-json-with-xamarin-forms/
+            var assembly = Assembly.GetExecutingAssembly();
+          
+            // Note this file needs to be a resource.
+            Stream resourceStream = assembly.GetManifestResourceStream($"{assembly.GetName().Name}.appsettings.json");
+
+            var configuration = new ConfigurationBuilder().AddJsonStream(resourceStream).Build();
 
             IHostBuilder hostBuilder;
             Platform platform = default;
@@ -53,36 +65,67 @@ namespace RCS.PortableShop.Main
 
             hostBuilder.ConfigureServices((context, services) =>
             {
-            services.AddHttpClient();
+                services.AddHttpClient();
 
-            // Note a restart is needed to actually switch IProductService,
-            // as there does not seem to be a feasible way to do that while running.
-            // https://stackoverflow.com/questions/69004937/how-to-use-servicecollection-replace-in-dependency-injection
-            // TODO Apply some proxy as suggested?
-            switch (Settings.ServiceType)
-            {
-                case ServiceType.WCF:
-                    services.AddSingleton<IProductService, WcfClient>();
-                    break;
-                case ServiceType.CoreWcf:
-                    services.AddSingleton<IProductService, CoreWcfClient>();
-                    break;
-                case ServiceType.WebApi:
-                default:
-                    services.AddSingleton<IProductService, WebApiClient>();
-                    break;
-            }
+                // Note Configuration based on https://code-maze.com/dotnet-using-constructor-injection/
 
-            // Use interfaces for constructor injections.
-            services.AddSingleton<IRepository<List<ProductCategory>, ProductCategory>, ProductCategoriesRepository>();
-            services.AddSingleton<IRepository<List<ProductSubcategory>, ProductSubcategory>, ProductSubcategoriesRepository>();
-            services.AddSingleton<IFilterRepository<List<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int>, ProductsRepository>();
-            services.AddSingleton<IRepository<List<CartItem>, CartItem>, CartItemsRepository>();
+                // Note a restart is needed to actually switch IProductService,
+                // as there does not seem to be a feasible way to do that while running.
+                // https://stackoverflow.com/questions/69004937/how-to-use-servicecollection-replace-in-dependency-injection
+                // TODO Apply some proxy as suggested?
 
-            // Use types for explicit requests, implicitly using repositories.
-            services.AddSingleton<ProductsViewModel>();
-            services.AddSingleton<ProductViewModel>();
-            services.AddSingleton<CartViewModel>();
+                switch (Settings.ServiceType)
+                {
+                    // TDO Differentiate like for CoreWcf.
+                    case ServiceType.WCF:
+                        {
+                            var options = configuration.GetSection("WcfOptions");
+                            services.Configure<ServiceOptions>(options);
+
+                            services.AddSingleton<IProductService, WcfClient>();
+                        }
+                        break;
+                    case ServiceType.CoreWcf:
+                        {
+                            var options = configuration.GetSection("CoreWcfOptions");
+                            services.Configure<ServiceOptions>(options);
+
+                            switch (platform)
+                            {
+                                case Platform.Android:
+                                    // Reuse the old non Task oriented client because of https://github.com/dotnet/wcf/issues/2463
+                                    services.AddSingleton<IProductService, WcfClient>();
+                                    break;
+                                case Platform.UWP:
+                                    // Use the newly generated Task oriented client.
+                                    services.AddSingleton<IProductService, CoreWcfClient>();
+                                    break;
+                                default:
+                                    throw new PlatformNotSupportedException($"Platform = '{platform}'.");
+                            }
+                        }
+                        break;
+                    case ServiceType.WebApi:
+                    default:
+                        {
+                            var options = configuration.GetSection("WebApiOptions");
+                            services.Configure<ServiceOptions>(options);
+
+                            services.AddSingleton<IProductService, WebApiClient>();
+                        }
+                        break;
+                }
+
+                // Use interfaces for constructor injections.
+                services.AddSingleton<IRepository<List<ProductCategory>, ProductCategory>, ProductCategoriesRepository>();
+                services.AddSingleton<IRepository<List<ProductSubcategory>, ProductSubcategory>, ProductSubcategoriesRepository>();
+                services.AddSingleton<IFilterRepository<List<ProductsOverviewObject>, ProductsOverviewObject, ProductCategory, ProductSubcategory, int>, ProductsRepository>();
+                services.AddSingleton<IRepository<List<CartItem>, CartItem>, CartItemsRepository>();
+
+                // Use types for explicit requests, implicitly using repositories.
+                services.AddSingleton<ProductsViewModel>();
+                services.AddSingleton<ProductViewModel>();
+                services.AddSingleton<CartViewModel>();
             });
 
             var host = hostBuilder.Build();

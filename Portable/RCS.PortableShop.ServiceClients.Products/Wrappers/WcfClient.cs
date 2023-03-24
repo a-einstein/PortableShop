@@ -1,4 +1,5 @@
-﻿using RCS.AdventureWorks.Common.DomainClasses;
+﻿using Microsoft.Extensions.Options;
+using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.AdventureWorks.Common.Dtos;
 using RCS.PortableShop.ServiceClients.Products.ProductsService;
 using System;
@@ -9,6 +10,12 @@ namespace RCS.PortableShop.ServiceClients.Products.Wrappers
 {
     public class WcfClient : ServiceClient, IProductService, IDisposable
     {
+        #region Construction
+        public WcfClient(IOptions<ServiceOptions> serviceOptions)
+            : base(serviceOptions)
+        { }
+        #endregion
+
         #region Interface
         // Be aware that using FromAsync on a shared WcfClient can cause threading problems
         // when the begin and end calls get interwoven, like when started from Task.WhenAll.
@@ -79,20 +86,23 @@ namespace RCS.PortableShop.ServiceClients.Products.Wrappers
                 if (productsServiceClient == null)
                 {
                     // TODO Make this better configurable. There does not seem to be a config file like on WPF.
-                    // TODO If possible get transformation on configs. 
+                    // TODO If possible get transformation on configs.
+                    // TODO Make use of the bindings in the generated code.
 
                     // Note that currently wsHttpBinding is not supported, but should be as it is part of System.ServiceModel 4.0.0.0.
                     var binding = new BasicHttpBinding(BasicHttpSecurityMode.Transport)
                     {
-                        OpenTimeout = Timeout, SendTimeout = Timeout, 
-                        ReceiveTimeout = Timeout, CloseTimeout = Timeout,
+                        OpenTimeout = Timeout,
+                        SendTimeout = Timeout,
+                        ReceiveTimeout = Timeout,
+                        CloseTimeout = Timeout,
                         // Arbitrary increased value (like on WPF) to prevent exception on larger query results.
                         // TODO Should be paged.
-                        MaxReceivedMessageSize= 655360
+                        MaxReceivedMessageSize = 655360
                     };
 
                     // Note this points to a BasicHttpBinding variant on the server.
-                    var endpointAddress = $"{serviceDomain}/ProductsServicePub/ProductsService.svc/ProductsServiceB";
+                    var endpointAddress = ServiceOptions.RemoteAddress;
 
                     // Note the example bindings in ProductsServiceClient which could also be applied here by using EndpointConfiguration
                     productsServiceClient = new ProductsServiceClient(binding, new EndpointAddress(endpointAddress));

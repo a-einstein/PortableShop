@@ -66,6 +66,10 @@
 		<Compile Include="Views\CartSummaryView.xaml.cs" />
 		<Compile Include="Views\CartView.xaml.cs" />
 	</ItemGroup>
+	
+	<ItemGroup>
+	  <EmbeddedResource Include="appsettings.json" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<EmbeddedResource Include="Main\MainApplication.xaml">
