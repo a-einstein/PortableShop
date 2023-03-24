@@ -468,10 +468,10 @@ namespace RCS.PortableShop.ServiceClients.Products.ProductsService {
         
         private static System.ServiceModel.EndpointAddress GetEndpointAddress(EndpointConfiguration endpointConfiguration) {
             if ((endpointConfiguration == EndpointConfiguration.WSHttpBinding_IProductsService)) {
-                return new System.ServiceModel.EndpointAddress("https://rcs-vostro/ProductsServicePub/ProductsService.svc/ProductsServiceW");
+                return new System.ServiceModel.EndpointAddress("https://rcsworks.nl/ProductsServicePub/ProductsService.svc/ProductsServiceW");
             }
             if ((endpointConfiguration == EndpointConfiguration.BasicHttpBinding_IProductsService)) {
-                return new System.ServiceModel.EndpointAddress("https://rcs-vostro/ProductsServicePub/ProductsService.svc/ProductsServiceB");
+                return new System.ServiceModel.EndpointAddress("https://rcsworks.nl/ProductsServicePub/ProductsService.svc/ProductsServiceB");
             }
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
         }
