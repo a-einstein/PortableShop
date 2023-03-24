@@ -76,13 +76,25 @@ namespace RCS.PortableShop.Main
 
                 switch (Settings.ServiceType)
                 {
-                    // TDO Differentiate like for CoreWcf.
+                    // TODO Rename the clients, as indicated.
                     case ServiceType.WCF:
                         {
                             var options = configuration.GetSection("WcfOptions");
                             services.Configure<ServiceOptions>(options);
 
-                            services.AddSingleton<IProductService, WcfClient>();
+                            switch (platform)
+                            {
+                                case Platform.Android:
+                                    // Reuse the old non Task oriented client because of https://github.com/dotnet/wcf/issues/2463
+                                    services.AddSingleton<IProductService, WcfClient>();
+                                    break;
+                                case Platform.UWP:
+                                    // Use the newly generated Task oriented client.
+                                    services.AddSingleton<IProductService, CoreWcfClient>();
+                                    break;
+                                default:
+                                    throw new PlatformNotSupportedException($"Platform = '{platform}'.");
+                            }
                         }
                         break;
                     case ServiceType.CoreWcf:
