@@ -9,9 +9,9 @@
 //------------------------------------------------------------------------------
 
 namespace RCS.PortableShop.ServiceClients.Products.ProductsService {
-    using System.Runtime.Serialization;
+    // HACK Reusing the DTOs in generation did not succeed.
+    using RCS.AdventureWorks.Common.DomainClasses;
     using RCS.AdventureWorks.Common.Dtos;
-
 
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ProductsService.IProductsService")]
@@ -25,7 +25,7 @@ namespace RCS.PortableShop.ServiceClients.Products.ProductsService {
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IProductsService/GetProductDetails", ReplyAction="http://tempuri.org/IProductsService/GetProductDetailsResponse")]
         System.IAsyncResult BeginGetProductDetails(int productId, System.AsyncCallback callback, object asyncState);
         
-        RCS.AdventureWorks.Common.DomainClasses.Product EndGetProductDetails(System.IAsyncResult result);
+        Product EndGetProductDetails(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IProductsService/GetProductCategories", ReplyAction="http://tempuri.org/IProductsService/GetProductCategoriesResponse")]
         System.IAsyncResult BeginGetProductCategories(System.AsyncCallback callback, object asyncState);
@@ -42,7 +42,7 @@ namespace RCS.PortableShop.ServiceClients.Products.ProductsService {
     public interface IProductsServiceChannel : RCS.PortableShop.ServiceClients.Products.ProductsService.IProductsService, System.ServiceModel.IClientChannel {
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    //[System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class GetProductsOverviewByCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
@@ -61,7 +61,7 @@ namespace RCS.PortableShop.ServiceClients.Products.ProductsService {
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    //[System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class GetProductDetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
@@ -72,15 +72,15 @@ namespace RCS.PortableShop.ServiceClients.Products.ProductsService {
             this.results = results;
         }
         
-        public RCS.AdventureWorks.Common.DomainClasses.Product Result {
+        public Product Result {
             get {
                 base.RaiseExceptionIfNecessary();
-                return ((RCS.AdventureWorks.Common.DomainClasses.Product)(this.results[0]));
+                return ((Product)(this.results[0]));
             }
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    //[System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class GetProductCategoriesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
@@ -99,7 +99,7 @@ namespace RCS.PortableShop.ServiceClients.Products.ProductsService {
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    //[System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class GetProductSubcategoriesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
@@ -118,7 +118,7 @@ namespace RCS.PortableShop.ServiceClients.Products.ProductsService {
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    //[System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class ProductsServiceClient : System.ServiceModel.ClientBase<RCS.PortableShop.ServiceClients.Products.ProductsService.IProductsService>, RCS.PortableShop.ServiceClients.Products.ProductsService.IProductsService {
         
@@ -264,7 +264,7 @@ namespace RCS.PortableShop.ServiceClients.Products.ProductsService {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        RCS.AdventureWorks.Common.DomainClasses.Product RCS.PortableShop.ServiceClients.Products.ProductsService.IProductsService.EndGetProductDetails(System.IAsyncResult result) {
+        Product RCS.PortableShop.ServiceClients.Products.ProductsService.IProductsService.EndGetProductDetails(System.IAsyncResult result) {
             return base.Channel.EndGetProductDetails(result);
         }
         
@@ -274,7 +274,7 @@ namespace RCS.PortableShop.ServiceClients.Products.ProductsService {
         }
         
         private object[] OnEndGetProductDetails(System.IAsyncResult result) {
-            RCS.AdventureWorks.Common.DomainClasses.Product retVal = ((RCS.PortableShop.ServiceClients.Products.ProductsService.IProductsService)(this)).EndGetProductDetails(result);
+            Product retVal = ((RCS.PortableShop.ServiceClients.Products.ProductsService.IProductsService)(this)).EndGetProductDetails(result);
             return new object[] {
                     retVal};
         }
@@ -468,10 +468,10 @@ namespace RCS.PortableShop.ServiceClients.Products.ProductsService {
         
         private static System.ServiceModel.EndpointAddress GetEndpointAddress(EndpointConfiguration endpointConfiguration) {
             if ((endpointConfiguration == EndpointConfiguration.WSHttpBinding_IProductsService)) {
-                return new System.ServiceModel.EndpointAddress("https://rcs-vostro/ProductsServicePub/ProductsService.svc/ProductsServiceW");
+                return new System.ServiceModel.EndpointAddress("https://rcsworks.nl/ProductsServicePub/ProductsService.svc/ProductsServiceW");
             }
             if ((endpointConfiguration == EndpointConfiguration.BasicHttpBinding_IProductsService)) {
-                return new System.ServiceModel.EndpointAddress("https://rcs-vostro/ProductsServicePub/ProductsService.svc/ProductsServiceB");
+                return new System.ServiceModel.EndpointAddress("https://rcsworks.nl/ProductsServicePub/ProductsService.svc/ProductsServiceB");
             }
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
         }
@@ -504,9 +504,9 @@ namespace RCS.PortableShop.ServiceClients.Products.ProductsService {
                 return _result;
             }
             
-            public RCS.AdventureWorks.Common.DomainClasses.Product EndGetProductDetails(System.IAsyncResult result) {
+            public Product EndGetProductDetails(System.IAsyncResult result) {
                 object[] _args = new object[0];
-                RCS.AdventureWorks.Common.DomainClasses.Product _result = ((RCS.AdventureWorks.Common.DomainClasses.Product)(base.EndInvoke("GetProductDetails", _args, result)));
+                Product _result = ((Product)(base.EndInvoke("GetProductDetails", _args, result)));
                 return _result;
             }
             

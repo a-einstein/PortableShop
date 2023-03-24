@@ -1,4 +1,5 @@
-﻿using RCS.AdventureWorks.Common.DomainClasses;
+﻿using Microsoft.Extensions.Options;
+using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.AdventureWorks.Common.Dtos;
 using RCS.PortableShop.ServiceClients.Products.ProductsService;
 using System;
@@ -7,9 +8,15 @@ using System.Threading.Tasks;
 
 namespace RCS.PortableShop.ServiceClients.Products.Wrappers
 {
-    public class WcfClient : ServiceClient, IProductService, IDisposable
+    public class WcfClient : WcfClientBase, IProductService, IDisposable
     {
-        #region Interface
+        #region Construction
+        public WcfClient(IOptions<ServiceOptions> serviceOptions)
+            : base(serviceOptions)
+        { }
+        #endregion
+
+        #region IProductService
         // Be aware that using FromAsync on a shared WcfClient can cause threading problems
         // when the begin and end calls get interwoven, like when started from Task.WhenAll.
         // This finally became clear from:
@@ -67,8 +74,8 @@ namespace RCS.PortableShop.ServiceClients.Products.Wrappers
         }
         #endregion
 
-        #region Utilities
-
+        #region ProductsServiceClient
+        // Note Need both types for various parts.
         private ProductsServiceClient productsServiceClient;
 
         private IProductsService ProductsServiceClient
@@ -78,24 +85,7 @@ namespace RCS.PortableShop.ServiceClients.Products.Wrappers
                 // TODO >> Does not work as the intended singleton. Is that useful & necessary? Think to have seen not.
                 if (productsServiceClient == null)
                 {
-                    // TODO Make this better configurable. There does not seem to be a config file like on WPF.
-                    // TODO If possible get transformation on configs. 
-
-                    // Note that currently wsHttpBinding is not supported, but should be as it is part of System.ServiceModel 4.0.0.0.
-                    var binding = new BasicHttpBinding(BasicHttpSecurityMode.Transport)
-                    {
-                        OpenTimeout = Timeout, SendTimeout = Timeout, 
-                        ReceiveTimeout = Timeout, CloseTimeout = Timeout,
-                        // Arbitrary increased value (like on WPF) to prevent exception on larger query results.
-                        // TODO Should be paged.
-                        MaxReceivedMessageSize= 655360
-                    };
-
-                    // Note this points to a BasicHttpBinding variant on the server.
-                    var endpointAddress = $"{serviceDomain}/ProductsServicePub/ProductsService.svc/ProductsServiceB";
-
-                    // Note the example bindings in ProductsServiceClient which could also be applied here by using EndpointConfiguration
-                    productsServiceClient = new ProductsServiceClient(binding, new EndpointAddress(endpointAddress));
+                    productsServiceClient = new ProductsServiceClient(Binding(), new EndpointAddress(ServiceOptions.RemoteAddress));
                 }
 
                 return productsServiceClient;
@@ -103,6 +93,7 @@ namespace RCS.PortableShop.ServiceClients.Products.Wrappers
         }
         #endregion
 
+        // TODO Check the necessity and redundancy of the various Disposables.
         #region IDisposable
         // Check out the IDisposable documentation for details on the pattern applied here.
         // Note that it can have implications on derived classes too.

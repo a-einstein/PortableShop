@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.AdventureWorks.Common.Dtos;
 using System;
@@ -12,13 +13,14 @@ namespace RCS.PortableShop.ServiceClients.Products.Wrappers
         #region Construction        
         private readonly IHttpClientFactory httpClientFactory;
 
-        public WebApiClient(IHttpClientFactory httpClientFactory)
+        public WebApiClient(IHttpClientFactory httpClientFactory, IOptions<ServiceOptions> serviceOptions)
+            : base(serviceOptions)
         {
             this.httpClientFactory = httpClientFactory;
         }
         #endregion
 
-        #region Interface
+        #region IProductService
         public async Task<ProductCategoryList> GetCategories()
         {
             const string entityName = "ProductCategories";
@@ -74,13 +76,11 @@ namespace RCS.PortableShop.ServiceClients.Products.Wrappers
         #endregion
 
         #region Utilities
-        private static readonly string productsApi = $"{serviceDomain}/ProductsApi";
-
         private HttpClient HttpClient => httpClientFactory.CreateClient();
 
         private async Task<TResult> ReadApi<TResult>(string entityName)
         {
-            var uri = new Uri($"{productsApi}/{entityName}");
+            var uri = new Uri($"{ServiceOptions.RemoteAddress}/{entityName}");
 
             return await ReadApi<TResult>(uri).ConfigureAwait(true);
         }
@@ -88,7 +88,7 @@ namespace RCS.PortableShop.ServiceClients.Products.Wrappers
         private async Task<TResult> ReadApi<TResult>(string entityName, string action, string parameters)
         {
             // Note that entityName has to be a plural.
-            var uri = new Uri($"{productsApi}/{entityName}/{action}?{parameters}");
+            var uri = new Uri($"{ServiceOptions.RemoteAddress}/{entityName}/{action}?{parameters}");
 
             return await ReadApi<TResult>(uri).ConfigureAwait(true);
         }

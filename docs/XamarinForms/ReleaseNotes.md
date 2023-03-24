@@ -5,10 +5,10 @@ Enable global update of shopping projects by CoreWcf.
 
 #### What's new
 * Added optional client of the CoreWcf service.
+* Added service configuration by file.
 
 #### Fixed
 * Faulty filter initialisation.
 
 #### Known issues
-* Exception exclusively for CoreWcf on Android: "Error in deserializing". This will probably be solved by [xamarin-android issue 7785](https://github.com/xamarin/xamarin-android/pull/7785)
 * Recovering from a service problem does not succeed.

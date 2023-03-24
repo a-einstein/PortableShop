@@ -1,13 +1,23 @@
-﻿using ProductsCoreWcf;
+﻿using Microsoft.Extensions.Options;
+using ProductsCoreWcf;
 using RCS.AdventureWorks.Common.DomainClasses;
 using RCS.AdventureWorks.Common.Dtos;
+using System.ServiceModel;
 using System.Threading.Tasks;
 
 namespace RCS.PortableShop.ServiceClients.Products.Wrappers
 {
-    public class CoreWcfClient : ServiceClient, IProductService
+    public class CoreWcfClient : WcfClientBase, IProductService
     {
-        #region Interface
+        #region Construction
+        public CoreWcfClient(IOptions<ServiceOptions> serviceOptions)
+            : base(serviceOptions)
+        {
+            ProductsServiceClient = new ProductsServiceClient(Binding(), new EndpointAddress(ServiceOptions.RemoteAddress));
+        }
+        #endregion
+
+        #region IProductService
         public Task<ProductCategoryList> GetCategories()
         {
             return ProductsServiceClient.GetProductCategoriesAsync();
@@ -29,9 +39,8 @@ namespace RCS.PortableShop.ServiceClients.Products.Wrappers
         }
         #endregion
 
-        #region Utilities
-        // TODO Check if this needs to become more sophisticated.
-        private ProductsServiceClient ProductsServiceClient { get; set; } = new ProductsServiceClient();
+        #region ProductsServiceClient
+        private ProductsServiceClient ProductsServiceClient { get; set; }
         #endregion
     }
 }

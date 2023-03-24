@@ -36,7 +36,7 @@ namespace ProductsCoreWcf
     {
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    //[System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
     internal partial class ProductsServiceClient : System.ServiceModel.ClientBase<ProductsCoreWcf.IProductsService>, ProductsCoreWcf.IProductsService
     {
