@@ -8,7 +8,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:baseClasses="clr-namespace:RCS.PortableShop.Common.Views;assembly=RCS.PortableShop.Common"
     xmlns:views="clr-namespace:RCS.PortableShop.Views;assembly=RCS.PortableShop"
-    xmlns:numericUpDown="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
     xmlns:viewModels="clr-namespace:RCS.PortableShop.ViewModels"
     d:BindingContext="{d:DesignInstance Type=viewModels:CartViewModel}"
     mc:Ignorable="d"
@@ -31,32 +30,27 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Grid Style="{StaticResource ListItemStyle}" BackgroundColor="{StaticResource CartLevel1Colour}">
-                            <!--Note this layout currently is aimed towards portrait orientation.-->
-                            <StackLayout Orientation="Vertical">
-                                <Label Text="{Binding Name}" Style="{StaticResource ValueEmphasisMediumLabelStyle}"/>
+                    <Grid Style="{StaticResource ListItemStyle}" BackgroundColor="{StaticResource CartLevel1Colour}">
+                        <!--Note this layout currently is aimed towards portrait orientation.-->
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="{Binding Name}" Style="{StaticResource ValueEmphasisMediumLabelStyle}"/>
 
-                                <StackLayout Orientation="Horizontal">
-                                    <Label Text="{Binding ProductSize}" Style="{StaticResource ValueLabelStyle}"/>
-                                    <Label Text="{Binding ProductSizeUnitMeasureCode}" Style="{StaticResource ValueLabelStyle}"/>
-                                    <Label Text="{Binding ProductColor}" Style="{StaticResource ValueLabelStyle}"/>
-                                    <Label Text="{Binding ProductListPrice, StringFormat='{}{0:C2}'}" Style="{StaticResource ValueLabelStyle}"/>
-                                    <Label Text="{Binding Value, StringFormat='{}{0:C2}'}" Style="{StaticResource ValueEmphasisLabelStyle}"/>
-                                </StackLayout>
-
-                                <StackLayout Orientation="Horizontal">
-                                    <!--
-                                    Note currently a big license message is displayed.
-                                    https://help.syncfusion.com/common/essential-studio/licensing/license-key
-                                     
-                                    Note the defined style with comments.
-                                    -->
-                                    <numericUpDown:SfNumericUpDown Value="{Binding Quantity, Mode=TwoWay}"/>
-
-                                    <Button ImageSource="Trash.png" Command="{Binding BindingContext.DeleteCommand, Source={x:Reference cartItemsListView}}" CommandParameter="{Binding}" Style="{StaticResource CartMinButtonStyle}" VerticalOptions="Start" HorizontalOptions="Start"/>
-                                </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding ProductSize}" Style="{StaticResource ValueLabelStyle}"/>
+                                <Label Text="{Binding ProductSizeUnitMeasureCode}" Style="{StaticResource ValueLabelStyle}"/>
+                                <Label Text="{Binding ProductColor}" Style="{StaticResource ValueLabelStyle}"/>
+                                <Label Text="{Binding ProductListPrice, StringFormat='{}{0:C2}'}" Style="{StaticResource ValueLabelStyle}"/>
+                                <Label Text="{Binding Value, StringFormat='{}{0:C2}'}" Style="{StaticResource ValueEmphasisLabelStyle}"/>
                             </StackLayout>
-                        </Grid>
+
+                            <StackLayout Orientation="Horizontal">
+                                <!--TODO May become a separate control with style.-->
+                                <Entry Text="{Binding Quantity, Mode=TwoWay}" Style="{StaticResource ValueEmphasisEntryStyle}"/>
+                                <Stepper Value="{Binding Quantity, Mode=TwoWay}" Minimum="0" Maximum="10" Increment="1" BackgroundColor="White"/>
+                                <Button ImageSource="Trash.png" Command="{Binding BindingContext.DeleteCommand, Source={x:Reference cartItemsListView}}" CommandParameter="{Binding}" Style="{StaticResource CartMinButtonStyle}" VerticalOptions="Start" HorizontalOptions="Start"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </Grid>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>

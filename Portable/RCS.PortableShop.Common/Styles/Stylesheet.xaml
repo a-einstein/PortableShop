@@ -3,7 +3,6 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:RCS.PortableShop.Common.Controls;assembly=RCS.PortableShop.Common"
-    xmlns:numericUpDown="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
     >
 
     <!--Note that currently no form of nested or multiple merging exist. https://forums.xamarin.com/discussion/86308/multiple-merged-dictionaries?-->
@@ -114,6 +113,11 @@
         <Setter Property="VerticalOptions" Value="{StaticResource LineVerticalOptions}"/>
     </Style>
 
+    <Style x:Key="ValueEmphasisEntryStyle" TargetType="Entry">
+        <Setter Property="TextColor" Value="{StaticResource ValueTextColour}"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+    </Style>
+
     <Style x:Key="InvalidEntryStyle" TargetType="Entry">
         <Setter Property="BackgroundColor" Value="{StaticResource InvalidBackgroundColour}"/>
     </Style>
@@ -165,32 +169,6 @@
 
     <Style TargetType="controls:ContentButton">
         <Setter Property="VerticalOptions" Value="{StaticResource LineVerticalOptions}"/>
-    </Style>
-
-    <!--#endregion-->
-
-    <!--#region NumericUpDowns -->
-
-    <!--
-    Documentation:
-    https://help.syncfusion.com/xamarin/sfnumericupdown/overview
-    
-    Note this need HorizontalOptions to prevent taking all width. 
-    It is hard to reduce its size, because of its Buttons to start with. 
-    WidthRequest needs to be considerable large to preserve the text area. 
-    HeightRequest only crops it.
-    Related:
-    https://www.syncfusion.com/forums/128080/can-the-size-of-the-numericupdown-component-be-made-smaller
-    -->
-    <Style TargetType="numericUpDown:SfNumericUpDown">
-        <Setter Property="VerticalOptions" Value="{StaticResource LineVerticalOptions}"/>
-        <Setter Property="HorizontalOptions" Value="Start"/>
-        <Setter Property="WidthRequest" Value="130"/>
-        <Setter Property="FontSize" Value="15"/>
-        <Setter Property="FontAttribute" Value="Bold"/>
-        <Setter Property="TextColor" Value="{StaticResource ValueTextColour}"/>
-        <Setter Property="Minimum" Value="0"/>
-        <Setter Property="MaximumDecimalDigits" Value="0"/>
     </Style>
 
     <!--#endregion-->
