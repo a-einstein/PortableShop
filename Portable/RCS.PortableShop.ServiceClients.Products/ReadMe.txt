@@ -22,15 +22,25 @@ Meanwhile I have created that alternative, which currently can be used besides t
 For that reason the cherry picked client from MAUI does not work.
 
 > TODO 
-Currently (01-02-2023) I could still not update System.ServiceModel.Http higher than Version=4.5.3 (instead of 4.10.0).
-Note there are build warnings.
-Otherwise on UWP with both service types exceptions arose about System.ServiceModel.Primitives.
-It still seems related to https://github.com/dotnet/wcf/issues/3088 and https://github.com/dotnet/wcf/issues/4762
+Currently the following libraries cannot be updated from version 4.4 or 4.5 to 4.10).
+Note there are build warnings too.
+- System.ServiceModel.Duplex
+- System.ServiceModel.Http
+- System.ServiceModel.NetTcp
+- System.ServiceModel.Security
+
+Otherwise on UWP with all 3 service types exceptions arose about System.ServiceModel.Primitives.
+It still seems related to:
+https://github.com/dotnet/wcf/issues/2463
+https://github.com/dotnet/wcf/issues/3088
+https://github.com/dotnet/wcf/issues/4762
+
 I have tried some workarounds in https://devblogs.microsoft.com/oldnewthing/20200615-00/?p=103868
 Removal of FaultException seemed a solution, but turned out a mistake. https://stackoverflow.com/questions/52498144/system-io-fileloadexception-on-system-servicemodel-primitives/70024433 
 
 > TODO 
-Currently (01-02-2023) the following libraries cannot be updated to version 7.0.0.
+Currently the following libraries cannot be updated from version 6 to 7.
 On Android with Web API that resulted in "An error occurred while writing to logger(s). (Operation is not supported on this platform.)"
+WCF and CoreECF don't have problems.
 - Microsoft.Extensions.Hosting
 - Microsoft.Extensions.Http
