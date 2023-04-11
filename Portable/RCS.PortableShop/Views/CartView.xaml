@@ -30,27 +30,35 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                    <Grid Style="{StaticResource ListItemStyle}" BackgroundColor="{StaticResource CartLevel1Colour}">
-                        <!--Note this layout currently is aimed towards portrait orientation.-->
-                        <StackLayout Orientation="Vertical">
-                            <Label Text="{Binding Name}" Style="{StaticResource ValueEmphasisMediumLabelStyle}"/>
+                        <Grid Style="{StaticResource ListItemStyle}" BackgroundColor="{StaticResource CartLevel1Colour}">
+                            <!--Note this layout currently is aimed towards portrait orientation.-->
+                            <StackLayout Orientation="Vertical">
+                                <Label Text="{Binding Name}" Style="{StaticResource ValueEmphasisMediumLabelStyle}"/>
 
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding ProductSize}" Style="{StaticResource ValueLabelStyle}"/>
-                                <Label Text="{Binding ProductSizeUnitMeasureCode}" Style="{StaticResource ValueLabelStyle}"/>
-                                <Label Text="{Binding ProductColor}" Style="{StaticResource ValueLabelStyle}"/>
-                                <Label Text="{Binding ProductListPrice, StringFormat='{}{0:C2}'}" Style="{StaticResource ValueLabelStyle}"/>
-                                <Label Text="{Binding Value, StringFormat='{}{0:C2}'}" Style="{StaticResource ValueEmphasisLabelStyle}"/>
-                            </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding ProductSize}" Style="{StaticResource ValueLabelStyle}"/>
+                                    <Label Text="{Binding ProductSizeUnitMeasureCode}" Style="{StaticResource ValueLabelStyle}"/>
+                                    <Label Text="{Binding ProductColor}" Style="{StaticResource ValueLabelStyle}"/>
+                                    <Label Text="{Binding ProductListPrice, StringFormat='{}{0:C2}'}" Style="{StaticResource ValueLabelStyle}"/>
+                                    <Label Text="{Binding Value, StringFormat='{}{0:C2}'}" Style="{StaticResource ValueEmphasisLabelStyle}"/>
+                                </StackLayout>
 
-                            <StackLayout Orientation="Horizontal">
-                                <!--TODO May become a separate control with style.-->
-                                <Entry Text="{Binding Quantity, Mode=TwoWay}" Style="{StaticResource ValueEmphasisEntryStyle}"/>
-                                <Stepper Value="{Binding Quantity, Mode=TwoWay}" Minimum="0" Maximum="10" Increment="1" BackgroundColor="White"/>
-                                <Button ImageSource="Trash.png" Command="{Binding BindingContext.DeleteCommand, Source={x:Reference cartItemsListView}}" CommandParameter="{Binding}" Style="{StaticResource CartMinButtonStyle}" VerticalOptions="Start" HorizontalOptions="Start"/>
+                                <StackLayout Orientation="Horizontal">
+                                    <!--TODO May become a separate control with style.-->
+                                    
+                                    <!--Note Bound to Stepper to benefit from restrictions.-->
+                                    <!--TODO Textual incorrect values are displayed while actual value is correct.-->
+                                    <!--TODO Does not properly resize on Android for the the number of digits. Only when adding a new row. MinimumWidthRequest does not help-->
+                                    <Entry BindingContext="{x:Reference quantityStepper}" Text="{Binding Value, Mode=TwoWay}" Style="{StaticResource ValueEmphasisEntryStyle}"/>
+
+                                    <!--Note Maximum is not bindable here (see source).-->
+                                    <!--TODO Buttons are very large on Android. Maybe some additional styling. Alternatively go back to SfNumericUpDown .-->
+                                    <Stepper x:Name="quantityStepper" Value="{Binding Quantity, Mode=TwoWay}" Minimum="0" Maximum="10" Increment="1" BackgroundColor="White"/>
+
+                                    <Button ImageSource="Trash.png" Command="{Binding BindingContext.DeleteCommand, Source={x:Reference cartItemsListView}}" CommandParameter="{Binding}" Style="{StaticResource CartMinButtonStyle}" VerticalOptions="Start" HorizontalOptions="Start"/>
+                                </StackLayout>
                             </StackLayout>
-                        </StackLayout>
-                    </Grid>
+                        </Grid>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>

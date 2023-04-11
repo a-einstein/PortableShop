@@ -43,6 +43,7 @@ namespace RCS.PortableShop.ViewModels
         #endregion
 
         #region Bindable and updateable.
+        // Note this is no BindableProperty, for I want to use CartItem.Quantity instead of duplicating it.
         public int Quantity
         {
             get => CartItem.Quantity;
@@ -53,7 +54,7 @@ namespace RCS.PortableShop.ViewModels
                 // Do this before the PropertyChanged, to be available too.
                 UpdateValue();
 
-                // Need this because this is no BindableProperty, for I also want to use CartItem.Quantity instead of duplicating it.
+                // Note the event is needed in CartViewModel.
                 OnPropertyChanged(nameof(Quantity));
             }
         }
