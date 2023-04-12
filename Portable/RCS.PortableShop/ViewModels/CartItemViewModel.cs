@@ -40,6 +40,7 @@ namespace RCS.PortableShop.ViewModels
         public string ProductSizeUnitMeasureCode => CartItem.ProductSizeUnitMeasureCode;
         public string ProductColor => CartItem.ProductColor;
         public decimal ProductListPrice => CartItem.ProductListPrice;
+        public static int MaxQuantity = 10;
         #endregion
 
         #region Bindable and updateable.
@@ -52,7 +53,7 @@ namespace RCS.PortableShop.ViewModels
                     var cartItemViewModel = (CartItemViewModel)bindable;
 
                     var newValue = (int)value;
-                    var clampedValue = Clamp(newValue, 0, 10);
+                    var clampedValue = Clamp(newValue, 0, MaxQuantity);
 
                     if (clampedValue != newValue)
                         // Despite no actual change of value, notify controls (currently Entry).

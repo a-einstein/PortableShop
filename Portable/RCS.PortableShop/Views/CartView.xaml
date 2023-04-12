@@ -50,9 +50,8 @@
                                     <!--TODO Does not properly resize on Android for the the number of digits. Only when adding a new row. MinimumWidthRequest does not help-->
                                     <Entry Text="{Binding Quantity, Mode=TwoWay}" Style="{StaticResource ValueEmphasisEntryStyle}"/>
 
-                                    <!--Note Maximum is not bindable here (see source).-->
                                     <!--TODO Buttons are very large on Android. Maybe some additional styling. Alternatively go back to SfNumericUpDown .-->
-                                    <Stepper x:Name="quantityStepper" Value="{Binding Quantity, Mode=TwoWay}" Minimum="0" Maximum="10" Increment="1" BackgroundColor="White"/>
+                                    <Stepper x:Name="quantityStepper" Value="{Binding Quantity, Mode=TwoWay}" Minimum="0" Maximum="{Binding MaxQuantity}" Increment="1" BackgroundColor="White"/>
 
                                     <Button ImageSource="Trash.png" Command="{Binding BindingContext.DeleteCommand, Source={x:Reference cartItemsListView}}" CommandParameter="{Binding}" Style="{StaticResource CartMinButtonStyle}" VerticalOptions="Start" HorizontalOptions="Start"/>
                                 </StackLayout>
