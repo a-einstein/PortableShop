@@ -40,22 +40,45 @@ namespace RCS.PortableShop.ViewModels
         public string ProductSizeUnitMeasureCode => CartItem.ProductSizeUnitMeasureCode;
         public string ProductColor => CartItem.ProductColor;
         public decimal ProductListPrice => CartItem.ProductListPrice;
+        public static int MaxQuantity = 10;
         #endregion
 
         #region Bindable and updateable.
+        public static readonly BindableProperty QuantityProperty =
+            BindableProperty.Create(nameof(Quantity), typeof(int), typeof(CartItemViewModel), 0,
+                // This basically does the same as in the Stepper (see source).
+                // It is needed to keep the Entry in sync.
+                coerceValue: (bindable, value) =>
+                {
+                    var cartItemViewModel = (CartItemViewModel)bindable;
+
+                    var newValue = (int)value;
+                    var clampedValue = Clamp(newValue, 0, MaxQuantity);
+
+                    if (clampedValue != newValue)
+                        // Despite no actual change of value, notify controls (currently Entry).
+                        cartItemViewModel.OnPropertyChanged(nameof(Quantity));
+
+                    return clampedValue;
+                },
+                propertyChanged: (bindable, oldValue, newValue) =>
+                {
+                    var cartItemViewModel = (CartItemViewModel)bindable;
+
+                    cartItemViewModel.CartItem.Quantity = (int)newValue;
+
+                    // Do this before the PropertyChanged, to be available too.
+                    cartItemViewModel.UpdateValue();
+
+                    // Note the event is needed in CartViewModel.
+                    cartItemViewModel.OnPropertyChanged(nameof(Quantity));
+                }
+            );
+
         public int Quantity
         {
-            get => CartItem.Quantity;
-            set
-            {
-                CartItem.Quantity = value;
-
-                // Do this before the PropertyChanged, to be available too.
-                UpdateValue();
-
-                // Need this because this is no BindableProperty, for I also want to use CartItem.Quantity instead of duplicating it.
-                OnPropertyChanged(nameof(Quantity));
-            }
+            get { return (int)GetValue(QuantityProperty); }
+            set { SetValue(QuantityProperty, value); }
         }
 
         private static readonly BindableProperty ValueProperty =
@@ -65,6 +88,19 @@ namespace RCS.PortableShop.ViewModels
         {
             get => (decimal)GetValue(ValueProperty);
             private set => SetValue(ValueProperty, value);
+        }
+        #endregion
+
+        #region Utility
+        /* 
+        Note https://stackoverflow.com/questions/2683442/where-can-i-find-the-clamp-function-in-net
+        - NumericExtensions.Clamp is internal!
+        - Math.Clamp does not exist in .Net Standard 2.0.
+        TODO Make this more generally available, if needed.
+        */
+        public static int Clamp(int value, int min, int max)
+        {
+            return (value < min) ? min : (value > max) ? max : value;
         }
         #endregion
     }

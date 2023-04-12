@@ -8,7 +8,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:baseClasses="clr-namespace:RCS.PortableShop.Common.Views;assembly=RCS.PortableShop.Common"
     xmlns:views="clr-namespace:RCS.PortableShop.Views;assembly=RCS.PortableShop"
-    xmlns:numericUpDown="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
     xmlns:viewModels="clr-namespace:RCS.PortableShop.ViewModels"
     d:BindingContext="{d:DesignInstance Type=viewModels:CartViewModel}"
     mc:Ignorable="d"
@@ -45,13 +44,14 @@
                                 </StackLayout>
 
                                 <StackLayout Orientation="Horizontal">
-                                    <!--
-                                    Note currently a big license message is displayed.
-                                    https://help.syncfusion.com/common/essential-studio/licensing/license-key
-                                     
-                                    Note the defined style with comments.
-                                    -->
-                                    <numericUpDown:SfNumericUpDown Value="{Binding Quantity, Mode=TwoWay}"/>
+                                    <!--TODO May become a separate control with style.-->
+                                    
+                                    <!--Note No longer bound to Stepper.Value, which supplied restrictions, but did not properly coerce textual incorrectness..-->
+                                    <!--TODO Does not properly resize on Android for the the number of digits. Only when adding a new row. MinimumWidthRequest does not help-->
+                                    <Entry Text="{Binding Quantity, Mode=TwoWay}" Style="{StaticResource ValueEmphasisEntryStyle}"/>
+
+                                    <!--TODO Buttons are very large on Android. Maybe some additional styling. Alternatively go back to SfNumericUpDown .-->
+                                    <Stepper x:Name="quantityStepper" Value="{Binding Quantity, Mode=TwoWay}" Minimum="0" Maximum="{Binding MaxQuantity}" Increment="1" BackgroundColor="White"/>
 
                                     <Button ImageSource="Trash.png" Command="{Binding BindingContext.DeleteCommand, Source={x:Reference cartItemsListView}}" CommandParameter="{Binding}" Style="{StaticResource CartMinButtonStyle}" VerticalOptions="Start" HorizontalOptions="Start"/>
                                 </StackLayout>
