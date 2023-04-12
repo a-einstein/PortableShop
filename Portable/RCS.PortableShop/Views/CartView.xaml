@@ -46,10 +46,9 @@
                                 <StackLayout Orientation="Horizontal">
                                     <!--TODO May become a separate control with style.-->
                                     
-                                    <!--Note Bound to Stepper to benefit from restrictions.-->
-                                    <!--TODO Textual incorrect values are displayed while actual value is correct.-->
+                                    <!--Note No longer bound to Stepper.Value, which supplied restrictions, but did not properly coerce textual incorrectness..-->
                                     <!--TODO Does not properly resize on Android for the the number of digits. Only when adding a new row. MinimumWidthRequest does not help-->
-                                    <Entry BindingContext="{x:Reference quantityStepper}" Text="{Binding Value, Mode=TwoWay}" Style="{StaticResource ValueEmphasisEntryStyle}"/>
+                                    <Entry Text="{Binding Quantity, Mode=TwoWay}" Style="{StaticResource ValueEmphasisEntryStyle}"/>
 
                                     <!--Note Maximum is not bindable here (see source).-->
                                     <!--TODO Buttons are very large on Android. Maybe some additional styling. Alternatively go back to SfNumericUpDown .-->
