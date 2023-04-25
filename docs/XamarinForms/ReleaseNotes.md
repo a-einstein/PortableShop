@@ -1,7 +1,7 @@
-## PortableShop - XamarinForms: ReleaseNotes 1.2
+## PortableShop - XamarinForms: Release-notes 1.2
 
 #### Summary
-Added usage of CoreWcf-service.
+Added use of CoreWcf-service.
 
 #### What's new
 * Changed title of application.
@@ -11,6 +11,7 @@ Added usage of CoreWcf-service.
 
 #### Fixed
 * Unclear order of services.
+* Connection problem on Android.
 * Faulty filter initialisation.
 * Insufficient quantity limitation in cart.
 * Outdated documentation links.
