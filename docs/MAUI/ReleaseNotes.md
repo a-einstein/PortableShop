@@ -6,6 +6,7 @@ Working MAUI application. Still limited to Android release.
 #### What's new
 
 #### Fixed
+App-icon now working on Android.
 
 #### Known issues
 * Exception exclusively for WCF on Android: "Error in deserializing". This will probably be solved by [xamarin-android issue 7785](https://github.com/xamarin/xamarin-android/pull/7785)
