@@ -10,12 +10,6 @@
 	</PropertyGroup>
   
 	<ItemGroup>
-	  <Compile Remove="Backup\**" />
-	  <EmbeddedResource Remove="Backup\**" />
-	  <None Remove="Backup\**" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<Compile Update="Labels.Designer.cs">
 			<DependentUpon>Labels.resx</DependentUpon>
 			<DesignTime>True</DesignTime>
