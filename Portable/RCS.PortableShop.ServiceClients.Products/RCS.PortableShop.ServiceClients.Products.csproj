@@ -1,8 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-    <!--TODO Set this to net7.0.-->
-    <TargetFramework>netstandard2.0</TargetFramework>
-	</PropertyGroup>
+    <TargetFrameworks>net7.0;net7.0-android</TargetFrameworks>
+    <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
+  </PropertyGroup>
+  
 	<ItemGroup>
 	  <Compile Remove="Backup\**" />
 	  <EmbeddedResource Remove="Backup\**" />
