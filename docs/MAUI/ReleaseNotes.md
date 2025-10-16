@@ -1,13 +1,16 @@
-## PortableShop - MAUI: ReleaseNotes 2.x.y
+## PortableShop - MAUI: ReleaseNotes 2023.05.25
 
 #### Summary
 Working MAUI application. Still limited to Android release.
 
 #### What's new
-* Added optional client of the CoreWcf service.
+* Standardised on .Net 7.
 
 #### Fixed
-* Faulty filter initialisation.
+* App-icon now working on Android.
+* Text filter entry now readable with both themes on Android.
+* Unclear order of services.
+* Backlog of external package-versions.
 
 #### Known issues
 * Exception exclusively for WCF on Android: "Error in deserializing". This will probably be solved by [xamarin-android issue 7785](https://github.com/xamarin/xamarin-android/pull/7785)

@@ -21,6 +21,12 @@
 
     <!--#region Colours -->
 
+    <!--
+    TODO MAUI Note the effect of dark and light themes on Android. Particularly for Picker and Entry.
+    Currently colours are generally usable. Fully fledged themes would be interesting.
+    TODO MAUI Check the different effects compared with Xamarin Forms.
+    -->
+
     <!--Note that only a limited number of Color names is supported, currently different from the documentation.-->
     <Color x:Key="MessageColour">#00008B</Color> <!--DarkBlue-->
     <Color x:Key="AssertColour">Green</Color>
@@ -115,6 +121,7 @@
 
     <Style TargetType="Entry">
         <Setter Property="VerticalOptions" Value="{StaticResource LineVerticalOptions}"/>
+        <Setter Property="TextColor" Value="{StaticResource LabelTextColour}"/>
     </Style>
 
     <Style x:Key="ValueEmphasisEntryStyle" TargetType="Entry">
@@ -133,6 +140,7 @@
     <Style TargetType="Picker">
         <Setter Property="VerticalOptions" Value="{StaticResource LineVerticalOptions}"/>
         <Setter Property="Margin" Value="{StaticResource ControlRightMargin}"/>
+        <Setter Property="TextColor" Value="{StaticResource LabelTextColour}"/>
     </Style>
     
     <!--#endregion-->

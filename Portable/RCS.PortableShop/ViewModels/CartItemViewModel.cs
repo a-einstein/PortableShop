@@ -53,6 +53,7 @@ namespace RCS.PortableShop.ViewModels
                 UpdateValue();
 
                 // Need this because this is no BindableProperty, for I also want to use CartItem.Quantity instead of duplicating it.
+                // MAUI Note Stepper does coerce Minimum and Maximum in both its control and Entry through this property.
                 OnPropertyChanged(nameof(Quantity));
             }
         }
