@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net7.0-android</TargetFrameworks>
-    <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
+    <TargetFrameworks>net9.0-android</TargetFrameworks>
+    <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net9.0-windows10.0.26100.0</TargetFrameworks>
     <OutputType>Exe</OutputType>
     <RootNamespace>RCS.PortableShop</RootNamespace>
     <UseMaui>true</UseMaui>
@@ -20,15 +20,15 @@
     <!-- Versions -->
     <!--TODO Centralise version number, remove redundancies.-->
     <!--TODO MAUI Seems redundant.-->
-    <ApplicationDisplayVersion>2.1.0</ApplicationDisplayVersion>
+    <ApplicationDisplayVersion>2.2.0</ApplicationDisplayVersion>
     <ApplicationVersion>1</ApplicationVersion>
 
-    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
-    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
-    <TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">30.0</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.19041.0</SupportedOSPlatformVersion>
+    <TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.19041.0</TargetPlatformMinVersion>
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
-    <PackageCertificateThumbprint>F45330DA9727236F1A460AFB8A9DBF07D5D1AE76</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>b8b71fcf95cd73fa77a0a17d53f4ee31444589d4</PackageCertificateThumbprint>
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
@@ -45,26 +45,26 @@
     <Product>CyclOne.MAUI</Product>
    </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-android|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-android|AnyCPU'">
     <PublishTrimmed>False</PublishTrimmed>
     <RunAOTCompilation>False</RunAOTCompilation>
     <ApplicationId>nl.rcsworks.cyclone.maui</ApplicationId>
-    <ApplicationDisplayVersion>2.1.0</ApplicationDisplayVersion>
+    <ApplicationDisplayVersion>2.2.0</ApplicationDisplayVersion>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-android|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-android|AnyCPU'">
     <ApplicationId>nl.rcsworks.cyclone.maui</ApplicationId>
-    <ApplicationDisplayVersion>2.1.0</ApplicationDisplayVersion>
+    <ApplicationDisplayVersion>2.2.0</ApplicationDisplayVersion>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-windows10.0.19041.0|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-windows10.0.26100.0|AnyCPU'">
     <ApplicationId>nl.rcsworks.cyclone.maui</ApplicationId>
-    <ApplicationDisplayVersion>2.1.0</ApplicationDisplayVersion>
+    <ApplicationDisplayVersion>2.2.0</ApplicationDisplayVersion>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-windows10.0.19041.0|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-windows10.0.26100.0|AnyCPU'">
     <ApplicationId>nl.rcsworks.cyclone.maui</ApplicationId>
-    <ApplicationDisplayVersion>2.1.0</ApplicationDisplayVersion>
+    <ApplicationDisplayVersion>2.2.0</ApplicationDisplayVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -91,17 +91,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <MauiImage Include="Resources\Images\cart.png" BaseSize="32,32" />
-    <MauiImage Include="Resources\Images\cartplus.png" BaseSize="32,32" />
-    <MauiImage Include="Resources\Images\clouddownload.png" BaseSize="32,32" />
-    <MauiImage Include="Resources\Images\information.png" BaseSize="32,32" />
-    <MauiImage Include="Resources\Images\overview.png" BaseSize="32,32" />
-    <MauiImage Include="Resources\Images\refresh.png" BaseSize="32,32" />
-    <MauiImage Include="Resources\Images\settings.png" BaseSize="32,32" />
-    <MauiImage Include="Resources\Images\trash.png" BaseSize="32,32" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Include="Platforms\Windows\Assets\SplashScreen.scale-100.png" />
     <Content Include="Platforms\Windows\Assets\SplashScreen.scale-125.png" />
     <Content Include="Platforms\Windows\Assets\SplashScreen.scale-150.png" />
@@ -110,6 +99,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Maui.Controls" Version="9.0.111" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
   </ItemGroup>
