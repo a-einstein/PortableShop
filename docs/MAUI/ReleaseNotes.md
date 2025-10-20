@@ -1,10 +1,13 @@
-## PortableShop - MAUI: ReleaseNotes 2023.05.25
+## PortableShop - MAUI
+### ReleaseNotes 2.2.0
 
 #### Summary
 Working MAUI application. Still limited to Android release.
 
 #### What's new
-* Standardised on .Net 7.
+* Target .Net 9.0.
+* Target Windows 10.0.26100.0
+* Target Android 35.
 
 #### Fixed
 * App-icon now working on Android.
