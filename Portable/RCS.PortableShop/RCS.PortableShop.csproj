@@ -1,8 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net9.0-android</TargetFrameworks>
-    <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net9.0-windows10.0.26100.0</TargetFrameworks>
+    <!--
+    To solve building problems, the following commands were necessary with Visual Studio closed (for the current TargetFrameworks).
+      dotnet nuget locals all \-\-clear
+      dotnet restore -p:TargetFramework=net10.0-android
+      dotnet restore -p:TargetFramework=net10.0-windows10.0.26100.0
+    See https://github.com/dotnet/maui/issues/31547
+    -->
+    <TargetFrameworks>net10.0-android;net10.0-windows10.0.26100.0</TargetFrameworks>
     <OutputType>Exe</OutputType>
     <RootNamespace>RCS.PortableShop</RootNamespace>
     <UseMaui>true</UseMaui>
@@ -22,6 +28,7 @@
     <!--TODO MAUI Seems redundant.-->
     <ApplicationDisplayVersion>2.2.0</ApplicationDisplayVersion>
     <ApplicationVersion>1</ApplicationVersion>
+    <ApplicationId>nl.rcsworks.cyclone.maui</ApplicationId>
 
     <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">30.0</SupportedOSPlatformVersion>
     <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.19041.0</SupportedOSPlatformVersion>
@@ -45,26 +52,9 @@
     <Product>CyclOne.MAUI</Product>
    </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-android|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net10.0-android|AnyCPU'">
     <PublishTrimmed>False</PublishTrimmed>
     <RunAOTCompilation>False</RunAOTCompilation>
-    <ApplicationId>nl.rcsworks.cyclone.maui</ApplicationId>
-    <ApplicationDisplayVersion>2.2.0</ApplicationDisplayVersion>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-android|AnyCPU'">
-    <ApplicationId>nl.rcsworks.cyclone.maui</ApplicationId>
-    <ApplicationDisplayVersion>2.2.0</ApplicationDisplayVersion>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-windows10.0.26100.0|AnyCPU'">
-    <ApplicationId>nl.rcsworks.cyclone.maui</ApplicationId>
-    <ApplicationDisplayVersion>2.2.0</ApplicationDisplayVersion>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-windows10.0.26100.0|AnyCPU'">
-    <ApplicationId>nl.rcsworks.cyclone.maui</ApplicationId>
-    <ApplicationDisplayVersion>2.2.0</ApplicationDisplayVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -99,9 +89,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Maui.Controls" Version="9.0.111" />
-    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="9.0.10" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.10" />
+    <PackageReference Include="Microsoft.Maui.Controls" Version="10.0.41" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="10.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.3" />
   </ItemGroup>
 
   <ItemGroup>
