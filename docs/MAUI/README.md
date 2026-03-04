@@ -18,7 +18,7 @@ Working portable application for test and demo purpose. It simulates limited sho
 
 ### Project aspects
 * MAUI + MAUI Community Toolkit.
-* .Net 7 + .Net Standard 2.0.
+* .Net 10.
 * XAML + C#.
 * MVVM.
 * Dependency injection.
