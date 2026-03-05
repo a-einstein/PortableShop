@@ -103,13 +103,13 @@ namespace RCS.PortableShop.Main
 
 
                 if (string.IsNullOrWhiteSpace(details))
-                    await page.DisplayAlert(kind, description, continuation).ConfigureAwait(true);
+                    await page.DisplayAlertAsync(kind, description, continuation).ConfigureAwait(true);
                 else
                 {
-                    var showDetails = await page.DisplayAlert(kind, description, Labels.Details, continuation).ConfigureAwait(true);
+                    var showDetails = await page.DisplayAlertAsync(kind, description, Labels.Details, continuation).ConfigureAwait(true);
 
                     if (showDetails)
-                        await page.DisplayAlert(Labels.Details, details, Labels.Close).ConfigureAwait(true);
+                        await page.DisplayAlertAsync(Labels.Details, details, Labels.Close).ConfigureAwait(true);
                 }
 
                 /*
