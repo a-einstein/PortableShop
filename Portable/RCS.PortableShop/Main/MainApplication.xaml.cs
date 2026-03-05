@@ -18,10 +18,6 @@ namespace RCS.PortableShop.Main
         public MainApplication()
         {
             InitializeComponent();
-
-            // Note needs to be on the main thread.
-            // Note needs to be before CreateWindow.
-            MainPage = new MainShell();
         }
 
         private static void ListResources()
@@ -37,7 +33,7 @@ namespace RCS.PortableShop.Main
 
         protected override Window CreateWindow(IActivationState activationState)
         {
-            var window = base.CreateWindow(activationState);
+            var window = new Window(new MainShell());
 
             HandleDimensions(window);
 
