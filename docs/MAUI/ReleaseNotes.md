@@ -5,9 +5,9 @@
 Working MAUI application. Still limited to Android release.
 
 #### What's new
-* Target .Net 9.0.
+* Target .Net 10.0.
 * Target Windows 10.0.26100.0
-* Target Android 35.
+* Target Android 16/SDK 36.
 
 #### Fixed
 * App-icon now working on Android.
@@ -24,3 +24,5 @@ Working MAUI application. Still limited to Android release.
 * Refresh button invisible on Windows.
 * Various icons and titles not working, depending on platform and theme setting.
 * Restored filter values not visible on Windows.
+
+* Take note of building-problems as described in RCS.PortableShop.csproj.
