@@ -23,9 +23,6 @@ namespace RCS.PortableShop.Main
             // TODO Apply some proxy as suggested?
             switch (Settings.ServiceType)
             {
-                case ServiceType.WCF:
-                    services.AddSingleton<IProductService, WcfClient>();
-                    break;
                 case ServiceType.CoreWcf:
                     services.AddSingleton<IProductService, CoreWcfClient>();
                     break;

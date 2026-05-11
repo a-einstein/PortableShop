@@ -8,6 +8,7 @@ Working MAUI application. Still limited to Android release.
 * Target .Net 10.0.
 * Target Windows 10.0.26100.0
 * Target Android 16/SDK 36.
+* Remove reference to WCF-service.
 
 #### Fixed
 * App-icon now working on Android.
