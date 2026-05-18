@@ -3,6 +3,7 @@
   <PropertyGroup>
     <!--
     To solve building problems, the following commands were necessary with Visual Studio closed (for the current TargetFrameworks).
+      Keep the path to the solution as short as possible.
       Possibly need to delete bin and obj-directories.
       dotnet nuget locals all \-\-clear
       dotnet restore -p:TargetFramework=net10.0-android

@@ -17,6 +17,7 @@ Working MAUI application. Still limited to Android release.
 * Backlog of external package-versions.
 
 #### Known issues
+* Note how to solve **building-problems** as described in RCS.PortableShop.csproj.
 * Exception exclusively for WCF on Android: "Error in deserializing". This will probably be solved by [xamarin-android issue 7785](https://github.com/xamarin/xamarin-android/pull/7785)
 * Not yet released for Windows.
 * No splash screen on Windows.
@@ -25,5 +26,3 @@ Working MAUI application. Still limited to Android release.
 * Refresh button invisible on Windows.
 * Various icons and titles not working, depending on platform and theme setting.
 * Restored filter values not visible on Windows.
-
-* Take note of building-problems as described in RCS.PortableShop.csproj.
