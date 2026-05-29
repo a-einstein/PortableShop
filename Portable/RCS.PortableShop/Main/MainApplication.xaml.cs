@@ -18,6 +18,9 @@ namespace RCS.PortableShop.Main
         public MainApplication()
         {
             InitializeComponent();
+
+            // Initialize persisted theme selection
+            RCS.PortableShop.Common.Services.ThemeService.InitializeTheme();
         }
 
         private static void ListResources()
