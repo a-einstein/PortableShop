@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
+
+<!--Use class for instances.-->
 <ResourceDictionary
+    x:Class="RCS.PortableShop.Common.Styles.Themes.LightTheme"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
-    <!-- Light theme color resources -->
     <Color x:Key="MessageColour">#00008B</Color> <!--DarkBlue-->
     <Color x:Key="AssertColour">Green</Color>
     <Color x:Key="WarningColour">Orange</Color>

@@ -47,9 +47,9 @@
                     <StackLayout Orientation="Horizontal">
                         <!--Note Title of Picker: for Android displayed as placeholder inside, for UWP as separate label above. Therefor no separate label and the VerticalOptions.-->
 
-                        <Picker Title="{x:Static resx:Labels.MasterFilter}" ItemsSource="{Binding MasterFilterItems, Mode=TwoWay}" SelectedItem="{Binding MasterFilterValue, Mode=TwoWay}" IsEnabled="{Binding MasterFilterItems, Converter={StaticResource HasValueTester}}" BackgroundColor="{StaticResource ProductsLevel1Colour}" VerticalOptions="End"/>
+                        <Picker Title="{x:Static resx:Labels.MasterFilter}" ItemsSource="{Binding MasterFilterItems, Mode=TwoWay}" SelectedItem="{Binding MasterFilterValue, Mode=TwoWay}" IsEnabled="{Binding MasterFilterItems, Converter={StaticResource HasValueTester}}" Style="{StaticResource PickerHorizontalStyle}" BackgroundColor="{StaticResource ProductsLevel1Colour}" VerticalOptions="End"/>
 
-                        <Picker Title="{x:Static resx:Labels.DetailFilter}" ItemsSource="{Binding DetailFilterItems, Mode=TwoWay}" SelectedItem="{Binding DetailFilterValue, Mode=TwoWay}" IsEnabled="{Binding DetailFilterItems, Converter={StaticResource HasValueTester}}" BackgroundColor="{StaticResource ProductsLevel1Colour}" VerticalOptions="End"/>
+                        <Picker Title="{x:Static resx:Labels.DetailFilter}" ItemsSource="{Binding DetailFilterItems, Mode=TwoWay}" SelectedItem="{Binding DetailFilterValue, Mode=TwoWay}" IsEnabled="{Binding DetailFilterItems, Converter={StaticResource HasValueTester}}" Style="{StaticResource PickerHorizontalStyle}" BackgroundColor="{StaticResource ProductsLevel1Colour}" VerticalOptions="End"/>
 
                         <!--Note apparently UpdateSourceTrigger=PropertyChanged through this chain, which is good for immediate response for validation and enablement.-->
                         <!--Note that Placeholder is just that, for both Android and UWP.-->

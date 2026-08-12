@@ -1,13 +1,16 @@
-﻿using RCS.PortableShop.Resources;
+﻿using RCS.PortableShop.Common.Styles;
+using RCS.PortableShop.Common.Styles.Themes;
+using RCS.PortableShop.Resources;
 using System.Globalization;
 
 namespace RCS.PortableShop.Model
 {
-    #region Construction
     public static class Settings
     {
+        #region Construction
         static Settings()
         {
+            // TODO Evaluate this together with Theme.
             SetCulture();
         }
 
@@ -18,11 +21,64 @@ namespace RCS.PortableShop.Model
                 // TODO Make more transparent.
                 Culture = Culture;
             }
-         }
+        }
+        #endregion
+
+        #region Theme
+        // TODO Translate values.
+        public static readonly List<Theme> Themes = Enum.GetValues<Theme>().Cast<Theme>().ToList();
+        private const string themeKey = "Theme";
+
+        private static Theme? theme;
+
+        // Note this is non nullable.
+        public static Theme Theme
+        {
+            get
+            {
+                if (!theme.HasValue)
+                    theme = (Theme)Preferences.Get(themeKey, (int)Theme.Light);
+
+                return theme.Value;
+            }
+            set
+            {
+                theme = value;
+                Preferences.Set(themeKey, (int)value);
+
+                // TODO Side-effect. Move?
+                ApplyTheme();
+            }
+        }
+
+        private static void ApplyTheme()
+        {
+            var mergedDictionaries = Application.Current.Resources.MergedDictionaries;
+
+            if (mergedDictionaries != null)
+            {
+                mergedDictionaries.Clear();
+
+                // TODO Change on the fly.
+                switch (Theme)
+                {
+                    case Theme.Dark:
+                        mergedDictionaries.Add(new DarkTheme());
+                        break;
+                    case Theme.Light:
+                    default:
+                        mergedDictionaries.Add(new LightTheme());
+                        break;
+                }
+
+                // TODO Preserve. Question is how in the Collection.
+                mergedDictionaries.Add(new Stylesheet());
+            }
+        }
         #endregion
 
         #region ServiceType
-        public static readonly List<ServiceType> ServiceTypes = Enum.GetValues(typeof(ServiceType)).Cast<ServiceType>().ToList();
+        public static readonly List<ServiceType> ServiceTypes = Enum.GetValues<ServiceType>().Cast<ServiceType>().ToList();
         private const string serviceTypeKey = "ServiceType";
 
         private static ServiceType? serviceType;
@@ -31,7 +87,7 @@ namespace RCS.PortableShop.Model
         // But need to initialize here for service calls not to fail, 
         // and do not want to ignore an already stored value.
 
-        // Note that this is non nullable.
+        // Note this is non nullable.
         public static ServiceType ServiceType
         {
             get
@@ -72,10 +128,11 @@ namespace RCS.PortableShop.Model
                 // Store value.
                 Preferences.Set(cultureKey, value.Name);
 
+                // TODO Side-effect. Move?
                 // Switch culture.
                 // TODO Change on the fly.
-                CultureInfo.CurrentCulture = 
-                    CultureInfo.DefaultThreadCurrentCulture = 
+                CultureInfo.CurrentCulture =
+                    CultureInfo.DefaultThreadCurrentCulture =
                     CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo(Culture.Name);
             }
         }

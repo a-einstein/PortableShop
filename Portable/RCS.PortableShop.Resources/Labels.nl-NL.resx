@@ -251,4 +251,13 @@ Pas a.u.b. uw zoekopdracht aan.</value>
   <data name="CultureDutch" xml:space="preserve">
     <value>Nederlands</value>
   </data>
+  <data name="Theme" xml:space="preserve">
+    <value>Thema</value>
+  </data>
+  <data name="ThemeDark" xml:space="preserve">
+    <value>Donker</value>
+  </data>
+  <data name="ThemeLight" xml:space="preserve">
+    <value>Licht</value>
+  </data>
 </root>

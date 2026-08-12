@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
+
+<!--Use class for instances.-->
 <ResourceDictionary
+    x:Class="RCS.PortableShop.Common.Styles.Themes.DarkTheme"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
-    <!-- Dark theme color resources -->
+    <!--TODO Improve colours.-->
+  
     <Color x:Key="MessageColour">#87CEFA</Color> <!-- LightSkyBlue -->
     <Color x:Key="AssertColour">#90EE90</Color> <!-- LightGreen -->
     <Color x:Key="WarningColour">#FFD700</Color> <!-- Gold -->

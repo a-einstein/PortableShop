@@ -11,6 +11,7 @@
     <!--#region Values -->
 
     <Thickness x:Key="ViewPadding">5</Thickness>
+    <Thickness x:Key="ControlTopMargin">0,5,0,0</Thickness>
     <Thickness x:Key="ControlLeftMargin">5,0,0,0</Thickness>
     <Thickness x:Key="ControlRightMargin">0,0,5,0</Thickness>
     <Thickness x:Key="InfoLeftMargin">10,0,0,0</Thickness>
@@ -19,13 +20,6 @@
 
     <!--#endregion-->
 
-    <!--#region Colours -->
-
-    <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="Styles/Themes/LightTheme.xaml" />
-    </ResourceDictionary.MergedDictionaries>
-
-    <!--#endregion-->
 
     <!--#region ListViews -->
 
@@ -120,11 +114,19 @@
 
     <Style TargetType="Picker">
         <Setter Property="VerticalOptions" Value="{StaticResource LineVerticalOptions}"/>
-        <Setter Property="Margin" Value="{StaticResource ControlRightMargin}"/>
         <Setter Property="TextColor" Value="{StaticResource LabelTextColour}"/>
     </Style>
-    
-    <!--#endregion-->
+
+    <Style x:Key="PickerHorizontalStyle" TargetType="Picker">
+      <Setter Property="Margin" Value="{StaticResource ControlRightMargin}"/>
+    </Style>
+
+    <Style x:Key="PickerVerticalStyle" TargetType="Picker">
+      <Setter Property="Margin" Value="{StaticResource ControlTopMargin}"/>
+    </Style>
+
+
+  <!--#endregion-->
 
     <!--#region Buttons -->
 

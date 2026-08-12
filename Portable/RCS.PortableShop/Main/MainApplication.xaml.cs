@@ -1,6 +1,7 @@
 ﻿using RCS.PortableShop.Resources;
 using System.Diagnostics;
 using System.Reflection;
+using Settings = RCS.PortableShop.Model.Settings;
 
 // Note this is on assembly level. The stated namespace below does not seem to matter.
 // I applied this on all assemblies containing XAML. I also tried this separately on the classes at first.
@@ -19,8 +20,7 @@ namespace RCS.PortableShop.Main
         {
             InitializeComponent();
 
-            // Initialize persisted theme selection
-            RCS.PortableShop.Common.Services.ThemeService.InitializeTheme();
+            Settings.Theme = Settings.Theme;
         }
 
         private static void ListResources()

@@ -1,7 +1,7 @@
-﻿using RCS.PortableShop.Common.ViewModels;
+﻿using RCS.PortableShop.Common.Styles.Themes;
+using RCS.PortableShop.Common.ViewModels;
 using RCS.PortableShop.Model;
 using RCS.PortableShop.Resources;
-using System.Collections.Generic;
 
 namespace RCS.PortableShop.ViewModels
 {
@@ -14,7 +14,20 @@ namespace RCS.PortableShop.ViewModels
         }
         #endregion
 
-        #region Settings    
+        #region Settings 
+        public List<Theme> Themes => Settings.Themes;
+
+        // Note no BindableProperty because Settings is the underlying datastructure.
+        public Theme Theme
+        {
+            get => Settings.Theme;
+            set
+            {
+                Settings.Theme = value;
+                OnPropertyChanged();
+            }
+        }
+
         public List<ServiceType> ServiceTypes => Settings.ServiceTypes;
 
         // Note no BindableProperty because Settings is the underlying datastructure.
