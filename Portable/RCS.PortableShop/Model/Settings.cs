@@ -59,7 +59,6 @@ namespace RCS.PortableShop.Model
             {
                 mergedDictionaries.Clear();
 
-                // TODO Change on the fly.
                 switch (Theme)
                 {
                     case Theme.Dark:

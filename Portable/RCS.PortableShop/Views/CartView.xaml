@@ -10,7 +10,7 @@
     xmlns:views="clr-namespace:RCS.PortableShop.Views;assembly=RCS.PortableShop"
     xmlns:viewModels="clr-namespace:RCS.PortableShop.ViewModels"
     mc:Ignorable="d"
-    BackgroundColor="{StaticResource CartLevel0Colour}"
+    BackgroundColor="{DynamicResource CartLevel0Colour}"
     Padding="{StaticResource ViewPadding}"
     >
     <!--
@@ -33,10 +33,10 @@
         <!--Note MAUI Moved on from ListView to CollectionView because the ItemTemplate did not render on Windows, while it did on Android! Problem was not in my ContentButton.-->
         <!--Note on Windows the items currently overlay each other partially, until the window is resized. https://github.com/dotnet/maui/issues/12118-->
         
-        <CollectionView x:Name="cartItemsListView" ItemsSource="{Binding Items}" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource ResultsBackgroundColour}" CanMixGroups="True">
+        <CollectionView x:Name="cartItemsListView" ItemsSource="{Binding Items}" VerticalOptions="FillAndExpand" BackgroundColor="{DynamicResource ResultsBackgroundColour}" CanMixGroups="True">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Style="{StaticResource ListItemStyle}" BackgroundColor="{StaticResource CartLevel1Colour}">
+                    <Grid Style="{StaticResource ListItemStyle}" BackgroundColor="{DynamicResource CartLevel1Colour}">
                         <!--Note this layout currently is aimed towards portrait orientation.-->
                         <StackLayout Orientation="Vertical">
                             <Label Text="{Binding Name}" Style="{StaticResource ValueEmphasisMediumLabelStyle}"/>

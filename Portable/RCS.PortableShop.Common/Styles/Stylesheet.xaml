@@ -5,6 +5,8 @@
     xmlns:controls="clr-namespace:RCS.PortableShop.Common.Controls;assembly=RCS.PortableShop.Common"
     >
     
+    <!--TODO DynamicResource does not properly work.-->
+    
     <!--Note that currently no form of nested or multiple merging exist. https://forums.xamarin.com/discussion/86308/multiple-merged-dictionaries?-->
     <!--TODO split off ResourceDictionary when possible.-->
 
@@ -45,7 +47,7 @@
     <Style x:Key="LabelStyle" TargetType="Label">
         <Setter Property="VerticalOptions" Value="{StaticResource LineVerticalOptions}"/>
         <Setter Property="FontSize" Value="Small"/>
-        <Setter Property="TextColor" Value="{StaticResource LabelTextColour}"/>
+        <Setter Property="TextColor" Value="{DynamicResource LabelTextColour}"/>
     </Style>
 
     <!--Generic.-->
@@ -85,7 +87,7 @@
     </Style>
 
     <Style x:Key="MessageLabelStyle" TargetType="Label" BasedOn="{StaticResource EmphasisMediumLabelStyle}">
-        <Setter Property="TextColor" Value="{StaticResource MessageColour}"/>
+        <Setter Property="TextColor" Value="{DynamicResource MessageColour}"/>
         <Setter Property="VerticalOptions" Value="FillAndExpand"/>
         <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
     </Style>
@@ -96,7 +98,7 @@
 
     <Style TargetType="Entry">
         <Setter Property="VerticalOptions" Value="{StaticResource LineVerticalOptions}"/>
-        <Setter Property="TextColor" Value="{StaticResource LabelTextColour}"/>
+        <Setter Property="TextColor" Value="{DynamicResource LabelTextColour}"/>
     </Style>
 
     <Style x:Key="ValueEmphasisEntryStyle" TargetType="Entry">
@@ -114,7 +116,7 @@
 
     <Style TargetType="Picker">
         <Setter Property="VerticalOptions" Value="{StaticResource LineVerticalOptions}"/>
-        <Setter Property="TextColor" Value="{StaticResource LabelTextColour}"/>
+        <Setter Property="TextColor" Value="{DynamicResource LabelTextColour}"/>
     </Style>
 
     <Style x:Key="PickerHorizontalStyle" TargetType="Picker">
@@ -140,7 +142,7 @@
         <Setter Property="BorderWidth" Value="1"/>
         <Setter Property="BorderColor" Value="Black"/>
 
-        <Setter Property="TextColor" Value="{StaticResource LabelTextColour}"/>
+        <Setter Property="TextColor" Value="{DynamicResource LabelTextColour}"/>
     </Style>
 
     <Style x:Key="CancelButtonStyle" TargetType="Button">
@@ -167,7 +169,7 @@
     </Style>
 
     <Style x:Key="CartTrashButtonStyle" TargetType="Button" BasedOn="{StaticResource CartButtonStyle}">
-        <Setter Property="BackgroundColor" Value="{StaticResource WarningColour}"/>
+        <Setter Property="BackgroundColor" Value="{DynamicResource WarningColour}"/>
     </Style>
 
     <!--#endregion-->

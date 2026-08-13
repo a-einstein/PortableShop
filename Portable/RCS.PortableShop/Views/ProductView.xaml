@@ -12,7 +12,7 @@
     xmlns:baseClasses="clr-namespace:RCS.PortableShop.Common.Views;assembly=RCS.PortableShop.Common"
     xmlns:viewModels="clr-namespace:RCS.PortableShop.ViewModels"
     mc:Ignorable="d" 
-    BackgroundColor="{StaticResource ProductsLevel1Colour}"
+    BackgroundColor="{DynamicResource ProductsLevel1Colour}"
     Padding="{StaticResource ViewPadding}"
     >
     <!--d:BindingContext ="{d:DesignInstance Type=viewModels:ProductViewModel}"-->
