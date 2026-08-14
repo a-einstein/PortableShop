@@ -1,7 +1,6 @@
 ﻿using RCS.PortableShop.Common.Styles;
 using RCS.PortableShop.Common.Styles.Themes;
 using RCS.PortableShop.Resources;
-using System.Globalization;
 
 namespace RCS.PortableShop.Model
 {
@@ -19,31 +18,20 @@ namespace RCS.PortableShop.Model
             if (Preferences.ContainsKey(cultureKey))
             {
                 // TODO Make more transparent.
-                Culture = Culture;
+                CultureInfo = CultureInfo;
             }
         }
         #endregion
 
         #region Theme
-        // TODO Translate values.
-        public static readonly List<Theme> Themes = Enum.GetValues<Theme>().Cast<Theme>().ToList();
         private const string themeKey = "Theme";
-
-        private static Theme? theme;
 
         // Note this is non nullable.
         public static Theme Theme
         {
-            get
-            {
-                if (!theme.HasValue)
-                    theme = (Theme)Preferences.Get(themeKey, (int)Theme.Light);
-
-                return theme.Value;
-            }
+            get => (Theme)Preferences.Get(themeKey, (int)Theme.Light);
             set
             {
-                theme = value;
                 Preferences.Set(themeKey, (int)value);
 
                 // TODO Side-effect. Move?
@@ -51,7 +39,7 @@ namespace RCS.PortableShop.Model
             }
         }
 
-        private static void ApplyTheme()
+        public static void ApplyTheme()
         {
             var mergedDictionaries = Application.Current.Resources.MergedDictionaries;
 
@@ -76,7 +64,7 @@ namespace RCS.PortableShop.Model
         }
         #endregion
 
-        #region ServiceType
+        #region DataService
         public static readonly List<ServiceType> ServiceTypes = Enum.GetValues<ServiceType>().Cast<ServiceType>().ToList();
         private const string serviceTypeKey = "ServiceType";
 
@@ -105,22 +93,22 @@ namespace RCS.PortableShop.Model
         #endregion
 
         #region Culture
-        public static IList<CultureInfo> Cultures { get; } = new List<CultureInfo>()
-        {
+        public static IList<CultureInfo> CultureInfos { get; } =
+        [
             new CultureInfo("en-GB", Labels.CultureEnglish),
             new CultureInfo("nl-NL", Labels.CultureDutch)
-        };
+        ];
 
         private const string cultureKey = "Culture";
-        public static CultureInfo Culture
+        public static CultureInfo CultureInfo
         {
             get
             {
                 // Try to read stored name (or take first available name).
-                var cultureName = Preferences.Get(cultureKey, Cultures.FirstOrDefault().Name);
+                var cultureName = Preferences.Get(cultureKey, CultureInfos.FirstOrDefault().Name);
 
                 // Use matching culture.
-                return Cultures.FirstOrDefault(element => element.Name == cultureName);
+                return CultureInfos.FirstOrDefault(element => element.Name == cultureName);
             }
             set
             {
@@ -132,7 +120,7 @@ namespace RCS.PortableShop.Model
                 // TODO Change on the fly.
                 System.Globalization.CultureInfo.CurrentCulture =
                     System.Globalization.CultureInfo.DefaultThreadCurrentCulture =
-                    System.Globalization.CultureInfo.DefaultThreadCurrentUICulture = new System.Globalization.CultureInfo(Culture.Name);
+                    System.Globalization.CultureInfo.DefaultThreadCurrentUICulture = new System.Globalization.CultureInfo(CultureInfo.Name);
             }
         }
         #endregion

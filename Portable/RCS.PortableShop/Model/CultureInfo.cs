@@ -1,5 +1,8 @@
-﻿namespace RCS.PortableShop.Model
+﻿using System.Diagnostics;
+
+namespace RCS.PortableShop.Model
 {
+    [DebuggerDisplay("{Name} - {DisplayName}")]
     public readonly struct CultureInfo
     {
         public CultureInfo(string name, string displayName)

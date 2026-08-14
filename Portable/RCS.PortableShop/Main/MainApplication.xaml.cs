@@ -20,7 +20,8 @@ namespace RCS.PortableShop.Main
         {
             InitializeComponent();
 
-            Settings.Theme = Settings.Theme;
+            // TODO Consider other way.
+            Settings.ApplyTheme();
         }
 
         private static void ListResources()

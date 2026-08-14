@@ -14,20 +14,26 @@ namespace RCS.PortableShop.ViewModels
         }
         #endregion
 
-        #region Settings 
-        public List<Theme> Themes => Settings.Themes;
+        #region Theme
+        public IList<ThemeInfo> ThemeInfos { get; } =
+        [
+            new ThemeInfo(Theme.Light, Labels.ThemeLight),
+            new ThemeInfo(Theme.Dark, Labels.ThemeDark)
+        ];
 
         // Note no BindableProperty because Settings is the underlying datastructure.
-        public Theme Theme
+        public ThemeInfo ThemeInfo
         {
-            get => Settings.Theme;
+            get => ThemeInfos.FirstOrDefault(element => element.Theme == Settings.Theme);
             set
             {
-                Settings.Theme = value;
+                Settings.Theme = value.Theme;
                 OnPropertyChanged();
             }
         }
+        #endregion
 
+        #region DataService
         public List<ServiceType> ServiceTypes => Settings.ServiceTypes;
 
         // Note no BindableProperty because Settings is the underlying datastructure.
@@ -40,16 +46,18 @@ namespace RCS.PortableShop.ViewModels
                 OnPropertyChanged();
             }
         }
+        #endregion
 
-        public IList<CultureInfo> Cultures => Settings.Cultures;
+        #region Culture
+        public IList<CultureInfo> CultureInfos => Settings.CultureInfos;
 
         // Note no BindableProperty because Settings is the underlying datastructure.
-        public CultureInfo Culture
+        public CultureInfo CultureInfo
         {
-            get => Settings.Culture;
+            get => Settings.CultureInfo;
             set
             {
-                Settings.Culture = value;
+                Settings.CultureInfo = value;
                 OnPropertyChanged();
             }
         }
