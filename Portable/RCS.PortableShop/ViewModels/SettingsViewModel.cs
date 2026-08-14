@@ -41,10 +41,10 @@ namespace RCS.PortableShop.ViewModels
             }
         }
 
-        public IList<Culture> Cultures => Settings.Cultures;
+        public IList<CultureInfo> Cultures => Settings.Cultures;
 
         // Note no BindableProperty because Settings is the underlying datastructure.
-        public Culture Culture
+        public CultureInfo Culture
         {
             get => Settings.Culture;
             set

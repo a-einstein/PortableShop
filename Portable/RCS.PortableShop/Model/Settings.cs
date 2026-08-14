@@ -105,14 +105,14 @@ namespace RCS.PortableShop.Model
         #endregion
 
         #region Culture
-        public static IList<Culture> Cultures { get; } = new List<Culture>()
+        public static IList<CultureInfo> Cultures { get; } = new List<CultureInfo>()
         {
-            new Culture(Labels.CultureEnglish, "en-GB"),
-            new Culture(Labels.CultureDutch, "nl-NL")
+            new CultureInfo("en-GB", Labels.CultureEnglish),
+            new CultureInfo("nl-NL", Labels.CultureDutch)
         };
 
         private const string cultureKey = "Culture";
-        public static Culture Culture
+        public static CultureInfo Culture
         {
             get
             {
@@ -130,9 +130,9 @@ namespace RCS.PortableShop.Model
                 // TODO Side-effect. Move?
                 // Switch culture.
                 // TODO Change on the fly.
-                CultureInfo.CurrentCulture =
-                    CultureInfo.DefaultThreadCurrentCulture =
-                    CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo(Culture.Name);
+                System.Globalization.CultureInfo.CurrentCulture =
+                    System.Globalization.CultureInfo.DefaultThreadCurrentCulture =
+                    System.Globalization.CultureInfo.DefaultThreadCurrentUICulture = new System.Globalization.CultureInfo(Culture.Name);
             }
         }
         #endregion
