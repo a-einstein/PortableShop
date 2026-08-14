@@ -6,19 +6,29 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
-    <Color x:Key="MessageColour">#00008B</Color> <!--DarkBlue-->
-    <Color x:Key="AssertColour">Green</Color>
-    <Color x:Key="WarningColour">Orange</Color>
-    <Color x:Key="ErrorColour">Red</Color>
-    <Color x:Key="ResultsBackgroundColour">White</Color>
+  <!-- Colours
+  https://learn.microsoft.com/en-us/dotnet/api/system.windows.media.colors
+  -->
+  
+  <Color x:Key="MessageColour">DarkBlue</Color>
 
-    <Color x:Key="InvalidBackgroundColour">#FFB0B0</Color>
+  <Color x:Key="AssertColour">Green</Color>
+  <Color x:Key="WarningColour">Orange</Color>
+  <Color x:Key="ErrorColour">Red</Color>
 
-    <Color x:Key="ProductsLevel0Colour">#58ACFA</Color>
-    <Color x:Key="ProductsLevel1Colour">#A9D0F5</Color>
-    <Color x:Key="CartLevel0Colour">#F4FA58</Color>
-    <Color x:Key="CartLevel1Colour">#F2F5A9</Color>
-    <Color x:Key="LabelTextColour">#2F4F4F</Color> <!--DarkSlateGray-->
-    <Color x:Key="ValueTextColour">#00008B</Color> <!--DarkBlue-->
+  <Color x:Key="SettingsBackgroundColour">Khaki</Color>
+  <Color x:Key="ResultsBackgroundColour">White</Color>
+  <Color x:Key="InvalidBackgroundColour">#FFB0B0</Color>
+
+  <Color x:Key="ProductsLevel0Colour">#58ACFA</Color>
+  <Color x:Key="ProductsLevel1Colour">#A9D0F5</Color>
+
+  <Color x:Key="CartLevel0Colour">#F4FA58</Color>
+  <Color x:Key="CartLevel1Colour">#F2F5A9</Color>
+
+  <Color x:Key="LabelTextColour">#2F4F4F</Color>
+  <!--DarkSlateGray-->
+  <Color x:Key="ValueTextColour">#00008B</Color>
+  <!--DarkBlue-->
 
 </ResourceDictionary>

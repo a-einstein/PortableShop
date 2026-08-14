@@ -11,6 +11,7 @@
     xmlns:baseClasses="clr-namespace:RCS.PortableShop.Common.Views;assembly=RCS.PortableShop.Common"
     xmlns:viewModels="clr-namespace:RCS.PortableShop.ViewModels"
     mc:Ignorable="d"
+    BackgroundColor="{DynamicResource SettingsBackgroundColour}"
     >
   <!--d:BindingContext ="{d:DesignInstance Type=viewModels:SettingsViewModel}"-->
 
@@ -26,23 +27,25 @@
       <ColumnDefinition Width="Auto"/>
     </Grid.ColumnDefinitions>
 
+    <!--TODO Simply stack this?-->
+    
     <!--Note that Title of Picker: for Android is displayed as placeholder inside, for UWP as separate label above. Therefor no separate label and the VerticalOptions.-->
 
-    <Picker Grid.Row="0" Grid.Column="1" Title="{x:Static resx:Labels.Theme}"
+    <Picker Grid.Row="0" Grid.Column="1" Title="{x:Static resx:Labels.CultureCulture}"
+            ItemsSource="{Binding CultureInfos, Mode=OneTime}"
+            SelectedItem="{Binding CultureInfo, Mode=TwoWay}"
+            ItemDisplayBinding="{Binding DisplayName}"
+            Style="{StaticResource PickerVerticalStyle}"/>
+
+    <Picker Grid.Row="1" Grid.Column="1" Title="{x:Static resx:Labels.Theme}"
             ItemsSource="{Binding ThemeInfos, Mode=OneTime}"
             SelectedItem="{Binding ThemeInfo, Mode=TwoWay}"
             ItemDisplayBinding="{Binding DisplayName}"
             Style="{StaticResource PickerVerticalStyle}"/>
 
-    <Picker Grid.Row="1" Grid.Column="1" Title="{x:Static resx:Labels.ServiceType}"
+    <Picker Grid.Row="2" Grid.Column="1" Title="{x:Static resx:Labels.ServiceType}"
             ItemsSource="{Binding ServiceTypes, Mode=OneTime}"
             SelectedItem="{Binding ServiceType, Mode=TwoWay}"
-            Style="{StaticResource PickerVerticalStyle}"/>
-
-    <Picker Grid.Row="2" Grid.Column="1" Title="{x:Static resx:Labels.CultureCulture}"
-            ItemsSource="{Binding CultureInfos, Mode=OneTime}"
-            SelectedItem="{Binding CultureInfo, Mode=TwoWay}"
-            ItemDisplayBinding="{Binding DisplayName}"
             Style="{StaticResource PickerVerticalStyle}"/>
   </Grid>
 </baseClasses:View>
