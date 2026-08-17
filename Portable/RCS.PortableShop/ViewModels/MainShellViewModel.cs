@@ -98,7 +98,7 @@ namespace RCS.PortableShop.ViewModels
 
         private static async Task OpenSettings()
         {
-            // TODO Open this IN flyout?
+            // TODO Open this IN flyout? FlyoutPage?
             Shell.FlyoutIsPresented = false;
 
             var settingsView = new SettingsView() { ViewModel = new SettingsViewModel() };

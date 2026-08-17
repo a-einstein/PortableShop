@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<Shell 
+<Shell
     x:Class="RCS.PortableShop.Main.MainShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -12,51 +12,58 @@
     xmlns:viewModels="clr-namespace:RCS.PortableShop.ViewModels"
     mc:Ignorable="d"
     >
-    <!--d:BindingContext ="{d:DesignInstance Type=viewModels:MainShellViewModel}"-->
+  <!--d:BindingContext ="{d:DesignInstance Type=viewModels:MainShellViewModel}"-->
 
-    <!--
-    Note not totally understood behaviour of DesignInstance,
-    as described in https://github.com/xamarin/Xamarin.Forms/issues/12947
-    Note current d is a replacement of http://xamarin.com/schemas/2014/forms/design
-    -->
+  <!--
+  Note not totally understood behaviour of DesignInstance,
+  as described in https://github.com/xamarin/Xamarin.Forms/issues/12947
+  Note current d is a replacement of http://xamarin.com/schemas/2014/forms/design
+  -->
 
-    <Shell.FlyoutHeader>
-        <ContentView Padding="10" BackgroundColor="White">
-            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                <!--TODO Fill available width. Maybe have a bigger icon too. Check necessity of options.-->
-                <Image Source="application.png" Opacity="0.3" Scale="4" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFit"/>
-                <Label x:Name="aboutLabel" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="Center"/>
-            </Grid>
-        </ContentView>
-    </Shell.FlyoutHeader>
+  <!--
+  TODO Reconsider structure.
+  https://learn.microsoft.com/en-us/dotnet/maui/fundamentals/shell/
+  -->
 
-    <!--TODO Reinstalled this to prevent navigation crash, see elsewhere too. Want to do without, or make a logical layout.-->
-    
-    <FlyoutItem>
-        <Tab>
-            <ShellContent>
-                <main:MainPage />
-            </ShellContent>
-        </Tab>
-    </FlyoutItem>
-    
-    <!-- TODO Also works. Preferable?
+  <!--TODO Set themed general BackgroundColor for Flyout.-->
+
+  <Shell.FlyoutHeader>
+    <ContentView Padding="10" BackgroundColor="White">
+      <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <!--TODO Fill available width. Maybe have a bigger icon too. Check necessity of options.-->
+        <Image Source="application.png" Opacity="0.3" Scale="4" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFit"/>
+        <Label x:Name="aboutLabel" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="Center"/>
+      </Grid>
+    </ContentView>
+  </Shell.FlyoutHeader>
+
+  <!--TODO Reinstalled this to prevent navigation crash, see elsewhere too. Want to do without, or make a logical layout.-->
+
+  <FlyoutItem>
+    <Tab>
+      <ShellContent>
+        <main:MainPage />
+      </ShellContent>
+    </Tab>
+  </FlyoutItem>
+
+  <!-- TODO Also works. Preferable?
     <ShellContent ContentTemplate="{DataTemplate main:MainPage}" Route="MainPage"/>
     -->
 
-    <!--TODO Would prefer to have hamburger visible on all pages, besides a back button. But is seems intended to only have it on the root page.-->
+  <!--TODO Would prefer to have hamburger visible on all pages, besides a back button. But is seems intended to only have it on the root page.-->
 
-    <!--Note that icon sizes in UWP are automatically reduced even though a larger size was chosen by me.-->
-    
-    <!--TODO MAUI Icons are not visible on Android with dark theme.-->
+  <!--Note that icon sizes in UWP are automatically reduced even though a larger size was chosen by me.-->
 
-    <MenuItem Command="{Binding SettingsCommand}" Text="{x:Static resx:Labels.Settings}" IconImageSource="settings.png"/>
+  <!--TODO MAUI Icons are not visible on Android with dark theme.-->
 
-    <MenuItem Command="{Binding ShowProductsCommand}" Text="{x:Static resx:Labels.Products}" IconImageSource="overview.png"/>
+  <MenuItem Command="{Binding SettingsCommand}" Text="{x:Static resx:Labels.Settings}" IconImageSource="settings.png"/>
 
-    <MenuItem Command="{Binding ShowCartCommand}" Text="{x:Static resx:Labels.Cart}" IconImageSource="cart.png"/>
+  <MenuItem Command="{Binding ShowProductsCommand}" Text="{x:Static resx:Labels.Products}" IconImageSource="overview.png"/>
 
-    <MenuItem Command="{Binding OpenSupportCommand}" Text="{x:Static resx:Labels.Support}" IconImageSource="information.png"/>
+  <MenuItem Command="{Binding ShowCartCommand}" Text="{x:Static resx:Labels.Cart}" IconImageSource="cart.png"/>
 
-    <MenuItem Command="{Binding UpdateCommand}" Text="{x:Static resx:Labels.Update}" IconImageSource="clouddownload.png"/>
+  <MenuItem Command="{Binding OpenSupportCommand}" Text="{x:Static resx:Labels.Support}" IconImageSource="information.png"/>
+
+  <MenuItem Command="{Binding UpdateCommand}" Text="{x:Static resx:Labels.Update}" IconImageSource="clouddownload.png"/>
 </Shell>
