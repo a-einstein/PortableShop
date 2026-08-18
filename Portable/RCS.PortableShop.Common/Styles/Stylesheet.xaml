@@ -5,8 +5,6 @@
     xmlns:controls="clr-namespace:RCS.PortableShop.Common.Controls;assembly=RCS.PortableShop.Common"
     >
     
-    <!--TODO DynamicResource does not properly work.-->
-    
     <!--Note that currently no form of nested or multiple merging exist. https://forums.xamarin.com/discussion/86308/multiple-merged-dictionaries?-->
     <!--TODO split off ResourceDictionary when possible.-->
 

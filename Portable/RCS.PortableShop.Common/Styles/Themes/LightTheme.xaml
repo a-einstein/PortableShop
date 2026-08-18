@@ -26,8 +26,7 @@
   <Color x:Key="CartLevel0Colour">#F4FA58</Color>
   <Color x:Key="CartLevel1Colour">#F2F5A9</Color>
 
-  <Color x:Key="LabelTextColour">#2F4F4F</Color>
-  <!--DarkSlateGray-->
+  <Color x:Key="LabelTextColour">DarkSlateGray</Color>
   <Color x:Key="ValueTextColour">#00008B</Color>
   <!--DarkBlue-->
 

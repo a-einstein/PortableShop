@@ -12,10 +12,10 @@
     https://learn.microsoft.com/en-us/dotnet/api/system.windows.media.colors
     -->
   
-    <Color x:Key="MessageColour">#87CEFA</Color> <!-- LightSkyBlue -->
+    <Color x:Key="MessageColour">LightSkyBlue</Color>
   
-    <Color x:Key="AssertColour">#90EE90</Color> <!-- LightGreen -->
-    <Color x:Key="WarningColour">#FFD700</Color> <!-- Gold -->
+    <Color x:Key="AssertColour">LightGreen</Color>
+    <Color x:Key="WarningColour">Gold</Color>
     <Color x:Key="ErrorColour">#FF6B6B</Color> <!-- Soft Red -->
 
     <Color x:Key="SettingsBackgroundColour">DarkKhaki</Color>

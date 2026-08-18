@@ -39,14 +39,14 @@
                     <Grid Style="{StaticResource ListItemStyle}" BackgroundColor="{DynamicResource CartLevel1Colour}">
                         <!--Note this layout currently is aimed towards portrait orientation.-->
                         <StackLayout Orientation="Vertical">
-                            <Label Text="{Binding Name}" Style="{StaticResource ValueEmphasisMediumLabelStyle}"/>
+                            <Label Text="{Binding Name}" Style="{DynamicResource ValueEmphasisMediumLabelStyle}"/>
 
                             <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding ProductSize}" Style="{StaticResource ValueLabelStyle}"/>
-                                <Label Text="{Binding ProductSizeUnitMeasureCode}" Style="{StaticResource ValueLabelStyle}"/>
-                                <Label Text="{Binding ProductColor}" Style="{StaticResource ValueLabelStyle}"/>
-                                <Label Text="{Binding ProductListPrice, StringFormat='{}{0:C2}'}" Style="{StaticResource ValueLabelStyle}"/>
-                                <Label Text="{Binding Value, StringFormat='{}{0:C2}'}" Style="{StaticResource ValueEmphasisLabelStyle}"/>
+                                <Label Text="{Binding ProductSize}" Style="{DynamicResource ValueLabelStyle}"/>
+                                <Label Text="{Binding ProductSizeUnitMeasureCode}" Style="{DynamicResource ValueLabelStyle}"/>
+                                <Label Text="{Binding ProductColor}" Style="{DynamicResource ValueLabelStyle}"/>
+                                <Label Text="{Binding ProductListPrice, StringFormat='{}{0:C2}'}" Style="{DynamicResource ValueLabelStyle}"/>
+                                <Label Text="{Binding Value, StringFormat='{}{0:C2}'}" Style="{DynamicResource ValueEmphasisLabelStyle}"/>
                             </StackLayout>
 
                             <!--TODO MAUI This part is not well displayed, only on Windows!-->
