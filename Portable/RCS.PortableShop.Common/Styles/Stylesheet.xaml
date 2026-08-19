@@ -20,11 +20,15 @@
 
     <!--#endregion-->
 
-    <!--#region ListView -->
+    <!--#region CollectionView -->
 
-    <Style TargetType="ListView">
-        <!--Note that setting HasUnevenRows seems the only way to let rows (somewhat) adapt to contents, instead of having to set some fixed RowHeight.-->
-        <Setter Property="HasUnevenRows" Value="True"/>
+    <Style TargetType="CollectionView">
+        <Setter Property="ItemsLayout">
+            <Setter.Value>
+                <!--Use for separation around.-->
+                <GridItemsLayout  Orientation="Vertical" Span="1" VerticalItemSpacing="1" HorizontalItemSpacing="1"/>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <!--#endregion-->
@@ -32,7 +36,6 @@
     <!--#region Grid -->
 
     <Style x:Key="ListItemStyle" TargetType="Grid">
-      <Setter Property="Margin" Value="2,2,2,0"/>
       <Setter Property="Padding" Value="3"/>
     </Style>
 
