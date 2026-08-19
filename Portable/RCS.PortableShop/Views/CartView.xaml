@@ -32,13 +32,13 @@
         <views:CartSummaryView Grid.Row="0"/>
 
         <!--Note that CollectionView has got its own scrolling (either scrollbar or swiping).-->
-        <CollectionView x:Name="cartItemsListView" Grid.Row="1" ItemsSource="{Binding Items}" BackgroundColor="{DynamicResource ResultsBackgroundColour}">
+        <CollectionView x:Name="cartItemsListView" Grid.Row="1" ItemsSource="{Binding Items}" BackgroundColor="{StaticResource ResultsBackgroundColour}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Grid Style="{StaticResource ListItemStyle}" BackgroundColor="{DynamicResource CartLevel1Colour}">
                         <!--Note this layout currently is aimed towards portrait orientation.-->
                         <StackLayout Orientation="Vertical">
-                            <Label Text="{Binding Name}" Style="{DynamicResource ValueEmphasisMediumLabelStyle}"/>
+                            <Label Text="{Binding Name}" Style="{StaticResource ValueEmphasisMediumLabelStyle}"/>
 
                             <StackLayout Orientation="Horizontal">
                                 <Label Text="{Binding ProductSize}" Style="{StaticResource ValueLabelStyle}"/>

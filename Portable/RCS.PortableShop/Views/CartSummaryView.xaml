@@ -26,13 +26,13 @@
 
         <Image Source="cart.png"/>
 
-        <Label Text="{Binding ItemsCount}" Style="{DynamicResource ValueEmphasisMediumLabelStyle}"/>
+        <Label Text="{Binding ItemsCount}" Style="{StaticResource ValueEmphasisMediumLabelStyle}"/>
         <Label Text="{x:Static resx:Labels.Products}" FontSize="Medium"/>
 
-        <Label Text="{Binding ProductItemsCount}" Style="{DynamicResource ValueEmphasisMediumLabelStyle}"/>
+        <Label Text="{Binding ProductItemsCount}" Style="{StaticResource ValueEmphasisMediumLabelStyle}"/>
         <Label Text="{x:Static resx:Labels.Items}" FontSize="Medium"/>
 
-        <Label Text="{Binding TotalValue, StringFormat='{}{0:C2}'}" Style="{DynamicResource ValueEmphasisMediumLabelStyle}"/>
+        <Label Text="{Binding TotalValue, StringFormat='{}{0:C2}'}" Style="{StaticResource ValueEmphasisMediumLabelStyle}"/>
         <Label Text="{x:Static resx:Labels.TotalValue}" FontSize="Medium"/>
     </StackLayout>
 </baseClasses:View>
