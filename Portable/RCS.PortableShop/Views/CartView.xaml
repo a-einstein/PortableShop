@@ -17,7 +17,6 @@
     d:BindingContext="{d:DesignInstance Type=viewModels:CartViewModel}"
     -->
 
-
     <baseClasses:View.Resources>
         <ResourceDictionary>
             <!--<Converters:SizeFormatter x:Key="SizeFormatter"/>-->
@@ -32,9 +31,13 @@
         
         <!--Note MAUI Moved on from ListView to CollectionView because the ItemTemplate did not render on Windows, while it did on Android! Problem was not in my ContentButton.-->
         <!--Note on Windows the items currently overlay each other partially, until the window is resized. https://github.com/dotnet/maui/issues/12118-->
-        
+
         <CollectionView x:Name="cartItemsListView" ItemsSource="{Binding Items}" VerticalOptions="FillAndExpand" BackgroundColor="{DynamicResource ResultsBackgroundColour}" CanMixGroups="True">
-            <CollectionView.ItemTemplate>
+            <CollectionView.ItemsLayout>
+                <!--Use for separation around.-->
+                <GridItemsLayout  Orientation="Vertical" Span="1" VerticalItemSpacing="1" HorizontalItemSpacing="1"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate >
                 <DataTemplate>
                     <Grid Style="{StaticResource ListItemStyle}" BackgroundColor="{DynamicResource CartLevel1Colour}">
                         <!--Note this layout currently is aimed towards portrait orientation.-->

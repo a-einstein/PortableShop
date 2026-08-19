@@ -20,8 +20,7 @@
 
     <!--#endregion-->
 
-
-    <!--#region ListViews -->
+    <!--#region ListView -->
 
     <Style TargetType="ListView">
         <!--Note that setting HasUnevenRows seems the only way to let rows (somewhat) adapt to contents, instead of having to set some fixed RowHeight.-->
@@ -30,16 +29,16 @@
 
     <!--#endregion-->
 
-    <!--#region Grids -->
+    <!--#region Grid -->
 
     <Style x:Key="ListItemStyle" TargetType="Grid">
-        <Setter Property="Margin" Value="2,2,2,0"/>
-        <Setter Property="Padding" Value="3"/>
+      <Setter Property="Margin" Value="2,2,2,0"/>
+      <Setter Property="Padding" Value="3"/>
     </Style>
 
     <!--#endregion-->
 
-    <!--#region Labels -->
+    <!--#region Label -->
 
     <!--Base needed to inherit.-->
     <Style x:Key="LabelStyle" TargetType="Label">
@@ -92,7 +91,7 @@
 
     <!--#endregion-->
 
-    <!--#region Entries -->
+    <!--#region Entry -->
 
     <Style TargetType="Entry">
         <Setter Property="VerticalOptions" Value="{StaticResource LineVerticalOptions}"/>
@@ -110,7 +109,7 @@
 
     <!--#endregion-->
 
-    <!--#region Pickers -->
+    <!--#region Picker -->
 
     <Style TargetType="Picker">
         <Setter Property="VerticalOptions" Value="{StaticResource LineVerticalOptions}"/>
@@ -126,9 +125,9 @@
     </Style>
 
 
-  <!--#endregion-->
+    <!--#endregion-->
 
-    <!--#region Buttons -->
+    <!--#region Button -->
 
     <!--Note FontSize does not do anything. -->
     <!--Note FontAttributes does not work.-->
@@ -161,13 +160,13 @@
         <Setter Property="Padding" Value="5"/>
     </Style>
 
-<!--TODO This part would be candidate to split off to a specific dictionary.-->
+    <!--TODO This part would be candidate to split off to a specific dictionary.-->
     <Style x:Key="CartPlusButtonStyle" TargetType="Button" BasedOn="{StaticResource CartButtonStyle}">
-        <Setter Property="BackgroundColor" Value="{StaticResource CartLevel1Colour}"/>
+        <Setter Property="BackgroundColor" Value="{DynamicResource CartLevel1Colour}"/>
     </Style>
 
     <Style x:Key="CartTrashButtonStyle" TargetType="Button" BasedOn="{StaticResource CartButtonStyle}">
-        <Setter Property="BackgroundColor" Value="{DynamicResource WarningColour}"/>
+        <Setter Property="BackgroundColor" Value="{DynamicResource WarningBackgroundColour}"/>
     </Style>
 
     <!--#endregion-->

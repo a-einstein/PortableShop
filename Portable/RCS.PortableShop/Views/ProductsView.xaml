@@ -55,7 +55,8 @@
                         <!--Note that Placeholder is just that, for both Android and UWP.-->
                         <controls:ClearableEntry Placeholder="{x:Static resx:Labels.TextFilter}" Text="{Binding TextFilterValue, Mode=TwoWay}" BackgroundColor="{DynamicResource ProductsLevel1Colour}" WidthRequest="130" VerticalOptions="End">
                              <controls:ClearableEntry.EntryBehaviors>
-                                 <!--TODO Currently parameter passing does not work and is hard coded. See comments elsewhere.-->
+                                 <!--TODO   Currently parameter passing does not work and is hard coded. See comments elsewhere.
+                                            DynamicResource did not work.-->
                                  <!--<behaviors:EntryRegexValidationBehavior Expression="{Binding ValidTextFilterExpression}" InvalidBackgroundColour="{StaticResource InvalidBackgroundColour}"/>-->
                                 <behaviors:EntryRegexValidationBehavior Expression=".{3}" InvalidBackgroundColour="{StaticResource InvalidBackgroundColour}"/>
 
@@ -118,24 +119,24 @@
                                             <Button Grid.Column="0" Grid.Row="1" ImageSource="cartplus.png" Command="{Binding BindingContext.CartCommand, Source={RelativeSource AncestorType={x:Type views:ProductsView}}}" CommandParameter="{Binding}" Style="{StaticResource CartPlusButtonStyle}" Margin="0" VerticalOptions="End" HorizontalOptions="End"/>
 
                                             <StackLayout Grid.Column="1" Grid.Row="0" Grid.RowSpan="2"  VerticalOptions="Start">
-                                                <StackLayout Orientation="Horizontal">
-                                                  <Label Text="{Binding ProductCategory}" Style="{DynamicResource ValueLabelStyle}"/>
-                                                  <Label Text="/" Style="{DynamicResource ValueLabelStyle}"/>
-                                                    <Label Text="{Binding ProductSubcategory}" Style="{DynamicResource ValueLabelStyle}"/>
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Label Text="{Binding ProductCategory}" Style="{DynamicResource ValueLabelStyle}"/>
+                                                        <Label Text="/" Style="{DynamicResource ValueLabelStyle}"/>
+                                                        <Label Text="{Binding ProductSubcategory}" Style="{DynamicResource ValueLabelStyle}"/>
+                                                    </StackLayout>
+
+                                                    <Label Text="{Binding Name}" Style="{DynamicResource ValueEmphasisMediumLabelStyle}"/>
+
+                                                    <!--HACK All similar occurrences of StringFormat are (temporarily) in this format because of this bug https://github.com/xamarin/Xamarin.Forms/issues/5282 -->
+                                                    <Label Text="{Binding ListPrice, StringFormat='{}{0:C2}'}" Style="{DynamicResource ValueEmphasisLabelStyle}"/>
+
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Label Text="{Binding Size}" Style="{DynamicResource ValueLabelStyle}"/>
+                                                        <Label Text="{Binding SizeUnitMeasureCode}" Style="{DynamicResource ValueLabelStyle}"/>
+                                                    </StackLayout>
+
+                                                    <Label Text="{Binding Color}" Style="{DynamicResource ValueLabelStyle}"/>
                                                 </StackLayout>
-
-                                                <Label Text="{Binding Name}" Style="{DynamicResource ValueEmphasisMediumLabelStyle}"/>
-
-                                                <!--HACK All similar occurrences of StringFormat are (temporarily) in this format because of this bug https://github.com/xamarin/Xamarin.Forms/issues/5282 -->
-                                                <Label Text="{Binding ListPrice, StringFormat='{}{0:C2}'}" Style="{DynamicResource ValueEmphasisLabelStyle}"/>
-
-                                                <StackLayout Orientation="Horizontal">
-                                                    <Label Text="{Binding Size}" Style="{DynamicResource ValueLabelStyle}"/>
-                                                    <Label Text="{Binding SizeUnitMeasureCode}" Style="{DynamicResource ValueLabelStyle}"/>
-                                                </StackLayout>
-
-                                                <Label Text="{Binding Color}" Style="{DynamicResource ValueLabelStyle}"/>
-                                            </StackLayout>
                                         </Grid>
                                     </controls:ContentButton.Content>
                                 </controls:ContentButton>
