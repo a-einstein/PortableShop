@@ -23,17 +23,17 @@
         </ResourceDictionary>
     </baseClasses:View.Resources>
 
-    <StackLayout>
-        <views:CartSummaryView/>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-        <!--VerticalOptions is needed to fill the screen with no or just a few items.-->
+        <views:CartSummaryView Grid.Row="0"/>
+
         <!--Note that CollectionView has got its own scrolling (either scrollbar or swiping).-->
-        
-        <!--Note MAUI Moved on from ListView to CollectionView because the ItemTemplate did not render on Windows, while it did on Android! Problem was not in my ContentButton.-->
-        <!--Note on Windows the items currently overlay each other partially, until the window is resized. https://github.com/dotnet/maui/issues/12118-->
-
-        <CollectionView x:Name="cartItemsListView" ItemsSource="{Binding Items}" VerticalOptions="FillAndExpand" BackgroundColor="{DynamicResource ResultsBackgroundColour}" CanMixGroups="True">
-             <CollectionView.ItemTemplate >
+        <CollectionView x:Name="cartItemsListView" Grid.Row="1" ItemsSource="{Binding Items}" BackgroundColor="{DynamicResource ResultsBackgroundColour}">
+            <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Grid Style="{StaticResource ListItemStyle}" BackgroundColor="{DynamicResource CartLevel1Colour}">
                         <!--Note this layout currently is aimed towards portrait orientation.-->
@@ -41,11 +41,11 @@
                             <Label Text="{Binding Name}" Style="{DynamicResource ValueEmphasisMediumLabelStyle}"/>
 
                             <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding ProductSize}" Style="{DynamicResource ValueLabelStyle}"/>
-                                <Label Text="{Binding ProductSizeUnitMeasureCode}" Style="{DynamicResource ValueLabelStyle}"/>
-                                <Label Text="{Binding ProductColor}" Style="{DynamicResource ValueLabelStyle}"/>
-                                <Label Text="{Binding ProductListPrice, StringFormat='{}{0:C2}'}" Style="{DynamicResource ValueLabelStyle}"/>
-                                <Label Text="{Binding Value, StringFormat='{}{0:C2}'}" Style="{DynamicResource ValueEmphasisLabelStyle}"/>
+                                <Label Text="{Binding ProductSize}" Style="{StaticResource ValueLabelStyle}"/>
+                                <Label Text="{Binding ProductSizeUnitMeasureCode}" Style="{StaticResource ValueLabelStyle}"/>
+                                <Label Text="{Binding ProductColor}" Style="{StaticResource ValueLabelStyle}"/>
+                                <Label Text="{Binding ProductListPrice, StringFormat='{}{0:C2}'}" Style="{StaticResource ValueLabelStyle}"/>
+                                <Label Text="{Binding Value, StringFormat='{}{0:C2}'}" Style="{StaticResource ValueEmphasisLabelStyle}"/>
                             </StackLayout>
 
                             <!--TODO MAUI This part is not well displayed, only on Windows!-->
@@ -61,5 +61,5 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-    </StackLayout>
+    </Grid>
 </baseClasses:View>
