@@ -67,6 +67,7 @@ namespace RCS.PortableShop.Common.ViewModels
         {
             MainThread.BeginInvokeOnMainThread(() =>
             {
+                // TODO Theme Title and its background. Unknown how. TitleBar is unsuited, as it works on the Window-frame, and not even on Android.
                 Title = MakeTitle();
             });
         }
