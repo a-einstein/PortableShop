@@ -27,27 +27,32 @@
 
   <!--TODO Set themed general BackgroundColor for Flyout.-->
 
-  <Shell.FlyoutHeader>
-    <ContentView Padding="10" BackgroundColor="White">
-      <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-        <!--TODO Fill available width. Maybe have a bigger icon too. Check necessity of options.-->
-        <Image Source="application.png" Opacity="0.3" Scale="4" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFit"/>
-        <Label x:Name="aboutLabel" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="Center"/>
-      </Grid>
-    </ContentView>
-  </Shell.FlyoutHeader>
+    <Shell.FlyoutHeader>
+        <ContentView Padding="10" BackgroundColor="White">
+            <!--TODO Solve the warnings,-->
+            <!--TODO Make this a StackLayout (again)? What has happened.-->
+            <!--<StackLayout Orientation="Horizontal">-->
+            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <!--TODO Fill available width. Maybe have a bigger icon too. Check necessity of options.-->
+                <!--TODO Where's the image?-->
+                <Image Source="application.png" Opacity="0.3" Scale="4" Aspect="AspectFit"/>
+                <Label x:Name="aboutLabel" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="Center"/>
+            </Grid>
+            <!--</StackLayout>-->
+        </ContentView>
+    </Shell.FlyoutHeader>
 
-  <!--TODO Reinstalled this to prevent navigation crash, see elsewhere too. Want to do without, or make a logical layout.-->
+    <!--TODO Reinstalled this to prevent navigation crash, see elsewhere too. Want to do without, or make a logical layout.-->
 
-  <FlyoutItem>
-    <Tab>
-      <ShellContent>
-        <main:MainPage />
-      </ShellContent>
-    </Tab>
-  </FlyoutItem>
+    <FlyoutItem>
+        <Tab>
+            <ShellContent>
+                <main:MainPage />
+            </ShellContent>
+        </Tab>
+    </FlyoutItem>
 
-  <!-- TODO Also works. Preferable?
+    <!-- TODO Also works. Preferable?
     <ShellContent ContentTemplate="{DataTemplate main:MainPage}" Route="MainPage"/>
     -->
 

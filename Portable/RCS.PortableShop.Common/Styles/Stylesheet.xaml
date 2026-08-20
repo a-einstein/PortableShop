@@ -88,8 +88,8 @@
 
     <Style x:Key="MessageLabelStyle" TargetType="Label" BasedOn="{StaticResource EmphasisMediumLabelStyle}">
         <Setter Property="TextColor" Value="{DynamicResource MessageColour}"/>
-        <Setter Property="VerticalOptions" Value="FillAndExpand"/>
-        <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+        <Setter Property="VerticalOptions" Value="Start"/>
+        <Setter Property="HorizontalOptions" Value="Start"/>
     </Style>
 
     <!--#endregion-->
