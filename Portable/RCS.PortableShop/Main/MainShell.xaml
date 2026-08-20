@@ -29,8 +29,8 @@
 
     <Shell.FlyoutHeader>
         <ContentView Padding="10" BackgroundColor="White">
-            <!--TODO Solve the warnings,-->
-            <!--TODO Make this a StackLayout (again)? What has happened.-->
+            <!--TODO Solve the warnings.-->
+            <!--TODO Make this a StackLayout (again)? What has happened?-->
             <!--<StackLayout Orientation="Horizontal">-->
             <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                 <!--TODO Fill available width. Maybe have a bigger icon too. Check necessity of options.-->
