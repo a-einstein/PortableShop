@@ -36,7 +36,15 @@
     <!--#region Grid -->
 
     <Style x:Key="ListItemStyle" TargetType="Grid">
-      <Setter Property="Padding" Value="3"/>
+        <Setter Property="Padding" Value="3"/>
+    </Style>
+
+    <Style x:Key="ProductItemStyle" TargetType="Grid" BasedOn="{StaticResource ListItemStyle}">
+        <Setter Property="BackgroundColor" Value="{DynamicResource ProductsLevel1Colour}"/>
+    </Style>
+
+    <Style x:Key="CartItemStyle" TargetType="Grid" BasedOn="{StaticResource ListItemStyle}">
+        <Setter Property="BackgroundColor" Value="{DynamicResource CartLevel1Colour}"/>
     </Style>
 
     <!--#endregion-->
@@ -59,7 +67,7 @@
 
     <Style x:Key="ValueLabelStyle" TargetType="Label" BasedOn="{StaticResource LabelStyle}">
         <Setter Property="Margin" Value="{StaticResource InfoLeftMargin}"/>
-        <Setter Property="TextColor" Value="{StaticResource ValueTextColour}"/>
+        <Setter Property="TextColor" Value="{DynamicResource ValueTextColour}"/>
     </Style>
 
     <Style x:Key="EmphasisLabelStyle" TargetType="Label" BasedOn="{StaticResource LabelStyle}">
@@ -102,12 +110,12 @@
     </Style>
 
     <Style x:Key="ValueEmphasisEntryStyle" TargetType="Entry">
-        <Setter Property="TextColor" Value="{StaticResource ValueTextColour}"/>
+        <Setter Property="TextColor" Value="{DynamicResource ValueTextColour}"/>
         <Setter Property="FontAttributes" Value="Bold"/>
     </Style>
 
     <Style x:Key="InvalidEntryStyle" TargetType="Entry">
-        <Setter Property="BackgroundColor" Value="{StaticResource InvalidBackgroundColour}"/>
+        <Setter Property="BackgroundColor" Value="{DynamicResource InvalidBackgroundColour}"/>
     </Style>
 
     <!--#endregion-->
@@ -116,17 +124,20 @@
 
     <Style TargetType="Picker">
         <Setter Property="VerticalOptions" Value="{StaticResource LineVerticalOptions}"/>
-        <Setter Property="TitleColor" Value="{StaticResource LabelTextColour}"/>
+        <Setter Property="TitleColor" Value="{DynamicResource LabelTextColour}"/>
     </Style>
 
-    <Style x:Key="PickerHorizontalStyle" TargetType="Picker">
-      <Setter Property="Margin" Value="{StaticResource ControlRightMargin}"/>
+    <Style x:Key="HorizontalPickerStyle" TargetType="Picker">
+        <Setter Property="Margin" Value="{StaticResource ControlRightMargin}"/>
     </Style>
 
-    <Style x:Key="PickerVerticalStyle" TargetType="Picker">
+    <Style x:Key="ProductPickerStyle" TargetType="Picker" BasedOn="{StaticResource HorizontalPickerStyle}">
+        <Setter Property="VerticalOptions" Value="End"/>
+    </Style>
+
+    <Style x:Key="VerticalPickerStyle" TargetType="Picker">
       <Setter Property="Margin" Value="{StaticResource ControlTopMargin}"/>
     </Style>
-
 
     <!--#endregion-->
 

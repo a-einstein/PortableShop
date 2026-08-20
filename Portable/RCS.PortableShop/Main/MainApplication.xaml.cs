@@ -37,7 +37,11 @@ namespace RCS.PortableShop.Main
 
         protected override Window CreateWindow(IActivationState activationState)
         {
-            var window = new Window(new MainShell());
+            var window = new Window()
+            {
+                Page = new MainShell(),
+                Title = Labels.Shop // Both for Window and Taskbar on Windows.
+            };
 
             HandleDimensions(window);
 

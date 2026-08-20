@@ -35,7 +35,7 @@
         <CollectionView x:Name="cartItemsListView" Grid.Row="1" ItemsSource="{Binding Items}" BackgroundColor="{StaticResource ResultsBackgroundColour}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Style="{StaticResource ListItemStyle}" BackgroundColor="{DynamicResource CartLevel1Colour}">
+                    <Grid Style="{StaticResource CartItemStyle}">
                         <!--Note this layout currently is aimed towards portrait orientation.-->
                         <StackLayout Orientation="Vertical">
                             <Label Text="{Binding Name}" Style="{StaticResource ValueEmphasisMediumLabelStyle}"/>

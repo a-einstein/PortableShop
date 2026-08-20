@@ -17,14 +17,14 @@
   <Color x:Key="WarningColour">Orange</Color>
   <Color x:Key="ErrorColour">Red</Color>
 
-    <Color x:Key="SettingsBackgroundColour">LightSlateGray</Color>
+  <Color x:Key="SettingsBackgroundColour">LightSlateGray</Color>
   <Color x:Key="ResultsBackgroundColour">White</Color>
 
   <Color x:Key="WarningBackgroundColour">Orange</Color>
   <Color x:Key="InvalidBackgroundColour">LightCoral</Color>
 
-  <Color x:Key="ProductsLevel0Colour">DodgerBlue</Color>
-  <Color x:Key="ProductsLevel1Colour">LightSkyBlue</Color>
+    <Color x:Key="ProductsLevel0Colour">RoyalBlue</Color>
+    <Color x:Key="ProductsLevel1Colour">CornflowerBlue</Color>
 
   <Color x:Key="CartLevel0Colour">Yellow</Color>
   <Color x:Key="CartLevel1Colour">LemonChiffon</Color>

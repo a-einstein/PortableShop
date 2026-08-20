@@ -47,10 +47,11 @@
                     <StackLayout Orientation="Horizontal">
                         <!--Note Title of Picker: for Android displayed as placeholder inside, for UWP as separate label above. Therefor no separate label and the VerticalOptions.-->
 
-                        <Picker Title="{x:Static resx:Labels.MasterFilter}" ItemsSource="{Binding MasterFilterItems, Mode=TwoWay}" SelectedItem="{Binding MasterFilterValue, Mode=TwoWay}" IsEnabled="{Binding MasterFilterItems, Converter={StaticResource HasValueTester}}" Style="{StaticResource PickerHorizontalStyle}" BackgroundColor="{DynamicResource ProductsLevel1Colour}" VerticalOptions="End"/>
+                        <Picker Title="{x:Static resx:Labels.MasterFilter}" ItemsSource="{Binding MasterFilterItems, Mode=TwoWay}" SelectedItem="{Binding MasterFilterValue, Mode=TwoWay}" IsEnabled="{Binding MasterFilterItems, Converter={StaticResource HasValueTester}}" Style="{StaticResource ProductPickerStyle}"/>
 
-                        <Picker Title="{x:Static resx:Labels.DetailFilter}" ItemsSource="{Binding DetailFilterItems, Mode=TwoWay}" SelectedItem="{Binding DetailFilterValue, Mode=TwoWay}" IsEnabled="{Binding DetailFilterItems, Converter={StaticResource HasValueTester}}" Style="{StaticResource PickerHorizontalStyle}" BackgroundColor="{DynamicResource ProductsLevel1Colour}" VerticalOptions="End"/>
+                        <Picker Title="{x:Static resx:Labels.DetailFilter}" ItemsSource="{Binding DetailFilterItems, Mode=TwoWay}" SelectedItem="{Binding DetailFilterValue, Mode=TwoWay}" IsEnabled="{Binding DetailFilterItems, Converter={StaticResource HasValueTester}}" Style="{StaticResource ProductPickerStyle}"/>
 
+                        <!--TODO Make colours equal to buttons. Button is strangely influenced by list, despite explicit style.-->
                         <!--Note apparently UpdateSourceTrigger=PropertyChanged through this chain, which is good for immediate response for validation and enablement.-->
                         <!--Note that Placeholder is just that, for both Android and UWP.-->
                         <controls:ClearableEntry Placeholder="{x:Static resx:Labels.TextFilter}" Text="{Binding TextFilterValue, Mode=TwoWay}" BackgroundColor="{DynamicResource ProductsLevel1Colour}" WidthRequest="130" VerticalOptions="End">
@@ -69,7 +70,7 @@
                     <!--Put at Start, as changes in orientation did not work out correctly on the last Label.-->
                     <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
                         <!--IsDefault="True"-->
-                        <Button Text="{x:Static resx:Labels.Filter}" Command="{Binding FilterCommand}" BackgroundColor="{DynamicResource ProductsLevel1Colour}" HorizontalOptions="Start" VerticalOptions="End"/>
+                        <Button Text="{x:Static resx:Labels.Filter}" Command="{Binding FilterCommand}" HorizontalOptions="Start" VerticalOptions="End"/>
 
                         <Label Text="{Binding ItemsCount}" Style="{StaticResource ValueEmphasisMediumLabelStyle}" VerticalOptions="End"/>
                         <Label Text="{x:Static resx:Labels.Products}" Style="{StaticResource EmphasisMediumLabelStyle}" Margin="{StaticResource ControlLeftMargin}" VerticalOptions="End"/>
@@ -98,7 +99,7 @@
                                 -->
                                 <controls:ContentButton Command="{Binding BindingContext.DetailsCommand, Source={RelativeSource AncestorType={x:Type views:ProductsView}}}" CommandParameter="{Binding}">
                                     <controls:ContentButton.Content>
-                                        <Grid Style="{StaticResource ListItemStyle}" BackgroundColor="{DynamicResource ProductsLevel1Colour}">
+                                        <Grid Style="{StaticResource ProductItemStyle}">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="Auto"/>
                                                 <ColumnDefinition Width="*"/>

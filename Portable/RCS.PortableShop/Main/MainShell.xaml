@@ -25,7 +25,7 @@
   https://learn.microsoft.com/en-us/dotnet/maui/fundamentals/shell/
   -->
 
-  <!--TODO Set themed general BackgroundColor for Flyout.-->
+  <!--TODO Set themed general BackgroundColor and text-colour for Flyout.-->
 
     <Shell.FlyoutHeader>
         <ContentView Padding="10" BackgroundColor="White">
