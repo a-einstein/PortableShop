@@ -116,7 +116,7 @@
 
     <Style TargetType="Picker">
         <Setter Property="VerticalOptions" Value="{StaticResource LineVerticalOptions}"/>
-        <Setter Property="TextColor" Value="{DynamicResource LabelTextColour}"/>
+        <Setter Property="TitleColor" Value="{StaticResource LabelTextColour}"/>
     </Style>
 
     <Style x:Key="PickerHorizontalStyle" TargetType="Picker">

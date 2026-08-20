@@ -17,7 +17,7 @@
   <Color x:Key="WarningColour">Orange</Color>
   <Color x:Key="ErrorColour">Red</Color>
 
-  <Color x:Key="SettingsBackgroundColour">DimGray</Color>
+    <Color x:Key="SettingsBackgroundColour">LightSlateGray</Color>
   <Color x:Key="ResultsBackgroundColour">White</Color>
 
   <Color x:Key="WarningBackgroundColour">Orange</Color>
