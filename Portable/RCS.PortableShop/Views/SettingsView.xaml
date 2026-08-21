@@ -11,29 +11,41 @@
     xmlns:baseClasses="clr-namespace:RCS.PortableShop.Common.Views;assembly=RCS.PortableShop.Common"
     xmlns:viewModels="clr-namespace:RCS.PortableShop.ViewModels"
     mc:Ignorable="d"
+    BackgroundColor="{DynamicResource SettingsBackgroundColour}"
     >
-    <!--d:BindingContext ="{d:DesignInstance Type=viewModels:SettingsViewModel}"-->
+  <!--d:BindingContext ="{d:DesignInstance Type=viewModels:SettingsViewModel}"-->
 
-    <Grid VerticalOptions="Start" HorizontalOptions="Start" Margin="10">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+  <Grid VerticalOptions="Start" HorizontalOptions="Start" Margin="10">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-        </Grid.ColumnDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="Auto"/>
+      <ColumnDefinition Width="Auto"/>
+    </Grid.ColumnDefinitions>
 
-        <!--Note that Title of Picker: for Android is displayed as placeholder inside, for UWP as separate label above. Therefor no separate label and the VerticalOptions.-->
+    <!--TODO Simply stack this?-->
+    
+    <!--Note that Title of Picker: for Android is displayed as placeholder inside, for UWP as separate label above. Therefor no separate label and the VerticalOptions.-->
 
-        <Picker Grid.Row="0" Grid.Column="1" Title="{x:Static resx:Labels.ServiceType}" 
-                ItemsSource="{Binding ServiceTypes, Mode=OneTime}" 
-                SelectedItem="{Binding ServiceType, Mode=TwoWay}"/>
+    <Picker Grid.Row="0" Grid.Column="1" Title="{x:Static resx:Labels.CultureCulture}"
+            ItemsSource="{Binding CultureInfos, Mode=OneTime}"
+            SelectedItem="{Binding CultureInfo, Mode=TwoWay}"
+            ItemDisplayBinding="{Binding DisplayName}"
+            Style="{StaticResource VerticalPickerStyle}"/>
 
-        <Picker Grid.Row="1" Grid.Column="1" Title="{x:Static resx:Labels.CultureCulture}" 
-                ItemsSource="{Binding Cultures, Mode=OneTime}" 
-                SelectedItem="{Binding Culture, Mode=TwoWay}" 
-                ItemDisplayBinding="{Binding DisplayName}"/>
-    </Grid>
+    <Picker Grid.Row="1" Grid.Column="1" Title="{x:Static resx:Labels.Theme}"
+            ItemsSource="{Binding ThemeInfos, Mode=OneTime}"
+            SelectedItem="{Binding ThemeInfo, Mode=TwoWay}"
+            ItemDisplayBinding="{Binding DisplayName}"
+            Style="{StaticResource VerticalPickerStyle}"/>
+
+    <Picker Grid.Row="2" Grid.Column="1" Title="{x:Static resx:Labels.ServiceType}"
+            ItemsSource="{Binding ServiceTypes, Mode=OneTime}"
+            SelectedItem="{Binding ServiceType, Mode=TwoWay}"
+            Style="{StaticResource VerticalPickerStyle}"/>
+  </Grid>
 </baseClasses:View>

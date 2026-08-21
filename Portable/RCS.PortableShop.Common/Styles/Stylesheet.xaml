@@ -11,6 +11,7 @@
     <!--#region Values -->
 
     <Thickness x:Key="ViewPadding">5</Thickness>
+    <Thickness x:Key="ControlTopMargin">0,5,0,0</Thickness>
     <Thickness x:Key="ControlLeftMargin">5,0,0,0</Thickness>
     <Thickness x:Key="ControlRightMargin">0,0,5,0</Thickness>
     <Thickness x:Key="InfoLeftMargin">10,0,0,0</Thickness>
@@ -19,58 +20,42 @@
 
     <!--#endregion-->
 
-    <!--#region Colours -->
+    <!--#region CollectionView -->
 
-    <!--
-    TODO MAUI Note the effect of dark and light themes on Android. Particularly for Picker and Entry.
-    Currently colours are generally usable. Fully fledged themes would be interesting.
-    TODO MAUI Check the different effects compared with Xamarin Forms.
-    -->
-
-    <!--Note that only a limited number of Color names is supported, currently different from the documentation.-->
-    <Color x:Key="MessageColour">#00008B</Color> <!--DarkBlue-->
-    <Color x:Key="AssertColour">Green</Color>
-    <Color x:Key="WarningColour">Orange</Color>
-    <Color x:Key="ErrorColour">Red</Color>
-    <Color x:Key="ResultsBackgroundColour">White</Color>
-
-    <Color x:Key="InvalidBackgroundColour">#FFB0B0</Color>
-
-    <!--TODO This part would be candidate to split of a specific dictionary.-->
-    <Color x:Key="ProductsLevel0Colour">#58ACFA</Color>
-    <Color x:Key="ProductsLevel1Colour">#A9D0F5</Color>
-    <Color x:Key="CartLevel0Colour">#F4FA58</Color>
-    <Color x:Key="CartLevel1Colour">#F2F5A9</Color>
-    <Color x:Key="LabelTextColour">#2F4F4F</Color> <!--DarkSlateGray-->
-    <Color x:Key="ValueTextColour">#00008B</Color> <!--DarkBlue-->
-
-    <!--#endregion-->
-
-    <!--#region ListViews -->
-
-    <Style TargetType="ListView">
-        <!--Note that setting HasUnevenRows seems the only way to let rows (somewhat) adapt to contents, instead of having to set some fixed RowHeight.-->
-        <Setter Property="HasUnevenRows" Value="True"/>
+    <Style TargetType="CollectionView">
+        <Setter Property="ItemsLayout">
+            <Setter.Value>
+                <!--Use for separation around.-->
+                <GridItemsLayout  Orientation="Vertical" Span="1" VerticalItemSpacing="1" HorizontalItemSpacing="1"/>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <!--#endregion-->
 
-    <!--#region Grids -->
+    <!--#region Grid -->
 
     <Style x:Key="ListItemStyle" TargetType="Grid">
-        <Setter Property="Margin" Value="2,2,2,0"/>
         <Setter Property="Padding" Value="3"/>
     </Style>
 
+    <Style x:Key="ProductItemStyle" TargetType="Grid" BasedOn="{StaticResource ListItemStyle}">
+        <Setter Property="BackgroundColor" Value="{DynamicResource ProductsLevel1Colour}"/>
+    </Style>
+
+    <Style x:Key="CartItemStyle" TargetType="Grid" BasedOn="{StaticResource ListItemStyle}">
+        <Setter Property="BackgroundColor" Value="{DynamicResource CartLevel1Colour}"/>
+    </Style>
+
     <!--#endregion-->
 
-    <!--#region Labels -->
+    <!--#region Label -->
 
     <!--Base needed to inherit.-->
     <Style x:Key="LabelStyle" TargetType="Label">
         <Setter Property="VerticalOptions" Value="{StaticResource LineVerticalOptions}"/>
         <Setter Property="FontSize" Value="Small"/>
-        <Setter Property="TextColor" Value="{StaticResource LabelTextColour}"/>
+        <Setter Property="TextColor" Value="{DynamicResource LabelTextColour}"/>
     </Style>
 
     <!--Generic.-->
@@ -82,7 +67,7 @@
 
     <Style x:Key="ValueLabelStyle" TargetType="Label" BasedOn="{StaticResource LabelStyle}">
         <Setter Property="Margin" Value="{StaticResource InfoLeftMargin}"/>
-        <Setter Property="TextColor" Value="{StaticResource ValueTextColour}"/>
+        <Setter Property="TextColor" Value="{DynamicResource ValueTextColour}"/>
     </Style>
 
     <Style x:Key="EmphasisLabelStyle" TargetType="Label" BasedOn="{StaticResource LabelStyle}">
@@ -110,42 +95,53 @@
     </Style>
 
     <Style x:Key="MessageLabelStyle" TargetType="Label" BasedOn="{StaticResource EmphasisMediumLabelStyle}">
-        <Setter Property="TextColor" Value="{StaticResource MessageColour}"/>
-        <Setter Property="VerticalOptions" Value="FillAndExpand"/>
-        <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+        <Setter Property="TextColor" Value="{DynamicResource MessageColour}"/>
+        <Setter Property="VerticalOptions" Value="Start"/>
+        <Setter Property="HorizontalOptions" Value="Start"/>
     </Style>
 
     <!--#endregion-->
 
-    <!--#region Entries -->
+    <!--#region Entry -->
 
     <Style TargetType="Entry">
         <Setter Property="VerticalOptions" Value="{StaticResource LineVerticalOptions}"/>
-        <Setter Property="TextColor" Value="{StaticResource LabelTextColour}"/>
+        <Setter Property="TextColor" Value="{DynamicResource LabelTextColour}"/>
     </Style>
 
     <Style x:Key="ValueEmphasisEntryStyle" TargetType="Entry">
-        <Setter Property="TextColor" Value="{StaticResource ValueTextColour}"/>
+        <Setter Property="TextColor" Value="{DynamicResource ValueTextColour}"/>
         <Setter Property="FontAttributes" Value="Bold"/>
     </Style>
 
     <Style x:Key="InvalidEntryStyle" TargetType="Entry">
-        <Setter Property="BackgroundColor" Value="{StaticResource InvalidBackgroundColour}"/>
+        <Setter Property="BackgroundColor" Value="{DynamicResource InvalidBackgroundColour}"/>
     </Style>
 
     <!--#endregion-->
 
-    <!--#region Pickers -->
+    <!--#region Picker -->
 
     <Style TargetType="Picker">
         <Setter Property="VerticalOptions" Value="{StaticResource LineVerticalOptions}"/>
-        <Setter Property="Margin" Value="{StaticResource ControlRightMargin}"/>
-        <Setter Property="TextColor" Value="{StaticResource LabelTextColour}"/>
+        <Setter Property="TitleColor" Value="{DynamicResource LabelTextColour}"/>
     </Style>
-    
+
+    <Style x:Key="HorizontalPickerStyle" TargetType="Picker">
+        <Setter Property="Margin" Value="{StaticResource ControlRightMargin}"/>
+    </Style>
+
+    <Style x:Key="ProductPickerStyle" TargetType="Picker" BasedOn="{StaticResource HorizontalPickerStyle}">
+        <Setter Property="VerticalOptions" Value="End"/>
+    </Style>
+
+    <Style x:Key="VerticalPickerStyle" TargetType="Picker">
+      <Setter Property="Margin" Value="{StaticResource ControlTopMargin}"/>
+    </Style>
+
     <!--#endregion-->
 
-    <!--#region Buttons -->
+    <!--#region Button -->
 
     <!--Note FontSize does not do anything. -->
     <!--Note FontAttributes does not work.-->
@@ -157,7 +153,7 @@
         <Setter Property="BorderWidth" Value="1"/>
         <Setter Property="BorderColor" Value="Black"/>
 
-        <Setter Property="TextColor" Value="{StaticResource LabelTextColour}"/>
+        <Setter Property="TextColor" Value="{DynamicResource LabelTextColour}"/>
     </Style>
 
     <Style x:Key="CancelButtonStyle" TargetType="Button">
@@ -178,13 +174,13 @@
         <Setter Property="Padding" Value="5"/>
     </Style>
 
-<!--TODO This part would be candidate to split off to a specific dictionary.-->
+    <!--TODO This part would be candidate to split off to a specific dictionary.-->
     <Style x:Key="CartPlusButtonStyle" TargetType="Button" BasedOn="{StaticResource CartButtonStyle}">
-        <Setter Property="BackgroundColor" Value="{StaticResource CartLevel1Colour}"/>
+        <Setter Property="BackgroundColor" Value="{DynamicResource CartLevel1Colour}"/>
     </Style>
 
     <Style x:Key="CartTrashButtonStyle" TargetType="Button" BasedOn="{StaticResource CartButtonStyle}">
-        <Setter Property="BackgroundColor" Value="{StaticResource WarningColour}"/>
+        <Setter Property="BackgroundColor" Value="{DynamicResource WarningBackgroundColour}"/>
     </Style>
 
     <!--#endregion-->

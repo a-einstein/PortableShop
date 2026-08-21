@@ -1,6 +1,7 @@
 ﻿using RCS.PortableShop.Resources;
 using System.Diagnostics;
 using System.Reflection;
+using Settings = RCS.PortableShop.Model.Settings;
 
 // Note this is on assembly level. The stated namespace below does not seem to matter.
 // I applied this on all assemblies containing XAML. I also tried this separately on the classes at first.
@@ -18,6 +19,9 @@ namespace RCS.PortableShop.Main
         public MainApplication()
         {
             InitializeComponent();
+
+            // TODO Consider other way.
+            Settings.ApplyTheme();
         }
 
         private static void ListResources()
@@ -33,7 +37,11 @@ namespace RCS.PortableShop.Main
 
         protected override Window CreateWindow(IActivationState activationState)
         {
-            var window = new Window(new MainShell());
+            var window = new Window()
+            {
+                Page = new MainShell(),
+                Title = Labels.Shop // Both for Window and Taskbar on Windows.
+            };
 
             HandleDimensions(window);
 

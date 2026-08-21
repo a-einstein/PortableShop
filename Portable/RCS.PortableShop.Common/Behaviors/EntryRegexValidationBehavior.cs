@@ -24,6 +24,7 @@ namespace RCS.PortableShop.Common.Behaviors
             IsValid = string.IsNullOrEmpty(e.NewTextValue) ||
                       Regex.IsMatch(e.NewTextValue, Expression, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250));
 
+            // TODO Problem with DynamicResource. See Copilot-advice for BindableProperty.
             // Use BackgroundColor as it stands out more.
             // This could be replaced by an entire style.
             // Do not mark an empty string.

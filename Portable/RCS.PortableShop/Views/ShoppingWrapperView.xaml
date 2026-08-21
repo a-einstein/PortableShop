@@ -25,7 +25,7 @@
         <!--TODO Get rid of gap here.-->
 
         <!--HACK Setting BackgroundColor here because of https://bugzilla.xamarin.com/show_bug.cgi?id=25943 -->
-        <controls:ContentButton Grid.Row="1" Command="{Binding ShowCartCommand}" BackgroundColor="{StaticResource CartLevel0Colour}" Padding="{StaticResource ViewPadding}">
+        <controls:ContentButton Grid.Row="1" Command="{Binding ShowCartCommand}" BackgroundColor="{DynamicResource CartLevel0Colour}" Padding="{StaticResource ViewPadding}">
             <controls:ContentButton.Content>
                 <views:CartSummaryView/>
             </controls:ContentButton.Content>

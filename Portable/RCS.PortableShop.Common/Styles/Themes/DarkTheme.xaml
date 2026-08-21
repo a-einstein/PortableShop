@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!--Use class for instances.-->
+<ResourceDictionary
+    x:Class="RCS.PortableShop.Common.Styles.Themes.DarkTheme"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!-- Named colours
+    https://www.w3schools.com/colors/default.asp
+    https://learn.microsoft.com/en-us/dotnet/api/system.windows.media.colors
+    -->
+
+    <Color x:Key="MessageColour">LightSkyBlue</Color>
+
+    <Color x:Key="AssertColour">Green</Color>
+    <Color x:Key="WarningColour">Orange</Color>
+    <Color x:Key="ErrorColour">Red</Color>
+
+    <Color x:Key="FlyoutBackgroundColour">SlateGray</Color>
+    <Color x:Key="SettingsBackgroundColour">DarkSlateGray</Color>
+    <Color x:Key="ResultsBackgroundColour">Black</Color>
+
+    <Color x:Key="WarningBackgroundColour">Orange</Color>
+    <Color x:Key="InvalidBackgroundColour">LightCoral</Color>
+
+    <Color x:Key="ProductsLevel0Colour">MidnightBlue</Color>
+    <Color x:Key="ProductsLevel1Colour">DarkBlue</Color>
+
+    <Color x:Key="CartLevel0Colour">GoldenRod</Color>
+    <Color x:Key="CartLevel1Colour">Gold</Color>
+
+    <Color x:Key="LabelTextColour">LightGray</Color>
+    <Color x:Key="ValueTextColour">White</Color>
+
+</ResourceDictionary>

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<Shell 
+<Shell
     x:Class="RCS.PortableShop.Main.MainShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -11,6 +11,8 @@
     xmlns:main="clr-namespace:RCS.PortableShop.Main"
     xmlns:viewModels="clr-namespace:RCS.PortableShop.ViewModels"
     mc:Ignorable="d"
+    BackgroundColor="{DynamicResource ProductsLevel0Colour}"
+    FlyoutBackgroundColor="{DynamicResource FlyoutBackgroundColour}"
     >
     <!--d:BindingContext ="{d:DesignInstance Type=viewModels:MainShellViewModel}"-->
 
@@ -20,18 +22,37 @@
     Note current d is a replacement of http://xamarin.com/schemas/2014/forms/design
     -->
 
+    <!--
+    TODO Have more control over BackgroundColor and colour of Title.
+    
+    Perhaps by https://learn.microsoft.com/en-us/dotnet/communitytoolkit/maui/behaviors/statusbar-behavior?tabs=android
+    Unclear what exactly is affected.
+    
+    Also the Toolbar may offer possibilities, but didn't see them.
+    -->
+
+    <!--
+  TODO Reconsider structure.
+  https://learn.microsoft.com/en-us/dotnet/maui/fundamentals/shell/
+  -->
+
     <Shell.FlyoutHeader>
-        <ContentView Padding="10" BackgroundColor="White">
+        <ContentView Padding="10" BackgroundColor="{DynamicResource FlyoutBackgroundColour}">
+            <!--TODO Solve the warnings.-->
+            <!--TODO Make this a StackLayout (again)? What has happened?-->
+            <!--<StackLayout Orientation="Horizontal">-->
             <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                 <!--TODO Fill available width. Maybe have a bigger icon too. Check necessity of options.-->
-                <Image Source="application.png" Opacity="0.3" Scale="4" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFit"/>
+                <!--TODO Where's the image?-->
+                <Image Source="application.png" Opacity="0.3" Scale="4" Aspect="AspectFit"/>
                 <Label x:Name="aboutLabel" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="Center"/>
             </Grid>
+            <!--</StackLayout>-->
         </ContentView>
     </Shell.FlyoutHeader>
 
     <!--TODO Reinstalled this to prevent navigation crash, see elsewhere too. Want to do without, or make a logical layout.-->
-    
+
     <FlyoutItem>
         <Tab>
             <ShellContent>
@@ -39,7 +60,7 @@
             </ShellContent>
         </Tab>
     </FlyoutItem>
-    
+
     <!-- TODO Also works. Preferable?
     <ShellContent ContentTemplate="{DataTemplate main:MainPage}" Route="MainPage"/>
     -->
@@ -47,7 +68,7 @@
     <!--TODO Would prefer to have hamburger visible on all pages, besides a back button. But is seems intended to only have it on the root page.-->
 
     <!--Note that icon sizes in UWP are automatically reduced even though a larger size was chosen by me.-->
-    
+
     <!--TODO MAUI Icons are not visible on Android with dark theme.-->
 
     <MenuItem Command="{Binding SettingsCommand}" Text="{x:Static resx:Labels.Settings}" IconImageSource="settings.png"/>

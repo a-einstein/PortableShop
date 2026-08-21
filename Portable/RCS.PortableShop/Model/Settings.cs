@@ -1,13 +1,15 @@
-﻿using RCS.PortableShop.Resources;
-using System.Globalization;
+﻿using RCS.PortableShop.Common.Styles;
+using RCS.PortableShop.Common.Styles.Themes;
+using RCS.PortableShop.Resources;
 
 namespace RCS.PortableShop.Model
 {
-    #region Construction
     public static class Settings
     {
+        #region Construction
         static Settings()
         {
+            // TODO Evaluate this together with Theme.
             SetCulture();
         }
 
@@ -16,13 +18,54 @@ namespace RCS.PortableShop.Model
             if (Preferences.ContainsKey(cultureKey))
             {
                 // TODO Make more transparent.
-                Culture = Culture;
+                CultureInfo = CultureInfo;
             }
-         }
+        }
         #endregion
 
-        #region ServiceType
-        public static readonly List<ServiceType> ServiceTypes = Enum.GetValues(typeof(ServiceType)).Cast<ServiceType>().ToList();
+        #region Theme
+        private const string themeKey = "Theme";
+
+        // Note this is non nullable.
+        public static Theme Theme
+        {
+            get => (Theme)Preferences.Get(themeKey, (int)Theme.Light);
+            set
+            {
+                Preferences.Set(themeKey, (int)value);
+
+                // TODO Side-effect. Move?
+                ApplyTheme();
+            }
+        }
+
+        public static void ApplyTheme()
+        {
+            var mergedDictionaries = Application.Current.Resources.MergedDictionaries;
+
+            if (mergedDictionaries != null)
+            {
+                mergedDictionaries.Clear();
+
+                switch (Theme)
+                {
+                    case Theme.Dark:
+                        mergedDictionaries.Add(new DarkTheme());
+                        break;
+                    case Theme.Light:
+                    default:
+                        mergedDictionaries.Add(new LightTheme());
+                        break;
+                }
+
+                // TODO Preserve. Question is how in the Collection.
+                mergedDictionaries.Add(new Stylesheet());
+            }
+        }
+        #endregion
+
+        #region DataService
+        public static readonly List<ServiceType> ServiceTypes = Enum.GetValues<ServiceType>().Cast<ServiceType>().ToList();
         private const string serviceTypeKey = "ServiceType";
 
         private static ServiceType? serviceType;
@@ -31,7 +74,7 @@ namespace RCS.PortableShop.Model
         // But need to initialize here for service calls not to fail, 
         // and do not want to ignore an already stored value.
 
-        // Note that this is non nullable.
+        // Note this is non nullable.
         public static ServiceType ServiceType
         {
             get
@@ -50,33 +93,34 @@ namespace RCS.PortableShop.Model
         #endregion
 
         #region Culture
-        public static IList<Culture> Cultures { get; } = new List<Culture>()
-        {
-            new Culture(Labels.CultureEnglish, "en-GB"),
-            new Culture(Labels.CultureDutch, "nl-NL")
-        };
+        public static IList<CultureInfo> CultureInfos { get; } =
+        [
+            new CultureInfo("en-GB", Labels.CultureEnglish),
+            new CultureInfo("nl-NL", Labels.CultureDutch)
+        ];
 
         private const string cultureKey = "Culture";
-        public static Culture Culture
+        public static CultureInfo CultureInfo
         {
             get
             {
                 // Try to read stored name (or take first available name).
-                var cultureName = Preferences.Get(cultureKey, Cultures.FirstOrDefault().Name);
+                var cultureName = Preferences.Get(cultureKey, CultureInfos.FirstOrDefault().Name);
 
                 // Use matching culture.
-                return Cultures.FirstOrDefault(element => element.Name == cultureName);
+                return CultureInfos.FirstOrDefault(element => element.Name == cultureName);
             }
             set
             {
                 // Store value.
                 Preferences.Set(cultureKey, value.Name);
 
+                // TODO Side-effect. Move?
                 // Switch culture.
                 // TODO Change on the fly.
-                CultureInfo.CurrentCulture = 
-                    CultureInfo.DefaultThreadCurrentCulture = 
-                    CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo(Culture.Name);
+                System.Globalization.CultureInfo.CurrentCulture =
+                    System.Globalization.CultureInfo.DefaultThreadCurrentCulture =
+                    System.Globalization.CultureInfo.DefaultThreadCurrentUICulture = new System.Globalization.CultureInfo(CultureInfo.Name);
             }
         }
         #endregion

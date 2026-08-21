@@ -64,12 +64,22 @@ namespace RCS.PortableShop.ViewModels
         {
             var resources = Application.Current.Resources;
 
+            var backgroundColor = Colors.White;
+
+            // Note colours may be part of themes.
+            // TODO Find a more elegant method, possibly with LINQ. Though this may even be fastest.
+            // https://code-maze.com/csharp-how-to-merge-dictionaries/
+            foreach (var dictionary in resources.MergedDictionaries)
+            {
+                if (dictionary.ContainsKey("ProductsLevel1Colour"))
+                {
+                    backgroundColor = ((Color)dictionary["ProductsLevel1Colour"]);
+                }
+            }
+
             var contentView = new View()
             {
-                // TODO Since Xamarin.Forms 2.3.4.224 the resource is no longer found here.
-                // HACK The white, though it combines nicely with the white backgrounds of the current pictures.
-                BackgroundColor = resources.ContainsKey("ProductsLevel1Colour") ? (Color)resources["ProductsLevel1Colour"] : Colors.White,
-
+                BackgroundColor = backgroundColor,
                 Content = new Image() { Source = imageSource }
             };
 
