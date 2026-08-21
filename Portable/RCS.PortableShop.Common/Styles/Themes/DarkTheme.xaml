@@ -10,13 +10,14 @@
     https://www.w3schools.com/colors/default.asp
     https://learn.microsoft.com/en-us/dotnet/api/system.windows.media.colors
     -->
-  
+
     <Color x:Key="MessageColour">LightSkyBlue</Color>
-  
+
     <Color x:Key="AssertColour">Green</Color>
     <Color x:Key="WarningColour">Orange</Color>
     <Color x:Key="ErrorColour">Red</Color>
 
+    <Color x:Key="FlyoutBackgroundColour">SlateGray</Color>
     <Color x:Key="SettingsBackgroundColour">DarkSlateGray</Color>
     <Color x:Key="ResultsBackgroundColour">Black</Color>
 
@@ -25,10 +26,10 @@
 
     <Color x:Key="ProductsLevel0Colour">MidnightBlue</Color>
     <Color x:Key="ProductsLevel1Colour">DarkBlue</Color>
-  
+
     <Color x:Key="CartLevel0Colour">GoldenRod</Color>
     <Color x:Key="CartLevel1Colour">Gold</Color>
-  
+
     <Color x:Key="LabelTextColour">LightGray</Color>
     <Color x:Key="ValueTextColour">White</Color>
 

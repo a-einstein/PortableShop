@@ -11,24 +11,33 @@
     xmlns:main="clr-namespace:RCS.PortableShop.Main"
     xmlns:viewModels="clr-namespace:RCS.PortableShop.ViewModels"
     mc:Ignorable="d"
+    BackgroundColor="{DynamicResource ProductsLevel0Colour}"
+    FlyoutBackgroundColor="{DynamicResource FlyoutBackgroundColour}"
     >
-  <!--d:BindingContext ="{d:DesignInstance Type=viewModels:MainShellViewModel}"-->
+    <!--d:BindingContext ="{d:DesignInstance Type=viewModels:MainShellViewModel}"-->
 
-  <!--
-  Note not totally understood behaviour of DesignInstance,
-  as described in https://github.com/xamarin/Xamarin.Forms/issues/12947
-  Note current d is a replacement of http://xamarin.com/schemas/2014/forms/design
-  -->
+    <!--
+    Note not totally understood behaviour of DesignInstance,
+    as described in https://github.com/xamarin/Xamarin.Forms/issues/12947
+    Note current d is a replacement of http://xamarin.com/schemas/2014/forms/design
+    -->
 
-  <!--
+    <!--
+    TODO Have more control over BackgroundColor and colour of Title.
+    
+    Perhaps by https://learn.microsoft.com/en-us/dotnet/communitytoolkit/maui/behaviors/statusbar-behavior?tabs=android
+    Unclear what exactly is affected.
+    
+    Also the Toolbar may offer possibilities, but didn't see them.
+    -->
+
+    <!--
   TODO Reconsider structure.
   https://learn.microsoft.com/en-us/dotnet/maui/fundamentals/shell/
   -->
 
-  <!--TODO Set themed general BackgroundColor and text-colour for Flyout.-->
-
     <Shell.FlyoutHeader>
-        <ContentView Padding="10" BackgroundColor="White">
+        <ContentView Padding="10" BackgroundColor="{DynamicResource FlyoutBackgroundColour}">
             <!--TODO Solve the warnings.-->
             <!--TODO Make this a StackLayout (again)? What has happened?-->
             <!--<StackLayout Orientation="Horizontal">-->
@@ -56,19 +65,19 @@
     <ShellContent ContentTemplate="{DataTemplate main:MainPage}" Route="MainPage"/>
     -->
 
-  <!--TODO Would prefer to have hamburger visible on all pages, besides a back button. But is seems intended to only have it on the root page.-->
+    <!--TODO Would prefer to have hamburger visible on all pages, besides a back button. But is seems intended to only have it on the root page.-->
 
-  <!--Note that icon sizes in UWP are automatically reduced even though a larger size was chosen by me.-->
+    <!--Note that icon sizes in UWP are automatically reduced even though a larger size was chosen by me.-->
 
-  <!--TODO MAUI Icons are not visible on Android with dark theme.-->
+    <!--TODO MAUI Icons are not visible on Android with dark theme.-->
 
-  <MenuItem Command="{Binding SettingsCommand}" Text="{x:Static resx:Labels.Settings}" IconImageSource="settings.png"/>
+    <MenuItem Command="{Binding SettingsCommand}" Text="{x:Static resx:Labels.Settings}" IconImageSource="settings.png"/>
 
-  <MenuItem Command="{Binding ShowProductsCommand}" Text="{x:Static resx:Labels.Products}" IconImageSource="overview.png"/>
+    <MenuItem Command="{Binding ShowProductsCommand}" Text="{x:Static resx:Labels.Products}" IconImageSource="overview.png"/>
 
-  <MenuItem Command="{Binding ShowCartCommand}" Text="{x:Static resx:Labels.Cart}" IconImageSource="cart.png"/>
+    <MenuItem Command="{Binding ShowCartCommand}" Text="{x:Static resx:Labels.Cart}" IconImageSource="cart.png"/>
 
-  <MenuItem Command="{Binding OpenSupportCommand}" Text="{x:Static resx:Labels.Support}" IconImageSource="information.png"/>
+    <MenuItem Command="{Binding OpenSupportCommand}" Text="{x:Static resx:Labels.Support}" IconImageSource="information.png"/>
 
-  <MenuItem Command="{Binding UpdateCommand}" Text="{x:Static resx:Labels.Update}" IconImageSource="clouddownload.png"/>
+    <MenuItem Command="{Binding UpdateCommand}" Text="{x:Static resx:Labels.Update}" IconImageSource="clouddownload.png"/>
 </Shell>
