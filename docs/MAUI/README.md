@@ -28,6 +28,7 @@ Working portable application for test and demo purpose. It simulates limited sho
 * Error handling.
 * Globalized resources.
 * Basic styling.
+* Theming.
 * Splash screen.
 * Shell navigation including Fly out.
 * Rotation.
@@ -47,7 +48,7 @@ Working portable application for test and demo purpose. It simulates limited sho
 
 #### Android
 * Download the latest APK file to your Android phone. 
-* Install the aplication from the notification or the download folder. You probably have to suppress some warnings.
+* Install the aplication from the notification or the download folder. You probably have to suppress some warnings, or let Google scan it.
 * In some cases one needs to 'Uninstall for all users' and repeat the install.
 * Start the application. Either it will start 'empty' displaying a warning, or if the data service is running, one can 'shop' the contents.
 * Uninstallation can be done by the normal Android procedure.
