@@ -6,6 +6,7 @@ Working MAUI application. Still limited to Android release.
 
 #### What's new
 * Added theming.
+* Release for Windows too.
 * Removed reference to WCF-service.
 * Targeted .Net 10.0.
 * Targeted Windows 10.0.26100.0
@@ -14,12 +15,11 @@ Working MAUI application. Still limited to Android release.
 #### Fixed
 * App-icon now working on Android.
 * Text filter entry now readable with both themes on Android.
-* Unclear order of services.
-* Backlog of external package-versions.
+* Clarified  order of services.
+* Cleared backlog of external package-versions.
 * Various issues disappeared, apparently by updated targets or packages.
 
 #### Known issues
 * Note how to solve **building-problems** as described in RCS.PortableShop.csproj.
-* Not yet released for Windows.
 * No splash screen on Windows.
 * Some unsatisfactory theme-colours.

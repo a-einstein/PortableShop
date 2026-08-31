@@ -101,7 +101,7 @@ namespace RCS.PortableShop.Main
                 */
                 var continuation = Labels.Close;
 
-
+                // TODO Theme the alert. Page.BackgroundColor did not work, though IView Page.Background suggested this. See at the instaniation.
                 if (string.IsNullOrWhiteSpace(details))
                     await page.DisplayAlertAsync(kind, description, continuation).ConfigureAwait(true);
                 else

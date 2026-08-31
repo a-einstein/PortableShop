@@ -56,7 +56,9 @@
     <FlyoutItem>
         <Tab>
             <ShellContent>
-                <main:MainPage />
+                <!--TODO This did not help to theme the alerts.
+                <main:MainPage Background="{x:Null}" BackgroundColor="{DynamicResource SettingsBackgroundColour}"/>-->
+                <main:MainPage/>
             </ShellContent>
         </Tab>
     </FlyoutItem>

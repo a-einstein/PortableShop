@@ -32,6 +32,5 @@
 
     <Color x:Key="LabelTextColour">DarkSlateGray</Color>
     <Color x:Key="ValueTextColour">MidnightBlue</Color>
-    <!--DarkBlue-->
 
 </ResourceDictionary>
