@@ -2,7 +2,7 @@
 ### ReleaseNotes 2.2.0
 
 #### Summary
-Working MAUI application. Still limited to Android release.
+Working MAUI application.
 
 #### What's new
 * Added theming.
