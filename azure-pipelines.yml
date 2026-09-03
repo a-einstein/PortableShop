@@ -1,8 +1,3 @@
-# Universal Windows Platform
-# Build a Universal Windows Platform project using Visual Studio.
-# Add steps that test and distribute an app, save build artifacts, and more:
-# https://aka.ms/yaml
-
 trigger:
 - master
 
@@ -16,10 +11,11 @@ variables:
   appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
 
 steps:
-- task: NuGetToolInstaller@1
 
 - checkout: self
   submodules: true
+
+- task: NuGetToolInstaller@1
 
 - task: NuGetCommand@2
   inputs:
