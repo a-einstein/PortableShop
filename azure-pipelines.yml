@@ -8,7 +8,6 @@ trigger:
 
 pool: 
   name: Default
-  #vmImage: 'windows-latest'
 
 variables:
   solution: '**/*.sln'
@@ -18,6 +17,8 @@ variables:
 
 steps:
 - task: NuGetToolInstaller@1
+- checkout: self
+  submodules: true
 
 - task: NuGetCommand@2
   inputs:
