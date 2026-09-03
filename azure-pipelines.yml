@@ -17,6 +17,7 @@ variables:
 
 steps:
 - task: NuGetToolInstaller@1
+
 - checkout: self
   submodules: true
 
@@ -29,4 +30,9 @@ steps:
     platform: 'x64'
     solution: '$(solution)'
     configuration: '$(buildConfiguration)'
-    msbuildArgs: '/p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageDir="$(appxPackageDir)" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=StoreUpload'
+ 
+- task: DotNetCoreCLI@2
+  displayName: 'Build MSIX by dotnet'
+  inputs:
+    command: publish
+    arguments: -f:net10.0-windows10.0.26100.0 -p:PublishProfile=MSIX-win-x64
