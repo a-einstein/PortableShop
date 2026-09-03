@@ -13,7 +13,8 @@ variables:
 steps:
 
 - checkout: self
-  submodules: true
+  clean: false
+  submodules: recursive
 
 - task: NuGetToolInstaller@1
 
