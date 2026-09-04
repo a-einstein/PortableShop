@@ -1,5 +1,5 @@
 trigger:
-- master
+- true
 
 pool: 
   name: Default
@@ -24,9 +24,10 @@ steps:
 
 - task: VSBuild@1
   inputs:
-    platform: 'x64'
     solution: '$(solution)'
+    platform: 'x64'
     configuration: '$(buildConfiguration)'
+    clean: true #Probably no effect.
  
 - task: DotNetCoreCLI@2
   displayName: 'Build MSIX by dotnet'
