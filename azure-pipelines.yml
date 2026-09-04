@@ -16,6 +16,8 @@ steps:
   clean: false
   submodules: recursive
 
+- task: NuGetToolInstaller@1
+
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
