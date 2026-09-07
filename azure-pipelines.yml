@@ -37,3 +37,11 @@ steps:
     publishWebProjects: false
     projects: Portable\RCS.PortableShop
  
+- powershell: |
+   # Assume only one package.
+   
+   Set-Location  -Path "$env:PUBLISHDIRECTORY"
+   
+   Compress-Archive -Path "*\*.cer", "*\*.msix*" -Force -DestinationPath "RCS.CyclOne.UWP.$env:RELEASEVERSION.zip"
+  displayName: 'Zip MSIX package'
+  condition: succeededOrFailed()
