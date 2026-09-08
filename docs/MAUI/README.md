@@ -12,7 +12,7 @@ Working portable application for test and demo purpose. It simulates limited sho
 * This is a near equivalent of my **[WpfShop](https://github.com/a-einstein/WpfShop)**.
 * Currently the Android application is only tested on API 30.
 * Currently the Windows application is only tested on Windows 10 version 22H2.
-* Connected to Azure Devops self hosted build pipeline. Current build status for master branch: ![](https://dev.azure.com/RcsProjects/PortableShop/_apis/build/status/Build%20MAUI?branchName=master)
+* Connected to Azure Devops self hosted build pipeline. Current build status for master branch: [![image](https://dev.azure.com/RcsProjects/PortableShop/_apis/build/status%2FBuild%20MAUI%20-%20classic?branchName=master)](https://dev.azure.com/RcsProjects/PortableShop/_build/latest?definitionId=17&branchName=master)
 * Azure DevOps release pipeline to GitHub.
 * See **[Release Notes](ReleaseNotes.md)** for the latest developments.
 
