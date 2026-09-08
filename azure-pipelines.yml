@@ -23,11 +23,12 @@ steps:
     restoreSolution: '$(solution)'
 
 - task: VSBuild@1
+  displayName: 'Build solution'
   inputs:
     solution: '$(solution)'
-    platform: 'x64'
+    platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
-    clean: false #Probably no effect.
+    clean: false # Probably no effect.
  
 - task: DotNetCoreCLI@2
   displayName: 'Build MSIX by dotnet'
