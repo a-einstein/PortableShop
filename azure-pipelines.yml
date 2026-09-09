@@ -7,7 +7,7 @@ pool:
 variables:
 - group: 'SharedVariables'
 - name: appxPackageDir
-  value: '$(build.artifactStagingDirectory)\AppxPackages\\'
+  value: $(build.artifactStagingDirectory)\AppxPackages\\'
 
 steps:
 
@@ -19,14 +19,14 @@ steps:
 
 - task: NuGetCommand@2
   inputs:
-    restoreSolution: '$(solution)'
+    restoreSolution: $(solution)
 
 - task: VSBuild@1
   displayName: 'Build solution'
   inputs:
-    solution: '$(solution)'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+    solution: $(solution)
+    platform: $(buildPlatform)
+    configuration: $(buildConfiguration)
     clean: false # Probably no effect.
  
 - task: DotNetCoreCLI@2
