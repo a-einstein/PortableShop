@@ -5,11 +5,15 @@ pool:
   name: Default
 
 variables:
-  group: 'SharedVariables'
-  solution: '**/*.sln'
-  buildPlatform: 'x64'
-  buildConfiguration: 'Release'
-  appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
+- group: 'SharedVariables'
+- name: solution
+  value: '**/*.sln'
+- name: buildPlatform
+  value: 'x64'
+- name: buildConfiguration
+  value: 'Release'
+- name: appxPackageDir
+  value: '$(build.artifactStagingDirectory)\AppxPackages\\'
 
 steps:
 
