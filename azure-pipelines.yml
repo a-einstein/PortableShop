@@ -33,6 +33,7 @@ jobs:
       clean: false # Probably no effect.
  
 - job: PrepareMSIX
+  dependsOn: Build
 
   steps:
    
