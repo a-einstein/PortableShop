@@ -9,39 +9,46 @@ variables:
 - name: appxPackageDir
   value: $(build.artifactStagingDirectory)\AppxPackages\\'
 
-steps:
+jobs:
+- job: Build
 
-- checkout: self
-  clean: false
-  submodules: recursive
+  steps:
 
-- task: NuGetToolInstaller@1
+  - checkout: self
+    clean: false
+    submodules: recursive
 
-- task: NuGetCommand@2
-  inputs:
-    restoreSolution: $(solution)
+  - task: NuGetToolInstaller@1
 
-- task: VSBuild@1
-  displayName: 'Build solution'
-  inputs:
-    solution: $(solution)
-    platform: $(buildPlatform)
-    configuration: $(buildConfiguration)
-    clean: false # Probably no effect.
+  - task: NuGetCommand@2
+    inputs:
+      restoreSolution: $(solution)
+
+  - task: VSBuild@1
+    displayName: 'Build solution'
+    inputs:
+      solution: $(solution)
+      platform: $(buildPlatform)
+      configuration: $(buildConfiguration)
+      clean: false # Probably no effect.
  
-- task: DotNetCoreCLI@2
-  displayName: 'Build MSIX by dotnet'
-  inputs:
-    command: publish
-    arguments:  -f:net10.0-windows10.0.26100.0 -p:PublishProfile=MSIX-win-x64
-    publishWebProjects: false
-    projects: Portable\RCS.PortableShop
- 
-- powershell: |
-   # Assume only one package.
+- job: PrepareMSIX
+
+  steps:
    
-   Set-Location  -Path "$env:PUBLISHDIRECTORY"
+  - task: DotNetCoreCLI@2
+    displayName: 'Build MSIX by dotnet'
+    inputs:
+      command: publish
+      arguments:  -f:net10.0-windows10.0.26100.0 -p:PublishProfile=MSIX-win-x64
+      publishWebProjects: false
+      projects: Portable\RCS.PortableShop
    
-   Compress-Archive -Path "*\*.cer", "*\*.msix*" -Force -DestinationPath "RCS.CyclOne.UWP.$env:RELEASEVERSION.zip"
-  displayName: 'Zip MSIX package'
-  condition: succeededOrFailed()
+  - powershell: |
+     # Assume only one package.
+     
+     Set-Location  -Path "$env:PUBLISHDIRECTORY"
+     
+     Compress-Archive -Path "*\*.cer", "*\*.msix*" -Force -DestinationPath "RCS.CyclOne.UWP.$env:RELEASEVERSION.zip"
+    displayName: 'Zip MSIX package'
+    condition: succeededOrFailed()
