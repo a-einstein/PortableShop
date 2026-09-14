@@ -32,6 +32,41 @@ jobs:
       configuration: $(buildConfiguration)
       clean: false # Probably no effect.
  
+- job: PrepareAPK
+  dependsOn: Build
+  
+  steps:
+  
+  - powershell: |
+     #TODO Make more flexible.
+     $apkDirectory = "$env:ANDROIDPROJECT\bin\$env:BUILDCONFIGURATION\net10.0-android"
+     
+     $apkPattern="*-Signed.apk"
+     $apkItems = "$apkDirectory\$apkPattern"
+     
+     #Debug.
+     #Get-ChildItem -Path $apkItems
+     
+     #Needs created before copy.
+     #New-Item -Path "$env:PUBLISHDIRECTORY" -ItemType "directory" -force
+     
+     Write-Host "1 $Build.ArtifactStagingDirectory"
+     Write-Host "2 $(Build.ArtifactStagingDirectory)"
+     Write-Host "3 $env:Build.ArtifactStagingDirectory"
+     Write-Host "4 $env:Build_ArtifactStagingDirectory"
+     
+     #Copy-Item -Path $apkItems -Destination "$env:PUBLISHDIRECTORY"
+     Copy-Item -Path $apkItems -Destination  "$(Build.ArtifactStagingDirectory)"
+     
+     Copy-Item -Path "docs\MAUI\ReleaseNotes.md" -Destination  "$(Build.ArtifactStagingDirectory)"
+     
+     #Set-Location  -Path "$env:PUBLISHDIRECTORY"
+     Set-Location  -Path "$(Build.ArtifactStagingDirectory)"
+     
+     #Assumes 1.
+     Get-ChildItem -file -filter "$apkPattern" | Rename-Item -newname { $_.name -replace "-Signed", ".$env:RELEASEVERSION"}
+  displayName: 'Fix APK name'
+  
 - job: PrepareMSIX
   dependsOn: Build
 
@@ -51,5 +86,4 @@ jobs:
      Set-Location  -Path "$env:PUBLISHDIRECTORY"
      
      Compress-Archive -Path "*\*.cer", "*\*.msix*" -Force -DestinationPath "RCS.CyclOne.UWP.$env:RELEASEVERSION.zip"
-    displayName: 'Zip MSIX package'
-    condition: succeededOrFailed()
+  displayName: 'Zip MSIX package'
