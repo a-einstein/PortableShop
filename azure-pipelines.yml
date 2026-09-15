@@ -65,8 +65,8 @@ jobs:
      
      #Assumes 1.
      Get-ChildItem -file -filter "$apkPattern" | Rename-Item -newname { $_.name -replace "-Signed", ".$env:RELEASEVERSION"}
-  displayName: 'Fix APK name'
-  
+    displayName: 'Fix APK name'
+
 - job: PrepareMSIX
   dependsOn: Build
 
@@ -86,4 +86,4 @@ jobs:
      Set-Location  -Path "$env:PUBLISHDIRECTORY"
      
      Compress-Archive -Path "*\*.cer", "*\*.msix*" -Force -DestinationPath "RCS.CyclOne.UWP.$env:RELEASEVERSION.zip"
-  displayName: 'Zip MSIX package'
+    displayName: 'Zip MSIX package'
