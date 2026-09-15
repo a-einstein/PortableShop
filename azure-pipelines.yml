@@ -38,34 +38,39 @@ jobs:
   steps:
   
   - powershell: |
-     #TODO Make more flexible.
-     $apkDirectory = "$env:ANDROIDPROJECT\bin\$env:BUILDCONFIGURATION\net10.0-android"
+      #TODO Make more flexible.
+      $apkDirectory = "$env:ANDROIDPROJECT\bin\$env:BUILDCONFIGURATION\net10.0-android"
      
-     $apkPattern="*-Signed.apk"
-     $apkItems = "$apkDirectory\$apkPattern"
+      $apkPattern="*-Signed.apk"
+      $apkItems = "$apkDirectory\$apkPattern"
      
-     #Debug.
-     #Get-ChildItem -Path $apkItems
+      #Debug.
+      #Get-ChildItem -Path $apkItems
      
-     #Needs created before copy.
-     #New-Item -Path "$env:PUBLISHDIRECTORY" -ItemType "directory" -force
+      #Needs created before copy.
+      #New-Item -Path "$env:PUBLISHDIRECTORY" -ItemType "directory" -force
      
-     Write-Host "1 $Build.ArtifactStagingDirectory"
-     Write-Host "2 $(Build.ArtifactStagingDirectory)"
-     Write-Host "3 $env:Build.ArtifactStagingDirectory"
-     Write-Host "4 $env:Build_ArtifactStagingDirectory"
+      Write-Host "1 $Build.ArtifactStagingDirectory"
+      Write-Host "2 $(Build.ArtifactStagingDirectory)"
+      Write-Host "3 $env:Build.ArtifactStagingDirectory"
+      Write-Host "4 $env:Build_ArtifactStagingDirectory"
      
-     #Copy-Item -Path $apkItems -Destination "$env:PUBLISHDIRECTORY"
-     Copy-Item -Path $apkItems -Destination  "$(Build.ArtifactStagingDirectory)"
+      #Copy-Item -Path $apkItems -Destination "$env:PUBLISHDIRECTORY"
+      Copy-Item -Path $apkItems -Destination  "$(Build.ArtifactStagingDirectory)"
      
-     Copy-Item -Path "docs\MAUI\ReleaseNotes.md" -Destination  "$(Build.ArtifactStagingDirectory)"
+      Copy-Item -Path "docs\MAUI\ReleaseNotes.md" -Destination  "$(Build.ArtifactStagingDirectory)"
      
-     #Set-Location  -Path "$env:PUBLISHDIRECTORY"
-     Set-Location  -Path "$(Build.ArtifactStagingDirectory)"
+      #Set-Location  -Path "$env:PUBLISHDIRECTORY"
+      Set-Location  -Path "$(Build.ArtifactStagingDirectory)"
      
-     #Assumes 1.
-     Get-ChildItem -file -filter "$apkPattern" | Rename-Item -newname { $_.name -replace "-Signed", ".$env:RELEASEVERSION"}
+      #Assumes 1.
+      Get-ChildItem -file -filter "$apkPattern" | Rename-Item -newname { $_.name -replace "-Signed", ".$env:RELEASEVERSION"}
     displayName: 'Fix APK name'
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish APK for release'
+    inputs:
+      ArtifactName: ALL
 
 - job: PrepareMSIX
   dependsOn: Build
@@ -81,9 +86,15 @@ jobs:
       projects: Portable\RCS.PortableShop
    
   - powershell: |
-     # Assume only one package.
+      # Assume only one package.
      
-     Set-Location  -Path "$env:PUBLISHDIRECTORY"
+      Set-Location  -Path "$env:PUBLISHDIRECTORY"
      
-     Compress-Archive -Path "*\*.cer", "*\*.msix*" -Force -DestinationPath "RCS.CyclOne.UWP.$env:RELEASEVERSION.zip"
+      Compress-Archive -Path "*\*.cer", "*\*.msix*" -Force -DestinationPath "RCS.CyclOne.UWP.$env:RELEASEVERSION.zip"
     displayName: 'Zip MSIX package'
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish MSIX for release'
+    inputs:
+      PathtoPublish: '$(publishDirectory)\RCS.CyclOne.UWP.$(releaseVersion).zip'
+      ArtifactName: MSIX
