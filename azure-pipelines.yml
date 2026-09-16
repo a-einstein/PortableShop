@@ -6,92 +6,114 @@ variables:
 - name: appxPackageDir
   value: $(build.artifactStagingDirectory)\AppxPackages\\'
 
-jobs:
-- job: Build
+stages:
+  - stage: Building
 
-  steps:
+    jobs:
+    - job: Build
 
-  - checkout: self
-    clean: false
-    submodules: recursive
+      steps:
 
-  - task: NuGetToolInstaller@1
+      - checkout: self
+        clean: false
+        submodules: recursive
 
-  - task: NuGetCommand@2
-    inputs:
-      restoreSolution: $(solution)
+      - task: NuGetToolInstaller@1
 
-  - task: VSBuild@1
-    displayName: 'Build solution'
-    inputs:
-      solution: $(solution)
-      platform: $(buildPlatform)
-      configuration: $(buildConfiguration)
-      clean: false # Probably no effect.
+      - task: NuGetCommand@2
+        inputs:
+          restoreSolution: $(solution)
+
+      - task: VSBuild@1
+        displayName: 'Build solution'
+        inputs:
+          solution: $(solution)
+          platform: $(buildPlatform)
+          configuration: $(buildConfiguration)
+          clean: false # Probably no effect.
  
-- job: PrepareAPK
-  dependsOn: Build
+    - job: PrepareAPK
+      dependsOn: Build
   
-  steps:
+      steps:
   
-  - powershell: |
-      #TODO Make more flexible.
-      $apkDirectory = "$env:ANDROIDPROJECT\bin\$env:BUILDCONFIGURATION\net10.0-android"
+      - powershell: |
+          #TODO Make more flexible.
+          $apkDirectory = "$env:ANDROIDPROJECT\bin\$env:BUILDCONFIGURATION\net10.0-android"
      
-      $apkPattern="*-Signed.apk"
-      $apkItems = "$apkDirectory\$apkPattern"
+          $apkPattern="*-Signed.apk"
+          $apkItems = "$apkDirectory\$apkPattern"
      
-      #Debug.
-      #Get-ChildItem -Path $apkItems
+          #Debug.
+          #Get-ChildItem -Path $apkItems
      
-      #Needs created before copy.
-      #New-Item -Path "$env:PUBLISHDIRECTORY" -ItemType "directory" -force
+          #Needs created before copy.
+          #New-Item -Path "$env:PUBLISHDIRECTORY" -ItemType "directory" -force
      
-      Write-Host "1 $Build.ArtifactStagingDirectory"
-      Write-Host "2 $(Build.ArtifactStagingDirectory)"
-      Write-Host "3 $env:Build.ArtifactStagingDirectory"
-      Write-Host "4 $env:Build_ArtifactStagingDirectory"
+          Write-Host "1 $Build.ArtifactStagingDirectory"
+          Write-Host "2 $(Build.ArtifactStagingDirectory)"
+          Write-Host "3 $env:Build.ArtifactStagingDirectory"
+          Write-Host "4 $env:Build_ArtifactStagingDirectory"
      
-      #Copy-Item -Path $apkItems -Destination "$env:PUBLISHDIRECTORY"
-      Copy-Item -Path $apkItems -Destination  "$(Build.ArtifactStagingDirectory)"
+          #Copy-Item -Path $apkItems -Destination "$env:PUBLISHDIRECTORY"
+          Copy-Item -Path $apkItems -Destination  "$(Build.ArtifactStagingDirectory)"
      
-      Copy-Item -Path "docs\MAUI\ReleaseNotes.md" -Destination  "$(Build.ArtifactStagingDirectory)"
+          Copy-Item -Path "docs\MAUI\ReleaseNotes.md" -Destination  "$(Build.ArtifactStagingDirectory)"
      
-      #Set-Location  -Path "$env:PUBLISHDIRECTORY"
-      Set-Location  -Path "$(Build.ArtifactStagingDirectory)"
+          #Set-Location  -Path "$env:PUBLISHDIRECTORY"
+          Set-Location  -Path "$(Build.ArtifactStagingDirectory)"
      
-      #Assumes 1.
-      Get-ChildItem -file -filter "$apkPattern" | Rename-Item -newname { $_.name -replace "-Signed", ".$env:RELEASEVERSION"}
-    displayName: 'Fix APK name'
+          #Assumes 1.
+          Get-ChildItem -file -filter "$apkPattern" | Rename-Item -newname { $_.name -replace "-Signed", ".$env:RELEASEVERSION"}
+        displayName: 'Fix APK name'
 
-  - task: PublishBuildArtifacts@1
-    displayName: 'Publish APK for release'
-    inputs:
-      ArtifactName: ALL
+      - task: PublishBuildArtifacts@1
+        displayName: 'Publish APK for release'
+        inputs:
+          ArtifactName: ALL
 
-- job: PrepareMSIX
-  dependsOn: Build
+    - job: PrepareMSIX
+      dependsOn: Build
 
-  steps:
+      steps:
    
-  - task: DotNetCoreCLI@2
-    displayName: 'Build MSIX by dotnet'
-    inputs:
-      command: publish
-      arguments:  -f:net10.0-windows10.0.26100.0 -p:PublishProfile=MSIX-win-x64
-      publishWebProjects: false
-      projects: Portable\RCS.PortableShop
+      - task: DotNetCoreCLI@2
+        displayName: 'Build MSIX by dotnet'
+        inputs:
+          command: publish
+          arguments:  -f:net10.0-windows10.0.26100.0 -p:PublishProfile=MSIX-win-x64
+          publishWebProjects: false
+          projects: Portable\RCS.PortableShop
    
-  - powershell: |
-      # Assume only one package.
+      - powershell: |
+          # Assume only one package.
      
-      Set-Location  -Path "$env:PUBLISHDIRECTORY"
+          Set-Location  -Path "$env:PUBLISHDIRECTORY"
      
-      Compress-Archive -Path "*\*.cer", "*\*.msix*" -Force -DestinationPath "RCS.CyclOne.UWP.$env:RELEASEVERSION.zip"
-    displayName: 'Zip MSIX package'
+          Compress-Archive -Path "*\*.cer", "*\*.msix*" -Force -DestinationPath "RCS.CyclOne.UWP.$env:RELEASEVERSION.zip"
+        displayName: 'Zip MSIX package'
 
-  - task: PublishBuildArtifacts@1
-    displayName: 'Publish MSIX for release'
-    inputs:
-      PathtoPublish: '$(publishDirectory)\RCS.CyclOne.UWP.$(releaseVersion).zip'
-      ArtifactName: MSIX
+      - task: PublishBuildArtifacts@1
+        displayName: 'Publish MSIX for release'
+        inputs:
+          PathtoPublish: '$(publishDirectory)\RCS.CyclOne.UWP.$(releaseVersion).zip'
+          ArtifactName: MSIX
+
+  - stage: Deploying
+
+    jobs:
+
+    - job: Deploy
+
+      steps:
+      - task: GitHubRelease@1
+        displayName: 'Deploy to GitHub'
+        inputs:
+          gitHubConnection: 'github.com_a-einstein'
+          tagSource: userSpecifiedTag
+          tag: '$(ReleaseTag)'
+          releaseNotesFilePath: '$(System.DefaultWorkingDirectory)/_Build MAUI/ALL/ReleaseNotes.md'
+          assets: |
+           $(System.DefaultWorkingDirectory)/_Build MAUI/ALL/*
+           $(System.DefaultWorkingDirectory)/_Build MAUI/MSIX/*
+          changeLogCompareToRelease: lastNonDraftRelease
