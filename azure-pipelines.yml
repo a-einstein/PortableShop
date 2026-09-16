@@ -25,10 +25,10 @@ stages:
       - task: VSBuild@1
         displayName: 'Build solution'
         inputs:
-          solution: $(solution)
-          platform: $(buildPlatform)
-          configuration: $(buildConfiguration)
-          clean: false # Probably no effect.
+          solution: '$(solution)'
+          msbuildArgs: '/p:WarningLevel=1'
+          platform: '$(buildPlatform)'
+          configuration: '$(buildConfiguration)'
  
     - job: PrepareAPK
       dependsOn: Build
