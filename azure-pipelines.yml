@@ -26,7 +26,7 @@ stages:
         displayName: 'Build solution'
         inputs:
           solution: '$(solution)'
-          msbuildArgs: '/p:WarningLevel=1'
+          msbuildArgs: '/p:WarningLevel=1 -verbosity:minimal'
           platform: '$(buildPlatform)'
           configuration: '$(buildConfiguration)'
  
