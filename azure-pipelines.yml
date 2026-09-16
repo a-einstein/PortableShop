@@ -3,8 +3,6 @@ pool:
 
 variables:
 - group: 'SharedVariables'
-- name: appxPackageDir
-  value: $(build.artifactStagingDirectory)\AppxPackages\\'
 
 stages:
   - stage: Building
@@ -112,8 +110,8 @@ stages:
           gitHubConnection: 'github.com_a-einstein'
           tagSource: userSpecifiedTag
           tag: '$(ReleaseTag)'
-          releaseNotesFilePath: '$(System.DefaultWorkingDirectory)/_Build MAUI/ALL/ReleaseNotes.md'
+          releaseNotesFilePath: '$(System.ArtifactStagingDirectory)/ALL/ReleaseNotes.md'
           assets: |
-           $(System.DefaultWorkingDirectory)/_Build MAUI/ALL/*
-           $(System.DefaultWorkingDirectory)/_Build MAUI/MSIX/*
+           $(System.ArtifactStagingDirectory)/ALL/*
+           $(System.ArtifactStagingDirectory)/MSIX/*
           changeLogCompareToRelease: lastNonDraftRelease
