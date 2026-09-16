@@ -111,8 +111,7 @@ stages:
           gitHubConnection: 'github.com_a-einstein'
           tagSource: userSpecifiedTag
           tag: '$(ReleaseTag)'
-          releaseNotesFilePath: '$(Build.ArtifactStagingDirectory)/ALL/ReleaseNotes.md'
+          releaseNotesFilePath: '$(Build.ArtifactStagingDirectory)/ReleaseNotes.md'
           assets: |
-           $(Build.ArtifactStagingDirectory)/ALL/*
-           $(Build.ArtifactStagingDirectory)/MSIX/*
+           $(Build.ArtifactStagingDirectory)/*
           changeLogCompareToRelease: lastNonDraftRelease
