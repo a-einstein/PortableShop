@@ -1,3 +1,6 @@
+trigger: 
+- master
+
 pool: 
   name: Default
 
@@ -98,7 +101,6 @@ stages:
           ArtifactName: MSIX
 
   - stage: Deploying
-    dependsOn: Building
 
     jobs:
 
