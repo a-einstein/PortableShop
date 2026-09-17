@@ -112,7 +112,7 @@ stages:
         inputs:
           gitHubConnection: 'github.com_a-einstein'
           tagSource: userSpecifiedTag
-          tag: '$(ReleaseTag)'
+          tag: 'Poep'
           releaseNotesFilePath: '$(Build.ArtifactStagingDirectory)/ReleaseNotes.md'
           assets: |
            $(Build.ArtifactStagingDirectory)/*
