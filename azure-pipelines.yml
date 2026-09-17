@@ -68,11 +68,6 @@ stages:
           Get-ChildItem -file -filter "$apkPattern" | Rename-Item -newname { $_.name -replace "-Signed", ".$env:RELEASEVERSION"}
         displayName: 'Fix APK name'
 
-      - task: PublishBuildArtifacts@1
-        displayName: 'Publish APK for release'
-        inputs:
-          ArtifactName: ALL
-
     - job: PrepareMSIX
       dependsOn: Build
 
@@ -94,15 +89,24 @@ stages:
           Compress-Archive -Path "*\*.cer", "*\*.msix*" -Force -DestinationPath "RCS.CyclOne.UWP.$env:RELEASEVERSION.zip"
         displayName: 'Zip MSIX package'
 
-      - task: PublishBuildArtifacts@1
-        displayName: 'Publish MSIX for release'
-        inputs:
-          PathtoPublish: '$(publishDirectory)\RCS.CyclOne.UWP.$(releaseVersion).zip'
-          ArtifactName: MSIX
-
   - stage: Deploying
 
     jobs:
+
+    - job: Publish
+
+      steps:
+ 
+      - task: PublishBuildArtifacts@1
+        displayName: 'Publish APK'
+        inputs:
+          ArtifactName: ALL
+
+      - task: PublishBuildArtifacts@1
+        displayName: 'Publish MSIX'
+        inputs:
+          PathtoPublish: '$(publishDirectory)\RCS.CyclOne.UWP.$(releaseVersion).zip'
+          ArtifactName: MSIX
 
     - job: Deploy
 
@@ -112,8 +116,6 @@ stages:
         inputs:
           gitHubConnection: 'github.com_a-einstein'
           tagSource: userSpecifiedTag
-          tag: 'Poep'
-          releaseNotesFilePath: '$(Build.ArtifactStagingDirectory)/ReleaseNotes.md'
-          assets: |
-           $(Build.ArtifactStagingDirectory)/*
+          tag: '$(ReleaseTag)'
+          releaseNotesFilePath: '$(System.DefaultWorkingDirectory)/_MAUI/ALL/ReleaseNotes.md'
           changeLogCompareToRelease: lastNonDraftRelease
