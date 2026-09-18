@@ -118,6 +118,12 @@ stages:
       dependsOn: Publish
 
       steps:
+      
+      - task: ManualValidation@1
+        inputs: 
+          notifyUsers: aeinstein@xs4all.nl
+          instructions: 'Approval pending for Cyclone $(releaseVersion)'
+
       - task: GitHubRelease@1
         displayName: 'Deploy to GitHub'
         inputs:
