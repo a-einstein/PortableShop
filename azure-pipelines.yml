@@ -9,22 +9,16 @@ variables:
 
 stages:
   - stage: Building
-
     jobs:
     - job: Build
-
       steps:
-
       - checkout: self
         clean: false
         submodules: recursive
-
       - task: NuGetToolInstaller@1
-
       - task: NuGetCommand@2
         inputs:
           restoreSolution: $(solution)
-
       - task: VSBuild@1
         displayName: 'Build solution'
         inputs:
@@ -35,9 +29,7 @@ stages:
  
     - job: PrepareAPK
       dependsOn: Build
-  
       steps:
-  
       - powershell: |
           #TODO Make more flexible.
           $apkDirectory = "$env:ANDROIDPROJECT\bin\$env:BUILDCONFIGURATION\net10.0-android"
@@ -75,9 +67,7 @@ stages:
 
     - job: PrepareMSIX
       dependsOn: Build
-
       steps:
-   
       - task: DotNetCoreCLI@2
         displayName: 'Build MSIX by dotnet'
         inputs:
@@ -95,35 +85,32 @@ stages:
         displayName: 'Zip MSIX package'
 
   - stage: Deploying
-
     jobs:
-
     - job: Publish
-
       steps:
- 
       - task: PublishBuildArtifacts@1
         displayName: 'Publish APK'
         inputs:
           PathtoPublish: '$(publishDirectory)\GitHub\nl.rcsworks.cyclone.maui.$(releaseVersion).apk'
           ArtifactName: ALL
-
       - task: PublishBuildArtifacts@1
         displayName: 'Publish MSIX'
         inputs:
           PathtoPublish: '$(publishDirectory)\RCS.CyclOne.UWP.$(releaseVersion).zip'
           ArtifactName: MSIX
 
-    - job: Deploy
+    - job: WaitForAproval
       dependsOn: Publish
-
+      timeoutInMinutes: 60
       steps:
-      
       - task: ManualValidation@1
         inputs: 
           notifyUsers: aeinstein@xs4all.nl
           instructions: 'Approval pending for Cyclone $(releaseVersion)'
 
+    - job: Deploy
+      dependsOn: WaitForAproval
+      steps:
       - task: GitHubRelease@1
         displayName: 'Deploy to GitHub'
         inputs:
