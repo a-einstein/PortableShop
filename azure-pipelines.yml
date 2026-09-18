@@ -101,6 +101,7 @@ stages:
 
     - job: WaitForAproval
       dependsOn: Publish
+      pool: server
       timeoutInMinutes: 60
       steps:
       - task: ManualValidation@1
