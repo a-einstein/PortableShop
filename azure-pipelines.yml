@@ -31,7 +31,7 @@ stages:
       dependsOn: Build
       steps:
       - powershell: |
-          #TODO Make more flexible.
+          # TODO Make more flexible.
           $apkDirectory = "$env:ANDROIDPROJECT\bin\$env:BUILDCONFIGURATION\net10.0-android"
      
           $apkPattern="*-Signed.apk"
@@ -86,6 +86,8 @@ stages:
 
   - stage: Deploying
     jobs:
+    # TODO Is this needed?
+    # TODO Back to building?
     - job: Publish
       steps:
       - task: PublishBuildArtifacts@1
@@ -101,7 +103,7 @@ stages:
 
     - job: WaitForAproval
       dependsOn: Publish
-      pool: server
+      pool: server # Does not work self hosted. May take long.
       timeoutInMinutes: 60
       steps:
       - task: ManualValidation@1
@@ -116,6 +118,7 @@ stages:
         displayName: 'Deploy to GitHub'
         inputs:
           gitHubConnection: 'github.com_a-einstein'
+          # TODO Use version and date.
           tagSource: userSpecifiedTag
           tag: '$(ReleaseTag)'
           releaseNotesFilePath: '$(publishDirectory)\GitHub\ReleaseNotes.md'
