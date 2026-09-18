@@ -91,7 +91,7 @@ stages:
      
           Set-Location  -Path "$env:PUBLISHDIRECTORY"
      
-          Compress-Archive -Path "*\*.cer", "*\*.msix*" -Force -DestinationPath "RCS.CyclOne.UWP.$env:RELEASEVERSION.zip"
+          Compress-Archive -Path "*\*.cer", "*\*.msix*" -Force -DestinationPath ERSION.zip""RCS.CyclOne.UWP.$env:RELEASEV
         displayName: 'Zip MSIX package'
 
   - stage: Deploying
@@ -105,7 +105,7 @@ stages:
       - task: PublishBuildArtifacts@1
         displayName: 'Publish APK'
         inputs:
-          PathtoPublish: '$(publishDirectory)\GitHub\RCS.CyclOne.UWP.$(releaseVersion).zip'
+          PathtoPublish: '$(publishDirectory)\GitHub\nl.rcsworks.cyclone.maui.$(releaseVersion).apk'
           ArtifactName: ALL
 
       - task: PublishBuildArtifacts@1
