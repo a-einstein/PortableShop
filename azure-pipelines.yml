@@ -56,13 +56,13 @@ stages:
           Write-Host "3 $env:Build.ArtifactStagingDirectory"
           Write-Host "4 $env:Build_ArtifactStagingDirectory"
      
-          Copy-Item -Path $apkItems -Destination "$(Build.PUBLISHDIRECTORY)\GitHub"
+          Copy-Item -Path $apkItems -Destination "$(PUBLISHDIRECTORY)\GitHub"
           #Copy-Item -Path $apkItems -Destination  "$(Build.ArtifactStagingDirectory)"
      
-          Copy-Item -Path "docs\MAUI\ReleaseNotes.md" -Destination  "$(Build.PUBLISHDIRECTORY)\GitHub"
+          Copy-Item -Path "docs\MAUI\ReleaseNotes.md" -Destination  "$(PUBLISHDIRECTORY)\GitHub"
           #Copy-Item -Path "docs\MAUI\ReleaseNotes.md" -Destination  "$(Build.ArtifactStagingDirectory)"
      
-          Set-Location  -Path "$(Build.PUBLISHDIRECTORY)\GitHub"
+          Set-Location  -Path "$(PUBLISHDIRECTORY)\GitHub"
           #Set-Location  -Path "$(Build.ArtifactStagingDirectory)"
      
           #Assumes 1.
