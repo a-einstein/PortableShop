@@ -122,8 +122,8 @@ stages:
         displayName: 'Deploy to GitHub'
         inputs:
           gitHubConnection: 'github.com_a-einstein'
-          #tagSource: userSpecifiedTag
-          #tag: '$(ReleaseTag)'
+          tagSource: userSpecifiedTag
+          tag: '$(ReleaseTag)'
           releaseNotesFilePath: '$(publishDirectory)\GitHub\ReleaseNotes.md'
           #releaseNotesFilePath: '$(System.DefaultWorkingDirectory)/_MAUI/ALL/ReleaseNotes.md'
           changeLogCompareToRelease: lastNonDraftRelease
