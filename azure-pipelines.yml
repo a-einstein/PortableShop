@@ -56,13 +56,13 @@ stages:
           Write-Host "3 $env:Build.ArtifactStagingDirectory"
           Write-Host "4 $env:Build_ArtifactStagingDirectory"
      
-          Copy-Item -Path $apkItems -Destination "$env:PUBLISHDIRECTORY"
+          Copy-Item -Path $apkItems -Destination "$(Build.PUBLISHDIRECTORY)\GitHub"
           #Copy-Item -Path $apkItems -Destination  "$(Build.ArtifactStagingDirectory)"
      
-          Copy-Item -Path "docs\MAUI\ReleaseNotes.md" -Destination  "$(Build.PUBLISHDIRECTORY)"
+          Copy-Item -Path "docs\MAUI\ReleaseNotes.md" -Destination  "$(Build.PUBLISHDIRECTORY)\GitHub"
           #Copy-Item -Path "docs\MAUI\ReleaseNotes.md" -Destination  "$(Build.ArtifactStagingDirectory)"
      
-          Set-Location  -Path "$env:PUBLISHDIRECTORY"
+          Set-Location  -Path "$(Build.PUBLISHDIRECTORY)\GitHub"
           #Set-Location  -Path "$(Build.ArtifactStagingDirectory)"
      
           #Assumes 1.
@@ -101,6 +101,7 @@ stages:
       - task: PublishBuildArtifacts@1
         displayName: 'Publish APK'
         inputs:
+          PathtoPublish: '$(publishDirectory)\GitHub\RCS.CyclOne.UWP.$(releaseVersion).zip'
           ArtifactName: ALL
 
       - task: PublishBuildArtifacts@1
@@ -118,5 +119,6 @@ stages:
           gitHubConnection: 'github.com_a-einstein'
           #tagSource: userSpecifiedTag
           #tag: '$(ReleaseTag)'
-          releaseNotesFilePath: '$(System.DefaultWorkingDirectory)/_MAUI/ALL/ReleaseNotes.md'
+          releaseNotesFilePath: '$(publishDirectory)\GitHub\ReleaseNotes.md'
+          #releaseNotesFilePath: '$(System.DefaultWorkingDirectory)/_MAUI/ALL/ReleaseNotes.md'
           changeLogCompareToRelease: lastNonDraftRelease
