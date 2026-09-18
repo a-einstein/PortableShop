@@ -115,6 +115,7 @@ stages:
           ArtifactName: MSIX
 
     - job: Deploy
+      dependsOn: Publish
 
       steps:
       - task: GitHubRelease@1
