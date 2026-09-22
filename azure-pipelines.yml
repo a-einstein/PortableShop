@@ -82,7 +82,7 @@ stages:
      
           Set-Location  -Path "$env:PUBLISHDIRECTORY"
      
-          Compress-Archive -Path "*\*.cer", "*\*.msix*" -Force -DestinationPath ERSION.zip""RCS.CyclOne.UWP.$env:RELEASEV
+          Compress-Archive -Path "*\*.cer", "*\*.msix*" -Force -DestinationPath "RCS.CyclOne.UWP.$env:RELEASEVERSION.zip"
         displayName: 'Zip MSIX package'
 
   - stage: Deploying
