@@ -94,12 +94,12 @@ stages:
       - task: PublishBuildArtifacts@1
         displayName: 'Publish APK'
         inputs:
-          PathtoPublish: '$(publishDirectory)\GitHub\*.apk'
+          PathtoPublish: '$(publishDirectory)\GitHub\nl.rcsworks.cyclone.maui.$(releaseVersion).apk'
           ArtifactName: ALL
       - task: PublishBuildArtifacts@1
         displayName: 'Publish MSIX'
         inputs:
-          PathtoPublish: '$(publishDirectory)\*.zip'
+          PathtoPublish: '$(publishDirectory)\RCS.CyclOne.UWP.$(releaseVersion).zip'
           ArtifactName: MSIX
 
     - job: WaitForAproval
