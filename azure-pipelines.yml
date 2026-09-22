@@ -62,7 +62,7 @@ stages:
           Set-Location -Path $GitHubDirectory
           #Set-Location -Path "$(Build.ArtifactStagingDirectory)"
      
-          #Assumes 1 file.
+          #Assumes 1 file. Note Rename-Item cannot overwrite by Force.
           Get-ChildItem -file -filter "$apkPattern" | Rename-Item -newname { $_.name -replace "-Signed", ".$env:RELEASEVERSION"} -Force
         displayName: 'Fix APK name'
 
