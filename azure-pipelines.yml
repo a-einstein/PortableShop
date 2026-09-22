@@ -12,6 +12,7 @@ stages:
     jobs:
     - job: Build
       steps:
+        # TODO Files don't get their version's date. So always builds.
       - checkout: self
         clean: false
         submodules: recursive
@@ -61,7 +62,7 @@ stages:
           Set-Location -Path $GitHubDirectory
           #Set-Location -Path "$(Build.ArtifactStagingDirectory)"
      
-          #Assumes 1.
+          #Assumes 1 file.
           Get-ChildItem -file -filter "$apkPattern" | Rename-Item -newname { $_.name -replace "-Signed", ".$env:RELEASEVERSION"}
         displayName: 'Fix APK name'
 
@@ -103,7 +104,7 @@ stages:
 
     - job: WaitForAproval
       dependsOn: Publish
-      pool: server # Does not work self hosted. May take long.
+      pool: server # Didn't work self hosted. May take long.
       timeoutInMinutes: 60
       steps:
       - task: ManualValidation@1
