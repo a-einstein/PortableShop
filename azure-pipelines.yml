@@ -42,7 +42,7 @@ stages:
           #Get-ChildItem -Path $apkItems
      
           #Needs created before copy.
-          #New-Item -Path "$env:PUBLISHDIRECTORY" -ItemType "directory" -force
+          #New-Item -Path "$env:PUBLISHDIRECTORY" -ItemType "directory" -Force
      
           Write-Host "1 $Build.ArtifactStagingDirectory"
           Write-Host "2 $(Build.ArtifactStagingDirectory)"
@@ -51,7 +51,7 @@ stages:
 
           $GitHubDirectory = "$(Build.SourcesDirectory)\$(PUBLISHDIRECTORY)\GitHub"
           Write-Host "5 $GitHubDirectory"
-          New-Item -Path $GitHubDirectory -ItemType "directory" -force
+          New-Item -Path $GitHubDirectory -ItemType "directory" -Force
           
           Copy-Item -Path $apkItems -Destination $GitHubDirectory -Force
           #Copy-Item -Path $apkItems -Destination  "$(Build.ArtifactStagingDirectory)" -Force
@@ -63,7 +63,7 @@ stages:
           #Set-Location -Path "$(Build.ArtifactStagingDirectory)"
      
           #Assumes 1 file.
-          Get-ChildItem -file -filter "$apkPattern" | Rename-Item -newname { $_.name -replace "-Signed", ".$env:RELEASEVERSION"}
+          Get-ChildItem -file -filter "$apkPattern" | Rename-Item -newname { $_.name -replace "-Signed", ".$env:RELEASEVERSION"} -Force
         displayName: 'Fix APK name'
 
     - job: PrepareMSIX
