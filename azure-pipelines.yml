@@ -53,11 +53,11 @@ stages:
           Write-Host "5 $GitHubDirectory"
           New-Item -Path $GitHubDirectory -ItemType "directory" -force
           
-          Copy-Item -Path $apkItems -Destination $GitHubDirectory
-          #Copy-Item -Path $apkItems -Destination  "$(Build.ArtifactStagingDirectory)"
+          Copy-Item -Path $apkItems -Destination $GitHubDirectory -Force
+          #Copy-Item -Path $apkItems -Destination  "$(Build.ArtifactStagingDirectory)" -Force
      
-          Copy-Item -Path "docs\MAUI\ReleaseNotes.md" -Destination $GitHubDirectory
-          #Copy-Item -Path "docs\MAUI\ReleaseNotes.md" -Destination "$(Build.ArtifactStagingDirectory)"
+          Copy-Item -Path "docs\MAUI\ReleaseNotes.md" -Destination $GitHubDirectory -Force
+          #Copy-Item -Path "docs\MAUI\ReleaseNotes.md" -Destination "$(Build.ArtifactStagingDirectory)" -Force
      
           Set-Location -Path $GitHubDirectory
           #Set-Location -Path "$(Build.ArtifactStagingDirectory)"
