@@ -110,8 +110,8 @@ stages:
       timeoutInMinutes: 60
       steps:
       - task: ManualValidation@1
-        inputs: 
-          notifyUsers: aeinstein@xs4all.nl
+        inputs:
+          notifyUsers: 'aeinstein@xs4all.nl'
           instructions: 'Approval pending for Cyclone $(releaseVersion)'
 
     - job: Deploy
