@@ -111,7 +111,7 @@ stages:
       steps:
       - task: ManualValidation@1
         inputs:
-          notifyUsers: 'aeinstein@xs4all.nl'
+          notifyUsers: '$(administratorMail)'
           instructions: 'Approval pending for Cyclone $(releaseVersion)'
 
     - job: Deploy
