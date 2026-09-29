@@ -10,6 +10,7 @@ variables:
 stages:
   - stage: Building
     jobs:
+    
     - job: Build
       steps:
         # TODO Files don't get their version's date. So always builds.
@@ -53,14 +54,14 @@ stages:
           Write-Host "5 $GitHubDirectory"
           New-Item -Path $GitHubDirectory -ItemType "directory" -Force
           
-          Copy-Item -Path $apkItems -Destination $GitHubDirectory -Force
-          #Copy-Item -Path $apkItems -Destination  "$(Build.ArtifactStagingDirectory)" -Force
+          #Copy-Item -Path $apkItems -Destination $GitHubDirectory -Force
+          Copy-Item -Path $apkItems -Destination  "$(Build.ArtifactStagingDirectory)" -Force
      
-          Copy-Item -Path "docs\MAUI\ReleaseNotes.md" -Destination $GitHubDirectory -Force
-          #Copy-Item -Path "docs\MAUI\ReleaseNotes.md" -Destination "$(Build.ArtifactStagingDirectory)" -Force
+          #Copy-Item -Path "docs\MAUI\ReleaseNotes.md" -Destination $GitHubDirectory -Force
+          Copy-Item -Path "docs\MAUI\ReleaseNotes.md" -Destination "$(Build.ArtifactStagingDirectory)" -Force
      
-          Set-Location -Path $GitHubDirectory
-          #Set-Location -Path "$(Build.ArtifactStagingDirectory)"
+          #Set-Location -Path $GitHubDirectory
+          Set-Location -Path "$(Build.ArtifactStagingDirectory)"
      
           #Assumes 1 file. Note Rename-Item cannot overwrite by Force.
           Get-ChildItem -file -filter "$apkPattern" | Rename-Item -newname { $_.name -replace "-Signed", ".$env:RELEASEVERSION"} -Force
@@ -85,9 +86,7 @@ stages:
           Compress-Archive -Path "*\*.cer", "*\*.msix*" -Force -DestinationPath "RCS.CyclOne.UWP.$env:RELEASEVERSION.zip"
         displayName: 'Zip MSIX package'
 
-  - stage: Deploying
-    jobs:
-    # TODO Is this needed?
+     # TODO Is this needed?
     # TODO Back to building?
     - job: Publish
       steps:
@@ -95,17 +94,21 @@ stages:
         displayName: 'Publish APK'
         inputs:
           # Note does not accept wildcards for filenames.
-          PathtoPublish: '$(publishDirectory)\GitHub\nl.rcsworks.cyclone.maui.$(releaseVersion).apk'
-          ArtifactName: ALL
+          #PathtoPublish: '$(publishDirectory)\GitHub\nl.rcsworks.cyclone.maui.$(releaseVersion).apk'
+          PathtoPublish: '$(Build.ArtifactStagingDirectory)\nl.rcsworks.cyclone.maui.$(releaseVersion).apk'
+          ArtifactName: APK
       - task: PublishBuildArtifacts@1
         displayName: 'Publish MSIX'
         inputs:
           # Note does not accept wildcards for filenames.
           PathtoPublish: '$(publishDirectory)\RCS.CyclOne.UWP.$(releaseVersion).zip'
           ArtifactName: MSIX
+ 
+  - stage: Deploying
+    dependsOn: Building
 
+    jobs:
     - job: WaitForAproval
-      dependsOn: Publish
       pool: server # Didn't work self hosted. May take long.
       timeoutInMinutes: 60
       steps:
@@ -117,6 +120,8 @@ stages:
     - job: Deploy
       dependsOn: WaitForAproval
       steps:
+      - download: current
+        artifact: APK
       - task: GitHubRelease@1
         displayName: 'Deploy to GitHub'
         inputs:
