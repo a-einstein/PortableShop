@@ -52,7 +52,7 @@ stages:
 
           $GitHubDirectory = "$(Build.SourcesDirectory)\$(PUBLISHDIRECTORY)\GitHub"
           Write-Host "5 $GitHubDirectory"
-          New-Item -Path $GitHubDirectory -ItemType "directory" -Force
+          #New-Item -Path $GitHubDirectory -ItemType "directory" -Force
           
           #Copy-Item -Path $apkItems -Destination $GitHubDirectory -Force
           Copy-Item -Path $apkItems -Destination  "$(Build.ArtifactStagingDirectory)" -Force
