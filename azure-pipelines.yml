@@ -68,6 +68,7 @@ stages:
         displayName: 'Fix APK name'
 
       # TODO Is this needed?
+      # TODO Artifacts are removed.
       - task: PublishBuildArtifacts@1
         displayName: 'Publish APK'
         inputs:
@@ -123,7 +124,9 @@ stages:
         inputs:
           gitHubConnection: 'github.com_a-einstein'
           tagSource: userSpecifiedTag
+          # Note BuildNumber adds latest commit-comment.
+          # TODO Avoid that.
           tag: '$(releaseVersion)_$(Build.BuildNumber)'
           #releaseNotesFilePath: '$(publishDirectory)\GitHub\ReleaseNotes.md'
-          releaseNotesFilePath: '$(System.DefaultWorkingDirectory)/_MAUI/ALL/ReleaseNotes.md'
+          releaseNotesFilePath: '$(System.DefaultWorkingDirectory)/docs/MAUI/ReleaseNotes.md'
           changeLogCompareToRelease: lastNonDraftRelease
