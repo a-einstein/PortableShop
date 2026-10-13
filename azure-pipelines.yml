@@ -68,7 +68,6 @@ stages:
         displayName: 'Fix APK name'
 
       # TODO Is this needed?
-      # TODO Artifacts are removed.
       - task: PublishBuildArtifacts@1
         displayName: 'Publish APK'
         inputs:
@@ -105,7 +104,8 @@ stages:
   - stage: Deploying
     jobs:
     - job: WaitForAproval
-      pool: server # Didn't work self hosted. May take long.
+      # Note Didn't work self hosted. May take long.
+      pool: server 
       timeoutInMinutes: 60
       steps:
       - task: ManualValidation@1
@@ -119,13 +119,13 @@ stages:
       - task: DownloadBuildArtifacts@1
         inputs:
           downloadType : specific
+      # TODO Artifacts are now present by name, but not deployed.
       - task: GitHubRelease@1
         displayName: 'Deploy to GitHub'
         inputs:
           gitHubConnection: 'github.com_a-einstein'
           tagSource: userSpecifiedTag
-          # Note BuildNumber adds latest commit-comment.
-          # TODO Avoid that.
+          # Note BuildNumber sometimes added latest commit-comment, but disappeared later on.
           tag: '$(releaseVersion)_$(Build.BuildNumber)'
           #releaseNotesFilePath: '$(publishDirectory)\GitHub\ReleaseNotes.md'
           releaseNotesFilePath: '$(System.DefaultWorkingDirectory)/docs/MAUI/ReleaseNotes.md'
