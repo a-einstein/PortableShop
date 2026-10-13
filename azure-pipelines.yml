@@ -67,6 +67,15 @@ stages:
           Get-ChildItem -file -filter "$apkPattern" | Rename-Item -newname { $_.name -replace "-Signed", ".$env:RELEASEVERSION"} -Force
         displayName: 'Fix APK name'
 
+      # TODO Is this needed?
+      - task: PublishBuildArtifacts@1
+        displayName: 'Publish APK'
+        inputs:
+          # Note does not accept wildcards for filenames.
+          #PathtoPublish: '$(publishDirectory)\GitHub\nl.rcsworks.cyclone.maui.$(releaseVersion).apk'
+          PathtoPublish: '$(Build.ArtifactStagingDirectory)\nl.rcsworks.cyclone.maui.$(releaseVersion).apk'
+          ArtifactName: APK
+
     - job: PrepareMSIX
       dependsOn: Build
       steps:
@@ -80,33 +89,19 @@ stages:
    
       - powershell: |
           # Assume only one package.
-     
           Set-Location  -Path "$env:PUBLISHDIRECTORY"
-     
           Compress-Archive -Path "*\*.cer", "*\*.msix*" -Force -DestinationPath "RCS.CyclOne.UWP.$env:RELEASEVERSION.zip"
         displayName: 'Zip MSIX package'
 
-     # TODO Is this needed?
-    # TODO Back to building?
-    - job: Publish
-      steps:
-      - task: PublishBuildArtifacts@1
-        displayName: 'Publish APK'
-        inputs:
-          # Note does not accept wildcards for filenames.
-          #PathtoPublish: '$(publishDirectory)\GitHub\nl.rcsworks.cyclone.maui.$(releaseVersion).apk'
-          PathtoPublish: '$(Build.ArtifactStagingDirectory)\nl.rcsworks.cyclone.maui.$(releaseVersion).apk'
-          ArtifactName: APK
+      # TODO Is this needed?
       - task: PublishBuildArtifacts@1
         displayName: 'Publish MSIX'
         inputs:
           # Note does not accept wildcards for filenames.
           PathtoPublish: '$(publishDirectory)\RCS.CyclOne.UWP.$(releaseVersion).zip'
           ArtifactName: MSIX
- 
-  - stage: Deploying
-    dependsOn: Building
 
+  - stage: Deploying
     jobs:
     - job: WaitForAproval
       pool: server # Didn't work self hosted. May take long.
