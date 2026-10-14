@@ -28,7 +28,7 @@
     <!-- Versions -->
     <!--TODO Centralise version number, remove redundancies.-->
     <!--TODO MAUI Seems redundant.-->
-    <ApplicationDisplayVersion>2.2.0</ApplicationDisplayVersion>
+    <ApplicationDisplayVersion>2.3.0</ApplicationDisplayVersion>
     <ApplicationVersion>1</ApplicationVersion>
     <ApplicationId>nl.rcsworks.cyclone.maui</ApplicationId>
 

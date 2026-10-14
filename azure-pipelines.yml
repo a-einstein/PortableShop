@@ -54,6 +54,7 @@ stages:
           Set-Location -Path "$(Build.ArtifactStagingDirectory)"
      
           #Assumes 1 file. Note Rename-Item cannot overwrite by Force.
+          # TODO Centralise releaseVersion either in code or user-input. Preferably in code.
           Get-ChildItem -file -filter "$apkPattern" | Rename-Item -newname { $_.name -replace "-Signed", ".$env:RELEASEVERSION"} -Force
         displayName: 'Fix APK name'
 
