@@ -29,15 +29,6 @@ stages:
           platform: '$(buildPlatform)'
           configuration: '$(buildConfiguration)'
 
-    - job: PrepareReleaseNotes
-      steps:
-       # Goes into container. See log.
-      - task: PublishBuildArtifacts@1
-        displayName: 'Publish ReleaseNotes'
-        inputs:
-          PathtoPublish: '$(Build.SourcesDirectory)\docs\MAUI\ReleaseNotes.md'
-          ArtifactName: NOTES
-
     - job: PrepareAPK
       dependsOn: Build
       steps:
@@ -99,6 +90,15 @@ stages:
           PathtoPublish: '$(publishDirectory)\RCS.CyclOne.UWP.$(releaseVersion).zip'
           ArtifactName: MSIX
 
+    - job: PrepareReleaseNotes
+      steps:
+       # Goes into container. See log.
+      - task: PublishBuildArtifacts@1
+        displayName: 'Publish ReleaseNotes'
+        inputs:
+          PathtoPublish: '$(Build.SourcesDirectory)\docs\MAUI\ReleaseNotes.md'
+          ArtifactName: NOTES
+
   - stage: Deploying
     jobs:
     - job: WaitForAproval
@@ -122,8 +122,9 @@ stages:
       - task: GitHubRelease@1
         displayName: 'Deploy to GitHub'
         inputs:
+          # Note transfer could of course be directly from build-directories. 
           # Works for named artifacts.
-          assets: $(Build.ArtifactStagingDirectory)/*/*
+          assets: $(Build.ArtifactStagingDirectory)\*\*
           gitHubConnection: 'github.com_a-einstein'
           tagSource: userSpecifiedTag
           # Note BuildNumber sometimes added latest commit-comment.
