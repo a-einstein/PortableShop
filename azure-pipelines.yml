@@ -28,7 +28,16 @@ stages:
           msbuildArgs: '/p:WarningLevel=0 -verbosity:minimal'
           platform: '$(buildPlatform)'
           configuration: '$(buildConfiguration)'
- 
+
+    - job: PrepareReleaseNotes
+      steps:
+       # Goes into container. See log.
+      - task: PublishBuildArtifacts@1
+        displayName: 'Publish ReleaseNotes'
+        inputs:
+          PathtoPublish: '$(Build.SourcesDirectory)\docs\MAUI\ReleaseNotes.md'
+          ArtifactName: NOTES
+
     - job: PrepareAPK
       dependsOn: Build
       steps:
@@ -39,40 +48,29 @@ stages:
           $apkPattern="*-Signed.apk"
           $apkItems = "$apkDirectory\$apkPattern"
      
-          #Debug.
+          #Debugging.
           #Get-ChildItem -Path $apkItems
      
+          # Debugging.
+          Write-Host "1 $(Build.ArtifactStagingDirectory)"
+          Write-Host "2 $env:Build_ArtifactStagingDirectory"
+
           #Needs created before copy.
           #New-Item -Path "$env:PUBLISHDIRECTORY" -ItemType "directory" -Force
-     
-          Write-Host "1 $Build.ArtifactStagingDirectory"
-          Write-Host "2 $(Build.ArtifactStagingDirectory)"
-          Write-Host "3 $env:Build.ArtifactStagingDirectory"
-          Write-Host "4 $env:Build_ArtifactStagingDirectory"
 
-          $GitHubDirectory = "$(Build.SourcesDirectory)\$(PUBLISHDIRECTORY)\GitHub"
-          Write-Host "5 $GitHubDirectory"
-          #New-Item -Path $GitHubDirectory -ItemType "directory" -Force
-          
-          #Copy-Item -Path $apkItems -Destination $GitHubDirectory -Force
           Copy-Item -Path $apkItems -Destination  "$(Build.ArtifactStagingDirectory)" -Force
-     
-          #Copy-Item -Path "docs\MAUI\ReleaseNotes.md" -Destination $GitHubDirectory -Force
-          Copy-Item -Path "docs\MAUI\ReleaseNotes.md" -Destination "$(Build.ArtifactStagingDirectory)" -Force
-     
-          #Set-Location -Path $GitHubDirectory
+          
           Set-Location -Path "$(Build.ArtifactStagingDirectory)"
      
           #Assumes 1 file. Note Rename-Item cannot overwrite by Force.
           Get-ChildItem -file -filter "$apkPattern" | Rename-Item -newname { $_.name -replace "-Signed", ".$env:RELEASEVERSION"} -Force
         displayName: 'Fix APK name'
 
-      # Go into container. See log.
+      # Goes into container. See log.
       - task: PublishBuildArtifacts@1
         displayName: 'Publish APK'
         inputs:
           # Note does not accept wildcards for filenames.
-          #PathtoPublish: '$(publishDirectory)\GitHub\nl.rcsworks.cyclone.maui.$(releaseVersion).apk'
           PathtoPublish: '$(Build.ArtifactStagingDirectory)\nl.rcsworks.cyclone.maui.$(releaseVersion).apk'
           ArtifactName: APK
 
@@ -93,7 +91,7 @@ stages:
           Compress-Archive -Path "*\*.cer", "*\*.msix*" -Force -DestinationPath "RCS.CyclOne.UWP.$env:RELEASEVERSION.zip"
         displayName: 'Zip MSIX package'
 
-      # Go into container. See log.
+      # Goes into container. See log.
       - task: PublishBuildArtifacts@1
         displayName: 'Publish MSIX'
         inputs:
@@ -110,26 +108,25 @@ stages:
       steps:
       - task: ManualValidation@1
         inputs:
+          # Does not work.
           notifyUsers: '$(administratorMail)'
-          instructions: 'Approval pending for Cyclone $(releaseVersion)'
+          instructions: 'Approval pending for Cyclone $(releaseVersion)_$(Build.BuildNumber)'
 
     - job: Deploy
       dependsOn: WaitForAproval
       steps:
-      # Creates named artifacts in a.
+      # Creates named artifacts as subdirectories in a.
       - task: DownloadBuildArtifacts@1
         inputs:
           downloadType : specific
       - task: GitHubRelease@1
         displayName: 'Deploy to GitHub'
         inputs:
-          # TODO >>> Artifacts are now present by name, but not deployed. Zie log.
-          # Try this pattern.
+          # Works for named artifacts.
           assets: $(Build.ArtifactStagingDirectory)/*/*
           gitHubConnection: 'github.com_a-einstein'
           tagSource: userSpecifiedTag
-          # Note BuildNumber sometimes added latest commit-comment, but disappeared later on.
+          # Note BuildNumber sometimes added latest commit-comment.
           tag: '$(releaseVersion)_$(Build.BuildNumber)'
-          #releaseNotesFilePath: '$(publishDirectory)\GitHub\ReleaseNotes.md'
-          releaseNotesFilePath: '$(System.DefaultWorkingDirectory)/docs/MAUI/ReleaseNotes.md'
+          releaseNotesFilePath: '$(Build.ArtifactStagingDirectory)/NOTES/ReleaseNotes.md'
           changeLogCompareToRelease: lastNonDraftRelease
