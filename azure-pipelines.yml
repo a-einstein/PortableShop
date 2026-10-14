@@ -13,7 +13,7 @@ stages:
     
     - job: Build
       steps:
-        # TODO Files don't get their version's date. So always builds.
+        # TODO For some reason this always builds. Note that files don't get their version's date.
       - checkout: self
         clean: false
         submodules: recursive
