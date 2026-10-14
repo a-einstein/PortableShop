@@ -1,0 +1,134 @@
+trigger: 
+- master
+
+pool: 
+  name: Default
+
+variables:
+- group: 'SharedVariables'
+
+stages:
+  - stage: Building
+    jobs:
+    
+    - job: Build
+      steps:
+        # TODO For some reason this always builds. Note that files don't get their version's date.
+      - checkout: self
+        clean: false
+        submodules: recursive
+      - task: NuGetToolInstaller@1
+      - task: NuGetCommand@2
+        inputs:
+          restoreSolution: $(solution)
+      - task: VSBuild@1
+        displayName: 'Build solution'
+        inputs:
+          solution: '$(solution)'
+          msbuildArgs: '/p:WarningLevel=0 -verbosity:minimal'
+          platform: '$(buildPlatform)'
+          configuration: '$(buildConfiguration)'
+
+    - job: PrepareAPK
+      dependsOn: Build
+      steps:
+      - powershell: |
+          # TODO Make more flexible.
+          $apkDirectory = "$env:ANDROIDPROJECT\bin\$env:BUILDCONFIGURATION\net10.0-android"
+     
+          $apkPattern="*-Signed.apk"
+          $apkItems = "$apkDirectory\$apkPattern"
+     
+          #Debugging.
+          #Get-ChildItem -Path $apkItems
+     
+          # Debugging.
+          Write-Host "1 $(Build.ArtifactStagingDirectory)"
+          Write-Host "2 $env:Build_ArtifactStagingDirectory"
+
+          #Needs created before copy.
+          #New-Item -Path "$env:PUBLISHDIRECTORY" -ItemType "directory" -Force
+
+          Copy-Item -Path $apkItems -Destination  "$(Build.ArtifactStagingDirectory)" -Force
+          
+          Set-Location -Path "$(Build.ArtifactStagingDirectory)"
+     
+          #Assumes 1 file. Note Rename-Item cannot overwrite by Force.
+          # TODO Centralise releaseVersion either in code or user-input. Preferably in code.
+          Get-ChildItem -file -filter "$apkPattern" | Rename-Item -newname { $_.name -replace "-Signed", ".$env:RELEASEVERSION"} -Force
+        displayName: 'Fix APK name'
+
+      # Goes into container. See log.
+      - task: PublishBuildArtifacts@1
+        displayName: 'Publish APK'
+        inputs:
+          # Note does not accept wildcards for filenames.
+          PathtoPublish: '$(Build.ArtifactStagingDirectory)\nl.rcsworks.cyclone.maui.$(releaseVersion).apk'
+          ArtifactName: APK
+
+    - job: PrepareMSIX
+      dependsOn: Build
+      steps:
+      - task: DotNetCoreCLI@2
+        displayName: 'Build MSIX by dotnet'
+        inputs:
+          command: publish
+          arguments:  -f:net10.0-windows10.0.26100.0 -p:PublishProfile=MSIX-win-x64
+          publishWebProjects: false
+          projects: Portable\RCS.PortableShop
+   
+      - powershell: |
+          # Assume only one package.
+          Set-Location  -Path "$env:PUBLISHDIRECTORY"
+          Compress-Archive -Path "*\*.cer", "*\*.msix*" -Force -DestinationPath "RCS.CyclOne.UWP.$env:RELEASEVERSION.zip"
+        displayName: 'Zip MSIX package'
+
+      # Goes into container. See log.
+      - task: PublishBuildArtifacts@1
+        displayName: 'Publish MSIX'
+        inputs:
+          # Note does not accept wildcards for filenames.
+          PathtoPublish: '$(publishDirectory)\RCS.CyclOne.UWP.$(releaseVersion).zip'
+          ArtifactName: MSIX
+
+    - job: PrepareReleaseNotes
+      steps:
+       # Goes into container. See log.
+      - task: PublishBuildArtifacts@1
+        displayName: 'Publish ReleaseNotes'
+        inputs:
+          PathtoPublish: '$(Build.SourcesDirectory)\docs\MAUI\ReleaseNotes.md'
+          ArtifactName: NOTES
+
+  - stage: Deploying
+    jobs:
+    - job: WaitForAproval
+      # Note Didn't work self hosted. May take long.
+      pool: server 
+      timeoutInMinutes: 60
+      steps:
+      - task: ManualValidation@1
+        inputs:
+          # Does not work.
+          notifyUsers: '$(administratorMail)'
+          instructions: 'Approval pending for Cyclone $(releaseVersion)_$(Build.BuildNumber)'
+
+    - job: Deploy
+      dependsOn: WaitForAproval
+      steps:
+      # Creates named artifacts as subdirectories in a.
+      - task: DownloadBuildArtifacts@1
+        inputs:
+          downloadType : specific
+      - task: GitHubRelease@1
+        displayName: 'Deploy to GitHub'
+        inputs:
+          # Note transfer could of course be directly from build-directories. 
+          # Works for named artifacts.
+          assets: $(Build.ArtifactStagingDirectory)\*\*
+          gitHubConnection: 'github.com_a-einstein'
+          tagSource: userSpecifiedTag
+          # Note BuildNumber sometimes added latest commit-comment.
+          tag: '$(releaseVersion)_$(Build.BuildNumber)'
+          releaseNotesFilePath: '$(Build.ArtifactStagingDirectory)/NOTES/ReleaseNotes.md'
+          changeLogCompareToRelease: lastNonDraftRelease
