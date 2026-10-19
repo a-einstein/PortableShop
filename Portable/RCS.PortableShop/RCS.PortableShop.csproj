@@ -14,6 +14,8 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>RCS.PortableShop</RootNamespace>
     <UseMaui>true</UseMaui>
+    <!--Note warnings about non compiled bindings may occur on DevOps, but not in VisualStudio.-->
+    <MauiEnableXamlCBindingWithSourceCompilation>true</MauiEnableXamlCBindingWithSourceCompilation>
     <SingleProject>true</SingleProject>
     <ImplicitUsings>enable</ImplicitUsings>
 

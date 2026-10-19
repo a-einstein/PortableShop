@@ -11,11 +11,11 @@
     xmlns:controls="clr-namespace:RCS.PortableShop.Common.Controls;assembly=RCS.PortableShop.Common"
     xmlns:baseClasses="clr-namespace:RCS.PortableShop.Common.Views;assembly=RCS.PortableShop.Common"
     xmlns:viewModels="clr-namespace:RCS.PortableShop.ViewModels"
+    x:DataType="viewModels:ProductViewModel"
     mc:Ignorable="d" 
     BackgroundColor="{DynamicResource ProductsLevel1Colour}"
     Padding="{StaticResource ViewPadding}"
     >
-    <!--d:BindingContext ="{d:DesignInstance Type=viewModels:ProductViewModel}"-->
 
     <baseClasses:View.Resources>
         <ResourceDictionary>

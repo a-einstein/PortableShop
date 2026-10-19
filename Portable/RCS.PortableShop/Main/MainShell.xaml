@@ -10,11 +10,11 @@
     xmlns:resx="clr-namespace:RCS.PortableShop.Resources;assembly=RCS.PortableShop.Resources"
     xmlns:main="clr-namespace:RCS.PortableShop.Main"
     xmlns:viewModels="clr-namespace:RCS.PortableShop.ViewModels"
+    x:DataType="viewModels:MainShellViewModel"
     mc:Ignorable="d"
     BackgroundColor="{DynamicResource ProductsLevel0Colour}"
     FlyoutBackgroundColor="{DynamicResource FlyoutBackgroundColour}"
     >
-    <!--d:BindingContext ="{d:DesignInstance Type=viewModels:MainShellViewModel}"-->
 
     <!--
     Note not totally understood behaviour of DesignInstance,
