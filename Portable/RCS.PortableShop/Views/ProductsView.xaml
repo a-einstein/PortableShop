@@ -13,14 +13,13 @@
     xmlns:converters="clr-namespace:RCS.PortableShop.Common.Converters;assembly=RCS.PortableShop.Common"
     xmlns:baseClasses="clr-namespace:RCS.PortableShop.Common.Views;assembly=RCS.PortableShop.Common"
     xmlns:viewModels="clr-namespace:RCS.PortableShop.ViewModels"
+    xmlns:domainClasses="clr-namespace:RCS.AdventureWorks.Common.DomainClasses;assembly=RCS.AdventureWorks.Common"
+    x:DataType="viewModels:ProductsViewModel"
     xmlns:views="clr-namespace:RCS.PortableShop.Views"
     mc:Ignorable="d"
     BackgroundColor="{DynamicResource ProductsLevel0Colour}"
     Padding="{StaticResource ViewPadding}"
     >
-    <!--
-     d:BindingContext="{d:DesignInstance Type=viewModels:ProductsViewModel}"
-    -->
 
     <baseClasses:View.Resources>
         <ResourceDictionary>
@@ -87,7 +86,7 @@
 
                     <CollectionView IsVisible="{Binding ItemsCount, Converter={StaticResource HasValueTester}}" ItemsSource="{Binding Items}">
                         <CollectionView.ItemTemplate>
-                            <DataTemplate>
+                            <DataTemplate x:DataType="domainClasses:ProductsOverviewObject">
                                 <!--
                                 Notes:
                                 ContentButton is needed because currently there is no Button.Content.

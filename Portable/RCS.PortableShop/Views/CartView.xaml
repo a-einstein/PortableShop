@@ -9,13 +9,11 @@
     xmlns:baseClasses="clr-namespace:RCS.PortableShop.Common.Views;assembly=RCS.PortableShop.Common"
     xmlns:views="clr-namespace:RCS.PortableShop.Views;assembly=RCS.PortableShop"
     xmlns:viewModels="clr-namespace:RCS.PortableShop.ViewModels"
+    x:DataType="viewModels:CartViewModel"
     mc:Ignorable="d"
     BackgroundColor="{DynamicResource CartLevel0Colour}"
     Padding="{StaticResource ViewPadding}"
     >
-    <!--
-    d:BindingContext="{d:DesignInstance Type=viewModels:CartViewModel}"
-    -->
 
     <baseClasses:View.Resources>
         <ResourceDictionary>
@@ -34,7 +32,7 @@
         <!--Note that CollectionView has got its own scrolling (either scrollbar or swiping).-->
         <CollectionView x:Name="cartItemsListView" Grid.Row="1" ItemsSource="{Binding Items}" BackgroundColor="{StaticResource ResultsBackgroundColour}">
             <CollectionView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="viewModels:CartItemViewModel">
                     <Grid Style="{StaticResource CartItemStyle}">
                         <!--Note this layout currently is aimed towards portrait orientation.-->
                         <StackLayout Orientation="Vertical">

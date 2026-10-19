@@ -10,10 +10,10 @@
     xmlns:resx="clr-namespace:RCS.PortableShop.Resources;assembly=RCS.PortableShop.Resources"
     xmlns:baseClasses="clr-namespace:RCS.PortableShop.Common.Views;assembly=RCS.PortableShop.Common"
     xmlns:viewModels="clr-namespace:RCS.PortableShop.ViewModels"
+    x:DataType="viewModels:SettingsViewModel"
     mc:Ignorable="d"
     BackgroundColor="{DynamicResource SettingsBackgroundColour}"
     >
-  <!--d:BindingContext ="{d:DesignInstance Type=viewModels:SettingsViewModel}"-->
 
   <Grid VerticalOptions="Start" HorizontalOptions="Start" Margin="10">
     <Grid.RowDefinitions>
