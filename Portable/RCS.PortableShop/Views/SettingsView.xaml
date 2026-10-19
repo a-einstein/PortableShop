@@ -10,6 +10,8 @@
     xmlns:resx="clr-namespace:RCS.PortableShop.Resources;assembly=RCS.PortableShop.Resources"
     xmlns:baseClasses="clr-namespace:RCS.PortableShop.Common.Views;assembly=RCS.PortableShop.Common"
     xmlns:viewModels="clr-namespace:RCS.PortableShop.ViewModels"
+    xmlns:model="clr-namespace:RCS.PortableShop.Model"
+    xmlns:themes="clr-namespace:RCS.PortableShop.Common.Styles.Themes;assembly=RCS.PortableShop.Common"
     x:DataType="viewModels:SettingsViewModel"
     mc:Ignorable="d"
     BackgroundColor="{DynamicResource SettingsBackgroundColour}"
@@ -34,13 +36,13 @@
     <Picker Grid.Row="0" Grid.Column="1" Title="{x:Static resx:Labels.CultureCulture}"
             ItemsSource="{Binding CultureInfos, Mode=OneTime}"
             SelectedItem="{Binding CultureInfo, Mode=TwoWay}"
-            ItemDisplayBinding="{Binding DisplayName}"
+            ItemDisplayBinding="{Binding DisplayName, x:DataType=model:CultureInfo}"
             Style="{StaticResource VerticalPickerStyle}"/>
 
     <Picker Grid.Row="1" Grid.Column="1" Title="{x:Static resx:Labels.Theme}"
             ItemsSource="{Binding ThemeInfos, Mode=OneTime}"
             SelectedItem="{Binding ThemeInfo, Mode=TwoWay}"
-            ItemDisplayBinding="{Binding DisplayName}"
+            ItemDisplayBinding="{Binding DisplayName, x:DataType=themes:ThemeInfo}"
             Style="{StaticResource VerticalPickerStyle}"/>
 
     <Picker Grid.Row="2" Grid.Column="1" Title="{x:Static resx:Labels.ServiceType}"
