@@ -4,7 +4,9 @@
     x:Class="RCS.PortableShop.Common.Controls.ContentButton"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:RCS.PortableShop.Common.Controls;assembly=RCS.PortableShop.Common"
     x:Name="ContentButtonView"
+    x:DataType="controls:ContentButton"
     >
     
     <ContentView.GestureRecognizers>
