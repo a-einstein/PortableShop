@@ -54,6 +54,13 @@
     <PackageIcon>appicon.png</PackageIcon>
     <DefaultLanguage>en-GB</DefaultLanguage>
     <Product>CyclOne.MAUI</Product>
+    <!--
+    Note value MSIX can cause error: 
+    “The project needs to be deployed before we can debug. Please enable Deploy in the Configuration Manager.”
+    This also occurs as "commandName": "MsixPackage" in lausnSettings.json.
+    Also see https://learn.microsoft.com/en-gb/dotnet/maui/windows/setup
+    -->
+    <WindowsPackageType>None</WindowsPackageType>
    </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net10.0-android|AnyCPU'">
